@@ -141,13 +141,17 @@ h1,h2,h3,h4,h5,h6{
 }
 .btn-primary{
   background: var(--gold);
-  color: var(--ink);
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 .btn-primary:hover{
   background: var(--gold-bright);
+  color: #000;
   transform: translateY(-1px);
   box-shadow: var(--shadow-gold);
 }
+.btn-primary .arrow{ color: #000 }
 .btn-secondary{
   background: transparent;
   color: var(--snow);
@@ -367,6 +371,31 @@ body.is-loaded .nav{
   opacity: 0.4;
 }
 .dropdown-menu a:hover .dot{opacity: 1}
+.dropdown-section{
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 12px 14px 6px;
+  border-top: 1px solid var(--ink-3);
+  margin-top: 6px;
+  pointer-events: none;
+}
+.dropdown-menu > .dropdown-section:first-of-type{ border-top: none; margin-top: 0; padding-top: 10px }
+.mobile-menu .submenu-section{
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 14px 0 4px;
+  margin-top: 6px;
+  border-top: 1px solid var(--ink-3);
+}
+.mobile-menu .submenu-section:first-of-type{ border-top: none; margin-top: 0; padding-top: 8px }
 
 .nav-cta{
   background: var(--gold);

@@ -9,22 +9,12 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = window.matchMedia('(hover: none)').matches;
 
-// Splash loader — skip on subsequent nav within session (view transitions take over)
+// Splash loader — fires on every page load (including in-session nav)
 (function initSplash(){
-  const alreadyVisited = sessionStorage.getItem('amd-visited') === '1';
-  if (alreadyVisited){
-    // Instantly skip the splash — dispatch is-loaded immediately
-    const splash = document.querySelector('.splash');
-    if (splash) splash.style.display = 'none';
+  setTimeout(() => {
     document.body.classList.remove('is-loading');
     document.body.classList.add('is-loaded');
-  } else {
-    setTimeout(() => {
-      document.body.classList.remove('is-loading');
-      document.body.classList.add('is-loaded');
-      sessionStorage.setItem('amd-visited', '1');
-    }, 1600);
-  }
+  }, 1600);
 })();
 
 // Highlight the current page in the nav and mobile menu
@@ -136,16 +126,27 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 
   const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
 
-  // Parse a stat value like "20+", "100%", "$596K", "360°", "$2.98M", "173%", "5–10"
+  // Parse a stat value like "20+", "100%", "$596K", "360°", "$2.98M", "173%", "55-93%"
   // Returns { prefix, target, suffix } or null if not numeric
+  // Skips things like "1:1", "24 / 7", "Real-time", "Role-based", "In-house"
   function parseStat(text){
     const trimmed = text.trim();
-    // Handle ranges like "5–10" or "55–93%" — animate the second (larger) number
+    // Reject text-only values up-front
+    if (!/\d/.test(trimmed)) return null;
+    // Reject ratios with colons or forward slashes separating numbers
+    if (/\d\s*[:/]\s*\d/.test(trimmed)) return null;
+
+    // Handle ranges like "55-93%" — show dash+target prefix, animate upper
     const rangeMatch = trimmed.match(/^([^\d]*)([\d,.]+)\s*[–-]\s*([\d,.]+)(.*)$/);
     if (rangeMatch) {
-      const prefix = rangeMatch[1] + rangeMatch[2] + '–';
       const target = parseFloat(rangeMatch[3].replace(/,/g, ''));
-      return isNaN(target) ? null : { prefix, target, suffix: rangeMatch[4], decimals: (rangeMatch[3].split('.')[1] || '').length };
+      if (isNaN(target)) return null;
+      return {
+        prefix: rangeMatch[1] + rangeMatch[2] + '–',
+        target,
+        suffix: rangeMatch[4],
+        decimals: (rangeMatch[3].split('.')[1] || '').length
+      };
     }
     // Standard: optional $, number, optional suffix
     const m = trimmed.match(/^(\$?)([\d,.]+)(.*)$/);
@@ -243,21 +244,10 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     });
   }
 
-  // Wait for splash to finish before observing — otherwise stats next to the
-  // hero may already be "in view" and fire before the user ever sees them
-  if (document.body.classList.contains('is-loaded')){
-    startObserving();
-  } else {
-    // Poll briefly for is-loaded then start (splash animation completes ~1600ms)
-    let polls = 0;
-    const waitInterval = setInterval(() => {
-      polls++;
-      if (document.body.classList.contains('is-loaded') || polls > 40){
-        clearInterval(waitInterval);
-        startObserving();
-      }
-    }, 60);
-  }
+  // Wait until after the splash (1600ms) + hero reveal animation (~2060ms for
+  // the stats row at reveal-delay 4) have played, then start observing.
+  // Using a fixed delay is more reliable than polling for class changes.
+  setTimeout(startObserving, 2200);
 })();
 
 
@@ -448,89 +438,47 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 
 
 // ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #4 — Hero text scramble reveal
+// WOAH MOMENT #4 — Interactive Portal ("Try Me")
 // ═══════════════════════════════════════════════════════════════
-(function initTextScramble(){
-  if (prefersReducedMotion) return;
+// Turn the dashboard mock into a click-around demo. Sidebar nav items
+// swap the main content between 5 distinct views. A pulsing "Try me"
+// chip invites the first click and disappears after interaction.
+(function initInteractivePortal(){
+  const shell = document.querySelector('.pm-shell');
+  if (!shell) return;
+  const navItems = shell.querySelectorAll('.pm-nav-item[data-view]');
+  const views = shell.querySelectorAll('.pm-view[data-view]');
+  const urlBar = shell.querySelector('.pm-url');
+  const chip = shell.querySelector('.pm-tryme');
+  if (navItems.length === 0 || views.length === 0) return;
 
-  const heroH1 = document.querySelector('.hero h1');
-  if (!heroH1) return;
-
-  const CHARS = '!<>-_\\/[]{}—=+*^?#_______ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const DURATION = 1100;
-  const CHAR_LOCK_MS = 90;
-
-  // Walk text nodes and collect (node, originalText) pairs, preserving tags/structure
-  const textNodes = [];
-  function walk(node){
-    if (node.nodeType === 3 /* text */ && node.textContent.trim().length > 0){
-      textNodes.push({ node, original: node.textContent });
-    } else if (node.nodeType === 1 /* element */ && node.tagName !== 'BR'){
-      node.childNodes.forEach(walk);
+  function switchView(viewName, itemEl){
+    // Update active nav
+    navItems.forEach(i => i.classList.remove('active'));
+    if (itemEl) itemEl.classList.add('active');
+    // Swap view panels
+    views.forEach(v => v.classList.remove('is-active'));
+    const target = shell.querySelector(`.pm-view[data-view="${viewName}"]`);
+    if (target){
+      target.classList.add('is-active');
+    } else {
+      // Fallback: default dashboard
+      const dash = shell.querySelector('.pm-view[data-view="dashboard"]');
+      if (dash) dash.classList.add('is-active');
     }
+    // Update URL bar
+    if (urlBar) urlBar.textContent = `portal.albacetemeddev.com / ${viewName.replace(/-/g, '-')}`;
+    // Hide try-me chip once user interacts
+    if (chip) chip.classList.add('is-hidden');
   }
-  walk(heroH1);
-  if (textNodes.length === 0) return;
 
-  const totalChars = textNodes.reduce((s, t) => s + t.original.length, 0);
-  if (totalChars === 0) return;
-
-  // Pre-compute each char's "settle time" as a fraction of DURATION
-  let charIndex = 0;
-  const schedule = textNodes.map(({ node, original }) => {
-    const chars = original.split('').map(ch => {
-      const settleAt = (charIndex / totalChars) * (DURATION - CHAR_LOCK_MS);
-      charIndex++;
-      return { ch, settleAt };
+  navItems.forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const view = item.dataset.view;
+      if (!view) return;
+      switchView(view, item);
     });
-    return { node, original, chars };
   });
-
-  function randomChar(){
-    return CHARS[Math.floor(Math.random() * CHARS.length)];
-  }
-
-  // Render the initial "scrambled" state IMMEDIATELY so the user never sees
-  // the resolved text before the animation starts. This prevents the flash.
-  schedule.forEach(({ node, chars }) => {
-    node.textContent = chars.map(({ ch }) => {
-      if (ch === ' ' || ch === '\u00a0') return ch;
-      return randomChar();
-    }).join('');
-  });
-
-  function start(){
-    const startTime = performance.now();
-    function frame(){
-      const elapsed = performance.now() - startTime;
-      let allDone = true;
-      schedule.forEach(({ node, chars }) => {
-        const out = chars.map(({ ch, settleAt }) => {
-          if (ch === ' ' || ch === '\u00a0') return ch;
-          if (elapsed >= settleAt) return ch;
-          allDone = false;
-          return randomChar();
-        }).join('');
-        node.textContent = out;
-      });
-      if (!allDone) requestAnimationFrame(frame);
-      else schedule.forEach(({ node, original }) => { node.textContent = original; });
-    }
-    requestAnimationFrame(frame);
-  }
-
-  // Start scrambling the moment splash clears (body.is-loaded), or if already
-  // loaded, start immediately. Add a tiny buffer so the hero is painted first.
-  if (document.body.classList.contains('is-loaded')){
-    setTimeout(start, 150);
-  } else {
-    let polls = 0;
-    const waitInterval = setInterval(() => {
-      polls++;
-      if (document.body.classList.contains('is-loaded') || polls > 40){
-        clearInterval(waitInterval);
-        setTimeout(start, 150);
-      }
-    }, 60);
-  }
 })();

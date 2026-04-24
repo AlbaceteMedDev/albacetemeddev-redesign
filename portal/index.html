@@ -7,7 +7,7 @@
   <meta name="description" content="One portal. Patient tracking, product ordering, compliance documentation, and utilization reporting — unified, real-time, role-based access for your entire clinical team.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=8">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=9">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* Portal page — dashboard-style mock */
@@ -403,6 +403,119 @@
       .pm-main{padding: 14px}
     }
 
+    /* ======================================================
+       Interactive view switcher
+       ====================================================== */
+    .pm-view{ display: none }
+    .pm-view.is-active{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: pm-view-in 420ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    @keyframes pm-view-in{
+      from{ opacity: 0; transform: translateY(10px) }
+      to{ opacity: 1; transform: translateY(0) }
+    }
+
+    /* Clickable sidebar nav items */
+    .pm-nav-item[data-view]{
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+    .pm-nav-item[data-view]:hover{
+      background: var(--ink-2);
+      color: var(--snow);
+    }
+    .pm-nav-item[data-view].active{
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+    .pm-nav-item[data-view].active:hover{
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    /* "TRY ME" floating chip */
+    .pm-tryme{
+      position: absolute;
+      top: 90px;
+      left: 235px;
+      z-index: 10;
+      background: var(--gold);
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 12px 40px rgba(212,169,74,0.35), 0 0 0 4px rgba(212,169,74,0.18);
+      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+    .pm-tryme .pm-tryme-arrow{
+      font-size: 1.1rem;
+      animation: pm-tryme-point 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .pm-tryme .pm-tryme-sub{
+      font-weight: 500;
+      opacity: 0.75;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      padding-left: 8px;
+      border-left: 1px solid rgba(0,0,0,0.2);
+    }
+    .pm-tryme.is-hidden{
+      opacity: 0;
+      transform: translateX(-20px) scale(0.9);
+      pointer-events: none;
+    }
+    @keyframes pm-tryme-bob{
+      0%, 100%{ transform: translateX(0) }
+      50%{ transform: translateX(4px) }
+    }
+    @keyframes pm-tryme-point{
+      0%, 100%{ transform: translateX(0) }
+      50%{ transform: translateX(-4px) }
+    }
+    @media (max-width: 1024px){
+      .pm-tryme{ left: 20px; top: 80px; font-size: 0.8rem; padding: 8px 14px }
+      .pm-tryme .pm-tryme-sub{ display: none }
+    }
+
+    /* Filter pills (used in Orders view) */
+    .pm-filter-pills{
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pm-pill{
+      padding: 6px 12px;
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: 99px;
+      font-size: 0.78rem;
+      color: var(--mist);
+      cursor: pointer;
+      transition: all 180ms ease;
+    }
+    .pm-pill:hover{ color: var(--snow); border-color: rgba(212,169,74,0.4) }
+    .pm-pill.is-active{
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Wider table rows (used in Orders view) */
+    .pm-row-wide{ grid-template-columns: 1.3fr auto auto }
+
     /* Capability tiles (shared with other slim pages) */
     .pm-caps{
       display: grid;
@@ -457,15 +570,19 @@
         <li class="nav-dropdown" role="none">
           <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
           <div class="dropdown-menu" role="menu">
-            <a href="/products"><span class="dot"></span>All Products & Solutions</a>
+            <a href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
+            <div class="dropdown-section">Conservative Wound Care</div>
             <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
+            <div class="dropdown-section">Advanced Wound Care</div>
             <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
             <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
             <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
-            <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
             <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
             <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
-            <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
+            <div class="dropdown-section">Surgical Biologics</div>
+            <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
+            <div class="dropdown-section">Medical Supply Distribution</div>
+            <a href="/products/wholesaler"><span class="dot"></span>Wholesale Distribution</a>
           </div>
         </li>
         <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
@@ -486,15 +603,19 @@
   <div class="mobile-menu" aria-hidden="true">
     <a href="/products">Products</a>
     <div class="submenu">
-      <a href="/products">All Products & Solutions</a>
+      <a href="/products">All Products &amp; Solutions</a>
+      <div class="submenu-section">Conservative Wound Care</div>
       <a href="/products/collagen">Collagen Program</a>
+      <div class="submenu-section">Advanced Wound Care</div>
       <a href="/products/ultramist">UltraMist Therapy</a>
       <a href="/products/actigraft">ActiGraft+</a>
       <a href="/products/advanced-biologics">Advanced Biologics</a>
-      <a href="/products/adhesion-barrier">Adhesion Barrier</a>
       <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
       <a href="/products/microdoc">MicroDoc NPWT</a>
-      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
+      <div class="submenu-section">Surgical Biologics</div>
+      <a href="/products/adhesion-barrier">Adhesion Barrier</a>
+      <div class="submenu-section">Medical Supply Distribution</div>
+      <a href="/products/wholesaler">Wholesale Distribution</a>
     </div>
     <a href="/scientific-portfolio">Scientific Portfolio</a>
     <a href="/revenue-cycle">Revenue Cycle</a>
@@ -547,7 +668,14 @@
           <p>What your team sees when they log in &mdash; patients, orders, compliance, utilization, and reporting in one pane.</p>
         </div>
 
-        <div class="pm-shell scroll-reveal">
+<div class="pm-shell scroll-reveal">
+          <!-- "TRY ME" chip — disappears after first click -->
+          <div class="pm-tryme" aria-hidden="true">
+            <span class="pm-tryme-arrow">&larr;</span>
+            <span class="pm-tryme-text">Try me</span>
+            <span class="pm-tryme-sub">Click any menu item</span>
+          </div>
+
           <!-- Window top bar -->
           <div class="pm-top">
             <div class="pm-traffic"><span></span><span></span><span></span></div>
@@ -566,37 +694,37 @@
               </div>
 
               <div class="pm-nav-group">Clinical</div>
-              <div class="pm-nav-item active">
+              <div class="pm-nav-item active" data-view="dashboard">
                 <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                 Dashboard
               </div>
-              <div class="pm-nav-item">
+              <div class="pm-nav-item" data-view="patients">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Patients
                 <span class="badge">84</span>
               </div>
-              <div class="pm-nav-item">
+              <div class="pm-nav-item" data-view="orders">
                 <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
                 Orders
                 <span class="badge">12</span>
               </div>
 
               <div class="pm-nav-group">Compliance</div>
-              <div class="pm-nav-item">
+              <div class="pm-nav-item" data-view="documentation">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6M9 17h4"/></svg>
                 Documentation
               </div>
-              <div class="pm-nav-item">
+              <div class="pm-nav-item" data-view="documentation">
                 <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
                 Audit-readiness
               </div>
 
               <div class="pm-nav-group">Revenue</div>
-              <div class="pm-nav-item">
+              <div class="pm-nav-item" data-view="revenue">
                 <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 5-5"/></svg>
                 Claims &amp; denials
               </div>
-              <div class="pm-nav-item">
+              <div class="pm-nav-item" data-view="revenue">
                 <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3zM3 10h12v4H3zM3 17h18v4H3z"/></svg>
                 Reports
               </div>
@@ -610,138 +738,374 @@
               </div>
             </aside>
 
-            <!-- Main -->
+            <!-- Main (contains 5 switchable views) -->
             <div class="pm-main">
-              <div class="pm-main-top">
-                <h3>Today &middot; Wound care program</h3>
-                <span class="pm-chip"><span class="dot-live"></span>Synced 12s ago</span>
+
+              <!-- VIEW 1 — DASHBOARD (default active) -->
+              <div class="pm-view is-active" data-view="dashboard">
+                <div class="pm-main-top">
+                  <h3>Today &middot; Wound care program</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>Synced 12s ago</span>
+                </div>
+
+                <div class="pm-kpis">
+                  <div class="pm-kpi">
+                    <div class="label">Active patients</div>
+                    <div class="value">84</div>
+                    <div class="trend up">&uarr; 12 this month</div>
+                    <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
+                      <polyline points="0,22 10,18 20,19 30,14 40,11 50,8 60,4" fill="none" stroke="#5bcb8d" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <div class="pm-kpi">
+                    <div class="label">Orders this week</div>
+                    <div class="value">27</div>
+                    <div class="trend up">&uarr; 8 vs. last week</div>
+                    <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
+                      <polyline points="0,20 10,16 20,18 30,12 40,15 50,9 60,6" fill="none" stroke="#5bcb8d" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <div class="pm-kpi">
+                    <div class="label">Pending claims</div>
+                    <div class="value">$18.4K</div>
+                    <div class="trend neutral">6 awaiting</div>
+                    <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
+                      <polyline points="0,14 10,12 20,16 30,10 40,13 50,9 60,12" fill="none" stroke="#d4a94a" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <div class="pm-kpi">
+                    <div class="label">Docs complete</div>
+                    <div class="value">100%</div>
+                    <div class="trend up">Audit-ready</div>
+                    <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
+                      <polyline points="0,22 10,20 20,16 30,12 40,8 50,5 60,3" fill="none" stroke="#5bcb8d" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="pm-split">
+                  <div class="pm-card">
+                    <header>
+                      <h4>Recent orders</h4>
+                      <span class="view-all">View all &rarr;</span>
+                    </header>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">#1284</span>Collagen 4&times;4 &middot; E.&nbsp;Ortiz</div>
+                      <span class="date">Apr 18</span>
+                      <span class="status ok">Shipped</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">#1291</span>UltraMist &middot; M.&nbsp;Patel</div>
+                      <span class="date">Apr 19</span>
+                      <span class="status sent">Approved</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">#1297</span>ActiGraft+ &middot; R.&nbsp;Greene</div>
+                      <span class="date">Apr 20</span>
+                      <span class="status rev">In review</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">#1302</span>Membrane Wrap &middot; J.&nbsp;Khan</div>
+                      <span class="date">Apr 21</span>
+                      <span class="status ok">Delivered</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">#1306</span>MicroDoc NPWT &middot; L.&nbsp;Rivera</div>
+                      <span class="date">Apr 22</span>
+                      <span class="status paid">Paid</span>
+                    </div>
+                  </div>
+
+                  <div class="pm-side">
+                    <div class="pm-card">
+                      <header><h4>Compliance &middot; Today</h4></header>
+                      <div class="pm-check">
+                        <div class="pm-check-item">
+                          <span class="mark">&#10003;</span>
+                          <span class="title">HCPCS verified</span>
+                          <span class="code">A2005</span>
+                        </div>
+                        <div class="pm-check-item">
+                          <span class="mark">&#10003;</span>
+                          <span class="title">LCD aligned</span>
+                          <span class="code">L35041</span>
+                        </div>
+                        <div class="pm-check-item">
+                          <span class="mark">&#10003;</span>
+                          <span class="title">Benefit verified</span>
+                          <span class="code">Covered</span>
+                        </div>
+                        <div class="pm-check-item">
+                          <span class="mark">&#10003;</span>
+                          <span class="title">SWO on file</span>
+                          <span class="code">Signed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pm-card">
+                      <header><h4>Utilization &middot; 7 days</h4></header>
+                      <div class="pm-chart-body">
+                        <div class="pm-chart-bars">
+                          <div class="pm-bar" style="height: 55%" data-v="14"></div>
+                          <div class="pm-bar" style="height: 70%" data-v="18"></div>
+                          <div class="pm-bar" style="height: 50%" data-v="12"></div>
+                          <div class="pm-bar" style="height: 80%" data-v="21"></div>
+                          <div class="pm-bar active" style="height: 95%" data-v="27"></div>
+                          <div class="pm-bar" style="height: 65%" data-v="16"></div>
+                          <div class="pm-bar" style="height: 45%" data-v="10"></div>
+                        </div>
+                        <div class="pm-chart-labels">
+                          <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <!-- KPI ROW -->
-              <div class="pm-kpis">
-                <div class="pm-kpi">
-                  <div class="label">Active patients</div>
-                  <div class="value">84</div>
-                  <div class="trend up">&uarr; 12 this month</div>
-                  <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
-                    <polyline points="0,22 10,18 20,19 30,14 40,11 50,8 60,4" fill="none" stroke="#5bcb8d" stroke-width="1.5"/>
-                  </svg>
+              <!-- VIEW 2 — PATIENTS -->
+              <div class="pm-view" data-view="patients">
+                <div class="pm-main-top">
+                  <h3>Patients &middot; Active roster</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>84 on file</span>
                 </div>
-                <div class="pm-kpi">
-                  <div class="label">Orders this week</div>
-                  <div class="value">27</div>
-                  <div class="trend up">&uarr; 8 vs. last week</div>
-                  <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
-                    <polyline points="0,20 10,16 20,18 30,12 40,15 50,9 60,6" fill="none" stroke="#5bcb8d" stroke-width="1.5"/>
-                  </svg>
-                </div>
-                <div class="pm-kpi">
-                  <div class="label">Pending claims</div>
-                  <div class="value">$18.4K</div>
-                  <div class="trend neutral">6 awaiting</div>
-                  <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
-                    <polyline points="0,14 10,12 20,16 30,10 40,13 50,9 60,12" fill="none" stroke="#d4a94a" stroke-width="1.5"/>
-                  </svg>
-                </div>
-                <div class="pm-kpi">
-                  <div class="label">Docs complete</div>
-                  <div class="value">100%</div>
-                  <div class="trend up">Audit-ready</div>
-                  <svg class="spark" viewBox="0 0 60 28" preserveAspectRatio="none">
-                    <polyline points="0,22 10,20 20,16 30,12 40,8 50,5 60,3" fill="none" stroke="#5bcb8d" stroke-width="1.5"/>
-                  </svg>
-                </div>
-              </div>
 
-              <!-- TABLE + SIDE CARDS -->
-              <div class="pm-split">
+                <div class="pm-kpis">
+                  <div class="pm-kpi"><div class="label">Active</div><div class="value">84</div><div class="trend up">&uarr; 12 this month</div></div>
+                  <div class="pm-kpi"><div class="label">New (30d)</div><div class="value">12</div><div class="trend up">new referrals</div></div>
+                  <div class="pm-kpi"><div class="label">Retention</div><div class="value">97%</div><div class="trend up">returning care</div></div>
+                  <div class="pm-kpi"><div class="label">Avg duration</div><div class="value">28d</div><div class="trend neutral">time to heal</div></div>
+                </div>
 
-                <!-- Orders table -->
                 <div class="pm-card">
                   <header>
-                    <h4>Recent orders</h4>
-                    <span class="view-all">View all &rarr;</span>
+                    <h4>Patient list</h4>
+                    <span class="view-all">Export CSV &rarr;</span>
                   </header>
                   <div class="pm-row">
-                    <div class="patient"><span class="pid">#1284</span>Collagen 4&times;4 &middot; E.&nbsp;Ortiz</div>
-                    <span class="date">Apr 18</span>
+                    <div class="patient"><span class="pid">#1284</span>E. Ortiz &middot; DFU, right plantar</div>
+                    <span class="date">Week 4</span>
+                    <span class="status ok">On track</span>
+                  </div>
+                  <div class="pm-row">
+                    <div class="patient"><span class="pid">#1291</span>M. Patel &middot; Venous leg ulcer</div>
+                    <span class="date">Week 2</span>
+                    <span class="status sent">New</span>
+                  </div>
+                  <div class="pm-row">
+                    <div class="patient"><span class="pid">#1297</span>R. Greene &middot; Pressure ulcer, stage III</div>
+                    <span class="date">Week 6</span>
+                    <span class="status ok">Healing</span>
+                  </div>
+                  <div class="pm-row">
+                    <div class="patient"><span class="pid">#1302</span>J. Khan &middot; Post-op SSI prevention</div>
+                    <span class="date">Week 1</span>
+                    <span class="status sent">New</span>
+                  </div>
+                  <div class="pm-row">
+                    <div class="patient"><span class="pid">#1306</span>L. Rivera &middot; Chronic DFU</div>
+                    <span class="date">Week 12</span>
+                    <span class="status rev">Review</span>
+                  </div>
+                  <div class="pm-row">
+                    <div class="patient"><span class="pid">#1311</span>S. Alvarez &middot; DFU, left heel</div>
+                    <span class="date">Week 3</span>
+                    <span class="status ok">On track</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VIEW 3 — ORDERS -->
+              <div class="pm-view" data-view="orders">
+                <div class="pm-main-top">
+                  <h3>Orders &middot; Queue</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>12 in flight</span>
+                </div>
+
+                <div class="pm-filter-pills">
+                  <span class="pm-pill is-active">All &middot; 27</span>
+                  <span class="pm-pill">Pending &middot; 6</span>
+                  <span class="pm-pill">Shipped &middot; 14</span>
+                  <span class="pm-pill">Delivered &middot; 7</span>
+                  <span class="pm-pill">Paid &middot; 18</span>
+                </div>
+
+                <div class="pm-card">
+                  <header>
+                    <h4>All orders &middot; Last 14 days</h4>
+                    <span class="view-all">Export &rarr;</span>
+                  </header>
+                  <div class="pm-row pm-row-wide">
+                    <div class="patient"><span class="pid">O-1324</span>Collagen 4&times;4 &middot; E. Ortiz</div>
+                    <span class="date">Apr 22 &middot; <strong style="color:var(--snow)">$124</strong></span>
                     <span class="status ok">Shipped</span>
                   </div>
-                  <div class="pm-row">
-                    <div class="patient"><span class="pid">#1291</span>UltraMist &middot; M.&nbsp;Patel</div>
-                    <span class="date">Apr 19</span>
+                  <div class="pm-row pm-row-wide">
+                    <div class="patient"><span class="pid">O-1323</span>UltraMist &middot; M. Patel</div>
+                    <span class="date">Apr 22 &middot; <strong style="color:var(--snow)">$560</strong></span>
                     <span class="status sent">Approved</span>
                   </div>
-                  <div class="pm-row">
-                    <div class="patient"><span class="pid">#1297</span>ActiGraft+ &middot; R.&nbsp;Greene</div>
-                    <span class="date">Apr 20</span>
+                  <div class="pm-row pm-row-wide">
+                    <div class="patient"><span class="pid">O-1320</span>ActiGraft+ Kit &middot; R. Greene</div>
+                    <span class="date">Apr 21 &middot; <strong style="color:var(--snow)">$1,480</strong></span>
                     <span class="status rev">In review</span>
                   </div>
-                  <div class="pm-row">
-                    <div class="patient"><span class="pid">#1302</span>Membrane Wrap &middot; J.&nbsp;Khan</div>
-                    <span class="date">Apr 21</span>
+                  <div class="pm-row pm-row-wide">
+                    <div class="patient"><span class="pid">O-1319</span>Membrane Wrap 4&times;6 &middot; J. Khan</div>
+                    <span class="date">Apr 21 &middot; <strong style="color:var(--snow)">$720</strong></span>
                     <span class="status ok">Delivered</span>
                   </div>
-                  <div class="pm-row">
-                    <div class="patient"><span class="pid">#1306</span>MicroDoc NPWT &middot; L.&nbsp;Rivera</div>
-                    <span class="date">Apr 22</span>
+                  <div class="pm-row pm-row-wide">
+                    <div class="patient"><span class="pid">O-1315</span>MicroDoc NPWT &middot; L. Rivera</div>
+                    <span class="date">Apr 20 &middot; <strong style="color:var(--snow)">$340</strong></span>
+                    <span class="status paid">Paid</span>
+                  </div>
+                  <div class="pm-row pm-row-wide">
+                    <div class="patient"><span class="pid">O-1312</span>Adhesion Barrier 4&times;6 &middot; D. Cohen</div>
+                    <span class="date">Apr 19 &middot; <strong style="color:var(--snow)">$3,920</strong></span>
                     <span class="status paid">Paid</span>
                   </div>
                 </div>
+              </div>
 
-                <!-- Side: compliance + chart -->
-                <div class="pm-side">
+              <!-- VIEW 4 — DOCUMENTATION (also serves Audit-readiness) -->
+              <div class="pm-view" data-view="documentation">
+                <div class="pm-main-top">
+                  <h3>Documentation &middot; Audit-readiness</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>100% audit-ready</span>
+                </div>
+
+                <div class="pm-kpis">
+                  <div class="pm-kpi"><div class="label">Docs complete</div><div class="value">100%</div><div class="trend up">0 gaps</div></div>
+                  <div class="pm-kpi"><div class="label">Audit risk</div><div class="value" style="color:#5bcb8d">Low</div><div class="trend up">clean posture</div></div>
+                  <div class="pm-kpi"><div class="label">Reviews (30d)</div><div class="value">46</div><div class="trend up">+8 vs. prior</div></div>
+                  <div class="pm-kpi"><div class="label">Next review</div><div class="value" style="font-size:1.1rem; padding-top:4px">Apr 28</div><div class="trend neutral">scheduled</div></div>
+                </div>
+
+                <div class="pm-split">
                   <div class="pm-card">
-                    <header><h4>Compliance &middot; Today</h4></header>
+                    <header><h4>Templates in use</h4><span class="view-all">Library &rarr;</span></header>
                     <div class="pm-check">
-                      <div class="pm-check-item">
-                        <span class="mark">&#10003;</span>
-                        <span class="title">HCPCS verified</span>
-                        <span class="code">A2005</span>
-                      </div>
-                      <div class="pm-check-item">
-                        <span class="mark">&#10003;</span>
-                        <span class="title">LCD aligned</span>
-                        <span class="code">L35041</span>
-                      </div>
-                      <div class="pm-check-item">
-                        <span class="mark">&#10003;</span>
-                        <span class="title">Benefit verified</span>
-                        <span class="code">Covered</span>
-                      </div>
-                      <div class="pm-check-item">
-                        <span class="mark">&#10003;</span>
-                        <span class="title">SWO on file</span>
-                        <span class="code">Signed</span>
-                      </div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Wound assessment (weekly)</span><span class="code">LCD L35041</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Signed written order (SWO)</span><span class="code">Medicare</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">HCPCS validation</span><span class="code">A2005</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Benefit verification</span><span class="code">Pre-tx</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Photographic evidence</span><span class="code">Every visit</span></div>
                     </div>
                   </div>
 
-                  <div class="pm-card">
-                    <header><h4>Utilization &middot; 7 days</h4></header>
-                    <div class="pm-chart-body">
-                      <div class="pm-chart-bars">
-                        <div class="pm-bar" style="height: 55%" data-v="14"></div>
-                        <div class="pm-bar" style="height: 70%" data-v="18"></div>
-                        <div class="pm-bar" style="height: 50%" data-v="12"></div>
-                        <div class="pm-bar" style="height: 80%" data-v="21"></div>
-                        <div class="pm-bar active" style="height: 95%" data-v="27"></div>
-                        <div class="pm-bar" style="height: 65%" data-v="16"></div>
-                        <div class="pm-bar" style="height: 45%" data-v="10"></div>
+                  <div class="pm-side">
+                    <div class="pm-card">
+                      <header><h4>Recent notes</h4></header>
+                      <div class="pm-row" style="grid-template-columns: 1fr auto">
+                        <div class="patient" style="font-size:0.85rem">Dr. Romero &middot; E. Ortiz visit note</div>
+                        <span class="date">2m ago</span>
                       </div>
-                      <div class="pm-chart-labels">
-                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                      <div class="pm-row" style="grid-template-columns: 1fr auto">
+                        <div class="patient" style="font-size:0.85rem">NP Chen &middot; M. Patel SWO</div>
+                        <span class="date">18m ago</span>
+                      </div>
+                      <div class="pm-row" style="grid-template-columns: 1fr auto">
+                        <div class="patient" style="font-size:0.85rem">Dr. Romero &middot; R. Greene photo</div>
+                        <span class="date">1h ago</span>
+                      </div>
+                    </div>
+
+                    <div class="pm-card">
+                      <header><h4>Audit exposure score</h4></header>
+                      <div class="pm-chart-body" style="text-align:center">
+                        <div style="display:inline-flex; align-items:baseline; gap:6px; margin: 6px 0">
+                          <span style="font-family:var(--font-display); font-size:2.2rem; font-weight:700; color:#5bcb8d">2.1</span>
+                          <span style="color:var(--fog); font-size:0.8rem">/ 10</span>
+                        </div>
+                        <div style="font-size:11px; color:#5bcb8d; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-top:4px">Low risk</div>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
+
+              <!-- VIEW 5 — REVENUE (claims + reports combined) -->
+              <div class="pm-view" data-view="revenue">
+                <div class="pm-main-top">
+                  <h3>Revenue &middot; Claims &amp; reports</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>This month</span>
+                </div>
+
+                <div class="pm-kpis">
+                  <div class="pm-kpi"><div class="label">Paid (30d)</div><div class="value">$146K</div><div class="trend up">+$24K MoM</div></div>
+                  <div class="pm-kpi"><div class="label">Pending</div><div class="value">$18.4K</div><div class="trend neutral">6 claims</div></div>
+                  <div class="pm-kpi"><div class="label">Denied</div><div class="value">$2.1K</div><div class="trend down">1 appeal open</div></div>
+                  <div class="pm-kpi"><div class="label">Clean-claim rate</div><div class="value">96%</div><div class="trend up">+4 pts YoY</div></div>
+                </div>
+
+                <div class="pm-split">
+                  <div class="pm-card">
+                    <header><h4>Claims &middot; Last 10</h4><span class="view-all">View all &rarr;</span></header>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">C-8234</span>Medicare &middot; E. Ortiz</div>
+                      <span class="date">$124</span>
+                      <span class="status paid">Paid</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">C-8231</span>BCBS &middot; M. Patel</div>
+                      <span class="date">$560</span>
+                      <span class="status paid">Paid</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">C-8228</span>Medicare &middot; R. Greene</div>
+                      <span class="date">$1,480</span>
+                      <span class="status rev">Pending</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">C-8224</span>UHC &middot; J. Khan</div>
+                      <span class="date">$720</span>
+                      <span class="status paid">Paid</span>
+                    </div>
+                    <div class="pm-row">
+                      <div class="patient"><span class="pid">C-8221</span>Humana &middot; A. Brooks</div>
+                      <span class="date">$890</span>
+                      <span class="status sent">Appealing</span>
+                    </div>
+                  </div>
+
+                  <div class="pm-side">
+                    <div class="pm-card">
+                      <header><h4>Revenue &middot; 7 mo</h4></header>
+                      <div class="pm-chart-body">
+                        <div class="pm-chart-bars">
+                          <div class="pm-bar" style="height:40%" data-v="$88K"></div>
+                          <div class="pm-bar" style="height:55%" data-v="$104K"></div>
+                          <div class="pm-bar" style="height:65%" data-v="$118K"></div>
+                          <div class="pm-bar" style="height:60%" data-v="$112K"></div>
+                          <div class="pm-bar" style="height:75%" data-v="$126K"></div>
+                          <div class="pm-bar" style="height:82%" data-v="$134K"></div>
+                          <div class="pm-bar active" style="height:95%" data-v="$146K"></div>
+                        </div>
+                        <div class="pm-chart-labels">
+                          <span>O</span><span>N</span><span>D</span><span>J</span><span>F</span><span>M</span><span>A</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pm-card">
+                      <header><h4>Top product &middot; revenue</h4></header>
+                      <div class="pm-check">
+                        <div class="pm-check-item"><span class="mark">1</span><span class="title">ActiGraft+</span><span class="code">$48K</span></div>
+                        <div class="pm-check-item"><span class="mark">2</span><span class="title">Adhesion Barrier</span><span class="code">$39K</span></div>
+                        <div class="pm-check-item"><span class="mark">3</span><span class="title">Collagen Program</span><span class="code">$31K</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
-        <p style="text-align:center; margin-top: var(--s-3); font-size: var(--t-xs); color: var(--fog); font-style: italic">Interactive portal &mdash; provisioned for your clinical team during onboarding. Actual views are role-specific.</p>
+        <p style="text-align:center; margin-top: var(--s-3); font-size: var(--t-xs); color: var(--fog); font-style: italic">Click any sidebar item to explore &mdash; this is an interactive preview. Actual views are role-specific.</p>
       </div>
     </section>
 
@@ -859,6 +1223,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=8" defer></script>
+  <script src="/assets/js/app.js?v=9" defer></script>
 </body>
 </html>
