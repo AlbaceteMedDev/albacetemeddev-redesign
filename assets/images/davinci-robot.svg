@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" fill="none" aria-labelledby="davinciTitle" role="img">
+  <title id="davinciTitle">da Vinci surgical robot with four articulated arms ready for laparoscopic adhesion-barrier deployment</title>
+
+  <defs>
+    <!-- Metal gradients -->
+    <linearGradient id="bodyMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"  stop-color="#c9cbd0"/>
+      <stop offset="25%" stop-color="#f3f4f6"/>
+      <stop offset="55%" stop-color="#e5e7eb"/>
+      <stop offset="100%" stop-color="#9fa3ab"/>
+    </linearGradient>
+    <linearGradient id="armMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"  stop-color="#a4a8b0"/>
+      <stop offset="50%" stop-color="#e5e7eb"/>
+      <stop offset="100%" stop-color="#7e828a"/>
+    </linearGradient>
+    <linearGradient id="darkPanel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#23262c"/>
+      <stop offset="100%" stop-color="#0f1116"/>
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"  stop-color="#b78d36"/>
+      <stop offset="50%" stop-color="#e7c36a"/>
+      <stop offset="100%" stop-color="#b78d36"/>
+    </linearGradient>
+    <radialGradient id="cameraGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4a94a" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#d4a94a" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#d4a94a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" />
+    </filter>
+  </defs>
+
+  <!-- Ground shadow -->
+  <ellipse cx="240" cy="570" rx="160" ry="10" fill="#0b0d12" opacity="0.25"/>
+
+  <!-- Rolling base / cart -->
+  <g>
+    <rect x="120" y="500" width="240" height="38" rx="10" fill="url(#darkPanel)"/>
+    <rect x="120" y="500" width="240" height="8"  rx="6" fill="#2b2f36"/>
+    <!-- castors -->
+    <circle cx="150" cy="548" r="14" fill="#1a1c21" stroke="#2b2f36" stroke-width="2"/>
+    <circle cx="150" cy="548" r="6"  fill="#0b0d12"/>
+    <circle cx="240" cy="552" r="14" fill="#1a1c21" stroke="#2b2f36" stroke-width="2"/>
+    <circle cx="240" cy="552" r="6"  fill="#0b0d12"/>
+    <circle cx="330" cy="548" r="14" fill="#1a1c21" stroke="#2b2f36" stroke-width="2"/>
+    <circle cx="330" cy="548" r="6"  fill="#0b0d12"/>
+    <!-- gold brand strip -->
+    <rect x="120" y="508" width="240" height="2" fill="url(#goldAccent)" opacity="0.85"/>
+  </g>
+
+  <!-- Central column (body) -->
+  <g>
+    <rect x="210" y="220" width="60" height="290" rx="14" fill="url(#bodyMetal)" stroke="#8b8f97" stroke-width="1"/>
+    <!-- Spine detail -->
+    <rect x="236" y="240" width="8" height="260" rx="4" fill="#c2c5cc" opacity="0.6"/>
+    <!-- Control panel -->
+    <rect x="218" y="420" width="44" height="58" rx="6" fill="url(#darkPanel)"/>
+    <rect x="224" y="428" width="32" height="10" rx="2" fill="#0a0c10"/>
+    <circle cx="230" cy="452" r="3" fill="#d4a94a"/>
+    <circle cx="240" cy="452" r="3" fill="#4a5060"/>
+    <circle cx="250" cy="452" r="3" fill="#4a5060"/>
+    <rect x="224" y="462" width="32" height="2" fill="url(#goldAccent)" opacity="0.75"/>
+    <rect x="224" y="468" width="20" height="2" fill="#4a5060"/>
+  </g>
+
+  <!-- Shoulder hub at top of column -->
+  <g>
+    <ellipse cx="240" cy="220" rx="96" ry="22" fill="url(#bodyMetal)" stroke="#8b8f97" stroke-width="1"/>
+    <ellipse cx="240" cy="214" rx="96" ry="18" fill="#f3f4f6"/>
+    <ellipse cx="240" cy="210" rx="96" ry="14" fill="url(#bodyMetal)"/>
+    <!-- Brand nameplate -->
+    <rect x="208" y="202" width="64" height="12" rx="2" fill="url(#darkPanel)"/>
+    <text x="240" y="211" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="700" fill="#d4a94a" letter-spacing="1">da Vinci</text>
+  </g>
+
+  <!-- FOUR articulated arms (left outer, left inner, right inner [camera], right outer) -->
+
+  <!-- LEFT OUTER ARM -->
+  <g>
+    <!-- upper segment -->
+    <path d="M160,210 C112,220 78,270 78,330" stroke="url(#armMetal)" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <!-- joint 1 -->
+    <circle cx="160" cy="210" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="160" cy="210" r="6"  fill="#3a3e46"/>
+    <!-- elbow joint -->
+    <circle cx="78" cy="330" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="78" cy="330" r="6"  fill="#3a3e46"/>
+    <!-- lower segment -->
+    <path d="M78,330 L96,430" stroke="url(#armMetal)" stroke-width="18" stroke-linecap="round"/>
+    <!-- wrist joint -->
+    <circle cx="96" cy="430" r="11" fill="#d6d9df" stroke="#7e828a" stroke-width="1.2"/>
+    <circle cx="96" cy="430" r="4" fill="#3a3e46"/>
+    <!-- instrument shaft -->
+    <line x1="96" y1="430" x2="118" y2="520" stroke="#9aa0ab" stroke-width="4"/>
+    <!-- cannula (trocar sleeve) -->
+    <rect x="112" y="506" width="12" height="20" rx="2" fill="url(#darkPanel)"/>
+    <!-- instrument tip -->
+    <circle cx="118" cy="522" r="3.5" fill="#3a3e46"/>
+  </g>
+
+  <!-- LEFT INNER ARM -->
+  <g>
+    <path d="M200,208 C178,230 160,290 170,350" stroke="url(#armMetal)" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="200" cy="208" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="200" cy="208" r="6"  fill="#3a3e46"/>
+    <circle cx="170" cy="350" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="170" cy="350" r="6"  fill="#3a3e46"/>
+    <path d="M170,350 L182,450" stroke="url(#armMetal)" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="182" cy="450" r="11" fill="#d6d9df" stroke="#7e828a" stroke-width="1.2"/>
+    <circle cx="182" cy="450" r="4" fill="#3a3e46"/>
+    <line x1="182" y1="450" x2="194" y2="525" stroke="#9aa0ab" stroke-width="4"/>
+    <rect x="188" y="511" width="12" height="20" rx="2" fill="url(#darkPanel)"/>
+    <circle cx="194" cy="527" r="3.5" fill="#3a3e46"/>
+  </g>
+
+  <!-- RIGHT INNER ARM (CAMERA — gold accent) -->
+  <g>
+    <path d="M280,208 C302,230 320,290 310,350" stroke="url(#armMetal)" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="280" cy="208" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="280" cy="208" r="6"  fill="#3a3e46"/>
+    <circle cx="310" cy="350" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="310" cy="350" r="6"  fill="#3a3e46"/>
+    <path d="M310,350 L298,450" stroke="url(#armMetal)" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="298" cy="450" r="11" fill="#d6d9df" stroke="#7e828a" stroke-width="1.2"/>
+    <circle cx="298" cy="450" r="4" fill="#3a3e46"/>
+    <!-- camera shaft (darker, thicker) -->
+    <line x1="298" y1="450" x2="286" y2="525" stroke="#3a3e46" stroke-width="5"/>
+    <rect x="280" y="511" width="12" height="20" rx="2" fill="url(#darkPanel)"/>
+    <!-- camera lens with gold glow -->
+    <circle cx="286" cy="528" r="14" fill="url(#cameraGlow)"/>
+    <circle cx="286" cy="528" r="5" fill="#0a0c10" stroke="#d4a94a" stroke-width="1.5"/>
+    <circle cx="286" cy="528" r="2" fill="#d4a94a"/>
+  </g>
+
+  <!-- RIGHT OUTER ARM -->
+  <g>
+    <path d="M320,210 C368,220 402,270 402,330" stroke="url(#armMetal)" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="320" cy="210" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="320" cy="210" r="6"  fill="#3a3e46"/>
+    <circle cx="402" cy="330" r="14" fill="#d6d9df" stroke="#7e828a" stroke-width="1.5"/>
+    <circle cx="402" cy="330" r="6"  fill="#3a3e46"/>
+    <path d="M402,330 L384,430" stroke="url(#armMetal)" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="384" cy="430" r="11" fill="#d6d9df" stroke="#7e828a" stroke-width="1.2"/>
+    <circle cx="384" cy="430" r="4" fill="#3a3e46"/>
+    <line x1="384" y1="430" x2="362" y2="520" stroke="#9aa0ab" stroke-width="4"/>
+    <rect x="356" y="506" width="12" height="20" rx="2" fill="url(#darkPanel)"/>
+    <circle cx="362" cy="522" r="3.5" fill="#3a3e46"/>
+  </g>
+
+  <!-- Small tag showing "AMNIOTIC SHEET LOADED" floating near the right inner arm -->
+  <g opacity="0.85">
+    <rect x="316" y="402" width="100" height="22" rx="4" fill="url(#darkPanel)"/>
+    <rect x="316" y="402" width="100" height="2" fill="url(#goldAccent)"/>
+    <text x="366" y="417" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#d4a94a" letter-spacing="1.2">AMNIOTIC · READY</text>
+  </g>
+
+  <!-- Subtle highlight on body -->
+  <rect x="214" y="224" width="10" height="280" rx="5" fill="#ffffff" opacity="0.35"/>
+</svg>

@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Portfolio — Albacete MedDev</title>
+  <meta name="description" content="Three platforms. One wound healing cascade. Antimicrobial matrices, human placental allografts, and collagen dressings — each targeting distinct failure points in the chronic wound proteolytic cascade.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=4">
+  <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
+  <style>
+    /* ═══ Scientific Portfolio page-specific styles ═══ */
+    .sp-hero-stats{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s-4);
+      margin-top: var(--s-5);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--ink-3);
+    }
+    .sp-hero-stats .stat .value{
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .sp-hero-stats .stat .desc{
+      font-size: var(--t-sm);
+      color: var(--fog);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    @media (max-width: 768px){
+      .sp-hero-stats{grid-template-columns: repeat(2, 1fr)}
+    }
+
+    /* Radio-button tabs (no JS) */
+    .sp-radio{position: absolute; opacity: 0; pointer-events: none}
+    .sp-tabs{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px;
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-pill);
+      margin-bottom: var(--s-5);
+      position: sticky;
+      top: calc(var(--nav-h) + 12px);
+      z-index: 50;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+    .sp-tabs label{
+      flex: 1;
+      min-width: max-content;
+      padding: 12px 18px;
+      border-radius: var(--r-pill);
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fog);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease-out-quart);
+      white-space: nowrap;
+    }
+    .sp-tabs label:hover{color: var(--snow); background: var(--ink-2)}
+    #sp-r1:checked ~ .sp-tabs label[for="sp-r1"],
+    #sp-r2:checked ~ .sp-tabs label[for="sp-r2"],
+    #sp-r3:checked ~ .sp-tabs label[for="sp-r3"],
+    #sp-r4:checked ~ .sp-tabs label[for="sp-r4"],
+    #sp-r5:checked ~ .sp-tabs label[for="sp-r5"],
+    #sp-r6:checked ~ .sp-tabs label[for="sp-r6"]{
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* Panels — show/hide based on radio */
+    .sp-panel{display: none; animation: fadeInUp 500ms var(--ease-out-expo)}
+    #sp-r1:checked ~ #p1,
+    #sp-r2:checked ~ #p2,
+    #sp-r3:checked ~ #p3,
+    #sp-r4:checked ~ #p4,
+    #sp-r5:checked ~ #p5,
+    #sp-r6:checked ~ #p6{display: block}
+    @keyframes fadeInUp{
+      from{opacity: 0; transform: translateY(12px)}
+      to{opacity: 1; transform: translateY(0)}
+    }
+
+    /* Common panel components */
+    .sp-eyebrow{
+      display: inline-flex;
+      padding: 6px 14px;
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-radius: var(--r-pill);
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: var(--s-3);
+    }
+    .sp-panel h2{
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s-3);
+      max-width: 880px;
+    }
+    .sp-panel > p.lead{
+      font-size: var(--t-lg);
+      color: var(--fog);
+      line-height: 1.6;
+      max-width: 720px;
+      margin-bottom: var(--s-5);
+    }
+
+    /* Problem cards */
+    .problem-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s-3);
+      margin-bottom: var(--s-6);
+    }
+    .problem-card{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-top: 2px solid var(--problem-color, var(--gold));
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+    }
+    .problem-card h4{
+      font-family: var(--font-display);
+      font-size: var(--t-base);
+      font-weight: 600;
+      color: var(--problem-color, var(--gold));
+      margin-bottom: 10px;
+      letter-spacing: 0;
+    }
+    .problem-card p{
+      color: var(--fog);
+      font-size: var(--t-sm);
+      line-height: 1.55;
+    }
+    @media (max-width: 900px){.problem-grid{grid-template-columns: repeat(2, 1fr)}}
+
+    /* Cascade reset strip */
+    .cascade-strip{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-2);
+      margin-top: var(--s-3);
+    }
+    .cascade-step{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+      position: relative;
+      overflow: hidden;
+    }
+    .cascade-step::before{
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--step-color, var(--gold));
+    }
+    .cascade-step .step-label{
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--step-color, var(--gold));
+      margin-bottom: 8px;
+    }
+    .cascade-step h4{
+      font-size: var(--t-xl);
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--snow);
+    }
+    .cascade-step p{color: var(--fog); font-size: var(--t-sm); line-height: 1.5}
+    @media (max-width: 768px){.cascade-strip{grid-template-columns: 1fr}}
+
+    /* Layer row (amnion architecture) */
+    .layer-row{
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: var(--s-3);
+      margin-bottom: var(--s-2);
+    }
+    .layer-body{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-left: 4px solid var(--layer-color, var(--gold));
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+    }
+    .layer-body h4{
+      font-family: var(--font-display);
+      font-size: var(--t-lg);
+      font-weight: 700;
+      color: var(--snow);
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .layer-body p{color: var(--fog); font-size: var(--t-sm); line-height: 1.7; margin-bottom: 4px}
+    .layer-body p strong{color: var(--mist); font-weight: 500}
+    .layer-callout{
+      background: var(--ink-1);
+      border: 1px solid var(--layer-color, var(--gold));
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .layer-callout .title{
+      font-family: var(--font-display);
+      font-size: var(--t-base);
+      font-weight: 600;
+      color: var(--layer-color, var(--gold));
+      margin-bottom: 4px;
+    }
+    .layer-callout .note{font-size: var(--t-sm); color: var(--mist); line-height: 1.5}
+    @media (max-width: 900px){.layer-row{grid-template-columns: 1fr}}
+
+    /* Tier product cards */
+    .tier-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-3);
+      margin-top: var(--s-4);
+    }
+    .tier-card{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+    }
+    .tier-card .tier-tag{
+      display: inline-flex;
+      padding: 4px 10px;
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-radius: var(--r-pill);
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .tier-card h4{
+      font-family: var(--font-display);
+      font-size: var(--t-lg);
+      font-weight: 600;
+      color: var(--snow);
+      margin-bottom: 6px;
+    }
+    .tier-card .best-for{
+      font-size: var(--t-xs);
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .tier-card p{color: var(--fog); font-size: var(--t-sm); line-height: 1.55}
+    @media (max-width: 900px){.tier-grid{grid-template-columns: 1fr}}
+
+    /* Microlyte comparison */
+    .compare-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-3);
+      margin-bottom: var(--s-5);
+    }
+    .compare-card{
+      padding: var(--s-4);
+      border-radius: var(--r-md);
+      border: 1px dashed;
+    }
+    .compare-card.bad{
+      background: rgba(200, 80, 80, 0.05);
+      border-color: rgba(200, 80, 80, 0.35);
+    }
+    .compare-card.good{
+      background: rgba(120, 180, 140, 0.05);
+      border-color: rgba(120, 180, 140, 0.35);
+    }
+    .compare-card h4{
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: var(--s-2);
+    }
+    .compare-card.bad h4{color: #d57373}
+    .compare-card.good h4{color: #7fba95}
+    .compare-card .illus{
+      padding: var(--s-3) 0;
+      text-align: center;
+      font-size: var(--t-sm);
+      color: var(--mist);
+      line-height: 1.7;
+    }
+    .compare-card .metric{
+      padding-top: var(--s-2);
+      border-top: 1px solid var(--ink-3);
+      font-size: var(--t-sm);
+      color: var(--fog);
+      line-height: 1.6;
+    }
+    .compare-card .metric strong{color: var(--snow); font-weight: 500}
+    .compare-card .tag{
+      display: inline-block;
+      margin-top: var(--s-2);
+      padding: 6px 12px;
+      border-radius: var(--r-sm);
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .compare-card.bad .tag{background: rgba(200, 80, 80, 0.15); color: #d57373}
+    .compare-card.good .tag{background: rgba(120, 180, 140, 0.15); color: #7fba95}
+    @media (max-width: 768px){.compare-grid{grid-template-columns: 1fr}}
+
+    /* Evidence stat block */
+    .evidence-band{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-lg);
+      padding: var(--s-5) var(--s-4);
+      margin: var(--s-4) 0;
+    }
+    .evidence-band .band-title{
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--s-3);
+    }
+    .evidence-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s-3);
+    }
+    .evidence-grid .ev-value{
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .evidence-grid .ev-label{
+      font-size: var(--t-xs);
+      color: var(--fog);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .evidence-footnote{
+      margin-top: var(--s-3);
+      padding-top: var(--s-2);
+      border-top: 1px solid var(--ink-3);
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fog);
+    }
+    @media (max-width: 768px){.evidence-grid{grid-template-columns: repeat(2, 1fr); gap: var(--s-4)}}
+
+    /* Three-box science grid (Microlyte polymer science) */
+    .sci-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-3);
+      margin-bottom: var(--s-4);
+    }
+    .sci-card{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+    }
+    .sci-card h4{
+      font-family: var(--font-display);
+      font-size: var(--t-base);
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .sci-card p{color: var(--fog); font-size: var(--t-sm); line-height: 1.55}
+    @media (max-width: 900px){.sci-grid{grid-template-columns: 1fr}}
+
+    /* Cascade flow (collagen panel) */
+    .flow-grid{
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: var(--s-2);
+      align-items: stretch;
+      margin: var(--s-4) 0 var(--s-3);
+    }
+    .flow-box{
+      padding: var(--s-3);
+      border-radius: var(--r-md);
+      border: 1px solid;
+    }
+    .flow-box.bad{background: rgba(200,80,80,0.06); border-color: rgba(200,80,80,0.3)}
+    .flow-box.mid{background: rgba(212,169,74,0.08); border-color: rgba(212,169,74,0.4)}
+    .flow-box.good{background: rgba(120,180,140,0.05); border-color: rgba(120,180,140,0.3)}
+    .flow-box h5{
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .flow-box.bad h5{color: #d57373}
+    .flow-box.mid h5{color: var(--gold)}
+    .flow-box.good h5{color: #7fba95}
+    .flow-box p{font-size: var(--t-xs); line-height: 1.6; color: var(--fog)}
+    .flow-box p strong{color: var(--mist); font-weight: 500}
+    .flow-arrow{
+      display: flex;
+      align-items: center;
+      color: var(--gold);
+      font-size: 20px;
+    }
+    @media (max-width: 900px){
+      .flow-grid{grid-template-columns: 1fr}
+      .flow-arrow{transform: rotate(90deg); justify-content: center; padding: var(--s-1) 0}
+    }
+
+    /* Matrikine callout */
+    .matrikine-box{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-md);
+      padding: var(--s-4);
+      margin-bottom: var(--s-4);
+    }
+    .matrikine-box .mk-title{
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--snow);
+      margin-bottom: var(--s-2);
+      text-align: center;
+    }
+    .matrikine-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-4);
+    }
+    .matrikine-item h5{
+      font-family: var(--font-display);
+      font-size: var(--t-base);
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .matrikine-item p{color: var(--fog); font-size: var(--t-sm); line-height: 1.5}
+    @media (max-width: 640px){.matrikine-grid{grid-template-columns: 1fr}}
+
+    /* Two-pathway evidence strip */
+    .path-evidence{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-3);
+    }
+    .path-ev{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+    }
+    .path-ev .path-label{
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--s-2);
+    }
+    .path-ev-stats{display: flex; gap: var(--s-3); flex-wrap: wrap}
+    .path-ev-stat .v{
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .path-ev-stat .l{
+      font-size: var(--t-xs);
+      color: var(--fog);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    @media (max-width: 768px){.path-evidence{grid-template-columns: 1fr}}
+
+    /* Decision table */
+    .decision-table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-bottom: var(--s-4);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+    .decision-table thead{background: var(--ink-1)}
+    .decision-table th{
+      text-align: left;
+      padding: 14px 16px;
+      font-family: var(--font-display);
+      font-size: var(--t-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--ink-3);
+    }
+    .decision-table td{
+      padding: 14px 16px;
+      font-size: var(--t-sm);
+      color: var(--fog);
+      line-height: 1.5;
+      border-bottom: 1px solid var(--ink-3);
+      vertical-align: top;
+    }
+    .decision-table tr:last-child td{border-bottom: none}
+    .decision-table td.presentation{color: var(--snow); font-weight: 500; font-family: var(--font-display)}
+    .decision-table td.product{color: var(--gold); font-weight: 500; font-family: var(--font-display)}
+    @media (max-width: 900px){
+      .decision-table thead{display: none}
+      .decision-table, .decision-table tbody, .decision-table tr, .decision-table td{display: block}
+      .decision-table tr{border-bottom: 1px solid var(--ink-3); padding: var(--s-2) 0}
+      .decision-table td{border: none; padding: 6px 16px}
+      .decision-table td.presentation{padding-top: var(--s-2)}
+    }
+
+    /* Compliance triple */
+    .compliance-card{
+      background: var(--ink-1);
+      border: 1px solid var(--ink-3);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--r-md);
+      padding: var(--s-3);
+    }
+    .compliance-card h5{
+      font-family: var(--font-display);
+      font-size: var(--t-base);
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .compliance-card p{color: var(--fog); font-size: var(--t-sm); line-height: 1.55}
+  </style>
+</head>
+<body class="is-loading">
+
+  <div class="splash" aria-hidden="true">
+    <img class="splash-mark" src="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1" alt="Albacete MedDev">
+  </div>
+
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
+        <img src="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1" alt="Albacete MedDev">
+      </a>
+      <ul class="nav-links" role="menubar">
+        <li class="nav-dropdown" role="none">
+          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
+          <div class="dropdown-menu" role="menu">
+            <a href="/products"><span class="dot"></span>All Products & Solutions</a>
+            <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
+            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
+            <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
+            <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
+            <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
+            <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
+            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
+            <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
+          </div>
+        </li>
+        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
+        <li><a href="/revenue-cycle" role="menuitem">Revenue Cycle</a></li>
+        <li><a href="/legal-guidance" role="menuitem">Legal Guidance</a></li>
+        <li><a href="/consulting" role="menuitem">Consulting</a></li>
+        <li><a href="/portal" role="menuitem">Portal</a></li>
+        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
+        <li><a href="/about" role="menuitem">About</a></li>
+        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="/products">Products</a>
+    <div class="submenu">
+      <a href="/products">All Products & Solutions</a>
+      <a href="/products/collagen">Collagen Program</a>
+      <a href="/products/ultramist">UltraMist Therapy</a>
+      <a href="/products/actigraft">ActiGraft+</a>
+      <a href="/products/advanced-biologics">Advanced Biologics</a>
+      <a href="/products/adhesion-barrier">Adhesion Barrier</a>
+      <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
+      <a href="/products/microdoc">MicroDoc NPWT</a>
+      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
+    </div>
+    <a href="/scientific-portfolio">Scientific Portfolio</a>
+    <a href="/revenue-cycle">Revenue Cycle</a>
+    <a href="/legal-guidance">Legal Guidance</a>
+    <a href="/consulting">Consulting</a>
+    <a href="/portal">Portal</a>
+    <a href="/why-partner">Why Partner</a>
+    <a href="/about">About</a>
+    <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero hero-compact">
+      <div class="container hero-inner">
+        <div class="hero-chip" data-reveal style="--reveal-delay: 0">
+          <span class="dot"></span>
+          <span>PHYSICIAN-FACING SCIENTIFIC PORTFOLIO</span>
+        </div>
+        <h1 data-reveal style="--reveal-delay: 1">
+          Three platforms.<br>
+          One <em>wound healing</em> cascade.
+        </h1>
+        <p class="hero-sub" data-reveal style="--reveal-delay: 2">
+          Antimicrobial matrices, human placental allografts, and collagen dressing systems &mdash; each targeting distinct failure points in the chronic wound proteolytic cascade.
+        </p>
+
+        <div class="sp-hero-stats" data-reveal style="--reveal-delay: 3">
+          <div class="stat"><div class="value">30&times;</div><div class="desc">MMP activity: chronic vs. acute wounds</div></div>
+          <div class="stat"><div class="value">60&ndash;90%</div><div class="desc">of chronic wounds harbor biofilm</div></div>
+          <div class="stat"><div class="value">99.99%</div><div class="desc">Microlyte antimicrobial efficacy</div></div>
+          <div class="stat"><div class="value">91%</div><div class="desc">of refractory wounds healed / improved at 12 wk</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB-BASED SCIENTIFIC PORTFOLIO -->
+    <section class="section" style="padding-top: var(--s-4)">
+      <div class="container">
+
+        <input type="radio" name="sp-tabs" id="sp-r1" class="sp-radio" checked>
+        <input type="radio" name="sp-tabs" id="sp-r2" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r3" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r4" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r5" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r6" class="sp-radio">
+
+        <div class="sp-tabs" role="tablist">
+          <label for="sp-r1" role="tab">Overview</label>
+          <label for="sp-r2" role="tab">The Problem</label>
+          <label for="sp-r3" role="tab">Amniotic Membrane</label>
+          <label for="sp-r4" role="tab">Microlyte SAM</label>
+          <label for="sp-r5" role="tab">Collagen Program</label>
+          <label for="sp-r6" role="tab">Clinical Framework</label>
+        </div>
+
+        <!-- PANEL 1: OVERVIEW -->
+        <div id="p1" class="sp-panel">
+          <span class="sp-eyebrow">Overview</span>
+          <h2>Three platforms. <em style="font-style:normal;color:var(--gold)">Each targets a distinct failure point.</em></h2>
+          <p class="lead">Chronic wounds stall in a self-amplifying proteolytic cycle. Each of our three platforms addresses a different driver &mdash; together, they reset the cascade.</p>
+
+          <div class="cascade-strip">
+            <div class="cascade-step" style="--step-color:#7fb5ba">
+              <div class="step-label">Neutralize</div>
+              <h4>Collagen Dressings</h4>
+              <p>Sacrificial substrate sequesters excess MMPs. Restores protease : anti-protease balance. Enables inflammation &rarr; proliferation phase transition.</p>
+            </div>
+            <div class="cascade-step" style="--step-color:var(--gold)">
+              <div class="step-label">Protect</div>
+              <h4>Microlyte SAM</h4>
+              <p>Sub-cytotoxic silver breaks the biofilm cycle. Bioresorbable scaffold supports granulation. No removal trauma.</p>
+            </div>
+            <div class="cascade-step" style="--step-color:#a0b5d8">
+              <div class="step-label">Regenerate</div>
+              <h4>Amniotic Membrane</h4>
+              <p>Multi-layer biological pharmacy: 25+ growth factors, HC-HA/PTX3 complex, native ECM scaffold.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--s-5); padding: var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-lg); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3);">
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Antimicrobial</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Microlyte SAM</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">FDA 510(k) K153756</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Tri-Layer</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Tri-Membrane Wrap</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">A-C-A, escalation product</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Dual-Layer</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Membrane Wrap</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">2&times; ECM + GF payload</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Single Amnion</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Membrane Wrap Lite</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Cost-effective entry</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: THE PROBLEM -->
+        <div id="p2" class="sp-panel">
+          <span class="sp-eyebrow">The Chronic Wound Problem</span>
+          <h2>Why chronic wounds <em style="font-style:normal;color:var(--gold)">fail to heal.</em></h2>
+          <p class="lead">Chronic wounds are locked in a self-amplifying proteolytic cycle. MMPs at 30&times; physiological levels destroy growth factors, native ECM, and their own inhibitors. Biofilm maintains inflammation. Senescent fibroblasts amplify the cascade.</p>
+
+          <div class="problem-grid">
+            <div class="problem-card" style="--problem-color:#d57373">
+              <h4>MMP Overexpression</h4>
+              <p>MMP-9 in poor healers: 17&times; higher. PDGF degraded within 2 hours.</p>
+            </div>
+            <div class="problem-card" style="--problem-color:#d9a45a">
+              <h4>Biofilm Persistence</h4>
+              <p>60&ndash;90% of chronic wounds. EPS matrix shields bacteria from immunity.</p>
+            </div>
+            <div class="problem-card" style="--problem-color:#c4789a">
+              <h4>Growth Factor Sink</h4>
+              <p>Proteolytic environment degrades growth factors before signaling can occur.</p>
+            </div>
+            <div class="problem-card" style="--problem-color:#7fa8c9">
+              <h4>Cellular Senescence</h4>
+              <p>&gt;15% senescent cells = treatment-resistant. SASP amplifies MMPs.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--s-5)">
+            <span class="sp-eyebrow" style="background: var(--ink-2); color: var(--mist)">Integrated Treatment Logic</span>
+            <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-3)">Sequential cascade reset</h3>
+            <div class="cascade-strip">
+              <div class="cascade-step" style="--step-color:#7fb5ba">
+                <div class="step-label">Neutralize</div>
+                <h4>Collagen Dressings</h4>
+                <p>Sacrificial substrate sequesters excess MMPs. Restores protease : anti-protease balance.</p>
+              </div>
+              <div class="cascade-step" style="--step-color:var(--gold)">
+                <div class="step-label">Protect</div>
+                <h4>Microlyte SAM</h4>
+                <p>Sub-cytotoxic silver breaks biofilm cycle. Bioresorbable scaffold supports granulation.</p>
+              </div>
+              <div class="cascade-step" style="--step-color:#a0b5d8">
+                <div class="step-label">Regenerate</div>
+                <h4>Amniotic Membrane</h4>
+                <p>25+ growth factors, HC-HA/PTX3 complex, native ECM scaffold.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: AMNIOTIC MEMBRANE -->
+        <div id="p3" class="sp-panel">
+          <span class="sp-eyebrow">Human Placental Allografts</span>
+          <h2>Amniotic membrane &mdash; <em style="font-style:normal;color:var(--gold)">layer architecture.</em></h2>
+          <p class="lead">Over 25 growth factors, anti-inflammatory cytokines, and TIMPs in native ECM. Each layer contributes distinct biology to wound healing.</p>
+
+          <div class="layer-row">
+            <div class="layer-body" style="--layer-color:#7fb5ba">
+              <h4>Amnion</h4>
+              <p><strong>Basement membrane:</strong> Type IV Collagen, Laminin-1/5, Fibronectin</p>
+              <p><strong>Growth factors:</strong> EGF, FGF-2, PDGF-AA/BB, VEGF, KGF, HGF, TGF-&alpha;, IGF-1</p>
+              <p><strong>Anti-inflammatory:</strong> HC-HA/PTX3, IL-10, IL-1Ra, PGE2, TIMP-1/2/3/4</p>
+            </div>
+            <div class="layer-callout" style="--layer-color:#7fb5ba">
+              <div class="title">Re-epithelialization scaffold</div>
+              <div class="note">Keratinocyte migration &middot; immune privilege</div>
+            </div>
+          </div>
+
+          <div class="layer-row">
+            <div class="layer-body" style="--layer-color:var(--gold)">
+              <h4>Intermediate (Spongy) Layer</h4>
+              <p><strong>Composition:</strong> HA &gt;4,000 kDa &middot; Type III Collagen &middot; Decorin &middot; Biglycan &middot; Proteoglycans</p>
+              <p><strong>Function:</strong> Growth factor reservoir &middot; anti-fibrotic TGF-&beta; sequestration via decorin</p>
+            </div>
+            <div class="layer-callout" style="--layer-color:var(--gold)">
+              <div class="title">Sustained-release depot</div>
+              <div class="note">Hydrated GF reservoir</div>
+            </div>
+          </div>
+
+          <div class="layer-row">
+            <div class="layer-body" style="--layer-color:#a0b5d8">
+              <h4>Chorion</h4>
+              <p><strong>Collagen matrix:</strong> Types I, III, IV, V, VI &middot; Fibronectin &middot; Tenascin</p>
+              <p><strong>Structure:</strong> Dense reticular network &middot; trophoblast growth factor production</p>
+              <p><strong>Function:</strong> Mechanical backbone &middot; slow-diffusion sustained release</p>
+            </div>
+            <div class="layer-callout" style="--layer-color:#a0b5d8">
+              <div class="title">Structural persistence</div>
+              <div class="note">Extended residence time</div>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--s-5)">
+            <span class="sp-eyebrow">Product Portfolio &mdash; By Complexity</span>
+            <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">HC-HA/PTX3 anti-inflammatory master switch</h3>
+            <p style="color: var(--fog); line-height: 1.6; margin-bottom: var(--s-4); max-width: 880px">HA &gt;4,000 kDa + heavy chain 1 via TSG-6 + pentraxin 3 drives apoptosis of activated neutrophils/macrophages, M2 polarization, and Treg expansion. Downregulates TGF-&beta;1 mRNA + receptors I/II/III and activates BMP &mdash; reverting myofibroblasts and attenuating nociceptive excitability.</p>
+
+            <div class="tier-grid">
+              <div class="tier-card">
+                <span class="tier-tag">Single Amnion</span>
+                <h4>Membrane Wrap Lite</h4>
+                <div class="best-for">Best for: shallow DFUs, partial-thickness VLUs</div>
+                <p>Basement-membrane scaffold + growth-factor monolayer. Cost-effective entry point.</p>
+              </div>
+              <div class="tier-card">
+                <span class="tier-tag">Dual-Layer Amnion</span>
+                <h4>Membrane Wrap</h4>
+                <div class="best-for">Best for: moderate chronic wounds, deeper partial-thickness</div>
+                <p>2&times; ECM + growth-factor payload. Enhanced structural integrity and sustained GF kinetics.</p>
+              </div>
+              <div class="tier-card" style="border-color: rgba(212,169,74,0.35)">
+                <span class="tier-tag">Tri-Layer (A-C-A)</span>
+                <h4>Tri-Membrane Wrap</h4>
+                <div class="best-for">Best for: failed prior grafts, deep full-thickness, high-risk patients</div>
+                <p>A-C-A sandwich: highest ECM concentration. Dense chorion collagen between two amnion layers. Escalation product.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: MICROLYTE SAM -->
+        <div id="p4" class="sp-panel">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: var(--s-3)">
+            <span class="sp-eyebrow" style="margin-bottom: 0">FDA 510(k) K153756</span>
+            <span class="sp-eyebrow" style="background: var(--ink-2); color: var(--mist); margin-bottom: 0">HCPCS A2005</span>
+            <span class="sp-eyebrow" style="margin-bottom: 0">Fully Synthetic</span>
+          </div>
+          <h2>Microlyte<span style="color: var(--gold)">&reg;</span> SAM<span style="font-size: 0.6em; vertical-align: super">&trade;</span> &mdash; <em style="font-style:normal;color:var(--gold)">sub-cytotoxic silver.</em></h2>
+          <p class="lead">PEM nanofilm on bioresorbable PVA. 50&ndash;100&times; less silver than conventional dressings. Equivalent 99.99% antimicrobial kill via intimate surface-contact delivery.</p>
+
+          <div class="compare-grid">
+            <div class="compare-card bad">
+              <h4>Conventional Dressing</h4>
+              <div style="font-size: var(--t-sm); color: var(--mist); text-align: center; margin-bottom: var(--s-2)"><strong>Rigid silver dressing</strong></div>
+              <div style="background: rgba(255,255,255,0.02); border-radius: var(--r-sm); padding: var(--s-2); margin-bottom: var(--s-2)">
+                <svg viewBox="0 0 240 100" width="100%" height="100" aria-hidden="true">
+                  <!-- Rigid dressing bar (hovering flat) -->
+                  <rect x="16" y="22" width="208" height="10" rx="2" fill="rgba(213,115,115,0.5)" stroke="rgba(213,115,115,0.85)" stroke-width="1"/>
+                  <text x="120" y="29" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-weight="500">RIGID DRESSING</text>
+                  <!-- Wound surface (wavy) -->
+                  <path d="M16 78 Q54 56 92 72 Q130 88 168 64 Q196 48 224 68 L224 96 L16 96 Z"
+                        fill="rgba(213,115,115,0.12)" stroke="rgba(213,115,115,0.6)" stroke-width="1.5"/>
+                  <text x="120" y="90" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.55)">WOUND SURFACE</text>
+                  <!-- VOID markers in dead spaces -->
+                  <circle cx="54" cy="50" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                  <text x="54" y="53" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+                  <circle cx="128" cy="56" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                  <text x="128" y="59" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+                  <circle cx="196" cy="44" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                  <text x="196" y="47" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+                </svg>
+              </div>
+              <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Dead space &rarr; bacterial colonization</div>
+              <div class="metric"><strong>~12 mg/100 cm&sup2;</strong> &middot; above cytotoxic threshold</div>
+              <span class="tag">High silver / low contact</span>
+              <p style="margin-top: var(--s-2); font-size: var(--t-xs); color: #d57373">Cytotoxic to fibroblasts &amp; keratinocytes</p>
+            </div>
+            <div class="compare-card good">
+              <h4>Microlyte SAM</h4>
+              <div style="font-size: var(--t-sm); color: var(--mist); text-align: center; margin-bottom: var(--s-2)"><strong>Ultra-thin PVA conforms to micro-contours</strong></div>
+              <div style="background: rgba(255,255,255,0.02); border-radius: var(--r-sm); padding: var(--s-2); margin-bottom: var(--s-2)">
+                <svg viewBox="0 0 240 100" width="100%" height="100" aria-hidden="true">
+                  <!-- Wound surface (wavy) -->
+                  <path d="M16 78 Q54 56 92 72 Q130 88 168 64 Q196 48 224 68 L224 96 L16 96 Z"
+                        fill="rgba(127,186,149,0.12)" stroke="rgba(127,186,149,0.55)" stroke-width="1.5"/>
+                  <text x="120" y="90" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.55)">WOUND SURFACE</text>
+                  <!-- PVA film conforming to contour (gold wave following surface) -->
+                  <path d="M16 72 Q54 50 92 66 Q130 82 168 58 Q196 42 224 62"
+                        fill="none" stroke="#d4a94a" stroke-width="3" stroke-linecap="round"/>
+                  <text x="44" y="36" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(212,169,74,1)" font-weight="600">PVA FILM</text>
+                  <!-- Contact indicators (small dots on the PVA film curve) -->
+                  <circle cx="54" cy="59" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle cx="92" cy="66" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle cx="130" cy="72" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle cx="168" cy="58" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle cx="196" cy="51" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                </svg>
+              </div>
+              <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Full contact &rarr; zero dead space</div>
+              <div class="metric"><strong>~1.6 mg/100 cm&sup2;</strong> &middot; sub-cytotoxic, 50&ndash;100&times; less</div>
+              <span class="tag">Low silver / full contact</span>
+              <p style="margin-top: var(--s-2); font-size: var(--t-xs); color: #7fba95">99.99% kill &middot; 72+ hrs &middot; bioresorbable 7 days</p>
+            </div>
+          </div>
+
+          <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">Polymer science</h3>
+          <div class="sci-grid">
+            <div class="sci-card">
+              <h4>PEM nanofilm architecture</h4>
+              <p>Layer-by-layer cationic/anionic polymer assembly. Cationic termination enhances cell attachment, ECM production, and actin organization via electrostatic interaction with proteoglycans.</p>
+            </div>
+            <div class="sci-card">
+              <h4>PVA cytophilicity</h4>
+              <p>Hydroxyl (&ndash;OH) groups hydrogen-bond with ECM proteins (fibronectin, vitronectin). Presents integrin-binding domains. Mechanical properties mimic native soft tissue.</p>
+            </div>
+            <div class="sci-card">
+              <h4>Bioresorbable design</h4>
+              <p>~20 &micro;m PVA resorbs in 7 days. No removal &rarr; no granulation disruption. Integrates without foreign-body response. 4-year shelf life.</p>
+            </div>
+          </div>
+
+          <div class="evidence-band">
+            <div class="band-title">Clinical Evidence</div>
+            <div class="evidence-grid" style="grid-template-columns: repeat(3, 1fr)">
+              <div><div class="ev-value">91%</div><div class="ev-label">Healed or improved at 12 weeks (Manning, n=32)</div></div>
+              <div><div class="ev-value">0%</div><div class="ev-label">SSI in diabetic foot surgery (Chatelain, n=22)</div></div>
+              <div><div class="ev-value">73%</div><div class="ev-label">Average wound area reduction</div></div>
+            </div>
+            <div class="evidence-footnote">All wounds treatment-refractory &middot; mean 40 weeks stalled &middot; unresponsive to prior antimicrobials</div>
+          </div>
+        </div>
+
+        <!-- PANEL 5: COLLAGEN / PROPACKS -->
+        <div id="p5" class="sp-panel">
+          <span class="sp-eyebrow">Collagen Program</span>
+          <h2>Type I Collagen &mdash; <em style="font-style:normal;color:var(--gold)">sacrificial substrate &amp; bioactive signal.</em></h2>
+          <p class="lead">Exogenous collagen reverses the proteolytic cycle by diverting MMP activity from endogenous ECM. As it degrades, it releases bioactive matrikines that actively drive granulation and fibroblast chemotaxis.</p>
+
+          <div class="flow-grid">
+            <div class="flow-box bad">
+              <h5>Chronic Wound</h5>
+              <p><strong>MMPs:</strong> 30&times; physiologic &middot; <strong>GFs:</strong> degraded &middot; <strong>ECM:</strong> destroyed &middot; <strong>TIMPs:</strong> gone. Self-amplifying cycle.</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box mid">
+              <h5>Exogenous Collagen</h5>
+              <p><strong>Sacrificial MMP substrate.</strong> Diverts proteases from native ECM. Restores MMP : TIMP ratio.</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-box good">
+              <h5>Healing Wound</h5>
+              <p><strong>Phase transition enabled.</strong> GFs preserved &middot; ECM intact. Proliferation phase initiated.</p>
+            </div>
+          </div>
+
+          <div class="matrikine-box">
+            <div class="mk-title">Collagen Degradation = Bioactive Matrikines</div>
+            <div class="matrikine-grid">
+              <div class="matrikine-item">
+                <h5>GHK-Cu tripeptide</h5>
+                <p>Promotes collagen synthesis &middot; upregulates VEGF &amp; bFGF expression.</p>
+              </div>
+              <div class="matrikine-item">
+                <h5>RGD sequences (exposed via MMP)</h5>
+                <p>Integrin &alpha;1&beta;1, &alpha;2&beta;1 binding &middot; fibroblast chemotaxis.</p>
+              </div>
+            </div>
+            <p style="margin-top: var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--ink-3); font-size: var(--t-sm); color: var(--fog); text-align: center">
+              &alpha;11&beta;1 by day 7: granulation + tensile strength &middot; DDR1/2 &rarr; &beta;1-integrin &amp; &alpha;-SMA
+            </p>
+          </div>
+
+          <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-3)">Clinical evidence &mdash; two pathways</h3>
+          <div class="path-evidence">
+            <div class="path-ev">
+              <div class="path-label">Post-op incision</div>
+              <p style="color: var(--fog); font-size: var(--t-sm); margin-bottom: var(--s-3)">Reimbursable during the global surgical period.</p>
+              <div class="path-ev-stats">
+                <div class="path-ev-stat"><div class="v">59%</div><div class="l">SSI reduction (n = 5,335)</div></div>
+                <div class="path-ev-stat"><div class="v">0%</div><div class="l">SSI in spinal surgery (n = 54)</div></div>
+              </div>
+            </div>
+            <div class="path-ev">
+              <div class="path-label">Conservative wound care</div>
+              <p style="color: var(--fog); font-size: var(--t-sm); margin-bottom: var(--s-3)">Full-thickness or wounds stalled &gt;4 weeks.</p>
+              <div class="path-ev-stats">
+                <div class="path-ev-stat"><div class="v">53%</div><div class="l">Higher healing rate (meta-analysis, n = 961)</div></div>
+                <div class="path-ev-stat"><div class="v">82%</div><div class="l">Complete DFU healing (RCT)</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 6: CLINICAL FRAMEWORK -->
+        <div id="p6" class="sp-panel">
+          <span class="sp-eyebrow">Clinical Decision Framework</span>
+          <h2>Product selection <em style="font-style:normal;color:var(--gold)">by wound presentation.</em></h2>
+          <p class="lead">Matching the right platform to the dominant failure mode of the wound in front of you.</p>
+
+          <table class="decision-table">
+            <thead>
+              <tr><th>Wound Presentation</th><th>Primary Product</th><th>Mechanism</th><th>Key Evidence</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="presentation">Post-op surgical incision</td>
+                <td class="product">Collagen dressing</td>
+                <td>Sacrificial MMP substrate, hemostasis, SSI prevention</td>
+                <td>59% SSI reduction (n = 5,335)</td>
+              </tr>
+              <tr>
+                <td class="presentation">Active biofilm / infection risk</td>
+                <td class="product">Microlyte SAM (A2005)</td>
+                <td>Sub-cytotoxic ionic silver, 99.99% kill, 72+ hrs</td>
+                <td>91% healed or improved at 12 wk</td>
+              </tr>
+              <tr>
+                <td class="presentation">Shallow / early chronic</td>
+                <td class="product">Membrane Wrap Lite</td>
+                <td>Single-amnion barrier, ECM scaffold, GF delivery</td>
+                <td>BM re-epithelialization template</td>
+              </tr>
+              <tr>
+                <td class="presentation">Standard DFU / VLU</td>
+                <td class="product">Membrane Wrap (Dual-layer)</td>
+                <td>2&times; ECM payload, structural persistence</td>
+                <td>Sustained GF, dual-layer kinetics</td>
+              </tr>
+              <tr>
+                <td class="presentation">Recalcitrant / failed grafts</td>
+                <td class="product">Tri-Membrane Wrap (A-C-A)</td>
+                <td>Highest ECM concentration, chorion sandwich</td>
+                <td>Escalation &mdash; max biological payload</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: var(--s-6)">
+            <span class="sp-eyebrow">Compliance Infrastructure</span>
+            <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">CheckMyWoundCareNotes.com</h3>
+            <p style="color: var(--fog); line-height: 1.6; margin-bottom: var(--s-4); max-width: 880px">Automated compliance review against LCD L35041, A54117, MPIM 3.6.2.2, SSA 1862(a)(1)(A). Pre-submission gap detection, FPS pattern flagging, and corrective-language generation.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3)" class="compliance-triple">
+              <div class="compliance-card">
+                <h5>Pre-submission review</h5>
+                <p>Upload notes &rarr; automated check against LCD criteria, documentation requirements, and frequency limits.</p>
+              </div>
+              <div class="compliance-card">
+                <h5>FPS pattern detection</h5>
+                <p>Flags cloned documentation, utilization outliers, wastage patterns, and product-selection anomalies.</p>
+              </div>
+              <div class="compliance-card">
+                <h5>Corrective language</h5>
+                <p>LCD-aligned clinical prose generated from documented findings. Audit-defensible.</p>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top: var(--s-6); padding: var(--s-3) var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-md); color: var(--mist); font-style: italic; text-align: center; font-family: var(--font-display); font-weight: 500">
+            The only wound care partner delivering <span style="color: var(--gold)">product + compliance + science</span> in a single relationship.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="cta-band">
+      <div class="container">
+        <div class="scroll-reveal">
+          <span class="eyebrow">Let's talk science</span>
+          <h2>Go deeper with our clinical team.</h2>
+          <p>Schedule a scientific review &mdash; we'll walk your team through each platform, LCD alignment, and the evidence base for the wounds you see most.</p>
+          <div class="hero-actions">
+            <a href="/contact" class="btn btn-primary">Schedule a consultation <span class="arrow">→</span></a>
+            <a href="/products" class="btn btn-secondary">Explore the portfolio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1" alt="Albacete MedDev">
+          <p>Advanced wound care solutions with seamless back-end support. Your strategic partner in clinical excellence.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <a href="/products/collagen">Collagen Program</a>
+          <a href="/products/ultramist">UltraMist Therapy</a>
+          <a href="/products/actigraft">ActiGraft+</a>
+          <a href="/products/advanced-biologics">Advanced Biologics</a>
+          <a href="/products/adhesion-barrier">Adhesion Barrier</a>
+          <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
+          <a href="/products/microdoc">MicroDoc NPWT</a>
+          <a href="/products/wholesaler">Medical Supplies</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/why-partner">Why Partner</a>
+          <a href="/legal-guidance">Legal Guidance</a>
+          <a href="/portal">Portal &amp; Support</a>
+          <a href="/consulting">Consulting</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:gabe@albacetemeddev.com">gabe@albacetemeddev.com</a>
+          <a href="tel:5514973428">551-497-3428</a>
+          <a href="https://albacetemeddev.com">albacetemeddev.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Albacete MedDev. All rights reserved.</span>
+        <span>Confidential &mdash; For clinical and educational reference only</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js?v=4" defer></script>
+</body>
+</html>
