@@ -463,9 +463,13 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 // ═══════════════════════════════════════════════════════════════
 // WOAH MOMENT #4 — Interactive Portal ("Try Me")
 // ═══════════════════════════════════════════════════════════════
-// Turn the dashboard mock into a click-around demo. Sidebar nav items
-// swap the main content between 5 distinct views. A pulsing "Try me"
-// chip invites the first click and disappears after interaction.
+// Turn the dashboard mock into a click-around demo:
+// - Sidebar nav items swap between 7 distinct views
+// - "View all" links jump to the relevant view
+// - Filter pills (Orders) actually filter rows by status
+// - Export links/tiles trigger an XLSX-flies-to-computer animation
+// - Clicking Dr. Romero opens an account summary popover
+// - Pulsing "Try me" chip invites the first click, hides after
 (function initInteractivePortal(){
   const shell = document.querySelector('.pm-shell');
   if (!shell) return;
@@ -473,25 +477,26 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   const views = shell.querySelectorAll('.pm-view[data-view]');
   const urlBar = shell.querySelector('.pm-url');
   const chip = shell.querySelector('.pm-tryme');
+  const computer = shell.querySelector('#pm-computer');
   if (navItems.length === 0 || views.length === 0) return;
 
+  // ——— View switching ———
   function switchView(viewName, itemEl){
-    // Update active nav
+    // Update sidebar active state: if itemEl not passed, find first nav item with matching data-view
     navItems.forEach(i => i.classList.remove('active'));
-    if (itemEl) itemEl.classList.add('active');
+    if (itemEl){
+      itemEl.classList.add('active');
+    } else {
+      const firstMatch = shell.querySelector(`.pm-nav-item[data-view="${viewName}"]`);
+      if (firstMatch) firstMatch.classList.add('active');
+    }
     // Swap view panels
     views.forEach(v => v.classList.remove('is-active'));
     const target = shell.querySelector(`.pm-view[data-view="${viewName}"]`);
-    if (target){
-      target.classList.add('is-active');
-    } else {
-      // Fallback: default dashboard
-      const dash = shell.querySelector('.pm-view[data-view="dashboard"]');
-      if (dash) dash.classList.add('is-active');
-    }
+    if (target) target.classList.add('is-active');
     // Update URL bar
-    if (urlBar) urlBar.textContent = `portal.albacetemeddev.com / ${viewName.replace(/-/g, '-')}`;
-    // Hide try-me chip once user interacts
+    if (urlBar) urlBar.textContent = `portal.albacetemeddev.com / ${viewName}`;
+    // Hide try-me chip
     if (chip) chip.classList.add('is-hidden');
   }
 
@@ -504,4 +509,109 @@ const isTouch = window.matchMedia('(hover: none)').matches;
       switchView(view, item);
     });
   });
+
+  // ——— View-all links: navigate to a view ———
+  shell.querySelectorAll('[data-goto]').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const view = el.dataset.goto;
+      if (view) switchView(view);
+    });
+  });
+
+  // ——— Filter pills (Orders view) ———
+  shell.querySelectorAll('.pm-pill[data-filter]').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.dataset.filter;
+      // Update active state on pill row
+      const row = pill.parentElement;
+      row.querySelectorAll('.pm-pill').forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+      // Filter order rows
+      const ordersView = shell.querySelector('.pm-view[data-view="orders"]');
+      if (!ordersView) return;
+      ordersView.querySelectorAll('.pm-row[data-status]').forEach(r => {
+        const match = filter === 'all' || r.dataset.status === filter;
+        r.style.display = match ? '' : 'none';
+        r.style.opacity = match ? '1' : '0';
+      });
+    });
+  });
+
+  // ——— Export animation: XLSX flies to mini-computer ———
+  function triggerExport(trigger, filename){
+    if (!computer) return;
+    const shellRect = shell.getBoundingClientRect();
+    const trigRect = trigger.getBoundingClientRect();
+    const compRect = computer.getBoundingClientRect();
+
+    // File starts at the trigger's center, positioned relative to shell
+    const fileSize = { w: 30, h: 38 };
+    const startX = (trigRect.left + trigRect.width/2) - shellRect.left - fileSize.w/2;
+    const startY = (trigRect.top + trigRect.height/2) - shellRect.top - fileSize.h/2;
+    const endX = (compRect.left + compRect.width/2) - shellRect.left - fileSize.w/2;
+    const endY = (compRect.top + compRect.height/2) - shellRect.top - fileSize.h/2;
+
+    const file = document.createElement('div');
+    file.className = 'pm-file-particle';
+    file.style.left = startX + 'px';
+    file.style.top = startY + 'px';
+    shell.appendChild(file);
+
+    // Kick off animation on next frame
+    requestAnimationFrame(() => {
+      file.style.transition = 'transform 900ms cubic-bezier(0.45, 0, 0.55, 1), opacity 900ms ease';
+      file.style.transform = `translate(${endX - startX}px, ${endY - startY}px) scale(0.3) rotate(360deg)`;
+      // Fade out in the last 200ms
+      setTimeout(() => { file.style.opacity = '0.2' }, 700);
+    });
+
+    // Update computer screen text + receiving state
+    const screenText = computer.querySelector('.pm-screen-text');
+    const originalText = screenText ? screenText.textContent : '';
+    computer.classList.add('is-receiving');
+    if (screenText) screenText.textContent = filename || 'portal.xlsx';
+
+    setTimeout(() => { file.remove(); }, 1000);
+    setTimeout(() => {
+      computer.classList.remove('is-receiving');
+      if (screenText) screenText.textContent = 'idle';
+    }, 2600);
+  }
+
+  shell.querySelectorAll('[data-export]').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      triggerExport(el, el.dataset.export);
+    });
+  });
+
+  // ——— Dr. Romero account popover ———
+  const userTrigger = shell.querySelector('#pm-user-trigger');
+  const accountCard = shell.querySelector('#pm-account-card');
+  const accountClose = shell.querySelector('#pm-account-close');
+  if (userTrigger && accountCard){
+    userTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      accountCard.classList.toggle('is-open');
+    });
+    if (accountClose){
+      accountClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        accountCard.classList.remove('is-open');
+      });
+    }
+    // Click anywhere else closes it
+    document.addEventListener('click', (e) => {
+      if (accountCard.classList.contains('is-open') &&
+          !accountCard.contains(e.target) &&
+          !userTrigger.contains(e.target)){
+        accountCard.classList.remove('is-open');
+      }
+    });
+  }
 })();

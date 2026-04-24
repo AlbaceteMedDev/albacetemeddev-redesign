@@ -7,7 +7,7 @@
   <meta name="description" content="Three platforms. One wound healing cascade. Antimicrobial matrices, human placental allografts, and collagen dressings — each targeting distinct failure points in the chronic wound proteolytic cascade.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=11">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=12">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* ═══ Scientific Portfolio page-specific styles ═══ */
@@ -338,6 +338,84 @@
     .compare-card.good .tag{background: rgba(120, 180, 140, 0.15); color: #7fba95}
     @media (max-width: 768px){.compare-grid{grid-template-columns: 1fr}}
 
+    /* ═══ Microlyte SAM comparison animations ═══ */
+    /* LEFT — Rigid dressing falls and crushes outer voids */
+    .sam-rigid-group{
+      transform-box: view-box;
+      transform-origin: 120px 27px;
+      animation: sam-rigid-fall 5s cubic-bezier(0.55, 0.09, 0.68, 0.53) infinite;
+    }
+    @keyframes sam-rigid-fall{
+      0%, 8%   { transform: translateY(0) }
+      42%, 88% { transform: translateY(15px) }
+      100%     { transform: translateY(0) }
+    }
+    .sam-void{
+      transform-box: fill-box;
+      transform-origin: center center;
+    }
+    .sam-void-left{
+      animation: sam-void-crush-left 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+    }
+    .sam-void-right{
+      animation: sam-void-crush-right 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+    }
+    .sam-void-mid{
+      /* Middle void survives — gentle idle pulse only */
+      animation: sam-void-survive 5s ease-in-out infinite;
+    }
+    @keyframes sam-void-crush-left{
+      0%, 18%   { transform: scale(1, 1); opacity: 0.95 }
+      32%       { transform: scale(1.2, 0.3); opacity: 0.6 }
+      42%, 88%  { transform: scale(0.4, 0.05); opacity: 0 }
+      96%, 100% { transform: scale(1, 1); opacity: 0.95 }
+    }
+    @keyframes sam-void-crush-right{
+      0%, 18%   { transform: scale(1, 1); opacity: 0.95 }
+      30%       { transform: scale(1.2, 0.3); opacity: 0.6 }
+      42%, 88%  { transform: scale(0.4, 0.05); opacity: 0 }
+      96%, 100% { transform: scale(1, 1); opacity: 0.95 }
+    }
+    @keyframes sam-void-survive{
+      0%, 100%    { transform: scale(1); opacity: 0.95 }
+      45%, 82%    { transform: scale(1.08); opacity: 1 }
+    }
+
+    /* RIGHT — PVA film falls feather-like, then accordion-settles */
+    .sam-pva-group{
+      transform-box: view-box;
+      animation: sam-pva-feather 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+    }
+    @keyframes sam-pva-feather{
+      0%   { transform: translate(-6px, -32px) rotate(-2deg) }
+      20%  { transform: translate(5px, -22px) rotate(2deg) }
+      35%  { transform: translate(-4px, -14px) rotate(-1.5deg) }
+      50%  { transform: translate(3px, -7px) rotate(1deg) }
+      65%  { transform: translate(-1px, -2px) rotate(-0.3deg) }
+      78%, 96% { transform: translate(0, 0) rotate(0) }
+      100% { transform: translate(-6px, -32px) rotate(-2deg) }
+    }
+    .sam-contact{
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center center;
+      animation: sam-contact-appear 5s ease-out infinite;
+    }
+    .sam-contact:nth-child(1){ animation-delay: 0s }
+    @keyframes sam-contact-appear{
+      0%, 72%   { opacity: 0; transform: scale(0.3) }
+      80%       { opacity: 1; transform: scale(1.4) }
+      88%, 96%  { opacity: 1; transform: scale(1) }
+      100%      { opacity: 0; transform: scale(0.3) }
+    }
+
+    /* Respect reduced-motion */
+    @media (prefers-reduced-motion: reduce){
+      .sam-rigid-group, .sam-void-left, .sam-void-right, .sam-void-mid,
+      .sam-pva-group, .sam-contact{ animation: none !important }
+      .sam-contact{ opacity: 1 }
+    }
+
     /* Evidence stat block */
     .evidence-band{
       background: var(--ink-1);
@@ -598,13 +676,13 @@
             <a href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="dropdown-section">Advanced Wound Care</div>
             <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
-            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
             <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
-            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
             <div class="dropdown-section">Surgical Biologics</div>
             <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
             <div class="dropdown-section">Conservative Wound Care</div>
             <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
+            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
+            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
             <div class="dropdown-section">Medical Supply Distribution</div>
             <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
             <div class="dropdown-section">Regenerative Medicine</div>
@@ -632,13 +710,13 @@
       <a href="/products">All Products &amp; Solutions</a>
       <div class="submenu-section">Advanced Wound Care</div>
       <a href="/products/advanced-biologics">Advanced Biologics</a>
-      <a href="/products/ultramist">UltraMist Therapy</a>
       <a href="/products/actigraft">ActiGraft+</a>
-      <a href="/products/microdoc">MicroDoc NPWT</a>
       <div class="submenu-section">Surgical Biologics</div>
       <a href="/products/adhesion-barrier">Adhesion Barrier</a>
       <div class="submenu-section">Conservative Wound Care</div>
       <a href="/products/collagen">Collagen Program</a>
+      <a href="/products/ultramist">UltraMist Therapy</a>
+      <a href="/products/microdoc">MicroDoc NPWT</a>
       <div class="submenu-section">Medical Supply Distribution</div>
       <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
       <div class="submenu-section">Regenerative Medicine</div>
@@ -884,20 +962,31 @@
               <div style="font-size: var(--t-sm); color: var(--mist); text-align: center; margin-bottom: var(--s-2)"><strong>Rigid silver dressing</strong></div>
               <div style="background: rgba(255,255,255,0.02); border-radius: var(--r-sm); padding: var(--s-2); margin-bottom: var(--s-2)">
                 <svg viewBox="0 0 240 100" width="100%" height="100" aria-hidden="true">
-                  <!-- Rigid dressing bar (hovering flat) -->
-                  <rect x="16" y="22" width="208" height="10" rx="2" fill="rgba(213,115,115,0.5)" stroke="rgba(213,115,115,0.85)" stroke-width="1"/>
-                  <text x="120" y="29" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-weight="500">RIGID DRESSING</text>
-                  <!-- Wound surface (wavy) -->
+                  <!-- Wound surface (wavy) — drawn first so voids sit above it -->
                   <path d="M16 78 Q54 56 92 72 Q130 88 168 64 Q196 48 224 68 L224 96 L16 96 Z"
                         fill="rgba(213,115,115,0.12)" stroke="rgba(213,115,115,0.6)" stroke-width="1.5"/>
                   <text x="120" y="90" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.55)">WOUND SURFACE</text>
-                  <!-- VOID markers in dead spaces -->
-                  <circle cx="54" cy="50" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                  <text x="54" y="53" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
-                  <circle cx="128" cy="56" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                  <text x="128" y="59" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
-                  <circle cx="196" cy="44" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                  <text x="196" y="47" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+
+                  <!-- VOID markers: left + right get crushed when dressing falls -->
+                  <g class="sam-void sam-void-left">
+                    <circle cx="54" cy="50" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                    <text x="54" y="53" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+                  </g>
+                  <!-- Middle void survives — sits in the opening between wound peaks & dressing bottom -->
+                  <g class="sam-void sam-void-mid">
+                    <circle cx="128" cy="56" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                    <text x="128" y="59" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+                  </g>
+                  <g class="sam-void sam-void-right">
+                    <circle cx="196" cy="44" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                    <text x="196" y="47" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
+                  </g>
+
+                  <!-- Rigid dressing bar — falls & lands on tallest peak, crushing outer voids -->
+                  <g class="sam-rigid-group">
+                    <rect x="16" y="22" width="208" height="10" rx="2" fill="rgba(213,115,115,0.5)" stroke="rgba(213,115,115,0.85)" stroke-width="1"/>
+                    <text x="120" y="29" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-weight="500">RIGID DRESSING</text>
+                  </g>
                 </svg>
               </div>
               <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Dead space &rarr; bacterial colonization</div>
@@ -914,16 +1003,20 @@
                   <path d="M16 78 Q54 56 92 72 Q130 88 168 64 Q196 48 224 68 L224 96 L16 96 Z"
                         fill="rgba(127,186,149,0.12)" stroke="rgba(127,186,149,0.55)" stroke-width="1.5"/>
                   <text x="120" y="90" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.55)">WOUND SURFACE</text>
-                  <!-- PVA film conforming to contour (gold wave following surface) -->
-                  <path d="M16 72 Q54 50 92 66 Q130 82 168 58 Q196 42 224 62"
-                        fill="none" stroke="#d4a94a" stroke-width="3" stroke-linecap="round"/>
-                  <text x="44" y="36" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(212,169,74,1)" font-weight="600">PVA FILM</text>
-                  <!-- Contact indicators (small dots on the PVA film curve) -->
-                  <circle cx="54" cy="59" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle cx="92" cy="66" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle cx="130" cy="72" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle cx="168" cy="58" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle cx="196" cy="51" r="2.5" fill="rgba(127,186,149,0.95)"/>
+
+                  <!-- PVA film group — feather-falls from above, settles onto the contour -->
+                  <g class="sam-pva-group">
+                    <path d="M16 72 Q54 50 92 66 Q130 82 168 58 Q196 42 224 62"
+                          fill="none" stroke="#d4a94a" stroke-width="3" stroke-linecap="round"/>
+                    <text x="44" y="36" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(212,169,74,1)" font-weight="600">PVA FILM</text>
+                  </g>
+
+                  <!-- Contact indicators — appear as the film settles -->
+                  <circle class="sam-contact" cx="54" cy="59" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 2.6s"/>
+                  <circle class="sam-contact" cx="92" cy="66" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 2.75s"/>
+                  <circle class="sam-contact" cx="130" cy="72" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 2.9s"/>
+                  <circle class="sam-contact" cx="168" cy="58" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 3.05s"/>
+                  <circle class="sam-contact" cx="196" cy="51" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 3.2s"/>
                 </svg>
               </div>
               <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Full contact &rarr; zero dead space</div>
@@ -1152,6 +1245,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=11" defer></script>
+  <script src="/assets/js/app.js?v=12" defer></script>
 </body>
 </html>

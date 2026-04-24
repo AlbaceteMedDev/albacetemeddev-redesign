@@ -7,7 +7,7 @@
   <meta name="description" content="One portal. Patient tracking, product ordering, compliance documentation, and utilization reporting — unified, real-time, role-based access for your entire clinical team.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=11">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=12">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* Portal page — dashboard-style mock */
@@ -436,11 +436,12 @@
       color: var(--gold);
     }
 
-    /* "TRY ME" floating chip */
+    /* "TRY ME" floating chip — sits ABOVE the shell, arrow pointing down */
     .pm-tryme{
       position: absolute;
-      top: 90px;
-      left: 235px;
+      top: -18px;
+      left: 60px;
+      transform: translateY(-100%);
       z-index: 10;
       background: var(--gold);
       color: #000;
@@ -454,14 +455,25 @@
       font-size: 0.9rem;
       letter-spacing: 0.02em;
       box-shadow: 0 12px 40px rgba(212,169,74,0.35), 0 0 0 4px rgba(212,169,74,0.18);
-      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       pointer-events: none;
       white-space: nowrap;
       transition: opacity 300ms ease, transform 300ms ease;
+      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .pm-tryme::after{
+      /* Downward-pointing arrow tail */
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 40px;
+      width: 0; height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 10px solid var(--gold);
     }
     .pm-tryme .pm-tryme-arrow{
       font-size: 1.1rem;
-      animation: pm-tryme-point 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      animation: pm-tryme-point 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
     .pm-tryme .pm-tryme-sub{
       font-weight: 500;
@@ -473,21 +485,248 @@
     }
     .pm-tryme.is-hidden{
       opacity: 0;
-      transform: translateX(-20px) scale(0.9);
+      transform: translateY(-100%) scale(0.9);
       pointer-events: none;
     }
     @keyframes pm-tryme-bob{
-      0%, 100%{ transform: translateX(0) }
-      50%{ transform: translateX(4px) }
+      0%, 100%{ transform: translateY(-100%) }
+      50%{ transform: translateY(calc(-100% - 4px)) }
     }
     @keyframes pm-tryme-point{
-      0%, 100%{ transform: translateX(0) }
-      50%{ transform: translateX(-4px) }
+      0%, 100%{ transform: translateY(0) }
+      50%{ transform: translateY(3px) }
     }
     @media (max-width: 1024px){
-      .pm-tryme{ left: 20px; top: 80px; font-size: 0.8rem; padding: 8px 14px }
+      .pm-tryme{ left: 20px; font-size: 0.8rem; padding: 8px 14px }
       .pm-tryme .pm-tryme-sub{ display: none }
     }
+
+    /* Mini computer (bottom-right of shell for export animation target) */
+    .pm-computer{
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      z-index: 5;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      opacity: 0.55;
+      transition: opacity 280ms ease, transform 280ms ease;
+    }
+    .pm-computer.is-receiving{
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    .pm-monitor{
+      width: 54px;
+      height: 38px;
+      background: var(--ink-1);
+      border: 2px solid var(--gold);
+      border-radius: 5px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .pm-screen{
+      position: absolute;
+      inset: 3px;
+      background: #0a0e17;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 300ms ease;
+      overflow: hidden;
+    }
+    .pm-computer.is-receiving .pm-screen{
+      background: #5bcb8d;
+    }
+    .pm-screen-text{
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7px;
+      color: var(--fog);
+      letter-spacing: 0.02em;
+      text-align: center;
+      padding: 0 2px;
+      transition: color 200ms ease;
+    }
+    .pm-computer.is-receiving .pm-screen-text{ color: var(--ink); font-weight: 700 }
+    .pm-monitor::after{
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 0 0 3px 3px;
+    }
+    .pm-computer .pm-label{
+      font-family: var(--font-display);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fog);
+      margin-top: 6px;
+    }
+    .pm-computer.is-receiving .pm-label{ color: #5bcb8d }
+
+    /* Flying Excel file particle */
+    .pm-file-particle{
+      position: absolute;
+      pointer-events: none;
+      z-index: 11;
+      width: 30px;
+      height: 38px;
+      background: linear-gradient(160deg, #1d6f42 0%, #27a86b 100%);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      will-change: transform, opacity;
+    }
+    .pm-file-particle::before{
+      content: 'XLSX';
+    }
+    .pm-file-particle::after{
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      border-left: 8px solid transparent;
+      border-top: 8px solid rgba(255,255,255,0.3);
+    }
+
+    /* Dr. Romero account popover */
+    .pm-nav-user{ cursor: pointer }
+    .pm-nav-user:hover{ background: var(--ink-2); border-radius: var(--r-sm) }
+    .pm-account-card{
+      position: absolute;
+      bottom: 70px;
+      left: 12px;
+      width: 240px;
+      background: var(--ink-1);
+      border: 1px solid var(--gold);
+      border-radius: var(--r-md);
+      padding: 14px 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      z-index: 20;
+      opacity: 0;
+      transform: translateY(8px) scale(0.95);
+      pointer-events: none;
+      transition: all 260ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .pm-account-card.is-open{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .pm-account-card::after{
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      left: 20px;
+      width: 0; height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 9px solid var(--gold);
+    }
+    .pm-account-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--ink-3);
+      margin-bottom: 10px;
+    }
+    .pm-account-header .big-avatar{
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .pm-account-header .name{
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--snow);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .pm-account-header .email{
+      font-size: 10px;
+      color: var(--fog);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 2px;
+    }
+    .pm-account-stats{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .pm-account-stat{
+      background: var(--ink);
+      border: 1px solid var(--ink-3);
+      border-radius: var(--r-sm);
+      padding: 6px 8px;
+    }
+    .pm-account-stat .label{
+      font-size: 8px;
+      color: var(--fog);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+    }
+    .pm-account-stat .value{
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--snow);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 1px;
+    }
+    .pm-account-row{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      padding: 3px 0;
+    }
+    .pm-account-row .k{ color: var(--fog) }
+    .pm-account-row .v{ color: var(--snow); font-weight: 500 }
+    .pm-account-row .v.ok{ color: #5bcb8d }
+    .pm-account-close{
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--ink-3);
+      text-align: center;
+      font-size: 10px;
+      color: var(--gold);
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* View-all + clickable hints */
+    .view-all{ cursor: pointer; transition: color 180ms ease }
+    .view-all:hover{ color: var(--gold-bright); text-decoration: underline }
 
     /* Filter pills (used in Orders view) */
     .pm-filter-pills{
@@ -573,13 +812,13 @@
             <a href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="dropdown-section">Advanced Wound Care</div>
             <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
-            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
             <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
-            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
             <div class="dropdown-section">Surgical Biologics</div>
             <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
             <div class="dropdown-section">Conservative Wound Care</div>
             <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
+            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
+            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
             <div class="dropdown-section">Medical Supply Distribution</div>
             <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
             <div class="dropdown-section">Regenerative Medicine</div>
@@ -607,13 +846,13 @@
       <a href="/products">All Products &amp; Solutions</a>
       <div class="submenu-section">Advanced Wound Care</div>
       <a href="/products/advanced-biologics">Advanced Biologics</a>
-      <a href="/products/ultramist">UltraMist Therapy</a>
       <a href="/products/actigraft">ActiGraft+</a>
-      <a href="/products/microdoc">MicroDoc NPWT</a>
       <div class="submenu-section">Surgical Biologics</div>
       <a href="/products/adhesion-barrier">Adhesion Barrier</a>
       <div class="submenu-section">Conservative Wound Care</div>
       <a href="/products/collagen">Collagen Program</a>
+      <a href="/products/ultramist">UltraMist Therapy</a>
+      <a href="/products/microdoc">MicroDoc NPWT</a>
       <div class="submenu-section">Medical Supply Distribution</div>
       <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
       <div class="submenu-section">Regenerative Medicine</div>
@@ -716,27 +955,63 @@
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6M9 17h4"/></svg>
                 Documentation
               </div>
-              <div class="pm-nav-item" data-view="documentation">
+              <div class="pm-nav-item" data-view="audit">
                 <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
                 Audit-readiness
               </div>
 
               <div class="pm-nav-group">Revenue</div>
-              <div class="pm-nav-item" data-view="revenue">
+              <div class="pm-nav-item" data-view="claims">
                 <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 5-5"/></svg>
                 Claims &amp; denials
               </div>
-              <div class="pm-nav-item" data-view="revenue">
+              <div class="pm-nav-item" data-view="reports">
                 <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3zM3 10h12v4H3zM3 17h18v4H3z"/></svg>
                 Reports
               </div>
 
-              <div class="pm-nav-user">
+              <div class="pm-nav-user" id="pm-user-trigger">
                 <div class="avatar">DR</div>
                 <div class="who">
                   <span class="name">Dr. Romero</span>
                   <span class="role">Clinical lead</span>
                 </div>
+              </div>
+
+              <!-- Dr. Romero account popover (triggered by clicking user chip) -->
+              <div class="pm-account-card" id="pm-account-card" aria-hidden="true">
+                <div class="pm-account-header">
+                  <div class="big-avatar">DR</div>
+                  <div>
+                    <div class="name">Dr. Elena Romero</div>
+                    <div class="email">elena.romero@cwh-englewood.org</div>
+                  </div>
+                </div>
+                <div class="pm-account-stats">
+                  <div class="pm-account-stat">
+                    <div class="label">Patients</div>
+                    <div class="value">84 active</div>
+                  </div>
+                  <div class="pm-account-stat">
+                    <div class="label">Orders (mo)</div>
+                    <div class="value">27</div>
+                  </div>
+                  <div class="pm-account-stat">
+                    <div class="label">Compliance</div>
+                    <div class="value">100%</div>
+                  </div>
+                  <div class="pm-account-stat">
+                    <div class="label">Audit risk</div>
+                    <div class="value" style="color:#5bcb8d">Low</div>
+                  </div>
+                </div>
+                <div class="pm-account-row"><span class="k">Role</span><span class="v">Clinical lead</span></div>
+                <div class="pm-account-row"><span class="k">Specialty</span><span class="v">Wound care &amp; MIS</span></div>
+                <div class="pm-account-row"><span class="k">Practice</span><span class="v">Contemporary Women&rsquo;s Health</span></div>
+                <div class="pm-account-row"><span class="k">NPI</span><span class="v">1234567890</span></div>
+                <div class="pm-account-row"><span class="k">Portal access</span><span class="v ok">Admin</span></div>
+                <div class="pm-account-row"><span class="k">Last login</span><span class="v">2 min ago</span></div>
+                <div class="pm-account-close" id="pm-account-close">Close</div>
               </div>
             </aside>
 
@@ -785,11 +1060,11 @@
                   </div>
                 </div>
 
-                <div class="pm-split">
+<div class="pm-split">
                   <div class="pm-card">
                     <header>
                       <h4>Recent orders</h4>
-                      <span class="view-all">View all &rarr;</span>
+                      <span class="view-all" data-goto="orders">View all &rarr;</span>
                     </header>
                     <div class="pm-row">
                       <div class="patient"><span class="pid">#1284</span>Collagen 4&times;4 &middot; E.&nbsp;Ortiz</div>
@@ -883,7 +1158,7 @@
                 <div class="pm-card">
                   <header>
                     <h4>Patient list</h4>
-                    <span class="view-all">Export CSV &rarr;</span>
+                    <span class="view-all" data-export="patients.xlsx">Export CSV &rarr;</span>
                   </header>
                   <div class="pm-row">
                     <div class="patient"><span class="pid">#1284</span>E. Ortiz &middot; DFU, right plantar</div>
@@ -925,45 +1200,45 @@
                   <span class="pm-chip"><span class="dot-live"></span>12 in flight</span>
                 </div>
 
-                <div class="pm-filter-pills">
-                  <span class="pm-pill is-active">All &middot; 27</span>
-                  <span class="pm-pill">Pending &middot; 6</span>
-                  <span class="pm-pill">Shipped &middot; 14</span>
-                  <span class="pm-pill">Delivered &middot; 7</span>
-                  <span class="pm-pill">Paid &middot; 18</span>
+<div class="pm-filter-pills">
+                  <span class="pm-pill is-active" data-filter="all">All &middot; 27</span>
+                  <span class="pm-pill" data-filter="pending">Pending &middot; 6</span>
+                  <span class="pm-pill" data-filter="shipped">Shipped &middot; 14</span>
+                  <span class="pm-pill" data-filter="delivered">Delivered &middot; 7</span>
+                  <span class="pm-pill" data-filter="paid">Paid &middot; 18</span>
                 </div>
 
                 <div class="pm-card">
                   <header>
                     <h4>All orders &middot; Last 14 days</h4>
-                    <span class="view-all">Export &rarr;</span>
+                    <span class="view-all" data-export="orders.xlsx">Export &rarr;</span>
                   </header>
-                  <div class="pm-row pm-row-wide">
+                  <div class="pm-row pm-row-wide" data-status="shipped">
                     <div class="patient"><span class="pid">O-1324</span>Collagen 4&times;4 &middot; E. Ortiz</div>
                     <span class="date">Apr 22 &middot; <strong style="color:var(--snow)">$124</strong></span>
                     <span class="status ok">Shipped</span>
                   </div>
-                  <div class="pm-row pm-row-wide">
+                  <div class="pm-row pm-row-wide" data-status="pending">
                     <div class="patient"><span class="pid">O-1323</span>UltraMist &middot; M. Patel</div>
                     <span class="date">Apr 22 &middot; <strong style="color:var(--snow)">$560</strong></span>
                     <span class="status sent">Approved</span>
                   </div>
-                  <div class="pm-row pm-row-wide">
+                  <div class="pm-row pm-row-wide" data-status="pending">
                     <div class="patient"><span class="pid">O-1320</span>ActiGraft+ Kit &middot; R. Greene</div>
                     <span class="date">Apr 21 &middot; <strong style="color:var(--snow)">$1,480</strong></span>
                     <span class="status rev">In review</span>
                   </div>
-                  <div class="pm-row pm-row-wide">
+                  <div class="pm-row pm-row-wide" data-status="delivered">
                     <div class="patient"><span class="pid">O-1319</span>Membrane Wrap 4&times;6 &middot; J. Khan</div>
                     <span class="date">Apr 21 &middot; <strong style="color:var(--snow)">$720</strong></span>
                     <span class="status ok">Delivered</span>
                   </div>
-                  <div class="pm-row pm-row-wide">
+                  <div class="pm-row pm-row-wide" data-status="paid">
                     <div class="patient"><span class="pid">O-1315</span>MicroDoc NPWT &middot; L. Rivera</div>
                     <span class="date">Apr 20 &middot; <strong style="color:var(--snow)">$340</strong></span>
                     <span class="status paid">Paid</span>
                   </div>
-                  <div class="pm-row pm-row-wide">
+                  <div class="pm-row pm-row-wide" data-status="paid">
                     <div class="patient"><span class="pid">O-1312</span>Adhesion Barrier 4&times;6 &middot; D. Cohen</div>
                     <span class="date">Apr 19 &middot; <strong style="color:var(--snow)">$3,920</strong></span>
                     <span class="status paid">Paid</span>
@@ -1028,10 +1303,74 @@
                 </div>
               </div>
 
-              <!-- VIEW 5 — REVENUE (claims + reports combined) -->
-              <div class="pm-view" data-view="revenue">
+              <!-- VIEW 5 — AUDIT-READINESS -->
+              <div class="pm-view" data-view="audit">
                 <div class="pm-main-top">
-                  <h3>Revenue &middot; Claims &amp; reports</h3>
+                  <h3>Audit-readiness &middot; Risk posture</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>Low risk</span>
+                </div>
+
+                <div class="pm-kpis">
+                  <div class="pm-kpi"><div class="label">Audit risk</div><div class="value" style="color:#5bcb8d">2.1<span style="color:var(--fog); font-size:60%"> / 10</span></div><div class="trend up">Low</div></div>
+                  <div class="pm-kpi"><div class="label">Charts reviewed (30d)</div><div class="value">46</div><div class="trend up">+8 vs. prior</div></div>
+                  <div class="pm-kpi"><div class="label">Open flags</div><div class="value" style="color:#5bcb8d">0</div><div class="trend up">clean stack</div></div>
+                  <div class="pm-kpi"><div class="label">Next review</div><div class="value" style="font-size:1.15rem; padding-top:4px">Apr 28</div><div class="trend neutral">scheduled</div></div>
+                </div>
+
+                <div class="pm-split">
+                  <div class="pm-card">
+                    <header><h4>Pre-audit checklist</h4><span class="view-all" data-export="audit-checklist.xlsx">Export &rarr;</span></header>
+                    <div class="pm-check">
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Documentation complete &middot; all active pts</span><span class="code">100%</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">LCD/NCD alignment verified</span><span class="code">L35041</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">SWO signatures on file</span><span class="code">84/84</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">HCPCS validation passed</span><span class="code">A2005</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Photo evidence captured</span><span class="code">Every visit</span></div>
+                      <div class="pm-check-item"><span class="mark">&#10003;</span><span class="title">Chart notes audit-defensible</span><span class="code">Reviewed</span></div>
+                    </div>
+                  </div>
+
+                  <div class="pm-side">
+                    <div class="pm-card">
+                      <header><h4>Risk gauge</h4></header>
+                      <div class="pm-chart-body" style="text-align:center; padding-top: 18px; padding-bottom: 18px">
+                        <div style="position:relative; width:120px; height:60px; margin: 0 auto">
+                          <svg viewBox="0 0 120 60" style="width:100%; height:100%">
+                            <path d="M 10 55 A 50 50 0 0 1 110 55" fill="none" stroke="#1a2332" stroke-width="10" stroke-linecap="round"/>
+                            <path d="M 10 55 A 50 50 0 0 1 42 15" fill="none" stroke="#5bcb8d" stroke-width="10" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                        <div style="display:flex; align-items:baseline; gap:4px; justify-content:center; margin-top: 4px">
+                          <span style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; color:#5bcb8d">2.1</span>
+                          <span style="color:var(--fog); font-size:0.8rem">/ 10</span>
+                        </div>
+                        <div style="font-size:10px; color:#5bcb8d; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-top:2px">LOW RISK</div>
+                      </div>
+                    </div>
+
+                    <div class="pm-card">
+                      <header><h4>Recent reviews</h4></header>
+                      <div class="pm-row" style="grid-template-columns: 1fr auto; font-size:0.8rem">
+                        <div class="patient">Q1 documentation audit</div>
+                        <span class="status ok">Passed</span>
+                      </div>
+                      <div class="pm-row" style="grid-template-columns: 1fr auto; font-size:0.8rem">
+                        <div class="patient">HCPCS frequency check</div>
+                        <span class="status ok">Passed</span>
+                      </div>
+                      <div class="pm-row" style="grid-template-columns: 1fr auto; font-size:0.8rem">
+                        <div class="patient">LCD alignment sweep</div>
+                        <span class="status ok">Passed</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VIEW 6 — CLAIMS & DENIALS -->
+              <div class="pm-view" data-view="claims">
+                <div class="pm-main-top">
+                  <h3>Claims &amp; denials</h3>
                   <span class="pm-chip"><span class="dot-live"></span>This month</span>
                 </div>
 
@@ -1042,52 +1381,60 @@
                   <div class="pm-kpi"><div class="label">Clean-claim rate</div><div class="value">96%</div><div class="trend up">+4 pts YoY</div></div>
                 </div>
 
+                <div class="pm-card">
+                  <header><h4>Claims &middot; Last 10</h4><span class="view-all" data-export="claims.xlsx">Export &rarr;</span></header>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8234</span>Medicare &middot; E. Ortiz</div><span class="date">$124</span><span class="status paid">Paid</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8231</span>BCBS &middot; M. Patel</div><span class="date">$560</span><span class="status paid">Paid</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8228</span>Medicare &middot; R. Greene</div><span class="date">$1,480</span><span class="status rev">Pending</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8224</span>UHC &middot; J. Khan</div><span class="date">$720</span><span class="status paid">Paid</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8221</span>Humana &middot; A. Brooks</div><span class="date">$890</span><span class="status sent">Appealing</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8219</span>Aetna &middot; L. Rivera</div><span class="date">$340</span><span class="status paid">Paid</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8217</span>Medicare &middot; D. Cohen</div><span class="date">$3,920</span><span class="status paid">Paid</span></div>
+                  <div class="pm-row"><div class="patient"><span class="pid">C-8214</span>Cigna &middot; S. Alvarez</div><span class="date">$1,120</span><span class="status rev">Pending</span></div>
+                </div>
+              </div>
+
+              <!-- VIEW 7 — REPORTS -->
+              <div class="pm-view" data-view="reports">
+                <div class="pm-main-top">
+                  <h3>Reports &middot; Revenue analytics</h3>
+                  <span class="pm-chip"><span class="dot-live"></span>Live data</span>
+                </div>
+
+                <div class="pm-kpis">
+                  <div class="pm-kpi"><div class="label">Revenue (mo)</div><div class="value">$146K</div><div class="trend up">+20% MoM</div></div>
+                  <div class="pm-kpi"><div class="label">YoY growth</div><div class="value">+38%</div><div class="trend up">vs. last year</div></div>
+                  <div class="pm-kpi"><div class="label">Reports</div><div class="value">12</div><div class="trend neutral">available</div></div>
+                  <div class="pm-kpi"><div class="label">Scheduled</div><div class="value" style="font-size:1.15rem; padding-top:4px">Weekly</div><div class="trend neutral">auto-sent</div></div>
+                </div>
+
                 <div class="pm-split">
                   <div class="pm-card">
-                    <header><h4>Claims &middot; Last 10</h4><span class="view-all">View all &rarr;</span></header>
-                    <div class="pm-row">
-                      <div class="patient"><span class="pid">C-8234</span>Medicare &middot; E. Ortiz</div>
-                      <span class="date">$124</span>
-                      <span class="status paid">Paid</span>
-                    </div>
-                    <div class="pm-row">
-                      <div class="patient"><span class="pid">C-8231</span>BCBS &middot; M. Patel</div>
-                      <span class="date">$560</span>
-                      <span class="status paid">Paid</span>
-                    </div>
-                    <div class="pm-row">
-                      <div class="patient"><span class="pid">C-8228</span>Medicare &middot; R. Greene</div>
-                      <span class="date">$1,480</span>
-                      <span class="status rev">Pending</span>
-                    </div>
-                    <div class="pm-row">
-                      <div class="patient"><span class="pid">C-8224</span>UHC &middot; J. Khan</div>
-                      <span class="date">$720</span>
-                      <span class="status paid">Paid</span>
-                    </div>
-                    <div class="pm-row">
-                      <div class="patient"><span class="pid">C-8221</span>Humana &middot; A. Brooks</div>
-                      <span class="date">$890</span>
-                      <span class="status sent">Appealing</span>
+                    <header><h4>Revenue &middot; 7 months</h4><span class="view-all" data-export="revenue-7mo.xlsx">Export &rarr;</span></header>
+                    <div class="pm-chart-body" style="padding: 20px 16px 16px">
+                      <div class="pm-chart-bars" style="height: 160px">
+                        <div class="pm-bar" style="height:40%" data-v="$88K"></div>
+                        <div class="pm-bar" style="height:55%" data-v="$104K"></div>
+                        <div class="pm-bar" style="height:65%" data-v="$118K"></div>
+                        <div class="pm-bar" style="height:60%" data-v="$112K"></div>
+                        <div class="pm-bar" style="height:75%" data-v="$126K"></div>
+                        <div class="pm-bar" style="height:82%" data-v="$134K"></div>
+                        <div class="pm-bar active" style="height:95%" data-v="$146K"></div>
+                      </div>
+                      <div class="pm-chart-labels">
+                        <span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
+                      </div>
                     </div>
                   </div>
 
                   <div class="pm-side">
                     <div class="pm-card">
-                      <header><h4>Revenue &middot; 7 mo</h4></header>
-                      <div class="pm-chart-body">
-                        <div class="pm-chart-bars">
-                          <div class="pm-bar" style="height:40%" data-v="$88K"></div>
-                          <div class="pm-bar" style="height:55%" data-v="$104K"></div>
-                          <div class="pm-bar" style="height:65%" data-v="$118K"></div>
-                          <div class="pm-bar" style="height:60%" data-v="$112K"></div>
-                          <div class="pm-bar" style="height:75%" data-v="$126K"></div>
-                          <div class="pm-bar" style="height:82%" data-v="$134K"></div>
-                          <div class="pm-bar active" style="height:95%" data-v="$146K"></div>
-                        </div>
-                        <div class="pm-chart-labels">
-                          <span>O</span><span>N</span><span>D</span><span>J</span><span>F</span><span>M</span><span>A</span>
-                        </div>
+                      <header><h4>Export reports</h4></header>
+                      <div class="pm-check">
+                        <div class="pm-check-item" data-export="monthly-summary.xlsx" style="cursor:pointer"><span class="mark">&darr;</span><span class="title">Monthly summary</span><span class="code">Excel</span></div>
+                        <div class="pm-check-item" data-export="claims-register.xlsx" style="cursor:pointer"><span class="mark">&darr;</span><span class="title">Claims register</span><span class="code">Excel</span></div>
+                        <div class="pm-check-item" data-export="patient-utilization.xlsx" style="cursor:pointer"><span class="mark">&darr;</span><span class="title">Patient utilization</span><span class="code">Excel</span></div>
+                        <div class="pm-check-item" data-export="product-mix.xlsx" style="cursor:pointer"><span class="mark">&darr;</span><span class="title">Product mix</span><span class="code">Excel</span></div>
                       </div>
                     </div>
 
@@ -1104,6 +1451,16 @@
               </div>
 
             </div>
+          </div>
+
+          <!-- Mini computer (export animation target) -->
+          <div class="pm-computer" id="pm-computer" aria-hidden="true">
+            <div class="pm-monitor">
+              <div class="pm-screen">
+                <span class="pm-screen-text">idle</span>
+              </div>
+            </div>
+            <div class="pm-label">Downloads</div>
           </div>
         </div>
 
@@ -1225,6 +1582,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=11" defer></script>
+  <script src="/assets/js/app.js?v=12" defer></script>
 </body>
 </html>
