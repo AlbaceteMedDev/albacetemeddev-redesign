@@ -11,10 +11,33 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 
 // Splash loader — fires on every page load (including in-session nav)
 (function initSplash(){
-  setTimeout(() => {
-    document.body.classList.remove('is-loading');
-    document.body.classList.add('is-loaded');
-  }, 1600);
+  function runSplash(){
+    // Reset to is-loading state in case the page was restored from bfcache
+    document.body.classList.remove('is-loaded');
+    document.body.classList.add('is-loading');
+    // Reflow + restart the splash CSS animation
+    const splash = document.querySelector('.splash');
+    if (splash){
+      const mark = splash.querySelector('.splash-mark');
+      splash.style.animation = 'none';
+      if (mark) mark.style.animation = 'none';
+      void splash.offsetHeight;  // force reflow
+      splash.style.animation = '';
+      if (mark) mark.style.animation = '';
+    }
+    setTimeout(() => {
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('is-loaded');
+    }, 1600);
+  }
+
+  // First page load
+  runSplash();
+
+  // Re-run splash when navigating back/forward (bfcache restore)
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) runSplash();
+  });
 })();
 
 // Highlight the current page in the nav and mobile menu
