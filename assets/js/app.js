@@ -214,28 +214,50 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     return;
   }
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const original = el.dataset.counterOriginal;
-      if (!original) return;
-      const parsed = parseStat(original.replace(/<[^>]+>/g, ''));
-      if (!parsed){
-        el.innerHTML = original;
+  function startObserving(){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const original = el.dataset.counterOriginal;
+        if (!original) return;
+        const parsed = parseStat(original.replace(/<[^>]+>/g, ''));
+        if (!parsed){
+          el.innerHTML = original;
+          io.unobserve(el);
+          return;
+        }
+        animate(el, parsed, 1200);
+        setTimeout(() => { el.innerHTML = original; }, 1300);
         io.unobserve(el);
-        return;
-      }
-      animate(el, parsed, 1100);
-      // After animation, restore original HTML so any inner <span> styling comes back
-      setTimeout(() => { el.innerHTML = original; }, 1200);
-      io.unobserve(el);
+      });
+    }, {
+      // Require 60% visible AND 100px up from bottom — so counters only
+      // fire when user actually sees them, not while hidden by the splash
+      threshold: 0.6,
+      rootMargin: '0px 0px -100px 0px'
     });
-  }, { threshold: 0.35 });
 
-  targets.forEach(el => {
-    if (el.dataset.counterReady === '1') io.observe(el);
-  });
+    targets.forEach(el => {
+      if (el.dataset.counterReady === '1') io.observe(el);
+    });
+  }
+
+  // Wait for splash to finish before observing — otherwise stats next to the
+  // hero may already be "in view" and fire before the user ever sees them
+  if (document.body.classList.contains('is-loaded')){
+    startObserving();
+  } else {
+    // Poll briefly for is-loaded then start (splash animation completes ~1600ms)
+    let polls = 0;
+    const waitInterval = setInterval(() => {
+      polls++;
+      if (document.body.classList.contains('is-loaded') || polls > 40){
+        clearInterval(waitInterval);
+        startObserving();
+      }
+    }, 60);
+  }
 })();
 
 
@@ -430,17 +452,13 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 // ═══════════════════════════════════════════════════════════════
 (function initTextScramble(){
   if (prefersReducedMotion) return;
-  // Skip if this is a subsequent in-session nav — the view-transition handles the moment
-  const alreadyVisited = sessionStorage.getItem('amd-scrambled') === '1';
-  if (alreadyVisited) return;
-  sessionStorage.setItem('amd-scrambled', '1');
 
   const heroH1 = document.querySelector('.hero h1');
   if (!heroH1) return;
 
   const CHARS = '!<>-_\\/[]{}—=+*^?#_______ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const DURATION = 1100;     // total scramble duration
-  const CHAR_LOCK_MS = 90;   // how long each char stays settled
+  const DURATION = 1100;
+  const CHAR_LOCK_MS = 90;
 
   // Walk text nodes and collect (node, originalText) pairs, preserving tags/structure
   const textNodes = [];
@@ -454,11 +472,10 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   walk(heroH1);
   if (textNodes.length === 0) return;
 
-  // Determine total chars across all nodes for timing
   const totalChars = textNodes.reduce((s, t) => s + t.original.length, 0);
   if (totalChars === 0) return;
 
-  // For each char, calculate its "settle time" as a fraction of DURATION
+  // Pre-compute each char's "settle time" as a fraction of DURATION
   let charIndex = 0;
   const schedule = textNodes.map(({ node, original }) => {
     const chars = original.split('').map(ch => {
@@ -469,32 +486,51 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     return { node, original, chars };
   });
 
-  // Hero must be visible immediately — we animate its text content, not opacity
   function randomChar(){
     return CHARS[Math.floor(Math.random() * CHARS.length)];
   }
 
-  const startTime = performance.now();
-  function frame(){
-    const elapsed = performance.now() - startTime;
-    let allDone = true;
-    schedule.forEach(({ node, original, chars }) => {
-      const out = chars.map(({ ch, settleAt }) => {
-        if (ch === ' ' || ch === '\u00a0') return ch; // preserve spaces
-        if (elapsed >= settleAt + CHAR_LOCK_MS) return ch;
-        if (elapsed >= settleAt) return ch; // locked
-        allDone = false;
-        return randomChar();
-      }).join('');
-      node.textContent = out;
-    });
-    if (!allDone) requestAnimationFrame(frame);
-    else {
-      // Restore the literal originals (safety)
-      schedule.forEach(({ node, original }) => { node.textContent = original; });
+  // Render the initial "scrambled" state IMMEDIATELY so the user never sees
+  // the resolved text before the animation starts. This prevents the flash.
+  schedule.forEach(({ node, chars }) => {
+    node.textContent = chars.map(({ ch }) => {
+      if (ch === ' ' || ch === '\u00a0') return ch;
+      return randomChar();
+    }).join('');
+  });
+
+  function start(){
+    const startTime = performance.now();
+    function frame(){
+      const elapsed = performance.now() - startTime;
+      let allDone = true;
+      schedule.forEach(({ node, chars }) => {
+        const out = chars.map(({ ch, settleAt }) => {
+          if (ch === ' ' || ch === '\u00a0') return ch;
+          if (elapsed >= settleAt) return ch;
+          allDone = false;
+          return randomChar();
+        }).join('');
+        node.textContent = out;
+      });
+      if (!allDone) requestAnimationFrame(frame);
+      else schedule.forEach(({ node, original }) => { node.textContent = original; });
     }
+    requestAnimationFrame(frame);
   }
-  // Start after splash has cleared (or immediately if skipped)
-  const delay = document.body.classList.contains('is-loaded') ? 100 : 1700;
-  setTimeout(() => requestAnimationFrame(frame), delay);
+
+  // Start scrambling the moment splash clears (body.is-loaded), or if already
+  // loaded, start immediately. Add a tiny buffer so the hero is painted first.
+  if (document.body.classList.contains('is-loaded')){
+    setTimeout(start, 150);
+  } else {
+    let polls = 0;
+    const waitInterval = setInterval(() => {
+      polls++;
+      if (document.body.classList.contains('is-loaded') || polls > 40){
+        clearInterval(waitInterval);
+        setTimeout(start, 150);
+      }
+    }, 60);
+  }
 })();
