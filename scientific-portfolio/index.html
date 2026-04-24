@@ -7,7 +7,7 @@
   <meta name="description" content="Three platforms. One wound healing cascade. Antimicrobial matrices, human placental allografts, and collagen dressings — each targeting distinct failure points in the chronic wound proteolytic cascade.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=17">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=18">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* ═══ Scientific Portfolio page-specific styles ═══ */
@@ -353,7 +353,9 @@
     }
     @keyframes sam-rigid-fall{
       0%   { transform: translateY(0) rotate(0deg) }
-      100% { transform: translateY(18px) rotate(-3deg) }
+      /* Pushes down all the way onto the actual wound peaks.
+         Bar bottom at x=60 lands at ~y=68 (peak 1), at x=210 at ~y=60 (peak 2) */
+      100% { transform: translateY(34px) rotate(-3deg) }
     }
 
     .sam-void{

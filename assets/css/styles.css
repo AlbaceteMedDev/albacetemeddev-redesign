@@ -437,16 +437,19 @@ body.is-loaded .nav{
   .category-header h3{ font-size: 1.3rem }
 }
 
+.nav-links a.nav-cta,
 .nav-cta{
   background: var(--gold);
-  color: var(--ink);
+  color: var(--ink) !important;  /* dark text on gold, beat .nav-links a specificity */
   padding: 10px 18px;
   border-radius: var(--r-sm);
   font-size: var(--t-sm);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   transition: all var(--dur-fast) var(--ease-out-quart);
 }
-.nav-cta:hover{background: var(--gold-bright); color: var(--ink)}
+.nav-links a.nav-cta:hover,
+.nav-cta:hover{background: var(--gold-bright); color: var(--ink) !important}
 
 .nav-toggle{
   display: none;
@@ -644,20 +647,24 @@ body.is-loaded .nav{
 }
 
 @keyframes grasper-pick-up{
-  /* Start: hovering above, slightly tilted (jaws open) */
-  0%    { transform: translate(-50%, 0)      rotate(-14deg) }
-  /* Descend to the word */
-  28%   { transform: translate(-50%, 75px)   rotate(-4deg) }
-  /* Clamp on "don't" */
-  36%   { transform: translate(-50%, 80px)   rotate(2deg) }
-  /* LIFT the word up with the grasper */
-  58%   { transform: translate(-50%, 20px)   rotate(2deg) }
-  /* Pause — holding the word aloft */
-  70%   { transform: translate(-50%, 20px)   rotate(2deg) }
-  /* Place word back down gently */
-  88%   { transform: translate(-50%, 78px)   rotate(0deg) }
-  /* Release + rise back to hover position */
-  100%  { transform: translate(-50%, 0)      rotate(-14deg) }
+  /* Start: hovering above, jaws OPEN (slightly wider via scaleX 1.06) */
+  0%    { transform: translate(-50%, 0)      rotate(-14deg) scaleX(1.06) }
+  /* Descend to the word with jaws still open */
+  28%   { transform: translate(-50%, 75px)   rotate(-4deg)  scaleX(1.06) }
+  /* CLAMP — jaws SNAP CLOSED (scaleX goes from 1.06 → 0.88 — visible pinch) */
+  34%   { transform: translate(-50%, 80px)   rotate(-2deg)  scaleX(0.88) }
+  /* Settled clamp — grasper holds word */
+  40%   { transform: translate(-50%, 80px)   rotate(2deg)   scaleX(0.9) }
+  /* LIFT the word UP with jaws closed tight */
+  58%   { transform: translate(-50%, 20px)   rotate(2deg)   scaleX(0.9) }
+  /* Pause — holding the word aloft, jaws still closed */
+  72%   { transform: translate(-50%, 20px)   rotate(2deg)   scaleX(0.9) }
+  /* Place word back down gently, still closed */
+  84%   { transform: translate(-50%, 78px)   rotate(0deg)   scaleX(0.9) }
+  /* Release — jaws OPEN back up */
+  90%   { transform: translate(-50%, 78px)   rotate(0deg)   scaleX(1.06) }
+  /* Rise back to hover position, jaws open */
+  100%  { transform: translate(-50%, 0)      rotate(-14deg) scaleX(1.06) }
 }
 
 @keyframes grab-word-lift{
