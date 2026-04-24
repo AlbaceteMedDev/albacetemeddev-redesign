@@ -1543,7 +1543,9 @@ body.is-loaded .nav{
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(201,169,110,0.10) 0%, transparent 60%);
+  background:
+    radial-gradient(ellipse at center, rgba(230,184,77,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at top, rgba(230,184,77,0.06) 0%, transparent 55%);
   pointer-events: none;
 }
 .cta-band .container{position: relative; z-index: 2}
