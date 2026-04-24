@@ -41,7 +41,6 @@
       border: 1px solid var(--ink-3);
       border-radius: var(--r-xl);
       padding: var(--s-6) var(--s-5);
-      margin-top: var(--s-5);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -55,15 +54,16 @@
     }
     .lg-promise-inner{position: relative; z-index: 1}
     .lg-promise h2{
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.9rem, 3.6vw, 2.75rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: var(--s-3);
+      line-height: 1.15;
     }
     .lg-promise h2 em{font-style: normal; color: var(--gold)}
     .lg-promise p{
-      max-width: 640px;
-      margin: 0 auto var(--s-3);
+      max-width: 720px;
+      margin: 0 auto;
       color: var(--fog);
       font-size: var(--t-lg);
       line-height: 1.7;
@@ -244,25 +244,30 @@
           <a href="/contact" class="btn btn-primary">Talk to our legal team <span class="arrow">&rarr;</span></a>
           <a href="#protection" class="btn btn-secondary">See the coverage</a>
         </div>
-
-        <div class="lg-hero-stats" data-reveal style="--reveal-delay: 4">
-          <div class="stat"><div class="value">In-house</div><div class="desc">dedicated medical-legal counsel</div></div>
-          <div class="stat"><div class="value">24 hr</div><div class="desc">response on audits, subpoenas, complaints</div></div>
-          <div class="stat"><div class="value">Proactive</div><div class="desc">daily guidance, not reactive firefighting</div></div>
-          <div class="stat"><div class="value">0 hrs</div><div class="desc">billed separately &mdash; included in the partnership</div></div>
-        </div>
       </div>
     </section>
 
-    <!-- PROMISE -->
+    <!-- PROMISE (second on page) -->
     <section class="section">
       <div class="container">
         <div class="lg-promise scroll-reveal">
           <div class="lg-promise-inner">
             <span class="eyebrow">The Promise</span>
-            <h2>You take care of patients. <em>We handle everything else.</em></h2>
-            <p>A dedicated attorney who already knows your documentation, payer mix, and clinical protocols &mdash; so when an audit letter, a patient complaint, or a coverage dispute arrives, the response is immediate and informed. Not a blank-slate phone call to an outside firm that has to start from scratch.</p>
+            <h2>Outside counsel is <em>already too late.</em></h2>
+            <p>By the time you call an outside firm, the documentation that was supposed to defend you is already written, the billing patterns are already in the record, and the firm is starting from scratch. Our counsel was there before any of it &mdash; already knows your documentation, payer mix, and clinical protocols, and responds the hour the letter arrives.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS (moved out of hero) -->
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="lg-hero-stats scroll-reveal" style="margin-top: 0; padding-top: 0; border-top: none">
+          <div class="stat"><div class="value">In-house</div><div class="desc">dedicated medical-legal counsel</div></div>
+          <div class="stat"><div class="value">24 hr</div><div class="desc">response on audits, subpoenas, complaints</div></div>
+          <div class="stat"><div class="value">Proactive</div><div class="desc">daily guidance, not reactive firefighting</div></div>
+          <div class="stat"><div class="value">0 hrs</div><div class="desc">billed separately &mdash; included in the partnership</div></div>
         </div>
       </div>
     </section>

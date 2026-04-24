@@ -41,7 +41,6 @@
       border: 1px solid var(--ink-3);
       border-radius: var(--r-xl);
       padding: var(--s-6) var(--s-5);
-      margin-top: var(--s-5);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -55,15 +54,16 @@
     }
     .wp-promise-inner{position: relative; z-index: 1}
     .wp-promise h2{
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.9rem, 3.6vw, 2.75rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: var(--s-3);
+      line-height: 1.15;
     }
     .wp-promise h2 em{font-style: normal; color: var(--gold)}
     .wp-promise p{
-      max-width: 660px;
-      margin: 0 auto var(--s-3);
+      max-width: 720px;
+      margin: 0 auto;
       color: var(--fog);
       font-size: var(--t-lg);
       line-height: 1.7;
@@ -244,17 +244,10 @@
           <a href="/contact" class="btn btn-primary">Schedule a consultation <span class="arrow">&rarr;</span></a>
           <a href="#pillars" class="btn btn-secondary">See the partnership</a>
         </div>
-
-        <div class="wp-hero-stats" data-reveal style="--reveal-delay: 4">
-          <div class="stat"><div class="value">20+</div><div class="desc">years of wound care operating experience</div></div>
-          <div class="stat"><div class="value">1:1</div><div class="desc">dedicated clinical &amp; operations team</div></div>
-          <div class="stat"><div class="value">24 hr</div><div class="desc">response on priority escalations</div></div>
-          <div class="stat"><div class="value">100%</div><div class="desc">payer-aligned from day one</div></div>
-        </div>
       </div>
     </section>
 
-    <!-- PROMISE -->
+    <!-- PROMISE (second on page) -->
     <section class="section">
       <div class="container">
         <div class="wp-promise scroll-reveal">
@@ -263,6 +256,18 @@
             <h2>Products are the starting point. <em>The partnership is everything else.</em></h2>
             <p>You don&rsquo;t need another product catalog. You need a partner that has already done the operational, compliance, clinical, and reimbursement work &mdash; so every product slots into your practice without adding friction to your team.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS (moved out of hero) -->
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="wp-hero-stats scroll-reveal" style="margin-top: 0; padding-top: 0; border-top: none">
+          <div class="stat"><div class="value">20+</div><div class="desc">years of wound care operating experience</div></div>
+          <div class="stat"><div class="value">1:1</div><div class="desc">dedicated clinical &amp; operations team</div></div>
+          <div class="stat"><div class="value">24 hr</div><div class="desc">response on priority escalations</div></div>
+          <div class="stat"><div class="value">100%</div><div class="desc">payer-aligned from day one</div></div>
         </div>
       </div>
     </section>
