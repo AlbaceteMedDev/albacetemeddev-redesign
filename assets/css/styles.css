@@ -647,24 +647,24 @@ body.is-loaded .nav{
 }
 
 @keyframes grasper-pick-up{
-  /* Start: hovering above, jaws OPEN (slightly wider via scaleX 1.06) */
-  0%    { transform: translate(-50%, 0)      rotate(-14deg) scaleX(1.06) }
-  /* Descend to the word with jaws still open */
-  28%   { transform: translate(-50%, 75px)   rotate(-4deg)  scaleX(1.06) }
-  /* CLAMP — jaws SNAP CLOSED (scaleX goes from 1.06 → 0.88 — visible pinch) */
-  34%   { transform: translate(-50%, 80px)   rotate(-2deg)  scaleX(0.88) }
-  /* Settled clamp — grasper holds word */
-  40%   { transform: translate(-50%, 80px)   rotate(2deg)   scaleX(0.9) }
-  /* LIFT the word UP with jaws closed tight */
-  58%   { transform: translate(-50%, 20px)   rotate(2deg)   scaleX(0.9) }
-  /* Pause — holding the word aloft, jaws still closed */
-  72%   { transform: translate(-50%, 20px)   rotate(2deg)   scaleX(0.9) }
-  /* Place word back down gently, still closed */
-  84%   { transform: translate(-50%, 78px)   rotate(0deg)   scaleX(0.9) }
-  /* Release — jaws OPEN back up */
-  90%   { transform: translate(-50%, 78px)   rotate(0deg)   scaleX(1.06) }
-  /* Rise back to hover position, jaws open */
-  100%  { transform: translate(-50%, 0)      rotate(-14deg) scaleX(1.06) }
+  /* Hover above the word — jaws hang just above with tilt */
+  0%    { transform: translate(-50%, -26px) rotate(-14deg) scaleX(1.06) }
+  /* Descend toward the word */
+  28%   { transform: translate(-50%, -6px)  rotate(-4deg)  scaleX(1.06) }
+  /* Jaws AT the word — CLAMP (scaleX snaps to 0.88 = visible pinch) */
+  36%   { transform: translate(-50%, 4px)   rotate(-2deg)  scaleX(0.88) }
+  /* Held clamp */
+  42%   { transform: translate(-50%, 4px)   rotate(2deg)   scaleX(0.9) }
+  /* LIFT the word UP with jaws closed */
+  60%   { transform: translate(-50%, -48px) rotate(2deg)   scaleX(0.9) }
+  /* Hold aloft */
+  72%   { transform: translate(-50%, -48px) rotate(2deg)   scaleX(0.9) }
+  /* Place word back down, still closed */
+  84%   { transform: translate(-50%, 4px)   rotate(0deg)   scaleX(0.9) }
+  /* Release — jaws open */
+  90%   { transform: translate(-50%, 4px)   rotate(0deg)   scaleX(1.06) }
+  /* Rise back to hover */
+  100%  { transform: translate(-50%, -26px) rotate(-14deg) scaleX(1.06) }
 }
 
 @keyframes grab-word-lift{
@@ -672,32 +672,33 @@ body.is-loaded .nav{
   0%, 28% { transform: translateY(0) }
   /* Tiny tug as jaws clamp */
   36%     { transform: translateY(-2px) }
-  /* Lift UP with the grasper */
-  58%     { transform: translateY(-60px) }
-  /* Hold */
-  70%     { transform: translateY(-60px) }
+  /* Lift UP with the grasper — matches grasper's translateY delta */
+  60%     { transform: translateY(-52px) }
+  72%     { transform: translateY(-52px) }
   /* Descend back to baseline with grasper */
   88%     { transform: translateY(-2px) }
-  /* Settled, released */
+  /* Released, back at baseline */
   100%    { transform: translateY(0) }
 }
 
 @media (max-width: 900px){
   .grasper-grab{ width: 82px; top: -92px }
   @keyframes grasper-pick-up{
-    0%    { transform: translate(-50%, 0)    rotate(-14deg) }
-    28%   { transform: translate(-50%, 56px) rotate(-4deg) }
-    36%   { transform: translate(-50%, 60px) rotate(2deg) }
-    58%   { transform: translate(-50%, 14px) rotate(2deg) }
-    70%   { transform: translate(-50%, 14px) rotate(2deg) }
-    88%   { transform: translate(-50%, 58px) rotate(0deg) }
-    100%  { transform: translate(-50%, 0)    rotate(-14deg) }
+    0%    { transform: translate(-50%, -20px) rotate(-14deg) scaleX(1.06) }
+    28%   { transform: translate(-50%, -4px)  rotate(-4deg)  scaleX(1.06) }
+    36%   { transform: translate(-50%, 4px)   rotate(-2deg)  scaleX(0.88) }
+    42%   { transform: translate(-50%, 4px)   rotate(2deg)   scaleX(0.9) }
+    60%   { transform: translate(-50%, -36px) rotate(2deg)   scaleX(0.9) }
+    72%   { transform: translate(-50%, -36px) rotate(2deg)   scaleX(0.9) }
+    84%   { transform: translate(-50%, 4px)   rotate(0deg)   scaleX(0.9) }
+    90%   { transform: translate(-50%, 4px)   rotate(0deg)   scaleX(1.06) }
+    100%  { transform: translate(-50%, -20px) rotate(-14deg) scaleX(1.06) }
   }
   @keyframes grab-word-lift{
     0%, 28% { transform: translateY(0) }
     36%     { transform: translateY(-2px) }
-    58%     { transform: translateY(-44px) }
-    70%     { transform: translateY(-44px) }
+    60%     { transform: translateY(-40px) }
+    72%     { transform: translateY(-40px) }
     88%     { transform: translateY(-2px) }
     100%    { transform: translateY(0) }
   }
@@ -1644,8 +1645,9 @@ img, svg, video, iframe{ max-width: 100%; height: auto }
 /* Clean tap interactions */
 button, a, [role="button"]{ -webkit-tap-highlight-color: rgba(212,169,74,0.15); touch-action: manipulation }
 
-/* Guard against long unbroken strings breaking layouts */
-h1, h2, h3, h4{ overflow-wrap: break-word; word-break: break-word; hyphens: auto }
+/* Guard against long unbroken strings breaking layouts — but DO NOT
+   hyphenate or mid-word-break. Just wrap at normal word boundaries. */
+h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 
 /* ============ Tablet (721-1024px) — tighten grids ============ */
 @media (max-width: 1024px){
@@ -1662,6 +1664,14 @@ h1, h2, h3, h4{ overflow-wrap: break-word; word-break: break-word; hyphens: auto
 /* ============ Phone (≤640px) — full mobile polish ============ */
 @media (max-width: 640px){
   .container{ padding: 0 16px }
+
+  /* On mobile, drop all inline white-space:nowrap on headings so long
+     phrases flow to the next line instead of being cut off */
+  .hero h1 span, .hero h1 em,
+  .section-header h2 span, .section-header h2 em,
+  h1 [style*="nowrap"], h2 [style*="nowrap"]{
+    white-space: normal !important;
+  }
 
   /* Hero typography */
   .hero h1{
