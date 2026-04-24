@@ -7,7 +7,7 @@
   <meta name="description" content="One portal. Patient tracking, product ordering, compliance documentation, and utilization reporting — unified, real-time, role-based access for your entire clinical team.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=19">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* Portal page — dashboard-style mock */
@@ -441,19 +441,18 @@
       color: var(--gold);
     }
 
-    /* "TRY ME" floating chip — gold-accented, sits ABOVE the shell so it
-       never blocks portal content. Arrow points down at the sidebar. */
+    /* "TRY ME" floating chip — solid gold with layered glow. Sits ABOVE
+       the shell on the right so it never blocks portal content. */
     .pm-tryme{
       position: absolute;
       top: -22px;
       right: 30px;
       transform: translateY(-100%);
       z-index: 10;
-      background: linear-gradient(135deg, rgba(212,169,74,0.14) 0%, rgba(212,169,74,0.04) 100%), var(--ink);
-      color: var(--gold);
+      background: var(--gold);
+      color: #000;
       padding: 10px 18px;
       border-radius: 999px;
-      border: 1.5px solid var(--gold);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -461,46 +460,61 @@
       font-weight: 700;
       font-size: 0.9rem;
       letter-spacing: 0.02em;
-      box-shadow: 0 14px 40px rgba(212,169,74,0.3),
-                  0 0 0 4px rgba(212,169,74,0.08),
-                  0 0 30px rgba(212,169,74,0.18);
+      box-shadow:
+        0 0 0 4px rgba(212,169,74,0.22),
+        0 0 32px rgba(212,169,74,0.55),
+        0 0 60px rgba(212,169,74,0.35),
+        0 18px 50px rgba(212,169,74,0.4),
+        0 8px 24px rgba(0,0,0,0.35);
       pointer-events: none;
       white-space: nowrap;
       transition: opacity 300ms ease, transform 300ms ease;
-      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite,
+                 pm-tryme-glow 2.6s ease-in-out infinite;
     }
-    /* Arrow tail — stacked border+fill triangles for an outlined arrow */
-    .pm-tryme::before,
+    /* Solid gold down-arrow tail */
     .pm-tryme::after{
       content: '';
       position: absolute;
-      width: 0; height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-    }
-    .pm-tryme::before{
-      bottom: -11px;
-      right: 39px;
-      border-top: 11px solid var(--gold);
-    }
-    .pm-tryme::after{
-      bottom: -8px;
+      bottom: -9px;
       right: 40px;
-      border-top: 9px solid var(--ink);
+      width: 0; height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-top: 10px solid var(--gold);
+      filter: drop-shadow(0 4px 10px rgba(212,169,74,0.5));
     }
     .pm-tryme .pm-tryme-arrow{
       font-size: 1.1rem;
-      color: var(--gold);
+      color: #000;
       animation: pm-tryme-point 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
     .pm-tryme .pm-tryme-sub{
       font-weight: 500;
-      opacity: 0.8;
+      opacity: 0.75;
       font-size: 0.78rem;
       letter-spacing: 0.04em;
       padding-left: 8px;
-      border-left: 1px solid rgba(212,169,74,0.3);
-      color: var(--gold);
+      border-left: 1px solid rgba(0,0,0,0.2);
+      color: #000;
+    }
+    @keyframes pm-tryme-glow{
+      0%, 100%{
+        box-shadow:
+          0 0 0 4px rgba(212,169,74,0.22),
+          0 0 32px rgba(212,169,74,0.55),
+          0 0 60px rgba(212,169,74,0.35),
+          0 18px 50px rgba(212,169,74,0.4),
+          0 8px 24px rgba(0,0,0,0.35);
+      }
+      50%{
+        box-shadow:
+          0 0 0 6px rgba(212,169,74,0.3),
+          0 0 46px rgba(212,169,74,0.8),
+          0 0 85px rgba(212,169,74,0.5),
+          0 22px 60px rgba(212,169,74,0.55),
+          0 8px 24px rgba(0,0,0,0.35);
+      }
     }
     .pm-tryme.is-hidden{
       opacity: 0;
