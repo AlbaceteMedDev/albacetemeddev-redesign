@@ -143,6 +143,51 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   io.observe(grabTarget);
 })();
 
+// One-shot Microlyte SAM comparison animations — play once per visit, then stop
+(function initSamAnimations(){
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+  // LEFT panel — rigid dressing + voids
+  const rigidGroup = document.querySelector('.sam-rigid-group');
+  if (rigidGroup){
+    const leftContainer = rigidGroup.closest('svg');
+    if (leftContainer){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          rigidGroup.classList.add('is-animating');
+          leftContainer.querySelectorAll('.sam-void-mid, .sam-void-left, .sam-void-right')
+            .forEach(el => el.classList.add('is-animating'));
+          io.disconnect();
+        });
+      }, { threshold: 0.5 });
+      io.observe(leftContainer);
+    }
+  }
+
+  // RIGHT panel — PVA film + contact dots (dots fade in AFTER film settles)
+  const pvaGroup = document.querySelector('.sam-pva-group');
+  if (pvaGroup){
+    const rightContainer = pvaGroup.closest('svg');
+    if (rightContainer){
+      const contacts = rightContainer.querySelectorAll('.sam-contact');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          pvaGroup.classList.add('is-animating');
+          // Delay each contact dot sequentially so they appear AFTER the film
+          // has settled (~2.4s into the 2.8s fall animation)
+          contacts.forEach((dot, i) => {
+            setTimeout(() => dot.classList.add('is-animating'), 2400 + i * 120);
+          });
+          io.disconnect();
+        });
+      }, { threshold: 0.5 });
+      io.observe(rightContainer);
+    }
+  }
+})();
+
 // FAQ accordion
 (function initFAQ(){
   document.querySelectorAll('.faq-q').forEach(q => {

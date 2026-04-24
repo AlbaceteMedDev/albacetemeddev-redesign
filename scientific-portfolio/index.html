@@ -7,7 +7,7 @@
   <meta name="description" content="Three platforms. One wound healing cascade. Antimicrobial matrices, human placental allografts, and collagen dressings — each targeting distinct failure points in the chronic wound proteolytic cascade.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=16">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=17">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* ═══ Scientific Portfolio page-specific styles ═══ */
@@ -338,76 +338,82 @@
     .compare-card.good .tag{background: rgba(120, 180, 140, 0.15); color: #7fba95}
     @media (max-width: 768px){.compare-grid{grid-template-columns: 1fr}}
 
-    /* ═══ Microlyte SAM comparison animations ═══ */
-    /* LEFT — Rigid dressing lands ON the wound peaks (tilts to match
-       the uneven surface); middle void gets pushed DOWN into the valley
-       because the dressing can't conform to contours */
+    /* ═══ Microlyte SAM comparison animations — ONE-SHOT (play and stop) ═══ */
+    /* Triggered by .is-animating class set via IntersectionObserver */
+
+    /* LEFT — rigid bar tilts down and lands ON both wound peaks; middle
+       void sits in the gap between bar bottom and wound surface (doesn't
+       pass through the surface) */
     .sam-rigid-group{
       transform-box: view-box;
       transform-origin: 120px 27px;
-      animation: sam-rigid-fall 5s cubic-bezier(0.55, 0.09, 0.68, 0.53) infinite;
+    }
+    .sam-rigid-group.is-animating{
+      animation: sam-rigid-fall 2.4s cubic-bezier(0.4, 0.1, 0.2, 1) 1 forwards;
     }
     @keyframes sam-rigid-fall{
-      0%, 8%   { transform: translateY(0) rotate(0deg) }
-      /* Tilt slightly so right side appears to sit on the taller right
-         peak and the left side rests on the shorter left peak */
-      42%, 88% { transform: translateY(17px) rotate(-2.2deg) }
-      100%     { transform: translateY(0) rotate(0deg) }
+      0%   { transform: translateY(0) rotate(0deg) }
+      100% { transform: translateY(18px) rotate(-3deg) }
     }
+
     .sam-void{
       transform-box: fill-box;
       transform-origin: center center;
     }
-    /* Middle void — pushed DOWN to the wound surface (into the valley) */
+
+    /* Middle void — pushed DOWN by the dressing, resting ON the wound
+       surface (bottom of void at wound-surface top, not through it) */
     .sam-void-mid{
       transform-box: view-box;
       transform-origin: 128px 56px;
-      animation: sam-void-push-down 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+    }
+    .sam-void-mid.is-animating{
+      animation: sam-void-push-down 2.4s cubic-bezier(0.4, 0.1, 0.2, 1) 1 forwards;
     }
     @keyframes sam-void-push-down{
-      0%, 14%   { transform: translateY(0) scale(1); opacity: 0.95 }
-      42%, 88%  { transform: translateY(26px) scale(0.85); opacity: 0.9 }
-      96%, 100% { transform: translateY(0) scale(1); opacity: 0.95 }
-    }
-    /* Left + right voids get squished between the rigid bar + the peaks */
-    .sam-void-left{
-      animation: sam-void-squish 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
-    }
-    .sam-void-right{
-      animation: sam-void-squish 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
-    }
-    @keyframes sam-void-squish{
-      0%, 18%   { transform: scaleY(1); opacity: 0.95 }
-      42%, 88%  { transform: scaleY(0.35); opacity: 0.55 }
-      96%, 100% { transform: scaleY(1); opacity: 0.95 }
+      0%   { transform: translateY(0); opacity: 0.95 }
+      /* translateY 22 → void center lands at y=78 (bottom y=87, wound top y=88) */
+      100% { transform: translateY(22px); opacity: 0.9 }
     }
 
-    /* RIGHT — PVA film falls feather-like, then accordion-settles */
+    /* Left + right voids get vertically squished between bar + peaks */
+    .sam-void-left.is-animating,
+    .sam-void-right.is-animating{
+      animation: sam-void-squish 2.4s cubic-bezier(0.4, 0.1, 0.2, 1) 1 forwards;
+    }
+    @keyframes sam-void-squish{
+      0%   { transform: scaleY(1); opacity: 0.95 }
+      100% { transform: scaleY(0.32); opacity: 0.55 }
+    }
+
+    /* RIGHT — PVA film feather-falls + settles onto the contour, then STOPS */
     .sam-pva-group{
       transform-box: view-box;
-      animation: sam-pva-feather 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+    }
+    .sam-pva-group.is-animating{
+      animation: sam-pva-feather 2.8s cubic-bezier(0.37, 0, 0.63, 1) 1 forwards;
     }
     @keyframes sam-pva-feather{
       0%   { transform: translate(-6px, -32px) rotate(-2deg) }
-      20%  { transform: translate(5px, -22px) rotate(2deg) }
-      35%  { transform: translate(-4px, -14px) rotate(-1.5deg) }
-      50%  { transform: translate(3px, -7px) rotate(1deg) }
-      65%  { transform: translate(-1px, -2px) rotate(-0.3deg) }
-      78%, 96% { transform: translate(0, 0) rotate(0) }
-      100% { transform: translate(-6px, -32px) rotate(-2deg) }
+      22%  { transform: translate(5px, -22px) rotate(2deg) }
+      40%  { transform: translate(-4px, -14px) rotate(-1.5deg) }
+      58%  { transform: translate(3px, -7px) rotate(1deg) }
+      78%  { transform: translate(-1px, -2px) rotate(-0.3deg) }
+      100% { transform: translate(0, 0) rotate(0) }
     }
+
     .sam-contact{
       opacity: 0;
       transform-box: fill-box;
       transform-origin: center center;
-      animation: sam-contact-appear 5s ease-out infinite;
     }
-    .sam-contact:nth-child(1){ animation-delay: 0s }
+    .sam-contact.is-animating{
+      animation: sam-contact-appear 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards;
+    }
     @keyframes sam-contact-appear{
-      0%, 72%   { opacity: 0; transform: scale(0.3) }
-      80%       { opacity: 1; transform: scale(1.4) }
-      88%, 96%  { opacity: 1; transform: scale(1) }
-      100%      { opacity: 0; transform: scale(0.3) }
+      0%   { opacity: 0; transform: scale(0.2) }
+      60%  { opacity: 1; transform: scale(1.35) }
+      100% { opacity: 1; transform: scale(1) }
     }
 
     /* Respect reduced-motion */
@@ -1013,11 +1019,11 @@
                   </g>
 
                   <!-- Contact indicators — appear as the film settles -->
-                  <circle class="sam-contact" cx="54" cy="59" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 2.6s"/>
-                  <circle class="sam-contact" cx="92" cy="66" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 2.75s"/>
-                  <circle class="sam-contact" cx="130" cy="72" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 2.9s"/>
-                  <circle class="sam-contact" cx="168" cy="58" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 3.05s"/>
-                  <circle class="sam-contact" cx="196" cy="51" r="2.5" fill="rgba(127,186,149,0.95)" style="animation-delay: 3.2s"/>
+                  <circle class="sam-contact" cx="54" cy="59" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle class="sam-contact" cx="92" cy="66" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle class="sam-contact" cx="130" cy="72" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle class="sam-contact" cx="168" cy="58" r="2.5" fill="rgba(127,186,149,0.95)"/>
+                  <circle class="sam-contact" cx="196" cy="51" r="2.5" fill="rgba(127,186,149,0.95)"/>
                 </svg>
               </div>
               <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Full contact &rarr; zero dead space</div>
@@ -1246,6 +1252,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=16" defer></script>
+  <script src="/assets/js/app.js?v=17" defer></script>
 </body>
 </html>
