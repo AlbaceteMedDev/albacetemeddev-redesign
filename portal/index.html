@@ -7,7 +7,7 @@
   <meta name="description" content="One portal. Patient tracking, product ordering, compliance documentation, and utilization reporting — unified, real-time, role-based access for your entire clinical team.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=21">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=22">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* Portal page — dashboard-style mock */
@@ -441,11 +441,10 @@
       color: var(--gold);
     }
 
-    /* "TRY ME" floating chip — solid gold with layered glow. Sits ABOVE
-       the shell on the right so it never blocks portal content. */
+    /* "TRY ME" floating chip — original simple gold with ring + drop */
     .pm-tryme{
       position: absolute;
-      top: -22px;
+      top: -18px;
       right: 30px;
       transform: translateY(-100%);
       z-index: 10;
@@ -460,35 +459,22 @@
       font-weight: 700;
       font-size: 0.9rem;
       letter-spacing: 0.02em;
-      /* Strong layered glow — ring + tight bloom + far bloom + drops */
-      box-shadow:
-        0 0 0 6px rgba(212,169,74,0.35),
-        0 0 0 14px rgba(212,169,74,0.14),
-        0 0 50px 4px rgba(230,184,77,0.9),
-        0 0 100px 20px rgba(230,184,77,0.55),
-        0 20px 60px rgba(212,169,74,0.45),
-        0 10px 30px rgba(0,0,0,0.4);
-      /* Drop-shadow filter ALSO blooms so the glow reads even if any
-         parent container clips box-shadow */
-      filter: drop-shadow(0 0 34px rgba(230,184,77,0.95))
-              drop-shadow(0 0 80px rgba(230,184,77,0.55));
+      box-shadow: 0 12px 40px rgba(212,169,74,0.35), 0 0 0 4px rgba(212,169,74,0.18);
       pointer-events: none;
       white-space: nowrap;
       transition: opacity 300ms ease, transform 300ms ease;
-      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite,
-                 pm-tryme-glow 2s ease-in-out infinite;
+      animation: pm-tryme-bob 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
-    /* Solid gold down-arrow tail */
+    /* Gold down-arrow tail */
     .pm-tryme::after{
       content: '';
       position: absolute;
-      bottom: -9px;
+      bottom: -8px;
       right: 40px;
       width: 0; height: 0;
-      border-left: 9px solid transparent;
-      border-right: 9px solid transparent;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
       border-top: 10px solid var(--gold);
-      filter: drop-shadow(0 4px 10px rgba(212,169,74,0.5));
     }
     .pm-tryme .pm-tryme-arrow{
       font-size: 1.1rem;
@@ -503,30 +489,6 @@
       padding-left: 8px;
       border-left: 1px solid rgba(0,0,0,0.2);
       color: #000;
-    }
-    @keyframes pm-tryme-glow{
-      0%, 100%{
-        box-shadow:
-          0 0 0 6px rgba(212,169,74,0.35),
-          0 0 0 14px rgba(212,169,74,0.14),
-          0 0 50px 4px rgba(230,184,77,0.9),
-          0 0 100px 20px rgba(230,184,77,0.55),
-          0 20px 60px rgba(212,169,74,0.45),
-          0 10px 30px rgba(0,0,0,0.4);
-        filter: drop-shadow(0 0 34px rgba(230,184,77,0.95))
-                drop-shadow(0 0 80px rgba(230,184,77,0.55));
-      }
-      50%{
-        box-shadow:
-          0 0 0 8px rgba(212,169,74,0.45),
-          0 0 0 18px rgba(212,169,74,0.2),
-          0 0 70px 10px rgba(230,184,77,1),
-          0 0 140px 30px rgba(230,184,77,0.75),
-          0 24px 80px rgba(212,169,74,0.6),
-          0 10px 30px rgba(0,0,0,0.4);
-        filter: drop-shadow(0 0 50px rgba(230,184,77,1))
-                drop-shadow(0 0 120px rgba(230,184,77,0.7));
-      }
     }
     .pm-tryme.is-hidden{
       opacity: 0;
