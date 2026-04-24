@@ -364,27 +364,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 
 
 // ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #3 — View Transitions API (cross-document)
-// ═══════════════════════════════════════════════════════════════
-// Handled in CSS via @view-transition { navigation: auto }.
-// Browsers that don't support it just do normal navigation (no breakage).
-// We do two things in JS:
-// 1. Skip the splash on same-session subsequent loads (handled in initSplash)
-// 2. Add view-transition-name to persistent elements (nav, logo, footer) so
-//    they stay stable across navigations.
-(function initViewTransitions(){
-  if (!CSS.supports || !CSS.supports('view-transition-name', 'root')) return;
-  const nav = document.querySelector('.nav');
-  const logo = document.querySelector('.nav-logo');
-  const footer = document.querySelector('.footer');
-  if (nav) nav.style.viewTransitionName = 'site-nav';
-  if (logo) logo.style.viewTransitionName = 'site-logo';
-  if (footer) footer.style.viewTransitionName = 'site-footer';
-})();
-
-
-// ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #4 — Magnetic primary CTAs
+// WOAH MOMENT #3 — Magnetic primary CTAs
 // ═══════════════════════════════════════════════════════════════
 (function initMagneticButtons(){
   if (prefersReducedMotion || isTouch) return;
@@ -446,7 +426,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 
 
 // ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #5 — Hero text scramble reveal
+// WOAH MOMENT #4 — Hero text scramble reveal
 // ═══════════════════════════════════════════════════════════════
 (function initTextScramble(){
   if (prefersReducedMotion) return;

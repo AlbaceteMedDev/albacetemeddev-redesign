@@ -1656,37 +1656,6 @@ h1, h2, h3, h4{ overflow-wrap: break-word; word-break: break-word; hyphens: auto
    WOAH MOMENTS — animations and polish
    ═══════════════════════════════════════════════════════════════ */
 
-/* View Transitions API — smooth cross-document navigation */
-@view-transition{
-  navigation: auto;
-}
-
-/* Make the transition feel cinematic: gentle crossfade + slight lift */
-@keyframes woah-fade-slide-in{
-  from{ opacity: 0; transform: translateY(8px) }
-  to{ opacity: 1; transform: translateY(0) }
-}
-@keyframes woah-fade-slide-out{
-  from{ opacity: 1; transform: translateY(0) }
-  to{ opacity: 0; transform: translateY(-8px) }
-}
-::view-transition-old(root){
-  animation: woah-fade-slide-out 180ms cubic-bezier(0.4, 0, 1, 1) both;
-}
-::view-transition-new(root){
-  animation: woah-fade-slide-in 320ms cubic-bezier(0, 0, 0.2, 1) both;
-}
-/* Persistent elements — nav, logo, footer — morph smoothly across pages */
-::view-transition-old(site-nav),
-::view-transition-new(site-nav),
-::view-transition-old(site-logo),
-::view-transition-new(site-logo),
-::view-transition-old(site-footer),
-::view-transition-new(site-footer){
-  animation-duration: 240ms;
-  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-}
-
 /* Live dashboard — pulse dot */
 @keyframes woah-pulse{
   0%{ box-shadow: 0 0 0 0 rgba(91,203,141,0.7) }
@@ -1715,7 +1684,6 @@ h1, h2, h3, h4{ overflow-wrap: break-word; word-break: break-word; hyphens: auto
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  ::view-transition-old(root), ::view-transition-new(root){ animation: none !important }
   .dot-live.is-pulsing, .pm-main-top .dot-live{ animation: none !important }
 }
 
