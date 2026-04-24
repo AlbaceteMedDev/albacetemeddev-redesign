@@ -569,6 +569,52 @@ body.is-loaded .nav{
   filter: drop-shadow(0 24px 48px rgba(0,0,0,0.6));
 }
 
+/* Bare variant — no box, images float with drop shadow like coming off the page */
+.hero-product-image.hero-product-image--bare{
+  background: transparent;
+  border: none;
+  padding: 0;
+  aspect-ratio: auto;
+  overflow: visible;
+  display: block;
+  min-height: 480px;
+}
+.hero-product-image.hero-product-image--bare::before{ display: none }
+.hero-product-image.hero-product-image--bare img{
+  position: absolute;
+  max-width: none;
+  max-height: none;
+}
+.hero-product-image.hero-product-image--bare .ab-robot-xi{
+  right: -4%;
+  top: 4%;
+  width: 80%;
+  z-index: 2;
+  filter: drop-shadow(0 34px 56px rgba(0,0,0,0.65))
+          drop-shadow(0 12px 22px rgba(0,0,0,0.4))
+          drop-shadow(0 0 30px rgba(230,184,77,0.08));
+}
+.hero-product-image.hero-product-image--bare .ab-robot-5{
+  left: -6%;
+  bottom: 2%;
+  width: 54%;
+  z-index: 1;
+  opacity: 0.92;
+  filter: drop-shadow(0 24px 44px rgba(0,0,0,0.55))
+          drop-shadow(0 8px 16px rgba(0,0,0,0.35))
+          drop-shadow(0 0 24px rgba(230,184,77,0.06));
+}
+@media (max-width: 900px){
+  .hero-product-image.hero-product-image--bare{ min-height: 380px }
+  .hero-product-image.hero-product-image--bare .ab-robot-xi{ width: 72% }
+  .hero-product-image.hero-product-image--bare .ab-robot-5{ width: 48% }
+}
+@media (max-width: 640px){
+  .hero-product-image.hero-product-image--bare{ min-height: 300px }
+  .hero-product-image.hero-product-image--bare .ab-robot-xi{ width: 70%; right: 0; top: 10% }
+  .hero-product-image.hero-product-image--bare .ab-robot-5{ width: 44%; left: -4% }
+}
+
 .hero-spec-panel{
   background: var(--ink-1);
   border: 1px solid var(--ink-3);
