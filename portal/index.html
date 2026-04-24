@@ -7,7 +7,7 @@
   <meta name="description" content="One portal. Patient tracking, product ordering, compliance documentation, and utilization reporting — unified, real-time, role-based access for your entire clinical team.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=15">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=16">
   <link rel="icon" type="image/png" href="https://i0.wp.com/albacetemeddev.com/wp-content/uploads/2025/08/cropped-cropped-Copy-of-Untitled-750-x-1334-px-7-x-5-in-3-1.png?ssl=1">
   <style>
     /* Portal page — dashboard-style mock */
@@ -40,13 +40,18 @@
     /* ======================================================
        Dashboard mock
        ====================================================== */
+    /* Wrapper so the Try-Me chip (positioned above the shell) isn't clipped
+       by the shell's overflow:hidden */
+    .pm-shell-wrap{
+      position: relative;
+      margin-top: var(--s-4);
+    }
     .pm-shell{
       background: var(--ink);
       border: 1px solid var(--ink-3);
       border-radius: var(--r-xl);
       overflow: hidden;
       box-shadow: 0 40px 120px rgba(0,0,0,0.45);
-      margin-top: var(--s-4);
       position: relative;
     }
 
@@ -923,13 +928,14 @@
           <p>What your team sees when they log in &mdash; patients, orders, compliance, utilization, and reporting in one pane.</p>
         </div>
 
-<div class="pm-shell scroll-reveal">
-          <!-- "TRY ME" chip — disappears after first click -->
+<div class="pm-shell-wrap scroll-reveal">
+          <!-- "TRY ME" chip sits OUTSIDE the shell so overflow:hidden doesn't clip it -->
           <div class="pm-tryme" aria-hidden="true">
-            <span class="pm-tryme-arrow">&larr;</span>
             <span class="pm-tryme-text">Try me</span>
             <span class="pm-tryme-sub">Click any menu item</span>
           </div>
+
+          <div class="pm-shell">
 
           <!-- Window top bar -->
           <div class="pm-top">
@@ -1476,7 +1482,8 @@
             </div>
             <div class="pm-label">Downloads</div>
           </div>
-        </div>
+          </div><!-- /.pm-shell -->
+        </div><!-- /.pm-shell-wrap -->
 
         <p style="text-align:center; margin-top: var(--s-3); font-size: var(--t-xs); color: var(--fog); font-style: italic">Click any sidebar item to explore &mdash; this is an interactive preview. Actual views are role-specific.</p>
       </div>
@@ -1596,6 +1603,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=12" defer></script>
+  <script src="/assets/js/app.js?v=16" defer></script>
 </body>
 </html>

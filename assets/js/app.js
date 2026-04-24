@@ -126,6 +126,23 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   window.addEventListener('scroll', onScroll, { passive: true });
 })();
 
+// One-shot grasper grab animation — fires when the heading scrolls into view
+(function initGrabAnimation(){
+  if (prefersReducedMotion) return;
+  const grabTarget = document.querySelector('.grab-target');
+  if (!grabTarget || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        // Small delay so the motion reads as intentional, not jarring on scroll
+        setTimeout(() => grabTarget.classList.add('is-grabbing'), 200);
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.6 });
+  io.observe(grabTarget);
+})();
+
 // FAQ accordion
 (function initFAQ(){
   document.querySelectorAll('.faq-q').forEach(q => {
@@ -473,10 +490,12 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 (function initInteractivePortal(){
   const shell = document.querySelector('.pm-shell');
   if (!shell) return;
+  const shellWrap = shell.closest('.pm-shell-wrap') || shell;
   const navItems = shell.querySelectorAll('.pm-nav-item[data-view]');
   const views = shell.querySelectorAll('.pm-view[data-view]');
   const urlBar = shell.querySelector('.pm-url');
-  const chip = shell.querySelector('.pm-tryme');
+  // Chip lives OUTSIDE the shell (on the wrapper) so overflow:hidden doesn't clip it
+  const chip = shellWrap.querySelector('.pm-tryme') || shell.querySelector('.pm-tryme');
   const computer = shell.querySelector('#pm-computer');
   if (navItems.length === 0 || views.length === 0) return;
 

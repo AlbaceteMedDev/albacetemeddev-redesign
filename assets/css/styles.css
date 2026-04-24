@@ -615,41 +615,92 @@ body.is-loaded .nav{
   position: relative;
   display: inline-block;
 }
+.grab-word{
+  display: inline-block;
+  will-change: transform;
+}
 .grasper-grab{
   position: absolute;
-  /* Hang the grasper from just above the word so its jaws are right
-     at the text baseline — animation dips them INTO the word */
-  top: -78px;
+  top: -120px;
   left: 50%;
-  transform: translate(-50%, -20px) rotate(-8deg);
-  width: 90px;
+  transform: translate(-50%, 0) rotate(-8deg);
+  width: 110px;
   height: auto;
-  opacity: 0.97;
-  filter: drop-shadow(0 16px 30px rgba(0,0,0,0.6))
-          drop-shadow(0 0 24px rgba(230,184,77,0.22));
+  opacity: 0.95;
+  filter: drop-shadow(0 16px 30px rgba(0,0,0,0.55))
+          drop-shadow(0 0 24px rgba(230,184,77,0.18));
   pointer-events: none;
   transform-origin: 50% 5%;
-  animation: grasper-reach 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   z-index: 3;
 }
-@keyframes grasper-reach{
-  /* Start: hovering high with jaws slightly rotated open */
-  0%, 8%   { transform: translate(-50%, -20px) rotate(-14deg) }
-  /* Descent */
-  35%      { transform: translate(-50%, 10px) rotate(-6deg) }
-  /* PEAK — jaws bite down onto "don't" with a slight clamp rotation */
-  50%, 60% { transform: translate(-50%, 28px) rotate(2deg) }
-  /* Pull back up */
-  100%     { transform: translate(-50%, -20px) rotate(-14deg) }
+
+/* One-shot animation: triggered by .is-grabbing class when scrolled into view.
+   Descends → clamps → lifts the word UP → pauses → places word back → stops. */
+.grab-target.is-grabbing .grasper-grab{
+  animation: grasper-pick-up 3.6s cubic-bezier(0.4, 0.1, 0.25, 1) 1 forwards;
 }
+.grab-target.is-grabbing .grab-word{
+  animation: grab-word-lift 3.6s cubic-bezier(0.4, 0.1, 0.25, 1) 1 forwards;
+}
+
+@keyframes grasper-pick-up{
+  /* Start: hovering above, slightly tilted (jaws open) */
+  0%    { transform: translate(-50%, 0)      rotate(-14deg) }
+  /* Descend to the word */
+  28%   { transform: translate(-50%, 75px)   rotate(-4deg) }
+  /* Clamp on "don't" */
+  36%   { transform: translate(-50%, 80px)   rotate(2deg) }
+  /* LIFT the word up with the grasper */
+  58%   { transform: translate(-50%, 20px)   rotate(2deg) }
+  /* Pause — holding the word aloft */
+  70%   { transform: translate(-50%, 20px)   rotate(2deg) }
+  /* Place word back down gently */
+  88%   { transform: translate(-50%, 78px)   rotate(0deg) }
+  /* Release + rise back to hover position */
+  100%  { transform: translate(-50%, 0)      rotate(-14deg) }
+}
+
+@keyframes grab-word-lift{
+  /* Stay put while grasper descends */
+  0%, 28% { transform: translateY(0) }
+  /* Tiny tug as jaws clamp */
+  36%     { transform: translateY(-2px) }
+  /* Lift UP with the grasper */
+  58%     { transform: translateY(-60px) }
+  /* Hold */
+  70%     { transform: translateY(-60px) }
+  /* Descend back to baseline with grasper */
+  88%     { transform: translateY(-2px) }
+  /* Settled, released */
+  100%    { transform: translateY(0) }
+}
+
 @media (max-width: 900px){
-  .grasper-grab{ width: 70px; top: -62px }
+  .grasper-grab{ width: 82px; top: -92px }
+  @keyframes grasper-pick-up{
+    0%    { transform: translate(-50%, 0)    rotate(-14deg) }
+    28%   { transform: translate(-50%, 56px) rotate(-4deg) }
+    36%   { transform: translate(-50%, 60px) rotate(2deg) }
+    58%   { transform: translate(-50%, 14px) rotate(2deg) }
+    70%   { transform: translate(-50%, 14px) rotate(2deg) }
+    88%   { transform: translate(-50%, 58px) rotate(0deg) }
+    100%  { transform: translate(-50%, 0)    rotate(-14deg) }
+  }
+  @keyframes grab-word-lift{
+    0%, 28% { transform: translateY(0) }
+    36%     { transform: translateY(-2px) }
+    58%     { transform: translateY(-44px) }
+    70%     { transform: translateY(-44px) }
+    88%     { transform: translateY(-2px) }
+    100%    { transform: translateY(0) }
+  }
 }
 @media (max-width: 640px){
-  .grasper-grab{ width: 54px; top: -50px }
+  .grasper-grab{ width: 62px; top: -70px }
 }
 @media (prefers-reduced-motion: reduce){
-  .grasper-grab{ animation: none !important; transform: translate(-50%, 10px) rotate(-4deg) }
+  .grab-target.is-grabbing .grasper-grab,
+  .grab-target.is-grabbing .grab-word{ animation: none !important }
 }
 
 .hero-spec-panel{
