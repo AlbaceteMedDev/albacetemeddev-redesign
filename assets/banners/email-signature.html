@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Email Signature — Albacete MedDev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    width:1140px;height:160px;overflow:hidden;
+    background:#05070c;
+    font-family:'DM Sans',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  }
+  .banner{
+    position:relative;
+    width:1140px;height:160px;
+    background:
+      linear-gradient(to top, rgba(212,169,74,0.09) 0%, rgba(212,169,74,0.05) 14%, rgba(212,169,74,0.02) 30%, transparent 55%),
+      linear-gradient(135deg,#05070c 0%, #0a0e17 60%, #05070c 100%);
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items:center;
+    padding:0 64px;
+    gap:48px;
+    overflow:hidden;
+  }
+  /* Subtle hex texture, very faint */
+  .banner::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    opacity:0.045;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 58,17 58,35 30,51 2,35 2,17' fill='none' stroke='%23d4a94a' stroke-width='0.8'/></svg>");
+    background-size:60px 52px;
+  }
+  /* Soft full-width bottom halo */
+  .banner::after{
+    content:'';position:absolute;
+    left:-300px;right:-300px;bottom:-180px;
+    height:340px;
+    background:linear-gradient(to top, rgba(212,169,74,0.07) 0%, transparent 100%);
+    pointer-events:none;
+    filter:blur(28px);
+  }
+  .logo{position:relative;z-index:2;}
+  .wordmark{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:60px;
+    color:#f5f7fa;letter-spacing:-0.03em;line-height:1;
+    position:relative;display:inline-block;
+    text-shadow:0 0 30px rgba(212,169,74,0.08);
+  }
+  .plus{
+    color:#d4a94a;font-weight:600;font-size:30px;
+    position:absolute;top:-2px;right:-22px;
+    text-shadow:0 0 14px rgba(212,169,74,0.25);
+  }
+  .subline{
+    font-family:'Sora',sans-serif;font-weight:500;font-size:13px;
+    color:#cbd5e1;letter-spacing:0.55em;
+    margin-top:10px;text-transform:uppercase;
+  }
+  .divider{
+    width:1px;height:88px;
+    background:linear-gradient(to bottom,
+      transparent 0%,
+      rgba(212,169,74,0.0) 8%,
+      rgba(212,169,74,0.55) 50%,
+      rgba(212,169,74,0.0) 92%,
+      transparent 100%);
+    z-index:2;
+  }
+  .tagline{position:relative;z-index:2;text-align:right;justify-self:end;}
+  .eyebrow{
+    font-family:'Sora',sans-serif;font-weight:500;font-size:10px;
+    color:#d4a94a;letter-spacing:0.32em;text-transform:uppercase;
+    margin-bottom:10px;display:flex;align-items:center;gap:10px;
+    justify-content:flex-end;flex-direction:row-reverse;
+    opacity:0.85;
+  }
+  .eyebrow::before{content:'';width:24px;height:1px;background:#d4a94a;opacity:0.6;}
+  .logo{justify-self:start;}
+  .tagline-line{
+    font-family:'Sora',sans-serif;font-weight:600;font-size:24px;
+    color:#f5f7fa;line-height:1.32;
+    letter-spacing:-0.005em;
+  }
+  .tagline-line .accent{color:#d4a94a;}
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="logo">
+    <div class="wordmark">Albacete<span class="plus">+</span></div>
+    <div class="subline">M&nbsp;E&nbsp;D&nbsp;D&nbsp;E&nbsp;V</div>
+  </div>
+  <div class="divider"></div>
+  <div class="tagline">
+    <div class="eyebrow">Medical Device Distribution</div>
+    <div class="tagline-line">Heal with <span class="accent">Confidence.</span></div>
+    <div class="tagline-line">Practice with <span class="accent">Peace of Mind.</span></div>
+  </div>
+</div>
+</body>
+</html>
