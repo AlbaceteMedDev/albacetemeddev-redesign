@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Albacete MedDev — Social Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    width:1200px;height:630px;overflow:hidden;
+    background:#ffffff;
+    font-family:'DM Sans',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  }
+  .card{
+    position:relative;width:1200px;height:630px;
+    background:#ffffff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:80px;
+  }
+  /* Very faint hex texture for subtle premium feel */
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    opacity:0.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 58,17 58,35 30,51 2,35 2,17' fill='none' stroke='%236b7280' stroke-width='0.8'/></svg>");
+    background-size:60px 52px;
+  }
+  /* Corner accents */
+  .corner{
+    position:absolute;width:80px;height:80px;
+    border:1px solid #d1d5db;
+    z-index:1;
+  }
+  .corner.tl{top:40px;left:40px;border-right:none;border-bottom:none;}
+  .corner.tr{top:40px;right:40px;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:40px;left:40px;border-right:none;border-top:none;}
+  .corner.br{bottom:40px;right:40px;border-left:none;border-top:none;}
+
+  .wordmark-wrap{
+    position:relative;z-index:2;
+    display:inline-block;
+    margin-bottom:24px;
+  }
+  .wordmark{
+    font-family:'Sora',sans-serif;
+    font-weight:800;font-size:170px;
+    color:#0a0e17;
+    letter-spacing:-0.035em;
+    line-height:1;
+  }
+  .plus{
+    color:#6b7280;
+    font-weight:600;font-size:78px;
+    position:absolute;
+    top:-8px;right:-58px;
+  }
+  .subline{
+    font-family:'Sora',sans-serif;
+    font-weight:500;font-size:28px;
+    color:#6b7280;
+    letter-spacing:0.6em;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:48px;
+    z-index:2;position:relative;
+  }
+  .divider{
+    width:80px;height:2px;background:#9ca3af;
+    margin-bottom:32px;
+    z-index:2;position:relative;
+  }
+  .tagline{
+    font-family:'Sora',sans-serif;
+    font-weight:600;font-size:34px;
+    color:#374151;
+    text-align:center;
+    line-height:1.3;
+    z-index:2;position:relative;
+  }
+  .url{
+    position:absolute;
+    bottom:54px;left:50%;transform:translateX(-50%);
+    font-family:'DM Sans',sans-serif;
+    font-weight:500;font-size:18px;
+    color:#9ca3af;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    z-index:2;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="wordmark-wrap">
+    <span class="wordmark">Albacete</span><span class="plus">+</span>
+  </div>
+  <div class="subline">M E D D E V</div>
+  <div class="divider"></div>
+  <div class="tagline">Heal with Confidence.<br>Practice with Peace of Mind.</div>
+  <div class="url">albacetemeddev.com</div>
+</div>
+</body>
+</html>

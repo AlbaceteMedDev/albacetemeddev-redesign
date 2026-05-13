@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Albacete MedDev</title>
+  <rect width="64" height="64" rx="10" ry="10" fill="#ffffff"/>
+  <text x="32" y="46" text-anchor="middle"
+        font-family="Sora, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+        font-weight="800" font-size="44" fill="#0a0e17" letter-spacing="-1.6">A</text>
+  <text x="50" y="22"
+        font-family="Sora, -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+        font-weight="600" font-size="20" fill="#6b7280">+</text>
+</svg>
