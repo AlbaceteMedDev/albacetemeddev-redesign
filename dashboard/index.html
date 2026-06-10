@@ -319,13 +319,11 @@ const SETUP = [
   {id:'ga4', t:'8 · Optional: GA4 for conversion tracking', body:`Only if you want funnel data beyond Cloudflare Analytics (e.g., which pages produce consult requests). Ask Claude to add the gtag snippet site-wide when ready.`},
 ];
 const BACKLOG = [
-  {id:'collagen-data', t:'Collagen page: add clinical outcomes section', why:'Audit found zero efficacy data — pull the 59% SSI reduction (n=5,335) + 82% DFU RCT stats already on the Scientific Portfolio page', time:'30 min'},
-  {id:'exo-mech', t:'Exosomes page: explain the mechanism clinically', why:'Replace the textbook definition with: inflammation modulation → angiogenesis → epithelialization story', time:'30 min'},
-  {id:'ultramist-ref', t:'UltraMist: surface the 6th-treatment reassessment rule', why:'It is a hard coverage boundary currently buried in small text — clinicians need it prominent', time:'15 min'},
-  {id:'microdoc-specs', t:'MicroDoc: add device specs (pressure, wear time, sizes)', why:'Audit flagged the page as thin — specs are what NPWT buyers compare', time:'20 min'},
-  {id:'wholesaler-scope', t:'Wholesaler: list catalog categories + SKU count', why:'"Full catalog" is vague; procurement buyers need scope before they call', time:'20 min'},
+  {id:'microdoc-specs', t:'MicroDoc: get real device specs from the supplier (pressure range, wear time, sizes)', why:'Copy is tightened, but hard specs are what NPWT buyers compare — needs supplier data, not guesses', time:'ask supplier'},
+  {id:'wholesaler-skus', t:'Wholesaler: add SKU count, MOQs, and lead times once confirmed with suppliers', why:'Catalog categories are live; scope numbers are the next trust signal for procurement buyers', time:'ask supplier'},
   {id:'about-founder', t:'About: add a founder/credibility block', why:'B2B medical buyers check who they are dealing with — bio + photo builds trust', time:'30 min'},
   {id:'testimonial', t:'Collect one practice testimonial or mini case study', why:'No social proof anywhere on the site — even one quote changes the math', time:'ask a client'},
+  {id:'ultramist-study', t:'UltraMist: source a more recent outcome study than Serena 2009', why:'The cited reference is 15+ years old — a newer study strengthens the clinical case', time:'30 min'},
 ];
 function buildSetup(){
   const c = $('#setup-tasks'); c.innerHTML = '';
