@@ -613,20 +613,26 @@ body.is-loaded .nav{
    Hero
    ═══════════════════════════════════════════════════════════════ */
 .hero{
-  padding: calc(var(--nav-h) + var(--s-8)) 0 var(--s-8);
+  /* All hero variants share ONE start line: content begins exactly
+     nav-h + s-7 from the top on every page (no vertical centering,
+     which made the headline land at a different spot per page). */
+  padding: calc(var(--nav-h) + var(--s-7)) 0 var(--s-8);
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   overflow: hidden;
 }
-.hero.hero-compact{min-height: auto; padding: calc(var(--nav-h) + var(--s-6)) 0 var(--s-6)}
+.hero.hero-compact{min-height: auto; padding: calc(var(--nav-h) + var(--s-7)) 0 var(--s-6)}
 .hero.hero-split-layout .hero-inner{
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-6);
   align-items: center;
 }
+/* Text column pins to the shared start line even when the product
+   image column is taller; the image stays vertically centered. */
+.hero.hero-split-layout .hero-inner > div:first-child{ align-self: start }
 @media (max-width: 1024px){
   .hero.hero-split-layout .hero-inner{grid-template-columns: 1fr; gap: var(--s-4)}
 }
@@ -1725,7 +1731,7 @@ body.is-loaded .nav{
 }
 @media (max-width: 640px){
   :root{--s-7: 3rem; --s-8: 4rem}
-  .hero{min-height: auto; padding: calc(var(--nav-h) + var(--s-6)) 0 var(--s-6)}
+  .hero, .hero.hero-compact{min-height: auto; padding: calc(var(--nav-h) + var(--s-6)) 0 var(--s-6)}
   .products-grid{grid-template-columns: 1fr}
   .stats-grid{grid-template-columns: 1fr 1fr; gap: var(--s-3)}
   .footer-grid{grid-template-columns: 1fr}
@@ -1798,7 +1804,7 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
   .hero-chip span{ letter-spacing: 0.08em }
 
   /* Hero padding tighter on phones */
-  .hero{ padding: calc(var(--nav-h) + var(--s-5)) 0 var(--s-5) }
+  .hero, .hero.hero-compact{ padding: calc(var(--nav-h) + var(--s-5)) 0 var(--s-5) }
   .hero.hero-split-layout .hero-inner{ gap: var(--s-4) }
 
   /* Product hero image (UltraMist/ActiGraft/Adhesion) sized for phones */
