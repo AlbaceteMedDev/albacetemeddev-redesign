@@ -42,7 +42,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
       document.body.classList.remove('is-loading');
       document.body.classList.add('is-loaded');
       markSeen();
-    }, 1600);
+    }, 1100);
   }
 
   // First page load
