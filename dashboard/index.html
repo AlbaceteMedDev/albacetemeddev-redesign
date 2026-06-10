@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Performance HQ — Albacete MedDev</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#05070c; --ink-1:#0a0e17; --ink-2:#111827; --ink-3:#1a2332;
+    --fog:#94a3b8; --mist:#cbd5e1; --snow:#f5f7fa;
+    --gold:#d4a94a; --gold-bright:#e6c06b; --gold-dim:rgba(212,169,74,0.14);
+    --green:#4ade80; --red:#f87171; --amber:#fbbf24;
+    --fd:'Sora',system-ui,sans-serif; --fb:'DM Sans',system-ui,sans-serif;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ink);color:var(--mist);font-family:var(--fb);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+  h1,h2,h3,h4{font-family:var(--fd);color:var(--snow);letter-spacing:-0.02em;line-height:1.15}
+  a{color:var(--gold);text-decoration:none}
+  a:hover{color:var(--gold-bright);text-decoration:underline}
+  button{font:inherit;cursor:pointer;border:none}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(5,7,12,0.92);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--ink-3);padding:16px 0;margin-bottom:32px;
+  }
+  .top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{font-family:var(--fd);font-weight:800;font-size:1.15rem;color:var(--snow)}
+  .brand .plus{color:var(--gold)}
+  .brand .sub{font-weight:500;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);display:block;text-transform:uppercase}
+  .top-meta{display:flex;align-items:center;gap:18px;font-size:0.82rem;color:var(--fog)}
+  .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+  .grid{display:grid;gap:20px}
+  @media(min-width:980px){.grid.two{grid-template-columns:1fr 1fr}.grid.main{grid-template-columns:1.25fr 1fr}}
+  .card{background:var(--ink-1);border:1px solid var(--ink-3);border-radius:14px;padding:24px;box-shadow:0 0 0 1px rgba(212,169,74,0.04) inset,0 16px 32px rgba(0,0,0,0.25)}
+  .card h2{font-size:1.05rem;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .card h2 .eyebrow{font-size:0.62rem;font-weight:600;letter-spacing:0.24em;color:var(--gold);text-transform:uppercase;display:block}
+  .card .hint{font-size:0.8rem;color:var(--fog);margin-bottom:14px}
+  .btn{background:var(--gold);color:#000;font-family:var(--fd);font-weight:700;font-size:0.8rem;padding:9px 16px;border-radius:7px;letter-spacing:0.02em;transition:background 150ms}
+  .btn:hover{background:var(--gold-bright)}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid rgba(212,169,74,0.4)}
+  .btn.ghost:hover{background:var(--gold-dim)}
+  .btn[disabled]{opacity:0.45;cursor:wait}
+  .btn.sm{padding:5px 10px;font-size:0.7rem}
+  .statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:14px 0}
+  .stat{background:var(--ink-2);border:1px solid var(--ink-3);border-radius:10px;padding:14px;text-align:center}
+  .stat .num{font-family:var(--fd);font-weight:800;font-size:1.7rem;color:var(--snow)}
+  .stat .lbl{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--fog);margin-top:2px}
+  .stat.good .num{color:var(--green)} .stat.warn .num{color:var(--amber)} .stat.bad .num{color:var(--red)} .stat.gold .num{color:var(--gold)}
+  table{width:100%;border-collapse:collapse;font-size:0.83rem}
+  th{font-family:var(--fd);font-weight:600;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--fog);text-align:left;padding:8px 10px;border-bottom:1px solid var(--ink-3)}
+  td{padding:9px 10px;border-bottom:1px solid var(--ink-2);color:var(--mist);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:0.68rem;font-weight:700;font-family:var(--fd)}
+  .pill.up{background:rgba(74,222,128,0.12);color:var(--green)}
+  .pill.down{background:rgba(248,113,113,0.14);color:var(--red)}
+  .pill.na{background:var(--ink-2);color:var(--fog)}
+  .score{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;font-family:var(--fd);font-weight:800;font-size:0.82rem;border:2px solid}
+  .score.g{color:var(--green);border-color:var(--green)} .score.a{color:var(--amber);border-color:var(--amber)} .score.r{color:var(--red);border-color:var(--red)} .score.n{color:var(--fog);border-color:var(--ink-3)}
+  .task{display:flex;align-items:flex-start;gap:12px;padding:11px 12px;border:1px solid var(--ink-3);border-radius:10px;margin-bottom:8px;background:var(--ink-2);transition:opacity 150ms}
+  .task input{margin-top:4px;accent-color:var(--gold);width:16px;height:16px;flex:none;cursor:pointer}
+  .task.done{opacity:0.45}
+  .task.done .t-title{text-decoration:line-through}
+  .task .t-title{color:var(--snow);font-weight:600;font-size:0.88rem}
+  .task .t-why{font-size:0.76rem;color:var(--fog);margin-top:1px}
+  .task .t-time{margin-left:auto;flex:none;font-size:0.66rem;color:var(--gold);font-family:var(--fd);font-weight:600;letter-spacing:0.08em;padding-top:4px}
+  .sec-label{font-family:var(--fd);font-weight:600;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin:18px 0 10px}
+  .kw-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--ink-2);font-size:0.85rem}
+  .kw-row:last-child{border-bottom:none}
+  .kw-term{color:var(--snow);font-weight:600;flex:1}
+  .kw-pos{width:64px;background:var(--ink-2);border:1px solid var(--ink-3);color:var(--snow);border-radius:6px;padding:4px 8px;font:inherit;font-size:0.78rem;text-align:center}
+  .kw-hist{font-size:0.7rem;color:var(--fog);width:110px;text-align:right}
+  input[type=text],textarea{background:var(--ink-2);border:1px solid var(--ink-3);color:var(--snow);border-radius:8px;padding:9px 12px;font:inherit;font-size:0.85rem;width:100%}
+  textarea{min-height:90px;resize:vertical}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .muted{color:var(--fog);font-size:0.76rem}
+  .footer-note{margin-top:36px;text-align:center;font-size:0.74rem;color:var(--fog)}
+  .streak-flame{font-size:1.1rem}
+  .bigday{font-family:var(--fd);font-weight:700;color:var(--snow);font-size:1rem}
+  .progress{height:7px;background:var(--ink-2);border-radius:999px;overflow:hidden;margin:10px 0 4px}
+  .progress>div{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:999px;transition:width 300ms}
+  .tag{font-size:0.62rem;font-family:var(--fd);font-weight:700;letter-spacing:0.12em;color:#000;background:var(--gold);border-radius:4px;padding:2px 6px;text-transform:uppercase}
+  details{border:1px solid var(--ink-3);border-radius:10px;padding:12px 14px;margin-bottom:8px;background:var(--ink-2)}
+  details summary{cursor:pointer;color:var(--snow);font-weight:600;font-size:0.85rem;list-style:none;display:flex;align-items:center;gap:10px}
+  details summary::before{content:'▸';color:var(--gold);transition:transform 150ms}
+  details[open] summary::before{transform:rotate(90deg)}
+  details .body{margin-top:10px;font-size:0.8rem;color:var(--mist)}
+  details .body code{background:var(--ink);border:1px solid var(--ink-3);padding:2px 6px;border-radius:5px;font-size:0.74rem;color:var(--gold-bright);display:inline-block;margin:2px 0;word-break:break-all}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="brand">Albacete<span class="plus">+</span> <span class="sub">Performance HQ</span></div>
+    <div class="top-meta">
+      <span><span class="live-dot"></span><span id="clock">—</span></span>
+      <span id="streak-chip">Streak: —</span>
+      <a href="/" target="_blank">View site ↗</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ════ TOP STATS ════ -->
+  <div class="statgrid" id="topstats">
+    <div class="stat gold"><div class="num" id="s-streak">0</div><div class="lbl">Day streak</div></div>
+    <div class="stat" id="s-pulse-card"><div class="num" id="s-pulse">—</div><div class="lbl">Pages up</div></div>
+    <div class="stat" id="s-psi-card"><div class="num" id="s-psi">—</div><div class="lbl">Avg perf score</div></div>
+    <div class="stat" id="s-seo-card"><div class="num" id="s-seo">—</div><div class="lbl">Avg SEO score</div></div>
+    <div class="stat"><div class="num" id="s-setup">0%</div><div class="lbl">Setup complete</div></div>
+    <div class="stat"><div class="num" id="s-today">0/0</div><div class="lbl">Today's tasks</div></div>
+  </div>
+
+  <div class="grid main">
+
+    <!-- ════ LEFT COLUMN ════ -->
+    <div>
+
+      <!-- TODAY'S PLAN -->
+      <div class="card" style="margin-bottom:20px">
+        <h2><span>📋 Today's plan</span></h2>
+        <div class="hint"><span class="bigday" id="today-label">—</span> — your tasks regenerate daily. Check them off; the streak tracks consecutive completed days.</div>
+        <div class="progress"><div id="today-bar" style="width:0%"></div></div>
+        <div id="today-tasks"></div>
+        <div class="sec-label" id="weekly-label">This week's focus</div>
+        <div id="weekly-tasks"></div>
+        <div id="monthly-wrap" style="display:none">
+          <div class="sec-label">Start-of-month deep work</div>
+          <div id="monthly-tasks"></div>
+        </div>
+      </div>
+
+      <!-- LIVE SEO HEALTH -->
+      <div class="card" style="margin-bottom:20px">
+        <h2><span>⚡ Live page speed &amp; SEO scores</span></h2>
+        <div class="hint">Live Lighthouse runs via Google's PageSpeed Insights API. Run a single page or sweep the whole site (takes ~3 min, runs sequentially).</div>
+        <div class="row" style="margin-bottom:12px">
+          <button class="btn" id="sweep-btn" onclick="fullSweep()">Run full sweep</button>
+          <label class="muted"><input type="radio" name="strategy" value="mobile" checked> mobile</label>
+          <label class="muted"><input type="radio" name="strategy" value="desktop"> desktop</label>
+          <span class="muted" id="sweep-status"></span>
+        </div>
+        <table id="psi-table">
+          <thead><tr><th>Page</th><th>Perf</th><th>SEO</th><th>A11y</th><th>LCP</th><th>CLS</th><th>Last run</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p class="muted" style="margin-top:10px">Free quota is shared; if runs fail with 429, paste a free <a href="https://developers.google.com/speed/docs/insights/v5/get-started" target="_blank">PSI API key</a>: <input type="text" id="psi-key" placeholder="optional API key" style="width:240px;display:inline-block;margin-left:6px"></p>
+      </div>
+
+      <!-- SITE PULSE -->
+      <div class="card">
+        <h2><span>🩺 Site pulse</span></h2>
+        <div class="hint">Live availability + response time for every page, checked from your browser. Auto-refreshes every 5 minutes while this tab is open.</div>
+        <div class="row" style="margin-bottom:10px">
+          <button class="btn ghost sm" onclick="runPulse()">Re-check now</button>
+          <span class="muted" id="pulse-time"></span>
+        </div>
+        <table id="pulse-table"><thead><tr><th>Page</th><th>Status</th><th>Response</th></tr></thead><tbody></tbody></table>
+      </div>
+
+    </div>
+
+    <!-- ════ RIGHT COLUMN ════ -->
+    <div>
+
+      <!-- SETUP CHECKLIST -->
+      <div class="card" style="margin-bottom:20px">
+        <h2><span>🚀 One-time setup</span></h2>
+        <div class="hint">Do these once, in order. Each unlocks a data source or ranking lever. <strong style="color:var(--gold)">#1 and #2 matter most.</strong></div>
+        <div id="setup-tasks"></div>
+      </div>
+
+      <!-- KEYWORDS -->
+      <div class="card" style="margin-bottom:20px">
+        <h2><span>🎯 Keyword tracker</span></h2>
+        <div class="hint">Click "check" → count which position the site appears at (use a private window) → type it in. History saves automatically.</div>
+        <div id="kw-list"></div>
+        <div class="row" style="margin-top:12px">
+          <input type="text" id="kw-new" placeholder="add a keyword to track…" style="flex:1">
+          <button class="btn sm" onclick="addKw()">Add</button>
+        </div>
+      </div>
+
+      <!-- CONTENT BACKLOG -->
+      <div class="card" style="margin-bottom:20px">
+        <h2><span>📝 Content backlog</span></h2>
+        <div class="hint">From the site audit — each one strengthens a thin page. Pick these up on content days (Mondays).</div>
+        <div id="backlog-tasks"></div>
+      </div>
+
+      <!-- NOTES / EXPORT -->
+      <div class="card">
+        <h2><span>🗒 Monthly log</span></h2>
+        <div class="hint">Jot wins, ranking moves, lead counts. Export backs up everything on this dashboard.</div>
+        <textarea id="notes" placeholder="e.g. Jun 10 — submitted sitemap to GSC; 3 form leads this week…"></textarea>
+        <div class="row" style="margin-top:10px">
+          <button class="btn ghost sm" onclick="exportAll()">Export backup (JSON)</button>
+          <label class="btn ghost sm" style="display:inline-block">Import<input type="file" accept=".json" style="display:none" onchange="importAll(this)"></label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-note">Albacete MedDev · Performance HQ · private (noindex) — bookmark this page: <strong>/dashboard/</strong></div>
+</div>
+
+<script>
+'use strict';
+/* ───────────────────────── helpers ───────────────────────── */
+const $ = s => document.querySelector(s);
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem('ahq:'+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ localStorage.setItem('ahq:'+k, JSON.stringify(v)); }
+};
+const PAGES = [
+  ["Home","/"],["Products","/products/"],["ActiGraft+","/products/actigraft/"],
+  ["UltraMist","/products/ultramist/"],["Collagen","/products/collagen/"],
+  ["Exosomes","/products/exosomes/"],["Adhesion Barrier","/products/adhesion-barrier/"],
+  ["Adv. Biologics","/products/advanced-biologics/"],["MicroDoc","/products/microdoc/"],
+  ["Wholesaler","/products/wholesaler/"],["Sci. Portfolio","/scientific-portfolio/"],
+  ["Revenue Cycle","/revenue-cycle/"],["Legal","/legal-guidance/"],["Consulting","/consulting/"],
+  ["Portal","/portal/"],["Why Partner","/why-partner/"],["About","/about/"],["Contact","/contact/"]
+];
+const ORIGIN = location.origin.startsWith('http') ? location.origin : 'https://albacetemeddev-redesign.pages.dev';
+const todayKey = () => new Date().toISOString().slice(0,10);
+const fmtTime = d => d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+
+/* ───────────────────────── clock ───────────────────────── */
+function tickClock(){
+  const d = new Date();
+  $('#clock').textContent = d.toLocaleDateString([], {weekday:'short', month:'short', day:'numeric'}) + ' · ' + fmtTime(d);
+}
+tickClock(); setInterval(tickClock, 30000);
+
+/* ───────────────────────── task engine ───────────────────────── */
+const DAILY = [
+  {id:'lead',    t:'Respond to every new lead/email within 4 hours', why:'Speed-to-lead is the #1 conversion lever for consult requests', time:'10 min'},
+  {id:'linkedin',t:'One LinkedIn touch: post, comment, or DM a clinician', why:'Drives branded search + direct traffic — compounding awareness', time:'10 min'},
+  {id:'gsc',     t:'Glance at Search Console: new queries, coverage errors', why:'Catches indexing problems while they are one-day-old, not one-month-old', time:'5 min'},
+];
+const WEEKLY = {
+  1:[{id:'content', t:'Publish one content piece (product spotlight, reimbursement explainer, wound care FAQ)', why:'Fresh pages are how you win new long-tail searches — pull from the Content backlog →', time:'60–90 min'}],
+  2:[{id:'links',   t:'Internal-link pass: link yesterday\'s content from 2–3 older pages', why:'Internal links tell Google what matters and lift the new page faster', time:'15 min'}],
+  3:[{id:'outreach',t:'One backlink ask: a partner (BioLab, Legacy, Sanuwave), a directory, or a local biz org', why:'A handful of relevant links beats hundreds of junk ones in this niche', time:'20 min'}],
+  4:[{id:'serp',    t:'Check 5 tracked keywords in the Keyword tracker →', why:'Weekly cadence shows trend direction without obsessing daily', time:'10 min'}],
+  5:[{id:'review',  t:'Run a PSI check on 2 pages + skim GSC top queries for the week', why:'Friday review closes the loop — what moved, what to do Monday', time:'15 min'}],
+  6:[{id:'light',   t:'Optional: engage with 3 LinkedIn posts in wound care / med device', why:'Weekend visibility costs little and keeps the algorithm warm', time:'5 min'}],
+  0:[{id:'plan',    t:'Optional: pick Monday\'s content topic from the backlog', why:'Walking into Monday with a topic removes the biggest friction', time:'5 min'}],
+};
+const MONTHLY = [
+  {id:'sweep',   t:'Run the full PSI sweep and compare to last month', why:'Catches performance regressions from new images/scripts', time:'10 min'},
+  {id:'corner',  t:'Refresh one cornerstone page (home, products, or scientific portfolio)', why:'Updated content signals freshness on your highest-value pages', time:'45 min'},
+  {id:'queries', t:'Mine GSC: queries with impressions but no clicks → add an FAQ answering each', why:'These are free rankings you are not converting yet', time:'30 min'},
+  {id:'comp',    t:'Scan 2 competitor sites for new pages/keywords', why:'Their new pages reveal what buyers are asking for', time:'20 min'},
+  {id:'report',  t:'Write a 5-line month summary in the Monthly log →', why:'Trend memory — what you measure improves', time:'10 min'},
+];
+function renderTask(scopeKey, task, container){
+  const k = scopeKey + ':' + task.id;
+  const done = !!LS.get('task:'+k, false);
+  const div = document.createElement('label');
+  div.className = 'task' + (done ? ' done' : '');
+  div.innerHTML = `<input type="checkbox" ${done?'checked':''}><div><div class="t-title">${task.t}</div><div class="t-why">${task.why}</div></div><span class="t-time">${task.time}</span>`;
+  div.querySelector('input').addEventListener('change', e => {
+    LS.set('task:'+k, e.target.checked);
+    div.classList.toggle('done', e.target.checked);
+    refreshTaskStats();
+  });
+  container.appendChild(div);
+}
+function refreshTaskStats(){
+  const day = todayKey();
+  const dailyDone = DAILY.filter(t => LS.get('task:'+day+':'+t.id, false)).length;
+  $('#s-today').textContent = dailyDone + '/' + DAILY.length;
+  $('#today-bar').style.width = (100*dailyDone/DAILY.length) + '%';
+  if(dailyDone === DAILY.length) LS.set('complete:'+day, true);
+  // streak
+  let streak = 0; const d = new Date();
+  if(!LS.get('complete:'+todayKey(), false)) d.setDate(d.getDate()-1); // today not finished yet → count from yesterday
+  while(LS.get('complete:'+d.toISOString().slice(0,10), false)){ streak++; d.setDate(d.getDate()-1); }
+  $('#s-streak').textContent = streak;
+  $('#streak-chip').innerHTML = '<span class="streak-flame">🔥</span> Streak: ' + streak + (streak===1?' day':' days');
+}
+function buildPlan(){
+  const now = new Date(), day = todayKey(), dow = now.getDay(), dom = now.getDate();
+  $('#today-label').textContent = now.toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
+  const tt = $('#today-tasks'); tt.innerHTML = '';
+  DAILY.forEach(t => renderTask(day, t, tt));
+  const wt = $('#weekly-tasks'); wt.innerHTML = '';
+  const wkKey = day; // weekday tasks reset daily but only show on their day
+  (WEEKLY[dow]||[]).forEach(t => renderTask(wkKey, t, wt));
+  $('#weekly-label').textContent = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dow] + "'s focus";
+  if(dom <= 5){
+    $('#monthly-wrap').style.display = '';
+    const mKey = day.slice(0,7); // YYYY-MM
+    const mt = $('#monthly-tasks'); mt.innerHTML = '';
+    MONTHLY.forEach(t => renderTask('m:'+mKey, t, mt));
+  }
+  refreshTaskStats();
+}
+
+/* ───────────────────────── setup checklist ───────────────────────── */
+const SETUP = [
+  {id:'gsc', t:'1 · Verify on Google Search Console + submit sitemap', body:`Go to <a href="https://search.google.com/search-console" target="_blank">Search Console</a> → Add property → URL prefix → <code>${ORIGIN}/</code> → verify via HTML tag (ask Claude to add it) or Cloudflare DNS. Then Sitemaps → submit <code>${ORIGIN}/sitemap.xml</code>. This is your primary data source — queries, clicks, indexing.`},
+  {id:'cutover', t:'2 · Point albacetemeddev.com at this site (domain cutover)', body:`The single highest-impact move: your real domain carries the brand equity. In Cloudflare Pages → your project → Custom domains → add <code>albacetemeddev.com</code> + <code>www</code>. Then ask Claude to run the domain swap (one command updates canonicals, OG tags, sitemap, robots) and re-submit the sitemap in GSC with a new property for the .com.`},
+  {id:'cfa', t:'3 · Enable Cloudflare Web Analytics', body:`Cloudflare dashboard → Pages project → Metrics → enable Web Analytics (free, no cookie banner needed). Gives you live visitors, top pages, referrers. Check it on Friday reviews.`},
+  {id:'bing', t:'4 · Bing Webmaster Tools (5 min)', body:`<a href="https://www.bing.com/webmasters" target="_blank">bing.com/webmasters</a> → Import from Google Search Console. Bing powers ChatGPT/Copilot answers — cheap incremental visibility.`},
+  {id:'gbp', t:'5 · Google Business Profile', body:`<a href="https://business.google.com" target="_blank">business.google.com</a> → create profile for Albacete MedDev (service-area business, NJ). Local pack visibility for "wound care distributor near me" type searches + a high-authority backlink.`},
+  {id:'li', t:'6 · LinkedIn company page → link the site', body:`Add the website URL to the LinkedIn page, use the new banner, and put the site link in your personal profile's contact info. Your daily LinkedIn touches then funnel here.`},
+  {id:'form', t:'7 · Wire the contact form to a real backend', body:`The form currently opens the visitor's email app (works, but loses ~30% of people). Free fix: <a href="https://formspree.io" target="_blank">Formspree</a> (50 submissions/mo free) — create a form, then ask Claude to swap the form action. Every submission lands in your inbox.`},
+  {id:'ga4', t:'8 · Optional: GA4 for conversion tracking', body:`Only if you want funnel data beyond Cloudflare Analytics (e.g., which pages produce consult requests). Ask Claude to add the gtag snippet site-wide when ready.`},
+];
+const BACKLOG = [
+  {id:'collagen-data', t:'Collagen page: add clinical outcomes section', why:'Audit found zero efficacy data — pull the 59% SSI reduction (n=5,335) + 82% DFU RCT stats already on the Scientific Portfolio page', time:'30 min'},
+  {id:'exo-mech', t:'Exosomes page: explain the mechanism clinically', why:'Replace the textbook definition with: inflammation modulation → angiogenesis → epithelialization story', time:'30 min'},
+  {id:'ultramist-ref', t:'UltraMist: surface the 6th-treatment reassessment rule', why:'It is a hard coverage boundary currently buried in small text — clinicians need it prominent', time:'15 min'},
+  {id:'microdoc-specs', t:'MicroDoc: add device specs (pressure, wear time, sizes)', why:'Audit flagged the page as thin — specs are what NPWT buyers compare', time:'20 min'},
+  {id:'wholesaler-scope', t:'Wholesaler: list catalog categories + SKU count', why:'"Full catalog" is vague; procurement buyers need scope before they call', time:'20 min'},
+  {id:'about-founder', t:'About: add a founder/credibility block', why:'B2B medical buyers check who they are dealing with — bio + photo builds trust', time:'30 min'},
+  {id:'testimonial', t:'Collect one practice testimonial or mini case study', why:'No social proof anywhere on the site — even one quote changes the math', time:'ask a client'},
+];
+function buildSetup(){
+  const c = $('#setup-tasks'); c.innerHTML = '';
+  let done = 0;
+  SETUP.forEach(s => {
+    const k = 'setup:'+s.id, isDone = !!LS.get(k, false);
+    if(isDone) done++;
+    const d = document.createElement('details');
+    d.innerHTML = `<summary><input type="checkbox" ${isDone?'checked':''} style="accent-color:var(--gold)"> ${s.t}</summary><div class="body">${s.body}</div>`;
+    d.querySelector('input').addEventListener('click', e => {
+      e.stopPropagation();
+      LS.set(k, e.target.checked);
+      buildSetup();
+    });
+    if(isDone) d.style.opacity = 0.55;
+    c.appendChild(d);
+  });
+  $('#s-setup').textContent = Math.round(100*done/SETUP.length) + '%';
+}
+function buildBacklog(){
+  const c = $('#backlog-tasks'); c.innerHTML = '';
+  BACKLOG.forEach(t => renderTask('backlog', t, c));
+}
+
+/* ───────────────────────── keywords ───────────────────────── */
+const KW_DEFAULTS = [
+  'wound care products distributor',
+  'ActiGraft distributor',
+  'UltraMist therapy provider',
+  'amniotic membrane adhesion barrier',
+  'Microlyte SAM',
+  'disposable NPWT',
+  'wound care reimbursement consulting',
+  'medical device distributor New Jersey',
+];
+function getKws(){ return LS.get('keywords', KW_DEFAULTS.map(k => ({term:k, hist:[]}))); }
+function saveKws(k){ LS.set('keywords', k); }
+function buildKws(){
+  const list = $('#kw-list'); list.innerHTML = '';
+  const kws = getKws();
+  kws.forEach((kw, i) => {
+    const row = document.createElement('div');
+    row.className = 'kw-row';
+    const last = kw.hist.length ? kw.hist[kw.hist.length-1] : null;
+    const histTxt = kw.hist.slice(-3).map(h => '#'+h.pos).join(' → ') || 'no data';
+    row.innerHTML = `
+      <span class="kw-term">${kw.term}</span>
+      <a class="btn ghost sm" target="_blank" href="https://www.google.com/search?q=${encodeURIComponent(kw.term)}">check</a>
+      <input class="kw-pos" type="text" placeholder="#" value="${last ? last.pos : ''}">
+      <span class="kw-hist">${histTxt}</span>
+      <button class="btn ghost sm" title="remove" style="color:var(--red);border-color:rgba(248,113,113,0.3)">×</button>`;
+    row.querySelector('.kw-pos').addEventListener('change', e => {
+      const pos = e.target.value.replace('#','').trim();
+      if(!pos) return;
+      kw.hist.push({d: todayKey(), pos: pos});
+      saveKws(kws); buildKws();
+    });
+    row.querySelector('button[title=remove]').addEventListener('click', () => {
+      kws.splice(i,1); saveKws(kws); buildKws();
+    });
+    list.appendChild(row);
+  });
+}
+function addKw(){
+  const v = $('#kw-new').value.trim();
+  if(!v) return;
+  const kws = getKws(); kws.push({term:v, hist:[]}); saveKws(kws);
+  $('#kw-new').value = ''; buildKws();
+}
+
+/* ───────────────────────── site pulse ───────────────────────── */
+async function runPulse(){
+  const tb = $('#pulse-table tbody'); tb.innerHTML = '';
+  if(!location.origin.startsWith('http')){
+    tb.innerHTML = '<tr><td colspan="3" class="muted">Open this dashboard on the live site to run pulse checks.</td></tr>';
+    return;
+  }
+  let up = 0;
+  const rows = PAGES.map(([name, path]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${name}</td><td><span class="pill na">…</span></td><td class="muted">—</td>`;
+    tb.appendChild(tr);
+    return [tr, name, path];
+  });
+  await Promise.all(rows.map(async ([tr, name, path]) => {
+    const t0 = performance.now();
+    try{
+      const r = await fetch(path + '?pulse=' + Date.now(), {method:'HEAD', cache:'no-store'});
+      const ms = Math.round(performance.now() - t0);
+      const ok = r.ok;
+      if(ok) up++;
+      tr.children[1].innerHTML = `<span class="pill ${ok?'up':'down'}">${ok ? r.status + ' OK' : r.status}</span>`;
+      tr.children[2].textContent = ms + ' ms';
+      tr.children[2].style.color = ms < 300 ? 'var(--green)' : ms < 900 ? 'var(--amber)' : 'var(--red)';
+    }catch(e){
+      tr.children[1].innerHTML = '<span class="pill down">DOWN</span>';
+    }
+  }));
+  $('#s-pulse').textContent = up + '/' + PAGES.length;
+  $('#s-pulse-card').className = 'stat ' + (up === PAGES.length ? 'good' : 'bad');
+  $('#pulse-time').textContent = 'last checked ' + fmtTime(new Date());
+}
+setInterval(runPulse, 5*60*1000);
+
+/* ───────────────────────── PageSpeed Insights ───────────────────────── */
+function psiData(){ return LS.get('psi', {}); }
+function scoreClass(n){ return n==null ? 'n' : n >= 90 ? 'g' : n >= 50 ? 'a' : 'r'; }
+function buildPsiTable(){
+  const tb = $('#psi-table tbody'); tb.innerHTML = '';
+  const data = psiData();
+  let perfSum = 0, seoSum = 0, count = 0;
+  PAGES.forEach(([name, path]) => {
+    const d = data[path];
+    if(d){ perfSum += d.perf; seoSum += d.seo; count++; }
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${name}</td>
+      <td><span class="score ${scoreClass(d?.perf)}">${d ? d.perf : '–'}</span></td>
+      <td><span class="score ${scoreClass(d?.seo)}">${d ? d.seo : '–'}</span></td>
+      <td><span class="score ${scoreClass(d?.a11y)}">${d ? d.a11y : '–'}</span></td>
+      <td class="muted">${d?.lcp ?? '—'}</td>
+      <td class="muted">${d?.cls ?? '—'}</td>
+      <td class="muted">${d ? d.when : 'never'}</td>
+      <td><button class="btn ghost sm" onclick="runPsi('${path}', this)">run</button></td>`;
+    tb.appendChild(tr);
+  });
+  if(count){
+    $('#s-psi').textContent = Math.round(perfSum/count);
+    $('#s-psi-card').className = 'stat ' + (perfSum/count >= 90 ? 'good' : perfSum/count >= 50 ? 'warn' : 'bad');
+    $('#s-seo').textContent = Math.round(seoSum/count);
+    $('#s-seo-card').className = 'stat ' + (seoSum/count >= 90 ? 'good' : 'warn');
+  }
+}
+async function runPsi(path, btn){
+  if(btn){ btn.disabled = true; btn.textContent = '…'; }
+  const strategy = document.querySelector('input[name=strategy]:checked').value;
+  const key = $('#psi-key').value.trim();
+  const url = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=' +
+    encodeURIComponent(ORIGIN + path) + '&strategy=' + strategy +
+    '&category=PERFORMANCE&category=SEO&category=ACCESSIBILITY' + (key ? '&key=' + key : '');
+  try{
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    const cats = j.lighthouseResult.categories;
+    const audits = j.lighthouseResult.audits;
+    const data = psiData();
+    data[path] = {
+      perf: Math.round(cats.performance.score * 100),
+      seo: Math.round(cats.seo.score * 100),
+      a11y: Math.round(cats.accessibility.score * 100),
+      lcp: audits['largest-contentful-paint']?.displayValue || '—',
+      cls: audits['cumulative-layout-shift']?.displayValue || '—',
+      when: new Date().toLocaleDateString([], {month:'short', day:'numeric'}) + ' ' + fmtTime(new Date()),
+      strategy: strategy
+    };
+    LS.set('psi', data);
+    buildPsiTable();
+  }catch(e){
+    if(btn){ btn.textContent = 'fail'; setTimeout(() => { btn.textContent = 'run'; btn.disabled = false; }, 2000); }
+    $('#sweep-status').textContent = 'Error: ' + e.message + (e.message.includes('429') ? ' — rate limited, add an API key or wait a minute' : '');
+    return;
+  }
+  if(btn){ btn.disabled = false; btn.textContent = 'run'; }
+}
+async function fullSweep(){
+  const btn = $('#sweep-btn'); btn.disabled = true;
+  for(let i = 0; i < PAGES.length; i++){
+    $('#sweep-status').textContent = 'Sweeping ' + (i+1) + '/' + PAGES.length + ' — ' + PAGES[i][0] + '…';
+    await runPsi(PAGES[i][1], null);
+    await new Promise(r => setTimeout(r, 1500));
+  }
+  $('#sweep-status').textContent = 'Sweep complete ' + fmtTime(new Date());
+  btn.disabled = false;
+}
+
+/* ───────────────────────── notes + export ───────────────────────── */
+$('#notes').value = LS.get('notes', '');
+$('#notes').addEventListener('input', e => LS.set('notes', e.target.value));
+function exportAll(){
+  const dump = {};
+  for(let i = 0; i < localStorage.length; i++){
+    const k = localStorage.key(i);
+    if(k.startsWith('ahq:')) dump[k] = localStorage.getItem(k);
+  }
+  const blob = new Blob([JSON.stringify(dump, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'albacete-hq-backup-' + todayKey() + '.json';
+  a.click();
+}
+function importAll(input){
+  const f = input.files[0]; if(!f) return;
+  f.text().then(txt => {
+    const dump = JSON.parse(txt);
+    Object.entries(dump).forEach(([k, v]) => localStorage.setItem(k, v));
+    location.reload();
+  });
+}
+
+/* ───────────────────────── boot ───────────────────────── */
+buildPlan();
+buildSetup();
+buildBacklog();
+buildKws();
+buildPsiTable();
+runPulse();
+</script>
+</body>
+</html>

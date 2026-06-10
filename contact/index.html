@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Albacete MedDev</title>
-  <meta name="description" content="Schedule a 30-minute consultation to walk through how an Albacete MedDev partnership fits your practice. Direct access to our operations and clinical leads.">
+  <title>Contact Albacete MedDev | Schedule a Consultation</title>
+  <meta name="description" content="Direct access to our operations and clinical leads — no gatekeepers. Call 551-497-3428 or schedule a 30-minute consultation for your practice.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css?v=24">
@@ -12,18 +12,22 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-  <!-- Open Graph / iMessage / LinkedIn / Slack -->
+  <link rel="canonical" href="https://albacetemeddev-redesign.pages.dev/contact/">
+  <!-- Open Graph / link previews -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://albacetemeddev.com/">
-  <meta property="og:title" content="Albacete MedDev — Heal with Confidence. Practice with Peace of Mind.">
-  <meta property="og:description" content="The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting.">
-  <meta property="og:image" content="https://albacetemeddev.com/assets/img/og-image.png">
+  <meta property="og:site_name" content="Albacete MedDev">
+  <meta property="og:url" content="https://albacetemeddev-redesign.pages.dev/contact/">
+  <meta property="og:title" content="Contact Albacete MedDev | Schedule a Consultation">
+  <meta property="og:description" content="Direct access to our operations and clinical leads — no gatekeepers. Call 551-497-3428 or schedule a 30-minute consultation for your practice.">
+  <meta property="og:image" content="https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Albacete MedDev">
-  <meta name="twitter:description" content="The operating partner behind specialty practices.">
-  <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png">
+  <meta name="twitter:title" content="Contact Albacete MedDev | Schedule a Consultation">
+  <meta name="twitter:description" content="Direct access to our operations and clinical leads — no gatekeepers. Call 551-497-3428 or schedule a 30-minute consultation for your practice.">
+  <meta name="twitter:image" content="https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png">
+  <!-- Structured data -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ContactPage","name":"Contact Albacete MedDev","url":"https://albacetemeddev-redesign.pages.dev/contact/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://albacetemeddev-redesign.pages.dev/contact/"}]}]}</script>
 </head>
 <body class="is-loading">
   <div class="splash" aria-hidden="true">
@@ -121,7 +125,7 @@
           <div class="content-block">
             <h3>Tell us about <em>your practice</em></h3>
             <p>Share a few details and we'll reach out within 24 hours to schedule a call. For urgent requests, use the phone or email directly.</p>
-            <form class="form-grid" style="margin-top: 24px" onsubmit="event.preventDefault(); alert('Form submission connected during integration.');">
+            <form class="form-grid" style="margin-top: 24px" onsubmit="event.preventDefault(); sendContact(this);">
               <div class="form-field">
                 <label for="name">Your name</label>
                 <input type="text" id="name" name="name" required autocomplete="name">
@@ -154,6 +158,20 @@
                 <button type="submit" class="btn btn-primary" style="align-self:flex-start">Request a consultation <span class="arrow">&rarr;</span></button>
               </div>
             </form>
+            <script>
+              function sendContact(f){
+                var v = function(id){ var el = f.querySelector('#'+id); return el ? el.value.trim() : ''; };
+                var subject = encodeURIComponent('Consultation request — ' + (v('practice') || v('name') || 'New inquiry'));
+                var body = encodeURIComponent(
+                  'Name: ' + v('name') + '\n' +
+                  'Email: ' + v('email') + '\n' +
+                  'Practice: ' + v('practice') + '\n' +
+                  'Role: ' + v('role') + '\n\n' +
+                  v('message')
+                );
+                window.location.href = 'mailto:gabe@albacetemeddev.com?subject=' + subject + '&body=' + body;
+              }
+            </script>
           </div>
           <div class="content-block">
             <h3>Direct <em>contact</em></h3>
