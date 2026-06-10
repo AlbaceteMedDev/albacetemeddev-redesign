@@ -9,8 +9,21 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = window.matchMedia('(hover: none)').matches;
 
-// Splash loader — fires on every page load (including in-session nav)
+// Splash loader — full splash on the session's first view, instant after.
+// An inline <head> guard sets html.no-splash pre-paint for returning views;
+// this block keeps body classes + sessionStorage in sync.
 (function initSplash(){
+  function splashSeen(){
+    try{ return !!sessionStorage.getItem('amd-splash'); }catch(e){ return false; }
+  }
+  function markSeen(){
+    try{ sessionStorage.setItem('amd-splash', '1'); }catch(e){}
+  }
+  function skipSplash(){
+    document.documentElement.classList.add('no-splash');
+    document.body.classList.remove('is-loading');
+    document.body.classList.add('is-loaded');
+  }
   function runSplash(){
     // Reset to is-loading state in case the page was restored from bfcache
     document.body.classList.remove('is-loaded');
@@ -28,15 +41,20 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     setTimeout(() => {
       document.body.classList.remove('is-loading');
       document.body.classList.add('is-loaded');
+      markSeen();
     }, 1600);
   }
 
   // First page load
-  runSplash();
+  if (splashSeen()) skipSplash();
+  else runSplash();
 
-  // Re-run splash when navigating back/forward (bfcache restore)
+  // Back/forward (bfcache restore): never replay the splash mid-session
   window.addEventListener('pageshow', (e) => {
-    if (e.persisted) runSplash();
+    if (e.persisted){
+      if (splashSeen()) skipSplash();
+      else runSplash();
+    }
   });
 })();
 

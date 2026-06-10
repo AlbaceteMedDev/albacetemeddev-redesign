@@ -503,6 +503,10 @@ async function fullSweep(){
 /* ───────────────────────── notes + export ───────────────────────── */
 $('#notes').value = LS.get('notes', '');
 $('#notes').addEventListener('input', e => LS.set('notes', e.target.value));
+
+/* PSI API key: persist across visits */
+$('#psi-key').value = LS.get('psiKey', '');
+$('#psi-key').addEventListener('change', e => LS.set('psiKey', e.target.value.trim()));
 function exportAll(){
   const dump = {};
   for(let i = 0; i < localStorage.length; i++){

@@ -213,6 +213,17 @@ body.is-loaded .nav{
   transition: opacity 500ms var(--ease-out-expo);
 }
 
+/* Returning-visitor fast path — html.no-splash is set by an inline head
+   guard when this session has already seen the splash. Skips the overlay,
+   shows content immediately, and collapses the post-splash reveal delay. */
+.no-splash .splash{ display: none }
+.no-splash body.is-loading main,
+.no-splash body.is-loading footer,
+.no-splash body.is-loading .nav{ opacity: 1 }
+.no-splash [data-reveal]{
+  animation-delay: calc(100ms + var(--reveal-delay, 0) * 70ms);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Page-load reveal (Linear / Tempus inspired)
    Items stagger in on load via data-reveal index
