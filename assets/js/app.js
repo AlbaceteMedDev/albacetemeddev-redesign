@@ -697,3 +697,254 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     });
   }
 })();
+
+// ═══════════════════════════════════════════════════════════════
+// Card spotlight — hover glow follows the cursor (desktop only;
+// touch and no-JS fall back to the static top-right hotspot)
+// ═══════════════════════════════════════════════════════════════
+(function initCardSpotlight(){
+  if (isTouch) return;
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(2) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(2) + '%');
+    }, { passive: true });
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// Hero constellation — ambient gold particle field, home hero only.
+// Starts after window load (protects LCP), pauses offscreen/hidden,
+// reacts gently to the pointer. Skipped for reduced-motion users.
+// ═══════════════════════════════════════════════════════════════
+(function initHeroParticles(){
+  if (prefersReducedMotion) return;
+  const hero = document.querySelector('main > .hero:not(.hero-compact):not(.hero-split-layout)');
+  if (!hero || !hero.querySelector('.aurora')) return;
+
+  window.addEventListener('load', () => setTimeout(start, 700), { once: true });
+
+  function start(){
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-particles';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0, parts = [], running = false, raf = 0;
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 700 ? 30 : 64;
+    const LINK = window.innerWidth < 700 ? 95 : 125;
+
+    function resize(){
+      W = hero.clientWidth; H = hero.clientHeight;
+      canvas.width = W * DPR; canvas.height = H * DPR;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    function seed(){
+      parts = Array.from({ length: COUNT }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: 0.8 + Math.random() * 1.5
+      }));
+    }
+    function frame(){
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      for (const p of parts){
+        // Gentle pointer attraction within 160px
+        const dxm = mouse.x - p.x, dym = mouse.y - p.y;
+        const dm2 = dxm * dxm + dym * dym;
+        if (dm2 < 25600 && dm2 > 1){
+          const f = 0.012 / Math.sqrt(dm2);
+          p.vx += dxm * f; p.vy += dym * f;
+        }
+        // Speed cap + drift
+        p.vx = Math.max(-0.5, Math.min(0.5, p.vx));
+        p.vy = Math.max(-0.5, Math.min(0.5, p.vy));
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -10) p.x = W + 10; else if (p.x > W + 10) p.x = -10;
+        if (p.y < -10) p.y = H + 10; else if (p.y > H + 10) p.y = -10;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fillStyle = 'rgba(212,169,74,0.35)';
+        ctx.fill();
+      }
+      // Constellation links
+      for (let i = 0; i < parts.length; i++){
+        for (let j = i + 1; j < parts.length; j++){
+          const dx = parts[i].x - parts[j].x, dy = parts[i].y - parts[j].y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < LINK * LINK){
+            const a = (1 - Math.sqrt(d2) / LINK) * 0.14;
+            ctx.strokeStyle = 'rgba(212,169,74,' + a.toFixed(3) + ')';
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(parts[i].x, parts[i].y);
+            ctx.lineTo(parts[j].x, parts[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function play(){ if (!running){ running = true; raf = requestAnimationFrame(frame); } }
+    function pause(){ running = false; cancelAnimationFrame(raf); }
+
+    resize(); seed();
+    canvas.classList.add('is-live');
+    play();
+
+    hero.addEventListener('pointermove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => { mouse.x = -9999; mouse.y = -9999; }, { passive: true });
+    window.addEventListener('resize', () => { resize(); seed(); }, { passive: true });
+    document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+    new IntersectionObserver((es) => es.forEach(e => e.isIntersecting ? play() : pause()))
+      .observe(hero);
+  }
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// Command palette (⌘K / Ctrl+K / "/") — instant site-wide jump.
+// HCPCS-code aware: typing "G0465" or "97610" goes straight to the
+// right product page. Pure progressive enhancement.
+// ═══════════════════════════════════════════════════════════════
+(function initCommandPalette(){
+  const INDEX = [
+    { t: 'Home', s: 'Page', p: '/', k: 'home overview albacete' },
+    { t: 'Products & Solutions', s: 'Page', p: '/products/', k: 'products portfolio solutions catalog' },
+    { t: 'ActiGraft+ — Whole Blood Clot', s: 'Product', p: '/products/actigraft/', k: 'actigraft autologous blood clot G0465 G0460 NCD 270.3 diabetic foot ulcer DFU legacy point-of-care' },
+    { t: 'UltraMist — Ultrasound Therapy', s: 'Product', p: '/products/ultramist/', k: 'ultramist ultrasound 97610 sanuwave saline mist NLFU non-contact painless' },
+    { t: 'Collagen Wound Care Program', s: 'Product', p: '/products/collagen/', k: 'collagen A6021 A6023 A6253 bovine SSI surgical site infection propack incision' },
+    { t: 'Exosomes & Birth Tissue', s: 'Product', p: '/products/exosomes/', k: "exosomes wharton's jelly birth tissue placental MSC regenerative biologics" },
+    { t: 'Adhesion Barrier — Amniotic Membrane', s: 'Product', p: '/products/adhesion-barrier/', k: 'adhesion barrier C1762 amniotic membrane laparoscopic robotic trocar da vinci chorion-free' },
+    { t: 'Advanced Biologics — Microlyte & Wraps', s: 'Product', p: '/products/advanced-biologics/', k: 'microlyte SAM A2005 tri-membrane membrane wrap lyte biolab silver antimicrobial 510k' },
+    { t: 'MicroDoc — Disposable NPWT', s: 'Product', p: '/products/microdoc/', k: 'microdoc NPWT negative pressure disposable single-use home health' },
+    { t: 'Medical Supplies Wholesaler', s: 'Product', p: '/products/wholesaler/', k: 'wholesale supplies foam alginate compression surgical prep catalog hospital' },
+    { t: 'Scientific Portfolio', s: 'Page', p: '/scientific-portfolio/', k: 'science evidence MMP biofilm cascade studies clinical data mechanism' },
+    { t: 'Revenue Cycle Management', s: 'Service', p: '/revenue-cycle/', k: 'revenue cycle RCM acuitymd denials leakage billing recovery' },
+    { t: 'Legal Guidance', s: 'Service', p: '/legal-guidance/', k: 'legal audit RAC UPIC CERT stark anti-kickback AKS HIPAA malpractice counsel attorney' },
+    { t: 'Consultative Services', s: 'Service', p: '/consulting/', k: 'consulting advisory coding formulary operations market access' },
+    { t: 'Provider Portal', s: 'Service', p: '/portal/', k: 'portal ordering tracking documentation reporting login claims' },
+    { t: 'Why Partner', s: 'Page', p: '/why-partner/', k: 'why partner partnership support training escalation' },
+    { t: 'About Albacete MedDev', s: 'Page', p: '/about/', k: 'about team company process discover align implement optimize' },
+    { t: 'Schedule a Consultation', s: 'Action', p: '/contact/', k: 'contact schedule consultation demo talk meet form' },
+    { t: 'Call 551-497-3428', s: 'Action', p: 'tel:5514973428', k: 'call phone number' },
+    { t: 'Email gabe@albacetemeddev.com', s: 'Action', p: 'mailto:gabe@albacetemeddev.com', k: 'email mail message' }
+  ];
+
+  // ── Inject nav button ──
+  const navInner = document.querySelector('.nav-inner');
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navInner && navToggle){
+    const btn = document.createElement('button');
+    btn.className = 'nav-search';
+    btn.setAttribute('aria-label', 'Search the site (Cmd+K)');
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><span class="ns-label">Search</span><kbd>&#8984;K</kbd>';
+    navInner.insertBefore(btn, navToggle);
+    btn.addEventListener('click', open);
+  }
+
+  // ── Inject dialog ──
+  const root = document.createElement('div');
+  root.className = 'cmdk';
+  root.hidden = true;
+  root.innerHTML =
+    '<div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Site search">' +
+      '<div class="cmdk-input-row">' +
+        '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>' +
+        '<input type="text" placeholder="Search pages, products, HCPCS codes&hellip;" aria-label="Search" autocomplete="off" spellcheck="false">' +
+        '<kbd>esc</kbd>' +
+      '</div>' +
+      '<div class="cmdk-list" role="listbox"></div>' +
+      '<div class="cmdk-foot"><span><b>&uarr;&darr;</b> navigate</span><span><b>&crarr;</b> open</span><span><b>esc</b> close</span></div>' +
+    '</div>';
+  document.body.appendChild(root);
+  const input = root.querySelector('input');
+  const list = root.querySelector('.cmdk-list');
+  let results = [], active = 0;
+
+  function score(item, q){
+    const t = item.t.toLowerCase(), k = item.k.toLowerCase();
+    let s = 0;
+    for (const w of q.split(/\s+/)){
+      if (!w) continue;
+      if (t.startsWith(w)) s += 5;
+      else if (t.includes(w)) s += 3;
+      if (k.split(/\s+/).some(kw => kw.startsWith(w))) s += 3;
+      else if (k.includes(w)) s += 1;
+      if (s === 0) return 0;   // every word must match somewhere
+    }
+    return s;
+  }
+  function render(){
+    const q = input.value.trim().toLowerCase();
+    results = !q
+      ? INDEX.slice(0, 8)
+      : INDEX.map(i => [score(i, q), i]).filter(x => x[0] > 0)
+             .sort((a, b) => b[0] - a[0]).map(x => x[1]).slice(0, 9);
+    active = 0;
+    list.innerHTML = results.length
+      ? results.map((r, i) =>
+          '<div class="cmdk-item' + (i === 0 ? ' is-active' : '') + '" role="option" data-i="' + i + '">' +
+            '<span class="ci-title">' + r.t + '</span><span class="ci-section">' + r.s + '</span>' +
+          '</div>').join('')
+      : '<div class="cmdk-empty">No matches &mdash; try a product name or HCPCS code</div>';
+  }
+  function highlight(){
+    list.querySelectorAll('.cmdk-item').forEach((el, i) => el.classList.toggle('is-active', i === active));
+    const el = list.querySelector('.cmdk-item.is-active');
+    if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  function go(i){
+    const r = results[i];
+    if (!r) return;
+    close();
+    window.location.href = r.p;
+  }
+  function open(){
+    root.hidden = false;
+    document.body.style.overflow = 'hidden';
+    input.value = '';
+    render();
+    input.focus();
+  }
+  function close(){
+    root.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    const tag = (document.activeElement || {}).tagName;
+    const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      root.hidden ? open() : close();
+    } else if (e.key === '/' && root.hidden && !typing){
+      e.preventDefault();
+      open();
+    } else if (!root.hidden){
+      if (e.key === 'Escape'){ e.preventDefault(); close(); }
+      else if (e.key === 'ArrowDown'){ e.preventDefault(); active = Math.min(active + 1, results.length - 1); highlight(); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); active = Math.max(active - 1, 0); highlight(); }
+      else if (e.key === 'Enter'){ e.preventDefault(); go(active); }
+    }
+  });
+  input.addEventListener('input', render);
+  list.addEventListener('click', (e) => {
+    const item = e.target.closest('.cmdk-item');
+    if (item) go(parseInt(item.dataset.i, 10));
+  });
+  list.addEventListener('pointermove', (e) => {
+    const item = e.target.closest('.cmdk-item');
+    if (item){ active = parseInt(item.dataset.i, 10); highlight(); }
+  });
+  root.addEventListener('click', (e) => { if (e.target === root) close(); });
+})();
