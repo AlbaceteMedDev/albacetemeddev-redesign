@@ -755,9 +755,14 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     function frame(){
       if (!running) return;
       ctx.clearRect(0, 0, W, H);
+      // Attractor: the pointer when active, otherwise a slow autonomous
+      // wander point — keeps the field alive on touch devices / idle.
+      const now = performance.now();
+      const ax = mouse.x > -9000 ? mouse.x : W * (0.5 + 0.34 * Math.sin(now * 0.00022));
+      const ay = mouse.y > -9000 ? mouse.y : H * (0.45 + 0.28 * Math.sin(now * 0.00015 + 1.7));
       for (const p of parts){
-        // Gentle pointer attraction within 160px
-        const dxm = mouse.x - p.x, dym = mouse.y - p.y;
+        // Gentle attraction within 160px
+        const dxm = ax - p.x, dym = ay - p.y;
         const dm2 = dxm * dxm + dym * dym;
         if (dm2 < 25600 && dm2 > 1){
           const f = 0.012 / Math.sqrt(dm2);
@@ -862,6 +867,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
         '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>' +
         '<input type="text" placeholder="Search pages, products, HCPCS codes&hellip;" aria-label="Search" autocomplete="off" spellcheck="false">' +
         '<kbd>esc</kbd>' +
+        '<button class="cmdk-close" aria-label="Close search">&#10005;</button>' +
       '</div>' +
       '<div class="cmdk-list" role="listbox"></div>' +
       '<div class="cmdk-foot"><span><b>&uarr;&darr;</b> navigate</span><span><b>&crarr;</b> open</span><span><b>esc</b> close</span></div>' +
@@ -938,6 +944,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     }
   });
   input.addEventListener('input', render);
+  root.querySelector('.cmdk-close').addEventListener('click', close);
   list.addEventListener('click', (e) => {
     const item = e.target.closest('.cmdk-item');
     if (item) go(parseInt(item.dataset.i, 10));
@@ -947,4 +954,20 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     if (item){ active = parseInt(item.dataset.i, 10); highlight(); }
   });
   root.addEventListener('click', (e) => { if (e.target === root) close(); });
+})();
+
+
+// ═══════════════════════════════════════════════════════════════
+// Touch spotlight — on devices with no hover, the card glow follows
+// the scroll instead of the cursor: cards light up as they cross the
+// center band of the viewport.
+// ═══════════════════════════════════════════════════════════════
+(function initTouchCardFocus(){
+  if (!isTouch || !('IntersectionObserver' in window)) return;
+  const cards = document.querySelectorAll('.product-card');
+  if (!cards.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => e.target.classList.toggle('is-spotlit', e.isIntersecting));
+  }, { rootMargin: '-32% 0px -32% 0px', threshold: 0 });
+  cards.forEach(c => io.observe(c));
 })();
