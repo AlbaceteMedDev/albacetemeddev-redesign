@@ -367,30 +367,24 @@ body.is-loaded .nav{
 .nav-logo{
   display: flex;
   align-items: center;
+  flex-shrink: 0; /* the wordmark must never be squeezed out of aspect by the flex row */
 }
 .nav-logo img{height: 38px; width: auto; mix-blend-mode: lighten}
 .nav-links{
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  /* sized so the full link row + search always fit beside the
+     undistorted logo inside the 1240px container */
+  gap: 0.95rem;
 }
 .nav-links a{
   font-family: var(--font-display);
-  font-size: var(--t-sm);
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--mist);
   transition: color var(--dur-fast) ease;
   position: relative;
   white-space: nowrap;
-}
-@media (min-width: 1025px) and (max-width: 1279px){
-  .nav-links{gap: 0.95rem}
-  .nav-links a{font-size: 0.82rem}
-  .nav-cta{padding: 8px 12px; font-size: 0.82rem}
-}
-@media (min-width: 1280px) and (max-width: 1439px){
-  .nav-links{gap: 1.15rem}
-  .nav-links a{font-size: 0.86rem}
 }
 .nav-links a::after{
   content: '';
@@ -1719,10 +1713,14 @@ body.is-loaded .nav{
 /* ═══════════════════════════════════════════════════════════════
    Responsive
    ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 1024px){
-  :root{--s-7: 4rem; --s-8: 5rem}
+/* Below 1280px the full link row cannot fit beside an undistorted logo,
+   so the nav collapses to the mobile menu */
+@media (max-width: 1279px){
   .nav-links{display: none}
   .nav-toggle{display: block}
+}
+@media (max-width: 1024px){
+  :root{--s-7: 4rem; --s-8: 5rem}
   .products-grid{grid-template-columns: repeat(2, 1fr)}
   .feature-row{grid-template-columns: 1fr; gap: var(--s-4)}
   .feature-row.reverse{direction: ltr}
