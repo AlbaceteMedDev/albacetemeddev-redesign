@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>try{if(sessionStorage.getItem("amd-splash"))document.documentElement.classList.add("no-splash")}catch(e){}</script>
-  <title>Wound Care Science: 3 Platforms, 1 Cascade | Albacete</title>
-  <meta name="description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
+  <title>Wound Care Science — The Full Cascade | Albacete MedDev</title>
+  <meta name="description" content="Twelve platforms mapped to five failure points of the chronic wound cascade — preparation, MMP neutralization, biofilm control, matrix regeneration, and pressure management.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css?v=41">
@@ -18,14 +18,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Albacete MedDev">
   <meta property="og:url" content="https://albacetemeddev.com/scientific-portfolio/">
-  <meta property="og:title" content="Wound Care Science: 3 Platforms, 1 Cascade | Albacete">
-  <meta property="og:description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
+  <meta property="og:title" content="Wound Care Science — The Full Cascade | Albacete MedDev">
+  <meta property="og:description" content="Twelve platforms mapped to five failure points of the chronic wound cascade — preparation, MMP neutralization, biofilm control, matrix regeneration, and pressure management.">
   <meta property="og:image" content="https://albacetemeddev.com/assets/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Wound Care Science: 3 Platforms, 1 Cascade | Albacete">
-  <meta name="twitter:description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
+  <meta name="twitter:title" content="Wound Care Science — The Full Cascade | Albacete MedDev">
+  <meta name="twitter:description" content="Twelve platforms mapped to five failure points of the chronic wound cascade — preparation, MMP neutralization, biofilm control, matrix regeneration, and pressure management.">
   <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png">
   <!-- Structured data -->
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev.com/"},{"@type":"ListItem","position":2,"name":"Scientific Portfolio","item":"https://albacetemeddev.com/scientific-portfolio/"}]}]}</script>
@@ -97,9 +97,22 @@
     #sp-r4:checked ~ .sp-tabs label[for="sp-r4"],
     #sp-r5:checked ~ .sp-tabs label[for="sp-r5"],
     #sp-r6:checked ~ .sp-tabs label[for="sp-r6"],
-    #sp-r7:checked ~ .sp-tabs label[for="sp-r7"]{
+    #sp-r7:checked ~ .sp-tabs label[for="sp-r7"],
+    #sp-r8:checked ~ .sp-tabs label[for="sp-r8"],
+    #sp-r9:checked ~ .sp-tabs label[for="sp-r9"]{
       background: var(--gold);
       color: var(--ink);
+    }
+
+    @media (max-width: 760px){
+      .sp-tabs{flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-radius: var(--r-lg)}
+      .sp-tabs::-webkit-scrollbar{display: none}
+      .sp-tabs label{flex-shrink: 0}
+    }
+
+    @media (min-width: 761px){
+      .sp-tabs{gap: 4px}
+      .sp-tabs label{padding: 9px 10px; font-size: 10px; letter-spacing: 0.04em}
     }
 
     /* Panels — show/hide based on radio */
@@ -110,7 +123,9 @@
     #sp-r4:checked ~ #p4,
     #sp-r5:checked ~ #p5,
     #sp-r6:checked ~ #p6,
-    #sp-r7:checked ~ #p7{display: block}
+    #sp-r7:checked ~ #p7,
+    #sp-r8:checked ~ #p8,
+    #sp-r9:checked ~ #p9{display: block}
     @keyframes fadeInUp{
       from{opacity: 0; transform: translateY(12px)}
       to{opacity: 1; transform: translateY(0)}
@@ -177,7 +192,7 @@
     /* Cascade reset strip */
     .cascade-strip{
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: var(--s-2);
       margin-top: var(--s-3);
     }
@@ -827,11 +842,11 @@
           <span>PHYSICIAN-FACING SCIENTIFIC PORTFOLIO</span>
         </div>
         <h1 data-reveal style="--reveal-delay: 1">
-          Three platforms.<br>
+          Twelve platforms.<br>
           <span style="white-space:nowrap">One <em>wound healing</em> cascade.</span>
         </h1>
         <p class="hero-sub" data-reveal style="--reveal-delay: 2">
-          Antimicrobial matrices, human placental allografts, and collagen dressing systems &mdash; each targeting distinct failure points in the chronic wound proteolytic cascade.
+          From ultrasonic preparation and MMP-neutralizing collagen to antimicrobial matrices, placental allografts, ECM scaffolds and negative pressure &mdash; every platform we carry targets a distinct failure point in the chronic wound proteolytic cascade.
         </p>
 
         <div class="sp-hero-stats" data-reveal style="--reveal-delay: 3">
@@ -854,6 +869,8 @@
         <input type="radio" name="sp-tabs" id="sp-r5" class="sp-radio">
         <input type="radio" name="sp-tabs" id="sp-r6" class="sp-radio">
         <input type="radio" name="sp-tabs" id="sp-r7" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r8" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r9" class="sp-radio">
 
         <div class="sp-tabs" role="tablist">
           <label for="sp-r1" role="tab">Overview</label>
@@ -862,20 +879,27 @@
           <label for="sp-r4" role="tab">Microlyte SAM</label>
           <label for="sp-r5" role="tab">Collagen Science</label>
           <label for="sp-r6" role="tab">Clinical Framework</label>
+          <label for="sp-r8" role="tab">Matrix Science</label>
+          <label for="sp-r9" role="tab">Prep &amp; Adjuncts</label>
           <label for="sp-r7" role="tab">Evidence Base</label>
         </div>
 
         <!-- PANEL 1: OVERVIEW -->
         <div id="p1" class="sp-panel">
           <span class="sp-eyebrow">Overview</span>
-          <h2>Three platforms. <em style="font-style:normal;color:var(--gold)">Each targets a distinct failure point.</em></h2>
-          <p class="lead">Chronic wounds stall in a self-amplifying proteolytic cycle. Each of our three platforms addresses a different driver &mdash; together, they reset the cascade.</p>
+          <h2>Five failure points. <em style="font-style:normal;color:var(--gold)">Twelve platforms, each in its place.</em></h2>
+          <p class="lead">Chronic wounds stall in a self-amplifying proteolytic cycle. Each phase below names its failure driver and the platforms that address it &mdash; together, they reset the cascade.</p>
 
           <div class="cascade-strip">
+            <div class="cascade-step" style="--step-color:#93a83f">
+              <div class="step-label">Prepare</div>
+              <h4>Debride &amp; Cleanse</h4>
+              <p>Ultrasonic wound-bed preparation: Qoustic 35&nbsp;kHz contact debridement, UltraMist non-contact cleansing &mdash; the cascade resets only on a clean bed.</p>
+            </div>
             <div class="cascade-step" style="--step-color:#7fb5ba">
               <div class="step-label">Neutralize</div>
-              <h4>Collagen Dressings</h4>
-              <p>Sacrificial substrate sequesters excess MMPs. Restores protease : anti-protease balance. Enables inflammation &rarr; proliferation phase transition.</p>
+              <h4>Collagen Systems</h4>
+              <p>Sacrificial substrate sequesters excess MMPs &mdash; collagen dressings and the APIS&reg; collagen&nbsp;+&nbsp;Manuka composite. Restores protease balance.</p>
             </div>
             <div class="cascade-step" style="--step-color:var(--gold)">
               <div class="step-label">Protect</div>
@@ -884,8 +908,13 @@
             </div>
             <div class="cascade-step" style="--step-color:#a0b5d8">
               <div class="step-label">Regenerate</div>
-              <h4>Amniotic Membrane</h4>
-              <p>Multi-layer biological pharmacy: 25+ growth factors, HC-HA/PTX3 complex, native ECM scaffold.</p>
+              <h4>Matrices &amp; Allografts</h4>
+              <p>Placental membranes (Palisade, Sentry), particulate CTM (Interfyl), multi-tissue ECM (XCelliStem), 3D volume fill (Miro3D), autologous clot (ActiGraft+).</p>
+            </div>
+            <div class="cascade-step" style="--step-color:#c4789a">
+              <div class="step-label">Manage</div>
+              <h4>Negative Pressure</h4>
+              <p>MicroDoc disposable NPWT carries exudate management and tissue approximation from clinic to home.</p>
             </div>
           </div>
 
@@ -910,6 +939,56 @@
               <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Membrane Wrap Lite</div>
               <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Cost-effective entry</div>
             </div>
+            <a href="/products/palisade" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Dual-Membrane</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Palisade&reg;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">361 HCT/P &middot; Q4350</div>
+            </a>
+            <a href="/products/sentry-sl" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Single Amnion</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Sentry&trade; SL</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">361 HCT/P &middot; Q4348</div>
+            </a>
+            <a href="/products/interfyl" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Particulate CTM</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Interfyl&reg;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">361 HCT/P &middot; Q4171</div>
+            </a>
+            <a href="/products/apis" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Collagen + Honey</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">APIS&reg;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K182725</div>
+            </a>
+            <a href="/products/xcellistem" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Multi-Tissue ECM</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">XCelliStem&trade;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K172593 &middot; A2004</div>
+            </a>
+            <a href="/products/miro3d" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">3D Matrix</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Miro3D&reg;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K221520 &middot; A2025</div>
+            </a>
+            <a href="/products/arobella" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">35 kHz Debridement</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Qoustic QWTS&trade;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K131096</div>
+            </a>
+            <a href="/products/ultramist" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Non-Contact NLFU</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">UltraMist&reg;</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K050129/K140782</div>
+            </a>
+            <a href="/products/microdoc" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Disposable NPWT</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">MicroDoc</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Single-use negative pressure</div>
+            </a>
+            <a href="/products/actigraft" style="display:block;color:inherit">
+              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Autologous</div>
+              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">ActiGraft+</div>
+              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Patient-derived blood clot</div>
+            </a>
           </div>
         </div>
 
@@ -942,20 +1021,30 @@
             <span class="sp-eyebrow" style="background: var(--ink-2); color: var(--mist)">Integrated Treatment Logic</span>
             <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-3)">Sequential cascade reset</h3>
             <div class="cascade-strip">
+              <div class="cascade-step" style="--step-color:#93a83f">
+                <div class="step-label">01 &middot; Prepare</div>
+                <h4>Debride &amp; cleanse</h4>
+                <p>Qoustic 35 kHz contact &middot; UltraMist non-contact NLFU.</p>
+              </div>
               <div class="cascade-step" style="--step-color:#7fb5ba">
-                <div class="step-label">Neutralize</div>
-                <h4>Collagen Dressings</h4>
-                <p>Sacrificial substrate sequesters excess MMPs. Restores protease : anti-protease balance.</p>
+                <div class="step-label">02 &middot; Neutralize</div>
+                <h4>Collagen systems</h4>
+                <p>Collagen dressings &middot; APIS&reg; collagen + Manuka composite.</p>
               </div>
               <div class="cascade-step" style="--step-color:var(--gold)">
-                <div class="step-label">Protect</div>
+                <div class="step-label">03 &middot; Protect</div>
                 <h4>Microlyte SAM</h4>
-                <p>Sub-cytotoxic silver breaks biofilm cycle. Bioresorbable scaffold supports granulation.</p>
+                <p>Sub-cytotoxic silver against the biofilm cycle.</p>
               </div>
               <div class="cascade-step" style="--step-color:#a0b5d8">
-                <div class="step-label">Regenerate</div>
-                <h4>Amniotic Membrane</h4>
-                <p>25+ growth factors, HC-HA/PTX3 complex, native ECM scaffold.</p>
+                <div class="step-label">04 &middot; Regenerate</div>
+                <h4>Matrices &amp; allografts</h4>
+                <p>Palisade &middot; Sentry SL &middot; Interfyl &middot; XCelliStem &middot; Miro3D &middot; ActiGraft+.</p>
+              </div>
+              <div class="cascade-step" style="--step-color:#c4789a">
+                <div class="step-label">05 &middot; Manage</div>
+                <h4>Negative pressure</h4>
+                <p>MicroDoc disposable NPWT through to closure.</p>
               </div>
             </div>
           </div>
@@ -1030,6 +1119,12 @@
                 <p>A-C-A sandwich: highest ECM concentration. Dense chorion collagen between two amnion layers. Escalation product.</p>
               </div>
             </div>
+          </div>
+        
+
+          <div style="margin-top: var(--s-5); padding: var(--s-3) var(--s-4); background: var(--gold-dim); border: 1px solid rgba(212,169,74,0.25); border-radius: var(--r-md)">
+            <span style="font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold)">In the portfolio</span>
+            <p style="margin: 6px 0 0; color: var(--mist); font-size: var(--t-sm); line-height: 1.7">This science ships as <a href="/products/palisade" style="color:var(--gold)">Palisade&reg; dual-membrane</a> (amnion + chorion, Q4350), <a href="/products/sentry-sl" style="color:var(--gold)">Sentry&trade; SL single-layer amnion</a> (Q4348), and the Membrane Wrap family above.</p>
           </div>
         </div>
 
@@ -1199,6 +1294,12 @@
               </div>
             </div>
           </div>
+        
+
+          <div style="margin-top: var(--s-5); padding: var(--s-3) var(--s-4); background: var(--gold-dim); border: 1px solid rgba(212,169,74,0.25); border-radius: var(--r-md)">
+            <span style="font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold)">In the portfolio</span>
+            <p style="margin: 6px 0 0; color: var(--mist); font-size: var(--t-sm); line-height: 1.7">Collagen science ships as our conservative-care collagen dressings and as <a href="/products/apis" style="color:var(--gold)">APIS&reg;</a> &mdash; a 510(k)-cleared gelatin-collagen + Manuka honey + hydroxyapatite composite with a pilot RCT behind it (see the Evidence Base tab).</p>
+          </div>
         </div>
 
         <!-- PANEL 6: CLINICAL FRAMEWORK -->
@@ -1341,6 +1442,91 @@
           </div>
 
           <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6;max-width:860px"><strong style="color:var(--gold)">Why we publish this:</strong> grades like these are what a MAC reviewer, a payer medical director, or a skeptical wound-care chief will assemble anyway. Handing it to you first &mdash; with the gaps named &mdash; is the difference between a scientific portfolio and a brochure. Where a grade is low, our product pages say so in the same words.</p>
+        </div>
+
+        <!-- PANEL 8: MATRIX SCIENCE -->
+        <div id="p8" class="sp-panel">
+          <span class="sp-eyebrow">ECM &amp; Matrix Science</span>
+          <h2>Acellular matrices: four routes to <em style="font-style:normal;color:var(--gold)">the same goal.</em></h2>
+          <p class="lead">When the proteolytic environment has been reset, the wound needs scaffold &mdash; structure a cell can attach to, migrate across, and remodel. The portfolio carries four distinct matrix chemistries, each matched to a wound geometry rather than competing for the same one.</p>
+
+          <div class="products-grid" style="margin-top:var(--s-4)">
+            <div class="product-card scroll-reveal">
+              <span class="tag">Placental sheets</span>
+              <h3>Amnion &amp; chorion membranes</h3>
+              <p>Collagen types I, III, IV and V with laminin, fibronectin, proteoglycans and hyaluronic acid &mdash; the native neomatrix, minimally manipulated and terminally sterilized. Palisade&reg; carries both membranes; Sentry&trade; SL is the thin, conforming single layer. 361 HCT/Ps.</p>
+              <a class="btn btn-ghost" href="/products/palisade">Palisade &amp; Sentry <span class="arrow">&rarr;</span></a>
+            </div>
+            <div class="product-card scroll-reveal">
+              <span class="tag">Particulate CTM</span>
+              <h3>Chorionic-plate connective tissue</h3>
+              <p>Interfyl&reg; decellularizes the chorionic plate into flowable and particulate formats that conform to irregular defects and tunnels &mdash; matrix where a sheet cannot reach. Billed per mg under Q4171.</p>
+              <a class="btn btn-ghost" href="/products/interfyl">Interfyl <span class="arrow">&rarr;</span></a>
+            </div>
+            <div class="product-card scroll-reveal">
+              <span class="tag">Multi-tissue ECM</span>
+              <h3>Lung + spleen particulate</h3>
+              <p>XCelliStem&trade; blends two organ ECMs for a broader protein mix than single-tissue powders &mdash; manufacturer-reported collagen/elastin/fibronectin/laminin composition. FDA 510(k)-cleared (K172593), billed per mg under A2004.</p>
+              <a class="btn btn-ghost" href="/products/xcellistem">XCelliStem <span class="arrow">&rarr;</span></a>
+            </div>
+            <div class="product-card scroll-reveal">
+              <span class="tag">3D volume fill</span>
+              <h3>Porcine liver-derived matrix</h3>
+              <p>Miro3D&reg; is matrix with depth &mdash; a three-dimensional porous scaffold that fills dead space in tunneling, undermined and irregular wounds. FDA 510(k)-cleared (K221520), billed per cm&sup3; under A2025.</p>
+              <a class="btn btn-ghost" href="/products/miro3d">Miro3D <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+
+          <div style="margin-top:var(--s-5);overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:640px">
+              <thead><tr style="border-bottom:1px solid var(--ink-3);text-align:left">
+                <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Wound geometry</th>
+                <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Format logic</th>
+                <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Platform</th>
+              </tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Shallow, conforming bed</td><td style="padding:11px 12px;color:var(--mist)">Thin single-layer sheet follows the surface</td><td style="padding:11px 12px"><a href="/products/sentry-sl" style="color:var(--gold)">Sentry&trade; SL</a></td></tr>
+                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Moderate bed needing a barrier</td><td style="padding:11px 12px;color:var(--mist)">Dual membrane adds chorion thickness</td><td style="padding:11px 12px"><a href="/products/palisade" style="color:var(--gold)">Palisade&reg;</a></td></tr>
+                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Irregular contours, pockets</td><td style="padding:11px 12px;color:var(--mist)">Flowable conforms where sheets cannot</td><td style="padding:11px 12px"><a href="/products/interfyl" style="color:var(--gold)">Interfyl&reg;</a></td></tr>
+                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Broad surface, uneven granulation</td><td style="padding:11px 12px;color:var(--mist)">Particulate settles across the bed</td><td style="padding:11px 12px"><a href="/products/xcellistem" style="color:var(--gold)">XCelliStem&trade;</a></td></tr>
+                <tr><td style="padding:11px 12px;color:var(--snow)">Depth, tunneling, dead space</td><td style="padding:11px 12px;color:var(--mist)">3D scaffold occupies volume</td><td style="padding:11px 12px"><a href="/products/miro3d" style="color:var(--gold)">Miro3D&reg;</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:var(--s-4);font-size:var(--t-sm);color:var(--fog);max-width:820px;line-height:1.65">Format logic is a mechanism-and-geometry framework, not an outcome claim &mdash; the honest state of each platform&rsquo;s clinical evidence is graded in the <label for="sp-r7" style="color:var(--gold);cursor:pointer;text-decoration:underline">Evidence Base</label> tab, and payer coverage is always confirmed per plan.</p>
+        </div>
+
+        <!-- PANEL 9: PREP & ADJUNCTS -->
+        <div id="p9" class="sp-panel">
+          <span class="sp-eyebrow">Preparation &amp; Adjunctive Care</span>
+          <h2>The cascade resets <em style="font-style:normal;color:var(--gold)">on a prepared bed.</em></h2>
+          <p class="lead">Matrix placed on slough, biofilm and stalled tissue is matrix wasted. The conservative-care side of the portfolio handles what comes before and after the graft: debridement, cleansing, and pressure management.</p>
+
+          <div class="products-grid" style="margin-top:var(--s-4)">
+            <div class="product-card scroll-reveal">
+              <span class="tag">Contact ultrasonic</span>
+              <h3>Qoustic Wound Therapy System&trade;</h3>
+              <p>A curette driven at 35 kHz debrides, excises and cleanses in one instrument, with irrigation through the handpiece. FDA 510(k)-cleared (K131096); bench studies report planktonic elimination and biofilm reduction &mdash; bench findings, not patient outcomes.</p>
+              <a class="btn btn-ghost" href="/products/arobella">Arobella Qoustic <span class="arrow">&rarr;</span></a>
+            </div>
+            <div class="product-card scroll-reveal">
+              <span class="tag">Non-contact NLFU</span>
+              <h3>UltraMist&reg; Therapy</h3>
+              <p>Low-frequency ultrasound delivered through a saline mist &mdash; painless, non-contact wound cleansing and maintenance debridement (K050129, K140782), used adjunctively alongside standard care under CPT 97610.</p>
+              <a class="btn btn-ghost" href="/products/ultramist">UltraMist <span class="arrow">&rarr;</span></a>
+            </div>
+            <div class="product-card scroll-reveal">
+              <span class="tag">Negative pressure</span>
+              <h3>MicroDoc Disposable NPWT</h3>
+              <p>Single-use negative pressure sized for outpatient and home health &mdash; exudate management and tissue approximation without rental logistics. NPWT&rsquo;s evidence base is modality-level; we say so plainly on the product page.</p>
+              <a class="btn btn-ghost" href="/products/microdoc">MicroDoc <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+
+          <div style="margin-top:var(--s-5);padding:var(--s-4);background:var(--ink-1);border:1px solid var(--ink-3);border-radius:var(--r-lg)">
+            <span style="font-family:var(--font-display);font-size:var(--t-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold)">A typical sequence</span>
+            <p style="margin:8px 0 0;color:var(--mist);font-size:var(--t-sm);line-height:1.75">Debride and cleanse (<a href="/products/arobella" style="color:var(--gold)">Qoustic</a> or <a href="/products/ultramist" style="color:var(--gold)">UltraMist</a>) &rarr; neutralize the proteolytic environment (collagen systems, <a href="/products/apis" style="color:var(--gold)">APIS&reg;</a>) &rarr; control bioburden (Microlyte SAM) &rarr; graft the matrix the geometry calls for (Matrix Science tab) &rarr; manage exudate and approximation (<a href="/products/microdoc" style="color:var(--gold)">MicroDoc NPWT</a>). Sequence and selection remain clinical judgments &mdash; this is the portfolio&rsquo;s map, not a protocol.</p>
+          </div>
         </div>
 
       </div>

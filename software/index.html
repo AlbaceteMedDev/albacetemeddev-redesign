@@ -26,6 +26,27 @@
   <meta name="twitter:description" content="AI Wound Scan by StrataMetric: true wound volume from a 4-second iPhone LiDAR scan, audit-defensible notes, claims compliance and UDI graft inventory.">
   <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"AI Wound Scan","applicationCategory":"HealthApplication","applicationSubCategory":"Wound care measurement and documentation","operatingSystem":"iOS (capture), web (portal)","url":"https://stratametricai.com","creator":{"@type":"Organization","name":"StrataMetric","url":"https://stratametricai.com","parentOrganization":{"@type":"Organization","name":"Albacete MedDev LLC","url":"https://albacetemeddev.com"}},"offers":{"@type":"Offer","availability":"https://schema.org/PreOrder","category":"Contact for access"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev.com/"},{"@type":"ListItem","position":2,"name":"Software","item":"https://albacetemeddev.com/software/"}]}]}</script>
+  <style id="sw-demo-style">
+  .sw-demo{background:var(--ink-1);border:1px solid var(--ink-3);border-radius:var(--r-lg);padding:var(--s-2);display:flex;flex-direction:column;gap:10px}
+  .sw-top{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:var(--t-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--mist);padding:2px 4px}
+  .sw-live{width:8px;height:8px;border-radius:50%;background:#49b6cc;box-shadow:0 0 8px #49b6cc;animation:sw-pulse 2.4s ease-in-out infinite}
+  .sw-chip{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:0.1em;color:var(--gold);border:1px solid rgba(212,169,74,0.4);border-radius:var(--r-pill);padding:2px 8px;background:var(--gold-dim)}
+  .sw-mesh{position:relative;border-radius:var(--r-md);overflow:hidden}
+  .sw-scan{position:absolute;left:0;right:0;top:-12%;height:12%;background:linear-gradient(to bottom,transparent,rgba(73,182,204,0.28));animation:sw-scan 3.8s cubic-bezier(0.4,0,0.6,1) infinite;pointer-events:none}
+  .sw-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .sw-metrics>div{background:var(--ink);border:1px solid var(--ink-2);border-radius:var(--r-sm);padding:7px 9px;display:flex;flex-direction:column;gap:1px}
+  .sw-k{font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--fog);font-family:var(--font-display);font-weight:600}
+  .sw-v{font-family:var(--font-display);font-weight:700;color:var(--snow);font-size:var(--t-sm);font-variant-numeric:tabular-nums}
+  .sw-pipe{display:flex;gap:5px;flex-wrap:wrap}
+  .sw-step{font-family:var(--font-display);font-size:9.5px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--fog);border:1px solid var(--ink-2);border-radius:var(--r-pill);padding:3px 9px;animation:sw-step 5s linear infinite;animation-delay:calc(var(--i)*1s)}
+  .sw-foot{font-size:var(--t-xs);color:var(--fog);line-height:1.5;padding:0 4px}
+  .sw-cap{font-size:var(--t-xs);color:var(--fog);border-top:1px solid var(--ink-2);padding:8px 4px 2px}
+  .sw-cap a{color:var(--gold);font-weight:600}
+  @keyframes sw-scan{0%{top:-12%}55%{top:100%}100%{top:100%}}
+  @keyframes sw-pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+  @keyframes sw-step{0%,18%{color:var(--gold);border-color:rgba(212,169,74,0.5);background:var(--gold-dim)}22%,100%{color:var(--fog);border-color:var(--ink-2);background:transparent}}
+  @media (max-width:640px){.sw-metrics{grid-template-columns:repeat(2,1fr)}}
+  </style>
 </head>
 <body class="is-loading">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -167,16 +188,46 @@
             <a href="mailto:gabe@stratametricai.com?subject=StrataMetric%20portal%20walkthrough" class="btn btn-secondary">Book a guided walkthrough</a>
           </div>
         </div>
-        <div class="hero-spec-panel" data-reveal style="--reveal-delay: 4">
-          <h3>At a glance</h3>
-          <div class="spec-row"><span class="spec-label">Capture</span><span class="spec-value"><em>4-second</em> iPhone LiDAR burst</span></div>
-          <div class="spec-row"><span class="spec-label">Depth frames</span><span class="spec-value"><em>60</em> per burst</span></div>
-          <div class="spec-row"><span class="spec-label">Measurements</span><span class="spec-value"><em>5</em> from a single scan</span></div>
-          <div class="spec-row"><span class="spec-label">Precision</span><span class="spec-value"><em>&plusmn;0.3&nbsp;mm</em> @95% (per StrataMetric)</span></div>
-          <div class="spec-row"><span class="spec-label">Scan to report</span><span class="spec-value"><em>&lt; 5 minutes</em></span></div>
-          <div class="spec-row"><span class="spec-label">Validation</span><span class="spec-value"><em>176+</em> automated engine tests</span></div>
-          <div class="spec-row"><span class="spec-label">Hardware</span><span class="spec-value">iPhone <em>12 Pro or later</em></span></div>
-          <div class="spec-row"><span class="spec-label">Posture</span><span class="spec-value">Cures Act &sect;3060 CDS &middot; <em>510(k)-ready</em> architecture</span></div>
+        <div class="sw-demo" data-reveal style="--reveal-delay: 4" aria-label="Illustrative AI Wound Scan report rendered from StrataMetric's synthetic demonstration mesh">
+          <div class="sw-top"><span class="sw-live"></span>AI Wound Scan &middot; measurement report <span class="sw-chip">SYNTHETIC DEMO</span></div>
+          <div class="sw-mesh" aria-hidden="true">
+            <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+              <defs>
+                <radialGradient id="swg" cx="46%" cy="52%" r="60%">
+                  <stop offset="0%" stop-color="#0891B2" stop-opacity="0.55"/>
+                  <stop offset="55%" stop-color="#0891B2" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#0891B2" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <rect width="420" height="260" fill="#070b12" rx="10"/>
+              <g stroke="#16324a" stroke-width="1"><path d="M0 52h420M0 104h420M0 156h420M0 208h420M52 0v260M104 0v260M156 0v260M208 0v260M260 0v260M312 0v260M364 0v260"/></g>
+              <ellipse cx="196" cy="134" rx="150" ry="96" fill="url(#swg)"/>
+              <g fill="none" stroke-linejoin="round">
+                <path d="M76 138 C84 84 150 52 210 58 C282 66 330 100 324 144 C318 196 250 224 186 218 C118 212 70 186 76 138 Z" stroke="#1c6f86" stroke-width="1.6"/>
+                <path d="M102 140 C110 98 158 74 210 80 C268 87 302 112 298 146 C293 188 238 206 188 200 C136 194 96 176 102 140 Z" stroke="#2a93ac" stroke-width="1.6"/>
+                <path d="M130 142 C136 110 168 94 210 99 C256 105 278 124 274 148 C270 180 228 190 192 185 C152 180 126 168 130 142 Z" stroke="#49b6cc" stroke-width="1.7"/>
+                <path d="M158 144 C162 124 182 113 210 117 C242 122 254 135 251 150 C248 170 220 176 196 172 C172 168 156 160 158 144 Z" stroke="#8ed4e2" stroke-width="1.8"/>
+                <path d="M184 146 C186 136 196 130 211 132 C228 135 233 142 231 150 C229 160 215 163 203 161 C191 159 183 154 184 146 Z" stroke="#d4a94a" stroke-width="2"/>
+              </g>
+              <g fill="#8ed4e2"><circle cx="210" cy="58" r="2.4"/><circle cx="324" cy="144" r="2.4"/><circle cx="186" cy="218" r="2.4"/><circle cx="76" cy="138" r="2.4"/><circle cx="298" cy="146" r="2"/><circle cx="102" cy="140" r="2"/></g>
+              <circle cx="211" cy="147" r="3.2" fill="#d4a94a"/>
+              <text x="222" y="151" fill="#d4a94a" font-family="ui-monospace,monospace" font-size="10">max depth 11.8 mm</text>
+            </svg>
+            <div class="sw-scan"></div>
+          </div>
+          <div class="sw-metrics">
+            <div><span class="sw-k">Length</span><span class="sw-v">42.0 mm</span></div>
+            <div><span class="sw-k">Width</span><span class="sw-v">38.0 mm</span></div>
+            <div><span class="sw-k">Max depth</span><span class="sw-v">11.8 mm</span></div>
+            <div><span class="sw-k">Wound bed</span><span class="sw-v">11.2 cm&sup2;</span></div>
+            <div><span class="sw-k">Peri-wound</span><span class="sw-v">18.4 cm&sup2;</span></div>
+            <div><span class="sw-k">Report</span><span class="sw-v">&lt; 5 min</span></div>
+          </div>
+          <div class="sw-pipe">
+            <span class="sw-step" style="--i:0">Capture</span><span class="sw-step" style="--i:1">Reconstruct</span><span class="sw-step" style="--i:2">Segment</span><span class="sw-step" style="--i:3">Measure</span><span class="sw-step" style="--i:4">Report</span>
+          </div>
+          <div class="sw-foot">4-s LiDAR burst &middot; 60 depth frames &middot; every measurement with a 95% CI &middot; &plusmn;0.3 mm @95% (per StrataMetric) &middot; iPhone 12 Pro+</div>
+          <div class="sw-cap">Synthetic demonstration mesh &mdash; not patient data. <a href="https://www.stratametricai.com/demo" rel="noopener">Open the full interactive demo <span class="arrow">&rarr;</span></a></div>
         </div>
       </div>
     </section>
