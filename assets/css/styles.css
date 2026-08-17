@@ -158,6 +158,7 @@ ul,ol{list-style:none}
   --dur-slow: 800ms;
 
   /* Layout */
+  --gutter: 1.5rem;
   --container: 1240px;
   --container-sm: 920px;
   --nav-h: 72px;
@@ -618,6 +619,11 @@ body.is-loaded .nav{
   overflow: hidden;
 }
 .hero.hero-compact{min-height: auto; padding: calc(var(--nav-h) + var(--s-7)) 0 var(--s-6)}
+/* .hero is display:flex, so its .container child would shrink-to-fit and
+   auto-margins would center the shrunken box — floating headlines off the
+   shared grid line. Full width keeps every headline's first letter on the
+   nav logo's left edge. */
+.hero > .container{width: 100%}
 .hero.hero-split-layout .hero-inner{
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -1774,6 +1780,7 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 /* ============ Phone (≤640px) — full mobile polish ============ */
 @media (max-width: 640px){
   .container{ padding: 0 16px }
+  body{ --gutter: 16px }
 
   /* On mobile, drop all inline white-space:nowrap on headings so long
      phrases flow to the next line instead of being cut off */
@@ -1960,6 +1967,7 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 /* ============ Tight phones (≤380px) — emergency shrink ============ */
 @media (max-width: 380px){
   .container{ padding: 0 12px }
+  body{ --gutter: 12px }
   .hero h1{ font-size: 1.75rem }
   .hero-sub{ font-size: 0.95rem }
   .section-header h2{ font-size: 1.45rem }
@@ -1978,8 +1986,10 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 
 /* iOS safe-area insets (notch) */
 @supports (padding: max(0px)){
-  .nav-inner{ padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)) }
-  .footer .container{ padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)) }
+  /* Safe-area floor must be the design gutter, not 16px — otherwise this
+     always-true @supports clamps desktop nav/footer 8px off the page grid. */
+  .nav-inner{ padding-left: max(var(--gutter), env(safe-area-inset-left)); padding-right: max(var(--gutter), env(safe-area-inset-right)) }
+  .footer .container{ padding-left: max(var(--gutter), env(safe-area-inset-left)); padding-right: max(var(--gutter), env(safe-area-inset-right)) }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2385,14 +2395,11 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 .pep-clear:hover{background: var(--gold-dim)}
 .pep-pill-row{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
   padding: 5px 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
 }
-.pep-pill-row::-webkit-scrollbar{display: none}
 .pep-pill-label{
   font-family: var(--font-display);
   font-size: 10px;
@@ -2537,10 +2544,20 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 }
 .pep-clear-inline{color: var(--gold); font-weight: 600; text-decoration: underline}
 
+@media (max-height: 979px){
+  .pep-filters{position: static}
+}
 @media (max-width: 760px){
   .pep-filters{position: static; padding: var(--s-2)}
   .pep-grid{grid-template-columns: 1fr}
   .pep-pill-label{min-width: 56px}
+  .pep-pill-row{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pep-pill-row::-webkit-scrollbar{display: none}
 }
 
 /* Hero headline: hold "The operating partner behind" on one line on desktop;
