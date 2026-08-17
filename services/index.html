@@ -8,7 +8,7 @@
   <meta name="description" content="Revenue cycle management, in-house medical-legal counsel, and strategic advisory — three services that run as one operating layer beneath your product decisions.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","name":"Services","url":"https://albacetemeddev-redesign.pages.dev/services/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://albacetemeddev-redesign.pages.dev/services/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- HERO -->
     <section class="hero hero-compact">
@@ -377,24 +378,24 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">Are these services billed separately? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>Legal guidance is included in the partnership and is not billed hourly</strong> &mdash; there is no separate line for an audit response, a contract review, or a documentation question. <strong>Consultative advisory is likewise included</strong>, with advice and execution bundled rather than scoped as separate engagements. Revenue cycle management runs on <strong>performance-aligned economics</strong> &mdash; deliberately structured so our incentives match yours rather than billing you for activity. The specific arrangement is walked through in the opening 30-minute review, before anything starts.</div></div>
+            <button type="button" class="faq-q" id="faq-services-q1" aria-expanded="false" aria-controls="faq-services-a1">Are these services billed separately? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-services-a1" role="region" aria-labelledby="faq-services-q1"><div class="faq-a-inner"><strong>Legal guidance is included in the partnership and is not billed hourly</strong> &mdash; there is no separate line for an audit response, a contract review, or a documentation question. <strong>Consultative advisory is likewise included</strong>, with advice and execution bundled rather than scoped as separate engagements. Revenue cycle management runs on <strong>performance-aligned economics</strong> &mdash; deliberately structured so our incentives match yours rather than billing you for activity. The specific arrangement is walked through in the opening 30-minute review, before anything starts.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What does the revenue-cycle analysis actually look at? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Three steps. <strong>Portfolio analysis</strong> &mdash; a full audit of your current formulary, a service-rendering map, encounter-level revenue and margin, and a review of your existing workflow and EMR integration. <strong>Opportunity discovery</strong> &mdash; powered by AcuityMD, we compare that portfolio against peer practices in your specialty, geography, and patient mix. <strong>Integration</strong> &mdash; a substitution playbook and service-line integration built into your existing day, with portal-based tracking, monthly reviews, and quarterly deep-dives. Across specialties we consistently find eight recurring places revenue is left behind: services you could render but don&rsquo;t, better-reimbursed product alternatives, bundled product-plus-service combinations, supplies used but not billed, undercoded encounters, referrals going to competitors, payer-coverage gaps, and documentation that blocks otherwise billable services.</div></div>
+            <button type="button" class="faq-q" id="faq-services-q2" aria-expanded="false" aria-controls="faq-services-a2">What does the revenue-cycle analysis actually look at? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-services-a2" role="region" aria-labelledby="faq-services-q2"><div class="faq-a-inner">Three steps. <strong>Portfolio analysis</strong> &mdash; a full audit of your current formulary, a service-rendering map, encounter-level revenue and margin, and a review of your existing workflow and EMR integration. <strong>Opportunity discovery</strong> &mdash; powered by AcuityMD, we compare that portfolio against peer practices in your specialty, geography, and patient mix. <strong>Integration</strong> &mdash; a substitution playbook and service-line integration built into your existing day, with portal-based tracking, monthly reviews, and quarterly deep-dives. Across specialties we consistently find eight recurring places revenue is left behind: services you could render but don&rsquo;t, better-reimbursed product alternatives, bundled product-plus-service combinations, supplies used but not billed, undercoded encounters, referrals going to competitors, payer-coverage gaps, and documentation that blocks otherwise billable services.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Why does in-house counsel matter if we already have a law firm? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Timing. By the time an outside firm is called, <strong>the documentation that was supposed to defend you is already written and the billing patterns are already in the record</strong> &mdash; and the firm is starting from scratch, billing hourly, and responding in days. Our counsel was there before any of it: already familiar with your documentation, payer mix, and clinical protocols, with a <strong>24-hour response standard on audits, subpoenas, and patient matters</strong> that is often immediate. The posture is proactive daily guidance rather than reactive firefighting. Counsel works with your revenue-cycle team, not around it.</div></div>
+            <button type="button" class="faq-q" id="faq-services-q3" aria-expanded="false" aria-controls="faq-services-a3">Why does in-house counsel matter if we already have a law firm? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-services-a3" role="region" aria-labelledby="faq-services-q3"><div class="faq-a-inner">Timing. By the time an outside firm is called, <strong>the documentation that was supposed to defend you is already written and the billing patterns are already in the record</strong> &mdash; and the firm is starting from scratch, billing hourly, and responding in days. Our counsel was there before any of it: already familiar with your documentation, payer mix, and clinical protocols, with a <strong>24-hour response standard on audits, subpoenas, and patient matters</strong> that is often immediate. The posture is proactive daily guidance rather than reactive firefighting. Counsel works with your revenue-cycle team, not around it.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How much extra work lands on our clinical team? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">None &mdash; that is the operating premise, not a slogan. <strong>Zero workflow disruption:</strong> your clinical team does exactly what it already does. Our team owns the audits, the reviews, the recommendations, and the implementation. Product substitutions phase in without disrupting the workflow, new services slot into your existing patient flow, and documentation templates capture what payers need <strong>inside your current note structure, without adding words</strong>. Revenue capture should be invisible to the people generating it.</div></div>
+            <button type="button" class="faq-q" id="faq-services-q4" aria-expanded="false" aria-controls="faq-services-a4">How much extra work lands on our clinical team? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-services-a4" role="region" aria-labelledby="faq-services-q4"><div class="faq-a-inner">None &mdash; that is the operating premise, not a slogan. <strong>Zero workflow disruption:</strong> your clinical team does exactly what it already does. Our team owns the audits, the reviews, the recommendations, and the implementation. Product substitutions phase in without disrupting the workflow, new services slot into your existing patient flow, and documentation templates capture what payers need <strong>inside your current note structure, without adding words</strong>. Revenue capture should be invisible to the people generating it.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is this only for wound care practices? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No. The deepest hands-on experience is in wound care &mdash; <strong>20+ years inside those practices</strong> &mdash; and that is what sharpened the instincts. The same playbook translates across every specialty that lives in the same payer-sensitive, documentation-heavy reality. The revenue-cycle framework is applied across <strong>20+ specialties across the U.S.</strong>, including podiatry, vascular, general and orthopedic surgery, plastic and reconstructive surgery, dermatology, pain management, interventional radiology, endocrinology, infectious disease, and hyperbaric medicine &mdash; in private practice, hospital systems, ambulatory surgery centers, skilled nursing and long-term acute care, home health, and mobile provider settings.</div></div>
+            <button type="button" class="faq-q" id="faq-services-q5" aria-expanded="false" aria-controls="faq-services-a5">Is this only for wound care practices? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-services-a5" role="region" aria-labelledby="faq-services-q5"><div class="faq-a-inner">No. The deepest hands-on experience is in wound care &mdash; <strong>20+ years inside those practices</strong> &mdash; and that is what sharpened the instincts. The same playbook translates across every specialty that lives in the same payer-sensitive, documentation-heavy reality. The revenue-cycle framework is applied across <strong>20+ specialties across the U.S.</strong>, including podiatry, vascular, general and orthopedic surgery, plastic and reconstructive surgery, dermatology, pain management, interventional radiology, endocrinology, infectious disease, and hyperbaric medicine &mdash; in private practice, hospital systems, ambulatory surgery centers, skilled nursing and long-term acute care, home health, and mobile provider settings.</div></div>
           </div>
         </div>
       </div>
@@ -462,6 +463,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

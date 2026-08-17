@@ -2775,3 +2775,78 @@ body.has-selection #molecules{ padding-bottom: calc(var(--s-7) + 72px) }
   .cat-search input{ padding-right: 14px }
   .sel-tray{ bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0 }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Accessibility remediation (v34) — WCAG 2.2 AA
+   Panel findings, all ruled REAL. See verdicts/accessibility.md.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* #11 skip link — the mega menu opens on :focus-within, so a keyboard user
+   otherwise tabs ~30 stops before reaching content */
+.skip-link{
+  position: absolute;
+  left: -9999px;
+  z-index: 2000;
+}
+.skip-link:focus{
+  left: 16px; top: 16px;
+  padding: 12px 18px;
+  background: var(--gold);
+  color: #000;
+  border-radius: var(--r-sm);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+main:focus{ outline: none }
+
+/* #1 the FAQ question is a <button> now; buttons do not stretch on their own */
+.faq-q{
+  width: 100%;
+  text-align: left;
+}
+
+/* #12 anchors and focus were landing under the 72px fixed nav */
+html{ scroll-padding-top: calc(var(--nav-h) + 16px) }
+/* and under the sticky filter bar inside the catalog */
+.mol-toggle, .mol-pick{ scroll-margin-top: calc(var(--nav-h) + 128px) }
+
+/* #13 filter counts were #94a3b8 at 55% over --ink = 3.03:1, under the 4.5:1 floor */
+.pill .n, .seg button .n{
+  color: #7c8a9c;
+  opacity: 1;
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+.pill[aria-pressed="true"] .n{ color: #000; opacity: 0.7 }
+
+/* #8 collapsed card panels stayed in the accessibility tree while
+   aria-expanded said false */
+.mol-more{ visibility: hidden; transition: grid-template-rows var(--dur-base) var(--ease-out-quart), opacity var(--dur-fast) ease, visibility 0s linear var(--dur-base) }
+.mol.is-open .mol-more{ visibility: visible; transition: grid-template-rows var(--dur-base) var(--ease-out-quart), opacity var(--dur-fast) ease, visibility 0s }
+
+/* #9 the closed selection tray kept two buttons in the tab order off-screen */
+.sel-tray{ visibility: hidden; transition: transform var(--dur-base) var(--ease-out-expo), visibility 0s linear var(--dur-base) }
+.sel-tray.is-open{ visibility: visible; transition: transform var(--dur-base) var(--ease-out-expo), visibility 0s }
+
+/* #20 the form's focus ring was a 1px border hue change — the weakest on the
+   page, on the one form that matters */
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus{
+  box-shadow: 0 0 0 3px rgba(212,169,74,0.14);
+}
+
+/* #21 bare text buttons were ~15px tall targets */
+.cat-clear, .sel-drop{ padding: 6px 4px; margin: -6px -4px }
+
+/* screen-reader-only utility used by the live regions */
+.sr-only{
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

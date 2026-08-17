@@ -8,7 +8,7 @@
   <meta name="description" content="Collagen derivative, UMF-certified Mānuka honey and hydroxyapatite in one resorbable sheet. FDA 510(k) cleared. HCPCS A2010, per square centimeter.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"APIS Bioengineered Wound Product","description":"Collagen derivative, Manuka honey and hydroxyapatite wound sheet. FDA 510(k) cleared. HCPCS A2010.","url":"https://albacetemeddev-redesign.pages.dev/products/apis/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"APIS","item":"https://albacetemeddev-redesign.pages.dev/products/apis/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-compact">
       <div class="container hero-inner">
@@ -181,12 +182,12 @@
           <div class="stat scroll-reveal" data-stagger="160">
             <div class="label">Regulatory</div>
             <div class="value">510<span style="color:var(--gold)">(k)</span></div>
-            <div class="desc">FDA cleared &mdash; prescription use only</div>
+            <div class="desc">K222143 (2023) &middot; K182725 (2019). Cleared &mdash; not approved. Prescription use only</div>
           </div>
           <div class="stat scroll-reveal" data-stagger="240">
             <div class="label">Removal</div>
             <div class="value">0<span style="color:var(--gold)">&nbsp;steps</span></div>
-            <div class="desc">biodegradable and completely absorbable</div>
+            <div class="desc">the manufacturer states the device is biodegradable and completely absorbable, so there is no removal step</div>
           </div>
         </div>
       </div>
@@ -204,17 +205,17 @@
           <div class="product-card scroll-reveal">
             <span class="tag">Documentation threshold</span>
             <h3>&ge;&nbsp;4 weeks</h3>
-            <p>SweetBio&rsquo;s documentation guidance defines the chronic wound at <strong style="color:var(--snow)">four weeks or more</strong>, alongside documented failure of standard of care. That pairing &mdash; duration plus failed conservative management &mdash; is the spine of a defensible chart.</p>
+            <p>SweetBio&rsquo;s documentation guidance defines the chronic wound at <strong style="color:var(--snow)">four weeks or more</strong>, alongside documented failure of standard of care. That pairing &mdash; duration plus failed conservative management &mdash; is the spine of a defensible chart. Payer thresholds differ, and some require a defined, immediately preceding course of conservative care with documented failure to progress. Confirm your contractor&rsquo;s threshold before relying on four weeks.</p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="80">
             <span class="tag">2026 billing reality</span>
             <h3>No wastage</h3>
-            <p>As of 2026, CMS no longer accepts wastage modifiers, and providers are to bill usage for the <strong style="color:var(--snow)">exact size of the wound</strong>. <strong style="color:var(--snow)">JW and JZ modifiers are not permitted for skin substitutes.</strong> Only the applied portion is billed. Discarded product is not.</p>
+            <p>SweetBio&rsquo;s 2026 guide states that CMS no longer accepts wastage modifiers, that providers bill usage for the <strong style="color:var(--snow)">exact size of the wound</strong> &mdash; and never more than what was actually applied &mdash; and that <strong style="color:var(--snow)">JW and JZ modifiers are not permitted for skin substitutes</strong>. Only the applied portion is billed; discarded product is documented, not charged. Modifier and wastage edits are contractor- and payer-specific and change &mdash; verify current requirements before submission.</p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="160">
             <span class="tag">Operational fit</span>
             <h3>One sheet</h3>
-            <p>Supplied as an all-in-one sheet that is ready to apply in minutes, trims or folds to the defect, and conforms to the wound bed. It resorbs as the wound progresses &mdash; <strong style="color:var(--snow)">removal is not necessary</strong>, so no application creates a removal appointment.</p>
+            <p>Supplied as an all-in-one sheet that is ready to apply in minutes, trims or folds to the defect, and conforms to the wound bed. It resorbs as the wound progresses &mdash; <strong style="color:var(--snow)">removal is not necessary</strong>, so an application never generates a return visit purely to remove product.</p>
           </div>
         </div>
 
@@ -234,17 +235,17 @@
           <div class="process-step scroll-reveal">
             <div class="step-num">01 &middot; Matrix</div>
             <h4>Collagen derivative</h4>
-            <p>A highly purified collagen derivative &mdash; <strong style="color:var(--snow)">gelatin, porcine-derived</strong>. Described by the manufacturer as a natural extracellular matrix protein beneficial for cell migration, adhesion, and proliferation.</p>
+            <p>A highly purified collagen derivative &mdash; <strong style="color:var(--snow)">gelatin, porcine-derived</strong>. Gelatin is <strong style="color:var(--snow)">denatured collagen</strong>: the processing that purifies it also removes the native triple-helical structure that carries collagen&rsquo;s integrin-binding and MMP-modulating behavior. The manufacturer describes it as a natural extracellular matrix protein beneficial for cell migration, adhesion, and proliferation; that is a manufacturer characterization, not a cleared performance claim.</p>
           </div>
           <div class="process-step scroll-reveal" data-stagger="80">
             <div class="step-num">02 &middot; Honey</div>
             <h4>Manuka honey</h4>
-            <p><strong style="color:var(--snow)">100% UMF-certified New Zealand Manuka honey</strong>, known for antibacterial and anti-inflammatory effects. Note the contraindication list below: APIS&reg; is not indicated for infected or contaminated wound sites.</p>
+            <p><strong style="color:var(--snow)">100% UMF-certified New Zealand Manuka honey.</strong> The manufacturer&rsquo;s literature describes antibacterial and anti-inflammatory properties for Manuka honey as a material; APIS&reg; is <strong style="color:var(--snow)">not cleared as an antimicrobial</strong> and is contraindicated in infected or contaminated wound sites. UMF is a graded scale and the manufacturer publishes no UMF grade for this device, so the certification alone supports no statement about antibacterial potency.</p>
           </div>
           <div class="process-step scroll-reveal" data-stagger="160">
             <div class="step-num">03 &middot; Mineral</div>
             <h4>Hydroxyapatite</h4>
-            <p>A naturally occurring mineral <strong style="color:var(--snow)">known to bind proteins</strong> and, per the manufacturer&rsquo;s cited literature, to promote healing via angiogenesis.</p>
+            <p>Hydroxyapatite &mdash; a <strong style="color:var(--snow)">calcium-phosphate mineral</strong>. The manufacturer cites literature describing protein binding and healing via angiogenesis; that is material literature, not a cleared claim for this device. SweetBio&rsquo;s resorption statement covers the device as a whole, and we have not seen resorption data specific to the mineral fraction &mdash; hydroxyapatite is used elsewhere as a bone void filler precisely because it persists. If residual mineral in a graft bed or a Mohs defect matters for your case, ask us and we will put the question to the manufacturer in writing.</p>
           </div>
           <div class="process-step scroll-reveal" data-stagger="240">
             <div class="step-num">04 &middot; MX&trade;</div>
@@ -252,6 +253,8 @@
             <p>MX&trade; is SweetBio&rsquo;s core technology &mdash; the deliberate reconstruction of those natural elements into one biomaterial designed around the demands of the healing process rather than around a single stage of it.</p>
           </div>
         </div>
+
+        <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6;max-width:900px"><strong style="color:var(--gold)">Read these as ingredient-level literature characterizations.</strong> APIS&reg; is cleared as a wound covering that absorbs exudate and maintains a moist wound environment. <strong>No antibacterial, anti-inflammatory, or angiogenic performance claim is cleared for the finished device</strong>, and none should be made for it.</p>
 
         <div class="content-grid" style="margin-top:var(--s-5)">
           <div class="content-block scroll-reveal">
@@ -262,7 +265,7 @@
               <li><strong>Absorb exudate</strong><span>For highly exudating wounds, pre-hydration may not be needed at all &mdash; the sheet takes up wound fluid</span></li>
               <li><strong>Maintain moisture</strong><span>Provides and maintains a moist wound environment across the dressing-change interval</span></li>
               <li><strong>Conform</strong><span>Trims or folds to the defect and naturally conforms to the wound bed; may expand slightly in length and width on hydration</span></li>
-              <li><strong>Resorb</strong><span>Biodegradable and completely absorbable &mdash; removal is not necessary, and adhered portions are never forcibly removed</span></li>
+              <li><strong>Resorb</strong><span>Biodegradable and completely absorbable per the IFU &mdash; removal is not necessary, and adhered portions are never forcibly removed</span></li>
               <li><strong>Apply throughout</strong><span>Can be applied from the onset of the wound and for its duration, reapplied as required at reassessment</span></li>
             </ul>
           </div>
@@ -278,7 +281,7 @@
 
             <div class="compliance-note" style="margin-top:var(--s-4)">
               <h4>Required qualifier on the closure and pain claims</h4>
-              <p>SweetBio&rsquo;s <strong>4&ndash;8 week wound closure</strong> and <strong>lower patient-reported pain in Mohs wounds</strong> statements carry this footnote in the manufacturer&rsquo;s own literature, and it travels with them here: <em>Based on clinical and in&nbsp;vitro data; claims have not been cleared by the FDA. Faster wound closure reported in slower healing and chronic wounds compared to standard of care.</em></p>
+              <p>SweetBio&rsquo;s <strong>4&ndash;8 week wound closure</strong> and <strong>lower patient-reported pain in Mohs wounds</strong> statements carry this footnote in the manufacturer&rsquo;s own literature, and it travels with them here: <em>Based on clinical and in&nbsp;vitro data; claims have not been cleared by the FDA.</em> The manufacturer&rsquo;s footnote continues with a comparison against standard of care. That comparative statement is outside the clearance and we do not repeat it.</p>
               <p>APIS&reg; is cleared through the FDA 510(k) pathway &mdash; cleared, not approved &mdash; for the management of wounds as listed in the indications. The closure-rate and pain statements sit outside that clearance.</p>
             </div>
           </div>
@@ -297,13 +300,14 @@
         <div class="content-grid">
           <div class="hero-spec-panel scroll-reveal">
             <h3>Primary references</h3>
-            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2023</span><span class="spec-value">Collagen + Manuka honey + hydroxyapatite sheet, lower-extremity chronic wounds, urban hospital wound care setting</span></div>
-            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2020</span><span class="spec-value"><em>Preliminary</em> clinical evaluation &mdash; management of lower extremity ulcers</span></div>
-            <div class="spec-row"><span class="spec-label">McMurray et&nbsp;al. 2021</span><span class="spec-value">Use of a novel biomaterial to enhance secondary intention healing</span></div>
-            <div class="spec-row"><span class="spec-label">Arnaud et&nbsp;al. 2023</span><span class="spec-value">Randomized controlled trial, <em>pilot study</em> &mdash; Mohs surgical defects, head and distal lower extremities</span></div>
-            <div class="spec-row"><span class="spec-label">Williams et&nbsp;al. 2021</span><span class="spec-value"><em>In&nbsp;vitro</em> capabilities to reduce bacteria</span></div>
-            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2021</span><span class="spec-value"><em>In&nbsp;vitro</em> analysis &mdash; inflammatory marker and growth factor secretion</span></div>
-            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2022</span><span class="spec-value"><em>Preliminary</em> direct comparison of three commercially available wound products</span></div>
+            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2023</span><span class="spec-value">&ldquo;Novel bioengineered collagen + Manuka honey + hydroxyapatite sheet for the treatment of lower extremity chronic wounds in an urban hospital wound care setting.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2020</span><span class="spec-value">&ldquo;<em>Preliminary</em> clinical evaluation of a novel bioengineered wound product: A focus on the management of lower extremity ulcers.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">McMurray et&nbsp;al. 2021</span><span class="spec-value">&ldquo;Use of a Novel Biomaterial to Enhance Secondary Intention Healing.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">Arnaud et&nbsp;al. 2023</span><span class="spec-value">&ldquo;Novel Biomaterial Containing Gelatin, Manuka Honey, and Hydroxyapatite Enhanced Secondary Intention Healing Versus Standard Secondary Intention Healing in Mohs Surgical Defects on the Head and Distal Lower Extremities &mdash; A Randomized Controlled Trial: <em>Pilot Study</em>.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">Williams et&nbsp;al. 2021</span><span class="spec-value">&ldquo;A novel bioengineered wound product with <em>in&nbsp;vitro</em> capabilities to reduce bacteria.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2021</span><span class="spec-value">&ldquo;Microenvironment influence of a novel bioengineered wound product APIS&reg;: An <em>in&nbsp;vitro</em> analysis of inflammatory marker and growth factor secretion.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">Rodriguez et&nbsp;al. 2022</span><span class="spec-value">&ldquo;A <em>Preliminary</em> Direct Comparison of the Inflammatory Reduction and Growth Factor Production Capabilities of Three Commercially Available Wound Products: Collagen Sheet, Manuka Honey Sheet, and a Novel Bioengineered Collagen Derivative + Manuka Honey + Hydroxyapatite Sheet.&rdquo;</span></div>
+            <div class="spec-row"><span class="spec-label">Citation detail</span><span class="spec-value">Titles reproduced verbatim from MKT-032 Rev4. That reference list publishes <em>no journal, volume, DOI or PMID</em> for any of the seven &mdash; ask us and we will chase the full citation for each before you rely on it</span></div>
             <div class="spec-row"><span class="spec-label">Ingredient citations</span><span class="spec-value">Separate supporting sets for the collagen derivative, Manuka honey, and hydroxyapatite</span></div>
           </div>
 
@@ -326,9 +330,9 @@
     <section class="section" id="case">
       <div class="container">
         <div class="section-header scroll-reveal">
-          <span class="eyebrow">APIS&reg; in Action</span>
-          <h2>Diabetic foot ulcer, heel &mdash; <em style="font-style:normal;color:var(--gold)">12 months to 5 weeks.</em></h2>
-          <p>The case SweetBio publishes in its clinical literature, reproduced without embellishment. One patient. One wound. Photographic progression at day&nbsp;0, week&nbsp;1, week&nbsp;2, and week&nbsp;4.</p>
+          <span class="eyebrow">A published case report</span>
+          <h2>Diabetic heel ulcer &mdash; <em style="font-style:normal;color:var(--gold)">one manufacturer-published case.</em></h2>
+          <p><em>Based on clinical and in&nbsp;vitro data; claims have not been cleared by the FDA. Individual results vary; one case does not establish an expected time to closure.</em> The case SweetBio publishes in its clinical literature, reproduced without embellishment. One patient. One wound. Photographic progression at day&nbsp;0, week&nbsp;1, week&nbsp;2, and week&nbsp;4.</p>
         </div>
 
         <div class="content-grid">
@@ -349,10 +353,14 @@
             <p style="margin-bottom:var(--s-3)">Not because of the speed. Because of the <strong style="color:var(--snow)">baseline</strong>. This was a neuropathic, vasculopathic heel ulcer in an obese diabetic patient that had already consumed a year of clinic visits and product spend without closing. That is the patient your schedule is full of &mdash; and the patient whose chart a payer scrutinizes hardest.</p>
             <ul class="aligned-list">
               <li><strong>Failed standard of care</strong><span>Twelve months of documented non-resolution is exactly the predicate SweetBio&rsquo;s own documentation guidance asks you to establish</span></li>
-              <li><strong>Four applications over five visits</strong><span>Application count is the number your finance team will ask about first &mdash; this case reports four across five weeks</span></li>
+              <li><strong>Four applications over five visits</strong><span>This case reports four applications across five weeks. Application count is a clinical decision made at reassessment</span></li>
               <li><strong>Documented progression</strong><span>Imaging at day&nbsp;0, week&nbsp;1, week&nbsp;2, and week&nbsp;4 &mdash; measurable evidence of progress, which is a documentation best practice in its own right</span></li>
-              <li><strong>Patient-reported context</strong><span>The patient reported that wounds had historically taken 14&ndash;18 weeks to close, and that this one closed after 5 weeks of APIS&reg;</span></li>
             </ul>
+
+            <div class="compliance-note" style="margin-top:var(--s-4)">
+              <h4>What the published case does not report</h4>
+              <p>The publication reports <strong style="color:var(--snow)">no perfusion testing and no offloading</strong>, in a patient with documented peripheral vascular disease and a heel ulcer. Both are prerequisites before any skin substitute goes onto a neuropathic or vasculopathic foot, and both are required by most MAC policies. Do not model a chart on this write-up.</p>
+            </div>
             <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">One case is one case.</strong> A single reported patient is not an outcome rate and should not be sold as one. It is a reason to run a small, well-documented trial in your own clinic &mdash; which is exactly how we would structure the first order.</p>
           </div>
         </div>
@@ -383,7 +391,7 @@
           <div class="process-step scroll-reveal" data-stagger="120">
             <div class="step-num">Step 03</div>
             <h4>Hydrate, trim, place</h4>
-            <p>Low or no exudate: hydrate both sides with sterile saline for <strong style="color:var(--snow)">up to 2 minutes</strong>, or until fully hydrated &mdash; it may expand slightly. Highly exudating: hydration may not be needed. Cut or fold to fit, then place directly onto the wound.</p>
+            <p>Low or no exudate: hydrate both sides with sterile saline for <strong style="color:var(--snow)">up to 2 minutes</strong>, or until fully hydrated &mdash; it may expand slightly. Highly exudating: hydration may not be needed. Cut or fold to fit, then place directly onto the wound. Transient stinging or an increase in pain shortly after application is commonly reported with honey-containing dressings and is <strong style="color:var(--snow)">not by itself a sign of infection</strong> &mdash; tell the patient to expect it, and what would distinguish it from the infection signs in the precautions, or it generates calls and premature discontinuation.</p>
           </div>
           <div class="process-step scroll-reveal" data-stagger="180">
             <div class="step-num">Step 04</div>
@@ -405,21 +413,22 @@
       <div class="container">
         <div class="section-header scroll-reveal">
           <span class="eyebrow">Sizing &amp; Usage Limits</span>
-          <h2>Five sizes. <em style="font-style:normal;color:var(--gold)">Two numbers each.</em></h2>
-          <p>Every SKU carries a physical surface area and a stated wound coverage. Under 2026 rules you bill the square centimeters actually applied to the wound &mdash; so both numbers matter, and on the two smallest sizes they are not the same number.</p>
+          <h2>Five sizes. <em style="font-style:normal;color:var(--gold)">One billable number each.</em></h2>
+          <p>Every SKU carries a physical surface area, and the manufacturer&rsquo;s literature carries a second, rounded &ldquo;wound coverage&rdquo; figure alongside it. Only the first is a quantity you can bill against. Under 2026 rules you bill the square centimeters actually applied to the wound &mdash; and never more than the sheet physically is.</p>
         </div>
 
         <div class="content-grid">
           <div class="hero-spec-panel scroll-reveal">
             <h3>Ordering information</h3>
-            <div class="spec-row"><span class="spec-label">APIS-16x16-2</span><span class="spec-value">1.6 &times; 1.6 cm &mdash; 2.56 cm&sup2; surface &middot; <em>3 cm&sup2;</em> wound coverage</span></div>
-            <div class="spec-row"><span class="spec-label">APIS-25x25-2</span><span class="spec-value">2.5 &times; 2.5 cm &mdash; 6.25 cm&sup2; surface &middot; <em>6 cm&sup2;</em> wound coverage</span></div>
-            <div class="spec-row"><span class="spec-label">APIS-40x40-2</span><span class="spec-value">4.0 &times; 4.0 cm &mdash; 16.0 cm&sup2; surface &middot; <em>16 cm&sup2;</em> wound coverage</span></div>
-            <div class="spec-row"><span class="spec-label">APIS-50x50-2</span><span class="spec-value">5.0 &times; 5.0 cm &mdash; 25.0 cm&sup2; surface &middot; <em>25 cm&sup2;</em> wound coverage</span></div>
-            <div class="spec-row"><span class="spec-label">APIS-60x80-2</span><span class="spec-value">6.0 &times; 8.0 cm &mdash; 48.0 cm&sup2; surface &middot; <em>48 cm&sup2;</em> wound coverage</span></div>
+            <div class="spec-row"><span class="spec-label">APIS-16x16-2</span><span class="spec-value">1.6 &times; 1.6 cm &mdash; <em>2.56 cm&sup2;</em> physical surface area</span></div>
+            <div class="spec-row"><span class="spec-label">APIS-25x25-2</span><span class="spec-value">2.5 &times; 2.5 cm &mdash; <em>6.25 cm&sup2;</em> physical surface area</span></div>
+            <div class="spec-row"><span class="spec-label">APIS-40x40-2</span><span class="spec-value">4.0 &times; 4.0 cm &mdash; <em>16.0 cm&sup2;</em> physical surface area</span></div>
+            <div class="spec-row"><span class="spec-label">APIS-50x50-2</span><span class="spec-value">5.0 &times; 5.0 cm &mdash; <em>25.0 cm&sup2;</em> physical surface area</span></div>
+            <div class="spec-row"><span class="spec-label">APIS-60x80-2</span><span class="spec-value">6.0 &times; 8.0 cm &mdash; <em>48.0 cm&sup2;</em> physical surface area</span></div>
             <div class="spec-row"><span class="spec-label">Sterile barrier</span><span class="spec-value">Single, on every reference number</span></div>
             <div class="spec-row"><span class="spec-label">Billing basis</span><span class="spec-value">A2010 units = square centimeters <em>applied</em>, not sheet size</span></div>
-            <div class="spec-row"><span class="spec-label">A note on labels</span><span class="spec-value">The manufacturer&rsquo;s flyer labels the coverage figures above &ldquo;billable units,&rdquo; footnoted that as of 2026 providers bill usage for the exact size of the wound; the 2026 reimbursement guide labels the same figures &ldquo;wound coverage.&rdquo; Bill the applied area and document the rest</span></div>
+            <div class="spec-row"><span class="spec-label">Unit count</span><span class="spec-value">A2010 units are whole square centimeters actually applied, and <em>never more than the measured wound surface area</em> &mdash; bill the lesser of the two. Confirm your payer&rsquo;s rounding instruction</span></div>
+            <div class="spec-row"><span class="spec-label">A note on labels</span><span class="spec-value">Alongside each size the manufacturer publishes a rounded coverage figure &mdash; 3, 6, 16, 25 and 48 cm&sup2; respectively. The flyer labels those figures &ldquo;billable units,&rdquo; footnoted that as of 2026 providers bill usage for the exact size of the wound; the 2026 reimbursement guide labels the same figures &ldquo;wound coverage.&rdquo; Read them as the <em>manufacturer&rsquo;s coverage figures &mdash; not unit counts</em></span></div>
           </div>
 
           <div class="content-block scroll-reveal" data-stagger="80">
@@ -433,6 +442,8 @@
               <li><strong>6.0 &times; 8.0 cm</strong><span>48.0 cm&sup2; &mdash; adult 2 &middot; children 1</span></li>
             </ul>
 
+            <p style="font-size:var(--t-sm);color:var(--fog);margin-top:var(--s-3);line-height:1.6">Multiply each ceiling by its sheet area and they land in a narrow band &mdash; roughly 96 to 113 cm&sup2; of product per week for adults, and about half that for children above 10&nbsp;kg. <strong style="color:var(--snow)">The limit tracks total area, not sheet count.</strong> The IFU states the ceilings without giving a rationale; if you are treating a wound large enough for the ceiling to bind, ask us and we will put the question to SweetBio in writing.</p>
+
             <h3 style="font-size:var(--t-2xl);margin-top:var(--s-4);margin-bottom:var(--s-2)">Handling &amp; storage</h3>
             <ul class="aligned-list">
               <li><strong>Sterilization</strong><span>Gamma irradiation &mdash; remove from packaging using aseptic technique</span></li>
@@ -440,11 +451,16 @@
               <li><strong>Package integrity</strong><span>Sterile only if unopened and undamaged. Do not use if the seal is open or the package shows visual damage</span></li>
               <li><strong>Single use</strong><span>Do not re-sterilize. Opened and unused material must be disposed of</span></li>
               <li><strong>Expiration</strong><span>Do not use after the expiration date stated on the product label and packaging</span></li>
-              <li><strong>Disposal</strong><span>Not considered hazardous to the environment; can be disposed of in regular household waste</span></li>
+              <li><strong>Disposal</strong><span>Unused, unopened product is not considered environmentally hazardous and, per the IFU, can be disposed of in regular household waste. In a clinic that language does not govern: product that has been in contact with a wound, and any dressing removed from a patient, is regulated medical waste under the OSHA bloodborne pathogens standard, your state&rsquo;s medical-waste rules, and your facility&rsquo;s policy</span></li>
             </ul>
 
             <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Room temperature, no thaw, no cold chain.</strong> Ambient storage inside a standard 15&ndash;25&nbsp;&deg;C range means the shelf in the clinic, not a freezer &mdash; and no thaw window to schedule around before a procedure.</p>
           </div>
+        </div>
+
+        <div class="compliance-note scroll-reveal" style="margin-top:var(--s-5)">
+          <h4>The coverage figure is not a unit count</h4>
+          <p>The maximum billable area for any SKU is its <strong style="color:var(--snow)">physical surface area</strong> &mdash; for APIS-16x16-2 that is <strong style="color:var(--snow)">2.56&nbsp;cm&sup2;, not 3&nbsp;cm&sup2;</strong>. Applied in full, that device is 2 units, not 3. Bill only the square centimeters actually applied to the wound, and never more than the measured wound surface area. The manufacturer rounds its coverage figures to the nearest whole number in both directions &mdash; 2.56 up to 3, 6.25 down to 6 &mdash; which is fine as a sizing aid and wrong as a quantity on a claim.</p>
         </div>
       </div>
     </section>
@@ -459,7 +475,7 @@
 
         <div class="content-grid">
           <div class="content-block scroll-reveal">
-            <h3 style="margin-bottom:var(--s-2)">Indicated for the management of</h3>
+            <h3 style="margin-bottom:var(--s-2)">IFU indication list &mdash; reproduced verbatim; not a coverage statement</h3>
             <ul class="aligned-list">
               <li><strong>Full &amp; partial thickness</strong><span>Both depths, as written in the IFU</span></li>
               <li><strong>Pressure ulcers</strong><span>Stages I&ndash;IV</span></li>
@@ -471,6 +487,12 @@
               <li><strong>Abrasions</strong><span>Written as &ldquo;abrasion&rdquo; on the IFU</span></li>
               <li><strong>Surface wounds</strong><span>Listed on both the IFU and the 2026 reimbursement guide</span></li>
             </ul>
+
+            <div class="compliance-note" style="margin-top:var(--s-4)">
+              <h4>A label list is not a statement of medical necessity</h4>
+              <p>A Stage&nbsp;I pressure injury is <strong style="color:var(--snow)">intact, non-blanchable skin with no wound bed</strong> &mdash; there is nothing for a resorbable sheet to be applied to, and billing A2010 plus an application code for one is a straightforward recoupment. In practice, application and coverage begin at partial- or full-thickness tissue loss. Abrasions and superficial surface wounds that will epithelialize under standard care are unlikely to meet medical-necessity criteria for a per-square-centimeter skin substitute.</p>
+              <p>The IFU&rsquo;s &ldquo;pressure ulcers, stages I&ndash;IV&rdquo; wording is reproduced above as written; current nomenclature is &ldquo;pressure injury, Stage&nbsp;1&ndash;4.&rdquo;</p>
+            </div>
           </div>
 
           <div class="content-block scroll-reveal" data-stagger="80">
@@ -479,7 +501,7 @@
               <li><strong>Collagen sensitivity</strong><span>Patients with sensitivity to collagen and its derivatives</span></li>
               <li><strong>Porcine sensitivity</strong><span>Patients with sensitivity to porcine-derived products</span></li>
               <li><strong>Honey sensitivity</strong><span>Patients with sensitivity to honey</span></li>
-              <li><strong>Third degree burns</strong><span>Third degree burns</span></li>
+              <li><strong>Third degree burns</strong><span>Full-thickness thermal injury</span></li>
               <li><strong>Infection</strong><span>Infections or contamination in the wound site</span></li>
               <li><strong>Bleeding control</strong><span>Control of bleeding &mdash; APIS&reg; is not a hemostat</span></li>
               <li><strong>Very small children</strong><span>Children and infant patients under 10&nbsp;kg / 22&nbsp;lbs</span></li>
@@ -505,44 +527,65 @@
           <p>An established HCPCS code, a defined CPT application ladder, and a 2026 rule set that punishes sloppy documentation. This is the part of the conversation we spend the most time on, and the part your billing team will judge us by.</p>
         </div>
 
+        <div class="compliance-note scroll-reveal" style="margin-bottom:var(--s-5)">
+          <h4>Coverage before coding</h4>
+          <p>CMS withdrew the DFU/VLU skin-substitute LCDs on 24 December 2025 &mdash; they never took effect. As of mid-2026, only Novitas (L35041), First Coast and CGS operate active skin-substitute LCDs. In every other jurisdiction, coverage is decided case by case under &sect;1862(a)(1)(A), <strong style="color:var(--snow)">which puts the entire weight on the medical record.</strong> Where an LCD or LCA does apply, check the contractor&rsquo;s covered-product article, the covered indication list, and any per-episode application limit before the first application. We verify the current posture for your jurisdiction and your product, per account.</p>
+          <p><strong style="color:var(--snow)">MAC product listing and application limits.</strong> Most MAC skin-substitute policies enumerate covered products by name and cap the number of applications per wound per treatment episode. Confirm this product&rsquo;s listing status and the application limit with your MAC before the first case &mdash; a product absent from the covered-product list is non-covered no matter how good the documentation. We will pull the current listing for your MAC on request.</p>
+        </div>
+
         <div class="content-grid">
           <div class="hero-spec-panel scroll-reveal">
             <h3>Coding at a glance</h3>
             <div class="spec-row"><span class="spec-label">HCPCS</span><span class="spec-value"><em>A2010</em> &mdash; APIS, per square centimeter</span></div>
-            <div class="spec-row"><span class="spec-label">Place of service</span><span class="spec-value"><em>POS 11</em> &mdash; physician office</span></div>
+            <div class="spec-row"><span class="spec-label">Place of service</span><span class="spec-value"><em>POS 11</em> &mdash; physician office (this page&rsquo;s mechanics assume that setting)</span></div>
+            <div class="spec-row"><span class="spec-label">Setting</span><span class="spec-value">This guidance is written for the <em>non-facility</em> setting. Hospital outpatient departments and ASCs are paid under different rules and the product is generally packaged into the application procedure rather than paid separately. Confirm facility rules with your MAC before applying any of this coding</span></div>
             <div class="spec-row"><span class="spec-label">Application CPT</span><span class="spec-value">15271 &middot; +15272 &middot; 15273 &middot; +15274 &middot; 15275 &middot; +15276 &middot; 15277 &middot; +15278</span></div>
             <div class="spec-row"><span class="spec-label">Units</span><span class="spec-value">Total square centimeters <em>applied</em> to the wound</span></div>
-            <div class="spec-row"><span class="spec-label">Multiple wounds</span><span class="spec-value">Combine wounds by anatomical location</span></div>
+            <div class="spec-row"><span class="spec-label">Multiple wounds</span><span class="spec-value">Sum surface areas <em>only within the same CPT anatomic grouping</em> &mdash; trunk/arms/legs (15271&ndash;15274) together, face/scalp/neck/hands/feet/genitalia/multiple digits (15275&ndash;15278) together. Wounds in different groupings are reported separately, each with its own primary code</span></div>
             <div class="spec-row"><span class="spec-label">Add-on codes</span><span class="spec-value">Must accompany primary codes &mdash; never billed alone</span></div>
-            <div class="spec-row"><span class="spec-label">JW / JZ modifiers</span><span class="spec-value"><em>Not permitted</em> for skin substitutes</span></div>
+            <div class="spec-row"><span class="spec-label">JW / JZ modifiers</span><span class="spec-value"><em>Per SweetBio&rsquo;s 2026 guide, not permitted</em> for skin substitutes &mdash; verify with your contractor</span></div>
             <div class="spec-row"><span class="spec-label">Wastage</span><span class="spec-value">Not billable &mdash; document it, do not charge it</span></div>
             <div class="spec-row"><span class="spec-label">Payment</span><span class="spec-value">A national rate is published for A2010; the amount is set by CMS and the payer, and is subject to change</span></div>
           </div>
 
           <div class="content-block scroll-reveal" data-stagger="80">
             <h3 style="margin-bottom:var(--s-2)">How to bill in the physician office</h3>
-            <p style="margin-bottom:var(--s-3)">Four mechanics, straight from SweetBio&rsquo;s 2026 reimbursement guide: use place of service 11; bill the CPT code or codes plus A2010 for the total square centimeters applied; combine wounds by anatomical location; and make sure every add-on code accompanies its primary.</p>
+            <p style="margin-bottom:var(--s-3)">Four mechanics from SweetBio&rsquo;s 2026 reimbursement guide, with one correction of ours: use place of service 11; bill the CPT code or codes plus A2010 for the total square centimeters applied; combine wounds by anatomical location &mdash; <strong style="color:var(--snow)">which CPT permits only within the same anatomic code family</strong>, so sum areas within a grouping and report wounds in different groupings separately; and make sure every add-on code accompanies its primary.</p>
 
-            <h3 style="font-size:var(--t-2xl);margin-top:var(--s-4);margin-bottom:var(--s-2)">Coding by wound size</h3>
+            <h3 style="font-size:var(--t-2xl);margin-top:var(--s-4);margin-bottom:var(--s-2)">Coding by anatomic site, then wound size</h3>
+            <p style="margin-bottom:var(--s-3);font-size:var(--t-sm);color:var(--fog);line-height:1.6">The anatomic site chooses the code family before the size chooses the row. Add-on codes are never reported without their primary, so every row below carries the primary it belongs to. Each family then splits at 100 sq cm, as the source guide does: below 100 sq cm the smaller-area primary and its add-on apply; at 100 sq cm and above the larger-area primary and its add-on take over.</p>
+
+            <h4 style="color:var(--gold);font-size:var(--t-sm);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--s-2)">Trunk, arms and legs &mdash; 15271 / +15272 &middot; 15273 / +15274</h4>
             <ul class="aligned-list">
               <li><strong>1&ndash;25 sq cm</strong><span>15271</span></li>
-              <li><strong>26&ndash;50 sq cm</strong><span>+15272 &times;1</span></li>
-              <li><strong>51&ndash;75 sq cm</strong><span>+15272 &times;2</span></li>
-              <li><strong>76&ndash;99 sq cm</strong><span>+15272 &times;3</span></li>
+              <li><strong>26&ndash;50 sq cm</strong><span>15271 + 15272 &times;1</span></li>
+              <li><strong>51&ndash;75 sq cm</strong><span>15271 + 15272 &times;2</span></li>
+              <li><strong>76&ndash;99 sq cm</strong><span>15271 + 15272 &times;3</span></li>
               <li><strong>100 sq cm</strong><span>15273</span></li>
-              <li><strong>101&ndash;200 sq cm</strong><span>+15274 &times;1</span></li>
-              <li><strong>201&ndash;300 sq cm</strong><span>+15274 &times;2</span></li>
+              <li><strong>101&ndash;200 sq cm</strong><span>15273 + 15274 &times;1</span></li>
+              <li><strong>201&ndash;300 sq cm</strong><span>15273 + 15274 &times;2</span></li>
             </ul>
 
-            <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Worked example &mdash; a 30 sq cm wound.</strong> The guide bills <strong>15275</strong> with <strong>+15276</strong>, and <strong>A2010 &times;30 units</strong>. Primary plus one add-on, and the product units follow the applied area exactly. Which CPT family applies depends on the anatomic site of the wound &mdash; confirm the family and unit counts against current CPT guidance and your payer&rsquo;s policy before submission.</p>
+            <h4 style="color:var(--gold);font-size:var(--t-sm);letter-spacing:0.08em;text-transform:uppercase;margin-top:var(--s-4);margin-bottom:var(--s-2)">Face, scalp, eyelids, mouth, neck, ears, orbits, genitalia, hands, feet, multiple digits &mdash; 15275 / +15276 &middot; 15277 / +15278</h4>
+            <ul class="aligned-list">
+              <li><strong>1&ndash;25 sq cm</strong><span>15275</span></li>
+              <li><strong>26&ndash;50 sq cm</strong><span>15275 + 15276 &times;1</span></li>
+              <li><strong>51&ndash;75 sq cm</strong><span>15275 + 15276 &times;2</span></li>
+              <li><strong>76&ndash;99 sq cm</strong><span>15275 + 15276 &times;3</span></li>
+              <li><strong>100 sq cm</strong><span>15277</span></li>
+              <li><strong>101&ndash;200 sq cm</strong><span>15277 + 15278 &times;1</span></li>
+              <li><strong>201&ndash;300 sq cm</strong><span>15277 + 15278 &times;2</span></li>
+            </ul>
+
+            <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Worked example &mdash; the published heel ulcer, at 30 sq cm.</strong> The heel sits in the face/scalp/hands/feet family: <strong>15275 + 15276 &times;1</strong>, plus <strong>A2010 &times;30 units</strong>. The same 30 sq cm wound on the calf: <strong>15271 + 15272 &times;1</strong>, plus <strong>A2010 &times;30 units</strong>. Primary plus one add-on either way &mdash; only the family changes. SweetBio&rsquo;s guide prints the foot/face-family version of this example, but writes its size ladder with the trunk/arms/legs codes; confirm the family against the anatomic site every time, and confirm the unit counts against current CPT guidance and your payer&rsquo;s policy before submission.</p>
 
             <h3 style="font-size:var(--t-2xl);margin-top:var(--s-4);margin-bottom:var(--s-2)">Billing considerations &amp; product usage</h3>
             <ul class="aligned-list">
-              <li><strong>Applied portion only</strong><span>Only the applied portion should be billed</span></li>
+              <li><strong>Applied portion only</strong><span>Only the applied portion should be billed &mdash; and never more than what was actually applied</span></li>
               <li><strong>No discarded product</strong><span>Do not bill discarded product</span></li>
               <li><strong>Document all three</strong><span>Total size, amount used, and amount discarded</span></li>
-              <li><strong>No JW / JZ</strong><span>JW and JZ modifiers are not permitted for skin substitutes</span></li>
-              <li><strong>Exact wound size</strong><span>As of 2026, CMS no longer accepts wastage modifiers &mdash; bill usage for the exact size of the wound</span></li>
+              <li><strong>No JW / JZ</strong><span>SweetBio&rsquo;s 2026 guide states that JW and JZ are not applicable to skin substitutes. Modifier edits are contractor- and payer-specific and change &mdash; verify current requirements before submission</span></li>
+              <li><strong>Exact wound size</strong><span>Per the same guide, CMS no longer accepts wastage modifiers as of 2026 &mdash; bill usage for the exact size of the wound, and never more than what was actually applied</span></li>
             </ul>
           </div>
         </div>
@@ -550,7 +593,7 @@
         <div class="content-grid" style="margin-top:var(--s-5)">
           <div class="content-block scroll-reveal">
             <h3 style="margin-bottom:var(--s-2)">Documentation best practices</h3>
-            <p style="margin-bottom:var(--s-3)">Seven elements. Every one of them is something an auditor looks for, and every one of them is easier to capture at the visit than to reconstruct months or years later during a records request.</p>
+            <p style="margin-bottom:var(--s-3)">SweetBio lists seven elements. We add two. Every one of them is something an auditor looks for, and every one of them is easier to capture at the visit than to reconstruct months or years later during a records request.</p>
             <ul class="aligned-list">
               <li><strong>Chronicity</strong><span>Chronic wound &ge; 4 weeks</span></li>
               <li><strong>Failed standard of care</strong><span>What was tried, for how long, and why it did not close</span></li>
@@ -559,22 +602,27 @@
               <li><strong>Debridement</strong><span>Whether debridement was performed</span></li>
               <li><strong>Product size applied</strong><span>Which SKU, how much applied, how much discarded</span></li>
               <li><strong>Evidence of progress</strong><span>Serial measurement and imaging that shows the trajectory</span></li>
+              <li><strong>Vascular assessment &mdash; our addition</strong><span>ABI, TBI or toe pressures documented with the date, before the first application, plus revascularization status where relevant. Required by most MAC skin-substitute policies and among the most common reasons a claim is recouped</span></li>
+              <li><strong>Offloading or compression &mdash; our addition</strong><span>Documented as prescribed, in place and adherent: offloading for a diabetic foot ulcer, compression for a venous leg ulcer</span></li>
             </ul>
           </div>
 
           <div class="content-block scroll-reveal" data-stagger="80">
             <h3 style="margin-bottom:var(--s-2)">What Albacete MedDev does with this</h3>
-            <p style="margin-bottom:var(--s-3)">Our reimbursement work predates this product line. We sit inside prepayment reviews, UPIC packets, and appeal files for skin substitutes and cellular tissue products &mdash; which is why we are pedantic about those seven documentation elements rather than cheerful about them.</p>
+            <p style="margin-bottom:var(--s-3)">Our reimbursement work predates this product line. We sit inside prepayment reviews, UPIC packets, and appeal files for skin substitutes and cellular tissue products &mdash; which is why we are pedantic about those nine documentation elements rather than cheerful about them.</p>
             <ul class="aligned-list">
               <li><strong>Billing walkthrough</strong><span>A session with your billing lead on A2010 units, the CPT ladder, and add-on pairing before the first claim goes out</span></li>
-              <li><strong>Chart template review</strong><span>We check that your note captures chronicity, failed care, measurements, infection status, debridement, and applied-versus-discarded volume</span></li>
+              <li><strong>Chart template review</strong><span>We check that your note captures chronicity, failed care, measurements, infection status, debridement, applied-versus-discarded volume, and the vascular assessment and offloading or compression that SweetBio&rsquo;s list omits</span></li>
               <li><strong>Payer policy check</strong><span>We confirm current coverage posture with your MAC or commercial payer for the indication you intend to treat</span></li>
-              <li><strong>Audit support</strong><span>In-house medical-legal guidance and documentation support if a payer requests records</span></li>
+              <li><strong>Audit support</strong><span>Documentation support if a payer requests records. We are not a law firm and do not give legal advice &mdash; involve your own counsel</span></li>
             </ul>
+
+            <p style="margin-top:var(--s-3);font-size:var(--t-sm);color:var(--fog);line-height:1.6">These are product-neutral coding and documentation education, offered to any clinician who asks and <strong style="color:var(--snow)">not conditioned on a purchase</strong>. They are provided under a separate written agreement, available to every account regardless of volume, and are not offered in exchange for referrals.</p>
 
             <div class="compliance-note" style="margin-top:var(--s-4)">
               <h4>What we will not tell you</h4>
-              <p>We do not publish payment amounts on this page. A national rate exists for A2010 per square centimeter, but payment is determined by CMS and by the payer, varies by locality and setting, and changes. Any number you are shown by anyone should be verified against current CMS files and your own payer&rsquo;s fee schedule before it enters a financial model.</p>
+              <p>We do not publish payment amounts on this page. A national rate exists for A2010 per square centimeter, but payment is determined by CMS and by the payer, varies by locality and setting, and changes. Any number you are shown by anyone, including us, should be verified against current CMS files and your own payer&rsquo;s fee schedule before it enters a financial model.</p>
+              <p>The 2026 rules quoted on this page &mdash; no wastage modifiers, bill usage for the exact size of the wound, no JW or JZ on skin substitutes &mdash; are as stated in the <strong style="color:var(--snow)">SweetBio 2026 Reimbursement Guide (MKT-034 rev0)</strong>, which is a manufacturer document summarizing CMS policy. Verify them against the CY2026 Physician Fee Schedule final rule and your MAC&rsquo;s current instruction before submission. This is a summary of the manufacturer&rsquo;s guidance &mdash; not CMS policy, and not billing advice.</p>
               <p>SweetBio&rsquo;s guide carries the same posture: it is informational only, and coding and reimbursement decisions are the responsibility of the provider and subject to payer policies.</p>
             </div>
           </div>
@@ -600,8 +648,10 @@
             <div class="spec-row"><span class="spec-label">Collagen source</span><span class="spec-value"><em>Porcine</em></span></div>
             <div class="spec-row"><span class="spec-label">Honey</span><span class="spec-value">100% UMF-certified New Zealand Manuka</span></div>
             <div class="spec-row"><span class="spec-label">Technology</span><span class="spec-value">MX&trade; &mdash; SweetBio&rsquo;s core biomaterial technology</span></div>
-            <div class="spec-row"><span class="spec-label">Regulatory</span><span class="spec-value">FDA 510(k) <em>cleared</em> &mdash; prescription use only</span></div>
-            <div class="spec-row"><span class="spec-label">Resorption</span><span class="spec-value">Biodegradable and completely absorbable &mdash; no removal</span></div>
+            <div class="spec-row"><span class="spec-label">Regulatory</span><span class="spec-value">FDA 510(k) <em>cleared</em> &mdash; not approved; prescription use only</span></div>
+            <div class="spec-row"><span class="spec-label">510(k) numbers</span><span class="spec-value"><em>K222143</em> &mdash; APIS&reg;/VERIS&trade;, decided 13&nbsp;October 2023 &middot; <em>K182725</em> &mdash; Apis, decided 31&nbsp;May 2019. Both substantially equivalent. Confirm with SweetBio which clearance your supplied product is marketed under</span></div>
+            <div class="spec-row"><span class="spec-label">Product code</span><span class="spec-value">FRO &mdash; &ldquo;Dressing, Wound, Drug,&rdquo; <em>unclassified</em></span></div>
+            <div class="spec-row"><span class="spec-label">Resorption</span><span class="spec-value">Biodegradable and completely absorbable <em>per the IFU</em> &mdash; no removal step. The statement covers the device as a whole; we have seen no resorption data specific to the mineral fraction</span></div>
             <div class="spec-row"><span class="spec-label">Sterilization</span><span class="spec-value">Gamma irradiation &middot; single sterile barrier</span></div>
             <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-value">15&ndash;25&nbsp;&deg;C (59&ndash;77&nbsp;&deg;F) controlled room temperature</span></div>
             <div class="spec-row"><span class="spec-label">Patent</span><span class="spec-value">Developed under US Patent No.&nbsp;10258717</span></div>
@@ -620,7 +670,7 @@
               <li><strong>Pediatric limits</strong><span>Contraindicated under 10&nbsp;kg / 22&nbsp;lbs; above that weight, the weekly usage ceilings are roughly half the adult figures</span></li>
             </ul>
 
-            <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">One partner, every operational layer.</strong> Product supply, billing-team walkthroughs, chart-template review, and audit support come from the same team &mdash; so the clinical adoption and the paperwork are never two separate conversations.</p>
+            <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">One documentation spine.</strong> Billing-team walkthroughs, chart-template review, and documentation support are handled by the same team that knows the code &mdash; so the clinical adoption and the paperwork are never two separate conversations. Those services sit under a <strong>separate written agreement</strong>, are available to every account regardless of volume, and are not conditioned on purchasing any product.</p>
           </div>
         </div>
 
@@ -636,44 +686,44 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What exactly is APIS&reg; made of? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">A wound management device comprised of a <strong>highly purified collagen derivative (gelatin)</strong>, <strong>Manuka honey</strong>, and <strong>hydroxyapatite</strong>. The collagen derivative is <strong>porcine-derived</strong> and described as a natural extracellular matrix protein beneficial for cell migration, adhesion, and proliferation. The honey is <strong>100% UMF-certified New Zealand Manuka</strong>, known for antibacterial and anti-inflammatory effects. Hydroxyapatite is a naturally occurring mineral known to bind proteins and, per the cited literature, to promote healing via angiogenesis. SweetBio&rsquo;s MX&trade; technology is what combines them into a single conformable sheet.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q1" aria-expanded="false" aria-controls="faq-products-apis-a1">What exactly is APIS&reg; made of? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a1" role="region" aria-labelledby="faq-products-apis-q1"><div class="faq-a-inner">A wound management device comprised of a <strong>highly purified collagen derivative (gelatin)</strong>, <strong>Manuka honey</strong>, and <strong>hydroxyapatite</strong>. The collagen derivative is <strong>porcine-derived gelatin &mdash; denatured collagen</strong>, not native extracellular-matrix collagen; the manufacturer describes it as a natural extracellular matrix protein beneficial for cell migration, adhesion, and proliferation, which is a manufacturer characterization rather than a cleared performance claim. The honey is <strong>100% UMF-certified New Zealand Manuka</strong>; the manufacturer&rsquo;s literature describes antibacterial and anti-inflammatory properties for Manuka honey as a material, and no UMF grade is published for this device, so the certification alone supports no statement about antibacterial potency. Hydroxyapatite is a <strong>calcium-phosphate mineral</strong>; the manufacturer cites literature describing protein binding and healing via angiogenesis. SweetBio&rsquo;s MX&trade; technology is what combines them into a single conformable sheet. Read all three as ingredient-level literature characterizations: APIS&reg; is cleared as a wound covering that absorbs exudate and maintains a moist wound environment, and <strong>no antibacterial, anti-inflammatory, or angiogenic performance claim is cleared for the finished device</strong> &mdash; which is also why it remains contraindicated in infected or contaminated wound sites.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is APIS&reg; FDA approved? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No &mdash; it is <strong>FDA 510(k) cleared</strong>, which is a different thing and the distinction matters in a chart and in a claim. Clearance covers the intended use stated in the Instructions for Use: to cover and protect the wound, absorb wound exudate, and provide and maintain a moist wound environment, in the management of the listed wound types under the supervision of a healthcare professional. Marketing statements about 4&ndash;8 week closure and lower patient-reported pain in Mohs wounds sit <strong>outside</strong> that clearance and carry the manufacturer&rsquo;s own footnote: based on clinical and in&nbsp;vitro data; claims have not been cleared by the FDA.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q2" aria-expanded="false" aria-controls="faq-products-apis-a2">Is APIS&reg; FDA approved? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a2" role="region" aria-labelledby="faq-products-apis-q2"><div class="faq-a-inner">No &mdash; it is <strong>FDA 510(k) cleared</strong>, which is a different thing and the distinction matters in a chart and in a claim. FDA&rsquo;s 510(k) database carries two clearances for SweetBio: <strong>K222143</strong> (APIS&reg;/VERIS&trade;, decided 13 October 2023) and <strong>K182725</strong> (Apis, decided 31 May 2019), both found substantially equivalent, both under product code <strong>FRO &mdash; &ldquo;Dressing, Wound, Drug,&rdquo; unclassified</strong>. Confirm with SweetBio which clearance the product you are supplied is marketed under. Clearance covers the intended use stated in the Instructions for Use: to cover and protect the wound, absorb wound exudate, and provide and maintain a moist wound environment, in the management of the listed wound types under the supervision of a healthcare professional. Marketing statements about 4&ndash;8 week closure and lower patient-reported pain in Mohs wounds sit <strong>outside</strong> that clearance and carry the manufacturer&rsquo;s own footnote: based on clinical and in&nbsp;vitro data; claims have not been cleared by the FDA.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How strong is the clinical evidence, honestly? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Mixed, and we would rather say so than have you find out from the reference list. There are <strong>four clinical publications</strong> &mdash; two lower-extremity ulcer evaluations (Rodriguez 2020, described by its authors as preliminary; Rodriguez 2023), a secondary-intention healing report (McMurray 2021), and a <strong>randomized controlled trial that its own authors call a pilot study</strong> in Mohs surgical defects (Arnaud 2023). There are <strong>three mechanistic papers</strong>: two explicitly in&nbsp;vitro (bacteria reduction capability in Williams 2021; inflammatory-marker and growth-factor secretion in Rodriguez 2021), plus a preliminary direct comparison of inflammatory reduction and growth-factor production capability across three commercially available wound products (Rodriguez 2022). The 4&ndash;8 week closure figure is the manufacturer&rsquo;s summary across chronic and acute wounds and carries the FDA qualifier. Bench data is mechanism, not outcome, and we do not present it as outcome.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q3" aria-expanded="false" aria-controls="faq-products-apis-a3">How strong is the clinical evidence, honestly? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a3" role="region" aria-labelledby="faq-products-apis-q3"><div class="faq-a-inner">Mixed, and we would rather say so than have you find out from the reference list. There are <strong>four clinical publications</strong> &mdash; two lower-extremity ulcer evaluations (Rodriguez 2020, described by its authors as preliminary; Rodriguez 2023), a secondary-intention healing report (McMurray 2021), and a <strong>randomized controlled trial that its own authors call a pilot study</strong> in Mohs surgical defects (Arnaud 2023). There are <strong>three mechanistic papers</strong>: two explicitly in&nbsp;vitro (bacteria reduction capability in Williams 2021; inflammatory-marker and growth-factor secretion in Rodriguez 2021), plus a preliminary direct comparison of inflammatory reduction and growth-factor production capability across three commercially available wound products (Rodriguez 2022). The 4&ndash;8 week closure figure is the manufacturer&rsquo;s summary across chronic and acute wounds and carries the FDA qualifier. Bench data is mechanism, not outcome, and we do not present it as outcome.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Can I use it on an infected wound? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No. <strong>Infections or contamination in the wound site are a contraindication</strong>, and the precautions state that APIS&reg; should not be applied until bleeding, infection, excessive exudate, and acute swelling are controlled. The in&nbsp;vitro antibacterial work on Manuka honey does not change that &mdash; it is bench data, not a clinical antimicrobial indication. The full contraindication list is: sensitivity to collagen and its derivatives, sensitivity to porcine-derived products, sensitivity to honey, third degree burns, infection or contamination in the wound site, control of bleeding, and children and infant patients under 10&nbsp;kg / 22&nbsp;lbs.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q4" aria-expanded="false" aria-controls="faq-products-apis-a4">Can I use it on an infected wound? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a4" role="region" aria-labelledby="faq-products-apis-q4"><div class="faq-a-inner">No. <strong>Infections or contamination in the wound site are a contraindication</strong>, and the precautions state that APIS&reg; should not be applied until bleeding, infection, excessive exudate, and acute swelling are controlled. The in&nbsp;vitro antibacterial work on Manuka honey does not change that &mdash; it is bench data, not a clinical antimicrobial indication. The full contraindication list is: sensitivity to collagen and its derivatives, sensitivity to porcine-derived products, sensitivity to honey, third degree burns, infection or contamination in the wound site, control of bleeding, and children and infant patients under 10&nbsp;kg / 22&nbsp;lbs.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Does it need to be removed between applications? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No. APIS&reg; devices are <strong>biodegradable and completely absorbable</strong>, so removal is not necessary, and adhered portions should <strong>never be forcibly removed</strong>. The secondary dressing is changed as needed depending on wound type, exudate level, dressing type, patient condition, and patient movement, per your standard protocols. At each assessment, inspect the wound for healing or for signs of adverse reaction, infection, or other complications, and reapply APIS&reg; as required.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q5" aria-expanded="false" aria-controls="faq-products-apis-a5">Does it need to be removed between applications? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a5" role="region" aria-labelledby="faq-products-apis-q5"><div class="faq-a-inner">No. APIS&reg; devices are <strong>biodegradable and completely absorbable per the IFU</strong>, so removal is not necessary, and adhered portions should <strong>never be forcibly removed</strong>. The secondary dressing is changed as needed depending on wound type, exudate level, dressing type, patient condition, and patient movement, per your standard protocols. At each assessment, inspect the wound for healing or for signs of adverse reaction, infection, or other complications, and reapply APIS&reg; as required.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How many sheets can I use in a week? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">The IFU states a maximum weekly usage per size. For adults: <strong>44</strong> of the 1.6&nbsp;&times;&nbsp;1.6&nbsp;cm (2.56&nbsp;cm&sup2;), <strong>18</strong> of the 2.5&nbsp;&times;&nbsp;2.5&nbsp;cm (6.25&nbsp;cm&sup2;), <strong>7</strong> of the 4.0&nbsp;&times;&nbsp;4.0&nbsp;cm (16.0&nbsp;cm&sup2;), <strong>4</strong> of the 5.0&nbsp;&times;&nbsp;5.0&nbsp;cm (25.0&nbsp;cm&sup2;), and <strong>2</strong> of the 6.0&nbsp;&times;&nbsp;8.0&nbsp;cm (48.0&nbsp;cm&sup2;). For children above 10&nbsp;kg / 22&nbsp;lbs the corresponding figures are 23, 9, 3, 2, and 1. These are ceilings, not treatment plans &mdash; the diabetic heel ulcer case SweetBio publishes used four applications across five visits in five weeks.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q6" aria-expanded="false" aria-controls="faq-products-apis-a6">How many sheets can I use in a week? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a6" role="region" aria-labelledby="faq-products-apis-q6"><div class="faq-a-inner">The IFU states a maximum weekly usage per size. For adults: <strong>44</strong> of the 1.6&nbsp;&times;&nbsp;1.6&nbsp;cm (2.56&nbsp;cm&sup2;), <strong>18</strong> of the 2.5&nbsp;&times;&nbsp;2.5&nbsp;cm (6.25&nbsp;cm&sup2;), <strong>7</strong> of the 4.0&nbsp;&times;&nbsp;4.0&nbsp;cm (16.0&nbsp;cm&sup2;), <strong>4</strong> of the 5.0&nbsp;&times;&nbsp;5.0&nbsp;cm (25.0&nbsp;cm&sup2;), and <strong>2</strong> of the 6.0&nbsp;&times;&nbsp;8.0&nbsp;cm (48.0&nbsp;cm&sup2;). For children above 10&nbsp;kg / 22&nbsp;lbs the corresponding figures are 23, 9, 3, 2, and 1. These are ceilings, not treatment plans &mdash; the diabetic heel ulcer case SweetBio publishes used four applications across five visits in five weeks.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How is it coded, and what changed for 2026? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">The product is billed under <strong>HCPCS A2010 &mdash; APIS, per square centimeter</strong>, with the application billed under the CPT 15271&ndash;15278 families. In the physician office, use <strong>place of service 11</strong>, bill the CPT code or codes plus A2010 for the total square centimeters applied, combine wounds by anatomical location, and pair every add-on code with its primary. What changed: as of 2026, <strong>CMS no longer accepts wastage modifiers</strong>, providers bill usage for the exact size of the wound, and <strong>JW and JZ modifiers are not permitted for skin substitutes</strong>. Only the applied portion is billed; discarded product is documented but not charged.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q7" aria-expanded="false" aria-controls="faq-products-apis-a7">How is it coded, and what changed for 2026? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a7" role="region" aria-labelledby="faq-products-apis-q7"><div class="faq-a-inner">The product is billed under <strong>HCPCS A2010 &mdash; APIS, per square centimeter</strong>, with the application billed under the CPT 15271&ndash;15278 families. The anatomic site chooses the family before the size chooses the code: trunk, arms and legs use 15271/+15272 and 15273/+15274; face, scalp, eyelids, mouth, neck, ears, orbits, genitalia, hands, feet and multiple digits use 15275/+15276 and 15277/+15278. In the physician office, use <strong>place of service 11</strong>, bill the CPT code or codes plus A2010 for the total square centimeters applied, <strong>sum wound areas only within the same anatomic grouping</strong> &mdash; wounds in different groupings are reported separately, each with its own primary &mdash; and pair every add-on code with its primary. What changed, as stated in SweetBio&rsquo;s 2026 guide: <strong>CMS no longer accepts wastage modifiers</strong>, providers bill usage for the exact size of the wound and never more than what was actually applied, and <strong>JW and JZ modifiers are not permitted for skin substitutes</strong>. Only the applied portion is billed; discarded product is documented but not charged. That guide is a manufacturer document summarizing CMS policy &mdash; verify it against the CY2026 Physician Fee Schedule final rule and your MAC&rsquo;s current instruction before submission. These mechanics assume the non-facility setting; hospital outpatient and ASC payment works differently.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What does the chart need to say? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Seven elements, per SweetBio&rsquo;s documentation guidance: chronic wound of <strong>four weeks or more</strong>; <strong>failed standard of care</strong>; measurements as <strong>length &times; width &times; depth</strong>; infection status; whether debridement was performed; the product size applied; and evidence of progress. Add to that the amount used and the amount discarded &mdash; you document the discard even though you do not bill it. Our team reviews your note template against that list before the first application, because reconstructing it during a records request is a different and much worse exercise.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q8" aria-expanded="false" aria-controls="faq-products-apis-a8">What does the chart need to say? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a8" role="region" aria-labelledby="faq-products-apis-q8"><div class="faq-a-inner">Seven elements, per SweetBio&rsquo;s documentation guidance: chronic wound of <strong>four weeks or more</strong>; <strong>failed standard of care</strong>; measurements as <strong>length &times; width &times; depth</strong>; infection status; whether debridement was performed; the product size applied; and evidence of progress. Add to that the amount used and the amount discarded &mdash; you document the discard even though you do not bill it. Add two more that SweetBio&rsquo;s list omits and payers do not: a dated <strong>vascular assessment</strong> (ABI, TBI or toe pressures, plus revascularization status where relevant) before the first application, and <strong>offloading or compression</strong> documented as prescribed, in place and adherent. Both are required by most MAC skin-substitute policies and are among the most common reasons a claim is recouped. Our team reviews your note template against that list before the first application, because reconstructing it during a records request is a different and much worse exercise.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What does APIS&reg; cost, and what does it pay? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">We do not publish either figure on this page. A <strong>national rate is published for A2010 per square centimeter</strong>, but payment is set by CMS and by the payer, varies by locality and setting, and is subject to change &mdash; and coding and reimbursement decisions remain the responsibility of the provider, subject to payer policies. Ask us and we will pull the current published rate for your locality and setting alongside acquisition pricing, so your finance model is built on today&rsquo;s numbers rather than a brochure&rsquo;s.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q9" aria-expanded="false" aria-controls="faq-products-apis-a9">What does APIS&reg; cost, and what does it pay? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a9" role="region" aria-labelledby="faq-products-apis-q9"><div class="faq-a-inner">We do not publish either figure on this page. A <strong>national rate is published for A2010 per square centimeter</strong>, but payment is set by CMS and by the payer, varies by locality and setting, and is subject to change &mdash; and coding and reimbursement decisions remain the responsibility of the provider, subject to payer policies. Ask us and we will point you to the current published CMS reference for your locality and setting, so your own finance team works from primary sources.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Why buy it through Albacete MedDev? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Because the product is the easy part. We are an <strong>independent distributor</strong> &mdash; SweetBio, Inc. of Memphis, TN manufactures APIS&reg; &mdash; and what we add is the operational layer around it: a billing-team walkthrough on A2010 units and the CPT ladder, chart-template review against the documentation list, a payer-policy check for the indication you intend to treat, and in-house medical-legal guidance if records are ever requested. Across every product line we carry, you get the same compliance infrastructure and portal-integrated tracking behind it.</div></div>
+            <button type="button" class="faq-q" id="faq-products-apis-q10" aria-expanded="false" aria-controls="faq-products-apis-a10">What comes with the account? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-apis-a10" role="region" aria-labelledby="faq-products-apis-q10"><div class="faq-a-inner">Available to every account under separate agreement, regardless of volume: a billing-team walkthrough on A2010 units and the CPT ladder, chart-template review against the documentation list, a payer-policy check for the indication you intend to treat, and documentation support if records are ever requested &mdash; we are not a law firm and do not give legal advice, so involve your own counsel. We are an <strong>independent distributor</strong>; SweetBio, Inc. of Memphis, TN manufactures APIS&reg;. These services are product-neutral coding and documentation education, provided under a separate written agreement, not conditioned on purchasing any product, and not offered in exchange for referrals.</div></div>
           </div>
         </div>
       </div>
@@ -690,6 +740,12 @@
             <a href="/products" class="btn btn-secondary">Explore the portfolio</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p style="font-size:var(--t-xs);color:var(--fog);max-width:820px;line-height:1.6">Albacete MedDev is an independent distributor of APIS&reg; and is not the manufacturer. APIS&reg; is manufactured for SweetBio, Inc., Memphis, TN, and is cleared by FDA under the 510(k) pathway &mdash; cleared, not approved. Indications, contraindications, precautions and handling statements are reproduced from APIS&reg; Instructions for Use IFU-011 rev2; coding content is summarized from the APIS&reg; 2026 Reimbursement Guide (MKT-034 rev0) and the APIS&reg; product flyer (MKT-032 Rev4), which are manufacturer documents and not CMS policy. Coverage, coding and payment for HCPCS A2010 are determined by CMS and individual payers and are subject to change. Compliance checks, LCD/NCD alignment reviews and generated narratives are decision support for the practice&rsquo;s own review; they are not legal, coding or billing advice and are not a determination or guarantee of coverage, and the practice remains responsible for every claim it submits. Reimbursement, documentation and audit-support services are provided under a separate written agreement, are not conditioned on purchasing any product, and are not offered in exchange for referrals. The SweetBio&reg; name, the SweetBio&reg; logo, and APIS&reg; are registered trademarks of SweetBio, Inc.; CPT&reg; is a registered trademark of the American Medical Association.</p>
       </div>
     </section>
 
@@ -740,6 +796,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

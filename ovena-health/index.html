@@ -8,7 +8,7 @@
   <meta name="description" content="Albacete MedDev's direct-to-patient brand — physician-led collagen dressings, hydrocolloid, and 20-30 mmHg compression, on ovenahealth.com and our Amazon storefront.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Brand","name":"Ovena Health","url":"https://ovenahealth.com","parentOrganization":{"@type":"Organization","name":"Albacete MedDev"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Ovena Health","item":"https://albacetemeddev-redesign.pages.dev/ovena-health/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-compact">
       <div class="container hero-inner">
@@ -180,7 +181,7 @@
           </div>
           <div class="stat scroll-reveal" data-stagger="160">
             <div class="label">Direct shipping</div>
-            <div class="value">$75<span style="color:var(--gold)">+</span></div>
+            <div class="value">Over&nbsp;<span style="color:var(--gold)">$75</span></div>
             <div class="desc">free shipping on direct orders</div>
           </div>
           <div class="stat scroll-reveal" data-stagger="240">
@@ -214,11 +215,11 @@
           <div class="product-card scroll-reveal" data-stagger="160">
             <span class="tag">What carries across</span>
             <h3>The review standard</h3>
-            <p>Every Ovena product is clinically reviewed by <strong style="color:var(--snow)">Dr. David Chahine, MD</strong> &mdash; a practicing wound-care physician trained at Stanford University School of Medicine, and Ovena&rsquo;s Medical Director. The brand states it plainly: <strong style="color:var(--snow)">&ldquo;Clinical rigor, honest access, and credentialed care, in every product line.&rdquo;</strong></p>
+            <p>Every Ovena product is clinically reviewed by <strong style="color:var(--snow)">David Chahine, MD</strong> &mdash; a practicing wound-care physician trained at Stanford University School of Medicine, and Ovena&rsquo;s Medical Director. The brand states it plainly: <strong style="color:var(--snow)">&ldquo;Clinical rigor, honest access, and credentialed care, in every product line.&rdquo;</strong></p>
           </div>
         </div>
 
-        <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">Ovena Health is Albacete MedDev&rsquo;s own brand rather than a manufacturer line we distribute &mdash; which is why this page carries retail prices where our product pages carry codes. Nothing here is a substitute for clinical judgement, and nothing here should be read as a claim about the provider-only portfolio.</p>
+        <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">Ovena Health is Albacete MedDev&rsquo;s own brand rather than a manufacturer line we distribute &mdash; which is why this page carries retail prices where our product pages carry codes. Nothing here is a substitute for clinical judgment, and nothing here should be read as a claim about the provider-only portfolio.</p>
       </div>
     </section>
 
@@ -235,7 +236,7 @@
             <h3>Ovena Health at a glance</h3>
             <div class="spec-row"><span class="spec-label">Relationship</span><span class="spec-value"><em>Albacete MedDev&rsquo;s own</em> consumer brand</span></div>
             <div class="spec-row"><span class="spec-label">Audience</span><span class="spec-value">Patients and practices buying direct</span></div>
-            <div class="spec-row"><span class="spec-label">Medical Director</span><span class="spec-value"><em>Dr. David Chahine, MD</em></span></div>
+            <div class="spec-row"><span class="spec-label">Medical Director</span><span class="spec-value"><em>David Chahine, MD</em></span></div>
             <div class="spec-row"><span class="spec-label">Training</span><span class="spec-value">Stanford University School of Medicine</span></div>
             <div class="spec-row"><span class="spec-label">Clinical review</span><span class="spec-value">Every product, by the Medical Director</span></div>
             <div class="spec-row"><span class="spec-label">Catalog</span><span class="spec-value">7 products &middot; plus a partner compression line</span></div>
@@ -248,7 +249,7 @@
             <h3 style="margin-bottom:var(--s-2)">Why a distribution company runs a consumer brand</h3>
             <p style="margin-bottom:var(--s-3)">Ovena&rsquo;s own answer is one sentence long: <strong style="color:var(--snow)">&ldquo;Insurance is harder than ever. We make premium care work anyway.&rdquo;</strong> Every product clears a physician review before it carries the name &mdash; and is then sold without a benefits check standing in front of it.</p>
             <ul class="aligned-list">
-              <li><strong>Physician-led</strong><span>Dr. David Chahine, MD reviews every product before it carries the name. He is a practicing wound-care physician and Ovena&rsquo;s Medical Director.</span></li>
+              <li><strong>Physician-led</strong><span>David Chahine, MD reviews every product before it carries the name. He is a practicing wound-care physician and Ovena&rsquo;s Medical Director.</span></li>
               <li><strong>Clinical rigor</strong><span>Retail price, clinical-grade material. The collagen dressing is FDA 510(k) cleared as a device in its own right &mdash; cleared, never approved.</span></li>
               <li><strong>Honest access</strong><span>Published prices on the storefront &mdash; a patient sees what a dressing costs before deciding to buy it.</span></li>
               <li><strong>FSA/HSA eligible</strong><span>Eligible for FSA and HSA payment &mdash; confirm with your plan administrator, which is the only party that can tell you for certain.</span></li>
@@ -302,7 +303,7 @@
           <a class="shop-card scroll-reveal" data-stagger="240" href="https://ovenahealth.com/products/compression-socks" target="_blank" rel="noopener">
             <div class="shop-body">
               <h4>Medical-Grade Compression Socks</h4>
-              <p>20&ndash;30&nbsp;mmHg graduated compression for daily edema management and venous support. Moisture-wicking fabric with reinforced heel and toe, graduated from the ankle up. Sizes S, M, L and XL. Free with every pair: a complimentary pH-balanced compression cleanser.</p>
+              <p>20&ndash;30&nbsp;mmHg graduated compression for daily edema management and venous support. Moisture-wicking fabric with reinforced heel and toe, graduated from the ankle up. Sizes S/M/L/XL. Free with every pair: a complimentary pH-balanced compression cleanser.</p>
               <div class="shop-price">1 pair $24.99 &nbsp;·&nbsp; 2 pairs $44.99 &nbsp;·&nbsp; 3 pairs $59.99</div>
             </div>
           </a>
@@ -322,7 +323,7 @@
           </a>
         </div>
 
-        <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Partner compression line.</strong> Ovena also lists <strong style="color:var(--snow)">Juzo knee-high and thigh-high compression stockings</strong> &mdash; $35 and $55 respectively &mdash; as a clinical-grade partner line alongside the Ovena-branded socks.</p>
+        <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Partner compression line.</strong> Ovena also lists <strong style="color:var(--snow)">Juzo knee-high and thigh-high compression stockings</strong> &mdash; $35.00 and $55.00 respectively &mdash; as a clinical-grade partner line alongside the Ovena-branded socks.</p>
 
         <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">Catalog and pricing read from ovenahealth.com on August 17, 2026. Prices, variants, and availability are set on the storefront and can change &mdash; the product page is always the current source. Product descriptions above are Ovena&rsquo;s own, trimmed for length.</p>
       </div>
@@ -340,7 +341,7 @@
           <div class="content-grid">
             <div class="content-block">
               <h3 style="margin-bottom:var(--s-2)">Browse the storefront</h3>
-              <p style="margin-bottom:var(--s-3)">One page collects the Ovena listings under the brand rather than scattering them across search results. Verified live on <strong style="color:var(--snow)">August 17, 2026</strong>: storefront pages for the <strong style="color:var(--snow)">Hydrocolloid Roll 2&quot;&times;5&rsquo;</strong>, the <strong style="color:var(--snow)">Hydrocolloid Roll 2&quot;&times;16&rsquo;</strong>, and the <strong style="color:var(--snow)">Compression Socks 20&ndash;30&nbsp;mmHg</strong>, plus the collagen dressing listings below.</p>
+              <p style="margin-bottom:var(--s-3)">One page collects the Ovena listings under the brand rather than scattering them across search results. Verified live on <strong style="color:var(--snow)">August 17, 2026</strong>: storefront pages for the <strong style="color:var(--snow)">Hydrocolloid Roll 2&Prime;&times;5&prime;</strong>, the <strong style="color:var(--snow)">Hydrocolloid Roll 2&Prime;&times;16&prime;</strong>, and the <strong style="color:var(--snow)">Compression Socks 20&ndash;30&nbsp;mmHg</strong>, plus the collagen dressing listings below.</p>
               <div class="hero-actions">
                 <a href="https://www.amazon.com/stores/OvenaHealth/page/D6AE90DA-CBED-4BB0-A25F-18FA9E66C8F8" target="_blank" rel="noopener" class="btn btn-primary">Visit the Ovena Health Store <span class="arrow">→</span></a>
                 <a href="https://ovenahealth.com" target="_blank" rel="noopener" class="btn btn-secondary">Or shop direct</a>
@@ -376,7 +377,7 @@
             <ul class="aligned-list">
               <li><strong>All seven products</strong><span>Every item in the catalog, including the Collagen Kit, the Sock Aid, and the Sterile Saline Wound Wash</span></li>
               <li><strong>Every variant</strong><span>Both dressing sizes, both roll lengths, one-, two- and three-pair sock packs in S/M/L/XL</span></li>
-              <li><strong>Partner line</strong><span>Juzo knee-high ($35) and thigh-high ($55) compression stockings sit alongside the Ovena socks</span></li>
+              <li><strong>Partner line</strong><span>Juzo knee-high ($35.00) and thigh-high ($55.00) compression stockings sit alongside the Ovena socks</span></li>
               <li><strong>Free shipping over $75</strong><span>On direct orders placed at ovenahealth.com</span></li>
               <li><strong>FSA/HSA eligible</strong><span>Verify eligibility with your plan administrator before you count on it</span></li>
               <li><strong>Canonical pricing</strong><span>If the two channels ever disagree, the product page on ovenahealth.com is the one to trust</span></li>
@@ -440,7 +441,7 @@
             <div class="spec-row"><span class="spec-label">Collagen kit contents</span><span class="spec-value">5 pads &middot; sterile wound wash &middot; nitrile gloves &middot; medical tape</span></div>
             <div class="spec-row"><span class="spec-label">Hydrocolloid roll</span><span class="spec-value">2&nbsp;in &times; 5&nbsp;ft &middot; 2&nbsp;in &times; 16&nbsp;ft &mdash; <em>cut to size</em></span></div>
             <div class="spec-row"><span class="spec-label">Hydrocolloid material</span><span class="spec-value">Latex-free &middot; hypoallergenic</span></div>
-            <div class="spec-row"><span class="spec-label">Compression</span><span class="spec-value"><em>20&ndash;30&nbsp;mmHg</em> graduated &mdash; S / M / L / XL</span></div>
+            <div class="spec-row"><span class="spec-label">Compression</span><span class="spec-value"><em>20&ndash;30&nbsp;mmHg</em> graduated &mdash; S/M/L/XL</span></div>
             <div class="spec-row"><span class="spec-label">Included with socks</span><span class="spec-value">pH-balanced compression cleanser, every pair</span></div>
             <div class="spec-row"><span class="spec-label">Donning aid</span><span class="spec-value">Ergonomic &mdash; less bending, easier reach</span></div>
             <div class="spec-row"><span class="spec-label">Wound wash</span><span class="spec-value">Sterile saline, clinician-directed routine</span></div>
@@ -470,43 +471,43 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">Is Ovena Health the same thing as your clinical graft portfolio? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No, and the distinction is deliberate. <strong>Ovena Health is Albacete MedDev&rsquo;s consumer and retail brand</strong> &mdash; seven products with published prices, bought by a patient or a practice and shipped to an address. The clinical graft portfolio is <strong>provider-only</strong>: ordered by a practice or facility, applied by a clinician, and documented through the chart. The two do not overlap. If you are evaluating tissue products for your practice, you want the product pages, not this one.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q1" aria-expanded="false" aria-controls="faq-ovena-health-a1">Is Ovena Health the same thing as your clinical graft portfolio? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a1" role="region" aria-labelledby="faq-ovena-health-q1"><div class="faq-a-inner">No, and the distinction is deliberate. <strong>Ovena Health is Albacete MedDev&rsquo;s consumer and retail brand</strong> &mdash; seven products with published prices, bought by a patient or a practice and shipped to an address. The clinical graft portfolio is <strong>provider-only</strong>: ordered by a practice or facility, applied by a clinician, and documented through the chart. The two do not overlap. If you are evaluating tissue products for your practice, you want the product pages, not this one.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is the collagen dressing FDA approved? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">It is <strong>FDA 510(k) cleared</strong>, which is not the same as approved, and we do not use the word &ldquo;approved&rdquo; about it. The distinction the live listing draws is worth repeating: it is &ldquo;cleared by FDA as a medical device in its own right, not merely produced in a registered facility.&rdquo; The dressing is 100% Type&nbsp;I bovine collagen and is described for the management of pressure ulcers, venous ulcers, diabetic foot ulcers, surgical wounds, and other partial- and full-thickness wounds.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q2" aria-expanded="false" aria-controls="faq-ovena-health-a2">Is the collagen dressing FDA approved? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a2" role="region" aria-labelledby="faq-ovena-health-q2"><div class="faq-a-inner">It is <strong>FDA 510(k) cleared</strong>, which is not the same as approved, and we do not use the word &ldquo;approved&rdquo; about it. The distinction the live listing draws is worth repeating: it is &ldquo;cleared by FDA as a medical device in its own right, not merely produced in a registered facility.&rdquo; The dressing is 100% Type&nbsp;I bovine collagen and is described for the management of pressure ulcers, venous ulcers, diabetic foot ulcers, surgical wounds, and other partial- and full-thickness wounds.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Do the compression socks prevent blood clots? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">We do not make that claim. The socks are described as <strong>20&ndash;30&nbsp;mmHg graduated compression for daily edema management and venous support</strong>. Where clot risk comes up in a compression conversation, the honest framing is <strong>risk reduction, never prevention</strong> &mdash; and whether compression is appropriate for a given patient, at what strength, is a decision for the treating clinician. Ovena products do not treat or cure disease.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q3" aria-expanded="false" aria-controls="faq-ovena-health-a3">Do the compression socks prevent blood clots? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a3" role="region" aria-labelledby="faq-ovena-health-q3"><div class="faq-a-inner">We do not make that claim. The socks are described as <strong>20&ndash;30&nbsp;mmHg graduated compression for daily edema management and venous support</strong>. Where clot risk comes up in a compression conversation, the honest framing is <strong>risk reduction, never prevention</strong> &mdash; and whether compression is appropriate for a given patient, at what strength, is a decision for the treating clinician. Ovena products do not treat or cure disease.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Can I pay with an FSA or HSA? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Ovena products are <strong>FSA/HSA eligible</strong>, but eligibility is decided by your plan, not by us &mdash; verify with your plan administrator before you count on it. For the collagen dressing, HCPCS <strong>A6021</strong> (&ldquo;collagen dressing, sterile, 16 sq in or less&rdquo;) is noted on the Amazon listing so you have it for your own records. A retail purchase is not an insurance claim; where a code is billed, coverage and payment are set by CMS or the payer and are subject to change.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q4" aria-expanded="false" aria-controls="faq-ovena-health-a4">Can I pay with an FSA or HSA? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a4" role="region" aria-labelledby="faq-ovena-health-q4"><div class="faq-a-inner">Ovena products are <strong>FSA/HSA eligible</strong>, but eligibility is decided by your plan, not by us &mdash; verify with your plan administrator before you count on it. For the collagen dressing, HCPCS <strong>A6021</strong> (&ldquo;collagen dressing, sterile, 16 sq in or less&rdquo;) is noted on the Amazon listing so you have it for your own records. A retail purchase is not an insurance claim; where a code is billed, coverage and payment are set by CMS or the payer and are subject to change.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Should I buy on ovenahealth.com or on Amazon? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Buy <strong>direct</strong> when you want the full range in one order &mdash; every dressing and sock variant, the Collagen Kit, the Sock Aid, the Sterile Saline Wound Wash, and the Juzo partner stockings &mdash; or when your order clears the <strong>$75 free-shipping threshold</strong>. Buy on <strong>Amazon</strong> when you would rather use an account you already have: as of August 17, 2026 the storefront pages we confirmed were the collagen dressings, the hydrocolloid roll in both lengths and the 20&ndash;30&nbsp;mmHg socks &mdash; the storefront lists further items, so check it for anything else you need. Pricing tracks between the two &mdash; the 4&times;4 collagen dressing is <strong>$55.00</strong> either way &mdash; and ovenahealth.com is the canonical source if they ever differ.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q5" aria-expanded="false" aria-controls="faq-ovena-health-a5">Should I buy on ovenahealth.com or on Amazon? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a5" role="region" aria-labelledby="faq-ovena-health-q5"><div class="faq-a-inner">Buy <strong>direct</strong> when you want the full range in one order &mdash; every dressing and sock variant, the Collagen Kit, the Sock Aid, the Sterile Saline Wound Wash, and the Juzo partner stockings &mdash; or when your order clears the <strong>$75 free-shipping threshold</strong>. Buy on <strong>Amazon</strong> when you would rather use an account you already have: as of August 17, 2026 the storefront pages we confirmed were the collagen dressings, the hydrocolloid roll in both lengths and the 20&ndash;30&nbsp;mmHg socks &mdash; the storefront lists further items, so check it for anything else you need. Pricing tracks between the two &mdash; the 4&times;4 collagen dressing is <strong>$55.00</strong> either way &mdash; and ovenahealth.com is the canonical source if they ever differ.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Who reviews these products before they go on sale? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>Dr. David Chahine, MD</strong>, Ovena&rsquo;s Medical Director. He is a practicing wound-care physician trained at <strong>Stanford University School of Medicine</strong>, and every product in the line is clinically reviewed by him. That is the whole premise of the brand: <strong>&ldquo;Clinical rigor, honest access, and credentialed care, in every product line.&rdquo;</strong></div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q6" aria-expanded="false" aria-controls="faq-ovena-health-a6">Who reviews these products before they go on sale? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a6" role="region" aria-labelledby="faq-ovena-health-q6"><div class="faq-a-inner"><strong>David Chahine, MD</strong>, Ovena&rsquo;s Medical Director. He is a practicing wound-care physician trained at <strong>Stanford University School of Medicine</strong>, and every product in the line is clinically reviewed by him. That is the whole premise of the brand: <strong>&ldquo;Clinical rigor, honest access, and credentialed care, in every product line.&rdquo;</strong></div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Can a practice buy Ovena for its patients? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Yes &mdash; the brand is priced for both, which is what &ldquo;whether patient or practice&rdquo; means. A practice buys the same catalog at the same published prices, with free shipping over $75, and does not need a distribution account to keep a consistent dressing or compression item on the shelf. If you would rather talk it through with our team &mdash; including how it sits next to the provider-only portfolio &mdash; use the contact page.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q7" aria-expanded="false" aria-controls="faq-ovena-health-a7">Can a practice buy Ovena for its patients? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a7" role="region" aria-labelledby="faq-ovena-health-q7"><div class="faq-a-inner">Yes &mdash; the brand is priced for both, which is what &ldquo;whether patient or practice&rdquo; means. A practice buys the same catalog at the same published prices, with free shipping over $75, and does not need a distribution account to keep a consistent dressing or compression item on the shelf. If you would rather talk it through with our team &mdash; including how it sits next to the provider-only portfolio &mdash; use the contact page.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How current are the prices and ASINs on this page? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Everything on this page &mdash; catalog, variant pricing, storefront pages and ASINs &mdash; was read live from ovenahealth.com and amazon.com on <strong>August 17, 2026</strong>. Both storefronts are live commerce and can change without notice, so treat the product page or the Amazon listing as the current source. If something here has drifted, the storefront is right and this page is stale.</div></div>
+            <button type="button" class="faq-q" id="faq-ovena-health-q8" aria-expanded="false" aria-controls="faq-ovena-health-a8">How current are the prices and ASINs on this page? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-ovena-health-a8" role="region" aria-labelledby="faq-ovena-health-q8"><div class="faq-a-inner">Everything on this page &mdash; catalog, variant pricing, storefront pages and ASINs &mdash; was read live from ovenahealth.com and amazon.com on <strong>August 17, 2026</strong>. Both storefronts are live commerce and can change without notice, so treat the product page or the Amazon listing as the current source. If something here has drifted, the storefront is right and this page is stale.</div></div>
           </div>
         </div>
 
         <div class="compliance-note scroll-reveal" style="margin-top:var(--s-5)">
           <h4>How we talk about these products</h4>
           <p>The collagen dressing is <strong style="color:var(--snow)">510(k) cleared</strong> &mdash; we never write &ldquo;approved.&rdquo; Compression is described as graduated support for daily edema management and venous support; where clot risk enters the conversation the framing is <strong style="color:var(--snow)">risk reduction, not prevention</strong>. No Ovena product is presented as treating or curing disease, and collagen supports wound healing without replacing offloading, compression, or pressure redistribution.</p>
-          <p>Ovena Health is Albacete MedDev&rsquo;s own consumer brand. The clinical graft portfolio is separate, provider-only, and not represented by anything on this page. Nothing here is medical advice &mdash; wound care decisions belong with a treating clinician, and product selection for a specific wound should be clinician-directed.</p>
+          <p>Ovena Health is Albacete MedDev&rsquo;s own consumer brand. The clinical graft portfolio is separate, provider-only, and not represented by anything on this page. Nothing here is medical advice &mdash; wound-care decisions belong with a treating clinician, and product selection for a specific wound should be clinician-directed.</p>
         </div>
       </div>
     </section>
@@ -573,6 +574,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

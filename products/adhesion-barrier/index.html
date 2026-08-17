@@ -8,7 +8,7 @@
   <meta name="description" content="Dual-layer, chorion-free amniotic membrane for open, laparoscopic, and robotic surgery. Deploys through a 10-12 mm trocar in 3-5 minutes. HCPCS C1762.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -31,6 +31,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Amniotic Membrane Adhesion Barrier","description":"Dual-layer, chorion-free amniotic membrane allograft for adhesion prevention in open, laparoscopic, and robotic surgery. HCPCS C1762.","url":"https://albacetemeddev-redesign.pages.dev/products/adhesion-barrier/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"Adhesion Barrier","item":"https://albacetemeddev-redesign.pages.dev/products/adhesion-barrier/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -40,10 +41,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -80,30 +81,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -144,7 +145,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-split-layout">
       <div class="container hero-inner">
@@ -441,32 +442,32 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">Why is this easier to deploy than MiMedx or Integra alternatives? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Our allograft is a <strong>chorion-free, dual-layer amniotic membrane</strong> &mdash; thinner and more pliable than the bulkier multi-layer placental allografts in the MiMedx category, and purpose-shaped for tissue separation rather than the dermal-matrix reconstruction Integra products are designed for. In laparoscopy specifically, the membrane rolls tighter and <strong>passes through a standard 10&ndash;12&nbsp;mm trocar</strong> without fighting the sleeve. It also does not require a dry field (unlike Interceed), hydrates in 30&ndash;60 seconds of saline, and places without sutures.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q1" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a1">Why is this easier to deploy than MiMedx or Integra alternatives? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a1" role="region" aria-labelledby="faq-products-adhesion-barrier-q1"><div class="faq-a-inner">Our allograft is a <strong>chorion-free, dual-layer amniotic membrane</strong> &mdash; thinner and more pliable than the bulkier multi-layer placental allografts in the MiMedx category, and purpose-shaped for tissue separation rather than the dermal-matrix reconstruction Integra products are designed for. In laparoscopy specifically, the membrane rolls tighter and <strong>passes through a standard 10&ndash;12&nbsp;mm trocar</strong> without fighting the sleeve. It also does not require a dry field (unlike Interceed), hydrates in 30&ndash;60 seconds of saline, and places without sutures.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How does amniotic membrane actually prevent adhesions? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Four mechanisms work simultaneously during the critical <strong>5&ndash;7 day adhesion-formation window</strong>: (1) a physical barrier separates healing peritoneum from adjacent structures; (2) native cytokines &mdash; TGF-&beta;, IL-10, MMP inhibitors &mdash; actively modulate the fibrotic cascade; (3) a regenerative ECM scaffold of collagen IV/V/VII and hyaluronic acid supports healing toward normal tissue; (4) full bioresorption leaves nothing behind. Unlike passive synthetic barriers (Seprafilm, Interceed) or permanent implants (PTFE), this membrane is <strong>doing regenerative work in addition to barrier function</strong>.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q2" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a2">How does amniotic membrane actually prevent adhesions? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a2" role="region" aria-labelledby="faq-products-adhesion-barrier-q2"><div class="faq-a-inner">Four mechanisms work simultaneously during the critical <strong>5&ndash;7 day adhesion-formation window</strong>: (1) a physical barrier separates healing peritoneum from adjacent structures; (2) native cytokines &mdash; TGF-&beta;, IL-10, MMP inhibitors &mdash; actively modulate the fibrotic cascade; (3) a regenerative ECM scaffold of collagen IV/V/VII and hyaluronic acid supports healing toward normal tissue; (4) full bioresorption leaves nothing behind. Unlike passive synthetic barriers (Seprafilm, Interceed) or permanent implants (PTFE), this membrane is <strong>doing regenerative work in addition to barrier function</strong>.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Which procedures is it indicated for? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Allograft Tissue can be used in <strong>open incision, laparoscopy, and/or robotic surgery procedures</strong>. Reported applications include: <strong>OBGYN</strong> &mdash; hysterectomy, oophorectomy, myomectomy, endometriosis excision, sacrocolpopexy. <strong>Colorectal</strong> &mdash; exploratory laparotomy with bowel resection, lower anterior resection, partial/hemi/total colectomy. <strong>Urology</strong> &mdash; radical prostatectomy (open, laparoscopic, or robotic). <strong>Vascular</strong> &mdash; FEMPOP bypass, AV fistula creation, vascular anastomosis. Use is at the operating surgeon&rsquo;s discretion.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q3" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a3">Which procedures is it indicated for? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a3" role="region" aria-labelledby="faq-products-adhesion-barrier-q3"><div class="faq-a-inner">Allograft Tissue can be used in <strong>open incision, laparoscopy, and/or robotic surgery procedures</strong>. Reported applications include: <strong>OBGYN</strong> &mdash; hysterectomy, oophorectomy, myomectomy, endometriosis excision, sacrocolpopexy. <strong>Colorectal</strong> &mdash; exploratory laparotomy with bowel resection, lower anterior resection, partial/hemi/total colectomy. <strong>Urology</strong> &mdash; radical prostatectomy (open, laparoscopic, or robotic). <strong>Vascular</strong> &mdash; FEMPOP bypass, AV fistula creation, vascular anastomosis. Use is at the operating surgeon&rsquo;s discretion.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Does adopting it change our OR workflow? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No. <strong>No new instruments. No change to docking or port placement. No learning curve for scrub or circulator.</strong> Four steps at closure: select size (or trim to field), hydrate 30&ndash;60 seconds in saline while finishing the procedure, roll and pass through a standard 10&ndash;12&nbsp;mm trocar, position with standard laparoscopic graspers. Added case time: <strong>3&ndash;5 minutes at closure</strong>. The second sheet places as comfortably as the first.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q4" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a4">Does adopting it change our OR workflow? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a4" role="region" aria-labelledby="faq-products-adhesion-barrier-q4"><div class="faq-a-inner">No. <strong>No new instruments. No change to docking or port placement. No learning curve for scrub or circulator.</strong> Four steps at closure: select size (or trim to field), hydrate 30&ndash;60 seconds in saline while finishing the procedure, roll and pass through a standard 10&ndash;12&nbsp;mm trocar, position with standard laparoscopic graspers. Added case time: <strong>3&ndash;5 minutes at closure</strong>. The second sheet places as comfortably as the first.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How does the C1762 pass-through actually work? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">C1762 is a CMS <strong>transitional pass-through</strong> HCPCS covering "connective tissue, human (includes fascia lata)." Under OPPS / ASC, the facility bills C1762 on a separate line <strong>in addition to</strong> the facility fee for the procedure. The surgeon bills their usual CPT &mdash; no coding workflow change. The patient has <strong>zero out-of-pocket</strong>: not cash-pay, not out-of-network. Our team walks your facility billing contact through C1762 mechanics end-to-end before the first case. Pass-through status is set by CMS and subject to change; we confirm current status on a case-specific basis.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q5" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a5">How does the C1762 pass-through actually work? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a5" role="region" aria-labelledby="faq-products-adhesion-barrier-q5"><div class="faq-a-inner">C1762 is a CMS <strong>transitional pass-through</strong> HCPCS covering "connective tissue, human (includes fascia lata)." Under OPPS / ASC, the facility bills C1762 on a separate line <strong>in addition to</strong> the facility fee for the procedure. The surgeon bills their usual CPT &mdash; no coding workflow change. The patient has <strong>zero out-of-pocket</strong>: not cash-pay, not out-of-network. Our team walks your facility billing contact through C1762 mechanics end-to-end before the first case. Pass-through status is set by CMS and subject to change; we confirm current status on a case-specific basis.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is the tissue safe? Where does it come from? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Our amniotic membrane is <strong>sourced in the United States</strong> from healthy, pre-screened, consenting mothers during planned, full-term Caesarean sections. Donors undergo behavioral risk assessment, physical assessment, and communicable-disease testing. Processing is performed in compliance with <strong>American Association of Tissue Banks (AATB)</strong> and <strong>U.S. FDA</strong> rules, regulations, and standards. The tissue is chorion-free, contains <strong>no Class&nbsp;II antigens</strong>, and is considered immune-privileged &mdash; reducing the risk of patient reaction.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q6" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a6">Is the tissue safe? Where does it come from? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a6" role="region" aria-labelledby="faq-products-adhesion-barrier-q6"><div class="faq-a-inner">Our amniotic membrane is <strong>sourced in the United States</strong> from healthy, pre-screened, consenting mothers during planned, full-term Caesarean sections. Donors undergo behavioral risk assessment, physical assessment, and communicable-disease testing. Processing is performed in compliance with <strong>American Association of Tissue Banks (AATB)</strong> and <strong>U.S. FDA</strong> rules, regulations, and standards. The tissue is chorion-free, contains <strong>no Class&nbsp;II antigens</strong>, and is considered immune-privileged &mdash; reducing the risk of patient reaction.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Why partner with Albacete MedDev for this program? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">With Albacete MedDev, the adhesion barrier arrives as a <strong>program</strong> &mdash; not a product drop-off. Our team provides billing-team walkthroughs on C1762 mechanics, OR in-services on handling and trocar deployment, and documentation support for your compliance and audit workflow. Across every one of our biologics and device programs, you gain access to our full compliance infrastructure, portal-integrated tracking, and in-house medical-legal guidance &mdash; so the clinical adoption stays clean from first case to year five.</div></div>
+            <button type="button" class="faq-q" id="faq-products-adhesion-barrier-q7" aria-expanded="false" aria-controls="faq-products-adhesion-barrier-a7">Why partner with Albacete MedDev for this program? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-adhesion-barrier-a7" role="region" aria-labelledby="faq-products-adhesion-barrier-q7"><div class="faq-a-inner">With Albacete MedDev, the adhesion barrier arrives as a <strong>program</strong> &mdash; not a product drop-off. Our team provides billing-team walkthroughs on C1762 mechanics, OR in-services on handling and trocar deployment, and documentation support for your compliance and audit workflow. Across every one of our biologics and device programs, you gain access to our full compliance infrastructure, portal-integrated tracking, and in-house medical-legal guidance &mdash; so the clinical adoption stays clean from first case to year five.</div></div>
           </div>
         </div>
       </div>
@@ -533,6 +534,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

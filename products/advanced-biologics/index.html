@@ -8,7 +8,7 @@
   <meta name="description" content="Microlyte SAM antimicrobial matrix and amniotic membrane wraps — one portfolio covering every wound acuity. FDA 510(k), HCPCS A2005, BioLab partnership.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -31,6 +31,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Advanced Biologics Portfolio","description":"Microlyte SAM antimicrobial matrix and amniotic membrane wraps (Tri-Membrane, Membrane Wrap, Membrane Wrap Lyte) covering every wound acuity.","url":"https://albacetemeddev-redesign.pages.dev/products/advanced-biologics/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device","manufacturer":{"@type":"Organization","name":"BioLab Sciences"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"Advanced Biologics","item":"https://albacetemeddev-redesign.pages.dev/products/advanced-biologics/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -40,10 +41,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -80,30 +81,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -144,7 +145,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-split-layout">
       <div class="container hero-inner">
@@ -217,20 +218,20 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What differentiates Microlyte SAM? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>Microlyte SAM</strong> is a sub-cytotoxic silver antimicrobial dressing delivering broad-spectrum antimicrobial protection with <strong>50–100x lower silver concentration</strong> than conventional dressings — while achieving equivalent kill rates. FDA 510(k) cleared (K153756), HCPCS A2005. Conforms fully to the wound surface, eliminates dead space, and is bioresorbable within 7 days. Clinical data shows 91% healed or improved outcomes at 12 weeks.</div></div>
+            <button type="button" class="faq-q" id="faq-products-advanced-biologics-q1" aria-expanded="false" aria-controls="faq-products-advanced-biologics-a1">What differentiates Microlyte SAM? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-advanced-biologics-a1" role="region" aria-labelledby="faq-products-advanced-biologics-q1"><div class="faq-a-inner"><strong>Microlyte SAM</strong> is a sub-cytotoxic silver antimicrobial dressing delivering broad-spectrum antimicrobial protection with <strong>50–100x lower silver concentration</strong> than conventional dressings — while achieving equivalent kill rates. FDA 510(k) cleared (K153756), HCPCS A2005. Conforms fully to the wound surface, eliminates dead space, and is bioresorbable within 7 days. Clinical data shows 91% healed or improved outcomes at 12 weeks.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What is Tri-Membrane Wrap? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>Tri-Membrane Wrap</strong> is an A-C-A (amnion-chorion-amnion) tri-layer allograft offering the <strong>highest ECM concentration</strong> in the BioLab Sciences portfolio. Designed as an escalation product for failed prior grafts, high-risk patients, and complex wound presentations — Tri-Membrane Wrap delivers maximum regenerative support where conventional approaches have underperformed.</div></div>
+            <button type="button" class="faq-q" id="faq-products-advanced-biologics-q2" aria-expanded="false" aria-controls="faq-products-advanced-biologics-a2">What is Tri-Membrane Wrap? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-advanced-biologics-a2" role="region" aria-labelledby="faq-products-advanced-biologics-q2"><div class="faq-a-inner"><strong>Tri-Membrane Wrap</strong> is an A-C-A (amnion-chorion-amnion) tri-layer allograft offering the <strong>highest ECM concentration</strong> in the BioLab Sciences portfolio. Designed as an escalation product for failed prior grafts, high-risk patients, and complex wound presentations — Tri-Membrane Wrap delivers maximum regenerative support where conventional approaches have underperformed.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What is Membrane Wrap? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>Membrane Wrap</strong> is a dual-layer amnion allograft designed for moderate chronic wounds. With <strong>2x the extracellular matrix (ECM) payload</strong> of single-layer alternatives, Membrane Wrap provides enhanced structural support and concentrated growth factor delivery across a broad range of wound care indications.</div></div>
+            <button type="button" class="faq-q" id="faq-products-advanced-biologics-q3" aria-expanded="false" aria-controls="faq-products-advanced-biologics-a3">What is Membrane Wrap? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-advanced-biologics-a3" role="region" aria-labelledby="faq-products-advanced-biologics-q3"><div class="faq-a-inner"><strong>Membrane Wrap</strong> is a dual-layer amnion allograft designed for moderate chronic wounds. With <strong>2x the extracellular matrix (ECM) payload</strong> of single-layer alternatives, Membrane Wrap provides enhanced structural support and concentrated growth factor delivery across a broad range of wound care indications.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What is Membrane Wrap Lyte? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>Membrane Wrap Lyte</strong> is a single-amnion allograft indicated for shallow diabetic foot ulcers (DFUs) and partial-thickness venous leg ulcers (VLUs). As a <strong>cost-effective entry point</strong> into biologic wound care, Membrane Wrap Lyte delivers essential amniotic growth factors and extracellular matrix scaffolding in an accessible format.</div></div>
+            <button type="button" class="faq-q" id="faq-products-advanced-biologics-q4" aria-expanded="false" aria-controls="faq-products-advanced-biologics-a4">What is Membrane Wrap Lyte? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-advanced-biologics-a4" role="region" aria-labelledby="faq-products-advanced-biologics-q4"><div class="faq-a-inner"><strong>Membrane Wrap Lyte</strong> is a single-amnion allograft indicated for shallow diabetic foot ulcers (DFUs) and partial-thickness venous leg ulcers (VLUs). As a <strong>cost-effective entry point</strong> into biologic wound care, Membrane Wrap Lyte delivers essential amniotic growth factors and extracellular matrix scaffolding in an accessible format.</div></div>
           </div>
         </div>
       </div>
@@ -297,6 +298,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

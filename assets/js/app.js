@@ -116,6 +116,8 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     toggle.classList.toggle('is-open', open);
     menu.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // "Open menu, expanded" is a confusing announcement — name the action
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     body.style.overflow = open ? 'hidden' : '';
   }
 
@@ -214,8 +216,15 @@ const isTouch = window.matchMedia('(hover: none)').matches;
       if (!item) return;
       const isOpen = item.classList.contains('is-open');
       const parent = item.parentElement;
-      if (parent) parent.querySelectorAll('.faq-item.is-open').forEach(i => i.classList.remove('is-open'));
-      if (!isOpen) item.classList.add('is-open');
+      if (parent) parent.querySelectorAll('.faq-item.is-open').forEach(i => {
+        i.classList.remove('is-open');
+        const b = i.querySelector('.faq-q');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        q.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 })();

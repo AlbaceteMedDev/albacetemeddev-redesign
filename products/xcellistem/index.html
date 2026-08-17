@@ -8,7 +8,7 @@
   <meta name="description" content="Porcine multi-tissue extracellular matrix particulate from lung and spleen. FDA 510(k) K172593. HCPCS A2004, billed per milligram.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"XCelliStem Wound Powder","description":"Porcine multi-tissue extracellular matrix particulate wound dressing. FDA 510(k) K172593. HCPCS A2004.","url":"https://albacetemeddev-redesign.pages.dev/products/xcellistem/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"XCelliStem","item":"https://albacetemeddev-redesign.pages.dev/products/xcellistem/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-compact">
       <div class="container hero-inner">
@@ -186,7 +187,7 @@
           <div class="stat scroll-reveal" data-stagger="180">
             <div class="label">HCPCS</div>
             <div class="value">A2004</div>
-            <div class="desc">Billed per 1&nbsp;mg. Payment and coverage are set by CMS and the payer, and change.</div>
+            <div class="desc">Descriptor is &ldquo;Xcellistem, 1&nbsp;mg&rdquo;; not every payer applies that unit basis. Payment and coverage are set by CMS and the payer, and change.</div>
           </div>
         </div>
       </div>
@@ -196,8 +197,8 @@
       <div class="container">
         <div class="section-header scroll-reveal">
           <span class="eyebrow">The Problem</span>
-          <h2>Sheets don&rsquo;t fit <em style="font-style:normal;color:var(--gold)">three-dimensional wounds.</em></h2>
-          <p>A tunneled abdominal dehiscence, an undermined sacral cavity, a blast wound with exposed tendon &mdash; none of these are flat. A sheet graft bridges the surface and leaves the recess unaddressed. A particulate goes where the wound actually is.</p>
+          <h2>Not every wound <em style="font-style:normal;color:var(--gold)">is flat.</em></h2>
+          <p>A tunneled abdominal dehiscence, an undermined sacral cavity, a blast wound with exposed tendon &mdash; none of these are flat. Tunneled and undermined wounds are named in the cleared indications, and a particulate can be delivered into cavitary recesses without cutting or layering a sheet. Whether that changes outcomes has not been studied comparatively.</p>
         </div>
 
         <div class="products-grid">
@@ -214,7 +215,7 @@
           <div class="product-card scroll-reveal" data-stagger="160">
             <span class="tag">Design intent</span>
             <h3>Built to be consumed</h3>
-            <p>A particulate matrix is <strong style="color:var(--snow)">designed to degrade</strong> as the wound remodels &mdash; the argument the manufacturer&rsquo;s poster series makes for using it in contaminated fields. Note carefully: infection is <em>not</em> among the cleared indications listed below.</p>
+            <p>A particulate matrix is <strong style="color:var(--snow)">designed to degrade and resorb</strong> as the wound remodels rather than to persist as a covering &mdash; the stated design intent, and the reason the product is consumed rather than removed. Note carefully: infection is <em>not</em> among the cleared indications listed below.</p>
           </div>
         </div>
 
@@ -236,7 +237,7 @@
             <p style="margin-bottom:var(--s-3);color:var(--snow)">&ldquo;The XCelliStem Wound Powder is intended for the management of wounds including: partial and full-thickness wounds, pressure ulcers, diabetic ulcers, venous ulcers, chronic vascular ulcers, tunneled/undermined wounds, surgical wounds (donor sites/grafts, post-Moh&rsquo;s surgery, post-laser surgery, podiatric, wound dehiscence), trauma wounds (abrasions, lacerations, second-degree burns, and skin tears), and draining wounds. The device is intended for one-time use.&rdquo;</p>
 
             <div class="compliance-note">
-              <h4>Cleared indication is not the same thing as published evidence</h4>
+              <h2>Cleared indication is not the same thing as published evidence</h2>
               <p>Diabetic ulcers and venous ulcers appear in the cleared indications above. <strong style="color:var(--snow)">No published study of XCelliStem exists in a diabetic-foot-ulcer or venous-leg-ulcer population.</strong> Those are two different facts and a reviewer will treat them as two different facts. The clearance establishes substantial equivalence to predicate wound powders; it is not a wound-healing outcomes trial. Read the evidence section below before you build a coverage argument on this product.</p>
             </div>
           </div>
@@ -274,9 +275,10 @@
             <div class="spec-row"><span class="spec-label">Fibronectin</span><span class="spec-value">~14%</span></div>
             <div class="spec-row"><span class="spec-label">Laminin</span><span class="spec-value">~7%</span></div>
             <div class="spec-row"><span class="spec-label">Collagen types</span><span class="spec-value">I, III, IV in the 510(k) table; <em>I, III, IV, V</em> in later literature</span></div>
-            <div class="spec-row"><span class="spec-label">Glycosaminoglycans</span><span class="spec-value">Present &mdash; sulfated GAG composition characterised</span></div>
-            <div class="spec-row"><span class="spec-label">Hyaluronic acid</span><span class="spec-value">Present &mdash; HA composition characterised</span></div>
-            <div class="spec-row"><span class="spec-label">Growth factors</span><span class="spec-value">FGF &middot; VEGF &middot; EGF</span></div>
+            <div class="spec-row"><span class="spec-label">Glycosaminoglycans</span><span class="spec-value">Present &mdash; sulfated GAG composition characterized</span></div>
+            <div class="spec-row"><span class="spec-label">Hyaluronic acid</span><span class="spec-value">Present &mdash; HA composition characterized</span></div>
+            <div class="spec-row"><span class="spec-label">Growth factors</span><span class="spec-value">FGF &middot; VEGF &middot; EGF &mdash; <em>manufacturer poster and published discussion sections only</em>; not among the characterization data in the 510(k)</span></div>
+            <div class="spec-row"><span class="spec-label">Cellular content</span><span class="spec-value"><em>Contains no viable cells</em> &mdash; the product name does not denote cellular content</span></div>
             <div class="spec-row"><span class="spec-label">Source of percentages</span><span class="spec-value"><em>Manufacturer poster</em> &mdash; not a peer-reviewed assay paper</span></div>
           </div>
 
@@ -284,7 +286,7 @@
             <h3 style="margin-bottom:var(--s-2)">What is established, and what is rationale</h3>
             <p style="margin-bottom:var(--s-3)">Keep the two apart when you present this product. One column of the ledger is documented in the 510(k); the other is a mechanistic argument drawn from the broader ECM literature.</p>
             <ul class="aligned-list">
-              <li><strong>Documented</strong><span>FDA reviewed device characterization covering collagen type composition, sulfated glycosaminoglycan, hyaluronic acid, lipid, elastin, fibronectin and laminin composition. The matrix contents were characterised as part of the submission.</span></li>
+              <li><strong>Documented</strong><span>FDA reviewed device characterization covering collagen type composition, sulfated glycosaminoglycan, hyaluronic acid, lipid, elastin, fibronectin and laminin composition. The matrix contents were characterized as part of the submission.</span></li>
               <li><strong>Documented</strong><span>Biocompatibility across cytotoxicity, sensitization, intracutaneous reactivity, acute systemic toxicity, pyrogenicity, toxicology risk assessment, implantation and genotoxicity. Plus sterilization validation, viral inactivation, extractables &amp; leachables, and bacterial endotoxin.</span></li>
               <li><strong>Documented, but read it correctly</strong><span>The &ldquo;clinical testing&rdquo; in the submission was a <strong style="color:var(--snow)">Repeat Insult Patch Test and a Skin Prick Test</strong> &mdash; irritation and sensitization endpoints. It was not a wound-healing trial.</span></li>
               <li><strong>Rationale</strong><span>Published discussion sections describe ECM scaffolds shifting macrophage polarity from a pro-inflammatory M1 toward a pro-regenerative M2 phenotype and releasing chemotactic cues for progenitor cells. That is scaffold-class literature, cited as background &mdash; not an outcome measured for this product.</span></li>
@@ -293,7 +295,7 @@
           </div>
         </div>
 
-        <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">Percentage composition is reported on a manufacturer mechanism-of-action poster (Kimmel HM), not in a peer-reviewed analytical publication. The 510(k) substantial-equivalence comparison table lists collagen types I, III and IV for XCelliStem; Khorsandi J, et al. PRS Glob Open. 2026;14(7):e7950 and the Fortner poster list types I, III, IV and V. We report the discrepancy rather than picking the better number.</p>
+        <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">Percentage composition is reported on a manufacturer mechanism-of-action poster (Kimmel HM), not in a peer-reviewed analytical publication. The 510(k) substantial-equivalence comparison table lists collagen types I, III and IV for XCelliStem; Khorsandi J, et al. PRS Glob Open. 2026;14(7):e7950 and the Fortner poster list types I, III, IV and V. We report the discrepancy rather than picking the better number. Growth-factor content was <strong style="color:var(--snow)">not</strong> part of the FDA device characterization package, which covered collagen type, sulfated glycosaminoglycan, hyaluronic acid, lipid, elastin, fibronectin and laminin composition only; the growth-factor list traces to the manufacturer&rsquo;s own material by way of a conference poster, not to a published assay, and has not been independently verified. XCelliStem contains no viable cells: it is an E-beam-sterilized extracellular matrix particulate regulated as a device, not a cellular or stem-cell product, and the product name does not denote cellular content.</p>
       </div>
     </section>
 
@@ -327,7 +329,7 @@
               <li><strong>Not defensible</strong><span>&ldquo;FDA validated the healing claims.&rdquo; The clearance rests on equivalence, biocompatibility, bench and characterization data &mdash; with irritation and sensitization testing as the clinical component.</span></li>
             </ul>
 
-            <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Our position.</strong> We sell this product on what is documented: a cleared, characterised, single-use multi-tissue particulate with a real regulatory file and a thin but honest clinical literature. If a competitor&rsquo;s evidence file is stronger for your patient population, we will tell you that.</p>
+            <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">Our position.</strong> We sell this product on what is documented: a cleared, characterized, single-use multi-tissue particulate with a real regulatory file and a thin but honest clinical literature. If a competitor&rsquo;s evidence file is stronger for your patient population, we will tell you that.</p>
           </div>
         </div>
       </div>
@@ -440,6 +442,12 @@
               <li><strong>What the authors do concede</strong><span>Their Future Directions section calls for larger samples and randomized controlled trials to elucidate the findings. Use that framing rather than the abstract&rsquo;s.</span></li>
               <li><strong>How to use it</strong><span>As a hypothesis-generating single-center observation in high-risk abdominal wall reconstruction. Not as proof of effect, and never as the sole support for a coverage or appeal argument.</span></li>
             </ul>
+
+            <div class="compliance-note" style="margin-top:var(--s-4)">
+              <h4>Read this use carefully &mdash; a reported use, not a billable one</h4>
+              <p>The cleared Indications for Use describe the management of wounds: topical application to a wound bed. In this series the particulate was placed prophylactically onto fascia beneath a closed adipocutaneous flap to reduce seroma, <strong style="color:var(--snow)">not applied to an open wound</strong> &mdash; and a stage III ventral hernia is by definition a contaminated field, while infection is not a cleared indication. <strong style="color:var(--snow)">This use is not within the cleared Indications for Use.</strong></p>
+              <p>It is also not a use with a billing pathway. No skin-substitute application code (15271&ndash;15278) describes intraoperative placement beneath an adipocutaneous flap, and there is no established coverage pathway for it. Reported here as published literature only.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -450,7 +458,7 @@
         <div class="section-header scroll-reveal">
           <span class="eyebrow">Tier 3 &mdash; Case reports and posters</span>
           <h2>Everything else is <em style="font-style:normal;color:var(--gold)">a poster or a non-indexed case report.</em></h2>
-          <p>Real patients, documented outcomes, no controls, and no peer review of the kind a payer recognises. Useful for teaching what the product does in a room. Not evidence in an appeal.</p>
+          <p>Real patients, documented outcomes, no controls, and no peer review of the kind a payer recognizes. Useful for teaching what the product does in a room. Not evidence in an appeal.</p>
         </div>
 
         <div class="products-grid">
@@ -462,17 +470,17 @@
           <div class="product-card scroll-reveal" data-stagger="80">
             <span class="tag">Poster &middot; infected wounds</span>
             <h3>Kimmel infected-wound series</h3>
-            <p>Kimmel HM, Learn L, Corbisiero R. A poster case series in infected wounds &mdash; the origin of the argument that a matrix intended to degrade is not compromised by bacterial degradation. Includes a second-degree burn in a 49-year-old with diabetes treated with two applications over three weeks and healed at four months, and a third-degree burn case. <strong style="color:var(--snow)">Poster-level evidence.</strong> Infection is not a cleared indication.</p>
+            <p>Kimmel HM, Learn L, Corbisiero R. A poster case series in infected wounds &mdash; the origin of the argument that a matrix intended to degrade is not compromised by bacterial degradation. Includes a second-degree burn in a 49-year-old with diabetes treated with two applications over three weeks and healed at four months, and a third-degree burn case. <strong style="color:var(--snow)">Third-degree burns are not among the cleared indications</strong> &mdash; the IFU lists second-degree burns only. <strong style="color:var(--snow)">Poster-level evidence.</strong> Infection is not a cleared indication.</p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="160">
             <span class="tag">Poster &middot; single case</span>
             <h3>Infected scalp with skull exposure</h3>
-            <p>Ghani O, Magendran D, Davis D. A 41-year-old with diabetes, an infected scalp eschar with underlying skull infection and exposure. <strong style="color:var(--snow)">1&nbsp;g applied</strong> after burr holes and debridement; hypergranulation at one week, completely healed at three months. One patient, one poster.</p>
+            <p>Ghani O, Magendran D, Davis D. A 41-year-old with diabetes, an infected scalp eschar with underlying skull infection and exposure. <strong style="color:var(--snow)">1&nbsp;g applied</strong> after burr holes and debridement; hypergranulation at one week &mdash; an overgranulation tissue response requiring management, not a healing milestone &mdash; with reported complete healing at three months. One patient, one poster.</p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="240">
             <span class="tag">Poster &middot; single case</span>
             <h3>Severe lactational abscess</h3>
-            <p>Fortner R, Zhu C, Collins RA, Ronaghan CA, Scheerer M. A 24-year-old, three months postpartum, with a <strong style="color:var(--snow)">5.5&nbsp;&times;&nbsp;5.5&nbsp;cm</strong> full-thickness area of dermal necrosis after a lactational abscess. Managed in the outpatient setting without formal surgical debridement; the patient continued breastfeeding. Depth reached 0&nbsp;cm at 12 days.</p>
+            <p>Fortner R, Zhu C, Collins RA, Ronaghan CA, Scheerer M. A 24-year-old, three months postpartum, with a <strong style="color:var(--snow)">5.5&nbsp;&times;&nbsp;5.5&nbsp;cm</strong> full-thickness area of dermal necrosis after a lactational abscess. Managed in the outpatient setting without formal surgical debridement; the patient continued breastfeeding. Wound depth measured <strong style="color:var(--snow)">0&nbsp;cm at 12 days</strong> &mdash; loss of depth, not epithelialization; the poster reports complete healing within six weeks of the initial application. <strong style="color:var(--snow)">No data exist on infant exposure to this material; the report does not address it.</strong></p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="80">
             <span class="tag">Poster &middot; SAWC 2021</span>
@@ -481,7 +489,7 @@
           </div>
           <div class="product-card scroll-reveal" data-stagger="160">
             <span class="tag">Poster &middot; mechanism</span>
-            <h3>Cell-signalling composition poster</h3>
+            <h3>Cell-signaling composition poster</h3>
             <p>Kimmel HM. The mechanism-of-action poster that is the origin of the <strong style="color:var(--snow)">45% collagen / 25% elastin / 14% fibronectin / 7% laminin</strong> figures and the ~90%-collagen single-tissue comparison used throughout this category&rsquo;s marketing. It is a poster. Cite the number with its source attached or not at all.</p>
           </div>
         </div>
@@ -523,6 +531,7 @@
             <span class="tag">Abdominal wall</span>
             <h3>Stage III ventral hernia closure</h3>
             <p>Placed beneath the adipocutaneous layer during complex abdominal wall reconstruction, with drains, to address the dead space that drives seroma. <strong style="color:var(--snow)">Retrospective single-surgeon comparison, not indexed.</strong></p>
+            <p style="margin-top:12px"><strong style="color:var(--snow)">Reported use, not a billable one.</strong> This is prophylactic intraoperative placement into an elective closure, not the management of an open wound. It is <strong style="color:var(--snow)">not within the cleared Indications for Use</strong>, no skin-substitute application code (15271&ndash;15278) describes intraoperative placement beneath an adipocutaneous flap, and there is no established coverage pathway for it.</p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="240">
             <span class="tag">Complex wounds</span>
@@ -531,13 +540,13 @@
           </div>
           <div class="product-card scroll-reveal" data-stagger="80">
             <span class="tag">Burns</span>
-            <h3>Second- and third-degree burns</h3>
-            <p>Second-degree burns are a cleared indication. Published burn experience for this product is <strong style="color:var(--snow)">poster-level</strong> &mdash; two cases within an infected-wound series, one of them in a patient with diabetes.</p>
+            <h3>Burns &mdash; second-degree</h3>
+            <p>Second-degree burns are a cleared indication. <strong style="color:var(--snow)">Third-degree burns are not within the cleared indications</strong> &mdash; the IFU quoted above lists second-degree burns only. Published burn experience for this product is <strong style="color:var(--snow)">poster-level</strong> &mdash; two cases within an infected-wound series, one of them in a patient with diabetes.</p>
           </div>
           <div class="product-card scroll-reveal" data-stagger="160">
             <span class="tag">Not studied</span>
             <h3>Diabetic &amp; venous leg ulcers</h3>
-            <p>Cleared indications with <strong style="color:var(--snow)">no published study in either population.</strong> We list this card deliberately. If your programme is built on DFU or VLU volume, plan the documentation and the coverage conversation accordingly.</p>
+            <p>Cleared indications with <strong style="color:var(--snow)">no published study in either population.</strong> We list this card deliberately. If your program is built on DFU or VLU volume, plan the documentation and the coverage conversation accordingly.</p>
           </div>
         </div>
       </div>
@@ -555,7 +564,7 @@
           <div class="process-step scroll-reveal">
             <div class="step-num">Step 01</div>
             <h4>Debride and measure</h4>
-            <p>Irrigation and sharp debridement of devitalized tissue, then assessment of <strong style="color:var(--snow)">dimensions, depth, tunneling and recesses</strong>. The published wound series applied the powder to a debrided bed. Two reports sit outside that pattern and are worth knowing: in the hernia series the powder was laid into an elective surgical closure, and the lactational-abscess case was managed in the outpatient setting <em>without</em> formal surgical debridement.</p>
+            <p>Irrigation and sharp debridement of devitalized tissue, then assessment of <strong style="color:var(--snow)">dimensions, depth, tunneling and recesses</strong>. The published wound series applied the powder to a debrided bed. Two reports sit outside that pattern and are worth knowing: in the hernia series the powder was laid into an elective surgical closure, and the lactational-abscess case was managed in the outpatient setting <em>without</em> formal surgical debridement. Read the hernia series carefully &mdash; prophylactic placement into a closed elective field is <strong style="color:var(--snow)">not within the cleared Indications for Use</strong>, which describe topical application to a wound bed.</p>
           </div>
           <div class="process-step scroll-reveal" data-stagger="80">
             <div class="step-num">Step 02</div>
@@ -565,16 +574,22 @@
           <div class="process-step scroll-reveal" data-stagger="160">
             <div class="step-num">Step 03</div>
             <h4>Moist cover, then dry</h4>
-            <p>In the abdominal series the wound was covered with <strong style="color:var(--snow)">hydrogel or iodoform moist gauze followed by dry gauze</strong>, and left undisturbed for a week until office review. No device, no canister, no tubing.</p>
+            <p>In the abdominal series the wound was covered with <strong style="color:var(--snow)">hydrogel or iodoform moist gauze followed by dry gauze</strong>, and left undisturbed for a week until office review.</p>
           </div>
           <div class="process-step scroll-reveal" data-stagger="240">
             <div class="step-num">Step 04</div>
             <h4>Reassess and reapply</h4>
-            <p>Weekly or bi-weekly review in clinic; reapplication where the bed needs more. Reported cadences ranged from a <strong style="color:var(--snow)">single application to serial applications</strong> over weeks depending on wound response.</p>
+            <p>Weekly or bi-weekly review in clinic; reapplication where the bed needs more. Reported cadences ranged from a <strong style="color:var(--snow)">single application to serial applications</strong> over weeks depending on wound response. &ldquo;One-time use&rdquo; on the cleared IFU is a <strong style="color:var(--snow)">single-use-device statement</strong> &mdash; opened product is not reused &mdash; not a limit on the number of applications to a wound. Payer policies do cap application counts; confirm your MAC&rsquo;s limit before the first case.</p>
           </div>
         </div>
 
-        <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">The device is cleared for one-time use. Contraindication reported in the published literature is a clinically apparent specific allergy; the product is porcine-derived, which is a conversation to have with patients for whom that matters. Always follow the current package insert.</p>
+        <div class="compliance-note scroll-reveal" style="margin-top:var(--s-4)">
+          <h4>Contraindications, warnings and precautions belong to the package insert &mdash; not to this page</h4>
+          <p>StemSys does not publish the package insert publicly, and we could not obtain a public IFU for this device. <strong style="color:var(--snow)">The labeled contraindications, warnings and precautions ship inside every carton and govern</strong> &mdash; ask us and we will send the current insert before your first order, and read it before the first application. The only contraindication reported anywhere in the published literature is a clinically apparent specific allergy; the product is porcine-derived, which is a conversation to have with patients for whom that matters.</p>
+          <p><strong style="color:var(--snow)">Not a substitute for negative pressure wound therapy.</strong> The only published NPWT comparison anywhere in the set is single-institution weekly materials cost, not outcomes.</p>
+        </div>
+
+        <p style="font-size:var(--t-xs);color:var(--fog);margin-top:var(--s-4);max-width:820px;line-height:1.6">The device is cleared for one-time use &mdash; a single-use-device statement, not a cap on how many applications a wound may receive. Always follow the current package insert.</p>
       </div>
     </section>
 
@@ -583,7 +598,7 @@
         <div class="section-header scroll-reveal">
           <span class="eyebrow">Product Specifications</span>
           <h2>Sterile particulate. <em style="font-style:normal;color:var(--gold)">Three sizes. Single use.</em></h2>
-          <p>Manufactured by StemSys of Sunrise, Florida &mdash; a FetTech company &mdash; and also carried under the RTT Medical and Bobber Biotech brands.</p>
+          <p>Manufactured by StemSys of Sunrise, Florida &mdash; a FetTech company &mdash; and also carried under the RTT Medical and Bobber Biotech brands. Confirm which brand label your lot ships under, and use that exact product name consistently on the operative note, the invoice and the claim &mdash; one HCPCS code, three labels, and a records request compares all three.</p>
         </div>
 
         <div class="content-grid">
@@ -595,10 +610,13 @@
             <div class="spec-row"><span class="spec-label">Appearance</span><span class="spec-value">White to off-white particulate</span></div>
             <div class="spec-row"><span class="spec-label">Application</span><span class="spec-value">Topical</span></div>
             <div class="spec-row"><span class="spec-label">Sterility</span><span class="spec-value">Provided sterile &mdash; E-beam</span></div>
-            <div class="spec-row"><span class="spec-label">Use</span><span class="spec-value"><em>Single use</em> &mdash; one-time use per the cleared IFU</span></div>
+            <div class="spec-row"><span class="spec-label">Use</span><span class="spec-value"><em>Single use</em> &mdash; &ldquo;one-time use&rdquo; per the cleared IFU is a single-use-device statement, not a cap on applications per wound</span></div>
+            <div class="spec-row"><span class="spec-label">Cellular content</span><span class="spec-value"><em>Contains no viable cells</em> &mdash; E-beam-sterilized ECM particulate regulated as a device, not a cellular or stem-cell product; the product name does not denote cellular content</span></div>
+            <div class="spec-row"><span class="spec-label">Application density</span><span class="spec-value">The manufacturer publishes <em>no mg-per-cm&sup2; or mg-per-cm&sup3; figure</em>, and none of the published reports states one. Document the milligrams applied and the wound dimensions; do not infer one from the other</span></div>
             <div class="spec-row"><span class="spec-label">Sizes</span><span class="spec-value">250&nbsp;mg &middot; 500&nbsp;mg &middot; 1000&nbsp;mg</span></div>
             <div class="spec-row"><span class="spec-label">HCPCS</span><span class="spec-value"><em>A2004</em> &mdash; billed per 1&nbsp;mg</span></div>
             <div class="spec-row"><span class="spec-label">Manufacturer</span><span class="spec-value">StemSys &mdash; Sunrise, FL (a FetTech company)</span></div>
+            <div class="spec-row"><span class="spec-label">Brand labels</span><span class="spec-value">Also carried as <em>RTT Medical</em> and <em>Bobber Biotech</em> &mdash; confirm which label your lot ships under</span></div>
           </div>
 
           <div class="content-block scroll-reveal" data-stagger="80">
@@ -623,19 +641,25 @@
         <div class="section-header scroll-reveal">
           <span class="eyebrow">Coding &amp; Reimbursement</span>
           <h2>HCPCS A2004 &mdash; <em style="font-style:normal;color:var(--gold)">billed per milligram.</em></h2>
-          <p>One code, one unit definition, and a documentation burden that is entirely manageable if it is set up before the first application rather than after the first request for records.</p>
+          <p>One code, a unit definition that not every payer follows, and a documentation burden that is entirely manageable if it is set up before the first application rather than after the first request for records.</p>
+        </div>
+
+        <div class="compliance-note scroll-reveal" style="margin-bottom:var(--s-5)">
+          <h4>Coverage before coding</h4>
+          <p>CMS withdrew the DFU/VLU skin-substitute LCDs on 24 December 2025 &mdash; they never took effect. As of mid-2026, only Novitas (L35041), First Coast and CGS operate active skin-substitute LCDs. In every other jurisdiction, coverage is decided case by case under &sect;1862(a)(1)(A), <strong style="color:var(--snow)">which puts the entire weight on the medical record.</strong> Where an LCD or LCA does apply, check the contractor&rsquo;s covered-product article, the covered indication list, and any per-episode application limit before the first application. We verify the current posture for your jurisdiction and your product, per account.</p>
+          <p><strong style="color:var(--snow)">MAC product listing and application limits.</strong> Most MAC skin-substitute policies enumerate covered products by name and cap the number of applications per wound per treatment episode. Confirm this product&rsquo;s listing status and the application limit with your MAC before the first case &mdash; a product absent from the covered-product list is non-covered no matter how good the documentation. At least one MAC&rsquo;s published non-sheet product list does not include A2004. We will pull the current listing for your MAC on request.</p>
         </div>
 
         <div class="content-grid">
           <div class="hero-spec-panel scroll-reveal">
             <h3>Coding &amp; coverage</h3>
             <div class="spec-row"><span class="spec-label">HCPCS code</span><span class="spec-value"><em>A2004</em></span></div>
-            <div class="spec-row"><span class="spec-label">Billing unit</span><span class="spec-value">1&nbsp;mg &mdash; units follow milligrams applied</span></div>
-            <div class="spec-row"><span class="spec-label">250&nbsp;mg configuration</span><span class="spec-value">Up to 250 units &mdash; <em>for milligrams applied and documented</em></span></div>
-            <div class="spec-row"><span class="spec-label">500&nbsp;mg configuration</span><span class="spec-value">Up to 500 units &mdash; <em>for milligrams applied and documented</em></span></div>
-            <div class="spec-row"><span class="spec-label">1000&nbsp;mg configuration</span><span class="spec-value">Up to 1000 units &mdash; <em>for milligrams applied and documented</em></span></div>
+            <div class="spec-row"><span class="spec-label">Long descriptor</span><span class="spec-value">&ldquo;Xcellistem, 1&nbsp;mg&rdquo; &mdash; changed from <em>per square centimeter</em> effective 1&nbsp;January 2022 (Transmittal 11435 / CR 12761)</span></div>
+            <div class="spec-row"><span class="spec-label">Units</span><span class="spec-value">Per the current HCPCS descriptor (1&nbsp;mg), reflecting <em>only the milligrams applied to the wound and documented</em>. Bill the milligrams applied, never the size of the configuration opened; discarded product is documented, not billed</span></div>
+            <div class="spec-row"><span class="spec-label">Cavity decanting</span><span class="spec-value">Where a full configuration is decanted into a cavity, record that fact together with the wound dimensions that justify it</span></div>
+            <div class="spec-row"><span class="spec-label">Application charge</span><span class="spec-value">A separate charge, and the code family for a particulate is <em>not settled</em> &mdash; confirm with your MAC before the first claim</span></div>
             <div class="spec-row"><span class="spec-label">Payment amount</span><span class="spec-value"><em>Set by CMS and the payer</em> &mdash; subject to change</span></div>
-            <div class="spec-row"><span class="spec-label">Coverage</span><span class="spec-value">Governed by MAC and commercial payer policy</span></div>
+            <div class="spec-row"><span class="spec-label">Coverage</span><span class="spec-value">Governed by MAC and commercial payer policy; confirm this product&rsquo;s listing status per contractor</span></div>
             <div class="spec-row"><span class="spec-label">Regulatory basis</span><span class="spec-value">510(k)-cleared device &mdash; K172593</span></div>
           </div>
 
@@ -643,11 +667,13 @@
             <h3 style="margin-bottom:var(--s-2)">Document it as if it will be reviewed</h3>
             <p style="margin-bottom:var(--s-3)">Because for this product category, some portion of it will be. Build the record at the point of care.</p>
             <ul class="aligned-list">
-              <li><strong>Wound and etiology</strong><span>Type, location, duration, and the conservative care already tried and failed &mdash; dated, not summarised.</span></li>
+              <li><strong>Wound and etiology</strong><span>Type, location, duration, and the conservative care already tried and failed &mdash; dated, not summarized.</span></li>
               <li><strong>Serial measurements</strong><span>Length, width, depth, tunneling and undermining at every visit, so the trajectory is legible without inference.</span></li>
               <li><strong>Debridement</strong><span>The published wound series applied the powder after debridement. Where debridement precedes an application, record it.</span></li>
               <li><strong>Milligrams applied</strong><span>Units billed must reflect what was applied and documented for that wound &mdash; not what was purchased or opened.</span></li>
               <li><strong>Lot and product identity</strong><span>Product name, lot or serial, size, and the site treated, on the same date of service as the note.</span></li>
+              <li><strong>Vascular assessment</strong><span>ABI, TBI or toe pressures documented with the date, before the first application, plus revascularization status where relevant. Required by most MAC skin-substitute policies and among the most common reasons a claim is recouped.</span></li>
+              <li><strong>Offloading or compression</strong><span>Documented as prescribed, in place and adherent &mdash; offloading for a diabetic foot ulcer, compression for a venous leg ulcer.</span></li>
               <li><strong>Medical necessity</strong><span>Why this product, for this wound, at this point in the plan of care &mdash; written by the treating clinician, in their words.</span></li>
             </ul>
 
@@ -655,6 +681,35 @@
               <h4>Say this to your billing lead before the first case</h4>
               <p>A2004 is the HCPCS code for a 510(k)-cleared device, and diabetic and venous ulcers sit inside the cleared indications &mdash; but <strong style="color:var(--snow)">there is no published study of this product in a DFU or VLU population.</strong> If your coverage argument depends on product-specific outcomes evidence in those wound types, it does not exist yet. Where the record has to carry the weight instead, it has to be built correctly from the first application.</p>
               <p>Payment rates, code status and coverage determinations are set by CMS and by individual payers and change without notice. We confirm current status with you on a case-specific basis and do not quote payment amounts.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid" style="margin-top:var(--s-5)">
+          <div class="content-block scroll-reveal">
+            <h3 style="margin-bottom:var(--s-2)">Application coding and the unit basis</h3>
+            <p style="margin-bottom:var(--s-3)">The product code is settled. What sits on either side of it &mdash; how the application is coded, and what a unit means to a given payer &mdash; is not, and both have to be resolved with the contractor before the first claim rather than after it.</p>
+            <ul class="aligned-list">
+              <li><strong>Application coding</strong><span>A2004 is the product code; the application is a <strong style="color:var(--snow)">separate charge</strong>, and the code family is not settled for a particulate. Many MACs do not treat a wound powder as a &ldquo;skin substitute graft&rdquo; for CPT 15271&ndash;15278, in which case the application is billable only as debridement or E/M, or under the MAC&rsquo;s own non-sheet application codes. Confirm with your MAC before the first claim.</span></li>
+              <li><strong>Unit basis</strong><span>The HCPCS long descriptor is <strong style="color:var(--snow)">&ldquo;Xcellistem, 1&nbsp;mg&rdquo;</strong> &mdash; changed from &ldquo;per square centimeter&rdquo; effective 1&nbsp;January 2022. Not every payer follows it: some commercial policies still describe A2004 per square centimeter, and CMS&rsquo;s 2026 methodology for non-sheet products bases payment on documented wound surface area rather than on product mass.</span></li>
+              <li><strong>No conversion exists</strong><span>There is <strong style="color:var(--snow)">no published, validated milligram-to-square-centimeter conversion</strong> for this product. Document milligrams applied <em>and</em> total wound size in square centimeters on every date of service, and confirm the unit basis with each payer before the first claim.</span></li>
+              <li><strong>Product listing</strong><span>Confirm that A2004 appears on your contractor&rsquo;s covered-product list, and what its per-episode application limit is. At least one MAC&rsquo;s published non-sheet product list does not include this code.</span></li>
+            </ul>
+          </div>
+
+          <div class="content-block scroll-reveal" data-stagger="80">
+            <h3 style="margin-bottom:var(--s-2)">The 2026 rules, and what this page is not</h3>
+            <p style="margin-bottom:var(--s-3)">The 2026 skin-substitute environment described on our APIS&reg; page applies to this code family as well. We state it here hedged, because the underlying instructions are contractor-specific and move.</p>
+            <ul class="aligned-list">
+              <li><strong>Applied portion only</strong><span>Only what goes onto the wound is billed. Discarded product is documented, not charged.</span></li>
+              <li><strong>Wastage</strong><span>Wastage is not separately billable. Record the configuration opened, the amount applied and the amount discarded on the same note.</span></li>
+              <li><strong>JW / JZ modifiers</strong><span>Described for 2026 as not permitted for skin substitutes. Modifier and wastage requirements are <strong style="color:var(--snow)">contractor- and payer-specific and change</strong> &mdash; verify current requirements against the CY2026 Physician Fee Schedule final rule and your MAC&rsquo;s instruction before submission.</span></li>
+              <li><strong>Setting</strong><span>These mechanics assume the non-facility (physician office) setting. Hospital outpatient departments and ASCs are paid under different rules and the product may not be separately billable there. Confirm the setting-specific policy before the first application.</span></li>
+            </ul>
+
+            <div class="compliance-note" style="margin-top:var(--s-4)">
+              <h4>Not legal, coding or billing advice</h4>
+              <p>Compliance checks, LCD/NCD alignment reviews and any narrative we help draft are <strong style="color:var(--snow)">decision support for the practice&rsquo;s own review</strong>. They are not legal, coding or billing advice and are not a determination or guarantee of coverage. The practice remains responsible for every claim it submits.</p>
             </div>
           </div>
         </div>
@@ -669,36 +724,36 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What exactly is it, and what is it cleared for? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">XCelliStem Wound Powder is a sterile, single-use <strong>extracellular matrix particulate derived from porcine spleen and lung</strong>, supplied as a white to off-white powder for topical application. FDA cleared it under <strong>510(k) K172593 on 16 March 2018</strong> &mdash; product code KGN, unclassified, classification name &ldquo;Dressing, Wound, Collagen.&rdquo; The cleared Indications for Use read: &ldquo;The XCelliStem Wound Powder is intended for the management of wounds including: partial and full-thickness wounds, pressure ulcers, diabetic ulcers, venous ulcers, chronic vascular ulcers, tunneled/undermined wounds, surgical wounds (donor sites/grafts, post-Moh&rsquo;s surgery, post-laser surgery, podiatric, wound dehiscence), trauma wounds (abrasions, lacerations, second-degree burns, and skin tears), and draining wounds. The device is intended for one-time use.&rdquo; It is <strong>cleared, not approved</strong> &mdash; a 510(k) is a substantial-equivalence determination.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q1" aria-expanded="false" aria-controls="faq-products-xcellistem-a1">What exactly is it, and what is it cleared for? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a1" role="region" aria-labelledby="faq-products-xcellistem-q1"><div class="faq-a-inner">XCelliStem Wound Powder is a sterile, single-use <strong>extracellular matrix particulate derived from porcine spleen and lung</strong>, supplied as a white to off-white powder for topical application. FDA cleared it under <strong>510(k) K172593 on 16 March 2018</strong> &mdash; product code KGN, unclassified, classification name &ldquo;Dressing, Wound, Collagen.&rdquo; The cleared Indications for Use read: &ldquo;The XCelliStem Wound Powder is intended for the management of wounds including: partial and full-thickness wounds, pressure ulcers, diabetic ulcers, venous ulcers, chronic vascular ulcers, tunneled/undermined wounds, surgical wounds (donor sites/grafts, post-Moh&rsquo;s surgery, post-laser surgery, podiatric, wound dehiscence), trauma wounds (abrasions, lacerations, second-degree burns, and skin tears), and draining wounds. The device is intended for one-time use.&rdquo; It is <strong>cleared, not approved</strong> &mdash; a 510(k) is a substantial-equivalence determination. One point the name invites confusion about: <strong>XCelliStem contains no viable cells.</strong> It is an E-beam-sterilized extracellular matrix particulate regulated as a device, not a cellular or stem-cell product, and the product name does not denote cellular content.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What does &ldquo;multi-tissue platform&rdquo; actually mean, and does it matter? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">It means the matrix is harvested from <strong>two source tissues &mdash; lung and spleen &mdash; rather than one</strong>. The predicate powders it was cleared against use single tissues: Cook ECM Powder from porcine small intestine submucosa (K152033) and ACell Powder Wound Dressing from porcine urinary bladder (K060888). The manufacturer&rsquo;s mechanism poster reports the resulting matrix as approximately <strong>45% collagen, 25% elastin, 14% fibronectin and 7% laminin</strong>, against roughly 90% collagen for single-tissue ECMs, with collagen types I/III/IV/V, hyaluronic acid, glycosaminoglycans and FGF, VEGF and EGF. Whether that ratio changes clinical outcomes is <strong>unproven</strong> &mdash; no head-to-head study against any other skin substitute exists. The 510(k) Summary, written by the applicant, states that all three devices share the same mode of action and that XCelliStem is as safe and effective as, and performs as well as, the predicates; FDA&rsquo;s own determination was that the device is substantially equivalent to those predicates for the stated indications for use. Equivalence, not superiority.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q2" aria-expanded="false" aria-controls="faq-products-xcellistem-a2">What does &ldquo;multi-tissue platform&rdquo; actually mean, and does it matter? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a2" role="region" aria-labelledby="faq-products-xcellistem-q2"><div class="faq-a-inner">It means the matrix is harvested from <strong>two source tissues &mdash; lung and spleen &mdash; rather than one</strong>. The predicate powders it was cleared against use single tissues: Cook ECM Powder from porcine small intestine submucosa (K152033) and ACell Powder Wound Dressing from porcine urinary bladder (K060888). The manufacturer&rsquo;s mechanism poster reports the resulting matrix as approximately <strong>45% collagen, 25% elastin, 14% fibronectin and 7% laminin</strong>, against roughly 90% collagen for single-tissue ECMs, with collagen types I/III/IV/V, hyaluronic acid, glycosaminoglycans and FGF, VEGF and EGF. Whether that ratio changes clinical outcomes is <strong>unproven</strong> &mdash; no head-to-head study against any other skin substitute exists. The 510(k) Summary, written by the applicant, states that all three devices share the same mode of action and that XCelliStem is as safe and effective as, and performs as well as, the predicates; FDA&rsquo;s own determination was that the device is substantially equivalent to those predicates for the stated indications for use. Equivalence, not superiority. One qualifier on that list: <strong>growth-factor content was not part of the FDA device characterization package</strong>, which covered collagen type, sulfated glycosaminoglycan, hyaluronic acid, lipid, elastin, fibronectin and laminin composition only. The growth-factor list traces to the manufacturer&rsquo;s own material by way of a conference poster, not to a published assay, and has not been independently verified.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What does the clinical evidence actually consist of? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Plainly: <strong>zero randomized controlled trials and zero registered ClinicalTrials.gov studies.</strong> Two PubMed-indexed papers, both case series &mdash; Irfan 2025 in Antibiotics (n=15 ballistic and blast injuries in Gaza; granulation by day 7 in 12 of 15, closure in 13 of 15, 80% with exposed bone or tendon, no adverse reactions) and Khorsandi 2026 in PRS Global Open (n=2 after failed free flaps &mdash; one proximal tibial wound, one left foot; both took split-thickness grafts, durable at six months or more). Total PubMed-indexed patient exposure is <strong>17 patients</strong>. One further study has a control arm &mdash; Creger 2025 in a non-indexed journal, 97 stage III ventral hernias from a single surgeon, seroma and seroma-related complications 49% versus 16%, p=0.0042. Everything else is a poster or a non-indexed case report. We will send you every document rather than a summary of it.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q3" aria-expanded="false" aria-controls="faq-products-xcellistem-a3">What does the clinical evidence actually consist of? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a3" role="region" aria-labelledby="faq-products-xcellistem-q3"><div class="faq-a-inner">Plainly: <strong>zero randomized controlled trials and zero registered ClinicalTrials.gov studies.</strong> Two PubMed-indexed papers, both case series &mdash; Irfan 2025 in Antibiotics (n=15 ballistic and blast injuries in Gaza; granulation by day 7 in 12 of 15, closure in 13 of 15, 80% with exposed bone or tendon, no adverse reactions) and Khorsandi 2026 in PRS Global Open (n=2 after failed free flaps &mdash; one proximal tibial wound, one left foot; both took split-thickness grafts, durable at six months or more). Total PubMed-indexed patient exposure is <strong>17 patients</strong>. One further study has a control arm &mdash; Creger 2025 in a non-indexed journal, 97 stage III ventral hernias from a single surgeon, seroma and seroma-related complications 49% versus 16%, p=0.0042. Read that one with its regulatory status attached: it reports <strong>prophylactic intraoperative placement into a closed elective field, which is not within the cleared Indications for Use</strong>, and no skin-substitute application code describes it. Everything else is a poster or a non-indexed case report. We will send you every document rather than a summary of it.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is there evidence in diabetic foot ulcers or venous leg ulcers? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner"><strong>No.</strong> Both are inside the cleared indications, and neither has a published study of this product. The published work is in surgical, trauma and burn wounds. This is the single most important thing to know before building a programme around this product, because DFU and VLU volume is what drives most coverage discussion for this code &mdash; and it is the first gap a payer or an auditor will probe. We would rather you hear it from us in the first meeting than from a reviewer in month eight.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q4" aria-expanded="false" aria-controls="faq-products-xcellistem-a4">Is there evidence in diabetic foot ulcers or venous leg ulcers? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a4" role="region" aria-labelledby="faq-products-xcellistem-q4"><div class="faq-a-inner"><strong>No.</strong> Both are inside the cleared indications, and neither has a published study of this product. The published work is in surgical, trauma and burn wounds. This is the single most important thing to know before building a program around this product, because DFU and VLU volume is what drives most coverage discussion for this code &mdash; and it is the first gap a payer or an auditor will probe. We would rather you hear it from us in the first meeting than from a reviewer in month eight.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Can it be used in infected or contaminated wounds? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Infection is <strong>not among the cleared indications</strong>, and that is where the answer starts. The argument made for contaminated fields is mechanical: a particulate matrix is intended to be degraded and resorbed as the wound remodels, so bacterial degradation of the scaffold is not the failure mode it would be for a sheet meant to persist. That argument is supported by <strong>poster-level reports only</strong> &mdash; a Kimmel infected-wound series, an infected scalp wound with underlying skull exposure, and a lactational abscess with full-thickness necrosis. In the Gaza series, 13 of the 15 patients also received concurrent vancomycin powder, so that series cannot be read as evidence of independent antimicrobial benefit. Treat contaminated-field use as clinical judgment supported by thin published experience, and document the reasoning.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q5" aria-expanded="false" aria-controls="faq-products-xcellistem-a5">Can it be used in infected or contaminated wounds? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a5" role="region" aria-labelledby="faq-products-xcellistem-q5"><div class="faq-a-inner">Infection is <strong>not among the cleared indications</strong>, and that is where the answer starts. The argument made for contaminated fields is mechanical: a particulate matrix is intended to be degraded and resorbed as the wound remodels, so bacterial degradation of the scaffold is not the failure mode it would be for a sheet meant to persist. That argument is supported by <strong>poster-level reports only</strong> &mdash; a Kimmel infected-wound series, an infected scalp wound with underlying skull exposure, and a lactational abscess with full-thickness necrosis. In the Gaza series, 13 of the 15 patients also received concurrent vancomycin powder, so that series cannot be read as evidence of independent antimicrobial benefit. Infection is not a cleared indication and we do not support that use.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How is it applied, and does it need a device? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No device, no power, no canister. In the published reports the wound is debrided and measured, the powder is applied topically and directly into the wound including cavitary recesses, and the wound is covered &mdash; in the abdominal series, with <strong>hydrogel or iodoform moist gauze followed by dry gauze</strong> &mdash; then left in place for about a week until office review. In abdominal wall reconstruction it was placed as a uniform layer on the fascia beneath the adipocutaneous plane with drains; in flap-salvage cases, in multiple layers. Reapplication cadence in the literature ranges from a single application to serial weekly applications. Follow the package insert and your institutional protocol; the above is a description of published practice, not an IFU.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q6" aria-expanded="false" aria-controls="faq-products-xcellistem-a6">How is it applied, and does it need a device? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a6" role="region" aria-labelledby="faq-products-xcellistem-q6"><div class="faq-a-inner">No device, no power, no canister. In the published reports the wound is debrided and measured, the powder is applied topically and directly into the wound including cavitary recesses, and the wound is covered &mdash; in the abdominal series, with <strong>hydrogel or iodoform moist gauze followed by dry gauze</strong> &mdash; then left in place for about a week until office review. In abdominal wall reconstruction it was placed as a uniform layer on the fascia beneath the adipocutaneous plane with drains; in flap-salvage cases, in multiple layers. Reapplication cadence in the literature ranges from a single application to serial weekly applications. Follow the package insert and your institutional protocol; the above is a description of published practice, not an IFU. Needing no device does not make it a <strong>substitute for negative pressure wound therapy</strong> &mdash; the only published NPWT comparison anywhere in the set is single-institution weekly materials cost, not outcomes.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How does it bill? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Under <strong>HCPCS A2004</strong>, in units of <strong>1&nbsp;mg</strong> &mdash; so the 250&nbsp;mg, 500&nbsp;mg and 1000&nbsp;mg configurations correspond to up to 250, 500 and 1000 units, for the milligrams actually applied to the wound and documented, and subject to payer unit policy. Units billed must reflect the milligrams actually applied and documented, not the quantity purchased or opened. Payment amounts, code status and coverage determinations are set by CMS and by individual payers and are subject to change &mdash; we do not quote payment figures, and we confirm current status with your billing lead on a case-specific basis. Because there is no product-specific outcomes evidence in DFU or VLU populations, the medical record has to carry the medical-necessity argument on its own.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q7" aria-expanded="false" aria-controls="faq-products-xcellistem-a7">How does it bill? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a7" role="region" aria-labelledby="faq-products-xcellistem-q7"><div class="faq-a-inner">Under <strong>HCPCS A2004</strong>. The current long descriptor is &ldquo;Xcellistem, 1&nbsp;mg&rdquo; &mdash; changed from &ldquo;per square centimeter&rdquo; effective 1&nbsp;January 2022 &mdash; so units follow the <strong>milligrams actually applied to the wound and documented</strong>, never the size of the configuration opened and never the quantity purchased. Discarded product is documented, not billed. Two things to settle before the first claim: the <strong>application</strong> is a separate charge whose code family is not settled for a particulate, and not every payer follows the milligram descriptor &mdash; some commercial policies still describe A2004 per square centimeter, and CMS&rsquo;s 2026 methodology for non-sheet products works from documented wound surface area. No validated milligram-to-square-centimeter conversion exists for this product, so document milligrams applied and total wound size in square centimeters on every date of service. Payment amounts, code status and coverage determinations are set by CMS and by individual payers and are subject to change &mdash; we do not quote payment figures, and we confirm current status with your billing lead on a case-specific basis. Because there is no product-specific outcomes evidence in DFU or VLU populations, the medical record has to carry the medical-necessity argument on its own.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Who makes it, and what is Albacete MedDev&rsquo;s role? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">XCelliStem Wound Powder is manufactured by <strong>StemSys</strong> of Sunrise, Florida &mdash; a FetTech company &mdash; and is also carried under the RTT Medical and Bobber Biotech brands; RTT Medical is named as the product source in three of the published studies. <strong>Albacete MedDev is an independent distributor, not the manufacturer.</strong> What we add is the part that usually goes wrong: an evidence file you have actually read, documentation templates built for the code before the first application, in-service on handling and application, and in-house reimbursement and medical-legal support if a record is ever requested. If the evidence base is not strong enough for your patient population, we will say so and point you to something that is.</div></div>
+            <button type="button" class="faq-q" id="faq-products-xcellistem-q8" aria-expanded="false" aria-controls="faq-products-xcellistem-a8">Who makes it, and what is Albacete MedDev&rsquo;s role? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-xcellistem-a8" role="region" aria-labelledby="faq-products-xcellistem-q8"><div class="faq-a-inner">XCelliStem Wound Powder is manufactured by <strong>StemSys</strong> of Sunrise, Florida &mdash; a FetTech company &mdash; and is also carried under the RTT Medical and Bobber Biotech brands; RTT Medical is named as the product source in three of the published studies. <strong>Albacete MedDev is an independent distributor, not the manufacturer.</strong> Confirm which brand label your lot ships under, and use that exact product name consistently on the operative note, the invoice and the claim &mdash; one HCPCS code, three labels, and a records request compares all three. What we add is the part that usually goes wrong: an evidence file you have actually read, documentation templates built for the code before the first application, in-service on handling and application, and documentation support if records are ever requested &mdash; we are not a law firm and do not give legal advice. Those services are available to any account under a separate written agreement, regardless of volume, and are not conditioned on purchasing any product. If the evidence base is not strong enough for your patient population, we will say so and point you to something that is.</div></div>
           </div>
         </div>
       </div>
@@ -720,7 +775,7 @@
 
     <section class="section">
       <div class="container">
-        <p style="font-size:var(--t-xs);color:var(--fog);max-width:820px;line-height:1.6">Albacete MedDev is an independent distributor and is not the manufacturer of XCelliStem Wound Powder. The device is manufactured by StemSys, Sunrise, Florida, and is cleared by FDA under 510(k) K172593; it is cleared, not approved. Indications for Use are quoted verbatim from Form FDA 3881 accompanying that clearance. Clinical results described on this page are drawn from the published literature cited alongside each claim &mdash; two PubMed-indexed case series, one non-indexed retrospective comparison, and a set of case reports and conference posters &mdash; and are not a substitute for the manufacturer&rsquo;s instructions for use or for independent clinical judgment. No randomized controlled trial of this product has been published and no study exists in a diabetic-foot-ulcer or venous-leg-ulcer population. Coverage, coding and payment for HCPCS A2004 are determined by CMS and individual payers and are subject to change. XCelliStem is a trademark of its respective owner; all other product and company names are the property of their respective owners.</p>
+        <p style="font-size:var(--t-xs);color:var(--fog);max-width:820px;line-height:1.6">Albacete MedDev is an independent distributor and is not the manufacturer of XCelliStem Wound Powder. The device is manufactured by StemSys, Sunrise, Florida, and is cleared by FDA under 510(k) K172593; it is cleared, not approved. Indications for Use are quoted verbatim from Form FDA 3881 accompanying that clearance. Clinical results described on this page are drawn from the published literature cited alongside each claim &mdash; two PubMed-indexed case series, one non-indexed retrospective comparison, and a set of case reports and conference posters &mdash; and are not a substitute for the manufacturer&rsquo;s instructions for use or for independent clinical judgment. No randomized controlled trial of this product has been published and no study exists in a diabetic-foot-ulcer or venous-leg-ulcer population. Coverage, coding and payment for HCPCS A2004 are determined by CMS and individual payers and are subject to change. Compliance checks, LCD/NCD alignment reviews and generated narratives are decision support for the practice&rsquo;s own review; they are not legal, coding or billing advice and are not a determination or guarantee of coverage, and the practice remains responsible for every claim it submits. Reimbursement, documentation and audit-support services are provided under a separate written agreement, are not conditioned on purchasing any product, and are not offered in exchange for referrals. XCelliStem is a trademark of its respective owner; all other product and company names are the property of their respective owners.</p>
       </div>
     </section>
 
@@ -771,6 +826,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

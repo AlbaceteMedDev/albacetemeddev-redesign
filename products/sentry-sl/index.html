@@ -8,7 +8,7 @@
   <meta name="description" content="Single-layer amniotic membrane allograft for shallow-to-moderate wound beds. Terminally sterilised, four sizes. HCPCS Q4348, per square centimeter.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Sentry SL Placental-Derived Allograft","description":"Single-layer amniotic membrane allograft for acute and chronic wounds. HCPCS Q4348.","url":"https://albacetemeddev-redesign.pages.dev/products/sentry-sl/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"Sentry SL","item":"https://albacetemeddev-redesign.pages.dev/products/sentry-sl/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-compact">
       <div class="container hero-inner">
@@ -554,36 +555,36 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What exactly is Sentry&trade; SL? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Sentry&trade; Placental-Derived Allograft is <strong>comprised of a single layer of amniotic membrane</strong>, produced using a proprietary tissue processing technique. It is designed to serve as a <strong>barrier or wound cover for acute and chronic wounds</strong>, and the manufacturer positions it particularly for <strong>shallow-to-moderate wound beds</strong>. We list it as &ldquo;Sentry&trade; SL&rdquo; for its single-layer construction; the manufacturer&rsquo;s own literature calls it Sentry&trade; Placental-Derived Allograft, made by Sequence LifeScience,&nbsp;Inc. The final products are minimally manipulated, dehydrated, packaged in four sizes, and verified to be terminally sterilized.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q1" aria-expanded="false" aria-controls="faq-products-sentry-sl-a1">What exactly is Sentry&trade; SL? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a1" role="region" aria-labelledby="faq-products-sentry-sl-q1"><div class="faq-a-inner">Sentry&trade; Placental-Derived Allograft is <strong>comprised of a single layer of amniotic membrane</strong>, produced using a proprietary tissue processing technique. It is designed to serve as a <strong>barrier or wound cover for acute and chronic wounds</strong>, and the manufacturer positions it particularly for <strong>shallow-to-moderate wound beds</strong>. We list it as &ldquo;Sentry&trade; SL&rdquo; for its single-layer construction; the manufacturer&rsquo;s own literature calls it Sentry&trade; Placental-Derived Allograft, made by Sequence LifeScience,&nbsp;Inc. The final products are minimally manipulated, dehydrated, packaged in four sizes, and verified to be terminally sterilized.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How do I choose between Sentry&trade; SL and Palisade&trade;? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Depth. <strong>Sentry&trade; SL is a single layer of amniotic membrane</strong>, positioned for <strong>shallow-to-moderate</strong> wound beds &mdash; the amnion is a thin yet highly compact matrix whose elasticity and durability let it conform closely to the wound surface while providing a protective barrier. <strong>Palisade&trade; is a dual-membrane allograft &mdash; amnion plus chorion</strong> &mdash; positioned by its manufacturer for <strong>moderate-to-deep</strong> wound beds, the chorion being described as a slightly thicker but less compact matrix. Both come in 2&times;2, 2&times;4, 4&times;4 and 4&times;8&nbsp;cm. They bill under different HCPCS codes: <strong>Q4348 for Sentry&trade;, Q4350 for Palisade&trade;</strong>. They are also made by different companies &mdash; Sentry&trade; by Sequence LifeScience,&nbsp;Inc. and Palisade&trade; by Nvision Biomedical Technologies,&nbsp;Inc. &mdash; so treat them as two separate products we distribute, not one product line. See the <a href="/products/palisade">Palisade&trade; page</a> for the dual-membrane detail.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q2" aria-expanded="false" aria-controls="faq-products-sentry-sl-a2">How do I choose between Sentry&trade; SL and Palisade&trade;? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a2" role="region" aria-labelledby="faq-products-sentry-sl-q2"><div class="faq-a-inner">Depth. <strong>Sentry&trade; SL is a single layer of amniotic membrane</strong>, positioned for <strong>shallow-to-moderate</strong> wound beds &mdash; the amnion is a thin yet highly compact matrix whose elasticity and durability let it conform closely to the wound surface while providing a protective barrier. <strong>Palisade&trade; is a dual-membrane allograft &mdash; amnion plus chorion</strong> &mdash; positioned by its manufacturer for <strong>moderate-to-deep</strong> wound beds, the chorion being described as a slightly thicker but less compact matrix. Both come in 2&times;2, 2&times;4, 4&times;4 and 4&times;8&nbsp;cm. They bill under different HCPCS codes: <strong>Q4348 for Sentry&trade;, Q4350 for Palisade&trade;</strong>. They are also made by different companies &mdash; Sentry&trade; by Sequence LifeScience,&nbsp;Inc. and Palisade&trade; by Nvision Biomedical Technologies,&nbsp;Inc. &mdash; so treat them as two separate products we distribute, not one product line. See the <a href="/products/palisade">Palisade&trade; page</a> for the dual-membrane detail.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is Sentry&trade; FDA-approved? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No &mdash; and no one should tell you it is. Sentry&trade; is a <strong>361 HCT/P</strong>: a human cell, tissue, or cellular and tissue-based product <strong>regulated as human tissue under 21&nbsp;CFR&nbsp;1271</strong>. It is not an FDA-approved drug or biologic, and it is not a 510(k)-cleared device. What the manufacturer does state is that the tissue is minimally manipulated, that donors are screened to <strong>FDA and American Association of Tissue Banks</strong> standards, that recovery is done in partnership with FDA-regulated and accredited recovery organizations, and that products undergo a validated terminal sterilization process.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q3" aria-expanded="false" aria-controls="faq-products-sentry-sl-a3">Is Sentry&trade; FDA-approved? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a3" role="region" aria-labelledby="faq-products-sentry-sl-q3"><div class="faq-a-inner">No &mdash; and no one should tell you it is. Sentry&trade; is a <strong>361 HCT/P</strong>: a human cell, tissue, or cellular and tissue-based product <strong>regulated as human tissue under 21&nbsp;CFR&nbsp;1271</strong>. It is not an FDA-approved drug or biologic, and it is not a 510(k)-cleared device. What the manufacturer does state is that the tissue is minimally manipulated, that donors are screened to <strong>FDA and American Association of Tissue Banks</strong> standards, that recovery is done in partnership with FDA-regulated and accredited recovery organizations, and that products undergo a validated terminal sterilization process.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Which wounds is it indicated for, and who can apply it? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">The Instructions for Use state that Sentry&trade; Placental-Derived Allograft (361 HCT/Ps) are intended as a <strong>natural biologic wound covering or skin substitute for cutaneous wounds</strong>. Use is by <strong>qualified health care professionals</strong>, for application in a <strong>physician office, outpatient, or inpatient setting</strong>. The manufacturer&rsquo;s literature does not enumerate specific wound etiologies or application intervals &mdash; so treat intended use and payer coverage as two separate questions, and read the full package insert and Instructions for Use before first use.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q4" aria-expanded="false" aria-controls="faq-products-sentry-sl-a4">Which wounds is it indicated for, and who can apply it? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a4" role="region" aria-labelledby="faq-products-sentry-sl-q4"><div class="faq-a-inner">The Instructions for Use state that Sentry&trade; Placental-Derived Allograft (361 HCT/Ps) are intended as a <strong>natural biologic wound covering or skin substitute for cutaneous wounds</strong>. Use is by <strong>qualified health care professionals</strong>, for application in a <strong>physician office, outpatient, or inpatient setting</strong>. The manufacturer&rsquo;s literature does not enumerate specific wound etiologies or application intervals &mdash; so treat intended use and payer coverage as two separate questions, and read the full package insert and Instructions for Use before first use.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What sizes are available, and how do units work under Q4348? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Four SKUs: <strong>SEN-24222 (2&times;2&nbsp;cm)</strong>, <strong>SEN-24224 (2&times;4&nbsp;cm)</strong>, <strong>SEN-24244 (4&times;4&nbsp;cm)</strong>, and <strong>SEN-24248 (4&times;8&nbsp;cm)</strong> &mdash; sheet areas of 4, 8, 16 and 32&nbsp;cm&sup2; respectively. The HCPCS Level II code is <strong>Q4348, &ldquo;Sentry&trade; Matrix, per square centimeter&rdquo;</strong>, so units follow square centimeters. Measure and record the wound at every application, size to the bed with the least excess, document any discarded portion per your payer&rsquo;s wastage rules, and log SKU, size and lot in the note. Payment rates and coverage are set by CMS and individual payers and are subject to change.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q5" aria-expanded="false" aria-controls="faq-products-sentry-sl-a5">What sizes are available, and how do units work under Q4348? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a5" role="region" aria-labelledby="faq-products-sentry-sl-q5"><div class="faq-a-inner">Four SKUs: <strong>SEN-24222 (2&times;2&nbsp;cm)</strong>, <strong>SEN-24224 (2&times;4&nbsp;cm)</strong>, <strong>SEN-24244 (4&times;4&nbsp;cm)</strong>, and <strong>SEN-24248 (4&times;8&nbsp;cm)</strong> &mdash; sheet areas of 4, 8, 16 and 32&nbsp;cm&sup2; respectively. The HCPCS Level II code is <strong>Q4348, &ldquo;Sentry&trade; Matrix, per square centimeter&rdquo;</strong>, so units follow square centimeters. Measure and record the wound at every application, size to the bed with the least excess, document any discarded portion per your payer&rsquo;s wastage rules, and log SKU, size and lot in the note. Payment rates and coverage are set by CMS and individual payers and are subject to change.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Where does the tissue come from? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Donated tissues for Sentry&trade; products are collected from <strong>fully consented mothers undergoing full-term c-sections</strong>. Each donor is screened according to the strict standards required by the <strong>U.S. Food and Drug Administration</strong> and the <strong>American Association of Tissue Banks</strong>. All donated tissue is obtained in partnership with <strong>FDA-regulated and accredited recovery organizations</strong>, and Sentry&trade; products undergo a <strong>validated terminal sterilization process</strong>. Additional details of screening procedures are in the product package insert or Instructions for Use, which we will send on request.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q6" aria-expanded="false" aria-controls="faq-products-sentry-sl-a6">Where does the tissue come from? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a6" role="region" aria-labelledby="faq-products-sentry-sl-q6"><div class="faq-a-inner">Donated tissues for Sentry&trade; products are collected from <strong>fully consented mothers undergoing full-term c-sections</strong>. Each donor is screened according to the strict standards required by the <strong>U.S. Food and Drug Administration</strong> and the <strong>American Association of Tissue Banks</strong>. All donated tissue is obtained in partnership with <strong>FDA-regulated and accredited recovery organizations</strong>, and Sentry&trade; products undergo a <strong>validated terminal sterilization process</strong>. Additional details of screening procedures are in the product package insert or Instructions for Use, which we will send on request.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What does the evidence base look like? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Be clear-eyed about this. The manufacturer&rsquo;s brochure cites <strong>two background references</strong>: Niknejad et&nbsp;al., &ldquo;Properties of the Amniotic Membrane for Potential Use in Tissue Engineering&rdquo; (<em>Eur Cell Mater</em>, vol.&nbsp;15, pp.&nbsp;88&ndash;99, 2008), and Roy et&nbsp;al., &ldquo;Placental Tissues as Biomaterials in Regenerative Medicine&rdquo; (<em>BioMed Research International</em>, vol.&nbsp;2022, pp.&nbsp;1&ndash;26, 2022). Both are literature on the <strong>properties of amniotic membrane and placental tissue as biomaterials</strong> &mdash; not clinical trials of Sentry&trade;, and not comparative outcome studies. They support what the tissue <em>is</em>. We make no healing-rate, time-to-closure, or head-to-head performance claims for this product.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q7" aria-expanded="false" aria-controls="faq-products-sentry-sl-a7">What does the evidence base look like? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a7" role="region" aria-labelledby="faq-products-sentry-sl-q7"><div class="faq-a-inner">Be clear-eyed about this. The manufacturer&rsquo;s brochure cites <strong>two background references</strong>: Niknejad et&nbsp;al., &ldquo;Properties of the Amniotic Membrane for Potential Use in Tissue Engineering&rdquo; (<em>Eur Cell Mater</em>, vol.&nbsp;15, pp.&nbsp;88&ndash;99, 2008), and Roy et&nbsp;al., &ldquo;Placental Tissues as Biomaterials in Regenerative Medicine&rdquo; (<em>BioMed Research International</em>, vol.&nbsp;2022, pp.&nbsp;1&ndash;26, 2022). Both are literature on the <strong>properties of amniotic membrane and placental tissue as biomaterials</strong> &mdash; not clinical trials of Sentry&trade;, and not comparative outcome studies. They support what the tissue <em>is</em>. We make no healing-rate, time-to-closure, or head-to-head performance claims for this product.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Who manufactures it, and what does Albacete MedDev do? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Sentry&trade; is manufactured by <strong>Sequence LifeScience,&nbsp;Inc.</strong>, whose product literature is the source for the Sentry&trade; specifications on this page. <strong>Albacete MedDev is an independent distributor, not the manufacturer</strong> &mdash; we do not process, sterilize, or release this tissue. What we bring is the operating layer around it: a dated, cited coverage read on Q4348 for your MAC before you order; staff in-service on sizing, measurement and lot capture; documentation templates and unit-count reconciliation; and in-house medical-legal guidance if a payer or contractor comes asking. Twenty-plus years of wound-care files sit behind that.</div></div>
+            <button type="button" class="faq-q" id="faq-products-sentry-sl-q8" aria-expanded="false" aria-controls="faq-products-sentry-sl-a8">Who manufactures it, and what does Albacete MedDev do? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-sentry-sl-a8" role="region" aria-labelledby="faq-products-sentry-sl-q8"><div class="faq-a-inner">Sentry&trade; is manufactured by <strong>Sequence LifeScience,&nbsp;Inc.</strong>, whose product literature is the source for the Sentry&trade; specifications on this page. <strong>Albacete MedDev is an independent distributor, not the manufacturer</strong> &mdash; we do not process, sterilize, or release this tissue. What we bring is the operating layer around it: a dated, cited coverage read on Q4348 for your MAC before you order; staff in-service on sizing, measurement and lot capture; documentation templates and unit-count reconciliation; and in-house medical-legal guidance if a payer or contractor comes asking. Twenty-plus years of wound-care files sit behind that.</div></div>
           </div>
         </div>
       </div>
@@ -650,6 +651,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

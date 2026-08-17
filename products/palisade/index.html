@@ -8,7 +8,7 @@
   <meta name="description" content="Dual-membrane amnion and chorion placental allograft for moderate-to-deep wound beds. Terminally sterilised, four sizes. HCPCS Q4350, per square centimeter.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Palisade Placental-Derived Allograft","description":"Dual-membrane amniotic and chorionic placental allograft for acute and chronic wounds. HCPCS Q4350.","url":"https://albacetemeddev-redesign.pages.dev/products/palisade/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"Palisade","item":"https://albacetemeddev-redesign.pages.dev/products/palisade/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-compact">
       <div class="container hero-inner">
@@ -553,40 +554,40 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What exactly is Palisade&trade; made of? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Palisade&trade; Placental-Derived Allograft is a <strong>dual-membrane allograft comprised of the amniotic and chorionic membranes of the placenta</strong>. Both membranes are constituted of collagen fibers &mdash; predominantly <strong>Types I, III, IV and V</strong> &mdash; along with other ECM proteins including <strong>laminin, fibronectin, proteoglycans and hyaluronic acid</strong>. The finished products are minimally manipulated and dehydrated, and the manufacturer states they retain the structural and functional characteristics of the starting placental membranes.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q1" aria-expanded="false" aria-controls="faq-products-palisade-a1">What exactly is Palisade&trade; made of? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a1" role="region" aria-labelledby="faq-products-palisade-q1"><div class="faq-a-inner">Palisade&trade; Placental-Derived Allograft is a <strong>dual-membrane allograft comprised of the amniotic and chorionic membranes of the placenta</strong>. Both membranes are constituted of collagen fibers &mdash; predominantly <strong>Types I, III, IV and V</strong> &mdash; along with other ECM proteins including <strong>laminin, fibronectin, proteoglycans and hyaluronic acid</strong>. The finished products are minimally manipulated and dehydrated, and the manufacturer states they retain the structural and functional characteristics of the starting placental membranes.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How is the amnion different from the chorion? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">The <strong>amnion</strong> is the internal, fetus-facing membrane; the <strong>chorion</strong> is the external, maternal-facing membrane. Their physical and biochemical properties are subtly different owing to the position each occupies in the placenta: the amnion is a <strong>thinner yet more compact</strong> layer of extracellular matrix, while the chorion is a <strong>slightly thicker but less compact</strong> matrix. The stated collagen and ECM-protein composition is the same for both. Palisade&trade; carries both membranes; Sentry&trade; SL carries a single layer of amnion.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q2" aria-expanded="false" aria-controls="faq-products-palisade-a2">How is the amnion different from the chorion? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a2" role="region" aria-labelledby="faq-products-palisade-q2"><div class="faq-a-inner">The <strong>amnion</strong> is the internal, fetus-facing membrane; the <strong>chorion</strong> is the external, maternal-facing membrane. Their physical and biochemical properties are subtly different owing to the position each occupies in the placenta: the amnion is a <strong>thinner yet more compact</strong> layer of extracellular matrix, while the chorion is a <strong>slightly thicker but less compact</strong> matrix. The stated collagen and ECM-protein composition is the same for both. Palisade&trade; carries both membranes; Sentry&trade; SL carries a single layer of amnion.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">When would I choose Palisade&trade; over Sentry&trade; SL? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">The product literature positions the dual-membrane Palisade&trade; <strong>particularly for moderate-to-deep wound beds</strong>, and the single-layer Sentry&trade; SL <strong>particularly for shallow-to-moderate wound beds</strong>. Both carry the same stated intended use &mdash; a natural biologic wound covering or skin substitute for cutaneous wounds &mdash; and the same four sizes. They carry different HCPCS codes: <strong>Q4350</strong> for Palisade&trade;, <strong>Q4348</strong> for Sentry&trade;. Depth positioning is manufacturer guidance, not a coverage rule; selection is the treating clinician&rsquo;s judgment. <a href="/products/sentry-sl">See the Sentry&trade; SL page</a> for the single-layer detail.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q3" aria-expanded="false" aria-controls="faq-products-palisade-a3">When would I choose Palisade&trade; over Sentry&trade; SL? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a3" role="region" aria-labelledby="faq-products-palisade-q3"><div class="faq-a-inner">The product literature positions the dual-membrane Palisade&trade; <strong>particularly for moderate-to-deep wound beds</strong>, and the single-layer Sentry&trade; SL <strong>particularly for shallow-to-moderate wound beds</strong>. Both carry the same stated intended use &mdash; a natural biologic wound covering or skin substitute for cutaneous wounds &mdash; and the same four sizes. They carry different HCPCS codes: <strong>Q4350</strong> for Palisade&trade;, <strong>Q4348</strong> for Sentry&trade;. Depth positioning is manufacturer guidance, not a coverage rule; selection is the treating clinician&rsquo;s judgment. <a href="/products/sentry-sl">See the Sentry&trade; SL page</a> for the single-layer detail.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is Palisade&trade; FDA-approved or FDA-cleared? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Neither &mdash; and that is the correct answer, not a hedge. Palisade&trade; products are <strong>361 HCT/Ps</strong>: human cells, tissues, and cellular and tissue-based products <strong>regulated as human tissue under 21 CFR Part&nbsp;1271</strong>. That tier does not carry a premarket approval or a 510(k) clearance number, so there is none to quote. Anyone who tells you this product is &ldquo;FDA-approved&rdquo; is describing it incorrectly.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q4" aria-expanded="false" aria-controls="faq-products-palisade-a4">Is Palisade&trade; FDA-approved or FDA-cleared? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a4" role="region" aria-labelledby="faq-products-palisade-q4"><div class="faq-a-inner">Neither &mdash; and that is the correct answer, not a hedge. Palisade&trade; products are <strong>361 HCT/Ps</strong>: human cells, tissues, and cellular and tissue-based products <strong>regulated as human tissue under 21 CFR Part&nbsp;1271</strong>. That tier does not carry a premarket approval or a 510(k) clearance number, so there is none to quote. Anyone who tells you this product is &ldquo;FDA-approved&rdquo; is describing it incorrectly.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Where does the tissue come from, and how is it screened? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Donated tissues are collected from <strong>fully consented mothers undergoing full-term c-sections</strong>. Each donor is screened according to the strict standards required by the <strong>U.S. Food and Drug Administration</strong> and the <strong>American Association of Tissue Banks</strong>. All donated tissue is obtained in partnership with <strong>FDA-regulated and accredited recovery organizations</strong>. Palisade&trade; products then undergo a <strong>validated terminal sterilization process</strong>, and final products are verified to a defined sterility assurance level. Additional detail on screening procedures is in the product package insert or Instructions for Use &mdash; ask us and we will send the current version.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q5" aria-expanded="false" aria-controls="faq-products-palisade-a5">Where does the tissue come from, and how is it screened? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a5" role="region" aria-labelledby="faq-products-palisade-q5"><div class="faq-a-inner">Donated tissues are collected from <strong>fully consented mothers undergoing full-term c-sections</strong>. Each donor is screened according to the strict standards required by the <strong>U.S. Food and Drug Administration</strong> and the <strong>American Association of Tissue Banks</strong>. All donated tissue is obtained in partnership with <strong>FDA-regulated and accredited recovery organizations</strong>. Palisade&trade; products then undergo a <strong>validated terminal sterilization process</strong>, and final products are verified to a defined sterility assurance level. Additional detail on screening procedures is in the product package insert or Instructions for Use &mdash; ask us and we will send the current version.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What sizes are available, and how do they map to billed units? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Four sizes: <strong>PAL-26222 (2&times;2&nbsp;cm)</strong>, <strong>PAL-26224 (2&times;4&nbsp;cm)</strong>, <strong>PAL-26244 (4&times;4&nbsp;cm)</strong> and <strong>PAL-26248 (4&times;8&nbsp;cm)</strong>. Because Q4350 is defined <strong>per square centimeter</strong>, those dimensions correspond to 4, 8, 16 and 32&nbsp;cm&sup2; of graft respectively. Bill the units that reconcile to the SKU applied and to the wound measurements in the note, and follow your payer&rsquo;s instructions for any discarded portion.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q6" aria-expanded="false" aria-controls="faq-products-palisade-a6">What sizes are available, and how do they map to billed units? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a6" role="region" aria-labelledby="faq-products-palisade-q6"><div class="faq-a-inner">Four sizes: <strong>PAL-26222 (2&times;2&nbsp;cm)</strong>, <strong>PAL-26224 (2&times;4&nbsp;cm)</strong>, <strong>PAL-26244 (4&times;4&nbsp;cm)</strong> and <strong>PAL-26248 (4&times;8&nbsp;cm)</strong>. Because Q4350 is defined <strong>per square centimeter</strong>, those dimensions correspond to 4, 8, 16 and 32&nbsp;cm&sup2; of graft respectively. Bill the units that reconcile to the SKU applied and to the wound measurements in the note, and follow your payer&rsquo;s instructions for any discarded portion.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">In which settings can Palisade&trade; be applied? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Use of Palisade&trade; Placental-Derived Allograft by <strong>qualified health care professionals</strong> is for application in a <strong>physician office, outpatient, or inpatient setting</strong>. The same SKUs serve all three &mdash; what changes between them is the billing pathway, not the graft. Confirm the site-of-service pathway with your billing team before the first application.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q7" aria-expanded="false" aria-controls="faq-products-palisade-a7">In which settings can Palisade&trade; be applied? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a7" role="region" aria-labelledby="faq-products-palisade-q7"><div class="faq-a-inner">Use of Palisade&trade; Placental-Derived Allograft by <strong>qualified health care professionals</strong> is for application in a <strong>physician office, outpatient, or inpatient setting</strong>. The same SKUs serve all three &mdash; what changes between them is the billing pathway, not the graft. Confirm the site-of-service pathway with your billing team before the first application.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What clinical evidence supports it? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Plainly: the manufacturer&rsquo;s brochure cites <strong>two published references</strong> &mdash; Niknejad et&nbsp;al. on properties of the amniotic membrane (<em>Eur Cell Mater</em>, 2008) and Roy et&nbsp;al. on placental tissues as biomaterials in regenerative medicine (<em>BioMed Research International</em>, 2022). Both are background literature on the tissue as a biomaterial. <strong>Neither is a clinical trial of Palisade&trade;</strong>, and the brochure presents no outcome data, no healing rates and no head-to-head comparison. Statements about composition and structure are well supported; statements about clinical performance would not be, so we do not make them.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q8" aria-expanded="false" aria-controls="faq-products-palisade-a8">What clinical evidence supports it? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a8" role="region" aria-labelledby="faq-products-palisade-q8"><div class="faq-a-inner">Plainly: the manufacturer&rsquo;s brochure cites <strong>two published references</strong> &mdash; Niknejad et&nbsp;al. on properties of the amniotic membrane (<em>Eur Cell Mater</em>, 2008) and Roy et&nbsp;al. on placental tissues as biomaterials in regenerative medicine (<em>BioMed Research International</em>, 2022). Both are background literature on the tissue as a biomaterial. <strong>Neither is a clinical trial of Palisade&trade;</strong>, and the brochure presents no outcome data, no healing rates and no head-to-head comparison. Statements about composition and structure are well supported; statements about clinical performance would not be, so we do not make them.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Who makes it, and what is Albacete MedDev&rsquo;s role? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Palisade&trade; is manufactured by <strong>Nvision Biomedical Technologies,&nbsp;Inc.</strong> of San Antonio, Texas. The manufacturer&rsquo;s brochure carries an &ldquo;Exclusively Distributed by&rdquo; mark above a second San Antonio address block and the web address innovativewoundconsultants.com. <strong>Albacete MedDev is an independent distributor, not the manufacturer.</strong> What we add is the operating layer around the product &mdash; Q4350 coding walkthroughs with your billing team, documentation templates that survive review, in-service on handling, and in-house medical-legal guidance if a claim is ever examined.</div></div>
+            <button type="button" class="faq-q" id="faq-products-palisade-q9" aria-expanded="false" aria-controls="faq-products-palisade-a9">Who makes it, and what is Albacete MedDev&rsquo;s role? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-palisade-a9" role="region" aria-labelledby="faq-products-palisade-q9"><div class="faq-a-inner">Palisade&trade; is manufactured by <strong>Nvision Biomedical Technologies,&nbsp;Inc.</strong> of San Antonio, Texas. The manufacturer&rsquo;s brochure carries an &ldquo;Exclusively Distributed by&rdquo; mark above a second San Antonio address block and the web address innovativewoundconsultants.com. <strong>Albacete MedDev is an independent distributor, not the manufacturer.</strong> What we add is the operating layer around the product &mdash; Q4350 coding walkthroughs with your billing team, documentation templates that survive review, in-service on handling, and in-house medical-legal guidance if a claim is ever examined.</div></div>
           </div>
         </div>
       </div>
@@ -659,6 +660,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

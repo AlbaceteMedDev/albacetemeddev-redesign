@@ -8,7 +8,7 @@
   <meta name="description" content="The only connective tissue matrix derived exclusively from the chorionic plate — no amnion. Flowable and particulate forms for irregular soft-tissue defects. HCPCS Q4171.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -30,6 +30,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Interfyl Human Connective Tissue Matrix","description":"Decellularised human connective tissue matrix from the chorionic plate, in flowable and particulate forms. HCPCS Q4171.","url":"https://albacetemeddev-redesign.pages.dev/products/interfyl/","brand":{"@type":"Brand","name":"Albacete MedDev"},"category":"Medical Device"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"Interfyl","item":"https://albacetemeddev-redesign.pages.dev/products/interfyl/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -39,10 +40,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -79,30 +80,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -143,7 +144,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- HERO -->
     <section class="hero hero-compact">
@@ -564,48 +565,48 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What actually separates Interfyl from the rest of the placental category? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Source layer. BIONX Surgical&rsquo;s product literature describes Interfyl as <strong>the only CTM filler derived exclusively from the chorionic plate of the human placenta</strong>, and it <strong>does not contain amnion</strong> &mdash; it contains only connective tissue matrix. Interfyl is defined by a single source layer and by minimal processing, which helps retain the fundamental structure and functional characteristics of native connective tissue. That uniqueness statement is the supplier&rsquo;s, reproduced from its literature; we present it as their claim rather than as an independent market survey.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q1" aria-expanded="false" aria-controls="faq-products-interfyl-a1">What actually separates Interfyl from the rest of the placental category? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a1" role="region" aria-labelledby="faq-products-interfyl-q1"><div class="faq-a-inner">Source layer. BIONX Surgical&rsquo;s product literature describes Interfyl as <strong>the only CTM filler derived exclusively from the chorionic plate of the human placenta</strong>, and it <strong>does not contain amnion</strong> &mdash; it contains only connective tissue matrix. Interfyl is defined by a single source layer and by minimal processing, which helps retain the fundamental structure and functional characteristics of native connective tissue. That uniqueness statement is the supplier&rsquo;s, reproduced from its literature; we present it as their claim rather than as an independent market survey.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Does Interfyl contain growth factors or living cells? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">No. There are <strong>no remaining cells or cellular debris</strong> in Interfyl, and consequently <strong>no DNA, growth factors, or other cytokines are present in appreciable amounts</strong>. What is present is the matrix: the major structural proteins <strong>collagen and elastin</strong> &mdash; just like the skin &mdash; plus <strong>fibronectin, laminin, glycosaminoglycans (GAGs) and proteoglycans</strong>. If your protocol depends on delivering growth factors or viable cells, this is not that product &mdash; the composition statement in the literature is explicit about what is absent. The case for Interfyl is structural.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q2" aria-expanded="false" aria-controls="faq-products-interfyl-a2">Does Interfyl contain growth factors or living cells? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a2" role="region" aria-labelledby="faq-products-interfyl-q2"><div class="faq-a-inner">No. There are <strong>no remaining cells or cellular debris</strong> in Interfyl, and consequently <strong>no DNA, growth factors, or other cytokines are present in appreciable amounts</strong>. What is present is the matrix: the major structural proteins <strong>collagen and elastin</strong> &mdash; just like the skin &mdash; plus <strong>fibronectin, laminin, glycosaminoglycans (GAGs) and proteoglycans</strong>. If your protocol depends on delivering growth factors or viable cells, this is not that product &mdash; the composition statement in the literature is explicit about what is absent. The case for Interfyl is structural.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Can I use it in a patient with antibiotic sensitivity? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Yes &mdash; <strong>no antibiotics are used in Interfyl processing</strong>, so there are <strong>no antibiotic residuals</strong>, and it can be used in antibiotic-sensitive individuals. That is a distinct question from hypersensitivity to the product itself: Interfyl is <strong>contraindicated in patients with a known hypersensitivity to Interfyl</strong>, and if a recipient had an adverse reaction related to previous use, do not re-apply.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q3" aria-expanded="false" aria-controls="faq-products-interfyl-a3">Can I use it in a patient with antibiotic sensitivity? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a3" role="region" aria-labelledby="faq-products-interfyl-q3"><div class="faq-a-inner">Yes &mdash; <strong>no antibiotics are used in Interfyl processing</strong>, so there are <strong>no antibiotic residuals</strong>, and it can be used in antibiotic-sensitive individuals. That is a distinct question from hypersensitivity to the product itself: Interfyl is <strong>contraindicated in patients with a known hypersensitivity to Interfyl</strong>, and if a recipient had an adverse reaction related to previous use, do not re-apply.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Flowable or particulate &mdash; how do I choose? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Honestly: the public product material does not publish a selection algorithm, so we will not invent one. What it does say is that both forms exist &ldquo;to meet a variety of surgical application needs,&rdquo; and that the <strong>flowable form</strong> is what enables Interfyl to conform to challenging contours, filling irregular spaces or soft tissue deficits resulting from trauma or surgery. Note also that the coverage estimates we hold cover <strong>three flowable sizes only</strong> &mdash; neither particulate vial is in that study. Selection is a clinical judgment; bring us the case and we will get a specific answer from BIONX Surgical rather than guessing at one.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q4" aria-expanded="false" aria-controls="faq-products-interfyl-a4">Flowable or particulate &mdash; how do I choose? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a4" role="region" aria-labelledby="faq-products-interfyl-q4"><div class="faq-a-inner">Honestly: the public product material does not publish a selection algorithm, so we will not invent one. What it does say is that both forms exist &ldquo;to meet a variety of surgical application needs,&rdquo; and that the <strong>flowable form</strong> is what enables Interfyl to conform to challenging contours, filling irregular spaces or soft tissue deficits resulting from trauma or surgery. Note also that the coverage estimates we hold cover <strong>three flowable sizes only</strong> &mdash; neither particulate vial is in that study. Selection is a clinical judgment; bring us the case and we will get a specific answer from BIONX Surgical rather than guessing at one.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How much surface area does one syringe cover? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">From the internal bench-top study (data on file): <strong>HCTM030</strong> &mdash; 0.3&nbsp;mL, 40&nbsp;mg of Interfyl with 0.3&nbsp;mL of sterile solution &mdash; an estimated <strong>7&nbsp;cm&sup2;</strong>. <strong>HCTM060</strong> &mdash; 0.6&nbsp;mL, 70&nbsp;mg with 0.6&nbsp;mL of solution &mdash; an estimated <strong>12&nbsp;cm&sup2;</strong>. <strong>HCTM001</strong> &mdash; the 100&nbsp;mg flowable, with 1&nbsp;mL of solution &mdash; an estimated <strong>17&nbsp;cm&sup2;</strong>. The analysis averaged <strong>6&nbsp;mg/cm&sup2;</strong> across all sizes tested. These are bench-top figures measured by ImageJ pixel-area analysis on compressed glass slides, not clinical measurements, and actual coverage may vary based on wound characteristics, application technique, hydration and physician judgment. The 1.5&nbsp;mL flowable and the particulate vials are not in that study, and we do not extrapolate a figure for them.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q5" aria-expanded="false" aria-controls="faq-products-interfyl-a5">How much surface area does one syringe cover? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a5" role="region" aria-labelledby="faq-products-interfyl-q5"><div class="faq-a-inner">From the internal bench-top study (data on file): <strong>HCTM030</strong> &mdash; 0.3&nbsp;mL, 40&nbsp;mg of Interfyl with 0.3&nbsp;mL of sterile solution &mdash; an estimated <strong>7&nbsp;cm&sup2;</strong>. <strong>HCTM060</strong> &mdash; 0.6&nbsp;mL, 70&nbsp;mg with 0.6&nbsp;mL of solution &mdash; an estimated <strong>12&nbsp;cm&sup2;</strong>. <strong>HCTM001</strong> &mdash; the 100&nbsp;mg flowable, with 1&nbsp;mL of solution &mdash; an estimated <strong>17&nbsp;cm&sup2;</strong>. The analysis averaged <strong>6&nbsp;mg/cm&sup2;</strong> across all sizes tested. These are bench-top figures measured by ImageJ pixel-area analysis on compressed glass slides, not clinical measurements, and actual coverage may vary based on wound characteristics, application technique, hydration and physician judgment. The 1.5&nbsp;mL flowable and the particulate vials are not in that study, and we do not extrapolate a figure for them.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How was that coverage figure measured? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Interfyl flowable was mixed with the suggested volume of saline for the Interfyl weight &mdash; 0.9% saline collected in the top syringe, mixed with Interfyl in the bottom syringe, then &ldquo;pumped&rdquo; repeatedly to bring the powder into solution at a homogeneous consistency. The syringes were separated, the tip excluded, and the solution applied to a glass slide and compressed with a second slide. <strong>ImageJ</strong> was then used to quantify the area: a 1&nbsp;cm&sup2; square of grid paper was outlined and its pixel count recorded (which accounts for the different visual scale depending on the height the image was taken), the Interfyl area was outlined by circular estimate or hand sketch, and its pixel count was divided by the 1&nbsp;cm&sup2; scale. It is a transparent method with visible limits &mdash; which is exactly why it should be read as a sizing guide rather than as evidence.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q6" aria-expanded="false" aria-controls="faq-products-interfyl-a6">How was that coverage figure measured? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a6" role="region" aria-labelledby="faq-products-interfyl-q6"><div class="faq-a-inner">Interfyl flowable was mixed with the suggested volume of saline for the Interfyl weight &mdash; 0.9% saline collected in the top syringe, mixed with Interfyl in the bottom syringe, then &ldquo;pumped&rdquo; repeatedly to bring the powder into solution at a homogeneous consistency. The syringes were separated, the tip excluded, and the solution applied to a glass slide and compressed with a second slide. <strong>ImageJ</strong> was then used to quantify the area: a 1&nbsp;cm&sup2; square of grid paper was outlined and its pixel count recorded (which accounts for the different visual scale depending on the height the image was taken), the Interfyl area was outlined by circular estimate or hand sketch, and its pixel count was divided by the 1&nbsp;cm&sup2; scale. It is a transparent method with visible limits &mdash; which is exactly why it should be read as a sizing guide rather than as evidence.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">What are the handling and storage rules? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Interfyl is <strong>ready to use with room-temperature storage</strong> and a <strong>10-year shelf life</strong>, and must be used before the expiration date on the product pouch. Handle using <strong>aseptic techniques</strong>; inspect packaging integrity and do not use if the seal is broken or the container has been violated; discard if mishandling has caused possible damage or contamination. Contents are sterile only if the container is unopened and undamaged, and it must <strong>not be re-sterilized</strong>. <strong>Once opened, use within two hours</strong> or discard per institutional procedures. Each syringe/vial is for a <strong>single patient on one occasion</strong> &mdash; discard any unused material per institutional procedures.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q7" aria-expanded="false" aria-controls="faq-products-interfyl-a7">What are the handling and storage rules? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a7" role="region" aria-labelledby="faq-products-interfyl-q7"><div class="faq-a-inner">Interfyl is <strong>ready to use with room-temperature storage</strong> and a <strong>10-year shelf life</strong>, and must be used before the expiration date on the product pouch. Handle using <strong>aseptic techniques</strong>; inspect packaging integrity and do not use if the seal is broken or the container has been violated; discard if mishandling has caused possible damage or contamination. Contents are sterile only if the container is unopened and undamaged, and it must <strong>not be re-sterilized</strong>. <strong>Once opened, use within two hours</strong> or discard per institutional procedures. Each syringe/vial is for a <strong>single patient on one occasion</strong> &mdash; discard any unused material per institutional procedures.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Where can Interfyl not be used? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Interfyl <strong>should not be used in clinically infected sites</strong>, and it <strong>may not be used for intravenous, intra-arterial, intra-ocular, or intrathecal applications</strong>. It is contraindicated in patients with a known hypersensitivity to Interfyl, and it should not be re-applied to a recipient who had an adverse reaction related to previous use. Do not re-sterilize. These are reproduced from BIONX Surgical product literature; refer to the Interfyl package insert for complete product information.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q8" aria-expanded="false" aria-controls="faq-products-interfyl-a8">Where can Interfyl not be used? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a8" role="region" aria-labelledby="faq-products-interfyl-q8"><div class="faq-a-inner">Interfyl <strong>should not be used in clinically infected sites</strong>, and it <strong>may not be used for intravenous, intra-arterial, intra-ocular, or intrathecal applications</strong>. It is contraindicated in patients with a known hypersensitivity to Interfyl, and it should not be re-applied to a recipient who had an adverse reaction related to previous use. Do not re-sterilize. These are reproduced from BIONX Surgical product literature; refer to the Interfyl package insert for complete product information.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How is Interfyl coded, and what does it pay? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">We do not publish a billing code here, and we do not publish payment figures. The supplier&rsquo;s product literature carries no code, and we will not print one from memory for you to bill off. Our revenue-cycle team confirms the <strong>applicable HCPCS code, its current descriptor and its unit definition</strong> with your MAC before the first case, and gives you the answer in writing. On payment: the payable amount is set by <strong>CMS and the payer</strong>, varies by setting and geography, and is <strong>subject to change</strong>. Coverage ultimately depends on payer policy and medical necessity &mdash; a code is not coverage, and unit definitions do move.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q9" aria-expanded="false" aria-controls="faq-products-interfyl-a9">How is Interfyl coded, and what does it pay? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a9" role="region" aria-labelledby="faq-products-interfyl-q9"><div class="faq-a-inner">We do not publish a billing code here, and we do not publish payment figures. The supplier&rsquo;s product literature carries no code, and we will not print one from memory for you to bill off. Our revenue-cycle team confirms the <strong>applicable HCPCS code, its current descriptor and its unit definition</strong> with your MAC before the first case, and gives you the answer in writing. On payment: the payable amount is set by <strong>CMS and the payer</strong>, varies by setting and geography, and is <strong>subject to change</strong>. Coverage ultimately depends on payer policy and medical necessity &mdash; a code is not coverage, and unit definitions do move.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is there clinical outcome data behind this page? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Not in the material this page is built from. The product literature we work from covers composition, handling, product codes and an <strong>internal bench-top surface-area study</strong> &mdash; no clinical trials, no comparative outcomes, no healing endpoints. We would rather say that plainly than dress a bench measurement up as clinical proof. If you need an evidence file for a formulary or protocol review, ask us and we will request the package insert and whatever clinical literature the supplier can provide, then send it to you unedited.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q10" aria-expanded="false" aria-controls="faq-products-interfyl-a10">Is there clinical outcome data behind this page? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a10" role="region" aria-labelledby="faq-products-interfyl-q10"><div class="faq-a-inner">Not in the material this page is built from. The product literature we work from covers composition, handling, product codes and an <strong>internal bench-top surface-area study</strong> &mdash; no clinical trials, no comparative outcomes, no healing endpoints. We would rather say that plainly than dress a bench measurement up as clinical proof. If you need an evidence file for a formulary or protocol review, ask us and we will request the package insert and whatever clinical literature the supplier can provide, then send it to you unedited.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Why order Interfyl through Albacete MedDev? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Because the product is the easy part. We are an <strong>independent distributor</strong> &mdash; BIONX Surgical supplies Interfyl, and Interfyl&reg; is a registered trademark of Celeniv PTE. Ltd. What we add is the operating layer around it: code and coverage verification with your MAC before the first case, documentation templates that survive a post-payment review, product code and lot capture through our portal, staff in-services on the two-hour open window and the single-patient rule, and in-house medical-legal guidance when a payer or an auditor asks a hard question. Twenty-plus years of wound-care depth, and a bias toward telling you what a product does not do.</div></div>
+            <button type="button" class="faq-q" id="faq-products-interfyl-q11" aria-expanded="false" aria-controls="faq-products-interfyl-a11">Why order Interfyl through Albacete MedDev? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-interfyl-a11" role="region" aria-labelledby="faq-products-interfyl-q11"><div class="faq-a-inner">Because the product is the easy part. We are an <strong>independent distributor</strong> &mdash; BIONX Surgical supplies Interfyl, and Interfyl&reg; is a registered trademark of Celeniv PTE. Ltd. What we add is the operating layer around it: code and coverage verification with your MAC before the first case, documentation templates that survive a post-payment review, product code and lot capture through our portal, staff in-services on the two-hour open window and the single-patient rule, and in-house medical-legal guidance when a payer or an auditor asks a hard question. Twenty-plus years of wound-care depth, and a bias toward telling you what a product does not do.</div></div>
           </div>
         </div>
       </div>
@@ -673,6 +674,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>

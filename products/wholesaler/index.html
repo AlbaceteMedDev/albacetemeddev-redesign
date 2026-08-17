@@ -8,7 +8,7 @@
   <meta name="description" content="FDA-approved wound care supplies at wholesale pricing — foam, alginate, collagen, antimicrobials, compression. Ships HCPCS-coded and LCD-aligned.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=33">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=34">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -31,6 +31,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"Medical Supplies Wholesale Distribution","description":"FDA-approved medical supplies at wholesale pricing with HCPCS coding and LCD/NCD-aligned documentation.","url":"https://albacetemeddev-redesign.pages.dev/products/wholesaler/","provider":{"@id":"https://albacetemeddev-redesign.pages.dev/#organization"},"areaServed":"US"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Products & Solutions","item":"https://albacetemeddev-redesign.pages.dev/products/"},{"@type":"ListItem","position":3,"name":"Wholesaler","item":"https://albacetemeddev-redesign.pages.dev/products/wholesaler/"}]}]}</script>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
   </div>
@@ -40,10 +41,10 @@
       <a href="/" class="nav-logo" aria-label="Albacete MedDev home">
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
-      <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+      <ul class="nav-links">
+        <li class="nav-dropdown nav-dropdown--mega">
+          <a href="/products" class="dropdown-trigger">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega">
             <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
             <div class="mega-grid">
           <div class="mega-col">
@@ -80,30 +81,30 @@
             </div>
           </div>
         </li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
-          <div class="dropdown-menu" role="menu">
+        <li class="nav-dropdown">
+          <a href="/services" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
             <a href="/services"><span class="dot"></span>All Services</a>
             <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
             <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
             <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
           </div>
         </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
-        <li><a href="/portal" role="menuitem">Portal</a></li>
-        <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
-        <li><a href="/about" role="menuitem">About</a></li>
-        <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
+        <li><a href="/software">Software</a></li>
+        <li><a href="/scientific-portfolio">Scientific Portfolio</a></li>
+        <li><a href="/ovena-health">Amazon Store</a></li>
+        <li><a href="/portal">Portal</a></li>
+        <li><a href="/why-partner">Why Partner</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact" class="nav-cta">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
@@ -144,7 +145,7 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <section class="hero hero-split-layout">
       <div class="container hero-inner">
@@ -254,16 +255,16 @@
         </div>
         <div class="faq scroll-reveal">
           <div class="faq-item">
-            <div class="faq-q">What does wholesale mean for our facility? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">As a medical supplies wholesaler, Albacete MedDev connects hospitals and surgical centers directly with <strong>FDA-approved wound care products at wholesale pricing</strong>. Your facility receives the same quality supplies used in leading healthcare institutions — through a streamlined procurement channel with competitive pricing, proper HCPCS coding for every product, and compliance-ready documentation that supports reimbursement from Medicare, Medicaid, and commercial payers.</div></div>
+            <button type="button" class="faq-q" id="faq-products-wholesaler-q1" aria-expanded="false" aria-controls="faq-products-wholesaler-a1">What does wholesale mean for our facility? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-wholesaler-a1" role="region" aria-labelledby="faq-products-wholesaler-q1"><div class="faq-a-inner">As a medical supplies wholesaler, Albacete MedDev connects hospitals and surgical centers directly with <strong>FDA-approved wound care products at wholesale pricing</strong>. Your facility receives the same quality supplies used in leading healthcare institutions — through a streamlined procurement channel with competitive pricing, proper HCPCS coding for every product, and compliance-ready documentation that supports reimbursement from Medicare, Medicaid, and commercial payers.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">How does HCPCS support reimbursement? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Every medical supply in our wholesale catalog is assigned its correct <strong>HCPCS (Healthcare Common Procedure Coding System)</strong> code. These codes are essential for billing — they allow hospitals and surgical centers to submit claims for reimbursement to CMS and commercial payers. When paired with proper documentation of medical necessity, correct HCPCS coding ensures your facility can recover costs for the supplies used in patient care, subject to the applicable LCDs and NCDs for each product category.</div></div>
+            <button type="button" class="faq-q" id="faq-products-wholesaler-q2" aria-expanded="false" aria-controls="faq-products-wholesaler-a2">How does HCPCS support reimbursement? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-wholesaler-a2" role="region" aria-labelledby="faq-products-wholesaler-q2"><div class="faq-a-inner">Every medical supply in our wholesale catalog is assigned its correct <strong>HCPCS (Healthcare Common Procedure Coding System)</strong> code. These codes are essential for billing — they allow hospitals and surgical centers to submit claims for reimbursement to CMS and commercial payers. When paired with proper documentation of medical necessity, correct HCPCS coding ensures your facility can recover costs for the supplies used in patient care, subject to the applicable LCDs and NCDs for each product category.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Who qualifies for wholesale access? <span class="faq-icon">+</span></div>
-            <div class="faq-a"><div class="faq-a-inner">Wholesale distribution is available to <strong>hospitals, surgical centers, wound care clinics, and qualified healthcare organizations</strong>. Our catalog includes advanced wound dressings (foam, alginate, collagen, antimicrobial), skin substitutes and amniotic allografts, compression therapy supplies, surgical preparation products, post-operative wound management supplies, and conservative wound care staples. All products meet FDA regulatory requirements and are sourced from established manufacturers.</div></div>
+            <button type="button" class="faq-q" id="faq-products-wholesaler-q3" aria-expanded="false" aria-controls="faq-products-wholesaler-a3">Who qualifies for wholesale access? <span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-a" id="faq-products-wholesaler-a3" role="region" aria-labelledby="faq-products-wholesaler-q3"><div class="faq-a-inner">Wholesale distribution is available to <strong>hospitals, surgical centers, wound care clinics, and qualified healthcare organizations</strong>. Our catalog includes advanced wound dressings (foam, alginate, collagen, antimicrobial), skin substitutes and amniotic allografts, compression therapy supplies, surgical preparation products, post-operative wound management supplies, and conservative wound care staples. All products meet FDA regulatory requirements and are sourced from established manufacturers.</div></div>
           </div>
         </div>
       </div>
@@ -330,6 +331,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=22" defer></script>
+  <script src="/assets/js/app.js?v=23" defer></script>
 </body>
 </html>
