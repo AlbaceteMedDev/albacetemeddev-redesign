@@ -95,6 +95,7 @@
 </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap top-inner">
@@ -230,7 +231,7 @@ const PAGES = [
   ["Revenue Cycle","/revenue-cycle/"],["Legal","/legal-guidance/"],["Consulting","/consulting/"],
   ["Portal","/portal/"],["Why Partner","/why-partner/"],["About","/about/"],["Contact","/contact/"]
 ];
-const ORIGIN = location.origin.startsWith('http') ? location.origin : 'https://albacetemeddev-redesign.pages.dev';
+const ORIGIN = location.origin.startsWith('http') ? location.origin : 'https://albacetemeddev.com';
 const todayKey = () => new Date().toISOString().slice(0,10);
 const fmtTime = d => d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
 

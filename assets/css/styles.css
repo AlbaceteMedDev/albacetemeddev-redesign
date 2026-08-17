@@ -2542,3 +2542,18 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
   .pep-grid{grid-template-columns: 1fr}
   .pep-pill-label{min-width: 56px}
 }
+
+/* Hero headline: hold "The operating partner behind" on one line on desktop;
+   release on narrow screens where it must wrap. — v41 */
+.h1-keep{white-space: nowrap}
+@media (max-width: 980px){ .h1-keep{white-space: normal} }
+
+/* Sub-headline under product hero h1 — v41 */
+.hero-kicker{
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.01em;
+  margin: 10px 0 0;
+}
