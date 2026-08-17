@@ -1,111 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/about/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/amazon-store/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/contact/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/portal/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/actigraft/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/adhesion-barrier/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/advanced-biologics/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/apis/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/arobella/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/exosomes/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/products/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/actigraft/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/interfyl/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/ultramist/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/microdoc/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/collagen/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/miro3d/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/exosomes/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/palisade/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/adhesion-barrier/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/peptides/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/advanced-biologics/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/sentry-sl/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/microdoc/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/ultramist/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/products/wholesaler/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/wholesaler/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/scientific-portfolio/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/products/xcellistem/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/revenue-cycle/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/scientific-portfolio/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/services/consulting/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/legal-guidance/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/services/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/consulting/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/services/legal-guidance/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/portal/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/services/revenue-cycle/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/why-partner/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://albacetemeddev.com/software/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://albacetemeddev.com/why-partner/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/about/</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://albacetemeddev-redesign.pages.dev/contact/</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>

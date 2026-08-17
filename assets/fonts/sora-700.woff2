@@ -8,30 +8,29 @@
   <meta name="description" content="Advanced wound care products, compliance, revenue cycle, and legal support for specialty practices. One operating partner with 20+ years of wound care depth.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=40">
+  <link rel="stylesheet" href="assets/css/styles.css?v=31">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-  <link rel="canonical" href="https://albacetemeddev.com/">
+  <link rel="canonical" href="https://albacetemeddev-redesign.pages.dev/">
   <!-- Open Graph / link previews -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Albacete MedDev">
-  <meta property="og:url" content="https://albacetemeddev.com/">
+  <meta property="og:url" content="https://albacetemeddev-redesign.pages.dev/">
   <meta property="og:title" content="Albacete MedDev | Wound Care Products & Practice Partner">
   <meta property="og:description" content="Advanced wound care products, compliance, revenue cycle, and legal support for specialty practices. One operating partner with 20+ years of wound care depth.">
-  <meta property="og:image" content="https://albacetemeddev.com/assets/img/og-image.png">
+  <meta property="og:image" content="https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Albacete MedDev | Wound Care Products & Practice Partner">
   <meta name="twitter:description" content="Advanced wound care products, compliance, revenue cycle, and legal support for specialty practices. One operating partner with 20+ years of wound care depth.">
-  <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png">
+  <meta name="twitter:image" content="https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png">
   <!-- Structured data -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albacetemeddev.com/#organization","name":"Albacete MedDev","url":"https://albacetemeddev.com/","logo":"https://albacetemeddev.com/assets/img/favicon-512.png","image":"https://albacetemeddev.com/assets/img/og-image.png","description":"Medical device distribution and practice operations partner — advanced wound care products, compliance, revenue cycle, and legal support for specialty practices.","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactPoint":{"@type":"ContactPoint","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactType":"sales","areaServed":"US"}},{"@type":"WebSite","@id":"https://albacetemeddev.com/#website","url":"https://albacetemeddev.com/","name":"Albacete MedDev","publisher":{"@id":"https://albacetemeddev.com/#organization"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albacetemeddev-redesign.pages.dev/#organization","name":"Albacete MedDev","url":"https://albacetemeddev-redesign.pages.dev/","logo":"https://albacetemeddev-redesign.pages.dev/assets/img/favicon-512.png","image":"https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png","description":"Medical device distribution and practice operations partner — advanced wound care products, compliance, revenue cycle, and legal support for specialty practices.","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactPoint":{"@type":"ContactPoint","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactType":"sales","areaServed":"US"}},{"@type":"WebSite","@id":"https://albacetemeddev-redesign.pages.dev/#website","url":"https://albacetemeddev-redesign.pages.dev/","name":"Albacete MedDev","publisher":{"@id":"https://albacetemeddev-redesign.pages.dev/#organization"}}]}</script>
 </head>
 <body class="is-loading">
-  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ═══ SPLASH (Tempus-style logo load) ═══ -->
   <div class="splash" aria-hidden="true">
@@ -45,123 +44,70 @@
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
       <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown nav-dropdown--mega" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Products</a>
-          <div class="dropdown-menu dropdown-menu--mega" role="menu" aria-label="Products">
-            <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
-            <div class="mega-grid">
-            <div class="mega-group">
-              <div class="dropdown-section">Skin Substitutes &amp; CAMPs</div>
-              <a href="/products/palisade"><span class="dot"></span>Palisade Dual-Membrane</a>
-              <a href="/products/sentry-sl"><span class="dot"></span>Sentry SL</a>
-              <a href="/products/interfyl"><span class="dot"></span>Interfyl</a>
-              <a href="/products/apis"><span class="dot"></span>APIS</a>
-              <a href="/products/xcellistem"><span class="dot"></span>XCelliStem</a>
-              <a href="/products/miro3d"><span class="dot"></span>Miro3D</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Advanced Wound Care</div>
-              <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
-              <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Conservative Wound Care</div>
-              <a href="/products/arobella"><span class="dot"></span>Arobella Qoustic</a>
-              <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
-              <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Surgical Biologics</div>
-              <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Regenerative Medicine</div>
-              <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Peptide Therapies</div>
-              <a href="/products/peptides"><span class="dot"></span>Peptide Catalog</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Direct-to-Patient</div>
-              <a href="/amazon-store"><span class="dot"></span>Ovena Health</a>
-            </div>
-            <div class="mega-group">
-              <div class="dropdown-section">Distribution</div>
-              <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
-            </div>
-            </div>
+        <li class="nav-dropdown" role="none">
+          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
+          <div class="dropdown-menu" role="menu">
+            <a href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
+            <div class="dropdown-section">Advanced Wound Care</div>
+            <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
+            <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
+            <div class="dropdown-section">Surgical Biologics</div>
+            <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
+            <div class="dropdown-section">Conservative Wound Care</div>
+            <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
+            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
+            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
+            <div class="dropdown-section">Medical Supply Distribution</div>
+            <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
+            <div class="dropdown-section">Regenerative Medicine</div>
+            <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
           </div>
         </li>
         <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li class="nav-dropdown" role="none">
-          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Services</a>
-          <div class="dropdown-menu" role="menu" aria-label="Services">
-            <a href="/services"><span class="dot"></span>All Services</a>
-            <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
-            <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
-            <a href="/services/consulting"><span class="dot"></span>Consulting</a>
-          </div>
-        </li>
-        <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/amazon-store" role="menuitem">Amazon Store</a></li>
+        <li><a href="/revenue-cycle" role="menuitem">Revenue Cycle</a></li>
+        <li><a href="/legal-guidance" role="menuitem">Legal Guidance</a></li>
+        <li><a href="/consulting" role="menuitem">Consulting</a></li>
         <li><a href="/portal" role="menuitem">Portal</a></li>
         <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
         <li><a href="/about" role="menuitem">About</a></li>
         <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
   <!-- Mobile menu (separate panel) -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" aria-hidden="true">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
-      <div class="submenu-section">Skin Substitutes &amp; CAMPs</div>
-      <a href="/products/palisade">Palisade Dual-Membrane</a>
-      <a href="/products/sentry-sl">Sentry SL</a>
-      <a href="/products/interfyl">Interfyl</a>
-      <a href="/products/apis">APIS</a>
-      <a href="/products/xcellistem">XCelliStem</a>
-      <a href="/products/miro3d">Miro3D</a>
       <div class="submenu-section">Advanced Wound Care</div>
       <a href="/products/advanced-biologics">Advanced Biologics</a>
       <a href="/products/actigraft">ActiGraft+</a>
-      <div class="submenu-section">Conservative Wound Care</div>
-      <a href="/products/arobella">Arobella Qoustic</a>
-      <a href="/products/ultramist">UltraMist Therapy</a>
-      <a href="/products/microdoc">MicroDoc NPWT</a>
       <div class="submenu-section">Surgical Biologics</div>
       <a href="/products/adhesion-barrier">Adhesion Barrier</a>
+      <div class="submenu-section">Conservative Wound Care</div>
+      <a href="/products/collagen">Collagen Program</a>
+      <a href="/products/ultramist">UltraMist Therapy</a>
+      <a href="/products/microdoc">MicroDoc NPWT</a>
+      <div class="submenu-section">Medical Supply Distribution</div>
+      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
       <div class="submenu-section">Regenerative Medicine</div>
       <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
-      <div class="submenu-section">Peptide Therapies</div>
-      <a href="/products/peptides">Peptide Catalog</a>
-      <div class="submenu-section">Direct-to-Patient</div>
-      <a href="/amazon-store">Ovena Health</a>
-      <div class="submenu-section">Distribution</div>
-      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
     </div>
     <a href="/scientific-portfolio">Scientific Portfolio</a>
-    <a href="/services">Services</a>
-    <div class="submenu">
-      <a href="/services/legal-guidance">Legal Guidance</a>
-      <a href="/services/revenue-cycle">Revenue Cycle Management</a>
-      <a href="/services/consulting">Consulting</a>
-    </div>
-    <a href="/software">Software</a>
-    <a href="/amazon-store">Amazon Store</a>
+    <a href="/revenue-cycle">Revenue Cycle</a>
+    <a href="/legal-guidance">Legal Guidance</a>
+    <a href="/consulting">Consulting</a>
     <a href="/portal">Portal</a>
     <a href="/why-partner">Why Partner</a>
     <a href="/about">About</a>
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main id="main">
+  <main>
 
     <!-- ═══ HERO ═══ -->
     <section class="hero">
@@ -201,7 +147,7 @@
           </div>
           <div class="stat scroll-reveal" data-stagger="80">
             <div class="label">Portfolio</div>
-            <div class="value">15<span style="color:var(--gold)">+</span></div>
+            <div class="value">7<span style="color:var(--gold)">+</span></div>
             <div class="desc">vetted product platforms</div>
           </div>
           <div class="stat scroll-reveal" data-stagger="160">
@@ -232,7 +178,7 @@
             <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
             <span class="tag">Advanced Wound Care</span>
             <h3>Products &amp; Solutions</h3>
-            <p>Fifteen-plus vetted platforms &mdash; placental allografts, 510(k)-cleared matrices, physician peptide therapies, ultrasonic debridement, NPWT, ActiGraft+, exosomes, and wholesale distribution. Each vetted for clinical evidence, payer alignment, and operational fit.</p>
+            <p>Nine vetted platforms &mdash; collagen, UltraMist, ActiGraft+, amniotic allografts, adhesion barrier, exosomes, NPWT, and wholesale distribution. Each vetted for clinical evidence, payer alignment, and operational fit.</p>
             <span class="card-link">Explore the portfolio <span class="arrow">&rarr;</span></span>
           </a>
 
@@ -240,32 +186,32 @@
             <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 2v8L4 20a2 2 0 0 0 1.7 3h12.6A2 2 0 0 0 20 20l-6-10V2"/><path d="M8 2h8"/></svg></span>
             <span class="tag">Clinical Science</span>
             <h3>Scientific Portfolio</h3>
-            <p>Mechanism of action, published data, and an Evidence Base that grades every platform honestly &mdash; grounded in the literature and payer-policy reality, not a brochure.</p>
+            <p>Mechanism of action, clinical trial data, and treatment protocols for every product we carry &mdash; grounded in published literature and payer-policy reality, not a brochure.</p>
             <span class="card-link">Explore the science <span class="arrow">&rarr;</span></span>
           </a>
 
-          <a href="/services" class="product-card scroll-reveal" data-stagger="120">
+          <a href="/revenue-cycle" class="product-card scroll-reveal" data-stagger="120">
+            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 5-5"/></svg></span>
+            <span class="tag">Revenue Cycle &middot; AcuityMD</span>
+            <h3>Revenue Cycle</h3>
+            <p>Opportunity discovery powered by AcuityMD &mdash; we surface better-reimbursed products, services you&rsquo;re not yet rendering, and revenue leaking out of your current workflow. Invisible to your clinical team.</p>
+            <span class="card-link">Uncover revenue <span class="arrow">&rarr;</span></span>
+          </a>
+
+          <a href="/legal-guidance" class="product-card scroll-reveal" data-stagger="180">
             <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
-            <span class="tag">Legal &middot; Revenue &middot; Advisory</span>
-            <h3>Practice Services</h3>
-            <p>Three service lines under one roof: healthcare legal guidance, wound-care-native revenue cycle management, and growth consulting &mdash; guidance and execution that never drift apart.</p>
-            <span class="card-link">Explore the services <span class="arrow">&rarr;</span></span>
+            <span class="tag">Provider Protection</span>
+            <h3>Legal Guidance</h3>
+            <p>In-house medical-legal counsel for every audit, patient complaint, documentation question, or coverage dispute. Proactive protection, not reactive firefighting &mdash; included in the partnership.</p>
+            <span class="card-link">How we protect <span class="arrow">&rarr;</span></span>
           </a>
 
-          <a href="/software" class="product-card scroll-reveal" data-stagger="180">
-            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 12l3-3 2 2 4-4"/></svg></span>
-            <span class="tag">Software &middot; StrataMetric</span>
-            <h3>AI Wound Scan</h3>
-            <p>True wound volume from a four-second iPhone LiDAR scan &mdash; audit-defensible documentation, claims compliance, and UDI graft inventory. Built by StrataMetric, part of the Albacete MedDev ecosystem.</p>
-            <span class="card-link">See the software <span class="arrow">&rarr;</span></span>
-          </a>
-
-          <a href="/amazon-store" class="product-card scroll-reveal" data-stagger="240">
-            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
-            <span class="tag">Direct-to-Patient</span>
-            <h3>Ovena Health</h3>
-            <p>Our patient-facing brand: physician-led wound care and compression at retail-direct prices, on ovenahealth.com and the Amazon Brand Store &mdash; the discharge answer for the patients your practice sends home.</p>
-            <span class="card-link">Visit the store <span class="arrow">&rarr;</span></span>
+          <a href="/consulting" class="product-card scroll-reveal" data-stagger="240">
+            <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5"/><path d="M19 10l-1 2 1 2"/><path d="M5 10l1 2-1 2"/></svg></span>
+            <span class="tag">Strategic Advisory</span>
+            <h3>Consultative Services</h3>
+            <p>Strategic advisory around coding, operations, formulary design, market access, and growth. Built on 20+ years inside wound care practices, delivered 1:1 by people who&rsquo;ve done the work &mdash; not a borrowed deck.</p>
+            <span class="card-link">Explore advisory <span class="arrow">&rarr;</span></span>
           </a>
 
           <a href="/portal" class="product-card scroll-reveal" data-stagger="300">
@@ -452,36 +398,33 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
-          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, software, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
+          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
         </div>
         <div class="footer-col">
           <h4>Products</h4>
-          <a href="/products/palisade">Palisade Dual-Membrane</a>
-          <a href="/products/sentry-sl">Sentry SL</a>
-          <a href="/products/interfyl">Interfyl</a>
-          <a href="/products/apis">APIS</a>
-          <a href="/products/xcellistem">XCelliStem</a>
-          <a href="/products/miro3d">Miro3D</a>
-          <a href="/products/arobella">Arobella Qoustic</a>
-          <a href="/products/peptides">Peptide Therapies</a>
-          <a href="/products">All Products &amp; Solutions</a>
-        </div>
-        <div class="footer-col">
-          <h4>Services &amp; Software</h4>
-          <a href="/services/legal-guidance">Legal Guidance</a>
-          <a href="/services/revenue-cycle">Revenue Cycle Management</a>
-          <a href="/services/consulting">Consulting</a>
-          <a href="/software">StrataMetric Software</a>
-          <a href="/amazon-store">Ovena Health &mdash; Amazon Store</a>
-          <a href="/portal">Portal &amp; Support</a>
+          <a href="/products/advanced-biologics">Advanced Biologics</a>
+          <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
+          <a href="/products/adhesion-barrier">Adhesion Barrier</a>
+          <a href="/products/collagen">Collagen Program</a>
+          <a href="/products/ultramist">UltraMist Therapy</a>
+          <a href="/products/actigraft">ActiGraft+</a>
+          <a href="/products/microdoc">MicroDoc NPWT</a>
+          <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
           <a href="/about">About</a>
           <a href="/why-partner">Why Partner</a>
+          <a href="/legal-guidance">Legal Guidance</a>
+          <a href="/portal">Portal &amp; Support</a>
+          <a href="/consulting">Consulting</a>
           <a href="/contact">Contact</a>
-          <a href="mailto:gabe@albacetemeddev.com">gabe@albacetemeddev.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="/cdn-cgi/l/email-protection#2e494f4c4b6e4f424c4f4d4b5a4b434b4a4a4b58004d4143"><span class="__cf_email__" data-cfemail="cfa8aeadaa8faea3adaeacaabbaaa2aaababaab9e1aca0a2">[email&#160;protected]</span></a>
           <a href="tel:5514973428">551-497-3428</a>
+          <a href="https://albacetemeddev.com">albacetemeddev.com</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -491,6 +434,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=30" defer></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/app.js?v=21" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"30cc644ffc0740c2b90eb185c0ff3c01","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>

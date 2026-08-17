@@ -8,27 +8,27 @@
   <meta name="description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=31">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=40">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-  <link rel="canonical" href="https://albacetemeddev-redesign.pages.dev/scientific-portfolio/">
+  <link rel="canonical" href="https://albacetemeddev.com/scientific-portfolio/">
   <!-- Open Graph / link previews -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Albacete MedDev">
-  <meta property="og:url" content="https://albacetemeddev-redesign.pages.dev/scientific-portfolio/">
+  <meta property="og:url" content="https://albacetemeddev.com/scientific-portfolio/">
   <meta property="og:title" content="Wound Care Science: 3 Platforms, 1 Cascade | Albacete">
   <meta property="og:description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
-  <meta property="og:image" content="https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png">
+  <meta property="og:image" content="https://albacetemeddev.com/assets/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Wound Care Science: 3 Platforms, 1 Cascade | Albacete">
   <meta name="twitter:description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
-  <meta name="twitter:image" content="https://albacetemeddev-redesign.pages.dev/assets/img/og-image.png">
+  <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png">
   <!-- Structured data -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev-redesign.pages.dev/"},{"@type":"ListItem","position":2,"name":"Scientific Portfolio","item":"https://albacetemeddev-redesign.pages.dev/scientific-portfolio/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev.com/"},{"@type":"ListItem","position":2,"name":"Scientific Portfolio","item":"https://albacetemeddev.com/scientific-portfolio/"}]}]}</script>
   <style>
     /* ═══ Scientific Portfolio page-specific styles ═══ */
     .sp-hero-stats{
@@ -96,7 +96,8 @@
     #sp-r3:checked ~ .sp-tabs label[for="sp-r3"],
     #sp-r4:checked ~ .sp-tabs label[for="sp-r4"],
     #sp-r5:checked ~ .sp-tabs label[for="sp-r5"],
-    #sp-r6:checked ~ .sp-tabs label[for="sp-r6"]{
+    #sp-r6:checked ~ .sp-tabs label[for="sp-r6"],
+    #sp-r7:checked ~ .sp-tabs label[for="sp-r7"]{
       background: var(--gold);
       color: var(--ink);
     }
@@ -108,7 +109,8 @@
     #sp-r3:checked ~ #p3,
     #sp-r4:checked ~ #p4,
     #sp-r5:checked ~ #p5,
-    #sp-r6:checked ~ #p6{display: block}
+    #sp-r6:checked ~ #p6,
+    #sp-r7:checked ~ #p7{display: block}
     @keyframes fadeInUp{
       from{opacity: 0; transform: translateY(12px)}
       to{opacity: 1; transform: translateY(0)}
@@ -688,6 +690,7 @@
   </style>
 </head>
 <body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev">
@@ -699,69 +702,122 @@
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
       <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown" role="none">
-          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu" role="menu">
-            <a href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
-            <div class="dropdown-section">Advanced Wound Care</div>
-            <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
-            <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
-            <div class="dropdown-section">Surgical Biologics</div>
-            <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
-            <div class="dropdown-section">Conservative Wound Care</div>
-            <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
-            <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
-            <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
-            <div class="dropdown-section">Medical Supply Distribution</div>
-            <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
-            <div class="dropdown-section">Regenerative Medicine</div>
-            <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
+        <li class="nav-dropdown nav-dropdown--mega" role="none">
+          <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Products</a>
+          <div class="dropdown-menu dropdown-menu--mega" role="menu" aria-label="Products">
+            <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
+            <div class="mega-grid">
+            <div class="mega-group">
+              <div class="dropdown-section">Skin Substitutes &amp; CAMPs</div>
+              <a href="/products/palisade"><span class="dot"></span>Palisade Dual-Membrane</a>
+              <a href="/products/sentry-sl"><span class="dot"></span>Sentry SL</a>
+              <a href="/products/interfyl"><span class="dot"></span>Interfyl</a>
+              <a href="/products/apis"><span class="dot"></span>APIS</a>
+              <a href="/products/xcellistem"><span class="dot"></span>XCelliStem</a>
+              <a href="/products/miro3d"><span class="dot"></span>Miro3D</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Advanced Wound Care</div>
+              <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
+              <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Conservative Wound Care</div>
+              <a href="/products/arobella"><span class="dot"></span>Arobella Qoustic</a>
+              <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
+              <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Surgical Biologics</div>
+              <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Regenerative Medicine</div>
+              <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Peptide Therapies</div>
+              <a href="/products/peptides"><span class="dot"></span>Peptide Catalog</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Direct-to-Patient</div>
+              <a href="/amazon-store"><span class="dot"></span>Ovena Health</a>
+            </div>
+            <div class="mega-group">
+              <div class="dropdown-section">Distribution</div>
+              <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
+            </div>
+            </div>
           </div>
         </li>
-        <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/revenue-cycle" role="menuitem">Revenue Cycle</a></li>
-        <li><a href="/legal-guidance" role="menuitem">Legal Guidance</a></li>
-        <li><a href="/consulting" role="menuitem">Consulting</a></li>
+        <li><a href="/scientific-portfolio" class="is-active" role="menuitem">Scientific Portfolio</a></li>
+        <li class="nav-dropdown" role="none">
+          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="dropdown-menu" role="menu" aria-label="Services">
+            <a href="/services"><span class="dot"></span>All Services</a>
+            <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
+            <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
+            <a href="/services/consulting"><span class="dot"></span>Consulting</a>
+          </div>
+        </li>
+        <li><a href="/software" role="menuitem">Software</a></li>
+        <li><a href="/amazon-store" role="menuitem">Amazon Store</a></li>
         <li><a href="/portal" role="menuitem">Portal</a></li>
         <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
         <li><a href="/about" role="menuitem">About</a></li>
         <li><a href="/contact" class="nav-cta" role="menuitem">Schedule a Consultation</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
+      <div class="submenu-section">Skin Substitutes &amp; CAMPs</div>
+      <a href="/products/palisade">Palisade Dual-Membrane</a>
+      <a href="/products/sentry-sl">Sentry SL</a>
+      <a href="/products/interfyl">Interfyl</a>
+      <a href="/products/apis">APIS</a>
+      <a href="/products/xcellistem">XCelliStem</a>
+      <a href="/products/miro3d">Miro3D</a>
       <div class="submenu-section">Advanced Wound Care</div>
       <a href="/products/advanced-biologics">Advanced Biologics</a>
       <a href="/products/actigraft">ActiGraft+</a>
-      <div class="submenu-section">Surgical Biologics</div>
-      <a href="/products/adhesion-barrier">Adhesion Barrier</a>
       <div class="submenu-section">Conservative Wound Care</div>
-      <a href="/products/collagen">Collagen Program</a>
+      <a href="/products/arobella">Arobella Qoustic</a>
       <a href="/products/ultramist">UltraMist Therapy</a>
       <a href="/products/microdoc">MicroDoc NPWT</a>
-      <div class="submenu-section">Medical Supply Distribution</div>
-      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
+      <div class="submenu-section">Surgical Biologics</div>
+      <a href="/products/adhesion-barrier">Adhesion Barrier</a>
       <div class="submenu-section">Regenerative Medicine</div>
       <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
+      <div class="submenu-section">Peptide Therapies</div>
+      <a href="/products/peptides">Peptide Catalog</a>
+      <div class="submenu-section">Direct-to-Patient</div>
+      <a href="/amazon-store">Ovena Health</a>
+      <div class="submenu-section">Distribution</div>
+      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
     </div>
-    <a href="/scientific-portfolio">Scientific Portfolio</a>
-    <a href="/revenue-cycle">Revenue Cycle</a>
-    <a href="/legal-guidance">Legal Guidance</a>
-    <a href="/consulting">Consulting</a>
+    <a href="/scientific-portfolio" class="is-active">Scientific Portfolio</a>
+    <a href="/services">Services</a>
+    <div class="submenu">
+      <a href="/services/legal-guidance">Legal Guidance</a>
+      <a href="/services/revenue-cycle">Revenue Cycle Management</a>
+      <a href="/services/consulting">Consulting</a>
+    </div>
+    <a href="/software">Software</a>
+    <a href="/amazon-store">Amazon Store</a>
     <a href="/portal">Portal</a>
     <a href="/why-partner">Why Partner</a>
     <a href="/about">About</a>
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main>
+  <main id="main">
 
     <!-- HERO -->
     <section class="hero hero-compact">
@@ -797,14 +853,16 @@
         <input type="radio" name="sp-tabs" id="sp-r4" class="sp-radio">
         <input type="radio" name="sp-tabs" id="sp-r5" class="sp-radio">
         <input type="radio" name="sp-tabs" id="sp-r6" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r7" class="sp-radio">
 
         <div class="sp-tabs" role="tablist">
           <label for="sp-r1" role="tab">Overview</label>
           <label for="sp-r2" role="tab">The Problem</label>
           <label for="sp-r3" role="tab">Amniotic Membrane</label>
           <label for="sp-r4" role="tab">Microlyte SAM</label>
-          <label for="sp-r5" role="tab">Collagen Program</label>
+          <label for="sp-r5" role="tab">Collagen Science</label>
           <label for="sp-r6" role="tab">Clinical Framework</label>
+          <label for="sp-r7" role="tab">Evidence Base</label>
         </div>
 
         <!-- PANEL 1: OVERVIEW -->
@@ -831,7 +889,7 @@
             </div>
           </div>
 
-          <div style="margin-top: var(--s-5); padding: var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-lg); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3);">
+          <div style="margin-top: var(--s-5); padding: var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-lg); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--s-3);">
             <div>
               <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Antimicrobial</div>
               <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Microlyte SAM</div>
@@ -1073,7 +1131,7 @@
 
           <div class="evidence-band">
             <div class="band-title">Clinical Evidence</div>
-            <div class="evidence-grid" style="grid-template-columns: repeat(3, 1fr)">
+            <div class="evidence-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))">
               <div><div class="ev-value">91%</div><div class="ev-label">Healed or improved at 12 weeks (Manning, n=32)</div></div>
               <div><div class="ev-value">0%</div><div class="ev-label">SSI in diabetic foot surgery (Chatelain, n=22)</div></div>
               <div><div class="ev-value">73%</div><div class="ev-label">Average wound area reduction</div></div>
@@ -1084,7 +1142,7 @@
 
         <!-- PANEL 5: COLLAGEN / PROPACKS -->
         <div id="p5" class="sp-panel">
-          <span class="sp-eyebrow">Collagen Program</span>
+          <span class="sp-eyebrow">Collagen Science</span>
           <h2>Type I Collagen &mdash; <em style="font-style:normal;color:var(--gold)">sacrificial substrate &amp; bioactive signal.</em></h2>
           <p class="lead">Exogenous collagen reverses the proteolytic cycle by diverting MMP activity from endogenous ECM. As it degrades, it releases bioactive matrikines that actively drive granulation and fibroblast chemotaxis.</p>
 
@@ -1192,7 +1250,7 @@
             <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">CheckMyWoundCareNotes.com</h3>
             <p style="color: var(--fog); line-height: 1.6; margin-bottom: var(--s-4); max-width: 880px">Automated compliance review against LCD L35041, A54117, MPIM 3.6.2.2, SSA 1862(a)(1)(A). Pre-submission gap detection, FPS pattern flagging, and corrective-language generation.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3)" class="compliance-triple">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s-3)" class="compliance-triple">
               <div class="compliance-card">
                 <h5>Pre-submission review</h5>
                 <p>Upload notes &rarr; automated check against LCD criteria, documentation requirements, and frequency limits.</p>
@@ -1211,6 +1269,78 @@
           <p style="margin-top: var(--s-6); padding: var(--s-3) var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-md); color: var(--mist); font-style: italic; text-align: center; font-family: var(--font-display); font-weight: 500">
             The only wound care partner delivering <span style="color: var(--gold)">product + compliance + science</span> in a single relationship.
           </p>
+        </div>
+
+        <!-- PANEL 7: EVIDENCE BASE -->
+        <div id="p7" class="sp-panel">
+          <span class="sp-eyebrow">Evidence Base</span>
+          <h2>Every platform, <em style="font-style:normal;color:var(--gold)">graded honestly.</em></h2>
+          <p class="lead">A scientific portfolio is only useful if it grades its own products the way a payer or a skeptical clinician would. Grades reflect the clinical evidence we can actually hand you &mdash; not the marketing register. <strong style="color:var(--snow)">A</strong> = multiple RCTs or meta-analyses &middot; <strong style="color:var(--snow)">B</strong> = at least one RCT or strong comparative trial &middot; <strong style="color:var(--snow)">C</strong> = case series / retrospective + preclinical &middot; <strong style="color:var(--snow)">D</strong> = mechanism rationale and tissue science only.</p>
+
+          <div style="overflow-x:auto;margin-top:var(--s-4)">
+            <table style="width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:760px">
+              <thead>
+                <tr style="border-bottom:1px solid var(--ink-3);text-align:left">
+                  <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Platform</th>
+                  <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Grade</th>
+                  <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">What exists</th>
+                  <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">What&rsquo;s missing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/apis" style="color:var(--snow)">APIS&reg;</a></td>
+                  <td style="padding:12px"><span style="color:#7dd3a0;font-weight:700">B</span></td>
+                  <td style="padding:12px;color:var(--mist)">Pilot RCT (n=37, Mohs; noninferior closure, less pain) &middot; retrospective comparative (47 wounds; faster median closure, lower overall closure rate) &middot; 12-patient series</td>
+                  <td style="padding:12px;color:var(--fog)">A powered RCT in DFU/VLU populations</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/arobella" style="color:var(--snow)">Arobella Qoustic</a></td>
+                  <td style="padding:12px"><span style="color:var(--gold-bright);font-weight:700">C</span></td>
+                  <td style="padding:12px;color:var(--mist)">In-vitro antimicrobial/biofilm work at 35 kHz &middot; retrospective chart review &middot; case reports</td>
+                  <td style="padding:12px;color:var(--fog)">A comparative trial of this device itself</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/xcellistem" style="color:var(--snow)">XCelliStem&trade;</a></td>
+                  <td style="padding:12px"><span style="color:var(--gold-bright);font-weight:700">C</span></td>
+                  <td style="padding:12px;color:var(--mist)">Two PubMed-indexed case series (n=15 ballistic/blast; n=2 flap salvage) &middot; retrospective single-surgeon comparative (n=97 hernia, seroma 49%&rarr;16%, p=0.0042, non-indexed)</td>
+                  <td style="padding:12px;color:var(--fog)">Any RCT; any DFU or VLU study &mdash; the indications most A2004 billing discussions concern</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/miro3d" style="color:var(--snow)">Miro3D&reg;</a></td>
+                  <td style="padding:12px"><span style="color:var(--gold-bright);font-weight:700">C</span></td>
+                  <td style="padding:12px;color:var(--mist)">GLP animal study behind the 510(k) &middot; 11-patient/13-wound single-center retrospective &middot; trials enrolling</td>
+                  <td style="padding:12px;color:var(--fog)">Published RCT results</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/interfyl" style="color:var(--snow)">Interfyl&reg;</a></td>
+                  <td style="padding:12px"><span style="color:#f0908d;font-weight:700">D</span></td>
+                  <td style="padding:12px;color:var(--mist)">Mechanism-level cell-attachment data (conference presentation); longstanding Q4171 code</td>
+                  <td style="padding:12px;color:var(--fog)">Comparative clinical outcomes in the distributed materials</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/palisade" style="color:var(--snow)">Palisade&reg;</a></td>
+                  <td style="padding:12px"><span style="color:#f0908d;font-weight:700">D</span></td>
+                  <td style="padding:12px;color:var(--mist)">Placental-membrane tissue science (published reviews); processing &amp; sterility documentation</td>
+                  <td style="padding:12px;color:var(--fog)">Product-specific clinical outcome data</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--ink-2)">
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/sentry-sl" style="color:var(--snow)">Sentry&trade; SL</a></td>
+                  <td style="padding:12px"><span style="color:#f0908d;font-weight:700">D</span></td>
+                  <td style="padding:12px;color:var(--mist)">Amnion tissue science (published reviews); processing &amp; sterility documentation</td>
+                  <td style="padding:12px;color:var(--fog)">Product-specific clinical outcome data</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px;color:var(--snow);font-weight:600"><a href="/products/peptides" style="color:var(--snow)">Peptide Therapies</a></td>
+                  <td style="padding:12px"><span style="color:var(--fog);font-weight:700">Varies</span></td>
+                  <td style="padding:12px;color:var(--mist)">Ranges from approved-drug substances (semaglutide, tirzepatide, tesamorelin, bremelanotide) to purely preclinical molecules &mdash; graded per entry in the catalog</td>
+                  <td style="padding:12px;color:var(--fog)">See per-molecule status chips and notes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin-top:var(--s-4);padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6;max-width:860px"><strong style="color:var(--gold)">Why we publish this:</strong> grades like these are what a MAC reviewer, a payer medical director, or a skeptical wound-care chief will assemble anyway. Handing it to you first &mdash; with the gaps named &mdash; is the difference between a scientific portfolio and a brochure. Where a grade is low, our product pages say so in the same words.</p>
         </div>
 
       </div>
@@ -1238,42 +1368,45 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
-          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
+          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, software, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
         </div>
         <div class="footer-col">
           <h4>Products</h4>
-          <a href="/products/advanced-biologics">Advanced Biologics</a>
-          <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
-          <a href="/products/adhesion-barrier">Adhesion Barrier</a>
-          <a href="/products/collagen">Collagen Program</a>
-          <a href="/products/ultramist">UltraMist Therapy</a>
-          <a href="/products/actigraft">ActiGraft+</a>
-          <a href="/products/microdoc">MicroDoc NPWT</a>
-          <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
+          <a href="/products/palisade">Palisade Dual-Membrane</a>
+          <a href="/products/sentry-sl">Sentry SL</a>
+          <a href="/products/interfyl">Interfyl</a>
+          <a href="/products/apis">APIS</a>
+          <a href="/products/xcellistem">XCelliStem</a>
+          <a href="/products/miro3d">Miro3D</a>
+          <a href="/products/arobella">Arobella Qoustic</a>
+          <a href="/products/peptides">Peptide Therapies</a>
+          <a href="/products">All Products &amp; Solutions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services &amp; Software</h4>
+          <a href="/services/legal-guidance">Legal Guidance</a>
+          <a href="/services/revenue-cycle">Revenue Cycle Management</a>
+          <a href="/services/consulting">Consulting</a>
+          <a href="/software">StrataMetric Software</a>
+          <a href="/amazon-store">Ovena Health &mdash; Amazon Store</a>
+          <a href="/portal">Portal &amp; Support</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
           <a href="/about">About</a>
           <a href="/why-partner">Why Partner</a>
-          <a href="/legal-guidance">Legal Guidance</a>
-          <a href="/portal">Portal &amp; Support</a>
-          <a href="/consulting">Consulting</a>
           <a href="/contact">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
           <a href="mailto:gabe@albacetemeddev.com">gabe@albacetemeddev.com</a>
           <a href="tel:5514973428">551-497-3428</a>
-          <a href="https://albacetemeddev.com">albacetemeddev.com</a>
         </div>
       </div>
       <div class="footer-bottom">
         <span>&copy; 2026 Albacete MedDev. All rights reserved.</span>
-        <span>Confidential &mdash; For clinical and educational reference only</span>
+        <span>One partner. Every operational layer.</span>
       </div>
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=21" defer></script>
+  <script src="/assets/js/app.js?v=30" defer></script>
 </body>
 </html>

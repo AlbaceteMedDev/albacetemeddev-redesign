@@ -2259,3 +2259,286 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
   }
   .cmdk-foot{ display: none }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Mega menu (Products) — v40
+   Panel spans the nav width; groups flow in a 5-column grid.
+   ═══════════════════════════════════════════════════════════════ */
+.nav-dropdown--mega{position: static}
+.dropdown-menu--mega{
+  width: min(1120px, calc(100vw - 32px));
+  min-width: 0;
+  padding: var(--s-2) var(--s-2) var(--s-3);
+  top: calc(100% + 0px);
+}
+.dropdown-menu--mega .mega-all{
+  margin: 4px 6px 6px;
+  border-bottom: 1px solid var(--ink-3);
+  padding-bottom: 12px;
+  font-weight: 600;
+  color: var(--snow);
+}
+.mega-grid{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0 var(--s-2);
+  align-items: start;
+}
+.mega-group{min-width: 0}
+.mega-group .dropdown-section{
+  border-top: none;
+  margin-top: 0;
+  padding: 10px 14px 4px;
+}
+.mega-group a{white-space: normal}
+
+/* ═══════════════════════════════════════════════════════════════
+   Accessibility & polish — v40
+   ═══════════════════════════════════════════════════════════════ */
+.skip-link{
+  position: fixed;
+  top: 8px; left: 8px;
+  z-index: 10001;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  padding: 10px 16px;
+  border-radius: var(--r-sm);
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease-out-quart);
+}
+.skip-link:focus{transform: translateY(0)}
+
+:focus-visible{
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior: auto}
+  .splash{display: none}
+  body.is-loading main, body.is-loading footer, body.is-loading .nav{opacity: 1}
+  [data-reveal]{opacity: 1; transform: none; animation: none}
+  .scroll-reveal{opacity: 1; transform: none; transition: none}
+  *,*::before,*::after{animation-duration: 0.01ms !important; transition-duration: 0.01ms !important}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Peptide catalog — v40
+   ═══════════════════════════════════════════════════════════════ */
+.pep-compliance{
+  margin-top: var(--s-4);
+  padding: var(--s-3);
+  background: var(--gold-dim);
+  border: 1px solid rgba(212,169,74,0.25);
+  border-radius: var(--r-md);
+  color: var(--mist);
+  font-size: var(--t-sm);
+  line-height: 1.65;
+  max-width: 900px;
+}
+.pep-compliance strong{color: var(--gold)}
+
+.pep-filters{
+  position: sticky;
+  top: calc(var(--nav-h) + 8px);
+  z-index: 50;
+  background: rgba(10,14,23,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-lg);
+  padding: var(--s-2) var(--s-3);
+  margin-bottom: var(--s-4);
+}
+.pep-search-row{
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-1);
+  flex-wrap: wrap;
+}
+#pep-search{
+  flex: 1 1 240px;
+  min-width: 0;
+  background: var(--ink);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  color: var(--snow);
+  font-size: var(--t-sm);
+}
+#pep-search::placeholder{color: var(--fog)}
+#pep-search:focus{outline: none; border-color: var(--gold)}
+.pep-count{font-size: var(--t-xs); color: var(--fog); white-space: nowrap}
+.pep-clear{
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--gold);
+  padding: 8px 12px;
+  border: 1px solid rgba(212,169,74,0.35);
+  border-radius: var(--r-pill);
+}
+.pep-clear:hover{background: var(--gold-dim)}
+.pep-pill-row{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.pep-pill-row::-webkit-scrollbar{display: none}
+.pep-pill-label{
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fog);
+  flex-shrink: 0;
+  min-width: 64px;
+}
+.pep-pill{
+  flex-shrink: 0;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  color: var(--mist);
+  padding: 7px 13px;
+  min-height: 30px;
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-pill);
+  transition: all var(--dur-fast) ease;
+  white-space: nowrap;
+}
+.pep-pill:hover{border-color: var(--gold); color: var(--snow)}
+.pep-pill.is-on{background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 700}
+
+.pep-legend{
+  margin: 0 0 var(--s-4);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-md);
+  background: var(--ink-1);
+  padding: 0;
+}
+.pep-legend summary{
+  cursor: pointer;
+  padding: 14px var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--snow);
+  list-style: none;
+}
+.pep-legend summary::-webkit-details-marker{display: none}
+.pep-legend summary::after{content: '+'; float: right; color: var(--gold)}
+.pep-legend[open] summary::after{content: '–'}
+.pep-legend-row{
+  display: flex;
+  gap: var(--s-2);
+  align-items: flex-start;
+  padding: 10px var(--s-3);
+  border-top: 1px solid var(--ink-3);
+}
+.pep-legend-row p{font-size: var(--t-sm); color: var(--fog); margin: 0; line-height: 1.5}
+.pep-legend-row .pep-chip{flex-shrink: 0; margin-top: 2px}
+.pep-legend-foot{font-size: var(--t-xs); color: var(--fog); padding: 10px var(--s-3) 14px; border-top: 1px solid var(--ink-3); margin: 0}
+
+.pep-cat{margin-bottom: var(--s-5)}
+.pep-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--s-3);
+}
+.pep-card{
+  background: var(--ink-1);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-lg);
+  padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out-quart);
+}
+.pep-card:hover{border-color: rgba(212,169,74,0.4); transform: translateY(-2px)}
+.pep-card h4{font-size: var(--t-lg); color: var(--snow); letter-spacing: -0.01em}
+.pep-chips{display: flex; flex-wrap: wrap; gap: 6px}
+.pep-chip{
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--ink-3);
+  color: var(--mist);
+  white-space: nowrap;
+}
+.pep-chip--ch{color: var(--fog)}
+.pep-chip--ok{color: #7dd3a0; border-color: rgba(125,211,160,0.35); background: rgba(125,211,160,0.08)}
+.pep-chip--warn{color: var(--gold-bright); border-color: rgba(212,169,74,0.4); background: var(--gold-dim)}
+.pep-chip--stop{color: #f0908d; border-color: rgba(240,144,141,0.4); background: rgba(240,144,141,0.08)}
+.pep-mech{font-size: var(--t-sm); color: var(--mist); line-height: 1.55}
+.pep-uses{font-size: var(--t-sm); color: var(--fog); line-height: 1.55}
+.pep-note{
+  font-size: var(--t-xs);
+  color: var(--fog);
+  line-height: 1.5;
+  padding: 8px 10px;
+  background: var(--ink);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--ink-2);
+}
+.pep-details{margin-top: auto}
+.pep-details summary{
+  cursor: pointer;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--gold);
+  list-style: none;
+  padding: 6px 0;
+  min-height: 24px;
+}
+.pep-details summary::-webkit-details-marker{display: none}
+.pep-pres{color: var(--fog); font-weight: 400; margin-left: 6px}
+.pep-rows{margin: 6px 0 0; display: flex; flex-direction: column; gap: 6px}
+.pep-rows li{
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-2);
+  font-size: var(--t-xs);
+  color: var(--mist);
+  padding: 7px 10px;
+  background: var(--ink);
+  border-radius: var(--r-sm);
+  flex-wrap: wrap;
+}
+.pep-row-meta{color: var(--fog); white-space: nowrap}
+.pep-req{
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--gold);
+  padding: 8px 0 0;
+  min-height: 24px;
+}
+.pep-req:hover{color: var(--gold-bright)}
+.pep-req .arrow{display: inline-block; transition: transform var(--dur-fast) var(--ease-out-quart)}
+.pep-req:hover .arrow{transform: translateX(3px)}
+.pep-empty{
+  text-align: center;
+  color: var(--fog);
+  padding: var(--s-5) 0;
+}
+.pep-clear-inline{color: var(--gold); font-weight: 600; text-decoration: underline}
+
+@media (max-width: 760px){
+  .pep-filters{position: static; padding: var(--s-2)}
+  .pep-grid{grid-template-columns: 1fr}
+  .pep-pill-label{min-width: 56px}
+}
