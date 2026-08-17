@@ -2446,3 +2446,332 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 @media (max-width: 1024px){
   .mega-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)) }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Peptide catalog — live filtering, selection, compare (v33)
+   54 molecules in one grid instead of nine static sections. The
+   bar sits below the fixed nav; everything below reacts to it.
+   ═══════════════════════════════════════════════════════════════ */
+/* A zero-height sentinel never reports a useful intersection, so it gets
+   1px and sits directly above the bar. */
+#cat-sentinel{ height: 1px }
+.cat-bar{
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 60;
+  margin: 0 0 var(--s-4);
+  padding: var(--s-2) var(--s-3);
+  background: rgba(10,14,23,0.82);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-lg);
+  transition: box-shadow var(--dur-base) var(--ease-out-quart),
+              border-color var(--dur-base) var(--ease-out-quart);
+}
+.cat-bar.is-stuck{
+  box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+  border-color: rgba(212,169,74,0.28);
+}
+.cat-bar-top{
+  display: flex;
+  gap: var(--s-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* search */
+.cat-search{
+  position: relative;
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.cat-search svg{
+  position: absolute;
+  left: 13px; top: 50%;
+  transform: translateY(-50%);
+  width: 15px; height: 15px;
+  stroke: var(--fog);
+  fill: none; stroke-width: 2;
+  pointer-events: none;
+}
+.cat-search input{
+  width: 100%;
+  padding: 11px 74px 11px 36px;
+  background: var(--ink);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-sm);
+  color: var(--snow);
+  font-size: var(--t-sm);
+  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+.cat-search input::placeholder{ color: var(--fog) }
+.cat-search input:focus{
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,169,74,0.14);
+}
+.cat-search kbd{
+  position: absolute;
+  right: 10px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--fog);
+  background: var(--ink-2);
+  border: 1px solid var(--ink-3);
+  border-radius: 4px;
+  padding: 3px 7px;
+  pointer-events: none;
+}
+.cat-search input:focus ~ kbd{ opacity: 0 }
+
+/* segmented tier control */
+.seg{
+  display: inline-flex;
+  padding: 3px;
+  background: var(--ink);
+  border: 1px solid var(--ink-3);
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+.seg button{
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--fog);
+  white-space: nowrap;
+  transition: all var(--dur-fast) var(--ease-out-quart);
+}
+.seg button:hover{ color: var(--snow) }
+.seg button[aria-pressed="true"]{ background: var(--ink-2); color: var(--snow) }
+.seg button[data-tier="503A"][aria-pressed="true"]{ background: var(--gold); color: #000 }
+.seg button[data-tier="503A/B"][aria-pressed="true"]{ background: #7fb3d5; color: #05070c }
+
+/* category pills */
+.pill-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--s-2);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--ink-3);
+}
+.pill{
+  padding: 7px 13px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--ink-3);
+  background: var(--ink);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--fog);
+  white-space: nowrap;
+  transition: all var(--dur-fast) var(--ease-out-quart);
+}
+.pill:hover{ color: var(--snow); border-color: var(--fog) }
+.pill[aria-pressed="true"]{
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+.pill .n{ opacity: 0.55; margin-left: 5px; font-variant-numeric: tabular-nums }
+.pill[aria-pressed="true"] .n{ opacity: 0.7 }
+
+/* result meta */
+.cat-meta{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-3);
+}
+.cat-count{
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
+  color: var(--mist);
+}
+.cat-count b{
+  color: var(--gold);
+  font-size: var(--t-xl);
+  font-variant-numeric: tabular-nums;
+  margin-right: 4px;
+}
+.cat-clear{
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  color: var(--fog);
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+}
+.cat-clear:hover{ color: var(--gold); border-bottom-color: var(--gold) }
+.cat-clear[hidden]{ display: none }
+
+/* card upgrades */
+.mol{
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease-out-quart),
+              transform var(--dur-fast) var(--ease-out-quart),
+              box-shadow var(--dur-fast) var(--ease-out-quart);
+}
+.mol::before{
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  opacity: 0.75;
+}
+.mol[data-tiers*="503A/B"]:not([data-tiers*="503A,"])::before{ background: #7fb3d5 }
+.mol:hover{
+  transform: translateY(-3px);
+  border-color: rgba(212,169,74,0.5);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.45);
+}
+.mol.is-selected{
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold) inset, 0 14px 34px rgba(0,0,0,0.45);
+}
+.mol[hidden]{ display: none }
+.mol-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+.mol-pick{
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  border: 1px solid var(--ink-3);
+  background: var(--ink);
+  color: var(--fog);
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+  transition: all var(--dur-fast) var(--ease-out-quart);
+}
+.mol-pick:hover{ border-color: var(--gold); color: var(--gold) }
+.mol-pick[aria-pressed="true"]{ background: var(--gold); border-color: var(--gold); color: #000 }
+.mol-flag{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: var(--s-1);
+}
+.mol-toggle{
+  margin-top: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.mol-toggle .chev{ transition: transform var(--dur-fast) var(--ease-out-quart) }
+.mol.is-open .mol-toggle .chev{ transform: rotate(180deg) }
+/* Driven by .is-open on the CARD, not by an adjacent-sibling attribute
+   selector. The sibling form parsed and matched but Chromium did not
+   re-invalidate .mol-more when aria-expanded flipped, so the panel stayed
+   at 0. An ancestor class change invalidates reliably. */
+.mol-more{
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows var(--dur-base) var(--ease-out-quart),
+              opacity var(--dur-fast) ease;
+}
+.mol-more > div{ overflow: hidden }
+.mol.is-open .mol-more{ grid-template-rows: 1fr; opacity: 1 }
+
+/* filter-change entrance */
+@media not (prefers-reduced-motion: reduce){
+  .mol-grid.is-refreshed .mol:not([hidden]){
+    animation: molIn 420ms var(--ease-out-expo) backwards;
+  }
+  .mol-grid.is-refreshed .mol:nth-child(n+1){ animation-delay: 10ms }
+  .mol-grid.is-refreshed .mol:nth-child(n+4){ animation-delay: 45ms }
+  .mol-grid.is-refreshed .mol:nth-child(n+7){ animation-delay: 80ms }
+  .mol-grid.is-refreshed .mol:nth-child(n+10){ animation-delay: 115ms }
+}
+@keyframes molIn{ from{ opacity: 0; transform: translateY(14px) scale(0.99) } }
+
+/* empty state */
+.cat-empty{
+  text-align: center;
+  padding: var(--s-7) var(--s-3);
+  border: 1px dashed var(--ink-3);
+  border-radius: var(--r-lg);
+  color: var(--fog);
+}
+.cat-empty h4{ color: var(--snow); font-size: var(--t-xl); margin-bottom: var(--s-1) }
+.cat-empty[hidden]{ display: none }
+
+/* selection tray */
+.sel-tray{
+  position: fixed;
+  left: 50%;
+  bottom: var(--s-3);
+  transform: translate(-50%, calc(100% + var(--s-4)));
+  z-index: 900;
+  width: min(720px, calc(100vw - 32px));
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  padding: var(--s-2) var(--s-3);
+  background: rgba(10,14,23,0.94);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(212,169,74,0.4);
+  border-radius: var(--r-lg);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.6);
+  transition: transform var(--dur-base) var(--ease-out-expo);
+}
+.sel-tray.is-open{ transform: translate(-50%, 0) }
+/* keep the floating tray from covering the last row of cards */
+body.has-selection #molecules{ padding-bottom: calc(var(--s-7) + 72px) }
+.sel-tray .sel-n{
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: var(--t-lg);
+  font-variant-numeric: tabular-nums;
+}
+.sel-tray .sel-label{ font-size: var(--t-sm); color: var(--mist); flex: 1 1 auto; min-width: 0 }
+.sel-tray .btn{ padding: 10px 18px }
+.sel-drop{
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+.sel-drop:hover{ color: var(--snow) }
+
+@media (max-width: 640px){
+  .cat-bar{ padding: var(--s-2) }
+  .cat-bar-top{ gap: var(--s-1) }
+  .seg{ width: 100% }
+  .seg button{ flex: 1 }
+  .cat-search kbd{ display: none }
+  .cat-search input{ padding-right: 14px }
+  .sel-tray{ bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0 }
+}
