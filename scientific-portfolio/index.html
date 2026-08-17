@@ -8,7 +8,7 @@
   <meta name="description" content="Collagen for MMP neutralization, Microlyte SAM for biofilm, amniotic membrane for regeneration — three platforms mapped to the chronic wound cascade.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=31">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=32">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -96,7 +96,8 @@
     #sp-r3:checked ~ .sp-tabs label[for="sp-r3"],
     #sp-r4:checked ~ .sp-tabs label[for="sp-r4"],
     #sp-r5:checked ~ .sp-tabs label[for="sp-r5"],
-    #sp-r6:checked ~ .sp-tabs label[for="sp-r6"]{
+    #sp-r6:checked ~ .sp-tabs label[for="sp-r6"],
+    #sp-r7:checked ~ .sp-tabs label[for="sp-r7"]{
       background: var(--gold);
       color: var(--ink);
     }
@@ -108,7 +109,8 @@
     #sp-r3:checked ~ #p3,
     #sp-r4:checked ~ #p4,
     #sp-r5:checked ~ #p5,
-    #sp-r6:checked ~ #p6{display: block}
+    #sp-r6:checked ~ #p6,
+    #sp-r7:checked ~ #p7{display: block}
     @keyframes fadeInUp{
       from{opacity: 0; transform: translateY(12px)}
       to{opacity: 1; transform: translateY(0)}
@@ -699,29 +701,57 @@
         <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
       </a>
       <ul class="nav-links" role="menubar">
-        <li class="nav-dropdown" role="none">
+        <li class="nav-dropdown nav-dropdown--mega" role="none">
           <a href="/products" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Products</a>
-          <div class="dropdown-menu" role="menu">
-            <a href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
-            <div class="dropdown-section">Advanced Wound Care</div>
+          <div class="dropdown-menu dropdown-menu--mega" role="menu">
+            <a class="mega-all" href="/products"><span class="dot"></span>All Products &amp; Solutions</a>
+            <div class="mega-grid">
+          <div class="mega-col">
+            <div class="dropdown-section">Placental & ECM allografts</div>
+            <a href="/products/palisade"><span class="dot"></span>Palisade&trade; Dual-Membrane</a>
+            <a href="/products/sentry-sl"><span class="dot"></span>Sentry&trade; SL</a>
+            <a href="/products/interfyl"><span class="dot"></span>Interfyl&reg; CTM</a>
             <a href="/products/advanced-biologics"><span class="dot"></span>Advanced Biologics</a>
+          </div>
+          <div class="mega-col">
+            <div class="dropdown-section">Engineered &amp; xenograft matrices</div>
+            <a href="/products/apis"><span class="dot"></span>APIS&reg;</a>
+            <a href="/products/xcellistem"><span class="dot"></span>XCelliStem&trade;</a>
+            <a href="/products/miro3d"><span class="dot"></span>Miro3D&reg;</a>
+          </div>
+          <div class="mega-col">
+            <div class="dropdown-section">Surgical &amp; autologous</div>
             <a href="/products/actigraft"><span class="dot"></span>ActiGraft+</a>
-            <div class="dropdown-section">Surgical Biologics</div>
             <a href="/products/adhesion-barrier"><span class="dot"></span>Adhesion Barrier</a>
-            <div class="dropdown-section">Conservative Wound Care</div>
-            <a href="/products/collagen"><span class="dot"></span>Collagen Program</a>
+          </div>
+          <div class="mega-col">
+            <div class="dropdown-section">Devices &amp; conservative care</div>
+            <a href="/products/arobella"><span class="dot"></span>Arobella Qoustic&trade;</a>
             <a href="/products/ultramist"><span class="dot"></span>UltraMist Therapy</a>
             <a href="/products/microdoc"><span class="dot"></span>MicroDoc NPWT</a>
-            <div class="dropdown-section">Medical Supply Distribution</div>
-            <a href="/products/wholesaler"><span class="dot"></span>Medical Supplies Wholesaler</a>
-            <div class="dropdown-section">Regenerative Medicine</div>
+          </div>
+          <div class="mega-col">
+            <div class="dropdown-section">Peptides, regenerative &amp; consumer</div>
+            <a href="/products/peptides"><span class="dot"></span>Peptide Program</a>
             <a href="/products/exosomes"><span class="dot"></span>Exosomes &amp; Birth Tissue</a>
+            <a href="/ovena-health"><span class="dot"></span>Ovena Health</a>
+            <a href="/products/wholesaler"><span class="dot"></span>Wholesale Distribution</a>
+          </div>
+            </div>
           </div>
         </li>
+        <li class="nav-dropdown" role="none">
+          <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true">Services</a>
+          <div class="dropdown-menu" role="menu">
+            <a href="/services"><span class="dot"></span>All Services</a>
+            <a href="/services/revenue-cycle"><span class="dot"></span>Revenue Cycle Management</a>
+            <a href="/services/legal-guidance"><span class="dot"></span>Legal Guidance</a>
+            <a href="/services/consulting"><span class="dot"></span>Consultative Services</a>
+          </div>
+        </li>
+        <li><a href="/software" role="menuitem">Software</a></li>
         <li><a href="/scientific-portfolio" role="menuitem">Scientific Portfolio</a></li>
-        <li><a href="/revenue-cycle" role="menuitem">Revenue Cycle</a></li>
-        <li><a href="/legal-guidance" role="menuitem">Legal Guidance</a></li>
-        <li><a href="/consulting" role="menuitem">Consulting</a></li>
+        <li><a href="/ovena-health" role="menuitem">Amazon Store</a></li>
         <li><a href="/portal" role="menuitem">Portal</a></li>
         <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
         <li><a href="/about" role="menuitem">About</a></li>
@@ -737,24 +767,37 @@
     <a href="/products">Products</a>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
-      <div class="submenu-section">Advanced Wound Care</div>
+      <div class="submenu-section">Placental & ECM allografts</div>
+      <a href="/products/palisade">Palisade&trade; Dual-Membrane</a>
+      <a href="/products/sentry-sl">Sentry&trade; SL</a>
+      <a href="/products/interfyl">Interfyl&reg; CTM</a>
       <a href="/products/advanced-biologics">Advanced Biologics</a>
+      <div class="submenu-section">Engineered &amp; xenograft matrices</div>
+      <a href="/products/apis">APIS&reg;</a>
+      <a href="/products/xcellistem">XCelliStem&trade;</a>
+      <a href="/products/miro3d">Miro3D&reg;</a>
+      <div class="submenu-section">Surgical &amp; autologous</div>
       <a href="/products/actigraft">ActiGraft+</a>
-      <div class="submenu-section">Surgical Biologics</div>
       <a href="/products/adhesion-barrier">Adhesion Barrier</a>
-      <div class="submenu-section">Conservative Wound Care</div>
-      <a href="/products/collagen">Collagen Program</a>
+      <div class="submenu-section">Devices &amp; conservative care</div>
+      <a href="/products/arobella">Arobella Qoustic&trade;</a>
       <a href="/products/ultramist">UltraMist Therapy</a>
       <a href="/products/microdoc">MicroDoc NPWT</a>
-      <div class="submenu-section">Medical Supply Distribution</div>
-      <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
-      <div class="submenu-section">Regenerative Medicine</div>
+      <div class="submenu-section">Peptides, regenerative &amp; consumer</div>
+      <a href="/products/peptides">Peptide Program</a>
       <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
+      <a href="/ovena-health">Ovena Health</a>
+      <a href="/products/wholesaler">Wholesale Distribution</a>
     </div>
+    <a href="/services">Services</a>
+    <div class="submenu">
+      <a href="/services/revenue-cycle">Revenue Cycle Management</a>
+      <a href="/services/legal-guidance">Legal Guidance</a>
+      <a href="/services/consulting">Consultative Services</a>
+    </div>
+    <a href="/software">Software</a>
     <a href="/scientific-portfolio">Scientific Portfolio</a>
-    <a href="/revenue-cycle">Revenue Cycle</a>
-    <a href="/legal-guidance">Legal Guidance</a>
-    <a href="/consulting">Consulting</a>
+    <a href="/ovena-health">Amazon Store</a>
     <a href="/portal">Portal</a>
     <a href="/why-partner">Why Partner</a>
     <a href="/about">About</a>
@@ -797,14 +840,16 @@
         <input type="radio" name="sp-tabs" id="sp-r4" class="sp-radio">
         <input type="radio" name="sp-tabs" id="sp-r5" class="sp-radio">
         <input type="radio" name="sp-tabs" id="sp-r6" class="sp-radio">
+        <input type="radio" name="sp-tabs" id="sp-r7" class="sp-radio">
 
         <div class="sp-tabs" role="tablist">
           <label for="sp-r1" role="tab">Overview</label>
           <label for="sp-r2" role="tab">The Problem</label>
           <label for="sp-r3" role="tab">Amniotic Membrane</label>
           <label for="sp-r4" role="tab">Microlyte SAM</label>
-          <label for="sp-r5" role="tab">Collagen Program</label>
+          <label for="sp-r5" role="tab">Collagen Science</label>
           <label for="sp-r6" role="tab">Clinical Framework</label>
+          <label for="sp-r7" role="tab">Evidence Base</label>
         </div>
 
         <!-- PANEL 1: OVERVIEW -->
@@ -1084,7 +1129,7 @@
 
         <!-- PANEL 5: COLLAGEN / PROPACKS -->
         <div id="p5" class="sp-panel">
-          <span class="sp-eyebrow">Collagen Program</span>
+          <span class="sp-eyebrow">Collagen Science</span>
           <h2>Type I Collagen &mdash; <em style="font-style:normal;color:var(--gold)">sacrificial substrate &amp; bioactive signal.</em></h2>
           <p class="lead">Exogenous collagen reverses the proteolytic cycle by diverting MMP activity from endogenous ECM. As it degrades, it releases bioactive matrikines that actively drive granulation and fibroblast chemotaxis.</p>
 
@@ -1213,6 +1258,79 @@
           </p>
         </div>
 
+        <!-- PANEL 7: EVIDENCE BASE -->
+        <div id="p7" class="sp-panel">
+          <span class="sp-eyebrow">Evidence Base</span>
+          <h2>What the literature <em style="font-style:normal;color:var(--gold)">actually supports.</em></h2>
+          <p class="lead">Every platform we carry sits somewhere on a spectrum from randomised trial evidence to mechanistic rationale. This panel places each one honestly &mdash; including where the evidence is thin. A payer&rsquo;s medical director and a UPIC auditor will both find the same gaps we do, and it is better that you hear them from us first.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-2);margin-bottom:var(--s-5)">
+            <div style="padding:var(--s-2);background:var(--ink-1);border:1px solid var(--ink-3);border-left:3px solid #7fb5ba;border-radius:var(--r-sm)">
+              <div style="font-family:var(--font-display);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:#7fb5ba;font-weight:700;margin-bottom:4px">Grade A</div>
+              <div style="color:var(--snow);font-size:var(--t-sm);font-weight:600">Randomised controlled</div>
+              <div style="color:var(--fog);font-size:var(--t-xs);margin-top:2px">Prospective, randomised, with a control arm</div>
+            </div>
+            <div style="padding:var(--s-2);background:var(--ink-1);border:1px solid var(--ink-3);border-left:3px solid var(--gold);border-radius:var(--r-sm)">
+              <div style="font-family:var(--font-display);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px">Grade B</div>
+              <div style="color:var(--snow);font-size:var(--t-sm);font-weight:600">Comparative, non-randomised</div>
+              <div style="color:var(--fog);font-size:var(--t-xs);margin-top:2px">A control group exists, but retrospective</div>
+            </div>
+            <div style="padding:var(--s-2);background:var(--ink-1);border:1px solid var(--ink-3);border-left:3px solid #a0b5d8;border-radius:var(--r-sm)">
+              <div style="font-family:var(--font-display);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:#a0b5d8;font-weight:700;margin-bottom:4px">Grade C</div>
+              <div style="color:var(--snow);font-size:var(--t-sm);font-weight:600">Case series</div>
+              <div style="color:var(--fog);font-size:var(--t-xs);margin-top:2px">No control arm; indexed or otherwise</div>
+            </div>
+            <div style="padding:var(--s-2);background:var(--ink-1);border:1px solid var(--ink-3);border-left:3px solid var(--fog);border-radius:var(--r-sm)">
+              <div style="font-family:var(--font-display);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--fog);font-weight:700;margin-bottom:4px">Grade D</div>
+              <div style="color:var(--snow);font-size:var(--t-sm);font-weight:600">Bench, in vitro &amp; mechanistic</div>
+              <div style="color:var(--fog);font-size:var(--t-xs);margin-top:2px">Laboratory or rationale only</div>
+            </div>
+          </div>
+
+          <h3 style="color:var(--snow);font-size:var(--t-2xl);margin-bottom:var(--s-2)">XCelliStem<span style="color:var(--gold)">&trade;</span> &mdash; multi-tissue ECM particulate</h3>
+          <p style="margin-bottom:var(--s-2)">Cleared under <strong style="color:var(--snow)">FDA 510(k) K172593</strong> on 16 March 2018 (StemSys; product code KGN). The published record is small and entirely uncontrolled with one exception, and there is <strong style="color:var(--snow)">no randomised trial and no registered clinical trial</strong> for this material.</p>
+          <ul class="aligned-list" style="margin-bottom:var(--s-2)">
+            <li><strong>Grade C &middot; Irfan 2025</strong><span><em>Antibiotics</em> 14(9):885. Retrospective observational series, n=15 ballistic and blast injuries at European Gaza Hospital. Granulation by day 7 in 12 of 15; closure in 13 of 15 by graft, flap or secondary intention; 80% had exposed bone or tendon. PubMed-indexed.</span></li>
+            <li><strong>Grade C &middot; Khorsandi 2026</strong><span><em>Plast Reconstr Surg Glob Open</em> 14(7):e7950. Case series, n=2 tibial wounds after failed ALT free flaps. Both granulated and accepted split-thickness grafts; durable healing at six months or more. PubMed-indexed.</span></li>
+            <li><strong>Grade B &middot; Creger 2025</strong><span><em>J Pharm Res Innov</em> 5(1). The only study here with a comparator: retrospective, single-centre, <strong style="color:var(--snow)">single-surgeon</strong>, n=97 stage III ventral hernias (72 without, 25 with). Seroma and seroma-related complications fell from 49% to 16%, <em>p</em>&nbsp;=&nbsp;0.0042. Not PubMed-indexed, and a retrospective single-surgeon before-and-after design cannot exclude concurrent changes in practice.</span></li>
+            <li><strong>Grade C &middot; Sasse 2023</strong><span><em>Clin Case Rep J</em> 4(2). n=10 complex abdominal wounds at one institution; all healed without complication, median treatment time 2.5 weeks. Two-week histology showed collagen deposition, neovascularisation, fibroblasts and macrophages, with no foreign-body granulomas.</span></li>
+          </ul>
+          <p style="padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6;margin-bottom:var(--s-5)"><strong style="color:var(--gold)">The gap you should know about.</strong> Total published patient exposure across the peer-reviewed work is <strong>17 patients</strong>. The published series are surgical, trauma and burn wounds &mdash; <strong>no study exists in a diabetic foot ulcer or venous leg ulcer population</strong>, which are the indications that drive most A2004 coverage discussion. If a payer asks for evidence in the indication being billed, this dossier does not supply it.</p>
+
+          <h3 style="color:var(--snow);font-size:var(--t-2xl);margin-bottom:var(--s-2)">APIS<span style="color:var(--gold)">&reg;</span> &mdash; collagen derivative, M&#257;nuka honey &amp; hydroxyapatite</h3>
+          <p style="margin-bottom:var(--s-2)">FDA 510(k) cleared (SweetBio). The deepest published record of the newer platforms, spanning a randomised pilot, clinical evaluations and mechanistic in-vitro work.</p>
+          <ul class="aligned-list" style="margin-bottom:var(--s-2)">
+            <li><strong>Grade A &middot; Arnaud 2023</strong><span>Randomised controlled <em>pilot</em> study comparing enhanced versus standard secondary-intention healing in Mohs surgical defects on the head and distal lower extremities. A pilot RCT is a genuine control arm, but it is not a powered pivotal trial.</span></li>
+            <li><strong>Grade C &middot; Rodriguez 2023</strong><span>Lower-extremity chronic wounds in an urban hospital wound-care setting.</span></li>
+            <li><strong>Grade C &middot; Rodriguez 2020</strong><span>Preliminary clinical evaluation in lower-extremity ulcers.</span></li>
+            <li><strong>Grade C &middot; McMurray 2021</strong><span>Use of the biomaterial to enhance secondary intention healing.</span></li>
+            <li><strong>Grade D &middot; Williams 2021; Rodriguez 2021, 2022</strong><span>In-vitro capability to reduce bacteria; inflammatory-marker and growth-factor secretion; a direct in-vitro comparison against a collagen sheet and a M&#257;nuka honey sheet. Laboratory work, not clinical outcome data.</span></li>
+          </ul>
+          <p style="font-size:var(--t-xs);color:var(--fog);margin-bottom:var(--s-5);line-height:1.6">The manufacturer&rsquo;s 4&ndash;8 week closure and reduced-pain claims are drawn from this clinical and in-vitro record and carry the manufacturer&rsquo;s own footnote that those claims have not been cleared by the FDA.</p>
+
+          <h3 style="color:var(--snow);font-size:var(--t-2xl);margin-bottom:var(--s-2)">Arobella Qoustic<span style="color:var(--gold)">&trade;</span> &mdash; 35&nbsp;kHz cavitational ultrasound</h3>
+          <p style="margin-bottom:var(--s-2)">Cleared under <strong style="color:var(--snow)">FDA 510(k) K131096</strong> (Model AR1000 series). The supporting literature divides cleanly into device-specific in-vitro work and older clinical trials of low-frequency ultrasound as a modality.</p>
+          <ul class="aligned-list" style="margin-bottom:var(--s-2)">
+            <li><strong>Grade A &middot; Ennis 2005</strong><span><em>Ostomy Wound Therapy</em>. Randomised, double-blind, controlled, multicentre study of ultrasound therapy for recalcitrant diabetic foot ulcers. The strongest study in the set &mdash; and a study of the modality, not specifically of the Qoustic hand piece.</span></li>
+            <li><strong>Grade D &middot; Conner-Kerr 2010</strong><span><em>Ostomy Wound Management</em> 32&ndash;42. Effects of 35&nbsp;kHz low-frequency ultrasound on MRSA <em>in vitro</em>.</span></li>
+            <li><strong>Grade D &middot; Conner-Kerr 2015</strong><span>Effects of 35&nbsp;kHz application <em>in vitro</em> on human fibroblast morphology and migration patterns.</span></li>
+            <li><strong>Grade D &middot; Conner-Kerr 2008</strong><span>Effects delivered via the Qoustic Wound Therapy System on neuroblastoma viability and morphology &mdash; device-specific, but a cell-line study.</span></li>
+            <li><strong>Grade C &middot; Gehling &amp; Samies 2007</strong><span>Reduction in patient-reported pain in diabetic ulcers, using equipment originally developed by the same investigator.</span></li>
+          </ul>
+          <p style="font-size:var(--t-xs);color:var(--fog);margin-bottom:var(--s-5);line-height:1.6">Read carefully, several frequently cited papers evaluate non-contact low-frequency ultrasound as a category rather than this device. The device-specific evidence is predominantly <em>in vitro</em>.</p>
+
+          <h3 style="color:var(--snow);font-size:var(--t-2xl);margin-bottom:var(--s-2)">Miro3D<span style="color:var(--gold)">&reg;</span> &mdash; three-dimensional porcine liver matrix</h3>
+          <p style="margin-bottom:var(--s-5)">Cleared under <strong style="color:var(--snow)">FDA 510(k) K221520</strong>, substantially equivalent 18 August 2022 (Reprise Biomedical; product code KGN, unclassified). Separate MR-safe labelling was cleared under K223257 on 21 November 2022 &mdash; the two numbers are routinely confused, and only K221520 is the device clearance. <strong style="color:var(--snow)">Grade D.</strong> The case for Miro3D in our materials is geometric and mechanistic rather than comparative: a flat sheet bridges a cavity, while a 2&nbsp;cm construct trimmed to the defect holds contact with the walls and base so host tissue can grow into the open scaffold. That reasoning is sound and it is what the A2025 per-cubic-centimetre code exists to describe &mdash; but we hold no head-to-head clinical data, and we will not imply otherwise.</p>
+
+          <h3 style="color:var(--snow);font-size:var(--t-2xl);margin-bottom:var(--s-2)">Interfyl<span style="color:var(--gold)">&reg;</span>, Palisade<span style="color:var(--gold)">&trade;</span> &amp; Sentry<span style="color:var(--gold)">&trade;</span> SL &mdash; human placental tissue</h3>
+          <p style="margin-bottom:var(--s-2)">All three are human tissue products regulated as <strong style="color:var(--snow)">361 HCT/Ps under 21 CFR Part 1271</strong>. They are not FDA-approved and not FDA-cleared &mdash; that is the correct regulatory description of this category, not a deficiency, but it is frequently misstated in the market.</p>
+          <ul class="aligned-list" style="margin-bottom:var(--s-2)">
+            <li><strong>Grade D &middot; Interfyl</strong><span>An internal bench-top study (data on file) estimates surface-area coverage by ImageJ planimetry, averaging roughly 6&nbsp;mg/cm&sup2;. That is a sizing aid, not a clinical outcome study.</span></li>
+            <li><strong>Grade D &middot; Palisade and Sentry SL</strong><span>The manufacturers&rsquo; literature cites Niknejad 2008 (<em>Eur Cell Mater</em> 15:88&ndash;99) on amniotic membrane properties for tissue engineering, and Roy 2022 (<em>BioMed Research International</em>) on placental tissues as biomaterials. Both are reviews of the tissue class, not trials of these products.</span></li>
+          </ul>
+          <p style="padding:var(--s-2) var(--s-3);background:var(--gold-dim);border-radius:var(--r-sm);color:var(--snow);font-size:var(--t-sm);line-height:1.6"><strong style="color:var(--gold)">How to use this panel.</strong> Grade D is not a reason to avoid a product &mdash; much of wound care runs on mechanistic rationale and clearance. It is a reason to document the clinical decision carefully, to avoid outcome promises in the chart and in the room, and to expect questions at prepayment review. Our team builds the documentation set against exactly these gaps.</p>
+        </div>
+
       </div>
     </section>
 
@@ -1238,26 +1356,30 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
-          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
+          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, software, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
         </div>
         <div class="footer-col">
           <h4>Products</h4>
+          <a href="/products/palisade">Palisade&trade;</a>
+          <a href="/products/sentry-sl">Sentry&trade; SL</a>
+          <a href="/products/apis">APIS&reg;</a>
+          <a href="/products/interfyl">Interfyl&reg;</a>
+          <a href="/products/miro3d">Miro3D&reg;</a>
+          <a href="/products/xcellistem">XCelliStem&trade;</a>
+          <a href="/products/arobella">Arobella Qoustic&trade;</a>
+          <a href="/products/peptides">Peptide Program</a>
           <a href="/products/advanced-biologics">Advanced Biologics</a>
-          <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
           <a href="/products/adhesion-barrier">Adhesion Barrier</a>
-          <a href="/products/collagen">Collagen Program</a>
-          <a href="/products/ultramist">UltraMist Therapy</a>
-          <a href="/products/actigraft">ActiGraft+</a>
-          <a href="/products/microdoc">MicroDoc NPWT</a>
-          <a href="/products/exosomes">Exosomes &amp; Birth Tissue</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
-          <a href="/about">About</a>
+          <a href="/services/revenue-cycle">Revenue Cycle</a>
+          <a href="/services/legal-guidance">Legal Guidance</a>
+          <a href="/services/consulting">Consulting</a>
+          <a href="/software">StrataMetric</a>
+          <a href="/ovena-health">Ovena Health</a>
           <a href="/why-partner">Why Partner</a>
-          <a href="/legal-guidance">Legal Guidance</a>
-          <a href="/portal">Portal &amp; Support</a>
-          <a href="/consulting">Consulting</a>
+          <a href="/about">About</a>
           <a href="/contact">Contact</a>
         </div>
         <div class="footer-col">
@@ -1269,11 +1391,11 @@
       </div>
       <div class="footer-bottom">
         <span>&copy; 2026 Albacete MedDev. All rights reserved.</span>
-        <span>Confidential &mdash; For clinical and educational reference only</span>
+        <span>One partner. Every operational layer.</span>
       </div>
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=21" defer></script>
+  <script src="/assets/js/app.js?v=22" defer></script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+# Old top-level service URLs -> /services/* (indexed since 2026; keep 301s)
+/revenue-cycle      /services/revenue-cycle      301
+/revenue-cycle/*    /services/revenue-cycle      301
+/legal-guidance     /services/legal-guidance     301
+/legal-guidance/*   /services/legal-guidance     301
+/consulting         /services/consulting         301
+/consulting/*       /services/consulting         301
+# Collagen Program retired 2026-08 — nearest equivalent is the APIS collagen-
+# derivative sheet; send visitors to the portfolio rather than a 404.
+/products/collagen  /products                    301
