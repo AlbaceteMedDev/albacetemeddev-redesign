@@ -971,3 +971,104 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   }, { rootMargin: '-32% 0px -32% 0px', threshold: 0 });
   cards.forEach(c => io.observe(c));
 })();
+
+
+// ═══════════════════════════════════════════════════════════════
+// Mega menu v2 — hover-intent controller
+// Opens on hover with a short intent delay, forgives the travel to
+// the panel with a grace period, click-toggles on touch, closes on
+// Escape/outside click, and drives the category rail + feature pane.
+// ═══════════════════════════════════════════════════════════════
+(function initMegaMenu(){
+  const drops = document.querySelectorAll('.nav-dropdown');
+  if (!drops.length) return;
+  const OPEN_DELAY = 70, CLOSE_DELAY = 280;
+
+  function controller(li){
+    const trigger = li.querySelector('.dropdown-trigger');
+    let openT = null, closeT = null;
+    const open = () => {
+      clearTimeout(closeT);
+      drops.forEach(d => { if (d !== li) d.classList.remove('is-open'); });
+      li.classList.add('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+    };
+    const close = () => {
+      clearTimeout(openT);
+      li.classList.remove('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    };
+    li.addEventListener('pointerenter', (e) => {
+      if (e.pointerType === 'touch') return;
+      clearTimeout(closeT);
+      openT = setTimeout(open, OPEN_DELAY);
+    });
+    li.addEventListener('pointerleave', (e) => {
+      if (e.pointerType === 'touch') return;
+      clearTimeout(openT);
+      closeT = setTimeout(close, CLOSE_DELAY);
+    });
+    if (trigger) trigger.addEventListener('click', (e) => {
+      // touch / pen: first tap opens, second follows the link
+      if (matchMedia('(hover: none)').matches && !li.classList.contains('is-open')){
+        e.preventDefault();
+        open();
+      }
+    });
+    return { li, close };
+  }
+
+  const instances = [...drops].map(controller);
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-dropdown')) instances.forEach(i => i.close());
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape'){
+      const openLi = document.querySelector('.nav-dropdown.is-open');
+      if (openLi){
+        instances.forEach(i => i.close());
+        const t = openLi.querySelector('.dropdown-trigger');
+        if (t) t.focus();
+      }
+    }
+  });
+
+  // Category rail + feature pane
+  const mega = document.querySelector('.mega2');
+  if (!mega) return;
+  const cats = mega.querySelectorAll('.mega2-cat');
+  const lists = mega.querySelectorAll('.mega2-list');
+  const img = mega.querySelector('.mega2-img');
+  const blurb = mega.querySelector('.mega2-blurb');
+  const cap = mega.querySelector('.mega2-cap');
+
+  function setFeature(url, text, title){
+    if (url){
+      img.style.backgroundImage = 'url(' + url + ')';
+      img.classList.add('has-img');
+    } else {
+      img.classList.remove('has-img');
+    }
+    if (text) blurb.textContent = text;
+    if (title) cap.textContent = title;
+  }
+
+  function activate(cat){
+    cats.forEach(c => c.classList.toggle('is-active', c === cat));
+    lists.forEach(l => l.classList.toggle('is-active', l.dataset.cat === cat.dataset.cat));
+    setFeature(cat.dataset.img || null, cat.dataset.desc, cat.textContent.replace(/\d+$/, '').trim());
+  }
+
+  cats.forEach(cat => {
+    cat.addEventListener('pointerenter', () => activate(cat));
+    cat.addEventListener('focus', () => activate(cat));
+    cat.addEventListener('click', () => activate(cat));
+  });
+
+  mega.querySelectorAll('.mega2-item[data-img]').forEach(item => {
+    item.addEventListener('pointerenter', () => {
+      img.style.backgroundImage = 'url(' + item.dataset.img + ')';
+      img.classList.add('has-img');
+    });
+  });
+})();

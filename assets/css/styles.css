@@ -432,7 +432,6 @@ body.is-loaded .nav{
   visibility: hidden;
   transition: all var(--dur-fast) var(--ease-out-quart);
 }
-.nav-dropdown:hover .dropdown-menu,
 .nav-dropdown:focus-within .dropdown-menu{
   opacity: 1;
   visibility: visible;
@@ -2271,36 +2270,206 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   Mega menu (Products) — v40
-   Panel spans the nav width; groups flow in a 5-column grid.
+   Mega menu v2 — command-panel Products menu + rich dropdowns (v43)
+   JS-driven (.is-open, hover intent); :focus-within is the no-JS path.
    ═══════════════════════════════════════════════════════════════ */
 .nav-dropdown--mega{position: static}
-.dropdown-menu--mega{
-  width: min(1120px, calc(100vw - 32px));
-  min-width: 0;
-  padding: var(--s-2) var(--s-2) var(--s-3);
-  top: calc(100% + 0px);
+.mega2{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  width: min(1180px, calc(100vw - 32px));
+  background: rgba(8,11,18,0.97);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--ink-3);
+  border-top: none;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+  box-shadow: var(--shadow-elevated);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms var(--ease-out-expo), transform 220ms var(--ease-out-expo), visibility 0s linear 220ms;
+  overflow: hidden;
 }
-.dropdown-menu--mega .mega-all{
-  margin: 4px 6px 6px;
-  border-bottom: 1px solid var(--ink-3);
-  padding-bottom: 12px;
+.nav-dropdown--mega.is-open .mega2,
+.nav-dropdown--mega:focus-within .mega2{
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 220ms var(--ease-out-expo), transform 220ms var(--ease-out-expo);
+}
+.mega2-beam{
+  position: absolute;
+  top: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 18%, var(--gold-bright) 50%, var(--gold) 82%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 480ms var(--ease-out-expo) 60ms;
+}
+.nav-dropdown--mega.is-open .mega2-beam,
+.nav-dropdown--mega:focus-within .mega2-beam{transform: scaleX(1)}
+.mega2-inner{
+  display: grid;
+  grid-template-columns: 264px minmax(0,1fr) 292px;
+}
+.mega2-rail{
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-2);
+  gap: 2px;
+  border-right: 1px solid var(--ink-2);
+  background: rgba(5,7,12,0.55);
+}
+.mega2-cat{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fog);
+  padding: 11px 12px 11px 14px;
+  border-radius: var(--r-sm);
+  border-left: 2px solid transparent;
+  transition: all var(--dur-fast) ease;
+  cursor: pointer;
+}
+.mega2-cat:hover{color: var(--snow); background: var(--ink-2)}
+.mega2-cat.is-active{
+  color: var(--gold);
+  background: var(--gold-dim);
+  border-left-color: var(--gold);
+}
+.mega2-count{
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--fog);
+  background: var(--ink-2);
+  border-radius: var(--r-pill);
+  padding: 1px 7px;
+  min-width: 20px;
+  text-align: center;
+}
+.mega2-cat.is-active .mega2-count{color: var(--ink); background: var(--gold)}
+.mega2-all{
+  margin-top: auto;
+  padding: 12px 14px;
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--snow);
+  border-top: 1px solid var(--ink-2);
+  transition: color var(--dur-fast) ease;
+}
+.mega2-all:hover{color: var(--gold)}
+.mega2-all .arrow{display:inline-block; transition: transform var(--dur-fast) var(--ease-out-quart)}
+.mega2-all:hover .arrow{transform: translateX(3px)}
+.mega2-lists{position: relative; padding: var(--s-2)}
+.mega2-list{
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  align-content: start;
+  animation: mega2-in 240ms var(--ease-out-expo);
+}
+.mega2-list.is-active{display: grid}
+@keyframes mega2-in{
+  from{opacity: 0; transform: translateY(6px)}
+  to{opacity: 1; transform: translateY(0)}
+}
+.mega2-item{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 11px 12px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  transition: all var(--dur-fast) ease;
+}
+.mega2-item:hover{background: var(--ink-2); border-color: var(--ink-3); transform: translateX(2px)}
+.mega2-name{
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
   font-weight: 600;
   color: var(--snow);
 }
-.mega-grid{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0 var(--s-2);
-  align-items: start;
+.mega2-item:hover .mega2-name{color: var(--gold)}
+.mega2-desc{font-size: var(--t-xs); color: var(--fog); line-height: 1.45}
+.mega2-feature{
+  position: relative;
+  border-left: 1px solid var(--ink-2);
+  min-height: 320px;
+  background: linear-gradient(160deg, var(--ink-1), var(--ink));
+  overflow: hidden;
 }
-.mega-group{min-width: 0}
-.mega-group .dropdown-section{
+.mega2-img{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 320ms var(--ease-out-expo);
+}
+.mega2-img.has-img{opacity: 1}
+.mega2-feature::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,7,12,0.92) 0%, rgba(5,7,12,0.25) 45%, rgba(5,7,12,0.1) 100%);
+  pointer-events: none;
+}
+.mega2-blurb{
+  position: absolute;
+  inset: auto 0 44px 0;
+  padding: 0 var(--s-3);
+  color: var(--mist);
+  font-size: var(--t-sm);
+  line-height: 1.55;
+  z-index: 1;
+}
+.mega2-cap{
+  position: absolute;
+  inset: auto 0 14px 0;
+  padding: 0 var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  z-index: 1;
+}
+
+/* Rich small dropdown (Services) — flush, no hover gap, descriptions */
+.dropdown-rich{
+  top: 100%;
+  min-width: 320px;
+  padding: var(--s-1);
   border-top: none;
-  margin-top: 0;
-  padding: 10px 14px 4px;
+  border-radius: 0 0 var(--r-md) var(--r-md);
 }
-.mega-group a{white-space: normal}
+.dropdown-rich a{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 11px 14px;
+}
+.nav-dropdown--rich.is-open .dropdown-menu,
+.nav-dropdown--rich:focus-within .dropdown-menu{
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+/* JS owns pointer-driven opening; keep CSS hover off so intent delays work */
+.nav-dropdown--mega:hover .dropdown-menu{}
 
 /* ═══════════════════════════════════════════════════════════════
    Accessibility & polish — v40
