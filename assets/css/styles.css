@@ -1679,7 +1679,9 @@ body.is-loaded .nav{
   gap: var(--s-5);
   margin-bottom: var(--s-5);
 }
-.footer-brand img{height: 32px; margin-bottom: var(--s-3); mix-blend-mode: lighten}
+/* width:auto is load-bearing — the intrinsic width attribute is a presentational
+   hint, so without it the logo renders at its full pixel width and squashes. */
+.footer-brand img{height: 32px; width: auto; margin-bottom: var(--s-3); mix-blend-mode: lighten}
 .footer-brand p{
   font-size: var(--t-sm);
   color: var(--fog);
