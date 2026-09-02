@@ -10,21 +10,30 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const isTouch = window.matchMedia('(hover: none)').matches;
 
 // Splash loader — full splash on the session's first view, instant after.
-// An inline <head> guard sets html.no-splash pre-paint for returning views;
+// An inline <head> guard sets html.no-splash pre-paint for returning views,
+// and html.ident-pending when the home page should open with the video ident;
 // this block keeps body classes + sessionStorage in sync.
 (function initSplash(){
+  const html = document.documentElement;
   function splashSeen(){
     try{ return !!sessionStorage.getItem('amd-splash'); }catch(e){ return false; }
   }
   function markSeen(){
     try{ sessionStorage.setItem('amd-splash', '1'); }catch(e){}
   }
-  function skipSplash(){
-    document.documentElement.classList.add('no-splash');
+  function finish(){
     document.body.classList.remove('is-loading');
     document.body.classList.add('is-loaded');
+    markSeen();
+    document.dispatchEvent(new CustomEvent('amd:splash-done'));
+  }
+  function skipSplash(){
+    html.classList.add('no-splash');
+    html.classList.remove('ident-pending');
+    finish();
   }
   function runSplash(){
+    html.classList.remove('ident-pending');
     // Reset to is-loading state in case the page was restored from bfcache
     document.body.classList.remove('is-loaded');
     document.body.classList.add('is-loading');
@@ -38,15 +47,75 @@ const isTouch = window.matchMedia('(hover: none)').matches;
       splash.style.animation = '';
       if (mark) mark.style.animation = '';
     }
-    setTimeout(() => {
-      document.body.classList.remove('is-loading');
-      document.body.classList.add('is-loaded');
-      markSeen();
-    }, 1100);
+    setTimeout(finish, 1100);
   }
+
+  // Video ident opener (home page, first view of the session). The 5s
+  // Healing Matrix ident plays full-bleed inside the splash overlay, then the
+  // overlay fades into the hero. Tap / click / Esc skips it. If the video
+  // cannot start within 2.2s (slow network, autoplay blocked) we fall back to
+  // the classic logo splash so nobody waits on a dark screen.
+  function runIdent(splash){
+    let done = false, startGuard = 0, hardStop = 0;
+    const portrait = window.matchMedia('(orientation: portrait)').matches;
+    const base = '/assets/video/albacete-ident-' + (portrait ? 'portrait' : 'landscape');
+    const video = document.createElement('video');
+    video.className = 'splash-video';
+    video.muted = true; video.defaultMuted = true; video.playsInline = true;
+    video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
+    video.setAttribute('aria-hidden', 'true'); video.preload = 'auto';
+    video.disablePictureInPicture = true; video.tabIndex = -1;
+    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
+      const s = document.createElement('source');
+      s.src = base + '.' + ext + '?v=1'; s.type = type; video.appendChild(s);
+    });
+    const skip = document.createElement('button');
+    skip.type = 'button'; skip.className = 'splash-skip'; skip.tabIndex = -1;
+    skip.textContent = 'Skip';
+    splash.append(video, skip);
+
+    function cleanup(){
+      clearTimeout(startGuard); clearTimeout(hardStop);
+      document.removeEventListener('keydown', onKey);
+    }
+    function leave(){
+      if (done) return; done = true; cleanup();
+      splash.classList.add('is-leaving');
+      finish();
+      setTimeout(() => { try{ video.pause(); }catch(e){} video.remove(); skip.remove(); }, 700);
+    }
+    function fallback(){
+      if (done) return; done = true; cleanup();
+      video.remove(); skip.remove();
+      splash.classList.remove('has-video');
+      runSplash();
+    }
+    function onKey(e){ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') leave(); }
+
+    document.body.classList.remove('is-loaded');
+    document.body.classList.add('is-loading');
+    startGuard = setTimeout(fallback, 2200);
+    video.addEventListener('playing', () => {
+      if (done) return;
+      clearTimeout(startGuard);
+      splash.classList.add('has-video');
+      hardStop = setTimeout(leave, 6500);  // never hold the page hostage
+    }, { once: true });
+    video.addEventListener('ended', leave);
+    video.addEventListener('error', fallback);
+    skip.addEventListener('click', (e) => { e.stopPropagation(); leave(); });
+    splash.addEventListener('click', leave);
+    document.addEventListener('keydown', onKey);
+    const p = video.play();
+    if (p && typeof p.catch === 'function') p.catch(fallback);
+  }
+
+  const splashEl = document.querySelector('.splash');
+  const identWanted = html.classList.contains('ident-pending') && !!splashEl && !prefersReducedMotion;
 
   // First page load
   if (splashSeen()) skipSplash();
+  else if (identWanted) runIdent(splashEl);
   else runSplash();
 
   // Back/forward (bfcache restore): never replay the splash mid-session
@@ -347,10 +416,14 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     });
   }
 
-  // Wait until after the splash (1600ms) + hero reveal animation (~2060ms for
-  // the stats row at reveal-delay 4) have played, then start observing.
-  // Using a fixed delay is more reliable than polling for class changes.
-  setTimeout(startObserving, 2200);
+  // Start observing ~1.2s after the splash / ident has left (the stats row
+  // reveal has played by then), or right away for returning visitors. A long
+  // fallback timer covers any missed event.
+  let observing = false;
+  function startOnce(){ if (observing) return; observing = true; setTimeout(startObserving, 1200); }
+  if (document.body.classList.contains('is-loaded')) startOnce();
+  document.addEventListener('amd:splash-done', startOnce, { once: true });
+  setTimeout(startOnce, 9000);
 })();
 
 

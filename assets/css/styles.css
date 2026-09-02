@@ -308,6 +308,57 @@ body.is-loaded .nav{
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   Ident opener — home page, first view of the session
+   html.ident-pending is set pre-paint by the inline head guard; app.js
+   injects the 5s Healing Matrix video into .splash and runs the exit.
+   The static mark stays hidden unless the video fails to start, in which
+   case the classic splash above takes over unchanged.
+   ═══════════════════════════════════════════════════════════════ */
+.ident-pending .splash{
+  animation: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.ident-pending .splash .splash-mark{ animation: none; opacity: 0 }
+.splash-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: var(--ink);
+  opacity: 0;
+  transition: opacity 360ms var(--ease-out-expo);
+}
+.splash.has-video .splash-video{ opacity: 1 }
+.splash-skip{
+  position: absolute;
+  right: clamp(18px, 3vw, 40px);
+  bottom: clamp(18px, 3vw, 36px);
+  font: 600 0.7rem/1 var(--font-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fog);
+  background: rgba(5,7,12,0.35);
+  border: 1px solid rgba(203,213,225,0.18);
+  border-radius: 999px;
+  padding: 0.7em 1.15em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 500ms ease 900ms, color 200ms, border-color 200ms;
+}
+.splash.has-video .splash-skip{ opacity: 1 }
+.splash-skip:hover{ color: var(--snow); border-color: rgba(203,213,225,0.4) }
+.ident-pending .splash.is-leaving{ animation: splash-out 520ms var(--ease-out-expo) forwards }
+/* Hero reveals wait for the ident to leave, then stagger in quickly */
+.ident-pending [data-reveal]{
+  animation-delay: calc(250ms + var(--reveal-delay, 0) * 90ms);
+  animation-play-state: paused;
+}
+.ident-pending body.is-loaded [data-reveal]{ animation-play-state: running }
+
+/* ═══════════════════════════════════════════════════════════════
    Page-load reveal (Linear / Tempus inspired)
    Items stagger in on load via data-reveal index
    Delay is offset so hero reveals AFTER splash exits

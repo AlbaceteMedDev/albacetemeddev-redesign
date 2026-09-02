@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>try{if(sessionStorage.getItem("amd-splash"))document.documentElement.classList.add("no-splash")}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem("amd-splash"))document.documentElement.classList.add("no-splash");else if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("ident-pending")}catch(e){}</script>
   <title>Albacete MedDev | Wound Care Products & Practice Partner</title>
   <meta name="description" content="Advanced wound care products, compliance, revenue cycle, and legal support for specialty practices. One operating partner with 20+ years of wound care depth.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=45">
+  <link rel="stylesheet" href="assets/css/styles.css?v=46">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -38,7 +38,9 @@
 <body class="is-loading">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ═══ SPLASH (Tempus-style logo load) ═══ -->
+  <!-- ═══ SPLASH — first view of the session opens with the Healing Matrix ident
+       (app.js injects the video when html.ident-pending is set); the static mark
+       is the fallback if the video cannot start. ═══ -->
   <div class="splash" aria-hidden="true">
     <img class="splash-mark" src="/assets/img/logo-white.png" alt="Albacete MedDev" loading="eager" decoding="async" width="720" height="247">
   </div>
@@ -509,6 +511,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=31" defer></script>
+  <script src="assets/js/app.js?v=32" defer></script>
 </body>
 </html>
