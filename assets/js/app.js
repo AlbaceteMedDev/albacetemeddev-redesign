@@ -70,7 +70,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     video.disablePictureInPicture = true; video.tabIndex = -1;
     [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
       const s = document.createElement('source');
-      s.src = base + '.' + ext + '?v=1'; s.type = type; video.appendChild(s);
+      s.src = base + '.' + ext + '?v=2'; s.type = type; video.appendChild(s);
     });
     const skip = document.createElement('button');
     skip.type = 'button'; skip.className = 'splash-skip'; skip.tabIndex = -1;
