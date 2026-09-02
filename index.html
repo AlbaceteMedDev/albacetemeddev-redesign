@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>try{if(sessionStorage.getItem("amd-splash"))document.documentElement.classList.add("no-splash");else if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("ident-pending")}catch(e){}</script>
+  <script>try{if(!sessionStorage.getItem("amd-ident")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("ident-pending")}catch(e){}</script>
   <title>Albacete MedDev | Wound Care Products & Practice Partner</title>
   <meta name="description" content="Advanced wound care products, compliance, revenue cycle, and legal support for specialty practices. One operating partner with 20+ years of wound care depth.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -38,7 +38,7 @@
 <body class="is-loading">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ═══ SPLASH — first view of the session opens with the Healing Matrix ident
+  <!-- ═══ SPLASH — the first home load of a session opens with the Healing Matrix ident
        (app.js injects the video when html.ident-pending is set); the static mark
        is the fallback if the video cannot start. ═══ -->
   <div class="splash" aria-hidden="true">
@@ -511,6 +511,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=32" defer></script>
+  <script src="assets/js/app.js?v=33" defer></script>
 </body>
 </html>

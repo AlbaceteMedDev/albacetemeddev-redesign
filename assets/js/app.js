@@ -9,22 +9,25 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = window.matchMedia('(hover: none)').matches;
 
-// Splash loader — full splash on the session's first view, instant after.
-// An inline <head> guard sets html.no-splash pre-paint for returning views,
-// and html.ident-pending when the home page should open with the video ident;
-// this block keeps body classes + sessionStorage in sync.
+// Splash loader — the classic logo splash plays on every page load; the home
+// page's first load of the session opens with the video ident instead (an
+// inline <head> guard sets html.ident-pending pre-paint when sessionStorage
+// has no 'amd-ident'). html.no-splash is now only used for bfcache restores.
 (function initSplash(){
   const html = document.documentElement;
-  function splashSeen(){
-    try{ return !!sessionStorage.getItem('amd-splash'); }catch(e){ return false; }
+  // Legacy once-per-session gate (June 2026): clear it so tabs that still
+  // carry the key get the splash between pages again. Inner pages' head
+  // guards still read it, so removing the key is what re-enables them.
+  try{ sessionStorage.removeItem('amd-splash'); }catch(e){}
+  function identSeen(){
+    try{ return !!sessionStorage.getItem('amd-ident'); }catch(e){ return false; }
   }
-  function markSeen(){
-    try{ sessionStorage.setItem('amd-splash', '1'); }catch(e){}
+  function markIdentSeen(){
+    try{ sessionStorage.setItem('amd-ident', '1'); }catch(e){}
   }
   function finish(){
     document.body.classList.remove('is-loading');
     document.body.classList.add('is-loaded');
-    markSeen();
     document.dispatchEvent(new CustomEvent('amd:splash-done'));
   }
   function skipSplash(){
@@ -50,7 +53,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     setTimeout(finish, 1100);
   }
 
-  // Video ident opener (home page, first view of the session). The 5s
+  // Video ident opener (home page, first home load of the session). The 5s
   // Healing Matrix ident plays full-bleed inside the splash overlay, then the
   // overlay fades into the hero. Tap / click / Esc skips it. If the video
   // cannot start within 2.2s (slow network, autoplay blocked) we fall back to
@@ -80,6 +83,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     }
     function leave(){
       if (done) return; done = true; cleanup();
+      markIdentSeen();
       splash.classList.add('is-leaving');
       finish();
       setTimeout(() => { try{ video.pause(); }catch(e){} video.remove(); skip.remove(); }, 700);
@@ -111,19 +115,15 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   }
 
   const splashEl = document.querySelector('.splash');
-  const identWanted = html.classList.contains('ident-pending') && !!splashEl && !prefersReducedMotion;
+  const identWanted = html.classList.contains('ident-pending') && !!splashEl && !prefersReducedMotion && !identSeen();
 
   // First page load
-  if (splashSeen()) skipSplash();
-  else if (identWanted) runIdent(splashEl);
+  if (identWanted) runIdent(splashEl);
   else runSplash();
 
-  // Back/forward (bfcache restore): never replay the splash mid-session
+  // Back/forward (bfcache restore): don't replay anything, just show content
   window.addEventListener('pageshow', (e) => {
-    if (e.persisted){
-      if (splashSeen()) skipSplash();
-      else runSplash();
-    }
+    if (e.persisted) skipSplash();
   });
 })();
 
