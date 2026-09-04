@@ -405,7 +405,13 @@ body.is-loaded .nav{
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: background var(--dur-fast) ease;
+  /* Own compositing layer: without it iOS Safari repaints the fixed bar a
+     frame late during momentum scroll and it visibly slides down the page. */
+  transform: translateZ(0);
+  will-change: transform;
 }
+/* Kill the rubber-band overscroll that drags the fixed nav with it. */
+html, body{ overscroll-behavior-y: none }
 .nav-inner{
   max-width: var(--container);
   margin: 0 auto;
@@ -635,6 +641,37 @@ body.is-loaded .nav{
   color: var(--snow);
   border-bottom: 1px solid var(--ink-3);
 }
+/* Products / Services collapse in the hamburger — the full product list
+   made the panel several screens tall. Collapsed markup ships in the HTML so
+   there is no flash of the expanded menu before JS runs. */
+.mobile-menu .m-parent{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--s-3) 0;
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 500;
+  color: var(--snow);
+  border-bottom: 1px solid var(--ink-3);
+  text-align: left;
+}
+.mobile-menu .m-parent::after{
+  content: '';
+  width: 9px; height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid var(--fog);
+  border-bottom: 2px solid var(--fog);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out-expo);
+}
+.mobile-menu .m-parent[aria-expanded="true"]{color: var(--gold)}
+.mobile-menu .m-parent[aria-expanded="true"]::after{
+  border-color: var(--gold);
+  transform: translateY(2px) rotate(-135deg);
+}
+.mobile-menu .m-parent[aria-expanded="false"] + .submenu{display: none}
 .mobile-menu .submenu{padding-left: var(--s-3)}
 .mobile-menu .submenu a{
   font-size: var(--t-base);
@@ -1854,14 +1891,12 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
     line-height: 1.6;
     margin-bottom: var(--s-4);
   }
-  .hero-chip{
-    font-size: 10px;
-    padding: 6px 12px;
-  }
-  .hero-chip span{ letter-spacing: 0.08em }
+  /* Hero pill is desktop-only: it repeated the nav wordmark and pushed
+     every mobile headline below the fold. */
+  .hero-chip{ display: none }
 
-  /* Hero padding tighter on phones */
-  .hero, .hero.hero-compact{ padding: calc(var(--nav-h) + var(--s-5)) 0 var(--s-5) }
+  /* Hero padding tighter on phones — pulled up now the pill is gone */
+  .hero, .hero.hero-compact{ padding: calc(var(--nav-h) + var(--s-4)) 0 var(--s-5) }
   .hero.hero-split-layout .hero-inner{ gap: var(--s-4) }
 
   /* Product hero image (UltraMist/ActiGraft/Adhesion) sized for phones */
@@ -1948,7 +1983,7 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
   .nav-logo img{ height: 34px }
 
   /* Mobile menu — readable, touch-friendly */
-  .mobile-menu a{ font-size: 1.05rem; padding: 12px 0; min-height: 44px; display: flex; align-items: center }
+  .mobile-menu a, .mobile-menu .m-parent{ font-size: 1.05rem; padding: 12px 0; min-height: 44px; display: flex; align-items: center }
 
   /* FAQ */
   .faq-q{ padding: 16px var(--s-3); font-size: 0.95rem }
@@ -2274,12 +2309,14 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 
 /* Staggered mobile-menu reveal — links cascade in as the panel opens */
 .mobile-menu > a,
+.mobile-menu > .m-parent,
 .mobile-menu .submenu{
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 420ms var(--ease-out-expo), transform 420ms var(--ease-out-expo);
 }
 .mobile-menu.is-open > a,
+.mobile-menu.is-open > .m-parent,
 .mobile-menu.is-open .submenu{
   opacity: 1;
   transform: translateY(0);
@@ -2295,7 +2332,7 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 .mobile-menu.is-open > *:nth-child(9){ transition-delay: 360ms }
 .mobile-menu.is-open > *:nth-child(10){ transition-delay: 400ms }
 @media (prefers-reduced-motion: reduce){
-  .mobile-menu > a, .mobile-menu .submenu{ transition: none; transform: none; opacity: 1 }
+  .mobile-menu > a, .mobile-menu > .m-parent, .mobile-menu .submenu{ transition: none; transform: none; opacity: 1 }
 }
 
 /* Command palette as a full-screen sheet on small viewports */

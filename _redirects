@@ -1,5 +1,7 @@
-/legal-guidance/ /services/legal-guidance/ 301
-/legal-guidance /services/legal-guidance/ 301
+/services/legal-guidance/* /services/ 301
+/services/legal-guidance /services/ 301
+/legal-guidance/ /services/ 301
+/legal-guidance /services/ 301
 /revenue-cycle/ /services/revenue-cycle/ 301
 /revenue-cycle /services/revenue-cycle/ 301
 /consulting/ /services/consulting/ 301

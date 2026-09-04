@@ -201,6 +201,19 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   });
 })();
 
+// Mobile menu accordions — one section open at a time
+(function initMobileAccordions(){
+  const menu = document.querySelector('.mobile-menu');
+  if (!menu) return;
+  menu.addEventListener('click', e => {
+    const btn = e.target.closest('.m-parent');
+    if (!btn) return;
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    menu.querySelectorAll('.m-parent').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+})();
+
 // Nav background on scroll
 (function initNavScroll(){
   const nav = document.querySelector('.nav');

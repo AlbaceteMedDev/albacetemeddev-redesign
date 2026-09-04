@@ -8,7 +8,7 @@
   <meta name="description" content="Most distributors hand you a product and walk away. We stay — compliance, coding, training, audit defense, and a 24-hour escalation line, included.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=51">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=52">
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
@@ -262,7 +262,6 @@
           <a href="/services" class="dropdown-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Services</a>
           <div class="dropdown-menu dropdown-rich" role="menu" aria-label="Services">
             <a href="/services" role="menuitem"><span class="mega2-name">All Services</span><span class="mega2-desc">Three service lines, one partner</span></a>
-            <a href="/services/legal-guidance" role="menuitem"><span class="mega2-name">Legal Guidance</span><span class="mega2-desc">Compliance designed in, not bolted on</span></a>
             <a href="/services/revenue-cycle" role="menuitem"><span class="mega2-name">Revenue Cycle Management</span><span class="mega2-desc">Wound-care-native coding and claims</span></a>
             <a href="/services/consulting" role="menuitem"><span class="mega2-name">Consulting</span><span class="mega2-desc">Program design and growth advisory</span></a>
           </div>
@@ -281,7 +280,7 @@
   </nav>
 
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="/products">Products</a>
+    <button class="m-parent" type="button" aria-expanded="false">Products</button>
     <div class="submenu">
       <a href="/products">All Products &amp; Solutions</a>
       <div class="submenu-section">Direct-to-Patient</div>
@@ -310,11 +309,10 @@
       <a href="/products/wholesaler">Medical Supplies Wholesaler</a>
     </div>
     <a href="/scientific-portfolio">Scientific Portfolio</a>
-          <a href="/evidence">Evidence Base</a>
     <a href="/evidence">Evidence</a>
-    <a href="/services">Services</a>
+    <button class="m-parent" type="button" aria-expanded="false">Services</button>
     <div class="submenu">
-      <a href="/services/legal-guidance">Legal Guidance</a>
+      <a href="/services">All Practice Services</a>
       <a href="/services/revenue-cycle">Revenue Cycle Management</a>
       <a href="/services/consulting">Consulting</a>
     </div>
@@ -403,13 +401,6 @@
               <p>Visibility into what&rsquo;s paying clean, what&rsquo;s being denied, and where revenue is leaking &mdash; flagged before it becomes a write-off.</p>
             </div>
           </div>
-          <div class="wp-cap scroll-reveal" data-stagger="300">
-            <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M16 10l-4 4-2-2"/></svg></div>
-            <div>
-              <h4>Legal &amp; compliance backstop</h4>
-              <p>In-house medical-legal counsel for audits, complaints, and documentation gray areas &mdash; included in the partnership, not re-billed.</p>
-            </div>
-          </div>
         </div>
 
         <!-- One-line closer -->
@@ -466,7 +457,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="/assets/img/logo-white.png" alt="Albacete MedDev">
-          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, legal counsel, consulting, software, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
+          <p>The operating partner behind specialty practices. Products, compliance, revenue cycle, consulting, software, and portal-integrated workflows &mdash; one dedicated team, 20+ years of wound care depth.</p>
         </div>
         <div class="footer-col">
           <h4>Products</h4>
@@ -481,7 +472,6 @@
         </div>
         <div class="footer-col">
           <h4>Services &amp; Software</h4>
-          <a href="/services/legal-guidance">Legal Guidance</a>
           <a href="/services/revenue-cycle">Revenue Cycle Management</a>
           <a href="/services/consulting">Consulting</a>
           <a href="/software">StrataMetric: AI Wound Scan</a>
@@ -504,6 +494,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=35" defer></script>
+  <script src="/assets/js/app.js?v=36" defer></script>
 </body>
 </html>
