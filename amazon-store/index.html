@@ -8,7 +8,7 @@
   <meta name="description" content="Ovena Health, the direct-to-patient brand of Albacete MedDev: physician-led wound care and compression on ovenahealth.com and the Amazon Brand Store.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css?v=46">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=47">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
@@ -117,7 +117,7 @@
           </div>
         </li>
         <li><a href="/software" role="menuitem">Software</a></li>
-        <li><a href="/amazon-store" role="menuitem">Amazon Store</a></li>
+        <li><a href="/amazon-store" role="menuitem">Ovena Health</a></li>
         <li><a href="/portal" role="menuitem">Portal</a></li>
         <li><a href="/why-partner" role="menuitem">Why Partner</a></li>
         <li><a href="/about" role="menuitem">About</a></li>
@@ -175,6 +175,22 @@
   </div>
 
   <main id="main">
+
+    <!-- ═══ OVENA HEALTH STOREFRONT — live catalog from /api/ovena-products (Pages Function proxying
+         the public Shopify feed); cart and checkout complete on ovenahealth.com. See assets/js/ovena-store.js ═══ -->
+    <section class="ovena-store" aria-label="Ovena Health store">
+      <div class="container ovena-store-head">
+        <a class="ovena-store-logo" href="https://www.ovenahealth.com" target="_blank" rel="noopener" data-reveal style="--reveal-delay: 0">
+          <img src="/assets/img/ovena-logo.png" alt="Ovena Health — open ovenahealth.com in a new tab" width="1817" height="866">
+        </a>
+        <div class="hero-chip" data-reveal style="--reveal-delay: 1"><span class="dot"></span><span>E-COMMERCE WOUND CARE STORE &nbsp;·&nbsp; ALSO ON AMAZON</span></div>
+        <a class="scroll-cue shop-cue" href="#ovena-shop" data-reveal style="--reveal-delay: 2"><span>Shop now</span><span class="line" aria-hidden="true"></span></a>
+      </div>
+      <div class="container" id="ovena-shop">
+        <div id="ovena-products" class="ovena-products"><p class="ov-loading">Loading the Ovena Health catalog&hellip;</p></div>
+        <p class="ovena-store-note">Cart and checkout complete securely on ovenahealth.com. <a href="https://www.ovenahealth.com" target="_blank" rel="noopener">Open the full store &rarr;</a></p>
+      </div>
+    </section>
 
     <section class="hero hero-compact">
       <div class="container">
@@ -360,7 +376,7 @@
           <a href="/services/revenue-cycle">Revenue Cycle Management</a>
           <a href="/services/consulting">Consulting</a>
           <a href="/software">StrataMetric Software</a>
-          <a href="/amazon-store">Ovena Health &mdash; Amazon Store</a>
+          <a href="/amazon-store">Ovena Health &mdash; Store &amp; Amazon</a>
           <a href="/portal">Portal &amp; Support</a>
         </div>
         <div class="footer-col">
@@ -380,5 +396,6 @@
   </footer>
 
   <script src="/assets/js/app.js?v=34" defer></script>
+  <script src="/assets/js/ovena-store.js?v=1" defer></script>
 </body>
 </html>
