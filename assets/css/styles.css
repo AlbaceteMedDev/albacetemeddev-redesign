@@ -427,11 +427,11 @@ body.is-loaded .nav{
   align-items: center;
   /* sized so the full link row + search always fit beside the
      undistorted logo inside the 1240px container */
-  gap: 0.95rem;
+  gap: 0.75rem;
 }
 .nav-links a{
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--mist);
   transition: color var(--dur-fast) ease;
@@ -2977,3 +2977,71 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
   .ov-card-price{ font-size: var(--t-base) }
   .ov-card-add{ padding-left: 10px; padding-right: 10px; font-size: var(--t-sm) }
 }
+
+/* Evidence page anchor sits below the fixed nav */
+#evidence{ scroll-margin-top: calc(var(--nav-h) + var(--s-2)) }
+
+/* ═══════════════════════════════════════════════════════════════
+   Evidence Base — /scientific-portfolio panel 7 (rendered from
+   evidence/render_evidence.py; every product, graded, with linked
+   regulatory records, IFUs, citations, and registered trials)
+   ═══════════════════════════════════════════════════════════════ */
+.ev-legend{ margin-top: var(--s-3); font-size: var(--t-sm); color: var(--fog); line-height: 1.6 }
+.ev-legend strong{ color: var(--gold); font-family: var(--font-display) }
+.ev-counts{ margin-top: var(--s-2); font-family: var(--font-display); font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--fog) }
+.ev-group{ margin: var(--s-5) 0 var(--s-2); font-family: var(--font-display); font-size: var(--t-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold) }
+.ev-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2) }
+@media (max-width: 900px){ .ev-grid{ grid-template-columns: 1fr } }
+.ev-card{ display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: var(--s-3); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: 16px }
+.ev-card--wide{ grid-column: 1 / -1 }
+.ev-head{ display: flex; align-items: flex-start; justify-content: space-between; gap: 12px }
+.ev-title{ margin: 0; font-family: var(--font-display); font-size: var(--t-lg); font-weight: 600; color: var(--snow) }
+.ev-title a{ color: inherit; text-decoration: none }
+.ev-title a:hover{ color: var(--gold-bright) }
+.ev-meta{ margin: 4px 0 0; font-size: var(--t-sm); color: var(--fog); line-height: 1.5 }
+.ev-grade{ flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid transparent; font-family: var(--font-display); font-size: var(--t-lg); font-weight: 700; letter-spacing: 0.02em }
+.ev-grade--a{ color: var(--ink); background: var(--gold-bright) }
+.ev-grade--b{ color: var(--gold); background: var(--gold-dim); border-color: rgba(212,169,74,0.45) }
+.ev-grade--c{ color: var(--snow); background: var(--ink-2); border-color: var(--ink-3) }
+.ev-grade--d{ color: #f0908d; background: rgba(240,144,141,0.1); border-color: rgba(240,144,141,0.3) }
+.ev-grade--na{ color: var(--fog); background: transparent; border-color: var(--ink-3); font-size: var(--t-sm) }
+.ev-why{ margin: 0; color: var(--mist); font-size: var(--t-sm); line-height: 1.55 }
+.ev-label{ display: block; margin-bottom: 6px; font-family: var(--font-display); font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--fog) }
+.ev-chips{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.ev-chips .ev-label{ width: 100% }
+.ev-chip{ display: inline-block; max-width: 100%; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--ink-3); background: var(--ink-2); color: var(--mist); font-size: var(--t-xs); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: middle }
+.ev-chip:hover{ border-color: var(--gold); color: var(--snow) }
+.ev-chip--doc{ border-color: rgba(212,169,74,0.4); color: var(--gold) }
+.ev-block{ min-width: 0 }
+.ev-list{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px }
+.ev-list li{ font-size: var(--t-sm); color: var(--mist); line-height: 1.5 }
+.ev-list li a{ color: var(--snow); text-decoration: underline; text-decoration-color: rgba(203,213,225,0.3); text-underline-offset: 2px }
+.ev-list li a:hover{ color: var(--gold-bright) }
+.ev-type{ display: inline-block; margin-right: 6px; padding: 1px 7px; border-radius: 6px; background: var(--ink-2); border: 1px solid var(--ink-3); font-family: var(--font-display); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); vertical-align: 1px }
+.ev-type--top{ color: var(--gold); border-color: rgba(212,169,74,0.4) }
+.ev-class{ margin-right: 6px; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fog) }
+.ev-detail{ display: block; margin-top: 2px; color: var(--fog); font-size: var(--t-xs) }
+.ev-none{ margin: 0; color: var(--fog); font-size: var(--t-sm); font-style: italic }
+.ev-more{ margin-top: 8px }
+.ev-more summary{ cursor: pointer; list-style: none; font-family: var(--font-display); font-size: var(--t-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold) }
+.ev-more summary::-webkit-details-marker{ display: none }
+.ev-more summary::before{ content: '+'; display: inline-block; width: 14px }
+.ev-more[open] summary::before{ content: '\2013' }
+.ev-more[open] summary{ margin-bottom: 8px }
+.ev-gaps{ margin: 0; padding-top: 10px; border-top: 1px solid var(--ink-2); font-size: var(--t-sm); color: var(--fog); line-height: 1.5 }
+.ev-gaps .ev-label{ margin-bottom: 4px }
+.ev-tablewrap{ overflow-x: auto; margin-top: 4px }
+.ev-table{ width: 100%; min-width: 640px; border-collapse: collapse; font-size: var(--t-sm) }
+.ev-table th{ padding: 8px 10px; text-align: left; font-family: var(--font-display); font-size: var(--t-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); border-bottom: 1px solid var(--ink-3) }
+.ev-table td{ padding: 10px; border-bottom: 1px solid var(--ink-2); color: var(--mist); vertical-align: top; line-height: 1.45 }
+.ev-table td:first-child{ color: var(--snow); font-weight: 600 }
+.ev-table .ev-grade{ min-width: 30px; height: 26px; padding: 0 8px; border-radius: 8px; font-size: var(--t-sm) }
+.ev-table--entries{ min-width: 900px }
+.ev-mini{ color: var(--gold); font-size: var(--t-xs); text-decoration: none; white-space: nowrap }
+.ev-mini:hover{ text-decoration: underline }
+.ev-more--all{ margin-top: var(--s-3) }
+.ev-foot{ margin-top: var(--s-4); padding: var(--s-2) var(--s-3); background: var(--gold-dim); border-radius: 10px; color: var(--snow); font-size: var(--t-sm); line-height: 1.6 }
+.ev-gradewrap{ flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 4px }
+.ev-scope{ font-family: var(--font-display); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); white-space: nowrap }
+.ev-groupnote{ margin: -6px 0 var(--s-2); font-size: var(--t-sm); color: var(--fog) }
+.ev-chip--plain{ cursor: default; opacity: 0.85 }
