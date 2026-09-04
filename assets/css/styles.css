@@ -3045,3 +3045,19 @@ h1, h2, h3, h4{ overflow-wrap: normal; word-break: normal; hyphens: none }
 .ev-scope{ font-family: var(--font-display); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); white-space: nowrap }
 .ev-groupnote{ margin: -6px 0 var(--s-2); font-size: var(--t-sm); color: var(--fog) }
 .ev-chip--plain{ cursor: default; opacity: 0.85 }
+/* Evidence Base — compact card layout (tags only) */
+.ev-blurb{ margin: 6px 0 0; font-size: var(--t-sm); color: var(--mist); line-height: 1.55 }
+.ev-group{ display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap }
+.ev-group small{ font-family: var(--font-body); font-size: var(--t-sm); letter-spacing: 0; text-transform: none; color: var(--fog) }
+.ev-tag{ display: inline-block; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--ink-3); background: var(--ink-2); color: var(--mist); font-family: var(--font-display); font-size: var(--t-xs); letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; vertical-align: middle; transition: border-color var(--dur-fast), color var(--dur-fast) }
+a.ev-tag:hover{ border-color: var(--gold); color: var(--snow) }
+.ev-tag--top{ color: var(--gold); border-color: rgba(212,169,74,0.5); background: var(--gold-dim) }
+.ev-tag--mid{ color: var(--snow) }
+.ev-tag--low{ color: var(--fog) }
+.ev-tag--trial{ color: var(--mist); border-style: dashed }
+.ev-tag--class{ border-style: dotted }
+.ev-tag--none{ color: var(--fog); font-style: italic; border-color: transparent; background: transparent; padding-left: 0 }
+.ev-tag--mini{ padding: 2px 8px; font-size: 10px }
+.ev-flag{ display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 4px 0 }
+.ev-flag > span:first-child{ min-width: 120px; color: var(--snow); font-weight: 600 }
+.ev-flag .ev-grade{ min-width: 26px; height: 22px; padding: 0 6px; border-radius: 6px; font-size: var(--t-xs) }
