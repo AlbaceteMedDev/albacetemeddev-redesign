@@ -1119,6 +1119,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     if (url){
       img.style.backgroundImage = 'url(' + url + ')';
       img.classList.add('has-img');
+      img.classList.toggle('is-vector', /\.svg(\?|$)/i.test(url));
     } else {
       img.classList.remove('has-img');
     }
@@ -1142,6 +1143,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     item.addEventListener('pointerenter', () => {
       img.style.backgroundImage = 'url(' + item.dataset.img + ')';
       img.classList.add('has-img');
+      img.classList.toggle('is-vector', /\.svg(\?|$)/i.test(item.dataset.img));
     });
   });
 })();
