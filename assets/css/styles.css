@@ -3061,3 +3061,6 @@ a.ev-tag:hover{ border-color: var(--gold); color: var(--snow) }
 .ev-flag{ display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 4px 0 }
 .ev-flag > span:first-child{ min-width: 120px; color: var(--snow); font-weight: 600 }
 .ev-flag .ev-grade{ min-width: 26px; height: 22px; padding: 0 6px; border-radius: 6px; font-size: var(--t-xs) }
+.ev-sub{ margin: var(--s-3) 0 var(--s-1); font-family: var(--font-display); font-size: var(--t-sm); font-weight: 600; color: var(--snow) }
+.ev-sub small{ margin-left: 8px; font-weight: 500; color: var(--fog); font-size: var(--t-xs) }
+.ev-chip--wide{ white-space: normal; text-overflow: clip; line-height: 1.35 }
