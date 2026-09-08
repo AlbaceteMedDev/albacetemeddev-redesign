@@ -22,9 +22,15 @@
     if (!selected.length) return '/contact/';
     return '/contact/?' + new URLSearchParams({ topics: selected.map(topic => topic.id).join(',') }) + '#message';
   }
+  function trackForTarget(topics, target) {
+    if (target === 'revenue-cycle' || target === 'practice-consulting') return target;
+    const topic = topics.find(item => item.id === target);
+    if (!topic) return null;
+    return topic.track === 'Revenue cycle' ? 'revenue-cycle' : 'practice-consulting';
+  }
   // Export the state and document logic for source-level tests without a browser.
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { selectedTopics, idsFromQuery, briefText, consultationURL };
+    module.exports = { selectedTopics, idsFromQuery, briefText, consultationURL, trackForTarget };
   }
   if (typeof document === 'undefined') return;
   const data = document.getElementById('service-topics');
@@ -40,10 +46,12 @@
   if (!main) return;
 
   const options = [...main.querySelectorAll('[data-topic]')];
-  const panels = [...main.querySelectorAll('[data-dossier]')];
+  const scopes = [...main.querySelectorAll('[data-dossier]')];
+  const trackOptions = [...main.querySelectorAll('[data-track]')];
+  const trackPanels = [...main.querySelectorAll('[data-track-panel]')];
   const addButtons = [...main.querySelectorAll('[data-add]')];
   const selected = new Set(initialSelection);
-  const rail = main.querySelector('.service-options');
+  const rail = main.querySelector('.service-tracks');
   const brief = main.querySelector('.consultation-brief');
   const reviewButton = main.querySelector('.review-brief');
   const status = main.querySelector('.brief-status');
@@ -52,17 +60,14 @@
   const exportStatus = dialog.querySelector('.brief-export-status');
   const fallback = dialog.querySelector('.brief-copy-fallback');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const narrow = window.matchMedia('(max-width: 760px)');
-  let activeId = options[0].dataset.topic;
+  let activeTrack = trackOptions[0].dataset.track;
+  let activeId = activeTrack;
   let previousBodyOverflow = '';
   let panelAnimation;
 
   main.classList.add('is-enhanced');
   rail.setAttribute('role', 'tablist');
-  function orientation() { rail.setAttribute('aria-orientation', narrow.matches ? 'horizontal' : 'vertical'); }
-  orientation();
-  narrow.addEventListener('change', orientation);
-  brief.hidden = false;
+  rail.setAttribute('aria-orientation', 'horizontal');
   addButtons.forEach(button => { button.hidden = false; });
 
   function updateURL() {
@@ -73,65 +78,61 @@
     url.hash = activeId;
     window.history.replaceState(null, '', url);
   }
-  function select(id, { animate = false, update = false } = {}) {
-    if (!panels.some(panel => panel.dataset.dossier === id)) id = options[0].dataset.topic;
-    const changed = activeId !== id;
+  function selectTrack(id, { animate = false, update = false } = {}) {
+    if (!trackPanels.some(panel => panel.dataset.trackPanel === id)) return;
+    const changed = activeTrack !== id;
+    activeTrack = id;
     activeId = id;
-    options.forEach(option => {
-      const active = option.dataset.topic === id;
+    trackOptions.forEach(option => {
+      const active = option.dataset.track === id;
       option.classList.toggle('is-active', active);
       option.setAttribute('aria-selected', String(active));
       option.tabIndex = active ? 0 : -1;
     });
-    panels.forEach(panel => { panel.hidden = panel.dataset.dossier !== id; });
-    const panel = panels.find(item => !item.hidden);
+    trackPanels.forEach(panel => { panel.hidden = panel.dataset.trackPanel !== id; });
+    const panel = trackPanels.find(item => !item.hidden);
     if (changed && animate && !reducedMotion.matches && panel.animate) {
       panelAnimation?.cancel();
-      panelAnimation = panel.animate([
-        { opacity: .2, transform: 'translateY(10px)' },
-        { opacity: 1, transform: 'translateY(0)' }
-      ], { duration: 320, easing: 'cubic-bezier(.22,1,.36,1)' });
+      panelAnimation = panel.animate([{ opacity: .3 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
     }
     if (update) updateURL();
   }
-
-  options.forEach((option, i) => {
+  function revealTarget(id, animate = false) {
+    const track = trackForTarget(topics, id);
+    if (!track) return;
+    selectTrack(track, { animate });
+    const scope = scopes.find(item => item.dataset.dossier === id);
+    if (scope) { scope.open = true; activeId = id; }
+  }
+  trackOptions.forEach((option, i) => {
     option.setAttribute('role', 'tab');
-    option.setAttribute('aria-controls', option.dataset.topic);
+    option.setAttribute('aria-controls', option.dataset.track);
     option.addEventListener('click', event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      select(option.dataset.topic, { animate: true, update: true });
+      selectTrack(option.dataset.track, { animate: true, update: true });
     });
     option.addEventListener('keydown', event => {
       let next;
-      const forward = narrow.matches ? 'ArrowRight' : 'ArrowDown';
-      const backward = narrow.matches ? 'ArrowLeft' : 'ArrowUp';
-      if (event.key === forward) next = options[(i + 1) % options.length];
-      if (event.key === backward) next = options[(i - 1 + options.length) % options.length];
-      if (event.key === 'Home') next = options[0];
-      if (event.key === 'End') next = options.at(-1);
-      if (event.key === ' ') { event.preventDefault(); select(option.dataset.topic, { animate: true, update: true }); }
-      if (next) { event.preventDefault(); next.focus(); select(next.dataset.topic, { animate: true, update: true }); }
+      if (event.key === 'ArrowRight') next = trackOptions[(i + 1) % trackOptions.length];
+      if (event.key === 'ArrowLeft') next = trackOptions[(i - 1 + trackOptions.length) % trackOptions.length];
+      if (event.key === 'Home') next = trackOptions[0];
+      if (event.key === 'End') next = trackOptions.at(-1);
+      if (event.key === ' ') { event.preventDefault(); selectTrack(option.dataset.track, { animate: true, update: true }); }
+      if (next) { event.preventDefault(); next.focus(); selectTrack(next.dataset.track, { animate: true, update: true }); }
     });
   });
-  panels.forEach(panel => {
+  trackPanels.forEach(panel => {
     panel.setAttribute('role', 'tabpanel');
-    panel.setAttribute('aria-labelledby', 'option-' + panel.dataset.dossier);
+    panel.setAttribute('aria-labelledby', 'track-' + panel.dataset.trackPanel);
     panel.tabIndex = 0;
-    let glowFrame = 0;
-    panel.addEventListener('pointermove', event => {
-      if (event.pointerType === 'touch' || reducedMotion.matches || glowFrame) return;
-      glowFrame = requestAnimationFrame(() => {
-        const rect = panel.getBoundingClientRect();
-        panel.style.setProperty('--glow-x', `${event.clientX - rect.left}px`);
-        panel.style.setProperty('--glow-y', `${event.clientY - rect.top}px`);
-        glowFrame = 0;
+  });
+  options.forEach(option => {
+    option.setAttribute('aria-describedby', 'caption-' + option.dataset.topic);
+    option.addEventListener('click', () => {
+      requestAnimationFrame(() => {
+        if (option.closest('details').open) { activeId = option.dataset.topic; updateURL(); }
       });
-    });
-    panel.addEventListener('pointerleave', () => {
-      cancelAnimationFrame(glowFrame); glowFrame = 0;
-      panel.style.removeProperty('--glow-x'); panel.style.removeProperty('--glow-y');
     });
   });
 
@@ -142,6 +143,8 @@
       ? items.map(topic => topic.title).join(' · ')
       : 'Add an area you’d like to discuss.';
     reviewButton.disabled = !items.length;
+    brief.hidden = !items.length;
+    main.querySelectorAll('.consultation-action').forEach(link => { link.href = consultationURL(topics, selected); });
     options.forEach(option => {
       const added = selected.has(option.dataset.topic);
       option.classList.toggle('is-added', added);
@@ -150,8 +153,8 @@
     addButtons.forEach(button => {
       const added = selected.has(button.dataset.add);
       button.setAttribute('aria-pressed', String(added));
-      button.querySelector('.add-label').textContent = added ? 'Added to brief · remove' : 'Add to consultation brief';
-      button.querySelector('.add-symbol').textContent = added ? '✓' : '+';
+      button.querySelector('.add-label').textContent = added ? 'Topic saved · remove' : 'Save topic for consultation';
+      button.querySelector('.add-symbol').textContent = added ? '−' : '+';
     });
     dialogItems.replaceChildren();
     items.forEach((topic, i) => {
@@ -194,7 +197,7 @@
   });
   dialog.addEventListener('close', () => {
     document.body.style.overflow = previousBodyOverflow;
-    if (reviewButton.disabled) options.find(option => option.dataset.topic === activeId)?.focus();
+    if (reviewButton.disabled) trackOptions.find(option => option.dataset.track === activeTrack)?.focus();
   });
   dialogItems.addEventListener('click', event => {
     const button = event.target.closest('[data-remove]');
@@ -230,14 +233,12 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     exportStatus.textContent = 'Text file download started.';
   });
-  window.addEventListener('hashchange', () => {
-    const id = window.location.hash.slice(1);
-    if (panels.some(panel => panel.dataset.dossier === id)) select(id, { animate: true });
-  });
+  window.addEventListener('hashchange', () => revealTarget(window.location.hash.slice(1), true));
   window.addEventListener('popstate', () => {
     selected.clear(); idsFromQuery(topics, window.location.search).forEach(id => selected.add(id));
-    select(window.location.hash.slice(1)); renderBrief();
+    revealTarget(window.location.hash.slice(1)); renderBrief();
   });
-  select(window.location.hash.slice(1));
+  const initialTarget = window.location.hash.slice(1);
+  revealTarget(trackForTarget(topics, initialTarget) ? initialTarget : activeTrack);
   renderBrief();
 })();

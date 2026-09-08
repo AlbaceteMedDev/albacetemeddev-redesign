@@ -2,7 +2,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { selectedTopics, idsFromQuery, briefText, consultationURL } = require('../assets/js/services-explorer.js');
+const { selectedTopics, idsFromQuery, briefText, consultationURL, trackForTarget } = require('../assets/js/services-explorer.js');
 function topicData(page) {
   const html = fs.readFileSync(path.join(__dirname, '..', page), 'utf8');
   return JSON.parse(html.match(/<script id="service-topics" type="application\/json">([\s\S]*?)<\/script>/)[1]);
@@ -54,4 +54,17 @@ test('Selecting all six areas produces a bounded, deterministic handoff', () => 
   assert.ok(url.length < 250);
   assert.equal(idsFromQuery(topics, new URL(url, 'https://albacetemeddev.com').search).length, 6);
   assert.equal(briefText(topics, ids), briefText(topics, [...ids].reverse()));
+});
+
+test('Existing topic bookmarks resolve to the correct primary service line', () => {
+  for (const topic of topics) {
+    assert.equal(trackForTarget(topics, topic.id), topic.track === 'Revenue cycle' ? 'revenue-cycle' : 'practice-consulting');
+  }
+  assert.equal(trackForTarget(topics, 'revenue-cycle'), 'revenue-cycle');
+  assert.equal(trackForTarget(topics, 'practice-consulting'), 'practice-consulting');
+});
+test('Page anchors and unknown targets do not change the selected service line', () => {
+  assert.equal(trackForTarget(topics, 'main'), null);
+  assert.equal(trackForTarget(topics, 'engagement-process'), null);
+  assert.equal(trackForTarget(topics, 'not-a-service'), null);
 });
