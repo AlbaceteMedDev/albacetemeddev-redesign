@@ -379,6 +379,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   const targets = document.querySelectorAll(selectors.join(','));
 
   targets.forEach(el => {
+    if (el.classList.contains('value-word')) return;
     // Skip if already has a non-numeric value (preserves "In-house", "Role-based" etc)
     // We look at the text content without child spans first
     const rawText = el.textContent;
@@ -910,19 +911,27 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 (function initCommandPalette(){
   const INDEX = [
     { t: 'Home', s: 'Page', p: '/', k: 'home overview albacete' },
+    { t: "Activate Matrix", s: 'Product', p: "/products/#activate-matrix", k: "activate matrix sheet matrix membrane wound care" },
+    { t: "AmchoPlast", s: 'Product', p: "/products/#amchoplast", k: "amchoplast sheet matrix membrane wound care" },
+    { t: "XCell Amnio Matrix", s: 'Product', p: "/products/#xcell-amnio-matrix", k: "xcell amnio matrix sheet matrix membrane wound care" },
+    { t: "Membrane Wrap", s: 'Product', p: "/products/#membrane-wrap", k: "membrane wrap sheet matrix membrane wound care" },
+    { t: "Tri-Membrane Wrap", s: 'Product', p: "/products/#tri-membrane-wrap", k: "tri-membrane wrap sheet matrix membrane wound care" },
+    { t: "Microlyte", s: 'Product', p: "/products/#microlyte", k: "microlyte sheet matrix membrane wound care" },
+    { t: "Palisade Dual-Membrane", s: 'Product', p: "/products/#palisade", k: "palisade dual-membrane sheet matrix membrane wound care" },
+    { t: "Sentry SL", s: 'Product', p: "/products/#sentry-sl", k: "sentry sl sheet matrix membrane wound care" },
+    { t: "APIS", s: 'Product', p: "/products/#apis", k: "apis sheet matrix membrane wound care" },
     { t: 'Products & Solutions', s: 'Page', p: '/products/', k: 'products portfolio solutions catalog' },
     { t: 'ActiGraft+ — Whole Blood Clot', s: 'Product', p: '/products/actigraft/', k: 'actigraft autologous blood clot G0465 G0460 NCD 270.3 diabetic foot ulcer DFU legacy point-of-care' },
     { t: 'UltraMist — Ultrasound Therapy', s: 'Product', p: '/products/ultramist/', k: 'ultramist ultrasound 97610 sanuwave saline mist NLFU non-contact painless' },
-    { t: 'Collagen Wound Care Program', s: 'Product', p: '/products/collagen/', k: 'collagen A6021 A6023 A6253 bovine SSI surgical site infection propack incision' },
+    { t: 'Arobella Qoustic', s: 'Product', p: '/products/arobella/', k: 'arobella qoustic ultrasonic debridement' },
     { t: 'Exosomes & Birth Tissue', s: 'Product', p: '/products/exosomes/', k: "exosomes wharton's jelly birth tissue placental MSC regenerative biologics" },
     { t: 'Adhesion Barrier — Amniotic Membrane', s: 'Product', p: '/products/adhesion-barrier/', k: 'adhesion barrier C1762 amniotic membrane laparoscopic robotic trocar da vinci chorion-free' },
     { t: 'Advanced Biologics — Microlyte & Wraps', s: 'Product', p: '/products/advanced-biologics/', k: 'microlyte SAM A2005 tri-membrane membrane wrap lyte biolab silver antimicrobial 510k' },
     { t: 'MicroDoc — Disposable NPWT', s: 'Product', p: '/products/microdoc/', k: 'microdoc NPWT negative pressure disposable single-use home health' },
     { t: 'Medical Supplies Wholesaler', s: 'Product', p: '/products/wholesaler/', k: 'wholesale supplies foam alginate compression surgical prep catalog hospital' },
     { t: 'Scientific Portfolio', s: 'Page', p: '/scientific-portfolio/', k: 'science evidence MMP biofilm cascade studies clinical data mechanism' },
-    { t: 'Revenue Cycle Management', s: 'Service', p: '/revenue-cycle/', k: 'revenue cycle RCM acuitymd denials leakage billing recovery' },
-    { t: 'Legal Guidance', s: 'Service', p: '/legal-guidance/', k: 'legal audit RAC UPIC CERT stark anti-kickback AKS HIPAA malpractice counsel attorney' },
-    { t: 'Consultative Services', s: 'Service', p: '/consulting/', k: 'consulting advisory coding formulary operations market access' },
+    { t: 'Revenue Cycle Management', s: 'Service', p: '/services/revenue-cycle/', k: 'revenue cycle RCM acuitymd denials leakage billing recovery' },
+    { t: 'Consultative Services', s: 'Service', p: '/services/consulting/', k: 'consulting advisory coding formulary operations market access' },
     { t: 'Provider Portal', s: 'Service', p: '/portal/', k: 'portal ordering tracking documentation reporting login claims' },
     { t: 'Why Partner', s: 'Page', p: '/why-partner/', k: 'why partner partnership support training escalation' },
     { t: 'About Albacete MedDev', s: 'Page', p: '/about/', k: 'about team company process discover align implement optimize' },
@@ -999,7 +1008,12 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     const r = results[i];
     if (!r) return;
     close();
-    window.location.href = r.p;
+    const destination = new URL(r.p, window.location.href);
+    if (destination.href === window.location.href && destination.hash) {
+      window.dispatchEvent(new Event('albacete:reveal-product'));
+    } else {
+      window.location.href = r.p;
+    }
   }
   function open(){
     root.hidden = false;
@@ -1075,7 +1089,12 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     let openT = null, closeT = null;
     const open = () => {
       clearTimeout(closeT);
-      drops.forEach(d => { if (d !== li) d.classList.remove('is-open'); });
+      drops.forEach(d => {
+        if (d === li) return;
+        d.classList.remove('is-open');
+        d.querySelector('.dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+      li.classList.remove('is-dismissed');
       li.classList.add('is-open');
       if (trigger) trigger.setAttribute('aria-expanded', 'true');
     };
@@ -1101,6 +1120,23 @@ const isTouch = window.matchMedia('(hover: none)').matches;
         open();
       }
     });
+    li.addEventListener('focusin', () => {
+      if (!matchMedia('(hover: none)').matches && !li.classList.contains('is-dismissed')) open();
+    });
+    li.addEventListener('focusout', (e) => {
+      if (!li.contains(e.relatedTarget)) {
+        close();
+        li.classList.remove('is-dismissed');
+      }
+    });
+    if (trigger) trigger.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowRight') return;
+      const target = li.querySelector('.mega2-cat.is-active');
+      if (!target) return;
+      e.preventDefault();
+      open();
+      target.focus();
+    });
     return { li, close };
   }
 
@@ -1110,9 +1146,10 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape'){
-      const openLi = document.querySelector('.nav-dropdown.is-open');
+      const openLi = document.activeElement.closest('.nav-dropdown') || document.querySelector('.nav-dropdown.is-open');
       if (openLi){
         instances.forEach(i => i.close());
+        openLi.classList.add('is-dismissed');
         const t = openLi.querySelector('.dropdown-trigger');
         if (t) t.focus();
       }
@@ -1141,7 +1178,12 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   }
 
   function activate(cat){
-    cats.forEach(c => c.classList.toggle('is-active', c === cat));
+    cats.forEach(c => {
+      const selected = c === cat;
+      c.classList.toggle('is-active', selected);
+      c.setAttribute('aria-selected', String(selected));
+      c.tabIndex = selected ? 0 : -1;
+    });
     lists.forEach(l => l.classList.toggle('is-active', l.dataset.cat === cat.dataset.cat));
     setFeature(cat.dataset.img || null, cat.dataset.desc, cat.textContent.replace(/\d+$/, '').trim());
   }
@@ -1150,13 +1192,44 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     cat.addEventListener('pointerenter', () => activate(cat));
     cat.addEventListener('focus', () => activate(cat));
     cat.addEventListener('click', () => activate(cat));
+    cat.addEventListener('keydown', (e) => {
+      const rail = [...cats];
+      const i = rail.indexOf(cat);
+      let next;
+      if (e.key === 'ArrowDown') next = rail[(i + 1) % rail.length];
+      if (e.key === 'ArrowUp') next = rail[(i - 1 + rail.length) % rail.length];
+      if (e.key === 'Home') next = rail[0];
+      if (e.key === 'End') next = rail[rail.length - 1];
+      if (e.key === 'ArrowRight') next = [...lists].find(l => l.dataset.cat === cat.dataset.cat)?.querySelector('a');
+      if (next) { e.preventDefault(); next.focus(); }
+    });
   });
 
-  mega.querySelectorAll('.mega2-item[data-img]').forEach(item => {
-    item.addEventListener('pointerenter', () => {
-      img.style.backgroundImage = 'url(' + item.dataset.img + ')';
-      img.classList.add('has-img');
-      img.classList.toggle('is-vector', /\.svg(\?|$)/i.test(item.dataset.img));
+  mega.querySelector('.mega2-rail')?.setAttribute('aria-orientation', 'vertical');
+  cats.forEach(cat => {
+    cat.id = 'product-category-' + cat.dataset.cat;
+    cat.setAttribute('aria-controls', 'product-list-' + cat.dataset.cat);
+  });
+  lists.forEach(list => {
+    list.id = 'product-list-' + list.dataset.cat;
+    list.setAttribute('role', 'tabpanel');
+    list.setAttribute('aria-labelledby', 'product-category-' + list.dataset.cat);
+  });
+  activate(mega.querySelector('.mega2-cat.is-active') || cats[0]);
+
+  mega.querySelectorAll('.mega2-item').forEach(item => {
+    const preview = () => {
+      // A name-only entry must not inherit another product's photograph.
+      setFeature(item.dataset.img || null,
+        item.querySelector('.mega2-desc')?.textContent,
+        item.querySelector('.mega2-name')?.textContent);
+    };
+    item.addEventListener('pointerenter', preview);
+    item.addEventListener('focus', preview);
+    item.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      mega.querySelector('.mega2-cat.is-active')?.focus();
     });
   });
 })();
