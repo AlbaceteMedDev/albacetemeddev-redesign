@@ -1028,6 +1028,7 @@ const isTouch = window.matchMedia('(hover: none)').matches;
   }
 
   document.addEventListener('keydown', (e) => {
+    if (document.querySelector('dialog[open]')) return;
     const tag = (document.activeElement || {}).tagName;
     const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){

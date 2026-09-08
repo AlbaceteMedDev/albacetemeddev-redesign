@@ -47,6 +47,7 @@ body.page-home #services .product-card:hover h3{color:var(--gold)}
 .contact-email{display:block;color:var(--mist);font-size:.9rem;margin:12px 0 20px;overflow-wrap:anywhere}
 body .stat .value.value-word{font-size:clamp(1.1rem,1.6vw,1.6rem);line-height:1.35;letter-spacing:-.035em;color:var(--gold)}
 .page-home .stats-grid{align-items:start}
+.page-home .stats-grid .stat .value-word{color:var(--snow)}
 .page-home .stats-grid .stat .value{min-height:58px;display:flex;align-items:center}
 
 /* Service lines are broad editorial rows, with a separate scope panel. */

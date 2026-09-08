@@ -32,6 +32,7 @@
   <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png?v=3">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Services","url":"https://albacetemeddev.com/services/","description":"Revenue Cycle Management and Consulting for wound-care practices."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://albacetemeddev.com/services/"}]}]}</script>
   <link rel="stylesheet" href="/assets/css/refinement.css?v=2">
+  <link rel="stylesheet" href="/assets/css/services-explorer.css?v=2">
 </head>
 <body class="is-loading page-services">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -183,77 +184,99 @@
     <a href="/contact" class="mobile-cta">Schedule a Consultation</a>
   </div>
 
-  <main id="main">
+  <main id="main" class="services-experience">
+    <header class="services-heading container">
+      <div><p class="services-kicker">Albacete MedDev <span aria-hidden="true">/</span> Practice services</p><h1>Practice services<span>.</span></h1></div>
+      <div class="services-intro"><p>Expertise in the clinical and administrative work of a specialty practice.</p><div class="service-line-links"><a href="/services/revenue-cycle/">Revenue cycle management <span aria-hidden="true">↗</span></a><a href="/services/consulting/">Practice consulting <span aria-hidden="true">↗</span></a></div></div>
+    </header>
 
-    <section class="hero hero-compact">
-      <div class="container">
-        <div class="hero-chip" data-reveal style="--reveal-delay: 0"><span class="dot"></span><span>SERVICES · PRACTICE OPERATIONS</span></div>
-        <h1 data-reveal style="--reveal-delay: 1">Revenue cycle management <em style="font-style:normal;color:var(--gold)">and practice consulting.</em></h1>
-        <p class="hero-sub" data-reveal style="--reveal-delay: 2">Albacete MedDev provides revenue cycle management and consulting for specialty practices. Services address coding, documentation, operational workflows, and program development, with scope tailored to the practice.</p>
-        <div class="hero-actions" data-reveal style="--reveal-delay: 3">
-          <a href="/contact" class="btn btn-primary">Schedule a consultation <span class="arrow">→</span></a>
-        </div>
+    <section class="service-explorer container" aria-label="Explore practice services">
+      <div class="service-index">
+        <div class="index-caption"><span>Explore an area</span><span class="index-instruction">Select to preview</span></div>
+        <nav class="service-options" aria-label="Service areas"><a class="service-option is-active" id="option-claims-denials" href="#claims-denials" data-topic="claims-denials"><span class="option-number">01</span><span class="option-name">Claims &amp; denials</span><span class="option-arrow" aria-hidden="true">↗</span><span class="option-selected" aria-hidden="true">✓</span></a><a class="service-option" id="option-coding-documentation" href="#coding-documentation" data-topic="coding-documentation"><span class="option-number">02</span><span class="option-name">Coding &amp; documentation</span><span class="option-arrow" aria-hidden="true">↗</span><span class="option-selected" aria-hidden="true">✓</span></a><a class="service-option" id="option-product-evaluation" href="#product-evaluation" data-topic="product-evaluation"><span class="option-number">03</span><span class="option-name">Product evaluation</span><span class="option-arrow" aria-hidden="true">↗</span><span class="option-selected" aria-hidden="true">✓</span></a><a class="service-option" id="option-practice-operations" href="#practice-operations" data-topic="practice-operations"><span class="option-number">04</span><span class="option-name">Practice operations</span><span class="option-arrow" aria-hidden="true">↗</span><span class="option-selected" aria-hidden="true">✓</span></a><a class="service-option" id="option-service-development" href="#service-development" data-topic="service-development"><span class="option-number">05</span><span class="option-name">Service development</span><span class="option-arrow" aria-hidden="true">↗</span><span class="option-selected" aria-hidden="true">✓</span></a><a class="service-option" id="option-referral-strategy" href="#referral-strategy" data-topic="referral-strategy"><span class="option-number">06</span><span class="option-name">Referral strategy</span><span class="option-arrow" aria-hidden="true">↗</span><span class="option-selected" aria-hidden="true">✓</span></a></nav>
+        <p class="index-footnote">Choose the areas relevant to your practice.<br>We’ll define the scope together.</p>
       </div>
+      <div class="dossier-stage"><article class="service-dossier" id="claims-denials" aria-labelledby="heading-claims-denials" data-dossier="claims-denials">
+              <div class="dossier-top"><span class="service-track"><span aria-hidden="true"></span>Revenue cycle</span><span class="dossier-pagination">01 <span>/ 06</span></span></div>
+              <div class="dossier-copy">
+                <h2 id="heading-claims-denials">Claims &amp; denials</h2>
+                <p class="dossier-intro">Review claims activity, denial patterns, eligibility, and authorization workflows to identify questions for follow-up and organize the documentation needed for a focused revenue cycle assessment.</p>
+                <h3 class="dossier-label">What we review</h3>
+                <ul class="review-areas"><li><span class="area-marker" aria-hidden="true"></span>Eligibility and prior authorization</li><li><span class="area-marker" aria-hidden="true"></span>Denial reasons and supporting records</li><li><span class="area-marker" aria-hidden="true"></span>Appeal and follow-up workflows</li></ul>
+                <div class="deliverable"><span class="dossier-label">Possible engagement deliverable</span><p>Claims and denial review summary</p></div>
+              </div>
+              <div class="dossier-actions"><button class="add-to-brief" type="button" data-add="claims-denials" aria-pressed="false" hidden><span class="add-label">Add to consultation brief</span><span class="add-symbol" aria-hidden="true">+</span></button><a class="service-detail-link" href="/services/revenue-cycle/">Full service details <span aria-hidden="true">↗</span></a></div>
+            </article><article class="service-dossier" id="coding-documentation" aria-labelledby="heading-coding-documentation" data-dossier="coding-documentation">
+              <div class="dossier-top"><span class="service-track"><span aria-hidden="true"></span>Revenue cycle</span><span class="dossier-pagination">02 <span>/ 06</span></span></div>
+              <div class="dossier-copy">
+                <h2 id="heading-coding-documentation">Coding &amp; documentation</h2>
+                <p class="dossier-intro">Examine how documented services translate into encounter coding, with attention to product-specific requirements, modifiers, units, and the information recorded in the clinical note.</p>
+                <h3 class="dossier-label">What we review</h3>
+                <ul class="review-areas"><li><span class="area-marker" aria-hidden="true"></span>Encounter coding and documented services</li><li><span class="area-marker" aria-hidden="true"></span>Product-specific modifiers and units</li><li><span class="area-marker" aria-hidden="true"></span>Documentation gaps and template requirements</li></ul>
+                <div class="deliverable"><span class="dossier-label">Possible engagement deliverable</span><p>Coding and documentation gap list</p></div>
+              </div>
+              <div class="dossier-actions"><button class="add-to-brief" type="button" data-add="coding-documentation" aria-pressed="false" hidden><span class="add-label">Add to consultation brief</span><span class="add-symbol" aria-hidden="true">+</span></button><a class="service-detail-link" href="/services/revenue-cycle/">Full service details <span aria-hidden="true">↗</span></a></div>
+            </article><article class="service-dossier" id="product-evaluation" aria-labelledby="heading-product-evaluation" data-dossier="product-evaluation">
+              <div class="dossier-top"><span class="service-track"><span aria-hidden="true"></span>Consulting</span><span class="dossier-pagination">03 <span>/ 06</span></span></div>
+              <div class="dossier-copy">
+                <h2 id="heading-product-evaluation">Product evaluation</h2>
+                <p class="dossier-intro">Review the current product portfolio against patient needs, clinical focus, available evidence, and payer requirements, then organize questions for evaluation with practice leadership.</p>
+                <h3 class="dossier-label">What we review</h3>
+                <ul class="review-areas"><li><span class="area-marker" aria-hidden="true"></span>Current formulary and product utilization</li><li><span class="area-marker" aria-hidden="true"></span>Available clinical evidence and product information</li><li><span class="area-marker" aria-hidden="true"></span>Coverage and implementation requirements</li></ul>
+                <div class="deliverable"><span class="dossier-label">Possible engagement deliverable</span><p>Product evaluation brief</p></div>
+              </div>
+              <div class="dossier-actions"><button class="add-to-brief" type="button" data-add="product-evaluation" aria-pressed="false" hidden><span class="add-label">Add to consultation brief</span><span class="add-symbol" aria-hidden="true">+</span></button><a class="service-detail-link" href="/services/consulting/">Full service details <span aria-hidden="true">↗</span></a></div>
+            </article><article class="service-dossier" id="practice-operations" aria-labelledby="heading-practice-operations" data-dossier="practice-operations">
+              <div class="dossier-top"><span class="service-track"><span aria-hidden="true"></span>Consulting</span><span class="dossier-pagination">04 <span>/ 06</span></span></div>
+              <div class="dossier-copy">
+                <h2 id="heading-practice-operations">Practice operations</h2>
+                <p class="dossier-intro">Look closely at patient flow, scheduling, staff responsibilities, and benefit-verification processes to understand how work moves through the practice and where further review may help.</p>
+                <h3 class="dossier-label">What we review</h3>
+                <ul class="review-areas"><li><span class="area-marker" aria-hidden="true"></span>Patient flow and scheduling</li><li><span class="area-marker" aria-hidden="true"></span>Staff responsibilities and handoffs</li><li><span class="area-marker" aria-hidden="true"></span>Benefit-verification workflow</li></ul>
+                <div class="deliverable"><span class="dossier-label">Possible engagement deliverable</span><p>Workflow map and responsibility plan</p></div>
+              </div>
+              <div class="dossier-actions"><button class="add-to-brief" type="button" data-add="practice-operations" aria-pressed="false" hidden><span class="add-label">Add to consultation brief</span><span class="add-symbol" aria-hidden="true">+</span></button><a class="service-detail-link" href="/services/consulting/">Full service details <span aria-hidden="true">↗</span></a></div>
+            </article><article class="service-dossier" id="service-development" aria-labelledby="heading-service-development" data-dossier="service-development">
+              <div class="dossier-top"><span class="service-track"><span aria-hidden="true"></span>Consulting</span><span class="dossier-pagination">05 <span>/ 06</span></span></div>
+              <div class="dossier-copy">
+                <h2 id="heading-service-development">Service development</h2>
+                <p class="dossier-intro">Evaluate potential services in relation to patient needs, clinical capabilities, staffing, and applicable requirements, with a clear view of the implementation questions to resolve.</p>
+                <h3 class="dossier-label">What we review</h3>
+                <ul class="review-areas"><li><span class="area-marker" aria-hidden="true"></span>Patient needs and clinical capabilities</li><li><span class="area-marker" aria-hidden="true"></span>Staffing and workflow requirements</li><li><span class="area-marker" aria-hidden="true"></span>Training, documentation, and implementation steps</li></ul>
+                <div class="deliverable"><span class="dossier-label">Possible engagement deliverable</span><p>Service implementation outline</p></div>
+              </div>
+              <div class="dossier-actions"><button class="add-to-brief" type="button" data-add="service-development" aria-pressed="false" hidden><span class="add-label">Add to consultation brief</span><span class="add-symbol" aria-hidden="true">+</span></button><a class="service-detail-link" href="/services/consulting/">Full service details <span aria-hidden="true">↗</span></a></div>
+            </article><article class="service-dossier" id="referral-strategy" aria-labelledby="heading-referral-strategy" data-dossier="referral-strategy">
+              <div class="dossier-top"><span class="service-track"><span aria-hidden="true"></span>Consulting</span><span class="dossier-pagination">06 <span>/ 06</span></span></div>
+              <div class="dossier-copy">
+                <h2 id="heading-referral-strategy">Referral strategy</h2>
+                <p class="dossier-intro">Assess local referral activity and service demand to understand existing relationships and identify priorities for a referral strategy suited to the practice’s capabilities and focus.</p>
+                <h3 class="dossier-label">What we review</h3>
+                <ul class="review-areas"><li><span class="area-marker" aria-hidden="true"></span>Local referral patterns</li><li><span class="area-marker" aria-hidden="true"></span>Service demand and practice capabilities</li><li><span class="area-marker" aria-hidden="true"></span>Professional relationship development</li></ul>
+                <div class="deliverable"><span class="dossier-label">Possible engagement deliverable</span><p>Referral priorities and outreach plan</p></div>
+              </div>
+              <div class="dossier-actions"><button class="add-to-brief" type="button" data-add="referral-strategy" aria-pressed="false" hidden><span class="add-label">Add to consultation brief</span><span class="add-symbol" aria-hidden="true">+</span></button><a class="service-detail-link" href="/services/consulting/">Full service details <span aria-hidden="true">↗</span></a></div>
+            </article></div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
-          <div class="product-card scroll-reveal">
-            <span class="tag">Revenue cycle support</span>
-            <h3>Revenue Cycle Management</h3>
-            <p>Support from eligibility and prior authorization through coding, claims, denials, and appeals, with attention to wound care documentation and applicable payer requirements.</p>
-            <a class="btn btn-ghost" href="/services/revenue-cycle">Explore Revenue Cycle <span class="arrow">→</span></a>
-          </div>
-          <div class="product-card scroll-reveal" data-stagger="80">
-            <span class="tag">Practice advisory</span>
-            <h3>Consulting</h3>
-            <p>Advisory support for program design, service development, staffing, workflow, and referral strategy, informed by wound care operations experience.</p>
-            <a class="btn btn-ghost" href="/services/consulting">Explore Consulting <span class="arrow">→</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-header scroll-reveal">
-          <span class="eyebrow">How they fit</span>
-          <h2>Select the support <em style="font-style:normal;color:var(--gold)">your practice needs.</em></h2>
-          <p>Begin with the service relevant to your current priorities. Additional support can be considered as your practice’s needs develop.</p>
-        </div>
-        <div class="content-grid">
-          <div class="hero-spec-panel scroll-reveal"><h3>Areas of engagement</h3>
-            <div class="spec-row"><span class="spec-label">Revenue cycle</span><span class="spec-value">Coding, documentation, and claims review</span></div>
-            <div class="spec-row"><span class="spec-label">Consulting</span><span class="spec-value">Operations, staffing, and service development</span></div>
-            <div class="spec-row"><span class="spec-label">Products &amp; software</span><span class="spec-value">Evaluation, implementation, and training</span></div></div>
-          <div class="content-block scroll-reveal" data-stagger="80">
-            <h3 style="margin-bottom:var(--s-2)">Why one partner</h3>
-            <ul style="margin-top:0">
-              <li>Coordinated support. Review documentation, coding, and claims within the same engagement.</li>
-              <li>Specialty experience. Wound care products, workflows, and documentation requirements inform our approach.</li>
-              <li>Defined priorities. Agree on scope, responsibilities, and the operational measures to review.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-band">
-      <div class="container">
-        <div class="scroll-reveal">
-          <span class="eyebrow">Start anywhere</span>
-          <h2>Discuss your operational priorities.</h2>
-          <p>Schedule a consultation to review your current workflows and identify the service support relevant to your practice.</p>
-          <div class="hero-actions">
-            <a href="/contact" class="btn btn-primary">Schedule a consultation <span class="arrow">→</span></a>
-            <a href="/why-partner" class="btn btn-secondary">Why practices partner with us</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <div class="consultation-brief container" hidden>
+      <div class="brief-toolbar"><span class="brief-count" aria-hidden="true">0</span><div class="brief-caption"><strong>Your consultation brief</strong><span class="brief-description">Add an area you’d like to discuss.</span></div><button class="review-brief" type="button" disabled>Review brief <span aria-hidden="true">↗</span></button></div>
+      <p class="brief-status sr-only" role="status" aria-live="polite"></p>
+    </div>
+    <div class="services-direct container"><span>Prefer a conversation?</span><a href="tel:5514973428">551-497-3428 <span aria-hidden="true">↗</span></a><a href="/contact/">Schedule a consultation <span aria-hidden="true">↗</span></a></div>
   </main>
+
+  <dialog class="service-brief-dialog" aria-labelledby="brief-title">
+    <div class="brief-dialog-head"><span class="services-kicker">Albacete MedDev / Practice services</span><button class="close-brief" type="button" aria-label="Close consultation brief">×</button></div>
+    <h2 id="brief-title">Your consultation brief<span>.</span></h2>
+    <p class="brief-dialog-intro">The areas you’d like to discuss, ready to share with your team or bring to a consultation.</p>
+    <div class="brief-items"></div>
+    <p class="brief-empty" hidden>No areas selected. Choose a service area to start your brief.</p>
+    <div class="brief-export"><button type="button" class="copy-brief">Copy brief <span aria-hidden="true">↗</span></button><button type="button" class="download-brief">Download .txt <span aria-hidden="true">↓</span></button><button type="button" class="clear-brief">Clear selections</button></div>
+    <textarea class="brief-copy-fallback" aria-label="Consultation brief text — select and copy" readonly hidden></textarea>
+    <p class="brief-export-status" role="status" aria-live="polite"></p>
+    <a class="brief-contact" href="/contact/">Continue to consultation <span aria-hidden="true">→</span></a>
+  </dialog>
 
   <footer class="footer">
     <div class="container">
@@ -297,6 +320,8 @@
     </div>
   </footer>
 
-  <script src="/assets/js/app.js?v=37" defer></script>
+  <script src="/assets/js/app.js?v=38" defer></script>
+  <script id="service-topics" type="application/json">[{"id":"claims-denials","title":"Claims & denials","track":"Revenue cycle","href":"/services/revenue-cycle/","description":"Review claims activity, denial patterns, eligibility, and authorization workflows to identify questions for follow-up and organize the documentation needed for a focused revenue cycle assessment.","reviewAreas":["Eligibility and prior authorization","Denial reasons and supporting records","Appeal and follow-up workflows"],"possibleDeliverable":"Claims and denial review summary"},{"id":"coding-documentation","title":"Coding & documentation","track":"Revenue cycle","href":"/services/revenue-cycle/","description":"Examine how documented services translate into encounter coding, with attention to product-specific requirements, modifiers, units, and the information recorded in the clinical note.","reviewAreas":["Encounter coding and documented services","Product-specific modifiers and units","Documentation gaps and template requirements"],"possibleDeliverable":"Coding and documentation gap list"},{"id":"product-evaluation","title":"Product evaluation","track":"Consulting","href":"/services/consulting/","description":"Review the current product portfolio against patient needs, clinical focus, available evidence, and payer requirements, then organize questions for evaluation with practice leadership.","reviewAreas":["Current formulary and product utilization","Available clinical evidence and product information","Coverage and implementation requirements"],"possibleDeliverable":"Product evaluation brief"},{"id":"practice-operations","title":"Practice operations","track":"Consulting","href":"/services/consulting/","description":"Look closely at patient flow, scheduling, staff responsibilities, and benefit-verification processes to understand how work moves through the practice and where further review may help.","reviewAreas":["Patient flow and scheduling","Staff responsibilities and handoffs","Benefit-verification workflow"],"possibleDeliverable":"Workflow map and responsibility plan"},{"id":"service-development","title":"Service development","track":"Consulting","href":"/services/consulting/","description":"Evaluate potential services in relation to patient needs, clinical capabilities, staffing, and applicable requirements, with a clear view of the implementation questions to resolve.","reviewAreas":["Patient needs and clinical capabilities","Staffing and workflow requirements","Training, documentation, and implementation steps"],"possibleDeliverable":"Service implementation outline"},{"id":"referral-strategy","title":"Referral strategy","track":"Consulting","href":"/services/consulting/","description":"Assess local referral activity and service demand to understand existing relationships and identify priorities for a referral strategy suited to the practice’s capabilities and focus.","reviewAreas":["Local referral patterns","Service demand and practice capabilities","Professional relationship development"],"possibleDeliverable":"Referral priorities and outreach plan"}]</script>
+  <script src="/assets/js/services-explorer.js?v=2" defer></script>
 </body>
 </html>

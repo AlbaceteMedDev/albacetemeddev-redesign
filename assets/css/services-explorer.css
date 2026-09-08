@@ -1,0 +1,109 @@
+/* Practice services: an interactive editorial index within the Albacete identity. */
+.services-experience{--folio-line:rgba(212,169,74,.22);padding-top:calc(var(--nav-h) + 66px);padding-bottom:32px}
+.services-heading{display:flex;align-items:end;justify-content:space-between;gap:48px;padding-bottom:48px}
+.services-kicker{font-size:.66rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;color:var(--mist);margin-bottom:20px}
+.services-kicker>span{padding:0 12px;color:var(--gold)}
+.services-heading h1{font-family:var(--font-display);font-size:clamp(2.7rem,5.2vw,4.6rem);font-weight:500;letter-spacing:-.065em;line-height:1.08;color:var(--snow);margin:0}
+.services-heading h1>span{color:var(--gold)}
+.services-intro{max-width:320px;flex:0 1 320px;padding-bottom:3px}
+.services-intro>p{font-size:1rem;line-height:1.65;color:var(--mist);margin-bottom:14px}
+.service-line-links{display:flex;flex-wrap:wrap;gap:9px 20px}
+.service-line-links a{font-size:.76rem;color:var(--gold)}
+.service-line-links a span{margin-left:8px}
+.service-explorer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(35px,5vw,76px);align-items:start}
+.service-index{padding-top:3px;min-width:0}
+.index-caption{display:flex;justify-content:space-between;gap:20px;font-size:.66rem;text-transform:uppercase;letter-spacing:.11em;color:var(--gold);padding:0 0 21px;border-bottom:1px solid var(--folio-line)}
+.index-instruction{color:var(--fog);letter-spacing:.04em;text-transform:none}
+.service-options{display:flex;flex-direction:column}
+.service-option{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr) 24px;align-items:center;gap:14px;padding:24px 0;border-bottom:1px solid var(--ink-3);color:var(--fog);transition:color 220ms ease;background:none}
+.service-option::before{content:'';position:absolute;bottom:-1px;left:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 350ms cubic-bezier(.22,1,.36,1)}
+.option-number{font-size:.68rem;letter-spacing:.07em;font-variant-numeric:tabular-nums;color:var(--fog);align-self:start;margin-top:8px;transition:color 220ms}
+.option-name{font-family:var(--font-display);font-size:clamp(1.15rem,2vw,1.72rem);font-weight:400;letter-spacing:-.035em;line-height:1.35;transition:transform 300ms cubic-bezier(.22,1,.36,1)}
+.option-arrow{font-size:1.5rem;color:var(--gold);opacity:0;transform:translate(-6px,6px);transition:opacity 220ms,transform 300ms}
+.option-selected{position:absolute;left:0;color:var(--gold);opacity:0;font-size:.9rem}
+.service-option.is-active,.service-option:hover{color:var(--snow)}
+.service-option.is-active::before{transform:scaleX(1)}
+.service-option.is-active .option-number{color:var(--gold)}
+.service-option.is-active .option-arrow,.service-option:hover .option-arrow{opacity:1;transform:none}
+.service-option:hover .option-name{transform:translateX(5px)}
+.service-option.is-added .option-number{opacity:0}
+.service-option.is-added .option-selected{opacity:1}
+.index-footnote{margin-top:24px;font-size:.82rem;line-height:1.7;color:var(--fog)}
+.dossier-stage{position:sticky;top:calc(var(--nav-h) + 26px);min-width:0;perspective:1200px}
+.service-dossier{--glow-x:65%;--glow-y:0%;position:relative;padding:28px 34px 30px;background:radial-gradient(circle at var(--glow-x) var(--glow-y),rgba(212,169,74,.08),transparent 64%),linear-gradient(145deg,#12151c,#090d13);border:1px solid var(--folio-line);border-radius:2px 24px 2px 2px;box-shadow:0 24px 68px rgba(0,0,0,.2);isolation:isolate}
+.service-dossier::before{content:'';position:absolute;left:-1px;top:34px;width:2px;height:54px;background:var(--gold);box-shadow:0 0 18px rgba(212,169,74,.25)}
+.service-dossier::after{content:'';position:absolute;right:12px;top:12px;width:14px;height:14px;border-top:1px solid var(--gold);border-right:1px solid var(--gold);opacity:.5;pointer-events:none}
+.service-dossier[hidden]{display:none}
+.services-experience:not(.is-enhanced) .service-dossier{margin-bottom:28px}
+.dossier-top{display:flex;justify-content:space-between;gap:20px;align-items:center;padding-bottom:30px}
+.service-track{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase}
+.service-track>span{width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.dossier-pagination{font-size:.7rem;letter-spacing:.12em;color:var(--snow);font-variant-numeric:tabular-nums}
+.dossier-pagination>span{color:var(--fog);margin-left:6px}
+.service-dossier h2{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.045em;line-height:1.15;font-weight:500;color:var(--snow);margin:0 0 20px}
+.dossier-intro{font-size:.98rem;line-height:1.8;color:var(--mist);margin:0 0 28px}
+.dossier-label{display:block;font-size:.64rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--fog);margin:0 0 13px}
+.review-areas{list-style:none;padding:0;margin:0 0 25px}
+.review-areas li{display:flex;align-items:baseline;gap:12px;font-size:.89rem;line-height:1.5;color:var(--snow);padding:10px 0;border-top:1px solid rgba(255,255,255,.06)}
+.area-marker{width:4px;height:4px;background:var(--gold);flex:none;transform:translateY(-2px)}
+.deliverable{padding:21px 0 0;border-top:1px solid var(--folio-line)}
+.deliverable p{color:var(--gold);font-size:1rem;line-height:1.5;font-weight:400;margin:0}
+.dossier-actions{display:flex;flex-direction:column;align-items:stretch;gap:20px;margin-top:28px}
+.add-to-brief{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:49px;width:100%;padding:12px 18px;border:1px solid var(--gold);border-radius:2px;color:var(--ink);background:var(--gold);font-size:.84rem;font-weight:600;cursor:pointer;transition:background 180ms,color 180ms}
+.add-to-brief[hidden]{display:none}
+.add-to-brief:hover{background:var(--gold-bright)}
+.add-to-brief[aria-pressed="true"]{background:rgba(212,169,74,.06);color:var(--gold);border-color:var(--folio-line)}
+.add-symbol{font-size:1.25rem;font-weight:400}
+.service-detail-link{display:flex;justify-content:space-between;gap:16px;color:var(--mist);font-size:.79rem}
+.service-detail-link:hover{color:var(--gold)}
+.consultation-brief{margin-top:35px}
+.consultation-brief[hidden]{display:none}
+.brief-toolbar{display:flex;align-items:center;gap:18px;border-top:1px solid var(--folio-line);border-bottom:1px solid var(--ink-3);padding:22px 0}
+.brief-count{font-family:var(--font-display);font-size:1.8rem;line-height:1.2;color:var(--gold);font-weight:400;min-width:32px;font-variant-numeric:tabular-nums}
+.brief-caption{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1}
+.brief-caption strong{font-size:.9rem;font-weight:500;color:var(--snow)}
+.brief-description{font-size:.76rem;color:var(--fog);line-height:1.5}
+.review-brief{color:var(--gold);font-size:.84rem;padding:12px 0 12px 24px;cursor:pointer;flex-shrink:0}
+.review-brief>span{margin-left:30px;font-size:1.2rem}
+.review-brief:disabled{color:var(--fog);opacity:.6;cursor:default}
+.services-direct{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:32px;font-size:.77rem;line-height:1.7;color:var(--fog)}
+.services-direct a{color:var(--mist)}
+.services-direct a:hover{color:var(--gold)}
+.services-direct a span{padding-left:8px;color:var(--gold)}
+.services-experience :is(a,button):focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:1px}
+@media(max-width:1050px){.services-heading{gap:32px}.services-intro{max-width:285px}.service-explorer{gap:32px}.service-dossier{padding:24px}.option-name{font-size:1.28rem}.service-option{gap:10px;padding:25px 0}.option-number{margin-top:5px}}
+@media(max-width:760px){.services-experience{padding-top:calc(var(--nav-h) + 36px)}.services-heading{display:block;padding-bottom:30px}.services-intro{max-width:520px;margin-top:24px}.services-heading h1{font-size:clamp(2.5rem,9vw,3.7rem)}.service-explorer{grid-template-columns:1fr;gap:24px}.dossier-stage{position:static}.service-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}.service-option{grid-template-columns:20px minmax(0,1fr);gap:8px;padding:18px 0}.option-name{font-size:.96rem;line-height:1.5}.option-number{font-size:.57rem;margin-top:4px}.option-arrow{display:none}.index-footnote{display:none}.index-caption{padding-bottom:12px}.service-dossier{padding:26px}.dossier-top{padding-bottom:24px}.dossier-intro{font-size:.94rem}.consultation-brief{margin-top:25px}.services-direct{gap:10px 24px}.brief-toolbar{gap:12px}.brief-description{font-size:.72rem}.review-brief{padding-left:10px}.review-brief>span{margin-left:10px}}
+@media(max-width:420px){.service-options{gap:0 15px}.service-option{grid-template-columns:16px minmax(0,1fr);gap:5px}.option-name{font-size:.86rem}.service-dossier{padding:23px}.brief-count{font-size:1.5rem;min-width:24px}.review-brief{font-size:.74rem}.review-brief>span{margin-left:3px}.brief-caption strong{font-size:.8rem}.services-kicker{font-size:.59rem}}
+@media(prefers-reduced-motion:reduce){.services-experience *,.services-experience *::before{transition:none!important;animation:none!important}.service-option:hover .option-name{transform:none}}
+
+/* The brief is a working document, assembled only from selected service areas. */
+.service-brief-dialog{--folio-line:rgba(212,169,74,.22);position:fixed;inset:0;width:min(690px,calc(100vw - 32px));max-height:calc(100dvh - 48px);overflow-y:auto;margin:auto;padding:32px 40px 38px;background:#0c1017;color:var(--snow);border:1px solid rgba(212,169,74,.38);border-radius:3px;box-shadow:0 30px 110px rgba(0,0,0,.65)}
+.service-brief-dialog::backdrop{background:rgba(3,5,9,.75);backdrop-filter:blur(8px)}
+.brief-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px}
+.brief-dialog-head .services-kicker{margin:0;color:var(--gold);font-size:.58rem}
+.close-brief{display:grid;place-items:center;width:36px;height:36px;background:none;color:var(--mist);font-size:1.8rem;line-height:1;cursor:pointer}
+.close-brief:hover{color:var(--gold)}
+.service-brief-dialog h2{font-family:var(--font-display);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:500;letter-spacing:-.045em;line-height:1.2;margin:0 0 20px}
+.service-brief-dialog h2>span{color:var(--gold)}
+.brief-dialog-intro{font-size:.93rem;line-height:1.7;color:var(--fog);margin:0 0 28px;max-width:480px}
+.brief-item{display:grid;grid-template-columns:24px 1fr 32px;align-items:start;gap:18px;padding:23px 0;border-top:1px solid var(--ink-3)}
+.brief-item-number{color:var(--gold);font-size:.65rem;padding-top:5px;font-variant-numeric:tabular-nums}
+.brief-item h3{font-size:1rem;font-weight:500;color:var(--snow);margin:0 0 8px}
+.brief-item p{color:var(--fog);font-size:.82rem;line-height:1.7;margin:0}
+.remove-brief-item{font-size:1.4rem;color:var(--fog);cursor:pointer;line-height:1;padding:3px}
+.remove-brief-item:hover{color:var(--gold)}
+.brief-empty{padding:24px 0;border-top:1px solid var(--ink-3);font-size:.9rem;color:var(--fog)}
+.brief-export{display:flex;flex-wrap:wrap;gap:20px 26px;border-top:1px solid var(--ink-3);padding:22px 0 0}
+.brief-export button{color:var(--gold);font-size:.78rem;cursor:pointer;line-height:1.5}
+.brief-export button>span{margin-left:7px}
+.brief-export .clear-brief{margin-left:auto;color:var(--fog)}
+.brief-export button:disabled{opacity:.4;cursor:default}
+.brief-contact{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:24px;background:var(--gold);border:1px solid var(--gold);border-radius:2px;padding:16px 20px;color:var(--ink);font-weight:600;font-size:.87rem}
+.brief-contact:hover{background:var(--gold-bright)}
+.brief-export-status{font-size:.76rem;color:var(--mist);line-height:1.5;margin:16px 0 0}
+.brief-export-status:empty{display:none}
+.brief-copy-fallback{width:100%;min-height:160px;resize:vertical;background:var(--ink);color:var(--snow);font:inherit;font-size:.8rem;line-height:1.6;padding:12px;margin:20px 0 0;border:1px solid var(--folio-line)}
+.service-brief-dialog :is(a,button,textarea):focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.services-experience .service-dossier:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+@media(max-width:760px){.service-brief-dialog{padding:24px;max-height:calc(100dvh - 24px)}.brief-item{gap:12px;grid-template-columns:20px 1fr 28px}.brief-export .clear-brief{margin-left:0}}
+@media(min-width:761px){.services-experience.is-enhanced .service-dossier:not([hidden]){display:flex;flex-direction:column;min-height:615px}.services-experience.is-enhanced .dossier-actions{margin-top:auto;padding-top:28px}}
