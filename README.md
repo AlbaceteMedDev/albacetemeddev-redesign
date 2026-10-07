@@ -62,3 +62,14 @@ Hosted on **Cloudflare Pages** with GitHub auto-deploy on push to `main`.
 ---
 
 © Albacete MedDev — advanced wound care solutions.
+
+## October 2026 physician experience
+
+The homepage uses an ivory reading surface with navy and gold accents, real product imagery, and direct paths to the existing portfolio, evidence library, and practice services. `assets/css/physician.css` contains the shared readability and responsive refinements. `assets/js/physician.js` progressively enhances catalog and evidence filtering and keyboard accessibility.
+
+- The 15 live portfolio entries are preserved. The evidence library covers a broader set of research entries.
+- Evidence explanations and full source titles are available in native disclosures. Existing study summaries and grades are not a new literature review.
+- Page-opening videos, decorative particles, animated metrics, and moving buttons are removed from the browsing experience.
+- The contact form prepares a `mailto:` message for the visitor to review and send. It does not submit to a server.
+- Clinical resources navigation is duplicated across the public HTML pages; `_shared/nav.html` holds the same markup.
+- Run `node --check assets/js/app.js`, `node --check assets/js/physician.js`, and `node --test tests/services-brief.test.cjs` before publishing.

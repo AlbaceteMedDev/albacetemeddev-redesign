@@ -1,9 +1,4 @@
-// ═══════════════════════════════════════════════════════════════
-// Albacete MedDev — Redesign JS
-// Splash + scroll reveals + nav + FAQ
-// + Woah moments: counters, live dashboard, view transitions,
-//   magnetic CTAs, hero text scramble
-// ═══════════════════════════════════════════════════════════════
+// Albacete MedDev: navigation, clinical illustrations, search, and portal demo.
 
 // Detect reduced-motion once; use to short-circuit showy animations
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -13,119 +8,9 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 // page's first load of the session opens with the video ident instead (an
 // inline <head> guard sets html.ident-pending pre-paint when sessionStorage
 // has no 'amd-ident'). html.no-splash is now only used for bfcache restores.
-(function initSplash(){
-  const html = document.documentElement;
-  // Legacy once-per-session gate (June 2026): clear it so tabs that still
-  // carry the key get the splash between pages again. Inner pages' head
-  // guards still read it, so removing the key is what re-enables them.
-  try{ sessionStorage.removeItem('amd-splash'); }catch(e){}
-  function identSeen(){
-    try{ return !!sessionStorage.getItem('amd-ident'); }catch(e){ return false; }
-  }
-  function markIdentSeen(){
-    try{ sessionStorage.setItem('amd-ident', '1'); }catch(e){}
-  }
-  function finish(){
-    document.body.classList.remove('is-loading');
-    document.body.classList.add('is-loaded');
-    document.dispatchEvent(new CustomEvent('amd:splash-done'));
-  }
-  function skipSplash(){
-    html.classList.add('no-splash');
-    html.classList.remove('ident-pending');
-    finish();
-  }
-  function runSplash(){
-    html.classList.remove('ident-pending');
-    // Reset to is-loading state in case the page was restored from bfcache
-    document.body.classList.remove('is-loaded');
-    document.body.classList.add('is-loading');
-    // Reflow + restart the splash CSS animation
-    const splash = document.querySelector('.splash');
-    if (splash){
-      const mark = splash.querySelector('.splash-mark');
-      splash.style.animation = 'none';
-      if (mark) mark.style.animation = 'none';
-      void splash.offsetHeight;  // force reflow
-      splash.style.animation = '';
-      if (mark) mark.style.animation = '';
-    }
-    setTimeout(finish, 1100);
-  }
-
-  // Video ident opener (home page, first home load of the session). The 5s
-  // Healing Matrix ident plays full-bleed inside the splash overlay, then the
-  // overlay fades into the hero. Tap / click / Esc skips it. If the video
-  // cannot start within 2.2s (slow network, autoplay blocked) we fall back to
-  // the classic logo splash so nobody waits on a dark screen.
-  function runIdent(splash){
-    let done = false, startGuard = 0, hardStop = 0;
-    const portrait = window.matchMedia('(orientation: portrait)').matches;
-    const base = '/assets/video/albacete-ident-' + (portrait ? 'portrait' : 'landscape');
-    const video = document.createElement('video');
-    video.className = 'splash-video';
-    video.muted = true; video.defaultMuted = true; video.playsInline = true;
-    video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
-    video.setAttribute('aria-hidden', 'true'); video.preload = 'auto';
-    video.disablePictureInPicture = true; video.tabIndex = -1;
-    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
-      const s = document.createElement('source');
-      s.src = base + '.' + ext + '?v=2'; s.type = type; video.appendChild(s);
-    });
-    const skip = document.createElement('button');
-    skip.type = 'button'; skip.className = 'splash-skip'; skip.tabIndex = -1;
-    skip.textContent = 'Skip';
-    splash.append(video, skip);
-
-    function cleanup(){
-      clearTimeout(startGuard); clearTimeout(hardStop);
-      document.removeEventListener('keydown', onKey);
-    }
-    function leave(){
-      if (done) return; done = true; cleanup();
-      markIdentSeen();
-      splash.classList.add('is-leaving');
-      finish();
-      setTimeout(() => { try{ video.pause(); }catch(e){} video.remove(); skip.remove(); }, 700);
-    }
-    function fallback(){
-      if (done) return; done = true; cleanup();
-      video.remove(); skip.remove();
-      splash.classList.remove('has-video');
-      runSplash();
-    }
-    function onKey(e){ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') leave(); }
-
-    document.body.classList.remove('is-loaded');
-    document.body.classList.add('is-loading');
-    startGuard = setTimeout(fallback, 2200);
-    video.addEventListener('playing', () => {
-      if (done) return;
-      clearTimeout(startGuard);
-      splash.classList.add('has-video');
-      hardStop = setTimeout(leave, 6500);  // never hold the page hostage
-    }, { once: true });
-    video.addEventListener('ended', leave);
-    video.addEventListener('error', fallback);
-    skip.addEventListener('click', (e) => { e.stopPropagation(); leave(); });
-    splash.addEventListener('click', leave);
-    document.addEventListener('keydown', onKey);
-    const p = video.play();
-    if (p && typeof p.catch === 'function') p.catch(fallback);
-  }
-
-  const splashEl = document.querySelector('.splash');
-  const identWanted = html.classList.contains('ident-pending') && !!splashEl && !prefersReducedMotion && !identSeen();
-
-  // First page load
-  if (identWanted) runIdent(splashEl);
-  else runSplash();
-
-  // Back/forward (bfcache restore): don't replay anything, just show content
-  window.addEventListener('pageshow', (e) => {
-    if (e.persisted) skipSplash();
-  });
-})();
+document.documentElement.classList.add('no-splash');
+document.body.classList.remove('is-loading');
+document.body.classList.add('is-loaded');
 
 // Highlight the current page in the nav and mobile menu
 (function highlightActiveNav(){
@@ -186,6 +71,10 @@ const isTouch = window.matchMedia('(hover: none)').matches;
     menu.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     body.style.overflow = open ? 'hidden' : '';
+    menu.inert = !open;
+    menu.setAttribute('aria-hidden', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (!open && menu.contains(document.activeElement)) toggle.focus();
   }
 
   toggle.addEventListener('click', () => {
@@ -303,332 +192,11 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 })();
 
 
-// ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #1 — Animated number counters
-// ═══════════════════════════════════════════════════════════════
-(function initCounters(){
-  if (prefersReducedMotion) return;
 
-  const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
-
-  // Parse a stat value like "20+", "100%", "$596K", "360°", "$2.98M", "173%", "55-93%"
-  // Returns { prefix, target, suffix } or null if not numeric
-  // Skips things like "1:1", "24 / 7", "Real-time", "Role-based", "In-house"
-  function parseStat(text){
-    const trimmed = text.trim();
-    // Reject text-only values up-front
-    if (!/\d/.test(trimmed)) return null;
-    // Reject ratios with colons or forward slashes separating numbers
-    if (/\d\s*[:/]\s*\d/.test(trimmed)) return null;
-
-    // Handle ranges like "55-93%" — show dash+target prefix, animate upper
-    const rangeMatch = trimmed.match(/^([^\d]*)([\d,.]+)\s*[–-]\s*([\d,.]+)(.*)$/);
-    if (rangeMatch) {
-      const target = parseFloat(rangeMatch[3].replace(/,/g, ''));
-      if (isNaN(target)) return null;
-      return {
-        prefix: rangeMatch[1] + rangeMatch[2] + '–',
-        target,
-        suffix: rangeMatch[4],
-        decimals: (rangeMatch[3].split('.')[1] || '').length
-      };
-    }
-    // Standard: optional $, number, optional suffix
-    const m = trimmed.match(/^(\$?)([\d,.]+)(.*)$/);
-    if (!m) return null;
-    const target = parseFloat(m[2].replace(/,/g, ''));
-    if (isNaN(target)) return null;
-    return {
-      prefix: m[1],
-      target,
-      suffix: m[3],
-      decimals: (m[2].split('.')[1] || '').length
-    };
-  }
-
-  function formatValue(current, decimals){
-    if (decimals > 0) return current.toFixed(decimals);
-    return Math.round(current).toLocaleString();
-  }
-
-  function animate(el, parsed, duration = 1200){
-    const start = performance.now();
-    function step(now){
-      const t = Math.min(1, (now - start) / duration);
-      const eased = easeOutQuart(t);
-      const val = parsed.target * eased;
-      el.textContent = parsed.prefix + formatValue(val, parsed.decimals) + parsed.suffix;
-      if (t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  // Targets: every numeric .value/.stat-value inside stats containers, plus product-card h3 that looks numeric
-  const selectors = [
-    '.stats-grid .value',
-    '.stats-grid .stat-value',
-    '.lg-hero-stats .value',
-    '.wp-hero-stats .value',
-    '.cs-hero-stats .value',
-    '.pm-hero-stats .value',
-    '.rcm-hero-stats .value',
-    '.stat .value',            // catch-all in stat containers
-    '.product-card h3',         // numeric product card titles (e.g. 173%, 55–93%, 3–5 added minutes)
-    '.pm-kpi .value'
-  ];
-  const targets = document.querySelectorAll(selectors.join(','));
-
-  targets.forEach(el => {
-    if (el.classList.contains('value-word')) return;
-    // Skip if already has a non-numeric value (preserves "In-house", "Role-based" etc)
-    // We look at the text content without child spans first
-    const rawText = el.textContent;
-    const parsed = parseStat(rawText);
-    if (!parsed) return;
-    // Store original HTML for restoration if needed; replace with initial zero state
-    el.dataset.counterOriginal = el.innerHTML;
-    el.textContent = parsed.prefix + '0' + parsed.suffix;
-    el.dataset.counterReady = '1';
-  });
-
-  if (!('IntersectionObserver' in window)){
-    // Fallback: set final values immediately
-    targets.forEach(el => {
-      if (el.dataset.counterReady === '1' && el.dataset.counterOriginal){
-        el.innerHTML = el.dataset.counterOriginal;
-      }
-    });
-    return;
-  }
-
-  function startObserving(){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const original = el.dataset.counterOriginal;
-        if (!original) return;
-        const parsed = parseStat(original.replace(/<[^>]+>/g, ''));
-        if (!parsed){
-          el.innerHTML = original;
-          io.unobserve(el);
-          return;
-        }
-        animate(el, parsed, 1200);
-        setTimeout(() => { el.innerHTML = original; }, 1300);
-        io.unobserve(el);
-      });
-    }, {
-      // Require 60% visible AND 100px up from bottom — so counters only
-      // fire when user actually sees them, not while hidden by the splash
-      threshold: 0.6,
-      rootMargin: '0px 0px -100px 0px'
-    });
-
-    targets.forEach(el => {
-      if (el.dataset.counterReady === '1') io.observe(el);
-    });
-  }
-
-  // Start observing ~1.2s after the splash / ident has left (the stats row
-  // reveal has played by then), or right away for returning visitors. A long
-  // fallback timer covers any missed event.
-  let observing = false;
-  function startOnce(){ if (observing) return; observing = true; setTimeout(startObserving, 1200); }
-  if (document.body.classList.contains('is-loaded')) startOnce();
-  document.addEventListener('amd:splash-done', startOnce, { once: true });
-  setTimeout(startOnce, 9000);
-})();
 
 
 // ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #2 — Portal dashboard live pulse
-// ═══════════════════════════════════════════════════════════════
-(function initLiveDashboard(){
-  const shell = document.querySelector('.pm-shell');
-  if (!shell || prefersReducedMotion) return;
-
-  // ——— Live pulse on the green dot (CSS handles the glow; JS triggers on mount) ———
-  const liveDots = shell.querySelectorAll('.dot-live');
-  liveDots.forEach(d => d.classList.add('is-pulsing'));
-
-  // ——— Sparklines draw in ———
-  const sparks = shell.querySelectorAll('.pm-kpi .spark polyline');
-  sparks.forEach(p => {
-    const len = p.getTotalLength ? p.getTotalLength() : 200;
-    p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
-    p.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.19, 1, 0.22, 1)';
-  });
-
-  // ——— Bar chart bars animate from 0 ———
-  const bars = shell.querySelectorAll('.pm-bar');
-  bars.forEach((bar, i) => {
-    const finalHeight = bar.style.height;
-    bar.style.height = '0%';
-    bar.style.transition = 'height 0.9s cubic-bezier(0.19, 1, 0.22, 1)';
-    bar.dataset.finalHeight = finalHeight;
-  });
-
-  // ——— KPI counters for the dashboard (handled by counter observer above) ———
-
-  // ——— Trigger animations when shell is in view ———
-  if (!('IntersectionObserver' in window)) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      // Sparklines
-      sparks.forEach((p, i) => {
-        setTimeout(() => { p.style.strokeDashoffset = '0'; }, 300 + i * 120);
-      });
-      // Bars
-      bars.forEach((bar, i) => {
-        setTimeout(() => { bar.style.height = bar.dataset.finalHeight; }, 600 + i * 70);
-      });
-      io.unobserve(shell);
-      // Kick off live ticks after entrance animation settles
-      setTimeout(startLiveTicks, 2400);
-    });
-  }, { threshold: 0.2 });
-  io.observe(shell);
-
-  // ——— Periodic "live data" updates ———
-  function startLiveTicks(){
-    const tbody = shell.querySelector('.pm-card:first-of-type');
-    const kpiActive = shell.querySelector('.pm-kpi:nth-child(1) .value');
-    const kpiOrders = shell.querySelector('.pm-kpi:nth-child(2) .value');
-
-    // Pool of fake orders to cycle in
-    const pool = [
-      { pid: '#1314', product: 'Collagen 4×6', patient: 'A. Brooks', status: 'sent', label: 'Approved' },
-      { pid: '#1319', product: 'Exosome Gel', patient: 'S. Park',   status: 'ok',   label: 'Shipped' },
-      { pid: '#1324', product: 'ActiGraft+',  patient: 'D. Cohen',  status: 'rev',  label: 'In review' },
-      { pid: '#1330', product: 'UltraMist',   patient: 'N. Flores', status: 'ok',   label: 'Delivered' },
-      { pid: '#1336', product: 'Tri-Membrane', patient: 'L. Nakamura', status: 'paid', label: 'Paid' },
-      { pid: '#1341', product: 'MicroDoc',    patient: 'G. Singh',  status: 'sent', label: 'Approved' },
-    ];
-    let poolIndex = 0;
-    let activeCount = 84;
-    let ordersCount = 27;
-
-    function addRow(){
-      if (!tbody) return;
-      const o = pool[poolIndex % pool.length];
-      poolIndex++;
-
-      const row = document.createElement('div');
-      row.className = 'pm-row';
-      row.innerHTML = `
-        <div class="patient"><span class="pid">${o.pid}</span>${o.product} · ${o.patient.replace(' ', '&nbsp;')}</div>
-        <span class="date">Now</span>
-        <span class="status ${o.status}">${o.label}</span>
-      `;
-      row.style.maxHeight = '0px';
-      row.style.opacity = '0';
-      row.style.overflow = 'hidden';
-      row.style.transition = 'max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease';
-
-      // Insert AFTER the header element inside the card
-      const header = tbody.querySelector('header');
-      if (header && header.nextSibling){
-        tbody.insertBefore(row, header.nextSibling);
-      } else {
-        tbody.appendChild(row);
-      }
-
-      // Expand
-      requestAnimationFrame(() => {
-        row.style.maxHeight = '60px';
-        row.style.opacity = '1';
-      });
-
-      // Limit table length — remove the last row
-      const allRows = tbody.querySelectorAll('.pm-row');
-      if (allRows.length > 5){
-        const last = allRows[allRows.length - 1];
-        last.style.maxHeight = '0px';
-        last.style.opacity = '0';
-        setTimeout(() => last.remove(), 500);
-      }
-
-      // Tick up counters
-      activeCount++;
-      ordersCount++;
-      if (kpiActive) kpiActive.textContent = activeCount;
-      if (kpiOrders) kpiOrders.textContent = ordersCount;
-    }
-
-    // First tick after 3s, then every 7s
-    setTimeout(addRow, 3000);
-    setInterval(addRow, 7000);
-  }
-})();
-
-
-// ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #3 — Magnetic primary CTAs
-// ═══════════════════════════════════════════════════════════════
-(function initMagneticButtons(){
-  if (prefersReducedMotion || isTouch) return;
-
-  const PULL_RADIUS = 80;      // px — outer influence radius
-  const STRENGTH = 0.35;        // 0..1 — how much the btn moves toward cursor
-  const buttons = document.querySelectorAll('.btn-primary, .nav-cta, .hero-actions .btn');
-
-  buttons.forEach(btn => {
-    let rafId = null;
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    function onMouseMove(e){
-      const rect = btn.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < PULL_RADIUS){
-        // Pull toward cursor
-        const factor = (1 - dist / PULL_RADIUS) * STRENGTH;
-        targetX = dx * factor;
-        targetY = dy * factor;
-        if (!rafId) rafId = requestAnimationFrame(loop);
-      } else if (currentX !== 0 || currentY !== 0) {
-        // Spring back
-        targetX = 0;
-        targetY = 0;
-        if (!rafId) rafId = requestAnimationFrame(loop);
-      }
-    }
-
-    function onMouseLeave(){
-      targetX = 0;
-      targetY = 0;
-      if (!rafId) rafId = requestAnimationFrame(loop);
-    }
-
-    function loop(){
-      currentX += (targetX - currentX) * 0.18;
-      currentY += (targetY - currentY) * 0.18;
-      if (Math.abs(currentX) < 0.1 && Math.abs(currentY) < 0.1 && targetX === 0 && targetY === 0){
-        currentX = 0;
-        currentY = 0;
-        btn.style.transform = '';
-        rafId = null;
-        return;
-      }
-      btn.style.transform = `translate(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px)`;
-      rafId = requestAnimationFrame(loop);
-    }
-
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
-    btn.addEventListener('mouseleave', onMouseLeave);
-  });
-})();
-
-
-// ═══════════════════════════════════════════════════════════════
-// WOAH MOMENT #4 — Interactive Portal ("Try Me")
+// Interactive portal demonstration
 // ═══════════════════════════════════════════════════════════════
 // Turn the dashboard mock into a click-around demo:
 // - Sidebar nav items swap between 7 distinct views
@@ -789,119 +357,12 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 // Card spotlight — hover glow follows the cursor (desktop only;
 // touch and no-JS fall back to the static top-right hotspot)
 // ═══════════════════════════════════════════════════════════════
-(function initCardSpotlight(){
-  if (isTouch) return;
-  document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(2) + '%');
-      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(2) + '%');
-    }, { passive: true });
-  });
-})();
 
 // ═══════════════════════════════════════════════════════════════
 // Hero constellation — ambient gold particle field, home hero only.
 // Starts after window load (protects LCP), pauses offscreen/hidden,
 // reacts gently to the pointer. Skipped for reduced-motion users.
 // ═══════════════════════════════════════════════════════════════
-(function initHeroParticles(){
-  if (prefersReducedMotion) return;
-  const hero = document.querySelector('main > .hero:not(.hero-compact):not(.hero-split-layout)');
-  if (!hero || !hero.querySelector('.aurora')) return;
-
-  window.addEventListener('load', () => setTimeout(start, 700), { once: true });
-
-  function start(){
-    const canvas = document.createElement('canvas');
-    canvas.className = 'hero-particles';
-    canvas.setAttribute('aria-hidden', 'true');
-    hero.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    let W = 0, H = 0, parts = [], running = false, raf = 0;
-    const mouse = { x: -9999, y: -9999 };
-    const COUNT = window.innerWidth < 700 ? 30 : 64;
-    const LINK = window.innerWidth < 700 ? 95 : 125;
-
-    function resize(){
-      W = hero.clientWidth; H = hero.clientHeight;
-      canvas.width = W * DPR; canvas.height = H * DPR;
-      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    }
-    function seed(){
-      parts = Array.from({ length: COUNT }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
-        r: 0.8 + Math.random() * 1.5
-      }));
-    }
-    function frame(){
-      if (!running) return;
-      ctx.clearRect(0, 0, W, H);
-      // Attractor: the pointer when active, otherwise a slow autonomous
-      // wander point — keeps the field alive on touch devices / idle.
-      const now = performance.now();
-      const ax = mouse.x > -9000 ? mouse.x : W * (0.5 + 0.34 * Math.sin(now * 0.00022));
-      const ay = mouse.y > -9000 ? mouse.y : H * (0.45 + 0.28 * Math.sin(now * 0.00015 + 1.7));
-      for (const p of parts){
-        // Gentle attraction within 160px
-        const dxm = ax - p.x, dym = ay - p.y;
-        const dm2 = dxm * dxm + dym * dym;
-        if (dm2 < 25600 && dm2 > 1){
-          const f = 0.012 / Math.sqrt(dm2);
-          p.vx += dxm * f; p.vy += dym * f;
-        }
-        // Speed cap + drift
-        p.vx = Math.max(-0.5, Math.min(0.5, p.vx));
-        p.vy = Math.max(-0.5, Math.min(0.5, p.vy));
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < -10) p.x = W + 10; else if (p.x > W + 10) p.x = -10;
-        if (p.y < -10) p.y = H + 10; else if (p.y > H + 10) p.y = -10;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
-        ctx.fillStyle = 'rgba(212,169,74,0.35)';
-        ctx.fill();
-      }
-      // Constellation links
-      for (let i = 0; i < parts.length; i++){
-        for (let j = i + 1; j < parts.length; j++){
-          const dx = parts[i].x - parts[j].x, dy = parts[i].y - parts[j].y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < LINK * LINK){
-            const a = (1 - Math.sqrt(d2) / LINK) * 0.14;
-            ctx.strokeStyle = 'rgba(212,169,74,' + a.toFixed(3) + ')';
-            ctx.lineWidth = 0.7;
-            ctx.beginPath();
-            ctx.moveTo(parts[i].x, parts[i].y);
-            ctx.lineTo(parts[j].x, parts[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      raf = requestAnimationFrame(frame);
-    }
-    function play(){ if (!running){ running = true; raf = requestAnimationFrame(frame); } }
-    function pause(){ running = false; cancelAnimationFrame(raf); }
-
-    resize(); seed();
-    canvas.classList.add('is-live');
-    play();
-
-    hero.addEventListener('pointermove', (e) => {
-      const r = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
-    }, { passive: true });
-    hero.addEventListener('pointerleave', () => { mouse.x = -9999; mouse.y = -9999; }, { passive: true });
-    window.addEventListener('resize', () => { resize(); seed(); }, { passive: true });
-    document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
-    new IntersectionObserver((es) => es.forEach(e => e.isIntersecting ? play() : pause()))
-      .observe(hero);
-  }
-})();
 
 // ═══════════════════════════════════════════════════════════════
 // Command palette (⌘K / Ctrl+K / "/") — instant site-wide jump.
@@ -910,23 +371,24 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 // ═══════════════════════════════════════════════════════════════
 (function initCommandPalette(){
   const INDEX = [
+    { t: 'Clinical evidence library', s: 'Page', p: '/evidence/', k: 'evidence studies trials clinical literature IFU' },
+    { t: 'Practice services', s: 'Page', p: '/services/', k: 'practice services operations' },
+    { t: 'Wound imaging software', s: 'Page', p: '/software/', k: 'software stratametric imaging' },
+    { t: 'Ovena Health', s: 'Page', p: '/amazon-store/', k: 'ovena patient supplies store' },
     { t: 'Home', s: 'Page', p: '/', k: 'home overview albacete' },
-    { t: "Activate Matrix", s: 'Product', p: "/products/#activate-matrix", k: "activate matrix sheet matrix membrane wound care" },
-    { t: "AmchoPlast", s: 'Product', p: "/products/#amchoplast", k: "amchoplast sheet matrix membrane wound care" },
-    { t: "XCell Amnio Matrix", s: 'Product', p: "/products/#xcell-amnio-matrix", k: "xcell amnio matrix sheet matrix membrane wound care" },
-    { t: "Membrane Wrap", s: 'Product', p: "/products/#membrane-wrap", k: "membrane wrap sheet matrix membrane wound care" },
-    { t: "Tri-Membrane Wrap", s: 'Product', p: "/products/#tri-membrane-wrap", k: "tri-membrane wrap sheet matrix membrane wound care" },
-    { t: "Microlyte", s: 'Product', p: "/products/#microlyte", k: "microlyte sheet matrix membrane wound care" },
-    { t: "Palisade Dual-Membrane", s: 'Product', p: "/products/#palisade", k: "palisade dual-membrane sheet matrix membrane wound care" },
-    { t: "Sentry SL", s: 'Product', p: "/products/#sentry-sl", k: "sentry sl sheet matrix membrane wound care" },
-    { t: "APIS", s: 'Product', p: "/products/#apis", k: "apis sheet matrix membrane wound care" },
+    { t: 'Palisade Dual-Membrane', s: 'Product', p: '/products/palisade/', k: 'palisade sheet membrane' },
+    { t: 'Sentry SL', s: 'Product', p: '/products/sentry-sl/', k: 'sentry sheet membrane' },
+    { t: 'APIS', s: 'Product', p: '/products/apis/', k: 'apis collagen manuka' },
+    { t: 'Interfyl', s: 'Product', p: '/products/interfyl/', k: 'interfyl flowable particulate' },
+    { t: 'XCelliStem', s: 'Product', p: '/products/xcellistem/', k: 'xcellistem ECM powder A2004' },
+    { t: 'Peptide catalog', s: 'Product', p: '/products/peptides/', k: 'peptides compounded catalog' },
     { t: 'Products & Solutions', s: 'Page', p: '/products/', k: 'products portfolio solutions catalog' },
     { t: 'ActiGraft+ — Whole Blood Clot', s: 'Product', p: '/products/actigraft/', k: 'actigraft autologous blood clot G0465 G0460 NCD 270.3 diabetic foot ulcer DFU legacy point-of-care' },
     { t: 'UltraMist — Ultrasound Therapy', s: 'Product', p: '/products/ultramist/', k: 'ultramist ultrasound 97610 sanuwave saline mist NLFU non-contact painless' },
     { t: 'Arobella Qoustic', s: 'Product', p: '/products/arobella/', k: 'arobella qoustic ultrasonic debridement' },
     { t: 'Exosomes & Birth Tissue', s: 'Product', p: '/products/exosomes/', k: "exosomes wharton's jelly birth tissue placental MSC regenerative biologics" },
     { t: 'Adhesion Barrier — Amniotic Membrane', s: 'Product', p: '/products/adhesion-barrier/', k: 'adhesion barrier C1762 amniotic membrane laparoscopic robotic trocar da vinci chorion-free' },
-    { t: 'Advanced Biologics — Microlyte & Wraps', s: 'Product', p: '/products/advanced-biologics/', k: 'microlyte SAM A2005 tri-membrane membrane wrap lyte biolab silver antimicrobial 510k' },
+    { t: 'BioLab Sciences Biologics', s: 'Product', p: '/products/advanced-biologics/', k: 'microlyte SAM A2005 tri-membrane membrane wrap lyte biolab silver antimicrobial 510k' },
     { t: 'MicroDoc — Disposable NPWT', s: 'Product', p: '/products/microdoc/', k: 'microdoc NPWT negative pressure disposable single-use home health' },
     { t: 'Medical Supplies Wholesaler', s: 'Product', p: '/products/wholesaler/', k: 'wholesale supplies foam alginate compression surgical prep catalog hospital' },
     { t: 'Scientific Portfolio', s: 'Page', p: '/scientific-portfolio/', k: 'science evidence MMP biofilm cascade studies clinical data mechanism' },
@@ -1063,15 +525,6 @@ const isTouch = window.matchMedia('(hover: none)').matches;
 // the scroll instead of the cursor: cards light up as they cross the
 // center band of the viewport.
 // ═══════════════════════════════════════════════════════════════
-(function initTouchCardFocus(){
-  if (!isTouch || !('IntersectionObserver' in window)) return;
-  const cards = document.querySelectorAll('.product-card');
-  if (!cards.length) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => e.target.classList.toggle('is-spotlit', e.isIntersecting));
-  }, { rootMargin: '-32% 0px -32% 0px', threshold: 0 });
-  cards.forEach(c => io.observe(c));
-})();
 
 
 // ═══════════════════════════════════════════════════════════════
