@@ -1,6 +1,5 @@
-/* Small, progressive enhancements: product comparison, contact context, and brand film. */
+/* Small, progressive enhancements: product comparison and contact context. */
 (() => {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const store = {
     get(key) { try { return sessionStorage.getItem(key); } catch { return null; } },
     set(key, value) { try { sessionStorage.setItem(key, value); } catch { /* Session storage is optional. */ } }
@@ -98,28 +97,6 @@
       if(chosen.length&&message&&!message.value)message.value='I would like to discuss '+chosen.map(p=>p.name).join(', ')+'.\n\nPlease send current product information and help me review availability, training, and practice requirements.';
     }).catch(()=>{});
   }
-  function initBrandFilm(){
-    const replay=document.querySelector('[data-replay-intro]');if(!replay)return;
-    const modal=document.createElement('dialog');modal.className='brand-intro';modal.setAttribute('aria-label','Albacete MedDev brand introduction');
-    modal.innerHTML='<video muted playsinline preload="none" aria-label="Albacete MedDev animated brand mark"></video><div class="intro-controls"><span>Albacete MedDev · The introduction</span><button type="button">Enter the site →</button></div><div class="intro-progress" aria-hidden="true"></div>';
-    document.body.append(modal);const video=modal.querySelector('video');let timeout;
-    function close(){if(modal.open)modal.close();}
-    function play(){
-      const portrait=matchMedia('(max-width:600px)').matches;
-      video.src='/assets/video/albacete-ident-'+(portrait?'portrait':'landscape')+'.mp4';video.muted=true;
-      modal.showModal();modal.querySelector('button').focus();
-      store.set('amd-editorial-intro','1');clearTimeout(timeout);timeout=setTimeout(close,8500);
-      video.play().catch(close);
-    }
-    video.addEventListener('ended',close);video.addEventListener('error',close);
-    video.addEventListener('timeupdate',()=>{modal.querySelector('.intro-progress').style.transform=`scaleX(${video.duration?Math.min(1,video.currentTime/video.duration):0})`;});
-    modal.querySelector('button').addEventListener('click',close);
-    modal.addEventListener('close',()=>{clearTimeout(timeout);video.pause();});
-    replay.addEventListener('click',play);
-    if(!store.get('amd-editorial-intro')&&!reduced.matches&&!navigator.connection?.saveData&&!location.hash)play();
-    reduced.addEventListener('change',event=>{if(event.matches)close();});
-  }
-  initBrandFilm();
   if(document.querySelector('.editorial-product,.physician-home')){
     const bar=document.createElement('div');bar.className='page-progress';bar.setAttribute('aria-hidden','true');document.body.append(bar);let queued=false;
     function progress(){queued=false;const length=document.documentElement.scrollHeight-innerHeight;bar.style.transform=`scaleX(${length>0?Math.min(1,Math.max(0,scrollY/length)):0})`;}

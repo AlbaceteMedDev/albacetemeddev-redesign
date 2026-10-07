@@ -4,6 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>html.amd-intro-pending::before{content:"";position:fixed;inset:0;background:#080e16;z-index:2147483646;pointer-events:none}</style>
+<script>
+// The cover expires even if an optional asset fails; the site is always accessible.
+try {
+  if (!sessionStorage.getItem('amd-intro-v3') && !matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData && !location.hash) {
+    document.documentElement.classList.add('amd-intro-pending');
+    setTimeout(() => document.documentElement.classList.remove('amd-intro-pending'), 1800);
+  }
+} catch { /* Open the homepage directly when session storage is unavailable. */ }
+</script>
+<link rel="preload" as="image" href="/assets/img/logo-white.png"/>
 <title>Advanced Wound Care &amp; Practice Support | Albacete MedDev</title>
 <meta content="Albacete MedDev supplies wound care products and supports specialty practices with revenue cycle management, consulting, documentation, and 3D wound imaging software." name="description"/>
 <link as="font" crossorigin="" href="/assets/fonts/sora-600.woff2" rel="preload" type="font/woff2"/>
@@ -36,12 +47,10 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albacetemeddev.com/#organization","name":"Albacete MedDev","url":"https://albacetemeddev.com/","logo":"https://albacetemeddev.com/assets/img/favicon-512.png","image":"https://albacetemeddev.com/assets/img/og-image.png","description":"Medical device distribution and practice operations partner — advanced wound care products, compliance, revenue cycle, and billing support for specialty practices.","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactPoint":{"@type":"ContactPoint","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactType":"sales","areaServed":"US"},"subOrganization":[{"@type":"Organization","name":"Ovena Health","url":"https://ovenahealth.com"},{"@type":"Organization","name":"StrataMetric","url":"https://stratametricai.com"}],"sameAs":["https://ovenahealth.com","https://stratametricai.com","https://www.amazon.com/stores/OvenaHealth/page/D6AE90DA-CBED-4BB0-A25F-18FA9E66C8F8"],"knowsAbout":["Advanced wound care","Skin substitutes","Cellular and tissue-based products","Negative pressure wound therapy","Ultrasonic debridement","Wound care reimbursement","HCPCS coding","Compounded peptide therapies"],"areaServed":{"@type":"Country","name":"United States"},"slogan":"One partner. Every operational layer."},{"@type":"WebSite","@id":"https://albacetemeddev.com/#website","url":"https://albacetemeddev.com/","name":"Albacete MedDev","publisher":{"@id":"https://albacetemeddev.com/#organization"}},{"@type":"WebPage","@id":"https://albacetemeddev.com/#webpage","url":"https://albacetemeddev.com/","isPartOf":{"@id":"https://albacetemeddev.com/#website"},"publisher":{"@id":"https://albacetemeddev.com/#organization"},"inLanguage":"en-US"}]}</script>
 <link href="/assets/css/refinement.css?v=3" rel="stylesheet"/>
 <link href="/assets/css/physician.css?v=20261007b" rel="stylesheet"/>
-<link href="/assets/css/editorial.css?v=20261007-fidelity" rel="stylesheet"/></head>
+<link href="/assets/css/editorial.css?v=20261007-intro-v3" rel="stylesheet"/>
+<link href="/assets/css/intro.css?v=20261007-v3" rel="stylesheet"/></head>
 <body class="is-loaded page-home">
 <a class="skip-link" href="#main">Skip to content</a>
-<!-- ═══ SPLASH — the first home load of a session opens with the Healing Matrix ident
-       (app.js injects the video when html.ident-pending is set); the static mark
-       is the fallback if the video cannot start. ═══ -->
 <!-- ═══ NAVIGATION ═══ -->
 <nav aria-label="Primary" class="nav"><div class="nav-inner">
 <a aria-label="Albacete MedDev home" class="nav-logo" href="/"><img alt="Albacete MedDev" height="247" src="/assets/img/logo-white.png" width="720"/></a>
@@ -58,7 +67,7 @@
 <h1>Advanced wound care.<br/><em>A stronger practice.</em></h1>
 <p class="clinical-lead">The right questions lead to better decisions. Explore wound care products, examine the evidence, and find practical support for the work around patient care.</p>
 <div class="clinical-actions"><a class="clinical-button" href="/products/">Explore the portfolio <span aria-hidden="true">↗</span></a><a class="clinical-text-link" href="/evidence/">Review clinical evidence <span aria-hidden="true">→</span></a></div>
-<p class="hero-footnote">Products. Clinical resources. Practice operations.<br/>One place to start a more informed conversation.</p><p class="intro-invitation"><button class="intro-replay" data-replay-intro="" type="button"><span aria-hidden="true">▶</span>Watch our introduction</button></p>
+<p class="hero-footnote">Products. Clinical resources. Practice operations.<br/>One place to start a more informed conversation.</p><p class="intro-invitation"><button class="intro-replay" data-replay-intro="" hidden="" type="button"><span aria-hidden="true">▶</span>Watch our introduction</button></p>
 </div>
 <figure class="hero-care"><img alt="Illustrative preparation scene with a clinician, patient, AmCoreMatrix carton and reference-based membrane held in forceps" fetchpriority="high" height="1024" sizes="(max-width:800px) 100vw, 54vw" src="/assets/images/editorial/care-hero-v2.webp" srcset="/assets/images/editorial/care-hero-v2-640.webp 640w, /assets/images/editorial/care-hero-v2.webp 1280w" width="1536"/><figcaption><span><strong>Care comes first.</strong>Everything else should support it.<small>Illustrative preparation · AmCoreMatrix shown</small></span><a aria-label="Explore the clinical portfolio" href="/products/">↗</a></figcaption></figure>
 </div>
@@ -141,7 +150,8 @@
 </div>
 </div>
 </footer>
+<script defer="" src="/assets/js/intro.js?v=20261007-v3"></script>
 <script defer="" src="assets/js/app.js?v=20261007"></script>
 <script defer="" src="/assets/js/physician.js?v=20261007"></script>
-<script defer="" src="/assets/js/editorial.js?v=20261007-fidelity"></script></body>
+<script defer="" src="/assets/js/editorial.js?v=20261007-intro-v3"></script></body>
 </html>

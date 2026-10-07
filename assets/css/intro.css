@@ -1,0 +1,123 @@
+/* A viewport-native introduction. The original mark is never redrawn. */
+.intro-invitation:has([hidden]) { display: none; }
+.amd-intro {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  width: 100dvw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color: #f8f7f2;
+  --intro-gutter: clamp(24px, 4vw, 72px);
+  --intro-ink: #080e16;
+}
+.amd-intro::backdrop { background: transparent; }
+html:has(.amd-intro[open]), body:has(.amd-intro[open]) { overflow: hidden; }
+.amd-intro__surface {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 45%, #14232c 0%, #0b131d 48%, var(--intro-ink) 85%);
+}
+.amd-intro__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.amd-intro__top {
+  position: absolute;
+  top: max(30px, env(safe-area-inset-top));
+  left: max(var(--intro-gutter), env(safe-area-inset-left));
+  right: max(var(--intro-gutter), env(safe-area-inset-right));
+  padding-bottom: 19px;
+  border-bottom: 1px solid #cbd5e11c;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #b0bcc3;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.amd-intro__edition { color: #d5b575; }
+.amd-intro__identity {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  width: min(60vw, 820px, 110vh);
+  text-align: center;
+}
+.amd-intro__logo { display: block; width: 100%; height: auto; }
+.amd-intro__descriptor {
+  margin: clamp(24px, 4vh, 46px) 0 0;
+  font-family: var(--font-body, sans-serif);
+  font-size: clamp(10px, 1vw, 13px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: .32em;
+  color: #c4cdc8;
+}
+.amd-intro__footer {
+  position: absolute;
+  left: max(var(--intro-gutter), env(safe-area-inset-left));
+  right: max(var(--intro-gutter), env(safe-area-inset-right));
+  bottom: max(30px, env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding-top: 22px;
+  border-top: 1px solid #cbd5e12b;
+}
+.amd-intro__caption { margin: 0; font-size: 12px; line-height: 1.7; color: #b1bec3; }
+.amd-intro__caption span { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #78908e; }
+.amd-intro__controls { display: flex; gap: 14px; align-items: center; }
+.amd-intro button {
+  min-height: 48px;
+  border-radius: 0;
+  border: 1px solid #a5b8b747;
+  background: transparent;
+  color: #f8f7f2;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .18s, border-color .18s;
+}
+.amd-intro button:hover { background: #ffffff0c; border-color: #c9d1c999; }
+.amd-intro button:focus-visible { outline: 2px solid #e6c991; outline-offset: 5px; }
+.amd-intro__pause { width: 48px; display: grid; place-items: center; }
+.amd-intro__pause svg { width: 13px; height: 13px; fill: currentColor; }
+.amd-intro__pause[aria-pressed="false"] .intro-play,
+.amd-intro__pause[aria-pressed="true"] .intro-pause { display: none; }
+.amd-intro__enter { padding: 0 22px; display: flex; align-items: center; gap: 40px; }
+.amd-intro__enter span { font-size: 21px; line-height: 1; color: #d5b575; }
+.amd-intro__progress { position: absolute; top: -1px; left: 0; height: 1px; width: 100%; background: #d5b575; transform: scaleX(0); transform-origin: left; }
+.amd-intro__flight { position: fixed; z-index: 2; object-fit: contain; transform-origin: top left; pointer-events: none; }
+.amd-intro.is-leaving .amd-intro__surface { animation: intro-curtain .65s cubic-bezier(.76, 0, .24, 1) both; }
+.amd-intro.is-leaving .amd-intro__top,
+.amd-intro.is-leaving .amd-intro__footer { opacity: 0; transition: opacity .18s; }
+@keyframes intro-curtain { to { clip-path: inset(0 0 100% 0); } }
+@media (max-width: 600px) {
+  .amd-intro__identity { width: 83vw; top: 45%; }
+  .amd-intro__top { top: max(25px, env(safe-area-inset-top)); font-size: 8px; letter-spacing: .1em; }
+  .amd-intro__edition { display: none; }
+  .amd-intro__descriptor { font-size: 9px; letter-spacing: .22em; margin-top: 28px; }
+  .amd-intro__footer { align-items: stretch; flex-direction: column; gap: 18px; bottom: max(24px, env(safe-area-inset-bottom)); }
+  .amd-intro__caption { font-size: 12px; }
+  .amd-intro__caption span { display: none; }
+  .amd-intro__controls { justify-content: space-between; }
+  .amd-intro__enter { flex: 1; max-width: 250px; justify-content: space-between; }
+}
+@media (max-height: 480px) and (min-width: 601px) {
+  .amd-intro__identity { width: min(45vw, 70vh); top: 44%; }
+  .amd-intro__descriptor { margin-top: 16px; font-size: 9px; letter-spacing: .2em; }
+  .amd-intro__top { top: 20px; padding-bottom: 12px; }
+  .amd-intro__footer { bottom: 20px; padding-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .amd-intro *, .amd-intro.is-leaving .amd-intro__surface { animation: none !important; transition: none !important; }
+}
