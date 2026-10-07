@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="no-splash">
+<html lang="en" class="no-splash science-document">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wound Care Science — The Full Cascade | Albacete MedDev</title>
-  <meta name="description" content="Eleven platforms mapped to five failure points of the chronic wound cascade — preparation, MMP neutralization, biofilm control, matrix regeneration, and pressure management.">
+  <title>Scientific Portfolio — Materials & Evidence | Albacete MedDev</title>
+  <meta name="description" content="A clinical reference to the materials, devices and published studies in the Albacete MedDev wound care portfolio. Read study context and find product-specific sources.">
   <link rel="preload" href="/assets/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css?v=52">
@@ -22,695 +22,22 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Albacete MedDev">
   <meta property="og:url" content="https://albacetemeddev.com/scientific-portfolio/">
-  <meta property="og:title" content="Wound Care Science — The Full Cascade | Albacete MedDev">
-  <meta property="og:description" content="Eleven platforms mapped to five failure points of the chronic wound cascade — preparation, MMP neutralization, biofilm control, matrix regeneration, and pressure management.">
+  <meta property="og:title" content="Scientific Portfolio — Materials & Evidence | Albacete MedDev">
+  <meta property="og:description" content="A clinical reference to the materials, devices and published studies in the Albacete MedDev wound care portfolio. Read study context and find product-specific sources.">
   <meta property="og:image" content="https://albacetemeddev.com/assets/img/og-image.png?v=3">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Wound Care Science — The Full Cascade | Albacete MedDev">
-  <meta name="twitter:description" content="Eleven platforms mapped to five failure points of the chronic wound cascade — preparation, MMP neutralization, biofilm control, matrix regeneration, and pressure management.">
+  <meta name="twitter:title" content="Scientific Portfolio — Materials & Evidence | Albacete MedDev">
+  <meta name="twitter:description" content="A clinical reference to the materials, devices and published studies in the Albacete MedDev wound care portfolio. Read study context and find product-specific sources.">
   <meta name="twitter:image" content="https://albacetemeddev.com/assets/img/og-image.png?v=3">
   <!-- Structured data -->
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://albacetemeddev.com/"},{"@type":"ListItem","position":2,"name":"Scientific Portfolio","item":"https://albacetemeddev.com/scientific-portfolio/"}]},{"@type":"WebPage","@id":"https://albacetemeddev.com/scientific-portfolio/#webpage","url":"https://albacetemeddev.com/scientific-portfolio/","isPartOf":{"@id":"https://albacetemeddev.com/#website"},"publisher":{"@id":"https://albacetemeddev.com/#organization"},"inLanguage":"en-US"}]}</script>
-  <style>
-    /* ═══ Scientific Portfolio page-specific styles ═══ */
-    .sp-hero-stats{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s-4);
-      margin-top: var(--s-5);
-      padding-top: var(--s-4);
-      border-top: 1px solid var(--ink-3);
-    }
-    .sp-hero-stats .stat .value{
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .sp-hero-stats .stat .desc{
-      font-size: var(--t-sm);
-      color: var(--fog);
-      margin-top: 8px;
-      line-height: 1.4;
-    }
-    @media (max-width: 768px){
-      .sp-hero-stats{grid-template-columns: repeat(2, 1fr)}
-    }
-
-    /* Radio-button tabs (no JS) */
-    .sp-radio{position: absolute; opacity: 0; pointer-events: none}
-    .sp-tabs{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 8px;
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-pill);
-      margin-bottom: var(--s-5);
-      position: sticky;
-      top: calc(var(--nav-h) + 12px);
-      z-index: 50;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-    }
-    .sp-tabs label{
-      flex: 1;
-      min-width: max-content;
-      padding: 12px 18px;
-      border-radius: var(--r-pill);
-      text-align: center;
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--fog);
-      cursor: pointer;
-      transition: all var(--dur-fast) var(--ease-out-quart);
-      white-space: nowrap;
-    }
-    .sp-tabs label:hover{color: var(--snow); background: var(--ink-2)}
-    #sp-r1:checked ~ .sp-tabs label[for="sp-r1"],
-    #sp-r2:checked ~ .sp-tabs label[for="sp-r2"],
-    #sp-r3:checked ~ .sp-tabs label[for="sp-r3"],
-    #sp-r4:checked ~ .sp-tabs label[for="sp-r4"],
-    #sp-r5:checked ~ .sp-tabs label[for="sp-r5"],
-    #sp-r6:checked ~ .sp-tabs label[for="sp-r6"],
-    #sp-r7:checked ~ .sp-tabs label[for="sp-r7"],
-    #sp-r8:checked ~ .sp-tabs label[for="sp-r8"],
-    #sp-r9:checked ~ .sp-tabs label[for="sp-r9"]{
-      background: var(--gold);
-      color: var(--ink);
-    }
-
-    @media (max-width: 760px){
-      .sp-tabs{flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-radius: var(--r-lg)}
-      .sp-tabs::-webkit-scrollbar{display: none}
-      .sp-tabs label{flex-shrink: 0}
-    }
-
-    @media (min-width: 761px){
-      .sp-tabs{gap: 4px}
-      .sp-tabs label{padding: 9px 10px; font-size: 10px; letter-spacing: 0.04em}
-    }
-
-    /* Panels — show/hide based on radio */
-    .sp-panel{display: none; animation: fadeInUp 500ms var(--ease-out-expo)}
-    #sp-r1:checked ~ #p1,
-    #sp-r2:checked ~ #p2,
-    #sp-r3:checked ~ #p3,
-    #sp-r4:checked ~ #p4,
-    #sp-r5:checked ~ #p5,
-    #sp-r6:checked ~ #p6,
-    #sp-r7:checked ~ #p7,
-    #sp-r8:checked ~ #p8,
-    #sp-r9:checked ~ #p9{display: block}
-    @keyframes fadeInUp{
-      from{opacity: 0; transform: translateY(12px)}
-      to{opacity: 1; transform: translateY(0)}
-    }
-
-    /* Common panel components */
-    .sp-eyebrow{
-      display: inline-flex;
-      padding: 6px 14px;
-      background: var(--gold-dim);
-      color: var(--gold);
-      border-radius: var(--r-pill);
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: var(--s-3);
-    }
-    .sp-panel h2{
-      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--s-3);
-      max-width: 880px;
-    }
-    .sp-panel > p.lead{
-      font-size: var(--t-lg);
-      color: var(--fog);
-      line-height: 1.6;
-      max-width: 720px;
-      margin-bottom: var(--s-5);
-    }
-
-    /* Problem cards */
-    .problem-grid{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s-3);
-      margin-bottom: var(--s-6);
-    }
-    .problem-card{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-top: 2px solid var(--problem-color, var(--gold));
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-    }
-    .problem-card h4{
-      font-family: var(--font-display);
-      font-size: var(--t-base);
-      font-weight: 600;
-      color: var(--problem-color, var(--gold));
-      margin-bottom: 10px;
-      letter-spacing: 0;
-    }
-    .problem-card p{
-      color: var(--fog);
-      font-size: var(--t-sm);
-      line-height: 1.55;
-    }
-    @media (max-width: 900px){.problem-grid{grid-template-columns: repeat(2, 1fr)}}
-
-    /* Cascade reset strip */
-    .cascade-strip{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--s-2);
-      margin-top: var(--s-3);
-    }
-    .cascade-step{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-      position: relative;
-      overflow: hidden;
-    }
-    .cascade-step::before{
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--step-color, var(--gold));
-    }
-    .cascade-step .step-label{
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--step-color, var(--gold));
-      margin-bottom: 8px;
-    }
-    .cascade-step h4{
-      font-size: var(--t-xl);
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--snow);
-    }
-    .cascade-step p{color: var(--fog); font-size: var(--t-sm); line-height: 1.5}
-    @media (max-width: 768px){.cascade-strip{grid-template-columns: 1fr}}
-
-    /* Layer row (amnion architecture) */
-    .layer-row{
-      display: grid;
-      grid-template-columns: 1fr 240px;
-      gap: var(--s-3);
-      margin-bottom: var(--s-2);
-    }
-    .layer-body{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-left: 4px solid var(--layer-color, var(--gold));
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-    }
-    .layer-body h4{
-      font-family: var(--font-display);
-      font-size: var(--t-lg);
-      font-weight: 700;
-      color: var(--snow);
-      margin-bottom: 10px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .layer-body p{color: var(--fog); font-size: var(--t-sm); line-height: 1.7; margin-bottom: 4px}
-    .layer-body p strong{color: var(--mist); font-weight: 500}
-    .layer-callout{
-      background: var(--ink-1);
-      border: 1px solid var(--layer-color, var(--gold));
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .layer-callout .title{
-      font-family: var(--font-display);
-      font-size: var(--t-base);
-      font-weight: 600;
-      color: var(--layer-color, var(--gold));
-      margin-bottom: 4px;
-    }
-    .layer-callout .note{font-size: var(--t-sm); color: var(--mist); line-height: 1.5}
-    @media (max-width: 900px){.layer-row{grid-template-columns: 1fr}}
-
-    /* Tier product cards */
-    .tier-grid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--s-3);
-      margin-top: var(--s-4);
-    }
-    .tier-card{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-    }
-    .tier-card .tier-tag{
-      display: inline-flex;
-      padding: 4px 10px;
-      background: var(--gold-dim);
-      color: var(--gold);
-      border-radius: var(--r-pill);
-      font-family: var(--font-display);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .tier-card h4{
-      font-family: var(--font-display);
-      font-size: var(--t-lg);
-      font-weight: 600;
-      color: var(--snow);
-      margin-bottom: 6px;
-    }
-    .tier-card .best-for{
-      font-size: var(--t-xs);
-      color: var(--gold);
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-    .tier-card p{color: var(--fog); font-size: var(--t-sm); line-height: 1.55}
-    @media (max-width: 900px){.tier-grid{grid-template-columns: 1fr}}
-
-    /* Microlyte comparison */
-    .compare-grid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s-3);
-      margin-bottom: var(--s-5);
-    }
-    .compare-card{
-      padding: var(--s-4);
-      border-radius: var(--r-md);
-      border: 1px dashed;
-    }
-    .compare-card.bad{
-      background: rgba(200, 80, 80, 0.05);
-      border-color: rgba(200, 80, 80, 0.35);
-    }
-    .compare-card.good{
-      background: rgba(120, 180, 140, 0.05);
-      border-color: rgba(120, 180, 140, 0.35);
-    }
-    .compare-card h4{
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: var(--s-2);
-    }
-    .compare-card.bad h4{color: #d57373}
-    .compare-card.good h4{color: #7fba95}
-    .compare-card .illus{
-      padding: var(--s-3) 0;
-      text-align: center;
-      font-size: var(--t-sm);
-      color: var(--mist);
-      line-height: 1.7;
-    }
-    .compare-card .metric{
-      padding-top: var(--s-2);
-      border-top: 1px solid var(--ink-3);
-      font-size: var(--t-sm);
-      color: var(--fog);
-      line-height: 1.6;
-    }
-    .compare-card .metric strong{color: var(--snow); font-weight: 500}
-    .compare-card .tag{
-      display: inline-block;
-      margin-top: var(--s-2);
-      padding: 6px 12px;
-      border-radius: var(--r-sm);
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .compare-card.bad .tag{background: rgba(200, 80, 80, 0.15); color: #d57373}
-    .compare-card.good .tag{background: rgba(120, 180, 140, 0.15); color: #7fba95}
-    @media (max-width: 768px){.compare-grid{grid-template-columns: 1fr}}
-
-    /* ═══ Microlyte SAM comparison animations — ONE-SHOT (play and stop) ═══ */
-    /* Triggered by .is-animating class set via IntersectionObserver */
-
-    /* LEFT — rigid bar tilts down and lands ON both wound peaks; middle
-       void sits in the gap between bar bottom and wound surface (doesn't
-       pass through the surface) */
-    .sam-rigid-group{
-      transform-box: view-box;
-      transform-origin: 120px 27px;
-    }
-    .sam-rigid-group.is-animating{
-      animation: sam-rigid-fall 2.4s cubic-bezier(0.4, 0.1, 0.2, 1) 1 forwards;
-    }
-    @keyframes sam-rigid-fall{
-      0%   { transform: translateY(0) rotate(0deg) }
-      /* Pushes down all the way onto the actual wound peaks.
-         Bar bottom at x=60 lands at ~y=68 (peak 1), at x=210 at ~y=60 (peak 2) */
-      100% { transform: translateY(34px) rotate(-3deg) }
-    }
-
-    .sam-void{
-      transform-box: fill-box;
-      transform-origin: center center;
-    }
-
-    /* Middle void — pushed DOWN by the dressing, resting ON the wound
-       surface (bottom of void at wound-surface top, not through it) */
-    .sam-void-mid{
-      transform-box: view-box;
-      transform-origin: 128px 56px;
-    }
-    .sam-void-mid.is-animating{
-      animation: sam-void-push-down 2.4s cubic-bezier(0.4, 0.1, 0.2, 1) 1 forwards;
-    }
-    @keyframes sam-void-push-down{
-      0%   { transform: translateY(0); opacity: 0.95 }
-      /* translateY 22 → void center lands at y=78 (bottom y=87, wound top y=88) */
-      100% { transform: translateY(22px); opacity: 0.9 }
-    }
-
-    /* Left + right voids get vertically squished between bar + peaks */
-    .sam-void-left.is-animating,
-    .sam-void-right.is-animating{
-      animation: sam-void-squish 2.4s cubic-bezier(0.4, 0.1, 0.2, 1) 1 forwards;
-    }
-    @keyframes sam-void-squish{
-      0%   { transform: scaleY(1); opacity: 0.95 }
-      100% { transform: scaleY(0.32); opacity: 0.55 }
-    }
-
-    /* RIGHT — PVA film feather-falls + settles onto the contour, then STOPS */
-    .sam-pva-group{
-      transform-box: view-box;
-    }
-    .sam-pva-group.is-animating{
-      animation: sam-pva-feather 2.8s cubic-bezier(0.37, 0, 0.63, 1) 1 forwards;
-    }
-    @keyframes sam-pva-feather{
-      0%   { transform: translate(-6px, -32px) rotate(-2deg) }
-      22%  { transform: translate(5px, -22px) rotate(2deg) }
-      40%  { transform: translate(-4px, -14px) rotate(-1.5deg) }
-      58%  { transform: translate(3px, -7px) rotate(1deg) }
-      78%  { transform: translate(-1px, -2px) rotate(-0.3deg) }
-      100% { transform: translate(0, 0) rotate(0) }
-    }
-
-    .sam-contact{
-      opacity: 0;
-      transform-box: fill-box;
-      transform-origin: center center;
-    }
-    .sam-contact.is-animating{
-      animation: sam-contact-appear 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards;
-    }
-    @keyframes sam-contact-appear{
-      0%   { opacity: 0; transform: scale(0.2) }
-      60%  { opacity: 1; transform: scale(1.35) }
-      100% { opacity: 1; transform: scale(1) }
-    }
-
-    /* Respect reduced-motion */
-    @media (prefers-reduced-motion: reduce){
-      .sam-rigid-group, .sam-void-left, .sam-void-right, .sam-void-mid,
-      .sam-pva-group, .sam-contact{ animation: none !important }
-      .sam-contact{ opacity: 1 }
-    }
-
-    /* Evidence stat block */
-    .evidence-band{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-lg);
-      padding: var(--s-5) var(--s-4);
-      margin: var(--s-4) 0;
-    }
-    .evidence-band .band-title{
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: var(--s-3);
-    }
-    .evidence-grid{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s-3);
-    }
-    .evidence-grid .ev-value{
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .evidence-grid .ev-label{
-      font-size: var(--t-xs);
-      color: var(--fog);
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-    .evidence-footnote{
-      margin-top: var(--s-3);
-      padding-top: var(--s-2);
-      border-top: 1px solid var(--ink-3);
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--fog);
-    }
-    @media (max-width: 768px){.evidence-grid{grid-template-columns: repeat(2, 1fr); gap: var(--s-4)}}
-
-    /* Three-box science grid (Microlyte polymer science) */
-    .sci-grid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--s-3);
-      margin-bottom: var(--s-4);
-    }
-    .sci-card{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-    }
-    .sci-card h4{
-      font-family: var(--font-display);
-      font-size: var(--t-base);
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-    .sci-card p{color: var(--fog); font-size: var(--t-sm); line-height: 1.55}
-    @media (max-width: 900px){.sci-grid{grid-template-columns: 1fr}}
-
-    /* Cascade flow (collagen panel) */
-    .flow-grid{
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: var(--s-2);
-      align-items: stretch;
-      margin: var(--s-4) 0 var(--s-3);
-    }
-    .flow-box{
-      padding: var(--s-3);
-      border-radius: var(--r-md);
-      border: 1px solid;
-    }
-    .flow-box.bad{background: rgba(200,80,80,0.06); border-color: rgba(200,80,80,0.3)}
-    .flow-box.mid{background: rgba(212,169,74,0.08); border-color: rgba(212,169,74,0.4)}
-    .flow-box.good{background: rgba(120,180,140,0.05); border-color: rgba(120,180,140,0.3)}
-    .flow-box h5{
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .flow-box.bad h5{color: #d57373}
-    .flow-box.mid h5{color: var(--gold)}
-    .flow-box.good h5{color: #7fba95}
-    .flow-box p{font-size: var(--t-xs); line-height: 1.6; color: var(--fog)}
-    .flow-box p strong{color: var(--mist); font-weight: 500}
-    .flow-arrow{
-      display: flex;
-      align-items: center;
-      color: var(--gold);
-      font-size: 20px;
-    }
-    @media (max-width: 900px){
-      .flow-grid{grid-template-columns: 1fr}
-      .flow-arrow{transform: rotate(90deg); justify-content: center; padding: var(--s-1) 0}
-    }
-
-    /* Matrikine callout */
-    .matrikine-box{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-md);
-      padding: var(--s-4);
-      margin-bottom: var(--s-4);
-    }
-    .matrikine-box .mk-title{
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--snow);
-      margin-bottom: var(--s-2);
-      text-align: center;
-    }
-    .matrikine-grid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s-4);
-    }
-    .matrikine-item h5{
-      font-family: var(--font-display);
-      font-size: var(--t-base);
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .matrikine-item p{color: var(--fog); font-size: var(--t-sm); line-height: 1.5}
-    @media (max-width: 640px){.matrikine-grid{grid-template-columns: 1fr}}
-
-    /* Two-pathway evidence strip */
-    .path-evidence{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s-3);
-    }
-    .path-ev{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-    }
-    .path-ev .path-label{
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: var(--s-2);
-    }
-    .path-ev-stats{display: flex; gap: var(--s-3); flex-wrap: wrap}
-    .path-ev-stat .v{
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-    .path-ev-stat .l{
-      font-size: var(--t-xs);
-      color: var(--fog);
-      margin-top: 6px;
-      line-height: 1.4;
-    }
-    @media (max-width: 768px){.path-evidence{grid-template-columns: 1fr}}
-
-    /* Decision table */
-    .decision-table{
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin-bottom: var(--s-4);
-      border: 1px solid var(--ink-3);
-      border-radius: var(--r-md);
-      overflow: hidden;
-    }
-    .decision-table thead{background: var(--ink-1)}
-    .decision-table th{
-      text-align: left;
-      padding: 14px 16px;
-      font-family: var(--font-display);
-      font-size: var(--t-xs);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border-bottom: 1px solid var(--ink-3);
-    }
-    .decision-table td{
-      padding: 14px 16px;
-      font-size: var(--t-sm);
-      color: var(--fog);
-      line-height: 1.5;
-      border-bottom: 1px solid var(--ink-3);
-      vertical-align: top;
-    }
-    .decision-table tr:last-child td{border-bottom: none}
-    .decision-table td.presentation{color: var(--snow); font-weight: 500; font-family: var(--font-display)}
-    .decision-table td.product{color: var(--gold); font-weight: 500; font-family: var(--font-display)}
-    @media (max-width: 900px){
-      .decision-table thead{display: none}
-      .decision-table, .decision-table tbody, .decision-table tr, .decision-table td{display: block}
-      .decision-table tr{border-bottom: 1px solid var(--ink-3); padding: var(--s-2) 0}
-      .decision-table td{border: none; padding: 6px 16px}
-      .decision-table td.presentation{padding-top: var(--s-2)}
-    }
-
-    /* Compliance triple */
-    .compliance-card{
-      background: var(--ink-1);
-      border: 1px solid var(--ink-3);
-      border-left: 3px solid var(--gold);
-      border-radius: var(--r-md);
-      padding: var(--s-3);
-    }
-    .compliance-card h5{
-      font-family: var(--font-display);
-      font-size: var(--t-base);
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-    .compliance-card p{color: var(--fog); font-size: var(--t-sm); line-height: 1.55}
-  </style>
-  <link rel="stylesheet" href="/assets/css/refinement.css?v=2">
+<link rel="stylesheet" href="/assets/css/refinement.css?v=2">
   <link rel="stylesheet" href="/assets/css/physician.css?v=20261007b">
+<link rel="stylesheet" href="/assets/css/scientific.css?v=20261007-editorial">
 </head>
-<body class="is-loaded">
+<body class="is-loaded science-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
 
@@ -723,647 +50,135 @@
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
 <a href="/products/">Products &amp; solutions</a><a href="/evidence/">Clinical evidence</a><a href="/scientific-portfolio/">Scientific portfolio</a><a href="/services/">Practice services</a><a href="/software/">Software</a><a href="/portal/">Provider portal</a><a href="/amazon-store/">Ovena Health</a><a href="/about/">About Albacete</a><a href="/contact/" class="mobile-cta">Talk with our team ↗</a></div>
 
-  <main id="main">
-
-    <!-- HERO -->
-    <section class="hero hero-compact">
-      <div class="container hero-inner">
-        <div class="hero-chip" data-reveal style="--reveal-delay: 0">
-          <span class="dot"></span>
-          <span>PHYSICIAN-FACING SCIENTIFIC PORTFOLIO</span>
-        </div>
-        <h1 data-reveal style="--reveal-delay: 1">
-          Eleven platforms.<br>
-          <span style="white-space:nowrap">One <em>wound healing</em> cascade.</span>
-        </h1>
-        <p class="hero-sub" data-reveal style="--reveal-delay: 2">
-          From ultrasonic preparation and MMP-neutralizing collagen to antimicrobial matrices, placental allografts, ECM scaffolds and negative pressure &mdash; every platform we carry targets a distinct failure point in the chronic wound proteolytic cascade.
-        </p>
-
-        <div class="sp-hero-stats" data-reveal style="--reveal-delay: 3">
-          <div class="stat"><div class="value">30&times;</div><div class="desc">MMP activity: chronic vs. acute wounds</div></div>
-          <div class="stat"><div class="value">60&ndash;90%</div><div class="desc">of chronic wounds harbor biofilm</div></div>
-          <div class="stat"><div class="value">99.99%</div><div class="desc">Microlyte antimicrobial efficacy</div></div>
-          <div class="stat"><div class="value">91%</div><div class="desc">of refractory wounds healed / improved at 12 wk</div></div>
-        </div>
+  <main id="main" class="science-main">
+  <header class="science-hero science-wrap">
+    <nav class="science-breadcrumb" aria-label="Breadcrumb"><a href="/evidence/">Clinical resources</a><span aria-hidden="true">/</span><span>Scientific portfolio</span></nav>
+    <div class="science-hero-grid">
+      <div>
+        <p class="science-kicker">A reference for healthcare professionals</p>
+        <h1>Scientific<br> portfolio.</h1>
+        <p class="science-deck">An overview of the materials, devices and published research in our wound care portfolio.</p>
+        <div class="science-hero-links"><a href="#materials">Read the portfolio <span aria-hidden="true">↓</span></a><a href="#product-reference">Find a product <span aria-hidden="true">↗</span></a></div>
       </div>
-    </section>
-
-    <!-- TAB-BASED SCIENTIFIC PORTFOLIO -->
-    <section class="section" style="padding-top: var(--s-4)">
-      <div class="container">
-
-        <input type="radio" name="sp-tabs" id="sp-r1" class="sp-radio" checked>
-        <input type="radio" name="sp-tabs" id="sp-r2" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r3" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r4" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r5" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r6" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r7" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r8" class="sp-radio">
-        <input type="radio" name="sp-tabs" id="sp-r9" class="sp-radio">
-
-        <div class="sp-tabs" role="tablist">
-          <label for="sp-r1" role="tab">Overview</label>
-          <label for="sp-r2" role="tab">The Problem</label>
-          <label for="sp-r3" role="tab">Amniotic Membrane</label>
-          <label for="sp-r4" role="tab">Microlyte SAM</label>
-          <label for="sp-r5" role="tab">Collagen Science</label>
-          <label for="sp-r6" role="tab">Clinical Framework</label>
-          <label for="sp-r8" role="tab">Matrix Science</label>
-          <label for="sp-r9" role="tab">Prep &amp; Adjuncts</label>
-          <label for="sp-r7" role="tab">Evidence Base</label>
+      <figure class="science-cover">
+        <img src="/assets/images/editorial/amchoplast.webp" srcset="/assets/images/editorial/amchoplast-640.webp 640w, /assets/images/editorial/amchoplast.webp 1280w" sizes="(max-width:600px) 100vw, 50vw" width="1280" height="854" fetchpriority="high" alt="Illustrative product photograph showing the AmchoPlast package on a clinical counter">
+        <figcaption>AmchoPlast · Dehydrated placental membrane<span>Illustrative product photograph</span></figcaption>
+      </figure>
+    </div>
+    <div class="science-issue"><span>Albacete MedDev / Wound care</span><span>Materials, study notes &amp; source documents</span></div>
+  </header>
+  <div class="science-reader science-wrap">
+    <details class="science-toc" open>
+      <summary>In this portfolio <span aria-hidden="true"></span></summary>
+      <nav aria-label="Portfolio chapters">
+        <p class="science-toc-title">In this portfolio</p>
+        <ol>
+          <li><a href="#materials"><span>01</span>Materials &amp; membranes</a></li>
+          <li><a href="#dressings"><span>02</span>Dressings &amp; matrices</a></li>
+          <li><a href="#devices"><span>03</span>Devices &amp; adjuncts</a></li>
+          <li><a href="#study-notes"><span>04</span>Notes on the evidence</a></li>
+          <li><a href="#product-reference"><span>05</span>Product reference</a></li>
+        </ol>
+      </nav>
+      <div class="science-toc-footer"><a href="/evidence/">Full evidence library ↗</a><button type="button" data-print-science hidden>Print this reference</button></div>
+    </details>
+    <div class="science-chapters">
+      <section id="materials" class="science-chapter" aria-labelledby="materials-title">
+        <span class="science-anchor" id="p1"></span><span class="science-anchor" id="p3"></span><span class="science-anchor" id="p8"></span>
+        <p class="science-section-label"><span>01</span><span>Materials &amp; membranes</span></p>
+        <h2 id="materials-title">Tissue source, structure and processing.</h2>
+        <p>A membrane, a particulate matrix and an autologous clot differ in source, structure and preparation. Those differences are the starting point for a product review.</p>
+        <p>For a placental membrane, identify the tissues retained, the processing method and the supplied format. Then look for clinical research on that exact product.</p>
+        <dl class="science-materials">
+          <div><dt>Placental membranes<small>Sheet formats</small></dt><dd>AmchoPlast retains amnion, intermediate layer and chorion in a dehydrated sheet. The portfolio also includes hydrated membranes, single-layer amnion and other multilayer constructions. Product-specific handling instructions belong alongside the material description.<br><a href="/products/amchoplast/">AmchoPlast</a><a href="/products/membrane-wrap-hydro/">Membrane Wrap Hydro</a><a href="/products/activate/">Activate Matrix</a></dd></div>
+          <div><dt>Connective tissue &amp; ECM<small>Sheets &amp; particulates</small></dt><dd>Extracellular matrix (ECM) products vary in tissue source and physical form. Review the composition and intended use of each product, including whether it is supplied as a sheet, powder, particulate or flowable material.<br><a href="/products/interfyl/">Interfyl</a><a href="/products/xcellistem/">XCelliStem</a><a href="/products/myriad-matrix/">Myriad Matrix</a></dd></div>
+          <div><dt>Autologous preparations<small>Point-of-care systems</small></dt><dd>ActiGraft is a system for preparing a whole-blood clot from the patient’s own blood. Its preparation requirements and evidence should be reviewed separately from those of donated-tissue allografts.<br><a href="/products/actigraft/">ActiGraft</a><a href="/evidence/#ev-actigraft">Studies &amp; records</a></dd></div>
+        </dl>
+        <aside class="science-note"><strong>When comparing membranes</strong><p>Layer count describes construction. A claim of better healing needs a clinical comparison. Check the product studied, the wound population and the treatment used in the comparison group.</p></aside>
+        <p class="science-inline-source">Material reference: <a href="https://www.cellutionbiologics.com/products/amchoplast" target="_blank" rel="noopener">Cellution Biologics · AmchoPlast</a></p>
+      </section>
+      <section id="dressings" class="science-chapter" aria-labelledby="dressings-title">
+        <span class="science-anchor" id="p2"></span><span class="science-anchor" id="p4"></span><span class="science-anchor" id="p5"></span>
+        <p class="science-section-label"><span>02</span><span>Dressings &amp; matrices</span></p>
+        <h2 id="dressings-title">Polymer and collagen-based dressings.</h2>
+        <p>Product descriptions often begin with a material or a proposed mechanism: collagen, silver, a polymer scaffold. A useful review also considers the indicated use, application requirements and the evidence in patients.</p>
+        <div class="science-dressing">
+          <figure><img src="/assets/images/editorial/microlyte-v2.webp" srcset="/assets/images/editorial/microlyte-v2-640.webp 640w, /assets/images/editorial/microlyte-v2.webp 1280w" sizes="(max-width:1100px) 80vw, 35vw" width="1280" height="854" loading="lazy" alt="Illustrative product photograph showing Microlyte Matrix packaging"><figcaption>Microlyte · Illustrative product photograph</figcaption></figure>
+          <div><h3>Microlyte</h3><p>A synthetic, bioresorbable polymer matrix containing silver. The manufacturer describes its antimicrobial performance and material characteristics; the human pilot study answers a different question about wound progress over time.</p><a class="science-text-link" href="#study-notes">Read the study note <span aria-hidden="true">↓</span></a><p class="science-inline-source"><a href="https://imbedbio.com/products/microlyte/" target="_blank" rel="noopener">Manufacturer reference ↗</a></p></div>
         </div>
-
-        <!-- PANEL 1: OVERVIEW -->
-        <div id="p1" class="sp-panel">
-          <span class="sp-eyebrow">Overview</span>
-          <h2>Five failure points. <em style="font-style:normal;color:var(--gold)">Eleven platforms, each in its place.</em></h2>
-          <p class="lead">Chronic wounds stall in a self-amplifying proteolytic cycle. Each phase below names its failure driver and the platforms that address it &mdash; together, they reset the cascade.</p>
-
-          <div class="cascade-strip">
-            <div class="cascade-step" style="--step-color:#93a83f">
-              <div class="step-label">Prepare</div>
-              <h4>Debride &amp; Cleanse</h4>
-              <p>Ultrasonic wound-bed preparation: Qoustic 35&nbsp;kHz contact debridement, UltraMist non-contact cleansing &mdash; the cascade resets only on a clean bed.</p>
-            </div>
-            <div class="cascade-step" style="--step-color:#7fb5ba">
-              <div class="step-label">Neutralize</div>
-              <h4>Collagen Systems</h4>
-              <p>Sacrificial substrate sequesters excess MMPs &mdash; collagen dressings and the APIS&reg; collagen&nbsp;+&nbsp;Manuka composite. Restores protease balance.</p>
-            </div>
-            <div class="cascade-step" style="--step-color:var(--gold)">
-              <div class="step-label">Protect</div>
-              <h4>Microlyte SAM</h4>
-              <p>Sub-cytotoxic silver breaks the biofilm cycle. Bioresorbable scaffold supports granulation. No removal trauma.</p>
-            </div>
-            <div class="cascade-step" style="--step-color:#a0b5d8">
-              <div class="step-label">Regenerate</div>
-              <h4>Matrices &amp; Allografts</h4>
-              <p>Placental membranes (Palisade, Sentry), particulate CTM (Interfyl), multi-tissue ECM (XCelliStem), autologous clot (ActiGraft+).</p>
-            </div>
-            <div class="cascade-step" style="--step-color:#c4789a">
-              <div class="step-label">Manage</div>
-              <h4>Negative Pressure</h4>
-              <p>MicroDoc disposable NPWT carries exudate management and tissue approximation from clinic to home.</p>
-            </div>
-          </div>
-
-          <div style="margin-top: var(--s-5); padding: var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-lg); display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--s-3);">
-            <div>
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Antimicrobial</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Microlyte SAM</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">FDA 510(k) K153756</div>
-            </div>
-            <div>
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Tri-Layer</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Tri-Membrane Wrap</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">A-C-A, escalation product</div>
-            </div>
-            <div>
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Dual-Layer</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Membrane Wrap</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">2&times; ECM + GF payload</div>
-            </div>
-            <div>
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Single Amnion</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Membrane Wrap Lite</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Cost-effective entry</div>
-            </div>
-            <a href="/products/palisade" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Dual-Membrane</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Palisade&reg;</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">361 HCT/P &middot; Q4350</div>
-            </a>
-            <a href="/products/sentry-sl" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Single Amnion</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Sentry&trade; SL</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">361 HCT/P &middot; Q4348</div>
-            </a>
-            <a href="/products/interfyl" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Particulate CTM</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Interfyl&reg;</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">361 HCT/P &middot; Q4171</div>
-            </a>
-            <a href="/products/apis" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Collagen + Honey</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">APIS&reg;</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K182725</div>
-            </a>
-            <a href="/products/xcellistem" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Multi-Tissue ECM</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">XCelliStem&trade;</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K172593 &middot; A2004</div>
-            </a>
-            <a href="/products/arobella" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">35 kHz Debridement</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">Qoustic QWTS&trade;</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K131096</div>
-            </a>
-            <a href="/products/ultramist" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Non-Contact NLFU</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">UltraMist&reg;</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">510(k) K050129/K140782</div>
-            </a>
-            <a href="/products/microdoc" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Disposable NPWT</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">MicroDoc</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Single-use negative pressure</div>
-            </a>
-            <a href="/products/actigraft" style="display:block;color:inherit">
-              <div style="font-family: var(--font-display); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-xs); margin-bottom: 6px">Autologous</div>
-              <div style="color: var(--snow); font-family: var(--font-display); font-size: var(--t-base); font-weight: 600">ActiGraft+</div>
-              <div style="color: var(--fog); font-size: var(--t-sm); margin-top: 2px">Patient-derived blood clot</div>
-            </a>
-          </div>
+        <p>APIS combines a gelatin-based material with Mānuka honey and hydroxyapatite. Its published retrospective evaluation is discussed below, including the distinction between time to closure and the proportion of wounds that closed.</p>
+        <a class="science-text-link" href="/products/apis/">APIS product information <span aria-hidden="true">↗</span></a>
+        <aside class="science-note"><strong>From mechanism to outcome</strong><p>Laboratory antimicrobial activity, material resorption and wound closure are different endpoints. Read the study method before applying a percentage to patient care.</p></aside>
+      </section>
+      <section id="devices" class="science-chapter" aria-labelledby="devices-title">
+        <span class="science-anchor" id="p9"></span>
+        <p class="science-section-label"><span>03</span><span>Devices &amp; adjuncts</span></p>
+        <h2 id="devices-title">Ultrasound and negative pressure.</h2>
+        <p>The device portfolio includes contact ultrasound, non-contact ultrasound and negative pressure. Each has its own instructions, treatment workflow and body of evidence.</p>
+        <div class="science-devices">
+          <article class="science-device"><div><h3>Qoustic</h3><small>Arobella Medical</small></div><div><p>An ultrasonic system with a handpiece and irrigation, used for tissue removal and wound cleansing. Review the selected instrument and technique against the manufacturer’s instructions.</p><div class="science-device-links"><a href="/products/arobella/">Product details</a><a href="https://arobella.com/products/" target="_blank" rel="noopener">Manufacturer documentation ↗</a></div></div></article>
+          <article class="science-device"><div><h3>UltraMIST</h3><small>SANUWAVE</small></div><div><p>A system that delivers low-frequency ultrasound through a non-contact fluid mist. When reading a study, check the wound type, treatment frequency and care provided to both study groups.</p><div class="science-device-links"><a href="/products/ultramist/">Product details</a><a href="https://sanuwave.com/products/ultramist/" target="_blank" rel="noopener">Manufacturer documentation ↗</a></div></div></article>
+          <article class="science-device"><div><h3>MicroDoc</h3><small>Pensar Medical</small></div><div><p>A portable, single-use negative pressure wound therapy system. Review the device-specific indications, dressing requirements and operating instructions, and identify which studies evaluate this system.</p><div class="science-device-links"><a href="/products/microdoc/">Product details</a><a href="https://pensarmedical.com/microdoc/" target="_blank" rel="noopener">Manufacturer documentation ↗</a></div></div></article>
         </div>
-
-        <!-- PANEL 2: THE PROBLEM -->
-        <div id="p2" class="sp-panel">
-          <span class="sp-eyebrow">The Chronic Wound Problem</span>
-          <h2>Why chronic wounds <em style="font-style:normal;color:var(--gold)">fail to heal.</em></h2>
-          <p class="lead">Chronic wounds are locked in a self-amplifying proteolytic cycle. MMPs at 30&times; physiological levels destroy growth factors, native ECM, and their own inhibitors. Biofilm maintains inflammation. Senescent fibroblasts amplify the cascade.</p>
-
-          <div class="problem-grid">
-            <div class="problem-card" style="--problem-color:#d57373">
-              <h4>MMP Overexpression</h4>
-              <p>MMP-9 in poor healers: 17&times; higher. PDGF degraded within 2 hours.</p>
-            </div>
-            <div class="problem-card" style="--problem-color:#d9a45a">
-              <h4>Biofilm Persistence</h4>
-              <p>60&ndash;90% of chronic wounds. EPS matrix shields bacteria from immunity.</p>
-            </div>
-            <div class="problem-card" style="--problem-color:#c4789a">
-              <h4>Growth Factor Sink</h4>
-              <p>Proteolytic environment degrades growth factors before signaling can occur.</p>
-            </div>
-            <div class="problem-card" style="--problem-color:#7fa8c9">
-              <h4>Cellular Senescence</h4>
-              <p>&gt;15% senescent cells = treatment-resistant. SASP amplifies MMPs.</p>
-            </div>
-          </div>
-
-          <div style="margin-top: var(--s-5)">
-            <span class="sp-eyebrow" style="background: var(--ink-2); color: var(--mist)">Integrated Treatment Logic</span>
-            <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-3)">Sequential cascade reset</h3>
-            <div class="cascade-strip">
-              <div class="cascade-step" style="--step-color:#93a83f">
-                <div class="step-label">01 &middot; Prepare</div>
-                <h4>Debride &amp; cleanse</h4>
-                <p>Qoustic 35 kHz contact &middot; UltraMist non-contact NLFU.</p>
-              </div>
-              <div class="cascade-step" style="--step-color:#7fb5ba">
-                <div class="step-label">02 &middot; Neutralize</div>
-                <h4>Collagen systems</h4>
-                <p>Collagen dressings &middot; APIS&reg; collagen + Manuka composite.</p>
-              </div>
-              <div class="cascade-step" style="--step-color:var(--gold)">
-                <div class="step-label">03 &middot; Protect</div>
-                <h4>Microlyte SAM</h4>
-                <p>Sub-cytotoxic silver against the biofilm cycle.</p>
-              </div>
-              <div class="cascade-step" style="--step-color:#a0b5d8">
-                <div class="step-label">04 &middot; Regenerate</div>
-                <h4>Matrices &amp; allografts</h4>
-                <p>Palisade &middot; Sentry SL &middot; Interfyl &middot; XCelliStem &middot; ActiGraft+.</p>
-              </div>
-              <div class="cascade-step" style="--step-color:#c4789a">
-                <div class="step-label">05 &middot; Manage</div>
-                <h4>Negative pressure</h4>
-                <p>MicroDoc disposable NPWT through to closure.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PANEL 3: AMNIOTIC MEMBRANE -->
-        <div id="p3" class="sp-panel">
-          <span class="sp-eyebrow">Human Placental Allografts</span>
-          <h2>Amniotic membrane &mdash; <em style="font-style:normal;color:var(--gold)">layer architecture.</em></h2>
-          <p class="lead">Over 25 growth factors, anti-inflammatory cytokines, and TIMPs in native ECM. Each layer contributes distinct biology to wound healing.</p>
-
-          <div class="layer-row">
-            <div class="layer-body" style="--layer-color:#7fb5ba">
-              <h4>Amnion</h4>
-              <p><strong>Basement membrane:</strong> Type IV Collagen, Laminin-1/5, Fibronectin</p>
-              <p><strong>Growth factors:</strong> EGF, FGF-2, PDGF-AA/BB, VEGF, KGF, HGF, TGF-&alpha;, IGF-1</p>
-              <p><strong>Anti-inflammatory:</strong> HC-HA/PTX3, IL-10, IL-1Ra, PGE2, TIMP-1/2/3/4</p>
-            </div>
-            <div class="layer-callout" style="--layer-color:#7fb5ba">
-              <div class="title">Re-epithelialization scaffold</div>
-              <div class="note">Keratinocyte migration &middot; immune privilege</div>
-            </div>
-          </div>
-
-          <div class="layer-row">
-            <div class="layer-body" style="--layer-color:var(--gold)">
-              <h4>Intermediate (Spongy) Layer</h4>
-              <p><strong>Composition:</strong> HA &gt;4,000 kDa &middot; Type III Collagen &middot; Decorin &middot; Biglycan &middot; Proteoglycans</p>
-              <p><strong>Function:</strong> Growth factor reservoir &middot; anti-fibrotic TGF-&beta; sequestration via decorin</p>
-            </div>
-            <div class="layer-callout" style="--layer-color:var(--gold)">
-              <div class="title">Sustained-release depot</div>
-              <div class="note">Hydrated GF reservoir</div>
-            </div>
-          </div>
-
-          <div class="layer-row">
-            <div class="layer-body" style="--layer-color:#a0b5d8">
-              <h4>Chorion</h4>
-              <p><strong>Collagen matrix:</strong> Types I, III, IV, V, VI &middot; Fibronectin &middot; Tenascin</p>
-              <p><strong>Structure:</strong> Dense reticular network &middot; trophoblast growth factor production</p>
-              <p><strong>Function:</strong> Mechanical backbone &middot; slow-diffusion sustained release</p>
-            </div>
-            <div class="layer-callout" style="--layer-color:#a0b5d8">
-              <div class="title">Structural persistence</div>
-              <div class="note">Extended residence time</div>
-            </div>
-          </div>
-
-          <div style="margin-top: var(--s-5)">
-            <span class="sp-eyebrow">Product Portfolio &mdash; By Complexity</span>
-            <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">HC-HA/PTX3 anti-inflammatory master switch</h3>
-            <p style="color: var(--fog); line-height: 1.6; margin-bottom: var(--s-4); max-width: 880px">HA &gt;4,000 kDa + heavy chain 1 via TSG-6 + pentraxin 3 drives apoptosis of activated neutrophils/macrophages, M2 polarization, and Treg expansion. Downregulates TGF-&beta;1 mRNA + receptors I/II/III and activates BMP &mdash; reverting myofibroblasts and attenuating nociceptive excitability.</p>
-
-            <div class="tier-grid">
-              <div class="tier-card">
-                <span class="tier-tag">Single Amnion</span>
-                <h4>Membrane Wrap Lite</h4>
-                <div class="best-for">Best for: shallow DFUs, partial-thickness VLUs</div>
-                <p>Basement-membrane scaffold + growth-factor monolayer. Cost-effective entry point.</p>
-              </div>
-              <div class="tier-card">
-                <span class="tier-tag">Dual-Layer Amnion</span>
-                <h4>Membrane Wrap</h4>
-                <div class="best-for">Best for: moderate chronic wounds, deeper partial-thickness</div>
-                <p>2&times; ECM + growth-factor payload. Enhanced structural integrity and sustained GF kinetics.</p>
-              </div>
-              <div class="tier-card" style="border-color: rgba(212,169,74,0.35)">
-                <span class="tier-tag">Tri-Layer (A-C-A)</span>
-                <h4>Tri-Membrane Wrap</h4>
-                <div class="best-for">Best for: failed prior grafts, deep full-thickness, high-risk patients</div>
-                <p>A-C-A sandwich: highest ECM concentration. Dense chorion collagen between two amnion layers. Escalation product.</p>
-              </div>
-            </div>
-          </div>
-
-
-          <div style="margin-top: var(--s-5); padding: var(--s-3) var(--s-4); background: var(--gold-dim); border: 1px solid rgba(212,169,74,0.25); border-radius: var(--r-md)">
-            <span style="font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold)">In the portfolio</span>
-            <p style="margin: 6px 0 0; color: var(--mist); font-size: var(--t-sm); line-height: 1.7">This science ships as <a href="/products/palisade" style="color:var(--gold)">Palisade&reg; dual-membrane</a> (amnion + chorion, Q4350), <a href="/products/sentry-sl" style="color:var(--gold)">Sentry&trade; SL single-layer amnion</a> (Q4348), and the Membrane Wrap family above.</p>
-          </div>
-        </div>
-
-        <!-- PANEL 4: MICROLYTE SAM -->
-        <div id="p4" class="sp-panel">
-          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: var(--s-3)">
-            <span class="sp-eyebrow" style="margin-bottom: 0">FDA 510(k) K153756</span>
-            <span class="sp-eyebrow" style="background: var(--ink-2); color: var(--mist); margin-bottom: 0">HCPCS A2005</span>
-            <span class="sp-eyebrow" style="margin-bottom: 0">Fully Synthetic</span>
-          </div>
-          <h2>Microlyte<span style="color: var(--gold)">&reg;</span> SAM<span style="font-size: 0.6em; vertical-align: super">&trade;</span> &mdash; <em style="font-style:normal;color:var(--gold)">sub-cytotoxic silver.</em></h2>
-          <p class="lead">PEM nanofilm on bioresorbable PVA. 50&ndash;100&times; less silver than conventional dressings. Equivalent 99.99% antimicrobial kill via intimate surface-contact delivery.</p>
-
-          <div class="compare-grid">
-            <div class="compare-card bad">
-              <h4>Conventional Dressing</h4>
-              <div style="font-size: var(--t-sm); color: var(--mist); text-align: center; margin-bottom: var(--s-2)"><strong>Rigid silver dressing</strong></div>
-              <div style="background: rgba(255,255,255,0.02); border-radius: var(--r-sm); padding: var(--s-2); margin-bottom: var(--s-2)">
-                <svg viewBox="0 0 240 100" width="100%" height="100" aria-hidden="true">
-                  <!-- Wound surface (wavy) — drawn first so voids sit above it -->
-                  <path d="M16 78 Q54 56 92 72 Q130 88 168 64 Q196 48 224 68 L224 96 L16 96 Z"
-                        fill="rgba(213,115,115,0.12)" stroke="rgba(213,115,115,0.6)" stroke-width="1.5"/>
-                  <text x="120" y="90" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.55)">WOUND SURFACE</text>
-
-                  <!-- VOID markers: left + right get crushed when dressing falls -->
-                  <g class="sam-void sam-void-left">
-                    <circle cx="54" cy="50" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                    <text x="54" y="53" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
-                  </g>
-                  <!-- Middle void survives — sits in the opening between wound peaks & dressing bottom -->
-                  <g class="sam-void sam-void-mid">
-                    <circle cx="128" cy="56" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                    <text x="128" y="59" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
-                  </g>
-                  <g class="sam-void sam-void-right">
-                    <circle cx="196" cy="44" r="9" fill="none" stroke="rgba(213,115,115,0.9)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                    <text x="196" y="47" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" fill="rgba(213,115,115,1)" font-weight="600">V</text>
-                  </g>
-
-                  <!-- Rigid dressing bar — falls & lands on tallest peak, crushing outer voids -->
-                  <g class="sam-rigid-group">
-                    <rect x="16" y="22" width="208" height="10" rx="2" fill="rgba(213,115,115,0.5)" stroke="rgba(213,115,115,0.85)" stroke-width="1"/>
-                    <text x="120" y="29" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-weight="500">RIGID DRESSING</text>
-                  </g>
-                </svg>
-              </div>
-              <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Dead space &rarr; bacterial colonization</div>
-              <div class="metric"><strong>~12 mg/100 cm&sup2;</strong> &middot; above cytotoxic threshold</div>
-              <span class="tag">High silver / low contact</span>
-              <p style="margin-top: var(--s-2); font-size: var(--t-xs); color: #d57373">Cytotoxic to fibroblasts &amp; keratinocytes</p>
-            </div>
-            <div class="compare-card good">
-              <h4>Microlyte SAM</h4>
-              <div style="font-size: var(--t-sm); color: var(--mist); text-align: center; margin-bottom: var(--s-2)"><strong>Ultra-thin PVA conforms to micro-contours</strong></div>
-              <div style="background: rgba(255,255,255,0.02); border-radius: var(--r-sm); padding: var(--s-2); margin-bottom: var(--s-2)">
-                <svg viewBox="0 0 240 100" width="100%" height="100" aria-hidden="true">
-                  <!-- Wound surface (wavy) -->
-                  <path d="M16 78 Q54 56 92 72 Q130 88 168 64 Q196 48 224 68 L224 96 L16 96 Z"
-                        fill="rgba(127,186,149,0.12)" stroke="rgba(127,186,149,0.55)" stroke-width="1.5"/>
-                  <text x="120" y="90" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" fill="rgba(255,255,255,0.55)">WOUND SURFACE</text>
-
-                  <!-- PVA film group — feather-falls from above, settles onto the contour -->
-                  <g class="sam-pva-group">
-                    <path d="M16 72 Q54 50 92 66 Q130 82 168 58 Q196 42 224 62"
-                          fill="none" stroke="#d4a94a" stroke-width="3" stroke-linecap="round"/>
-                    <text x="44" y="36" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(212,169,74,1)" font-weight="600">PVA FILM</text>
-                  </g>
-
-                  <!-- Contact indicators — appear as the film settles -->
-                  <circle class="sam-contact" cx="54" cy="59" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle class="sam-contact" cx="92" cy="66" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle class="sam-contact" cx="130" cy="72" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle class="sam-contact" cx="168" cy="58" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                  <circle class="sam-contact" cx="196" cy="51" r="2.5" fill="rgba(127,186,149,0.95)"/>
-                </svg>
-              </div>
-              <div style="font-size: var(--t-xs); color: var(--fog); text-align: center; margin-bottom: var(--s-2)">Full contact &rarr; zero dead space</div>
-              <div class="metric"><strong>~1.6 mg/100 cm&sup2;</strong> &middot; sub-cytotoxic, 50&ndash;100&times; less</div>
-              <span class="tag">Low silver / full contact</span>
-              <p style="margin-top: var(--s-2); font-size: var(--t-xs); color: #7fba95">99.99% kill &middot; 72+ hrs &middot; bioresorbable 7 days</p>
-            </div>
-          </div>
-
-          <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">Polymer science</h3>
-          <div class="sci-grid">
-            <div class="sci-card">
-              <h4>PEM nanofilm architecture</h4>
-              <p>Layer-by-layer cationic/anionic polymer assembly. Cationic termination enhances cell attachment, ECM production, and actin organization via electrostatic interaction with proteoglycans.</p>
-            </div>
-            <div class="sci-card">
-              <h4>PVA cytophilicity</h4>
-              <p>Hydroxyl (&ndash;OH) groups hydrogen-bond with ECM proteins (fibronectin, vitronectin). Presents integrin-binding domains. Mechanical properties mimic native soft tissue.</p>
-            </div>
-            <div class="sci-card">
-              <h4>Bioresorbable design</h4>
-              <p>~20 &micro;m PVA resorbs in 7 days. No removal &rarr; no granulation disruption. Integrates without foreign-body response. 4-year shelf life.</p>
-            </div>
-          </div>
-
-          <div class="evidence-band">
-            <div class="band-title">Clinical Evidence</div>
-            <div class="evidence-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))">
-              <div><div class="ev-value">91%</div><div class="ev-label">Healed or improved at 12 weeks (Manning, n=32)</div></div>
-              <div><div class="ev-value">0%</div><div class="ev-label">SSI in diabetic foot surgery (Chatelain, n=22)</div></div>
-              <div><div class="ev-value">73%</div><div class="ev-label">Average wound area reduction</div></div>
-            </div>
-            <div class="evidence-footnote">All wounds treatment-refractory &middot; mean 40 weeks stalled &middot; unresponsive to prior antimicrobials</div>
-          </div>
-        </div>
-
-        <!-- PANEL 5: COLLAGEN / PROPACKS -->
-        <div id="p5" class="sp-panel">
-          <span class="sp-eyebrow">Collagen Science</span>
-          <h2>Type I Collagen &mdash; <em style="font-style:normal;color:var(--gold)">sacrificial substrate &amp; bioactive signal.</em></h2>
-          <p class="lead">Exogenous collagen reverses the proteolytic cycle by diverting MMP activity from endogenous ECM. As it degrades, it releases bioactive matrikines that actively drive granulation and fibroblast chemotaxis.</p>
-
-          <div class="flow-grid">
-            <div class="flow-box bad">
-              <h5>Chronic Wound</h5>
-              <p><strong>MMPs:</strong> 30&times; physiologic &middot; <strong>GFs:</strong> degraded &middot; <strong>ECM:</strong> destroyed &middot; <strong>TIMPs:</strong> gone. Self-amplifying cycle.</p>
-            </div>
-            <div class="flow-arrow">&rarr;</div>
-            <div class="flow-box mid">
-              <h5>Exogenous Collagen</h5>
-              <p><strong>Sacrificial MMP substrate.</strong> Diverts proteases from native ECM. Restores MMP : TIMP ratio.</p>
-            </div>
-            <div class="flow-arrow">&rarr;</div>
-            <div class="flow-box good">
-              <h5>Healing Wound</h5>
-              <p><strong>Phase transition enabled.</strong> GFs preserved &middot; ECM intact. Proliferation phase initiated.</p>
-            </div>
-          </div>
-
-          <div class="matrikine-box">
-            <div class="mk-title">Collagen Degradation = Bioactive Matrikines</div>
-            <div class="matrikine-grid">
-              <div class="matrikine-item">
-                <h5>GHK-Cu tripeptide</h5>
-                <p>Promotes collagen synthesis &middot; upregulates VEGF &amp; bFGF expression.</p>
-              </div>
-              <div class="matrikine-item">
-                <h5>RGD sequences (exposed via MMP)</h5>
-                <p>Integrin &alpha;1&beta;1, &alpha;2&beta;1 binding &middot; fibroblast chemotaxis.</p>
-              </div>
-            </div>
-            <p style="margin-top: var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--ink-3); font-size: var(--t-sm); color: var(--fog); text-align: center">
-              &alpha;11&beta;1 by day 7: granulation + tensile strength &middot; DDR1/2 &rarr; &beta;1-integrin &amp; &alpha;-SMA
-            </p>
-          </div>
-
-          <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-3)">Clinical evidence &mdash; two pathways</h3>
-          <div class="path-evidence">
-            <div class="path-ev">
-              <div class="path-label">Post-op incision</div>
-              <p style="color: var(--fog); font-size: var(--t-sm); margin-bottom: var(--s-3)">Reimbursable during the global surgical period.</p>
-              <div class="path-ev-stats">
-                <div class="path-ev-stat"><div class="v">59%</div><div class="l">SSI reduction (n = 5,335)</div></div>
-                <div class="path-ev-stat"><div class="v">0%</div><div class="l">SSI in spinal surgery (n = 54)</div></div>
-              </div>
-            </div>
-            <div class="path-ev">
-              <div class="path-label">Conservative wound care</div>
-              <p style="color: var(--fog); font-size: var(--t-sm); margin-bottom: var(--s-3)">Full-thickness or wounds stalled &gt;4 weeks.</p>
-              <div class="path-ev-stats">
-                <div class="path-ev-stat"><div class="v">53%</div><div class="l">Higher healing rate (meta-analysis, n = 961)</div></div>
-                <div class="path-ev-stat"><div class="v">82%</div><div class="l">Complete DFU healing (RCT)</div></div>
-              </div>
-            </div>
-          </div>
-
-
-          <div style="margin-top: var(--s-5); padding: var(--s-3) var(--s-4); background: var(--gold-dim); border: 1px solid rgba(212,169,74,0.25); border-radius: var(--r-md)">
-            <span style="font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold)">In the portfolio</span>
-            <p style="margin: 6px 0 0; color: var(--mist); font-size: var(--t-sm); line-height: 1.7">Collagen science ships as our conservative-care collagen dressings and as <a href="/products/apis" style="color:var(--gold)">APIS&reg;</a> &mdash; a 510(k)-cleared gelatin-collagen + Manuka honey + hydroxyapatite composite with a pilot RCT behind it (see the Evidence Base tab).</p>
-          </div>
-        </div>
-
-        <!-- PANEL 6: CLINICAL FRAMEWORK -->
-        <div id="p6" class="sp-panel">
-          <span class="sp-eyebrow">Clinical Decision Framework</span>
-          <h2>Product selection <em style="font-style:normal;color:var(--gold)">by wound presentation.</em></h2>
-          <p class="lead">Matching the right platform to the dominant failure mode of the wound in front of you.</p>
-
-          <table class="decision-table">
-            <thead>
-              <tr><th>Wound Presentation</th><th>Primary Product</th><th>Mechanism</th><th>Key Evidence</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="presentation">Post-op surgical incision</td>
-                <td class="product">Collagen dressing</td>
-                <td>Sacrificial MMP substrate, hemostasis, SSI prevention</td>
-                <td>59% SSI reduction (n = 5,335)</td>
-              </tr>
-              <tr>
-                <td class="presentation">Active biofilm / infection risk</td>
-                <td class="product">Microlyte SAM (A2005)</td>
-                <td>Sub-cytotoxic ionic silver, 99.99% kill, 72+ hrs</td>
-                <td>91% healed or improved at 12 wk</td>
-              </tr>
-              <tr>
-                <td class="presentation">Shallow / early chronic</td>
-                <td class="product">Membrane Wrap Lite</td>
-                <td>Single-amnion barrier, ECM scaffold, GF delivery</td>
-                <td>BM re-epithelialization template</td>
-              </tr>
-              <tr>
-                <td class="presentation">Standard DFU / VLU</td>
-                <td class="product">Membrane Wrap (Dual-layer)</td>
-                <td>2&times; ECM payload, structural persistence</td>
-                <td>Sustained GF, dual-layer kinetics</td>
-              </tr>
-              <tr>
-                <td class="presentation">Recalcitrant / failed grafts</td>
-                <td class="product">Tri-Membrane Wrap (A-C-A)</td>
-                <td>Highest ECM concentration, chorion sandwich</td>
-                <td>Escalation &mdash; max biological payload</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div style="margin-top: var(--s-6)">
-            <span class="sp-eyebrow">Compliance Infrastructure</span>
-            <h3 style="font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s-2)">CheckMyWoundCareNotes.com</h3>
-            <p style="color: var(--fog); line-height: 1.6; margin-bottom: var(--s-4); max-width: 880px">Automated compliance review against LCD L35041, A54117, MPIM 3.6.2.2, SSA 1862(a)(1)(A). Pre-submission gap detection, FPS pattern flagging, and corrective-language generation.</p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s-3)" class="compliance-triple">
-              <div class="compliance-card">
-                <h5>Pre-submission review</h5>
-                <p>Upload notes &rarr; automated check against LCD criteria, documentation requirements, and frequency limits.</p>
-              </div>
-              <div class="compliance-card">
-                <h5>FPS pattern detection</h5>
-                <p>Flags cloned documentation, utilization outliers, wastage patterns, and product-selection anomalies.</p>
-              </div>
-              <div class="compliance-card">
-                <h5>Corrective language</h5>
-                <p>LCD-aligned clinical prose generated from documented findings. Audit-defensible.</p>
-              </div>
-            </div>
-          </div>
-
-          <p style="margin-top: var(--s-6); padding: var(--s-3) var(--s-4); background: var(--ink-1); border: 1px solid var(--ink-3); border-radius: var(--r-md); color: var(--mist); font-style: italic; text-align: center; font-family: var(--font-display); font-weight: 500">
-            The only wound care partner delivering <span style="color: var(--gold)">product + compliance + science</span> in a single relationship.
-          </p>
-        </div>
-
-        <!-- PANEL 7: EVIDENCE BASE -->
-        <div id="p7" class="sp-panel">
-<span class="sp-eyebrow">Evidence Base</span>
-<h2>Every product, <em style="font-style:normal;color:var(--gold)">graded honestly.</em></h2>
-<p class="lead">Grades reflect the clinical evidence we can actually hand you, not the marketing register. The full Evidence Base lists every product with its regulatory record, IFU, and every verified study and trial, each one linked.</p>
-<div class="ev-tablewrap" style="margin-top:var(--s-4)"><table class="ev-table"><thead><tr><th>Product</th><th>Grade</th><th>Company</th><th>Sources</th></tr></thead><tbody><tr><td><a href="/evidence#ev-actigraft">ActiGraft+</a></td><td><span class="ev-grade ev-grade--a" title="One product-specific multicenter RCT (n=119) met its primary endpoint at 12 weeks, and a 2026 meta-analysis of six RCTs of autologous blood-derived products (n=629) found the ActiGraft clot the best-performing modality. More than twenty further studies cover diabetic foot, venous, pressure, surgical, pilonidal and fistula wounds.">A</span></td><td>RedDress Ltd.</td><td>26 studies &middot; 4 trials</td></tr><tr><td><a href="/evidence#ev-ultramist">UltraMist Therapy</a></td><td><span class="ev-grade ev-grade--a" title="Five randomized trials and two meta-analyses of the MIST/UltraMIST platform report faster healing and larger wound-area reduction than standard care, with a dozen further comparative and case studies. The current UltraMIST system (510(k) K140782) is the same non-contact low-frequency ultrasound platform as the original Celleration MIST device (K050129).">A</span></td><td>SANUWAVE Health, Inc. (formerly Celleration MIST Therapy)</td><td>19 studies &middot; 7 trials</td></tr><tr><td><a href="/evidence#ev-ovena-collagen-dressing">Ovena Health Collagen Wound Dressing</a></td><td><span class="ev-grade ev-grade--a" title="Graded on its product class: a 2022 meta-analysis of eleven RCTs (n=961) found collagen dressings plus standard care healed significantly more wounds than standard care alone. No study tests the Ovena-branded pad itself.">A</span></td><td>Ovena Health (private label)</td><td>1 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-ovena-collagen-powder">Ovena Health Collagen Wound Powder</a></td><td><span class="ev-grade ev-grade--a" title="Graded on the collagen-dressing class (a meta-analysis of eleven RCTs). A 54-patient surgical case series of hydrolyzed bovine collagen powder reported no dehiscence or infection, though that series is not indexed in PubMed.">A</span></td><td>Ovena Health (private label)</td><td>2 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-ovena-collagen-kit">Ovena Collagen Kit</a></td><td><span class="ev-grade ev-grade--a" title="The kit&#x27;s active component is the same Type I collagen pad, so it carries the class grade; the gloves, saline, island dressings and tape are exempt commodity items.">A</span></td><td>Ovena Health (private label)</td><td>1 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-ovena-compression-socks">Ovena 20-30 mmHg Graduated Compression Socks, Knee-High</a></td><td><span class="ev-grade ev-grade--a" title="Graded on the graduated-compression class: Cochrane reviews of 48 and 14 RCTs show faster venous ulcer healing with compression, and a review of 12 RCTs shows fewer travel-related clots with graduated stockings. No study tests the Ovena sock itself.">A</span></td><td>Ovena Health (private label)</td><td>3 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-apis">APIS</a></td><td><span class="ev-grade ev-grade--b" title="A completed randomized trial (n=37) after Mohs surgery is registered with results posted, though not yet published in a journal. A retrospective comparison (n=47) found the wounds that closed healed twice as fast as with standard care, supported by two small prospective series and bench antimicrobial data.">B</span></td><td>SweetBio, Inc.</td><td>5 studies &middot; 1 trials</td></tr><tr><td><a href="/evidence#ev-amchoplast">AmchoPlast</a></td><td><span class="ev-grade ev-grade--b" title="A peer-reviewed interim analysis of two registered randomized trials (n=53) reported complete closure in 50% of treated wounds versus 17% with standard care. Final full-cohort results are not yet published.">B</span></td><td>Cellution Biologics (distributor) · LifeCell International (manufacturer)</td><td>2 studies &middot; 2 trials</td></tr><tr><td><a href="/evidence#ev-xcellistem">XCelliStem Wound Powder</a></td><td><span class="ev-grade ev-grade--c" title="Five case series of 2 to 15 patients in trauma, failed-flap, ballistic, abdominal and hernia wounds report early granulation and closure. The 510(k) clearance rests on bench and biocompatibility data, and no controlled study exists.">C</span></td><td>StemSys, Inc.</td><td>5 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-microlyte-sam">Microlyte Matrix / Microlyte Ag / Microlyte SAM</a></td><td><span class="ev-grade ev-grade--c" title="One prospective single-arm human pilot (32 wounds) reported 91% re-epithelialization at 12 weeks, supported by animal safety data and veterinary series. A randomized split-wound human trial is registered but has posted no results.">C</span></td><td>Imbed Biosciences, Inc.</td><td>4 studies &middot; 5 trials</td></tr><tr><td><a href="/evidence#ev-membrane-wrap">Membrane Wrap</a></td><td><span class="ev-grade ev-grade--c" title="One retrospective matched-cohort study (n=182) reported 63.7% healing versus 48.4% with standard care. A randomized trial was terminated without results and three more trials are registered.">C</span></td><td>BioLab Sciences</td><td>1 studies &middot; 4 trials</td></tr><tr><td><a href="/evidence#ev-membrane-wrap-hydro">Membrane Wrap-Hydro</a></td><td><span class="ev-grade ev-grade--c" title="One 2026 case series (83 wounds) reported 55% closure; four trials are registered and none is published yet.">C</span></td><td>BioLab Sciences</td><td>1 studies &middot; 4 trials</td></tr><tr><td><a href="/evidence#ev-arobella">Arobella Qoustic Wound Therapy System</a></td><td><span class="ev-grade ev-grade--c" title="Three bench studies at Qoustic&#x27;s 35 kHz operating frequency show multi-log reductions of common wound bacteria and MRSA and changes in fibroblast behaviour, but no clinical outcome study of the device has been published.">C</span></td><td>Arobella Medical, LLC</td><td>3 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-interfyl">Interfyl</a></td><td><span class="ev-grade ev-grade--d" title="No clinical study of Interfyl itself, in any design, has been published. The only product-specific papers are a tendon-cell bench study and a composition review; the healing-rate figures often quoted for this class come from other placental products.">D</span></td><td>Celularity Inc.</td><td>2 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-palisade">Palisade DM Matrix (Palisade Dual-Membrane)</a></td><td><span class="ev-grade ev-grade--d" title="This dual-layer amnion-chorion allograft has no published clinical study of its own. Two sponsor-run platform trials that include it as one of several arms are still recruiting.">D</span></td><td>Sequence LifeScience, Inc. (sold as Palisade DM Matrix)</td><td>0 studies &middot; 2 trials</td></tr><tr><td><a href="/evidence#ev-sentry-sl">Sentry SL Matrix (Sentry Placental-Derived Allograft)</a></td><td><span class="ev-grade ev-grade--d" title="This single-layer amnion allograft has no published clinical study of its own, and the same two recruiting platform trials as Palisade include it. Its brochure cites general amniotic-tissue science only.">D</span></td><td>Sequence LifeScience, Inc. (sold as Sentry SL Matrix)</td><td>0 studies &middot; 2 trials</td></tr><tr><td><a href="/evidence#ev-microlyte-painguard">Microlyte PainGuard</a></td><td><span class="ev-grade ev-grade--d" title="Cleared in 2024 with no published clinical study.">D</span></td><td>Imbed Biosciences, Inc.</td><td>0 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-tri-membrane-wrap">Tri-Membrane Wrap</a></td><td><span class="ev-grade ev-grade--d" title="No published product-specific study; four trials are registered.">D</span></td><td>BioLab Sciences</td><td>0 studies &middot; 4 trials</td></tr><tr><td><a href="/evidence#ev-membrane-wrap-lite">Membrane Wrap-Lite</a></td><td><span class="ev-grade ev-grade--d" title="No published study; three trials are registered and recruiting.">D</span></td><td>BioLab Sciences</td><td>0 studies &middot; 3 trials</td></tr><tr><td><a href="/evidence#ev-membrane-restore">Membrane Restore family (Membrane Restore, Membrane Restore-Hydro, Membrane Restore-Lite, Tri-Membrane Restore)</a></td><td><span class="ev-grade ev-grade--d" title="Construct-identical to the outpatient products per the shared IFU; no independent evidence names a Restore product.">D</span></td><td>BioLab Sciences</td><td>0 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-xcell-amnio-matrix">Xcell Amnio Matrix</a></td><td><span class="ev-grade ev-grade--d" title="No published clinical study of any kind; one randomized trial is registered and recruiting.">D</span></td><td>Precise Bioscience (distributor) · Aziyo Biologics (processor)</td><td>0 studies &middot; 1 trials</td></tr><tr><td><a href="/evidence#ev-microdoc">MicroDoc sNPWT</a></td><td><span class="ev-grade ev-grade--d" title="No clinical study, case series or bench study names MicroDoc or Pensar Medical; the device is cleared under 510(k) K200223 as PocketDoc. Single-use negative-pressure devices as a class are well studied, with meta-analyses showing fewer surgical-site infections, and that class evidence is listed for context.">D</span></td><td>Pensar Medical, LLC</td><td>8 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-adhesion-barrier">AmCoreMatrix (dual-layer amniotic adhesion barrier)</a></td><td><span class="ev-grade ev-grade--d" title="No published study or registered trial names AmCoreMatrix. The one clinical paper on file for dehydrated amnion-chorion as a laparoscopic adhesion barrier is not indexed in PubMed and is not cited here, and animal studies of amnion barriers are mixed.">D</span></td><td>AmCoreMatrix · Cellution Biologics / LifeCell International</td><td>3 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-exosomes">Exosomes &amp; Birth Tissue</a></td><td><span class="ev-grade ev-grade--d" title="No exosome product is FDA-approved, and these are sold for research and cosmetic use only, as their own price lists state. No clinical study or registered trial exists for them.">D</span></td><td>Suppliers: StemX Biologix (ExoPure, TissueBlast) · Frontier Biologics</td><td>0 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-ovena-hydrocolloid-roll">Ovena Hydrocolloid Roll, Cut-to-Size</a></td><td><span class="ev-grade ev-grade--na" title="Sold for minor skin protection such as blemishes, blisters and calluses rather than as a wound-healing device, so it is not clinically graded. Hydrocolloid dressings as a class have a Cochrane review in chronic wounds, listed for context.">N/A</span></td><td>Ovena Health (private label)</td><td>1 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-ovena-sock-aid">Ovena Sock Aid</a></td><td><span class="ev-grade ev-grade--na" title="A donning aid with no therapeutic claim, so it is not clinically graded; the maker cites only a 5,000-cycle durability test.">N/A</span></td><td>Ovena Health (private label)</td><td>0 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-ovena-saline-wash">Ovena Sterile Saline Wound Wash</a></td><td><span class="ev-grade ev-grade--na" title="Sterile 0.9% saline is the reference cleansing solution in wound-care trials rather than a treatment with an outcome claim, so it is not graded. A 2022 Cochrane review of 13 RCTs (n=2,504) found only low-certainty differences between cleansing solutions.">N/A</span></td><td>Ovena Health (private label)</td><td>1 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-wholesaler">Medical Supplies Wholesaler</a></td><td><span class="ev-grade ev-grade--na" title="Commodity consumables such as gauze, tape and gloves; not clinically graded.">N/A</span></td><td>Albacete MedDev distribution</td><td>0 studies &middot; 0 trials</td></tr><tr><td><a href="/evidence#ev-peptides">Peptide Therapies</a></td><td><span class="ev-grade ev-grade--na" title="Graded per entry">Varies</span></td><td>Compounded catalog</td><td>54 entries graded</td></tr></tbody></table></div>
-<p style="margin-top:var(--s-3)"><a class="btn btn-primary" href="/evidence">Open the full Evidence Base <span class="arrow">&rarr;</span></a></p>
-        </div>
-
-        <!-- PANEL 8: MATRIX SCIENCE -->
-        <div id="p8" class="sp-panel">
-          <span class="sp-eyebrow">ECM &amp; Matrix Science</span>
-          <h2>Acellular matrices: four routes to <em style="font-style:normal;color:var(--gold)">the same goal.</em></h2>
-          <p class="lead">When the proteolytic environment has been reset, the wound needs scaffold &mdash; structure a cell can attach to, migrate across, and remodel. The portfolio carries four distinct matrix chemistries, each matched to a wound geometry rather than competing for the same one.</p>
-
-          <div class="products-grid" style="margin-top:var(--s-4)">
-            <div class="product-card scroll-reveal">
-              <span class="tag">Placental sheets</span>
-              <h3>Amnion &amp; chorion membranes</h3>
-              <p>Collagen types I, III, IV and V with laminin, fibronectin, proteoglycans and hyaluronic acid &mdash; the native neomatrix, minimally manipulated and terminally sterilized. Palisade&reg; carries both membranes; Sentry&trade; SL is the thin, conforming single layer. 361 HCT/Ps.</p>
-              <a class="btn btn-ghost" href="/products/palisade">Palisade &amp; Sentry <span class="arrow">&rarr;</span></a>
-            </div>
-            <div class="product-card scroll-reveal">
-              <span class="tag">Particulate CTM</span>
-              <h3>Chorionic-plate connective tissue</h3>
-              <p>Interfyl&reg; decellularizes the chorionic plate into flowable and particulate formats that conform to irregular defects and tunnels &mdash; matrix where a sheet cannot reach. Billed per mg under Q4171.</p>
-              <a class="btn btn-ghost" href="/products/interfyl">Interfyl <span class="arrow">&rarr;</span></a>
-            </div>
-            <div class="product-card scroll-reveal">
-              <span class="tag">Multi-tissue ECM</span>
-              <h3>Lung + spleen particulate</h3>
-              <p>XCelliStem&trade; blends two organ ECMs for a broader protein mix than single-tissue powders &mdash; manufacturer-reported collagen/elastin/fibronectin/laminin composition. FDA 510(k)-cleared (K172593), billed per mg under A2004.</p>
-              <a class="btn btn-ghost" href="/products/xcellistem">XCelliStem <span class="arrow">&rarr;</span></a>
-            </div>
-          </div>
-
-          <div style="margin-top:var(--s-5);overflow-x:auto">
-            <table style="width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:640px">
-              <thead><tr style="border-bottom:1px solid var(--ink-3);text-align:left">
-                <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Wound geometry</th>
-                <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Format logic</th>
-                <th style="padding:10px 12px;color:var(--fog);font-family:var(--font-display);font-size:var(--t-xs);text-transform:uppercase;letter-spacing:0.08em">Platform</th>
-              </tr></thead>
-              <tbody>
-                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Shallow, conforming bed</td><td style="padding:11px 12px;color:var(--mist)">Thin single-layer sheet follows the surface</td><td style="padding:11px 12px"><a href="/products/sentry-sl" style="color:var(--gold)">Sentry&trade; SL</a></td></tr>
-                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Moderate bed needing a barrier</td><td style="padding:11px 12px;color:var(--mist)">Dual membrane adds chorion thickness</td><td style="padding:11px 12px"><a href="/products/palisade" style="color:var(--gold)">Palisade&reg;</a></td></tr>
-                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Irregular contours, pockets</td><td style="padding:11px 12px;color:var(--mist)">Flowable conforms where sheets cannot</td><td style="padding:11px 12px"><a href="/products/interfyl" style="color:var(--gold)">Interfyl&reg;</a></td></tr>
-                <tr style="border-bottom:1px solid var(--ink-2)"><td style="padding:11px 12px;color:var(--snow)">Broad surface, uneven granulation</td><td style="padding:11px 12px;color:var(--mist)">Particulate settles across the bed</td><td style="padding:11px 12px"><a href="/products/xcellistem" style="color:var(--gold)">XCelliStem&trade;</a></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="margin-top:var(--s-4);font-size:var(--t-sm);color:var(--fog);max-width:820px;line-height:1.65">Format logic is a mechanism-and-geometry framework, not an outcome claim &mdash; the honest state of each platform&rsquo;s clinical evidence is graded in the <label for="sp-r7" style="color:var(--gold);cursor:pointer;text-decoration:underline">Evidence Base</label> tab, and payer coverage is always confirmed per plan.</p>
-        </div>
-
-        <!-- PANEL 9: PREP & ADJUNCTS -->
-        <div id="p9" class="sp-panel">
-          <span class="sp-eyebrow">Preparation &amp; Adjunctive Care</span>
-          <h2>The cascade resets <em style="font-style:normal;color:var(--gold)">on a prepared bed.</em></h2>
-          <p class="lead">Matrix placed on slough, biofilm and stalled tissue is matrix wasted. The conservative-care side of the portfolio handles what comes before and after the graft: debridement, cleansing, and pressure management.</p>
-
-          <div class="products-grid" style="margin-top:var(--s-4)">
-            <div class="product-card scroll-reveal">
-              <span class="tag">Contact ultrasonic</span>
-              <h3>Qoustic Wound Therapy System&trade;</h3>
-              <p>A curette driven at 35 kHz debrides, excises and cleanses in one instrument, with irrigation through the handpiece. FDA 510(k)-cleared (K131096); bench studies report planktonic elimination and biofilm reduction &mdash; bench findings, not patient outcomes.</p>
-              <a class="btn btn-ghost" href="/products/arobella">Arobella Qoustic <span class="arrow">&rarr;</span></a>
-            </div>
-            <div class="product-card scroll-reveal">
-              <span class="tag">Non-contact NLFU</span>
-              <h3>UltraMist&reg; Therapy</h3>
-              <p>Low-frequency ultrasound delivered through a saline mist &mdash; painless, non-contact wound cleansing and maintenance debridement (K050129, K140782), used adjunctively alongside standard care under CPT 97610.</p>
-              <a class="btn btn-ghost" href="/products/ultramist">UltraMist <span class="arrow">&rarr;</span></a>
-            </div>
-            <div class="product-card scroll-reveal">
-              <span class="tag">Negative pressure</span>
-              <h3>MicroDoc Disposable NPWT</h3>
-              <p>Single-use negative pressure sized for outpatient and home health &mdash; exudate management and tissue approximation without rental logistics. NPWT&rsquo;s evidence base is modality-level; we say so plainly on the product page.</p>
-              <a class="btn btn-ghost" href="/products/microdoc">MicroDoc <span class="arrow">&rarr;</span></a>
-            </div>
-          </div>
-
-          <div style="margin-top:var(--s-5);padding:var(--s-4);background:var(--ink-1);border:1px solid var(--ink-3);border-radius:var(--r-lg)">
-            <span style="font-family:var(--font-display);font-size:var(--t-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold)">A typical sequence</span>
-            <p style="margin:8px 0 0;color:var(--mist);font-size:var(--t-sm);line-height:1.75">Debride and cleanse (<a href="/products/arobella" style="color:var(--gold)">Qoustic</a> or <a href="/products/ultramist" style="color:var(--gold)">UltraMist</a>) &rarr; neutralize the proteolytic environment (collagen systems, <a href="/products/apis" style="color:var(--gold)">APIS&reg;</a>) &rarr; control bioburden (Microlyte SAM) &rarr; graft the matrix the geometry calls for (Matrix Science tab) &rarr; manage exudate and approximation (<a href="/products/microdoc" style="color:var(--gold)">MicroDoc NPWT</a>). Sequence and selection remain clinical judgments &mdash; this is the portfolio&rsquo;s map, not a protocol.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- CTA BAND -->
-    <section class="cta-band">
-      <div class="container">
-        <div class="scroll-reveal">
-          <span class="eyebrow">Let's talk science</span>
-          <h2>Go deeper with our clinical team.</h2>
-          <p>Schedule a scientific review &mdash; we'll walk your team through each platform, LCD alignment, and the evidence base for the wounds you see most.</p>
-          <div class="hero-actions">
-            <a href="/contact" class="btn btn-primary">Schedule a consultation <span class="arrow">→</span></a>
-            <a href="/products" class="btn btn-secondary">Explore the portfolio</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
+      </section>
+      <section id="study-notes" class="science-chapter" aria-labelledby="study-notes-title">
+        <span class="science-anchor" id="p6"></span>
+        <p class="science-section-label"><span>04</span><span>Notes on the evidence</span></p>
+        <h2 id="study-notes-title">Selected clinical studies.</h2>
+        <p>These two papers illustrate why the study design, denominator and endpoint belong next to a reported result. They are selected reading from the broader <a href="/evidence/">evidence library</a>.</p>
+        <article class="science-study">
+          <p class="science-study-meta">Microlyte / Prospective pilot / 2020</p>
+          <h3>A bioresorbable matrix in complex chronic wounds</h3>
+          <p>Manning and colleagues evaluated 32 wounds after losses to follow-up. At 12 weeks, 29 had either healed completely or improved significantly. Established care, including debridement or compression when prescribed, continued during the study.</p>
+          <p><strong>Interpretation:</strong> This was an open-label study without a concurrent control group. The combined outcome cannot be read as a complete-closure rate.</p>
+          <details><summary>What to examine in the paper</summary><p>Separate complete closure from improvement, note the mixed wound types, and review the care continued alongside the matrix.</p></details>
+          <p class="science-study-citation">Manning SW et al. <cite>Wounds.</cite> 2020;32(11):309–318.</p>
+          <a class="science-text-link" href="https://pubmed.ncbi.nlm.nih.gov/33465043/" target="_blank" rel="noopener">Read the paper on PubMed <span aria-hidden="true">↗</span></a>
+        </article>
+        <aside class="science-endpoint"><p>“Healed or improved” and “healed completely” answer different questions.</p><small>The distinction matters when discussing the 12-week result in the <a href="https://pubmed.ncbi.nlm.nih.gov/33465043/" target="_blank" rel="noopener">Manning pilot study</a>.</small></aside>
+        <article class="science-study">
+          <p class="science-study-meta">APIS / Retrospective comparison / 2023</p>
+          <h3>A collagen-based sheet in a hospital wound clinic</h3>
+          <p>Rodríguez and colleagues compared 47 chronic wounds: 27 treated with the bioengineered sheet and 20 with standard care. Among wounds that closed, mean time to closure was 7.4 and 14.8 weeks, respectively.</p>
+          <p><strong>Interpretation:</strong> Most wounds in both groups did not close. The retrospective design and the analysis of wounds that closed limit how broadly the time-to-closure finding can be applied.</p>
+          <details><summary>What to examine in the paper</summary><p>Review the treatments included in standard care, visit adherence and the reasons some wounds remained open.</p></details>
+          <p class="science-study-citation">Rodríguez I et al. <cite>Wounds.</cite> 2023;35(1):E35–E38.</p>
+          <a class="science-text-link" href="https://pubmed.ncbi.nlm.nih.gov/36749996/" target="_blank" rel="noopener">Read the paper on PubMed <span aria-hidden="true">↗</span></a>
+        </article>
+      </section>
+      <section id="product-reference" class="science-chapter" aria-labelledby="reference-title">
+        <span class="science-anchor" id="p7"></span>
+        <p class="science-section-label"><span>05</span><span>Product reference</span></p>
+        <h2 id="reference-title">Product documentation.</h2>
+        <p>Open a product overview, its evidence-library entry or source information from the manufacturer. Study designs and product versions should be checked in the linked documents.</p>
+        <div class="science-find" hidden><label for="science-product-search">Find by product, manufacturer or format</label><div class="science-find-field"><input id="science-product-search" type="search" placeholder="Try Membrane Wrap Hydro" autocomplete="off" aria-controls="science-products"><button type="button" data-science-clear hidden>Clear</button></div><p class="science-find-status" role="status" aria-live="polite" data-science-results></p></div>
+        <ul id="science-products" class="science-product-list"><li><div><h3>AmchoPlast</h3><p>Dehydrated membrane · Cellution Biologics</p></div><div class="science-product-links"><a href="/products/amchoplast/" aria-label="AmchoPlast product details">Product details</a><a href="/evidence/#ev-amchoplast" aria-label="AmchoPlast studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Membrane Wrap Hydro</h3><p>Hydrated membrane · BioLab Holdings</p></div><div class="science-product-links"><a href="/products/membrane-wrap-hydro/" aria-label="Membrane Wrap Hydro product details">Product details</a><a href="/evidence/#ev-membrane-wrap-hydro" aria-label="Membrane Wrap Hydro studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Activate Matrix</h3><p>Dehydrated membrane · Sequence LifeScience</p></div><div class="science-product-links"><a href="/products/activate/" aria-label="Activate Matrix product details">Product details</a><a href="https://sequencelifesci.com/activate/" target="_blank" rel="noopener" aria-label="Activate Matrix source information">Source information ↗</a></div></li>
+<li><div><h3>Palisade</h3><p>Dehydrated membrane · Sequence LifeScience</p></div><div class="science-product-links"><a href="/products/palisade/" aria-label="Palisade product details">Product details</a><a href="/evidence/#ev-palisade" aria-label="Palisade studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Sentry SL</h3><p>Dehydrated membrane · Sequence LifeScience</p></div><div class="science-product-links"><a href="/products/sentry-sl/" aria-label="Sentry SL product details">Product details</a><a href="/evidence/#ev-sentry-sl" aria-label="Sentry SL studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Membrane Wrap</h3><p>Membrane sheet · BioLab Holdings</p></div><div class="science-product-links"><a href="/products/membrane-wrap/" aria-label="Membrane Wrap product details">Product details</a><a href="/evidence/#ev-membrane-wrap" aria-label="Membrane Wrap studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Tri-Membrane Wrap</h3><p>Triple-layer membrane · BioLab Holdings</p></div><div class="science-product-links"><a href="/products/tri-membrane-wrap/" aria-label="Tri-Membrane Wrap product details">Product details</a><a href="/evidence/#ev-tri-membrane-wrap" aria-label="Tri-Membrane Wrap studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>XCell Amnio Matrix</h3><p>Lyophilized membrane · Precise Bioscience · New Horizon</p></div><div class="science-product-links"><a href="/products/xcell-amnio-matrix/" aria-label="XCell Amnio Matrix product details">Product details</a><a href="/evidence/#ev-xcell-amnio-matrix" aria-label="XCell Amnio Matrix studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>PalinGen Membrane</h3><p>Air-dried membrane · Amnio Technology</p></div><div class="science-product-links"><a href="/products/palingen/" aria-label="PalinGen Membrane product details">Product details</a><a href="https://amniotechnology.com/index.php/palingen-membrane/" target="_blank" rel="noopener" aria-label="PalinGen Membrane source information">Source information ↗</a></div></li>
+<li><div><h3>APIS</h3><p>Matrix sheet · SweetBio</p></div><div class="science-product-links"><a href="/products/apis/" aria-label="APIS product details">Product details</a><a href="/evidence/#ev-apis" aria-label="APIS studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Microlyte SAM</h3><p>Ultrathin matrix · Imbed Biosciences · BioLab</p></div><div class="science-product-links"><a href="/products/microlyte/" aria-label="Microlyte SAM product details">Product details</a><a href="/evidence/#ev-microlyte-sam" aria-label="Microlyte SAM studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Microlyte PainGuard</h3><p>Ultrathin matrix · Imbed Biosciences · BioLab</p></div><div class="science-product-links"><a href="/products/microlyte-painguard/" aria-label="Microlyte PainGuard product details">Product details</a><a href="/evidence/#ev-microlyte-painguard" aria-label="Microlyte PainGuard studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Myriad Matrix</h3><p>Perforated matrix sheet · AROA Biosurgery</p></div><div class="science-product-links"><a href="/products/myriad-matrix/" aria-label="Myriad Matrix product details">Product details</a><a href="https://aroa.com/product/myriad-matrix-ecm/" target="_blank" rel="noopener" aria-label="Myriad Matrix source information">Source information ↗</a></div></li>
+<li><div><h3>Resolve Matrix</h3><p>Collagen matrix sheet · Parametrics Medical</p></div><div class="science-product-links"><a href="/products/resolve-matrix/" aria-label="Resolve Matrix product details">Product details</a><a href="https://parametricsmedical.com/product/collagen-ecm/" target="_blank" rel="noopener" aria-label="Resolve Matrix source information">Source information ↗</a></div></li>
+<li><div><h3>Interfyl</h3><p>Flowable · particulate · Celularity</p></div><div class="science-product-links"><a href="/products/interfyl/" aria-label="Interfyl product details">Product details</a><a href="/evidence/#ev-interfyl" aria-label="Interfyl studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>XCelliStem</h3><p>Wound powder · StemSys</p></div><div class="science-product-links"><a href="/products/xcellistem/" aria-label="XCelliStem product details">Product details</a><a href="/evidence/#ev-xcellistem" aria-label="XCelliStem studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>UltraMIST</h3><p>Non-contact device · SANUWAVE</p></div><div class="science-product-links"><a href="/products/ultramist/" aria-label="UltraMIST product details">Product details</a><a href="/evidence/#ev-ultramist" aria-label="UltraMIST studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>Arobella Qoustic</h3><p>Console · handpiece · Arobella Medical</p></div><div class="science-product-links"><a href="/products/arobella/" aria-label="Arobella Qoustic product details">Product details</a><a href="/evidence/#ev-arobella" aria-label="Arobella Qoustic studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>MicroDoc</h3><p>Portable single-use device · Pensar Medical</p></div><div class="science-product-links"><a href="/products/microdoc/" aria-label="MicroDoc product details">Product details</a><a href="/evidence/#ev-microdoc" aria-label="MicroDoc studies and records">Studies &amp; records</a></div></li>
+<li><div><h3>ActiGraft</h3><p>Point-of-care system · RedDress</p></div><div class="science-product-links"><a href="/products/actigraft/" aria-label="ActiGraft product details">Product details</a><a href="/evidence/#ev-actigraft" aria-label="ActiGraft studies and records">Studies &amp; records</a></div></li></ul>
+        <p class="science-empty" hidden>No matching products. Try a shorter name or clear your search.</p>
+        <button class="science-show-all" data-science-show-all type="button" aria-controls="science-products" hidden>Show all products</button>
+      </section>
+      <footer class="science-end"><p>Prepared by Albacete MedDev as a product and literature reference. Clinical selection remains patient-specific and should follow the current manufacturer instructions. References to products, studies or codes do not establish payer coverage.</p><a href="/contact/">Request product information or a study review ↗</a></footer>
+    </div>
+  </div>
+</main>
 
   <footer class="footer">
     <div class="container">
@@ -1410,5 +225,6 @@
   <script src="/assets/js/app.js?v=20261007b" defer></script>
 
   <script src="/assets/js/physician.js?v=20261007" defer></script>
+<script defer src="/assets/js/scientific.js?v=20261007-editorial"></script>
 </body>
 </html>
