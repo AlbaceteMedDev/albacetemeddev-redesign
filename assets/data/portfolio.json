@@ -1,0 +1,625 @@
+[
+  {
+    "slug": "amchoplast",
+    "name": "AmchoPlast",
+    "maker": "Cellution Biologics",
+    "group": "allografts",
+    "material": "Amnion · intermediate layer · chorion",
+    "form": "Dehydrated membrane",
+    "brief": "A placental membrane wound covering with its amnion, intermediate layer, and chorion structure retained.",
+    "source": "https://www.cellutionbiologics.com/products/amchoplast",
+    "notes": [
+      [
+        "Material & format",
+        "A sterile dehydrated human placental membrane allograft. The manufacturer describes AmchoPlast as a natural biological wound cover."
+      ],
+      [
+        "Handling",
+        "Store in a clean, dry environment at room temperature and follow the expiration date and current instructions supplied with the product."
+      ],
+      [
+        "Before ordering",
+        "Confirm the exact product name and dimensions. AmchoPlast and other Cellution product names should not be treated as interchangeable."
+      ]
+    ],
+    "ev": "amchoplast",
+    "photo": "amchoplast",
+    "url": "/products/amchoplast/"
+  },
+  {
+    "slug": "membrane-wrap-hydro",
+    "name": "Membrane Wrap Hydro",
+    "maker": "BioLab Holdings",
+    "group": "allografts",
+    "material": "Amnion · amnion",
+    "form": "Hydrated membrane",
+    "brief": "A hydrated, dual-layer amniotic membrane that serves as a protective wound covering.",
+    "source": "https://www.biolabholdings.com/products/membranes",
+    "notes": [
+      [
+        "Material & format",
+        "Two layers of amnion in a hydrated format. Membrane Wrap Hydro is distinct from Membrane Wrap–Amniotic Hydro."
+      ],
+      [
+        "Practice consideration",
+        "Review the current packaging, available sizes, handling instructions, and documentation requirements with your clinical team."
+      ],
+      [
+        "Texas Medicaid resources",
+        "Ask us to review Q4290 for the specific plan, provider type, setting, and date of service. A fee-schedule entry does not establish coverage or guarantee payment."
+      ]
+    ],
+    "ev": "membrane-wrap-hydro",
+    "photo": "membrane-wrap-hydro",
+    "url": "/products/membrane-wrap-hydro/"
+  },
+  {
+    "slug": "activate",
+    "name": "Activate Matrix",
+    "maker": "Sequence LifeScience",
+    "group": "allografts",
+    "material": "Amnion · intermediate layer · chorion",
+    "form": "Dehydrated membrane",
+    "brief": "A full-thickness placental-derived allograft for use as a wound covering.",
+    "source": "https://sequencelifesci.com/activate/",
+    "notes": [
+      [
+        "Material & format",
+        "Includes the amniotic and chorionic membranes and the intermediate layer of the placenta."
+      ],
+      [
+        "Size options",
+        "The manufacturer lists 2 × 2, 2 × 4, 4 × 4, and 4 × 8 cm formats. Confirm current availability before ordering."
+      ],
+      [
+        "Clinical review",
+        "Use the current product instructions to evaluate intended use, preparation, orientation, and application for the individual patient."
+      ]
+    ],
+    "ev": "activate",
+    "photo": "activate",
+    "url": "/products/activate/"
+  },
+  {
+    "slug": "palisade",
+    "name": "Palisade",
+    "maker": "Sequence LifeScience",
+    "group": "allografts",
+    "material": "Amnion · chorion",
+    "form": "Dehydrated membrane",
+    "brief": "A dual-membrane placental allograft with amnion and chorion in one wound covering.",
+    "source": "https://sequencelifesci.com/palisade-2/",
+    "notes": [
+      [
+        "Material & format",
+        "A dehydrated placental membrane combining amnion and chorion. This composition differs from single-layer Sentry and full-thickness Activate."
+      ],
+      [
+        "Size options",
+        "The manufacturer lists 2 × 2, 2 × 4, 4 × 4, and 4 × 8 cm formats."
+      ],
+      [
+        "Before use",
+        "Review the product-specific package insert for donor screening, handling, and application information."
+      ]
+    ],
+    "ev": "palisade",
+    "photo": "palisade",
+    "url": "/products/palisade/"
+  },
+  {
+    "slug": "sentry-sl",
+    "name": "Sentry SL",
+    "maker": "Sequence LifeScience",
+    "group": "allografts",
+    "material": "Single-layer amnion",
+    "form": "Dehydrated membrane",
+    "brief": "A single-layer amniotic membrane allograft designed as a biological wound covering.",
+    "source": "https://sequencelifesci.com/sentry-2/",
+    "notes": [
+      [
+        "Material & format",
+        "Dehydrated human amnion in a thin single-layer format."
+      ],
+      [
+        "Size options",
+        "The manufacturer lists 2 × 2, 2 × 4, 4 × 4, and 4 × 8 cm formats."
+      ],
+      [
+        "Clinical review",
+        "Consider labeled use, the wound presentation, and the current instructions rather than selecting a product by layer count alone."
+      ]
+    ],
+    "ev": "sentry-sl",
+    "photo": "sentry-sl",
+    "url": "/products/sentry-sl/"
+  },
+  {
+    "slug": "membrane-wrap",
+    "name": "Membrane Wrap",
+    "maker": "BioLab Holdings",
+    "group": "allografts",
+    "material": "Amnion · amnion",
+    "form": "Membrane sheet",
+    "brief": "A dual-layer amniotic allograft used as a protective wound covering.",
+    "source": "https://www.biolabholdings.com/products/membranes",
+    "notes": [
+      [
+        "Material & format",
+        "Human amnion-amnion tissue allograft supplied as a membrane."
+      ],
+      [
+        "Product family",
+        "Compare the standard membrane with the hydrated Hydro format and the amnion-chorion-amnion composition of Tri-Membrane Wrap."
+      ],
+      [
+        "Before ordering",
+        "Review the current manufacturer size list and product-specific instructions. Format and availability vary across the family."
+      ]
+    ],
+    "ev": "membrane-wrap",
+    "photo": "membrane-wrap",
+    "url": "/products/membrane-wrap/"
+  },
+  {
+    "slug": "tri-membrane-wrap",
+    "name": "Tri-Membrane Wrap",
+    "maker": "BioLab Holdings",
+    "group": "allografts",
+    "material": "Amnion · chorion · amnion",
+    "form": "Triple-layer membrane",
+    "brief": "A three-layer placental allograft for protective wound coverage.",
+    "source": "https://www.biolabholdings.com/products/membranes",
+    "notes": [
+      [
+        "Material & format",
+        "Combines amnion, chorion, and amnion in a membrane sheet."
+      ],
+      [
+        "Clinical consideration",
+        "Layer composition is one product characteristic. Patient assessment, labeled use, handling, and available evidence also inform selection."
+      ],
+      [
+        "Before ordering",
+        "Confirm the current size list and product-specific instructions with the manufacturer or our team."
+      ]
+    ],
+    "ev": "tri-membrane-wrap",
+    "photo": "tri-membrane-wrap",
+    "url": "/products/tri-membrane-wrap/"
+  },
+  {
+    "slug": "xcell-amnio-matrix",
+    "name": "XCell Amnio Matrix",
+    "maker": "Precise Bioscience · New Horizon",
+    "group": "allografts",
+    "material": "Human amniotic membrane",
+    "form": "Lyophilized membrane",
+    "brief": "A lyophilized amniotic membrane wound covering, available through New Horizon Medical Solutions.",
+    "source": "https://nhmedical.com/products/",
+    "notes": [
+      [
+        "Material & format",
+        "A dry amniotic membrane with a flexible, opaque appearance described in the product literature."
+      ],
+      [
+        "Product identity",
+        "XCell Amnio Matrix and Xcellerate have different product names and ordering details. Confirm the exact product and size on every order."
+      ],
+      [
+        "Documentation",
+        "Request the current package insert, size list, and handling information before use."
+      ]
+    ],
+    "ev": "xcell-amnio-matrix",
+    "photo": "xcell-amnio-matrix",
+    "url": "/products/xcell-amnio-matrix/"
+  },
+  {
+    "slug": "palingen",
+    "name": "PalinGen Membrane",
+    "maker": "Amnio Technology",
+    "group": "allografts",
+    "material": "Human amnion",
+    "form": "Air-dried membrane",
+    "brief": "A chorion-free amniotic tissue allograft used as a biological wound covering.",
+    "source": "https://amniotechnology.com/index.php/palingen-membrane/",
+    "notes": [
+      [
+        "Material & format",
+        "Human amnion supplied as an air-dried, sterile membrane. The manufacturer describes it as resorbable and chorion-free."
+      ],
+      [
+        "Ordering",
+        "Rectangular and circular formats are listed. Confirm the exact membrane variant; dual-layer and hydrated products have their own specifications."
+      ],
+      [
+        "Clinical review",
+        "Review current instructions for the selected product and the intended wound application."
+      ]
+    ],
+    "ev": "palingen",
+    "photo": "palingen",
+    "url": "/products/palingen/"
+  },
+  {
+    "slug": "apis",
+    "name": "APIS",
+    "maker": "SweetBio",
+    "group": "matrices",
+    "material": "Collagen · Mānuka honey",
+    "form": "Matrix sheet",
+    "brief": "A wound matrix combining collagen and Mānuka honey in a soft sheet format.",
+    "source": "https://www.sweetbio.com/",
+    "notes": [
+      [
+        "Material & format",
+        "A collagen-derived matrix with Mānuka honey. Confirm the current formulation and instructions in the manufacturer documentation."
+      ],
+      [
+        "Read the evidence",
+        "Explore the product-specific clinical publications, including the study in Mohs surgical defects, alongside study populations and limitations."
+      ],
+      [
+        "Before ordering",
+        "Confirm the selected size, handling requirements, and application instructions. APIS and VERIS are distinct products."
+      ]
+    ],
+    "ev": "apis",
+    "photo": "apis",
+    "url": "/products/apis/"
+  },
+  {
+    "slug": "microlyte",
+    "name": "Microlyte SAM",
+    "maker": "Imbed Biosciences · BioLab",
+    "group": "matrices",
+    "material": "Synthetic polymers · silver",
+    "form": "Ultrathin matrix",
+    "brief": "A fully synthetic antimicrobial matrix that conforms to the wound surface.",
+    "source": "https://imbedbio.com/products/microlyte/",
+    "notes": [
+      [
+        "Material & format",
+        "A bioresorbable synthetic polymer matrix containing ionic and metallic silver."
+      ],
+      [
+        "Clinical review",
+        "Manufacturer labeling covers several chronic, surgical, and traumatic wound categories. Review the exact indications and current instructions."
+      ],
+      [
+        "Evidence & use",
+        "Separate laboratory antimicrobial findings from clinical outcomes. The evidence library links the available product-specific research."
+      ]
+    ],
+    "ev": "microlyte-sam",
+    "photo": "microlyte",
+    "url": "/products/microlyte/"
+  },
+  {
+    "slug": "microlyte-painguard",
+    "name": "Microlyte PainGuard",
+    "maker": "Imbed Biosciences · BioLab",
+    "group": "matrices",
+    "material": "Synthetic polymers · silver · lidocaine",
+    "form": "Ultrathin matrix",
+    "brief": "A synthetic antimicrobial matrix with lidocaine, distinct from standard Microlyte.",
+    "source": "https://imbedbio.com/products/sam-painguard-with-lidocaine/",
+    "notes": [
+      [
+        "Material & format",
+        "Combines the synthetic antimicrobial matrix platform with lidocaine HCl."
+      ],
+      [
+        "Product distinction",
+        "PainGuard contains lidocaine. Review contraindications, precautions, product size, and current labeling for the specific patient."
+      ],
+      [
+        "Clinical resources",
+        "Review manufacturer information and the evidence library before establishing a practice protocol."
+      ]
+    ],
+    "ev": "microlyte-painguard",
+    "photo": "microlyte-painguard",
+    "url": "/products/microlyte-painguard/"
+  },
+  {
+    "slug": "myriad-matrix",
+    "name": "Myriad Matrix",
+    "maker": "AROA Biosurgery",
+    "group": "matrices",
+    "material": "Ovine extracellular matrix",
+    "form": "Perforated matrix sheet",
+    "brief": "An extracellular matrix bioscaffold available in multiple sheet configurations.",
+    "source": "https://aroa.com/product/myriad-matrix-ecm/",
+    "notes": [
+      [
+        "Material & format",
+        "A soft tissue bioscaffold based on AROA ECM. Sheet formats include different layer counts and dimensions."
+      ],
+      [
+        "Clinical scope",
+        "Manufacturer indications include soft tissue repair or reinforcement and management of a range of wounds. Review the exact product instructions."
+      ],
+      [
+        "Ordering",
+        "Confirm the selected formulation, layer count, and size. Availability through our supplier network may differ from the full manufacturer catalog."
+      ]
+    ],
+    "ev": "myriad-matrix",
+    "photo": "myriad-matrix",
+    "url": "/products/myriad-matrix/"
+  },
+  {
+    "slug": "resolve-matrix",
+    "name": "Resolve Matrix",
+    "maker": "Parametrics Medical",
+    "group": "matrices",
+    "material": "Porcine peritoneum ECM",
+    "form": "Collagen matrix sheet",
+    "brief": "An acellular collagen wound dressing derived from porcine peritoneum.",
+    "source": "https://parametricsmedical.com/product/collagen-ecm/",
+    "notes": [
+      [
+        "Material & format",
+        "A thin, flexible acellular matrix. Manufacturer materials distinguish dry and hydrated formats."
+      ],
+      [
+        "Clinical review",
+        "Read the current indications for topical wound management and the instructions for the exact format selected."
+      ],
+      [
+        "Before ordering",
+        "Confirm dimensions, hydration state, current availability, and product-specific documentation."
+      ]
+    ],
+    "ev": "resolve-matrix",
+    "photo": "resolve-matrix",
+    "url": "/products/resolve-matrix/"
+  },
+  {
+    "slug": "interfyl",
+    "name": "Interfyl",
+    "maker": "Celularity",
+    "group": "matrices",
+    "material": "Human connective tissue matrix",
+    "form": "Flowable · particulate",
+    "brief": "A human connective tissue matrix with flowable and particulate formats.",
+    "source": "https://celularity.com/biomaterial-platform/",
+    "notes": [
+      [
+        "Material & format",
+        "A placental-derived human connective tissue matrix. Flowable and particulate presentations have different preparation and ordering details."
+      ],
+      [
+        "Product review",
+        "Compare the selected format, amount, handling, and labeled use with your clinical requirements."
+      ],
+      [
+        "Clinical resources",
+        "The evidence library brings available regulatory, product, and clinical references together for further review."
+      ]
+    ],
+    "ev": "interfyl",
+    "photo": "interfyl",
+    "url": "/products/interfyl/"
+  },
+  {
+    "slug": "xcellistem",
+    "name": "XCelliStem",
+    "maker": "StemSys",
+    "group": "matrices",
+    "material": "Multi-tissue extracellular matrix",
+    "form": "Wound powder",
+    "brief": "A particulate wound product based on a blend of extracellular matrix materials.",
+    "source": "https://www.stemsysbio.com/our-products",
+    "notes": [
+      [
+        "Material & format",
+        "A fine wound powder produced using the StemSys multi-tissue platform."
+      ],
+      [
+        "Clinical review",
+        "Review the product-specific indications and application instructions before considering its place in the care pathway."
+      ],
+      [
+        "Evidence",
+        "Read the available clinical reports in context; case reports and case series answer different questions from comparative trials."
+      ]
+    ],
+    "ev": "xcellistem",
+    "photo": "xcellistem",
+    "url": "/products/xcellistem/"
+  },
+  {
+    "slug": "ultramist",
+    "name": "UltraMIST",
+    "maker": "SANUWAVE",
+    "group": "devices",
+    "material": "Low-frequency ultrasound",
+    "form": "Non-contact device",
+    "brief": "Ultrasound therapy delivered through a non-contact saline mist.",
+    "source": "https://sanuwave.com/products/ultramist/",
+    "notes": [
+      [
+        "Technology",
+        "A low-frequency ultrasound system using non-contact fluid delivery to the treatment site."
+      ],
+      [
+        "Practice planning",
+        "Consider staff training, treatment setup, disposable supplies, and workflow alongside clinical suitability."
+      ],
+      [
+        "Resources",
+        "The manufacturer provides instructions for use and published references. Review product-specific patient considerations and contraindications."
+      ]
+    ],
+    "ev": "ultramist",
+    "photo": "ultramist",
+    "url": "/products/ultramist/"
+  },
+  {
+    "slug": "arobella",
+    "name": "Arobella Qoustic",
+    "maker": "Arobella Medical",
+    "group": "devices",
+    "material": "Ultrasonic debridement",
+    "form": "Console · handpiece",
+    "brief": "An ultrasound-assisted system for wound debridement and cleansing.",
+    "source": "https://arobella.com/products/",
+    "notes": [
+      [
+        "Technology",
+        "The Qoustic Wound Therapy System uses an ultrasonic generator and handpiece with irrigation."
+      ],
+      [
+        "Practice planning",
+        "Review device configuration, instruments, staff training, and the labeled contact or non-contact techniques for the selected system."
+      ],
+      [
+        "Resources",
+        "Manufacturer materials include cleared indications, specifications, and a product catalog. Use the current instructions for clinical decisions."
+      ]
+    ],
+    "ev": "arobella",
+    "photo": "arobella",
+    "url": "/products/arobella/"
+  },
+  {
+    "slug": "microdoc",
+    "name": "MicroDoc",
+    "maker": "Pensar Medical",
+    "group": "devices",
+    "material": "Negative pressure wound therapy",
+    "form": "Portable single-use device",
+    "brief": "A compact single-use negative pressure wound therapy system.",
+    "source": "https://pensarmedical.com/microdoc/",
+    "notes": [
+      [
+        "Technology",
+        "A small portable control unit used with the matching dressing system."
+      ],
+      [
+        "Practice planning",
+        "Plan patient instruction, dressing selection, follow-up, and troubleshooting using current manufacturer guidance."
+      ],
+      [
+        "Product resources",
+        "The manufacturer provides specifications, manuals, and care resources. Review the current model and compatible components before use."
+      ]
+    ],
+    "ev": "microdoc",
+    "photo": "microdoc",
+    "url": "/products/microdoc/"
+  },
+  {
+    "slug": "actigraft",
+    "name": "ActiGraft",
+    "maker": "RedDress",
+    "group": "autologous",
+    "material": "Patient-derived whole blood clot",
+    "form": "Point-of-care system",
+    "brief": "An autologous approach using a clot prepared from the patient’s own blood.",
+    "source": "https://reddressmedical.com/solutions/",
+    "notes": [
+      [
+        "Approach",
+        "A point-of-care system for preparing an autologous whole blood clot dressing."
+      ],
+      [
+        "Confirm the system",
+        "ActiGraft systems and versions have different instructions and components. Confirm the exact system supplied before training or use."
+      ],
+      [
+        "Read the evidence",
+        "Review the available clinical trials, populations, endpoints, and limitations in the evidence library."
+      ]
+    ],
+    "ev": "actigraft",
+    "photo": "actigraft",
+    "url": "/products/actigraft/"
+  },
+  {
+    "slug": "adhesion-barrier",
+    "name": "Surgical allografts",
+    "maker": "Surgical product program",
+    "group": "practice",
+    "material": "Product-specific placental tissue",
+    "form": "Surgical membrane",
+    "brief": "Bring the product, its labeled use, and your OR workflow into the same review.",
+    "source": "https://www.cellutionbiologics.com/products/amcorematrix%E2%84%A2",
+    "notes": [
+      [
+        "Product-specific review",
+        "Confirm the exact allograft brand and composition before evaluating a surgical application. The linked AmCoreMatrix manufacturer resource describes amnion, intermediate layer, and chorion."
+      ],
+      [
+        "OR planning",
+        "Discuss storage, preparation, instrumentation, staff training, and product-specific handling with our team."
+      ],
+      [
+        "Documentation",
+        "Request the current IFU and regulatory documentation. Review coverage and facility billing separately for the actual procedure and site of service."
+      ]
+    ],
+    "ev": "adhesion-barrier",
+    "photo": "surgical",
+    "url": "/products/adhesion-barrier/"
+  },
+  {
+    "slug": "peptides",
+    "name": "Peptide catalog",
+    "maker": "Physician-directed product information",
+    "group": "practice",
+    "material": "Product-specific",
+    "form": "Pharmacy channels",
+    "brief": "Review the catalog, available channels, and product-specific regulatory information.",
+    "source": "",
+    "notes": [],
+    "ev": "peptides",
+    "photo": "peptides",
+    "url": "/products/peptides/"
+  },
+  {
+    "slug": "exosomes",
+    "name": "Exosomes & birth tissue",
+    "maker": "Scientific & regulatory information",
+    "group": "practice",
+    "material": "Product-specific",
+    "form": "Research & product review",
+    "brief": "Review the scientific and regulatory context before discussing product availability.",
+    "source": "",
+    "notes": [],
+    "ev": "exosomes",
+    "photo": "exosomes",
+    "url": "/products/exosomes/"
+  },
+  {
+    "slug": "wholesaler",
+    "name": "Medical supplies",
+    "maker": "Practice supply support",
+    "group": "practice",
+    "material": "Dressings · routine supplies",
+    "form": "Multiple formats",
+    "brief": "Bring your facility’s supply requirements into one practical conversation.",
+    "source": "",
+    "notes": [],
+    "ev": "wholesaler",
+    "photo": "wholesaler",
+    "url": "/products/wholesaler/"
+  },
+  {
+    "slug": "ovena",
+    "name": "Ovena Health",
+    "maker": "Ovena Health",
+    "group": "practice",
+    "material": "Wound care · compression",
+    "form": "Patient & caregiver supplies",
+    "brief": "Practical wound care and compression supplies for care beyond the clinic.",
+    "source": "https://www.ovenahealth.com/",
+    "notes": [],
+    "ev": "ovena",
+    "photo": "ovena",
+    "url": "/amazon-store/"
+  }
+]
