@@ -14,3 +14,21 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.catalog-image img,.product-stage img{transition:none!important}.catalog-image:hover img,.portfolio-entry:hover .product-stage img{transform:none!important}}
 
 html:not(.comparison-ready) [data-compare]{display:none}.compare-hint{display:none;font-size:12px;margin:0 0 18px;color:#617563}body:has(dialog[open]){overflow:hidden}@media(max-width:800px){.compare-hint{display:block}}
+
+/* Keep verified packaging and the material fully inside the photograph. */
+.hero-care{min-height:0;align-self:center;aspect-ratio:auto}
+.hero-care img{position:static;inset:auto;height:auto;aspect-ratio:3/2;object-fit:contain;display:block}
+.hero-care figcaption{position:static;margin-top:0;backdrop-filter:none;background:#eef0e6;border-radius:0;padding:17px 19px}
+.product-identity{aspect-ratio:3/2;background:#f1f0e8;border:1px solid #d9dfd3;padding:38px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:25px;color:#385842;border-radius:3px}
+.product-identity img,.product-editorial-grid .product-identity img{width:100%;max-width:350px;height:auto;max-height:100px;object-fit:contain;object-position:left center;aspect-ratio:auto;border-radius:0}
+.identity-eyebrow{font-size:10px;letter-spacing:.15em;color:#6e7e6b}
+.identity-format{font-size:13px;color:#67795f;padding-top:16px;border-top:1px solid #cbd4c5;width:100%}
+.identity-title{font-family:Georgia,serif;font-weight:400;font-size:clamp(28px,3vw,42px);color:#3f5944}
+.catalog-image:has(.product-identity){background:none}
+.compact-identity{height:100%;width:100%;padding:30px;justify-content:center;gap:24px}
+.catalog-image .compact-identity img{max-height:75px;max-width:100%;height:auto;width:100%;object-fit:contain;transform:none}
+.compact-identity .identity-title{font-size:32px}
+.compact-identity .identity-format{font-size:11px}
+.compare-identity{height:125px;margin-bottom:12px;padding:20px;background:#f1f0e8;display:flex;align-items:center;color:#62745e;font-size:12px}
+.compare-table .compare-identity img{object-fit:contain;height:auto;max-height:85px;margin:0}
+@media(max-width:540px){.hero-care{aspect-ratio:auto}.hero-care figcaption{padding:14px}.hero-care figcaption small{font-size:8px;letter-spacing:.045em}.product-identity{padding:28px;gap:22px}.product-identity img{max-height:80px}}

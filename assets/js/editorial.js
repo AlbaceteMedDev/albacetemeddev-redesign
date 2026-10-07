@@ -8,7 +8,7 @@
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let dataPromise;
   function products() {
-    return dataPromise ||= fetch('/assets/data/portfolio.json').then(r => {
+    return dataPromise ||= fetch('/assets/data/portfolio.json?v=20261007-fidelity').then(r => {
       if (!r.ok) throw new Error('Portfolio unavailable');
       return r.json();
     });
@@ -58,7 +58,10 @@
     tray.querySelector('[data-open-compare]').addEventListener('click',()=>{
       const items=saved.map(id=>byId.get(id));if(!items.length)return;
       const fields=[['Material / technology','material'],['Format','form'],['Product source','maker'],['Overview','brief']];
-      let html='<table class="compare-table"><caption class="sr-only">Selected product characteristics</caption><thead><tr><th scope="col">Product</th>'+items.map(p=>`<th scope="col"><img src="/assets/images/editorial/${esc(p.photo)}-640.webp" width="640" height="427" alt="">${esc(p.name)}</th>`).join('')+'</tr></thead><tbody>';
+      const visual = p => p.photo
+        ? `<img src="/assets/images/editorial/${esc(p.photo)}-640.webp" width="640" height="427" alt="">`
+        : `<div class="compare-identity">${p.identity ? `<img src="/assets/images/editorial/${esc(p.identity)}" alt="">` : `<span>${esc(p.form)}</span>`}</div>`;
+      let html='<table class="compare-table"><caption class="sr-only">Selected product characteristics</caption><thead><tr><th scope="col">Product</th>'+items.map(p=>`<th scope="col">${visual(p)}${esc(p.name)}</th>`).join('')+'</tr></thead><tbody>';
       fields.forEach(([label,key])=>{html+=`<tr><th scope="row">${label}</th>${items.map(p=>`<td>${esc(p[key])}</td>`).join('')}</tr>`;});
       html+='<tr><th scope="row">Explore</th>'+items.map(p=>`<td><a href="${esc(p.url)}">Product details →</a>${p.source?`<br><a href="${esc(p.source)}" target="_blank" rel="noopener">Source information ↗</a>`:''}</td>`).join('')+'</tr></tbody></table>';
       modal.querySelector('.compare-scroll').innerHTML=html;

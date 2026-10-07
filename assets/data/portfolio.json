@@ -77,8 +77,9 @@
       ]
     ],
     "ev": "activate",
-    "photo": "activate",
-    "url": "/products/activate/"
+    "photo": null,
+    "url": "/products/activate/",
+    "identity": "activate-identity.png"
   },
   {
     "slug": "palisade",
@@ -104,8 +105,9 @@
       ]
     ],
     "ev": "palisade",
-    "photo": "palisade",
-    "url": "/products/palisade/"
+    "photo": null,
+    "url": "/products/palisade/",
+    "identity": "palisade-identity.png"
   },
   {
     "slug": "sentry-sl",
@@ -131,8 +133,9 @@
       ]
     ],
     "ev": "sentry-sl",
-    "photo": "sentry-sl",
-    "url": "/products/sentry-sl/"
+    "photo": null,
+    "url": "/products/sentry-sl/",
+    "identity": "sentry-sl-identity.png"
   },
   {
     "slug": "membrane-wrap",
@@ -212,7 +215,7 @@
       ]
     ],
     "ev": "xcell-amnio-matrix",
-    "photo": "xcell-amnio-matrix",
+    "photo": "xcell-amnio-matrix-v2",
     "url": "/products/xcell-amnio-matrix/"
   },
   {
@@ -293,7 +296,7 @@
       ]
     ],
     "ev": "microlyte-sam",
-    "photo": "microlyte",
+    "photo": "microlyte-v2",
     "url": "/products/microlyte/"
   },
   {
@@ -320,7 +323,7 @@
       ]
     ],
     "ev": "microlyte-painguard",
-    "photo": "microlyte-painguard",
+    "photo": "microlyte-painguard-v2",
     "url": "/products/microlyte-painguard/"
   },
   {
@@ -374,8 +377,9 @@
       ]
     ],
     "ev": "resolve-matrix",
-    "photo": "resolve-matrix",
-    "url": "/products/resolve-matrix/"
+    "photo": null,
+    "url": "/products/resolve-matrix/",
+    "identity": null
   },
   {
     "slug": "interfyl",
@@ -536,7 +540,7 @@
       ]
     ],
     "ev": "actigraft",
-    "photo": "actigraft",
+    "photo": "actigraft-v2",
     "url": "/products/actigraft/"
   },
   {
@@ -563,7 +567,7 @@
       ]
     ],
     "ev": "adhesion-barrier",
-    "photo": "surgical",
+    "photo": "surgical-v2",
     "url": "/products/adhesion-barrier/"
   },
   {
