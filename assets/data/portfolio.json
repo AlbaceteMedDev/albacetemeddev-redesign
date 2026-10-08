@@ -58,15 +58,22 @@
       ]
     ],
     "ev": "membrane-wrap-hydro",
-    "photo": "membrane-wrap-hydro-20261008",
+    "photo": "membrane-wrap-hydro-box-20261008",
     "url": "/products/membrane-wrap-hydro/",
     "visual": {
-      "alt": "Illustrative photograph: Close view of a translucent hydrated Membrane Wrap Hydro membrane on glass",
-      "reference": "/assets/images/product-references/membrane-wrap-hydro.jpg",
-      "referenceAlt": "BioLab Holdings reference image for Membrane Wrap Hydro",
-      "referenceNote": "Original manufacturer product image.",
-      "referenceUrl": "https://static.wixstatic.com/media/d5411f_faff3a05cbb0440f900b4fde90826552~mv2.jpg",
-      "reviewed": "2026-10-08"
+      "alt": "Illustrative photograph: BioLab Sciences white box with orange and blue branding and printed water-droplet artwork",
+      "reference": "/assets/images/product-references/biolab-sciences-box.png",
+      "referenceAlt": "Published BioLab Sciences box artwork with orange BIOLAB and blue SCIENCES branding",
+      "referenceNote": "BioLab Sciences box shown for Membrane Wrap Hydro by Altera Group. Higher-resolution artwork is published by Bobber Biotech; no Hydro-specific label is visible on the front.",
+      "referenceUrl": "https://alteragrp.com/product-ticker/",
+      "reviewed": "2026-10-08",
+      "referenceLabel": "Packaging reference",
+      "illustrationNote": "Illustrative photograph based on published BioLab Sciences packaging artwork. Consult the current package for product and size labels.",
+      "referenceLinkLabel": "Packaging source ↗",
+      "referenceSources": [
+        "https://alteragrp.com/product-ticker/",
+        "https://www.bobberbiotech.com/membrane-wrap-amniotic-allograft-membrane"
+      ]
     }
   },
   {

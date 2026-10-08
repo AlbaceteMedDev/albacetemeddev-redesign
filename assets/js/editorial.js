@@ -7,7 +7,7 @@
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let dataPromise;
   function products() {
-    return dataPromise ||= fetch('/assets/data/portfolio.json?v=20261008-images').then(r => {
+    return dataPromise ||= fetch('/assets/data/portfolio.json?v=20261008-hydro-box').then(r => {
       if (!r.ok) throw new Error('Portfolio unavailable');
       return r.json();
     });

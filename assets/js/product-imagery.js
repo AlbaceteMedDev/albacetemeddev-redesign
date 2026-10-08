@@ -2,7 +2,7 @@
 (() => {
   const triggers = [...document.querySelectorAll('[data-product-image]')];
   if (!triggers.length || !window.HTMLDialogElement) return;
-  fetch('/assets/data/portfolio.json?v=20261008-images').then(response => {
+  fetch('/assets/data/portfolio.json?v=20261008-hydro-box').then(response => {
     if (!response.ok) throw new Error('Product reference unavailable');
     return response.json();
   }).then(products => {
@@ -21,7 +21,7 @@
       const reference = mode === 'reference';
       image.alt = reference ? current.visual.referenceAlt : current.visual.alt;
       image.src = reference ? current.visual.reference : `/assets/images/editorial/${current.photo}.webp`;
-      status.textContent = reference ? current.visual.referenceNote : 'Illustrative photograph based on the manufacturer reference. Consult the current package and instructions for use.';
+      status.textContent = reference ? current.visual.referenceNote : (current.visual.illustrationNote || 'Illustrative photograph based on the manufacturer reference. Consult the current package and instructions for use.');
       dialog.querySelectorAll('[data-image-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.imageMode === mode)));
     }
     image.addEventListener('error', () => { status.textContent = 'This image could not load. Open the original reference file below.'; });
@@ -35,6 +35,8 @@
       dialog.querySelector('[data-image-product]').href = current.url;
       dialog.querySelector('[data-image-source]').href = current.source;
       dialog.querySelector('[data-image-original]').href = current.visual.referenceUrl;
+      dialog.querySelector('[data-image-original]').textContent = current.visual.referenceLinkLabel || 'Original reference file ↗';
+      dialog.querySelector('[data-image-mode="reference"]').textContent = current.visual.referenceLabel || 'Manufacturer reference';
       show(trigger.dataset.imageView || 'illustration');
       dialog.showModal(); dialog.scrollTop = 0;
       dialog.querySelector('.image-dialog-close').focus({preventScroll:true});
