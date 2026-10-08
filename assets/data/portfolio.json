@@ -23,8 +23,16 @@
       ]
     ],
     "ev": "amchoplast",
-    "photo": "amchoplast",
-    "url": "/products/amchoplast/"
+    "photo": "amchoplast-20261008",
+    "url": "/products/amchoplast/",
+    "visual": {
+      "alt": "Illustrative photograph: AmchoPlast purple and white package in natural daylight",
+      "reference": "/assets/images/product-references/amchoplast.png",
+      "referenceAlt": "Cellution Biologics reference image for AmchoPlast",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://www.cellutionbiologics.com/cdn/shop/files/AmchoPlast_Front_4_643a2bdf-3e79-47d0-9517-302b93c90994.png?v=1762930120&width=1946",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "membrane-wrap-hydro",
@@ -50,8 +58,16 @@
       ]
     ],
     "ev": "membrane-wrap-hydro",
-    "photo": "membrane-wrap-hydro",
-    "url": "/products/membrane-wrap-hydro/"
+    "photo": "membrane-wrap-hydro-20261008",
+    "url": "/products/membrane-wrap-hydro/",
+    "visual": {
+      "alt": "Illustrative photograph: Close view of a translucent hydrated Membrane Wrap Hydro membrane on glass",
+      "reference": "/assets/images/product-references/membrane-wrap-hydro.jpg",
+      "referenceAlt": "BioLab Holdings reference image for Membrane Wrap Hydro",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://static.wixstatic.com/media/d5411f_faff3a05cbb0440f900b4fde90826552~mv2.jpg",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "activate",
@@ -161,8 +177,16 @@
       ]
     ],
     "ev": "membrane-wrap",
-    "photo": "membrane-wrap",
-    "url": "/products/membrane-wrap/"
+    "photo": "membrane-wrap-20261008",
+    "url": "/products/membrane-wrap/",
+    "visual": {
+      "alt": "Illustrative photograph: Membrane Wrap tissue displayed against a clear plate",
+      "reference": "/assets/images/product-references/membrane-wrap.jpg",
+      "referenceAlt": "BioLab Holdings reference image for Membrane Wrap",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://static.wixstatic.com/media/7fa42d_10f5fa857b2b4e909b6fdf72c0fd3454~mv2.jpg",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "tri-membrane-wrap",
@@ -188,8 +212,16 @@
       ]
     ],
     "ev": "tri-membrane-wrap",
-    "photo": "tri-membrane-wrap",
-    "url": "/products/tri-membrane-wrap/"
+    "photo": "tri-membrane-wrap-20261008",
+    "url": "/products/tri-membrane-wrap/",
+    "visual": {
+      "alt": "Illustrative photograph: Tri-Membrane Wrap square membrane displayed on glass",
+      "reference": "/assets/images/product-references/tri-membrane-wrap.jpg",
+      "referenceAlt": "BioLab Holdings reference image for Tri-Membrane Wrap",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://static.wixstatic.com/media/d5411f_67b42dfcaf914f4d8abbb539f55a1dd7~mv2.jpg",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "xcell-amnio-matrix",
@@ -215,8 +247,16 @@
       ]
     ],
     "ev": "xcell-amnio-matrix",
-    "photo": "xcell-amnio-matrix-v2",
-    "url": "/products/xcell-amnio-matrix/"
+    "photo": "xcell-amnio-matrix-20261008",
+    "url": "/products/xcell-amnio-matrix/",
+    "visual": {
+      "alt": "Illustrative photograph: Two XCell Amnio Matrix cartons with blue and green Precise Bioscience artwork",
+      "reference": "/assets/images/product-references/xcell-amnio-matrix.png",
+      "referenceAlt": "Precise Bioscience · New Horizon reference image for XCell Amnio Matrix",
+      "referenceNote": "XCell Amnio Matrix cartons, extracted from page 2 of the New Horizon product brochure.",
+      "referenceUrl": "https://nhmedical.com/wp-content/uploads/2025/10/NH-BRO-FAM-1025-V5-dig.pdf",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "palingen",
@@ -242,8 +282,16 @@
       ]
     ],
     "ev": "palingen",
-    "photo": "palingen",
-    "url": "/products/palingen/"
+    "photo": "palingen-20261008",
+    "url": "/products/palingen/",
+    "visual": {
+      "alt": "Illustrative photograph: PalinGen package with its manufacturer-referenced tray configuration",
+      "reference": "/assets/images/product-references/palingen.jpg",
+      "referenceAlt": "Amnio Technology reference image for PalinGen Membrane",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://amniotechnology.com/wp-content/uploads/2023/07/PalinGen_Trays_2-2560.jpg",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "apis",
@@ -269,8 +317,16 @@
       ]
     ],
     "ev": "apis",
-    "photo": "apis",
-    "url": "/products/apis/"
+    "photo": "apis-20261008",
+    "url": "/products/apis/",
+    "visual": {
+      "alt": "Illustrative photograph: Close view of the amber APIS matrix sheet on glass",
+      "reference": "/assets/images/product-references/apis.webp",
+      "referenceAlt": "SweetBio reference image for APIS",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://images.squarespace-cdn.com/content/v1/618c35e9590e561c286562d6/9065c6ab-c635-426d-8cbb-030bd2339828/SweetBio_APIS_Product.webp",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "microlyte",
@@ -296,8 +352,16 @@
       ]
     ],
     "ev": "microlyte-sam",
-    "photo": "microlyte-v2",
-    "url": "/products/microlyte/"
+    "photo": "microlyte-20261008",
+    "url": "/products/microlyte/",
+    "visual": {
+      "alt": "Illustrative photograph: Microlyte Matrix navy blue carton with cyan and yellow artwork",
+      "reference": "/assets/images/product-references/microlyte.png",
+      "referenceAlt": "Imbed Biosciences · BioLab reference image for Microlyte SAM",
+      "referenceNote": "Manufacturer carton artwork.",
+      "referenceUrl": "https://imbedbio.com/wp-content/uploads/2023/07/Microlyte-Box-Art-Web-1024x622.png",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "microlyte-painguard",
@@ -323,8 +387,16 @@
       ]
     ],
     "ev": "microlyte-painguard",
-    "photo": "microlyte-painguard-v2",
-    "url": "/products/microlyte-painguard/"
+    "photo": "microlyte-painguard-20261008",
+    "url": "/products/microlyte-painguard/",
+    "visual": {
+      "alt": "Illustrative photograph: Microlyte PainGuard with Lidocaine white, blue and green carton",
+      "reference": "/assets/images/product-references/microlyte-painguard.png",
+      "referenceAlt": "Imbed Biosciences · BioLab reference image for Microlyte PainGuard",
+      "referenceNote": "Microlyte PainGuard is the carton at the front left of this manufacturer image.",
+      "referenceUrl": "https://imbedbio.com/wp-content/uploads/2025/08/PainGuard-Product-Portfolio-1024x683.png",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "myriad-matrix",
@@ -350,8 +422,16 @@
       ]
     ],
     "ev": "myriad-matrix",
-    "photo": "myriad-matrix",
-    "url": "/products/myriad-matrix/"
+    "photo": "myriad-matrix-20261008",
+    "url": "/products/myriad-matrix/",
+    "visual": {
+      "alt": "Illustrative photograph: AROA Myriad Matrix soft tissue bioscaffold package",
+      "reference": "/assets/images/product-references/myriad-matrix.png",
+      "referenceAlt": "AROA Biosurgery reference image for Myriad Matrix",
+      "referenceNote": "AROA format chart. The package is at the upper right; the material photograph is below it.",
+      "referenceUrl": "https://aroa.com/wp-content/uploads/2024/10/Myriad-Matrix-US-Product-SKUs-Table-updated.png",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "resolve-matrix",
@@ -405,8 +485,16 @@
       ]
     ],
     "ev": "interfyl",
-    "photo": "interfyl",
-    "url": "/products/interfyl/"
+    "photo": "interfyl-20261008",
+    "url": "/products/interfyl/",
+    "visual": {
+      "alt": "Illustrative photograph: Interfyl 100 mg Flowable cartons in red, purple and white",
+      "reference": "/assets/images/product-references/interfyl.png",
+      "referenceAlt": "Celularity reference image for Interfyl",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://celularity.com/wp-content/uploads/Interfyl_WebsiteRenderNew-450x275.png",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "xcellistem",
@@ -432,8 +520,16 @@
       ]
     ],
     "ev": "xcellistem",
-    "photo": "xcellistem",
-    "url": "/products/xcellistem/"
+    "photo": "xcellistem-20261008",
+    "url": "/products/xcellistem/",
+    "visual": {
+      "alt": "Illustrative photograph: Close view of pale cream XCelliStem wound powder on glass",
+      "reference": "/assets/images/product-references/xcellistem.png",
+      "referenceAlt": "StemSys reference image for XCelliStem",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://images.squarespace-cdn.com/content/v1/6547edbd58c1213930c68734/f383b832-f633-4f7c-8b74-4a58b47de95e/stemsys+%2823%29.png",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "ultramist",
@@ -459,8 +555,16 @@
       ]
     ],
     "ev": "ultramist",
-    "photo": "ultramist",
-    "url": "/products/ultramist/"
+    "photo": "ultramist-20261008",
+    "url": "/products/ultramist/",
+    "visual": {
+      "alt": "Illustrative photograph: SANUWAVE UltraMIST unit with its handpiece docked",
+      "reference": "/assets/images/product-references/ultramist.jpg",
+      "referenceAlt": "SANUWAVE reference image for UltraMIST",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://sanuwave.com/data/sanuwave-ultramist-device.jpg",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "arobella",
@@ -486,8 +590,16 @@
       ]
     ],
     "ev": "arobella",
-    "photo": "arobella",
-    "url": "/products/arobella/"
+    "photo": "arobella-20261008",
+    "url": "/products/arobella/",
+    "visual": {
+      "alt": "Illustrative photograph: Arobella Qoustic console with the manufacturer-referenced control panel",
+      "reference": "/assets/images/product-references/arobella.jpeg",
+      "referenceAlt": "Arobella Medical reference image for Arobella Qoustic",
+      "referenceNote": "Qoustic console photograph from page 3 of the Arobella product brochure.",
+      "referenceUrl": "https://arobella.com/wp-content/uploads/2024/12/0000334-Rev-J-04DEC2024-AR1000-QWTS-Brochure-Arobella-Medical.pdf",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "microdoc",
@@ -513,8 +625,16 @@
       ]
     ],
     "ev": "microdoc",
-    "photo": "microdoc",
-    "url": "/products/microdoc/"
+    "photo": "microdoc-20261008",
+    "url": "/products/microdoc/",
+    "visual": {
+      "alt": "Illustrative photograph: MicroDoc portable unit held in a hand to show its scale",
+      "reference": "/assets/images/product-references/microdoc.webp",
+      "referenceAlt": "Pensar Medical reference image for MicroDoc",
+      "referenceNote": "Original manufacturer product image.",
+      "referenceUrl": "https://pensarmedical.com/wp-content/uploads/2024/02/Microdoc-negative-pressure-wound-therapy-device.webp",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "actigraft",
@@ -540,8 +660,16 @@
       ]
     ],
     "ev": "actigraft",
-    "photo": "actigraft-v2",
-    "url": "/products/actigraft/"
+    "photo": "actigraft-20261008",
+    "url": "/products/actigraft/",
+    "visual": {
+      "alt": "Illustrative photograph: Closed ActiGraft PRO kit with magenta and white packaging",
+      "reference": "/assets/images/product-references/actigraft.jpg",
+      "referenceAlt": "RedDress reference image for ActiGraft",
+      "referenceNote": "The manufacturer reference shows the ActiGraft PRO package.",
+      "referenceUrl": "https://reddressmedical.com/wp-content/uploads/2024/03/actigraft-box.jpg",
+      "reviewed": "2026-10-08"
+    }
   },
   {
     "slug": "adhesion-barrier",

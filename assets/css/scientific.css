@@ -167,3 +167,56 @@
   .science-chapter a[href^="https:"]::after { content: ' (' attr(href) ')'; font-size: 9px; overflow-wrap: anywhere; }
   .science-main p { font-size: 11pt; }
 }
+
+/* Product photographs belong in the reference itself, alongside source and format. */
+.science-filters { display:flex; flex-wrap:wrap; gap:6px 22px; margin:18px 0 0; padding:0; border:0; }
+.science-filters button { padding:7px 0; border:0; border-bottom:2px solid transparent; border-radius:0; min-height:44px; }
+.science-filters button[aria-pressed=true] { color:#263d35; border-bottom-color:#526c46; }
+.science-product-list li { grid-template-columns:240px minmax(0,1fr); align-items:center; gap:30px; padding:26px 0; }
+.science-product-list .science-product-visual { display:block; position:relative; aspect-ratio:3/2; background:#e8eae0; overflow:hidden; }
+.science-product-visual img { width:100%; height:100%; object-fit:contain; }
+.science-product-list .science-source-identity { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:22px; padding:24px; background:#efeee6; }
+.science-source-identity img { width:100%; height:auto; max-height:65px; object-fit:contain; }
+.science-source-identity small { font-size:10px; color:#6b785f; }
+.science-reference-wordmark { font:400 30px/1.1 Georgia,serif; letter-spacing:-.035em; text-align:center; }
+.science-product-list .science-product-maker { font-size:10px; line-height:1.5; text-transform:uppercase; letter-spacing:.045em; margin-bottom:8px; color:#607259; }
+.science-product-list h3 { font:400 27px/1.2 Georgia,serif; letter-spacing:-.025em; margin:0 0 10px; }
+.science-product-list .science-product-format { font-size:14px; color:#405640; }
+.science-product-list .science-product-material { font-size:12px; color:#69785f; margin-top:3px; }
+.science-product-links { gap:4px 24px; margin-top:12px; }
+.science-product-links a { font-size:12px; }
+.science-chapter .science-image-note { font-size:11px; color:#68775f; margin:20px 0 0; max-width:none; }
+.science-device { grid-template-columns:180px minmax(0,1fr); gap:14px 26px; }
+.science-device-image { grid-row:1 / span 2; align-self:center; }
+.science-device > div:last-child { grid-column:2; }
+.science-device img { display:block; width:100%; height:auto; }
+.science-device h3 { margin:0 0 6px; }
+@media(max-width:1100px) { .science-product-list li { grid-template-columns:200px minmax(0,1fr); gap:22px; } .science-product-list h3 { font-size:25px; } }
+@media(max-width:600px) {
+ .science-product-list li { grid-template-columns:112px minmax(0,1fr); gap:17px; align-items:start; padding:22px 0; }
+ .science-product-list .science-product-visual { aspect-ratio:1; }
+ .science-product-visual img { object-fit:cover; }
+ .science-product-list h3 { font-size:23px; overflow-wrap:anywhere; }
+ .science-product-list .science-product-maker { font-size:9px; margin-bottom:7px; }
+ .science-product-list .science-product-format { font-size:12px; }
+ .science-product-list .science-product-material { font-size:11px; line-height:1.7; }
+ .science-product-links { gap:0; display:block; margin-top:8px; }
+ .science-product-links a { min-height:40px; font-size:11px; }
+ .science-product-list .image-open-label { font-size:9px; padding:3px 6px; min-height:28px; gap:12px; right:6px; bottom:6px; }
+ .science-product-list .science-source-identity { padding:13px; gap:13px; }
+ .science-source-identity small { font-size:8px; text-align:center; }
+ .science-reference-wordmark { font-size:24px; }
+ .science-filters { gap:4px 18px; }
+ .science-filters button { font-size:11px; }
+ .science-device { grid-template-columns:112px minmax(0,1fr); gap:14px 20px; }
+ .science-device-image { grid-row:1; align-self:start; }
+ .science-device > div:last-child { grid-column:1/-1; }
+ .science-device .image-open-label { display:none; }
+}
+@media print {
+ .science-product-list li { grid-template-columns:130px minmax(0,1fr); gap:20px; padding:16px 0; }
+ .science-product-list .science-product-visual { width:130px; aspect-ratio:3/2; }
+ .science-product-list h3 { font-size:20px; }
+ .science-product-list .science-product-maker { font-size:9px; }
+ .science-main .science-product-list p { font-size:10px; }
+}
