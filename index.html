@@ -6,6 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style>html.amd-intro-pending::before{content:"";position:fixed;inset:0;background:#080e16;z-index:2147483646;pointer-events:none}</style>
 <script>
+document.documentElement.classList.add('sx-js');
 // The cover expires even if an optional asset fails; the site is always accessible.
 try {
   if (!sessionStorage.getItem('amd-intro-v3') && !matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData && !location.hash) {
@@ -46,9 +47,10 @@ try {
 <!-- Structured data -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://albacetemeddev.com/#organization","name":"Albacete MedDev","url":"https://albacetemeddev.com/","logo":"https://albacetemeddev.com/assets/img/favicon-512.png","image":"https://albacetemeddev.com/assets/img/og-image.png","description":"Medical device distribution and practice operations partner — advanced wound care products, compliance, revenue cycle, and billing support for specialty practices.","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactPoint":{"@type":"ContactPoint","telephone":"+1-551-497-3428","email":"gabe@albacetemeddev.com","contactType":"sales","areaServed":"US"},"subOrganization":[{"@type":"Organization","name":"Ovena Health","url":"https://ovenahealth.com"},{"@type":"Organization","name":"StrataMetric","url":"https://stratametricai.com"}],"sameAs":["https://ovenahealth.com","https://stratametricai.com","https://www.amazon.com/stores/OvenaHealth/page/D6AE90DA-CBED-4BB0-A25F-18FA9E66C8F8"],"knowsAbout":["Advanced wound care","Skin substitutes","Cellular and tissue-based products","Negative pressure wound therapy","Ultrasonic debridement","Wound care reimbursement","HCPCS coding","Compounded peptide therapies"],"areaServed":{"@type":"Country","name":"United States"},"slogan":"One partner. Every operational layer."},{"@type":"WebSite","@id":"https://albacetemeddev.com/#website","url":"https://albacetemeddev.com/","name":"Albacete MedDev","publisher":{"@id":"https://albacetemeddev.com/#organization"}},{"@type":"WebPage","@id":"https://albacetemeddev.com/#webpage","url":"https://albacetemeddev.com/","isPartOf":{"@id":"https://albacetemeddev.com/#website"},"publisher":{"@id":"https://albacetemeddev.com/#organization"},"inLanguage":"en-US"}]}</script>
 <link href="/assets/css/refinement.css?v=3" rel="stylesheet"/>
-<link href="/assets/css/physician.css?v=20261007b" rel="stylesheet"/>
-<link href="/assets/css/editorial.css?v=20261007-intro-v3" rel="stylesheet"/>
-<link href="/assets/css/intro.css?v=20261007-v3" rel="stylesheet"/></head>
+<link href="/assets/css/physician.css?v=20261009sx" rel="stylesheet"/>
+<link href="/assets/css/intro.css?v=20261009sx" rel="stylesheet"/>
+<link href="/assets/css/signature.css?v=20261009sx" rel="stylesheet"/>
+<link href="/assets/css/home.css?v=2" rel="stylesheet"/></head>
 <body class="is-loaded page-home">
 <a class="skip-link" href="#main">Skip to content</a>
 <!-- ═══ NAVIGATION ═══ -->
@@ -59,54 +61,103 @@ try {
 <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" class="nav-toggle"><span></span><span></span><span></span></button></div></nav>
 <div aria-hidden="true" class="mobile-menu" id="mobile-menu" inert="">
 <a href="/products/">Products &amp; solutions</a><a href="/evidence/">Clinical evidence</a><a href="/scientific-portfolio/">Scientific portfolio</a><a href="/services/">Practice services</a><a href="/software/">Software</a><a href="/portal/">Provider portal</a><a href="/amazon-store/">Ovena Health</a><a href="/about/">About Albacete</a><a class="mobile-cta" href="/contact/">Talk with our team ↗</a></div>
-<main class="physician-home" id="main">
-<section class="clinical-hero">
-<div class="container clinical-hero-grid">
-<div class="clinical-intro">
-<p class="clinical-eyebrow">ALBACETE MEDDEV <span> / </span> WOUND CARE &amp; PRACTICE SUPPORT</p>
-<h1>Advanced wound care.<br/><em>A stronger practice.</em></h1>
-<p class="clinical-lead">The right questions lead to better decisions. Explore wound care products, examine the evidence, and find practical support for the work around patient care.</p>
-<div class="clinical-actions"><a class="clinical-button" href="/products/">Explore the portfolio <span aria-hidden="true">↗</span></a><a class="clinical-text-link" href="/evidence/">Review clinical evidence <span aria-hidden="true">→</span></a></div>
-<p class="hero-footnote">Products. Clinical resources. Practice operations.<br/>One place to start a more informed conversation.</p><p class="intro-invitation"><button class="intro-replay" data-replay-intro="" hidden="" type="button"><span aria-hidden="true">▶</span>Watch our introduction</button></p>
+<main class="sx-home" id="main">
+
+<section class="sx-hero" aria-labelledby="sx-hero-title">
+<canvas class="sx-matrix" aria-hidden="true"></canvas>
+<div class="sx-hero-glow" aria-hidden="true"></div><div class="sx-spot" aria-hidden="true"></div>
+<div class="container sx-hero-grid">
+<div class="sx-hero-copy">
+<p class="sx-eyebrow sx-rise" style="--d:0"><span class="sx-dot" aria-hidden="true"></span>Wound care &amp; practice support</p>
+<h1 id="sx-hero-title" class="sx-display"><span class="sx-line"><span class="sx-rise" style="--d:1">Advanced</span> <span class="sx-rise" style="--d:2">wound care.</span></span><span class="sx-line"><em class="sx-rise" style="--d:3">A stronger practice.</em></span></h1>
+<p class="sx-lead sx-rise" style="--d:4">The right questions lead to better decisions. Explore wound care products, examine the evidence, and find practical support for the work around patient care.</p>
+<div class="sx-actions sx-rise" style="--d:5">
+<a class="sx-btn sx-btn-gold" href="/products/"><span>Explore the portfolio</span><span aria-hidden="true" class="sx-btn-arrow">↗</span></a>
+<a class="sx-btn sx-btn-ghost" href="/evidence/"><span>Review clinical evidence</span><span aria-hidden="true" class="sx-btn-arrow">→</span></a>
 </div>
-<figure class="hero-care"><img alt="Illustrative preparation scene with a clinician, patient, AmCoreMatrix carton and reference-based membrane held in forceps" fetchpriority="high" height="1024" sizes="(max-width:800px) 100vw, 54vw" src="/assets/images/editorial/care-hero-v2.webp" srcset="/assets/images/editorial/care-hero-v2-640.webp 640w, /assets/images/editorial/care-hero-v2.webp 1280w" width="1536"/><figcaption><span><strong>Care comes first.</strong>Everything else should support it.<small>Illustrative preparation · AmCoreMatrix shown</small></span><a aria-label="Explore the clinical portfolio" href="/products/">↗</a></figcaption></figure>
+<p class="intro-invitation sx-rise" style="--d:7"><button class="intro-replay sx-replay" data-replay-intro="" hidden="" type="button"><span aria-hidden="true">▶</span>Watch our introduction</button></p>
+</div>
+<figure class="sx-hero-visual sx-rise" style="--d:3">
+<div class="sx-arch" data-parallax><img alt="Illustrative preparation scene with a clinician, patient, AmCoreMatrix carton and reference-based membrane held in forceps" fetchpriority="high" height="1024" sizes="(max-width:900px) 92vw, 44vw" src="/assets/images/editorial/care-hero-v2.webp" srcset="/assets/images/editorial/care-hero-v2-640.webp 640w, /assets/images/editorial/care-hero-v2.webp 1280w" width="1536"/></div>
+<span class="sx-orbit" aria-hidden="true"></span>
+<figcaption class="sx-glass"><strong>Care comes first.</strong><span>Everything else should support it.</span><small>Illustrative preparation · AmCoreMatrix shown</small></figcaption>
+</figure>
+</div>
+<div class="sx-marquee" aria-label="Portfolio products">
+<div class="sx-marquee-track">
+<ul><li>Palisade</li><li>Sentry SL</li><li>APIS</li><li>AmchoPlast</li><li>Interfyl</li><li>XCelliStem</li><li>ActiGraft</li><li>UltraMIST</li><li>Arobella Qoustic</li><li>Membrane Wrap</li><li>Microlyte SAM</li><li>Myriad Matrix</li><li>PalinGen Membrane</li><li>Resolve Matrix</li><li>XCell Amnio Matrix</li></ul>
+<ul aria-hidden="true"><li>Palisade</li><li>Sentry SL</li><li>APIS</li><li>AmchoPlast</li><li>Interfyl</li><li>XCelliStem</li><li>ActiGraft</li><li>UltraMIST</li><li>Arobella Qoustic</li><li>Membrane Wrap</li><li>Microlyte SAM</li><li>Myriad Matrix</li><li>PalinGen Membrane</li><li>Resolve Matrix</li><li>XCell Amnio Matrix</li></ul>
+</div>
 </div>
 </section>
-<nav aria-label="Find your starting point" class="clinical-paths"><div class="container">
-<a href="/products/"><span class="path-number">01</span><div><strong>Evaluate a product</strong><span>Explore formats, uses &amp; resources</span></div><span aria-hidden="true">↗</span></a>
-<a href="/evidence/"><span class="path-number">02</span><div><strong>Understand the evidence</strong><span>Find studies &amp; their limitations</span></div><span aria-hidden="true">↗</span></a>
-<a href="/services/"><span class="path-number">03</span><div><strong>Support your practice</strong><span>Review operations &amp; revenue cycle</span></div><span aria-hidden="true">↗</span></a>
+
+<section class="sx-manifesto" aria-label="Our approach"><div class="sx-manifesto-pin"><div class="container">
+<p class="sx-eyebrow">Care, connected.</p>
+<p class="sx-manifesto-text" data-scrub>Products. Clinical resources. Practice operations. One place to start a more informed conversation. <em>Every connection supports care.</em></p>
+</div></div></section>
+
+<nav aria-label="Find your starting point" class="sx-paths"><div class="container sx-paths-grid">
+<a class="sx-path sx-reveal" href="/products/"><span class="sx-path-num">01</span><strong>Evaluate a product</strong><span>Explore formats, uses &amp; resources</span><span class="sx-path-arrow" aria-hidden="true">↗</span></a>
+<a class="sx-path sx-reveal" href="/evidence/"><span class="sx-path-num">02</span><strong>Understand the evidence</strong><span>Find studies &amp; their limitations</span><span class="sx-path-arrow" aria-hidden="true">↗</span></a>
+<a class="sx-path sx-reveal" href="/services/"><span class="sx-path-num">03</span><strong>Support your practice</strong><span>Review operations &amp; revenue cycle</span><span class="sx-path-arrow" aria-hidden="true">↗</span></a>
 </div></nav>
-<section class="clinical-section decision-section" id="clinical-approach"><div class="container editorial-split">
-<div><p class="clinical-eyebrow">A CLINICAL STARTING POINT</p><h2>Start with the questions<br/>that matter.</h2><p class="section-intro">A product name is only the beginning. We bring the clinical information and practical considerations into the same conversation.</p><a class="clinical-text-link" href="/scientific-portfolio/">Explore the scientific portfolio <span aria-hidden="true">→</span></a></div>
-<div class="question-list">
-<article><span>01</span><div><h3>What is the product designed to do?</h3><p>Review the product’s composition, intended use, instructions, and application requirements before considering its fit.</p></div></article>
-<article><span>02</span><div><h3>What does the evidence actually show?</h3><p>Look at study design, patient population, outcomes, and limitations. Distinguish evidence for a specific product from research on its broader class.</p></div></article>
-<article><span>03</span><div><h3>How would it fit into your practice?</h3><p>Discuss training, ordering, documentation, and reimbursement questions alongside your existing care pathway.</p></div></article>
+
+<section class="sx-section sx-questions" id="clinical-approach"><div class="container sx-split">
+<div class="sx-sticky">
+<p class="sx-eyebrow sx-reveal">A clinical starting point</p>
+<h2 class="sx-h2 sx-reveal">Start with the questions <em>that matter.</em></h2>
+<p class="sx-body sx-reveal">A product name is only the beginning. We bring the clinical information and practical considerations into the same conversation.</p>
+<a class="sx-link sx-reveal" href="/scientific-portfolio/">Explore the scientific portfolio <span aria-hidden="true">→</span></a>
+</div>
+<ol class="sx-qlist">
+<li class="sx-reveal"><span class="sx-qnum">01</span><div><h3>What is the product designed to do?</h3><p>Review the product’s composition, intended use, instructions, and application requirements before considering its fit.</p></div></li>
+<li class="sx-reveal"><span class="sx-qnum">02</span><div><h3>What does the evidence actually show?</h3><p>Look at study design, patient population, outcomes, and limitations. Distinguish evidence for a specific product from research on its broader class.</p></div></li>
+<li class="sx-reveal"><span class="sx-qnum">03</span><div><h3>How would it fit into your practice?</h3><p>Discuss training, ordering, documentation, and reimbursement questions alongside your existing care pathway.</p></div></li>
+</ol>
+</div></section>
+
+<section class="sx-section sx-portfolio" id="portfolio"><div class="container">
+<div class="sx-head"><div><p class="sx-eyebrow sx-reveal">Products &amp; solutions</p><h2 class="sx-h2 sx-reveal">Explore the <em>possibilities.</em></h2></div><a class="sx-link sx-reveal" href="/products/">View the full portfolio <span aria-hidden="true">↗</span></a></div>
+<div class="sx-cards">
+<a class="sx-card sx-reveal" href="/products/#sheet-skin-substitutes"><div class="sx-card-media"><img alt="Illustrative photograph: AmchoPlast purple and white package in natural daylight" height="1024" loading="lazy" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 30vw" src="/assets/images/editorial/amchoplast-20261008.webp" srcset="/assets/images/editorial/amchoplast-20261008-640.webp 640w, /assets/images/editorial/amchoplast-20261008.webp 1280w" width="1536"/></div><div class="sx-card-body"><p class="sx-eyebrow">Matrices &amp; membranes</p><h3>Understand the material.</h3><p>Explore sheet, flowable, and particulate options with product-specific information.</p><span class="sx-card-arrow" aria-hidden="true">↗</span></div></a>
+<a class="sx-card sx-reveal" href="/products/#conservative-wound-care"><div class="sx-card-media"><img alt="Illustrative photograph: SANUWAVE UltraMIST unit with its handpiece docked" height="1024" loading="lazy" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 30vw" src="/assets/images/editorial/ultramist-20261008.webp" srcset="/assets/images/editorial/ultramist-20261008-640.webp 640w, /assets/images/editorial/ultramist-20261008.webp 1280w" width="1536"/></div><div class="sx-card-body"><p class="sx-eyebrow">Wound care devices</p><h3>Explore the technology.</h3><p>Review ultrasonic debridement, non-contact ultrasound, and negative pressure wound therapy.</p><span class="sx-card-arrow" aria-hidden="true">↗</span></div></a>
+<a class="sx-card sx-reveal" href="/products/actigraft/"><div class="sx-card-media"><img alt="Illustrative photograph: Closed ActiGraft PRO kit with magenta and white packaging" height="1024" loading="lazy" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 30vw" src="/assets/images/editorial/actigraft-20261008.webp" srcset="/assets/images/editorial/actigraft-20261008-640.webp 640w, /assets/images/editorial/actigraft-20261008.webp 1280w" width="1536"/></div><div class="sx-card-body"><p class="sx-eyebrow">Autologous options</p><h3>Consider another approach.</h3><p>Learn about ActiGraft and its use of the patient’s own blood in a point-of-care system.</p><span class="sx-card-arrow" aria-hidden="true">↗</span></div></a>
+</div>
+<p class="sx-note">Product selection remains a clinical decision. Review the current manufacturer instructions and patient-specific considerations.</p>
+</div></section>
+
+<section class="sx-section sx-evidence"><div class="container sx-split">
+<div>
+<p class="sx-eyebrow sx-reveal">The evidence library</p>
+<h2 class="sx-h2 sx-xl sx-reveal">Go beyond <em>the headline.</em></h2>
+<p class="sx-body sx-reveal">Find the source behind the statement. Our library connects products to published research, trial records, regulatory information, and available instructions for use.</p>
+<a class="sx-btn sx-btn-gold sx-reveal" href="/evidence/"><span>Open the evidence library</span><span aria-hidden="true" class="sx-btn-arrow">↗</span></a>
+</div>
+<div class="sx-guide sx-reveal">
+<p class="sx-eyebrow">A more useful way to read</p>
+<h3>Context belongs <em>next to the claim.</em></h3>
+<ul><li><span>Study design</span><strong>Trial, comparison, or case series?</strong></li><li><span>Relevance</span><strong>Product-specific or class evidence?</strong></li><li><span>Limitations</span><strong>What can—and cannot—be concluded?</strong></li></ul>
+<p class="sx-guide-note">Evidence grades are an editorial guide. They do not establish clinical suitability or insurance coverage.</p>
 </div>
 </div></section>
-<section class="clinical-section portfolio-section" id="portfolio"><div class="container">
-<div class="clinical-section-heading"><div><p class="clinical-eyebrow">PRODUCTS &amp; SOLUTIONS</p><h2>Explore the possibilities.</h2></div><a class="clinical-text-link" href="/products/">View the full portfolio <span aria-hidden="true">↗</span></a></div>
-<div class="portfolio-editorial">
-<a class="portfolio-entry" href="/products/#sheet-skin-substitutes"><div class="product-stage"><img alt="Illustrative photograph: AmchoPlast purple and white package in natural daylight" height="1024" loading="lazy" sizes="(max-width:540px) 100vw, (max-width:800px) 50vw, 33vw" src="/assets/images/editorial/amchoplast-20261008.webp" srcset="/assets/images/editorial/amchoplast-20261008-640.webp 640w, /assets/images/editorial/amchoplast-20261008.webp 1280w" width="1536"/></div><p class="clinical-eyebrow">MATRICES &amp; MEMBRANES</p><h3>Understand the material.<span aria-hidden="true">↗</span></h3><p>Explore sheet, flowable, and particulate options with product-specific information.</p></a>
-<a class="portfolio-entry" href="/products/#conservative-wound-care"><div class="product-stage"><img alt="Illustrative photograph: SANUWAVE UltraMIST unit with its handpiece docked" height="1024" loading="lazy" sizes="(max-width:540px) 100vw, (max-width:800px) 50vw, 33vw" src="/assets/images/editorial/ultramist-20261008.webp" srcset="/assets/images/editorial/ultramist-20261008-640.webp 640w, /assets/images/editorial/ultramist-20261008.webp 1280w" width="1536"/></div><p class="clinical-eyebrow">WOUND CARE DEVICES</p><h3>Explore the technology.<span aria-hidden="true">↗</span></h3><p>Review ultrasonic debridement, non-contact ultrasound, and negative pressure wound therapy.</p></a>
-<a class="portfolio-entry" href="/products/actigraft/"><div class="product-stage"><img alt="Illustrative photograph: Closed ActiGraft PRO kit with magenta and white packaging" height="1024" loading="lazy" sizes="(max-width:540px) 100vw, (max-width:800px) 50vw, 33vw" src="/assets/images/editorial/actigraft-20261008.webp" srcset="/assets/images/editorial/actigraft-20261008-640.webp 640w, /assets/images/editorial/actigraft-20261008.webp 1280w" width="1536"/></div><p class="clinical-eyebrow">AUTOLOGOUS OPTIONS</p><h3>Consider another approach.<span aria-hidden="true">↗</span></h3><p>Learn about ActiGraft and its use of the patient’s own blood in a point-of-care system.</p></a>
-</div><p class="portfolio-note">Product selection remains a clinical decision. Review the current manufacturer instructions and patient-specific considerations.</p>
-</div></section>
-<section class="clinical-section evidence-feature"><div class="container editorial-split">
-<div><p class="clinical-eyebrow">THE EVIDENCE LIBRARY</p><h2>Go beyond<br/>the headline.</h2><p class="section-intro">Find the source behind the statement. Our library connects products to published research, trial records, regulatory information, and available instructions for use.</p><a class="clinical-button" href="/evidence/">Open the evidence library <span aria-hidden="true">↗</span></a></div>
-<div class="reading-guide"><p class="clinical-eyebrow">A MORE USEFUL WAY TO READ</p><h3>Context belongs<br/>next to the claim.</h3><ul><li><span>Study design</span><strong>Trial, comparison, or case series?</strong></li><li><span>Relevance</span><strong>Product-specific or class evidence?</strong></li><li><span>Limitations</span><strong>What can—and cannot—be concluded?</strong></li></ul><p>Evidence grades are an editorial guide. They do not establish clinical suitability or insurance coverage.</p></div>
-</div></section>
-<section class="clinical-section" id="services"><div class="container editorial-split">
-<div><p class="clinical-eyebrow">BEYOND THE PRODUCT</p><h2>Support for the<br/>practice around it.</h2><p class="section-intro">Build a conversation around your actual workflow, from product evaluation to the details of daily operations.</p><a class="clinical-text-link" href="/contact/">Discuss your practice <span aria-hidden="true">→</span></a></div>
-<div class="service-link-list">
-<a href="/services/revenue-cycle/"><div><span>01 / REVENUE CYCLE</span><h3>Make the process clearer.</h3><p>Review coding, documentation, claims, and denial workflows.</p></div><span aria-hidden="true">↗</span></a>
-<a href="/services/consulting/"><div><span>02 / PRACTICE CONSULTING</span><h3>Plan the next step.</h3><p>Explore product evaluation, practice operations, and service development.</p></div><span aria-hidden="true">↗</span></a>
-<a href="/software/"><div><span>03 / SOFTWARE &amp; WORKFLOW</span><h3>See the tools in context.</h3><p>Explore wound imaging and discuss how software may fit your workflow.</p></div><span aria-hidden="true">↗</span></a>
-<a href="/amazon-store/"><div><span>04 / OVENA HEALTH</span><h3>Continue the conversation at home.</h3><p>Discover wound care and compression supplies for patients and caregivers.</p></div><span aria-hidden="true">↗</span></a>
+
+<section class="sx-section sx-services" id="services"><div class="container">
+<div class="sx-head"><div><p class="sx-eyebrow sx-reveal">Beyond the product</p><h2 class="sx-h2 sx-reveal">Support for the <em>practice around it.</em></h2></div><p class="sx-body sx-head-aside sx-reveal">Build a conversation around your actual workflow, from product evaluation to the details of daily operations.</p></div>
+<div class="sx-rows">
+<a class="sx-row sx-reveal" href="/services/revenue-cycle/"><span class="sx-row-tag">01 / Revenue cycle</span><h3>Make the process clearer.</h3><p>Review coding, documentation, claims, and denial workflows.</p><span class="sx-row-arrow" aria-hidden="true">↗</span></a>
+<a class="sx-row sx-reveal" href="/services/consulting/"><span class="sx-row-tag">02 / Practice consulting</span><h3>Plan the next step.</h3><p>Explore product evaluation, practice operations, and service development.</p><span class="sx-row-arrow" aria-hidden="true">↗</span></a>
+<a class="sx-row sx-reveal" href="/software/"><span class="sx-row-tag">03 / Software &amp; workflow</span><h3>See the tools in context.</h3><p>Explore wound imaging and discuss how software may fit your workflow.</p><span class="sx-row-arrow" aria-hidden="true">↗</span></a>
+<a class="sx-row sx-reveal" href="/amazon-store/"><span class="sx-row-tag">04 / Ovena Health</span><h3>Continue the conversation at home.</h3><p>Discover wound care and compression supplies for patients and caregivers.</p><span class="sx-row-arrow" aria-hidden="true">↗</span></a>
 </div>
+<a class="sx-link sx-reveal sx-services-link" href="/contact/">Discuss your practice <span aria-hidden="true">→</span></a>
 </div></section>
-<section class="clinical-contact"><div class="container"><div><p class="clinical-eyebrow">LET’S START WITH YOUR PRACTICE</p><h2>What are you<br/>working toward?</h2><p>Bring a product question, a workflow challenge, or an idea for your wound care program. We’ll help you identify the next step.</p></div><div class="clinical-contact-actions"><a class="clinical-button" href="/contact/">Talk with our team <span aria-hidden="true">↗</span></a><a href="tel:5514973428">551-497-3428</a><a href="mailto:gabe@albacetemeddev.com">gabe@albacetemeddev.com</a></div></div></section>
+
+<section class="sx-cta"><div class="sx-cta-glow" aria-hidden="true"></div><div class="sx-ghost-type" aria-hidden="true"><span>Care, connected. Care, connected. Care, connected.</span></div><div class="container">
+<p class="sx-eyebrow sx-reveal">Let’s start with your practice</p>
+<h2 class="sx-cta-title sx-reveal">What are you <em>working toward?</em></h2>
+<p class="sx-body sx-reveal">Bring a product question, a workflow challenge, or an idea for your wound care program. We’ll help you identify the next step.</p>
+<div class="sx-cta-actions sx-reveal"><a class="sx-btn sx-btn-gold" href="/contact/"><span>Talk with our team</span><span aria-hidden="true" class="sx-btn-arrow">↗</span></a><a class="sx-contact-link" href="tel:5514973428">551-497-3428</a><a class="sx-contact-link" href="mailto:gabe@albacetemeddev.com">gabe@albacetemeddev.com</a></div>
+</div></section>
 </main>
 <!-- ═══ FOOTER ═══ -->
 <footer class="footer">
@@ -153,5 +204,6 @@ try {
 <script defer="" src="/assets/js/intro.js?v=20261007-v3"></script>
 <script defer="" src="assets/js/app.js?v=20261007"></script>
 <script defer="" src="/assets/js/physician.js?v=20261007"></script>
-<script defer="" src="/assets/js/editorial.js?v=20261007-intro-v3"></script></body>
+<script defer="" src="/assets/js/editorial.js?v=20261007-intro-v3"></script>
+<script defer="" src="/assets/js/home.js?v=2"></script></body>
 </html>

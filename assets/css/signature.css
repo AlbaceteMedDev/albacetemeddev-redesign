@@ -1,0 +1,59 @@
+/* Signature layer (Oct 2026): one midnight-and-champagne identity across every page.
+   Loaded last. Real webfonts, gold accent system, unified chrome. */
+@font-face{font-family:'Instrument Serif';src:url('/assets/fonts/instrument-serif-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Serif';src:url('/assets/fonts/instrument-serif-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --sx-ink:#070b12;--sx-ink-1:#0c121c;--sx-ink-2:#121a27;--sx-navy:#14243a;
+  --sx-gold:#d8b56a;--sx-gold-hi:#f1d594;--sx-gold-deep:#7a5a1f;
+  --sx-paper:#f6f3ec;--sx-paper-2:#eee8dc;--sx-text-dark:#111a26;
+  --sx-snow:#f6f4ef;--sx-mist:#c3cad4;--sx-fog:#8e99a8;
+  --sx-line:rgba(216,181,106,.22);--sx-line-soft:rgba(255,255,255,.08);
+  --sx-serif:'Instrument Serif',Georgia,serif;
+  --sx-ease:cubic-bezier(.16,1,.3,1);
+  --gold:var(--sx-gold);--gold-bright:var(--sx-gold-hi);
+  /* light editorial pages: forest system -> ink system */
+  --paper:var(--sx-paper);--paper-alt:var(--sx-paper-2);--forest:#14243a;--forest-dark:#070b12;--text:#111a26;--muted:#4c5664;--rule:#e1d9c8;
+}
+::selection{background:rgba(216,181,106,.35);color:inherit}
+
+/* Italic accents everywhere become the signature serif in gold */
+h1 em,h2 em,.hero h1 .accent,.hero h1 span.gold{font-family:var(--sx-serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.editorial-page h1 em,.editorial-page h2 em,.catalog-intro h1 em,.clinical-intro h1 em{color:var(--sx-gold-deep)}
+
+/* Navigation: deeper ink, gold hairline, gold CTA */
+.nav{background:rgba(7,11,18,.86)!important;border-bottom:1px solid var(--sx-line)!important;-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
+.nav-links a{color:#d9dee6}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--sx-gold-hi)}
+.nav-links .nav-cta{background:linear-gradient(135deg,var(--sx-gold-hi),var(--sx-gold) 55%,#c39a4b)!important;color:#0b1018!important;border-radius:999px!important;font-weight:600!important;box-shadow:0 6px 24px -8px rgba(216,181,106,.6);transition:box-shadow .3s,transform .3s!important}
+.nav-links .nav-cta:hover{box-shadow:0 10px 34px -8px rgba(241,213,148,.85);color:#0b1018!important}
+.dropdown-menu{background:rgba(12,18,28,.97)!important;border:1px solid var(--sx-line)!important}
+.mobile-menu{background:var(--sx-ink)!important}
+.mobile-menu>a{font-family:var(--font-display)}
+.mobile-menu .mobile-cta{color:var(--sx-gold-hi)!important}
+
+/* Buttons across pages */
+.btn-primary,.clinical-button{background:linear-gradient(135deg,var(--sx-gold-hi),var(--sx-gold) 55%,#c39a4b)!important;color:#0b1018!important;border:0!important;border-radius:999px!important;font-weight:600;box-shadow:0 10px 30px -14px rgba(216,181,106,.75)}
+.btn-primary:hover,.clinical-button:hover{filter:brightness(1.06);box-shadow:0 14px 36px -12px rgba(241,213,148,.9)}
+.btn-secondary,.btn-ghost{border-radius:999px!important}
+
+/* Dark pages: ink canvas with a faint champagne aurora */
+body:not(.editorial-product):not(.editorial-specialty):not(.visual-catalog):not(.page-home){background:var(--sx-ink)}
+.hero{background:radial-gradient(1100px 520px at 85% -10%,rgba(216,181,106,.13),transparent 60%),radial-gradient(900px 600px at -10% 120%,rgba(36,64,104,.35),transparent 60%),var(--sx-ink)!important}
+.hero h1{font-family:var(--font-display);font-weight:600}
+.hero-chip,.section-label,.eyebrow{color:var(--sx-gold)!important}
+
+/* Light editorial pages: paper with ink type and gold details */
+.clinical-eyebrow{letter-spacing:.16em}
+.editorial-page .clinical-eyebrow,.catalog-intro .clinical-eyebrow{color:var(--sx-gold-deep)}
+.clinical-contact{background:radial-gradient(800px 400px at 90% 0%,rgba(216,181,106,.16),transparent 60%),var(--sx-ink)!important}
+.clinical-contact .clinical-eyebrow{color:var(--sx-gold)!important}
+
+/* Footer: gold hairline crown */
+.footer{background:var(--sx-ink)!important;border-top:1px solid var(--sx-line);position:relative}
+.footer::before{content:"";position:absolute;left:50%;top:-1px;width:min(560px,70%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--sx-gold-hi),transparent)}
+.footer h4{color:var(--sx-gold)!important;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
+.footer a:hover{color:var(--sx-gold-hi)}
+
+@media (prefers-reduced-motion:reduce){.nav-links .nav-cta,.btn-primary,.clinical-button{transition:none!important}}
+select option{color:#111a26;background:#fff}
