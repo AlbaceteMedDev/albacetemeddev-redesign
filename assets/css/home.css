@@ -224,3 +224,17 @@ html.sx-js.sx-go .sx-arch{clip-path:inset(0 0 0 0 round 999px 999px 26px 26px);t
 .sx-cursor.is-hover{width:70px;height:70px;margin:-35px 0 0 -35px;background:rgba(241,213,148,.12);border-color:transparent}
 @media (max-width:640px){.sx-manifesto{height:200vh}.sx-ghost-type span{font-size:7rem}}
 @media (prefers-reduced-motion:reduce){.sx-manifesto{height:auto}.sx-manifesto-pin{position:relative;height:auto;padding:120px 0}.sx-manifesto-text .w{opacity:1}html.sx-js .sx-arch,html.sx-js .sx-card .sx-card-media{clip-path:none}}
+.sx-replay{display:inline-flex!important;align-items:center;gap:10px;background:none;border:0;border-bottom:1px solid rgba(216,181,106,.4);padding:8px 0;font-size:13px;cursor:pointer}
+.sx-replay span{display:inline-grid;place-items:center;width:26px;height:26px;border:1px solid var(--sx-gold);border-radius:50%;font-size:9px}
+
+/* Panel fixes (blind review, Oct 9) */
+.sx-hero-grid{padding-bottom:clamp(48px,8vh,96px)}
+.sx-manifesto-text .w,.sx-manifesto-text em .w{opacity:.42}
+.sx-questions em,.sx-portfolio h2 em,.sx-evidence em,.sx-services em{font-family:var(--font-display);font-style:normal;font-weight:600;letter-spacing:inherit;font-size:1em}
+.sx-eyebrow{letter-spacing:.18em}
+.sx-card-body .sx-eyebrow,.sx-row-tag{font-size:12px;letter-spacing:.14em}
+.sx-glass small{font-size:11px;letter-spacing:.08em;color:#aab4c2}
+.sx-note{font-size:14px;color:#aab4c2}
+.sx-card p:not(.sx-eyebrow),.sx-row p,.sx-qlist p,.sx-path>span:not(.sx-path-num):not(.sx-path-arrow){color:#aab4c2}
+.sx-contact-link{display:inline-flex;align-items:center;min-height:54px;padding:0 24px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.03)}
+.sx-contact-link:hover{border-color:var(--sx-gold)}
