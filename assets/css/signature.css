@@ -114,3 +114,18 @@ p,li{text-wrap:pretty}
   .footer .container{padding-inline:24px!important}
   .footer-bottom{flex-direction:column!important;align-items:flex-start!important;gap:6px}
 }
+
+/* ── Motion v3 (Oct 13, shared builder; v4 hover states) ──
+   Motion itself lives in house-motion.css / house-motion.js (v4). This section holds only what every page needs
+   from the shared layer whether or not motion runs.
+   F5a) Nav links: hover is a colour change only, never an underline. The current page keeps its 2px gold
+        underline and weight 600, so hover and current never look alike.
+   F5b) Footer links: a colour change plus a plain 1px underline on hover (nothing draws across).
+   S6) The phone menu's call-to-action is a gold fill: its label is navy (it rendered gold on gold). */
+html:not(#_) .nav-links>li>a:not(.nav-cta):not(.dropdown-trigger):not(.is-active):not([aria-current])::after{width:0!important;transition:none!important}
+html:not(#_) .nav-links>li>a:not(.nav-cta):is(.is-active,[aria-current="page"]){color:var(--sx-gold);font-weight:600}
+html:not(#_) .nav-links>li>a:not(.nav-cta):not(.dropdown-trigger):is(.is-active,[aria-current="page"])::after{width:100%!important}
+html:not(#_) .footer-col>a:hover{color:var(--sx-gold);text-decoration-line:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+html:not(#_) .mobile-menu .mobile-cta{color:var(--sx-navy)!important;background:var(--sx-gold)!important}
+html:not(#_) .mobile-menu .mobile-cta:hover{background:var(--sx-gold-press)!important;color:var(--sx-navy)!important}
+html:not(#_) .mobile-menu .mobile-cta:focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}

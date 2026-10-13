@@ -1,1 +1,102 @@
-/* House motion layer: crafted, brand-derived motion shared by every page. See HOUSE-STYLE.md (Motion v2). */
+/* House motion layer, v4: crafted, brand-derived motion shared by every page. See HOUSE-STYLE.md (Motion v2 rules).
+   Panel principles: one state on screen at a time (out, then in; never a cross-fade of content); glyphs are never
+   clipped; moving decoration never covers text or controls; gold means action, so decoration stays white/mist;
+   the current state always looks different from hover.
+   1 Page transitions (cross-document View Transitions): the old page fades out in 120ms, then the new one fades
+     in over 180ms. The nav never fades: it switches to the new page's copy in one cut as the content changes.
+   2 Hover vocabulary: buttons change colour as a whole in 140ms; arrows nudge 4px in their direction.
+     Nav and footer link states are plain CSS in signature.css (Motion v3 section).
+   3 Drawn underlines on inline prose links: in from the left on hover, out to the right on leave.
+   4 Headline reveals (below the fold only): each line fades up 8px in 320ms, lines 50ms apart. No masks.
+   5 Images below the fold fade up 8px in 240ms; only wide editorial photographs (600px and up) lift into place.
+   6 The "+" field: the logo's registration mark as a precise grid in the open areas of navy page headers. It
+     keeps clear of words and controls, parts around a moving pointer and settles closed when it stops.
+   Every hidden state lives under html.hm-on, which house-motion.js adds only when motion is allowed.
+   Without JS, or with prefers-reduced-motion, the page is complete and static. */
+
+:root{
+  --hm-out:cubic-bezier(0,0,.2,1);
+  --hm-in:cubic-bezier(.4,0,1,1);
+}
+
+/* ── 1. Page transitions ─────────────────────────────────────────────── */
+@view-transition{navigation:auto}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
+
+.nav{view-transition-name:nav}
+/* Sequenced, never overlapping: old content to 0 in 120ms (ease-in), then new content from 0 over 180ms
+   (ease-out, after 120ms). No translate, no scale, no colour layer. */
+::view-transition-group(root){animation-duration:.3s}
+::view-transition-old(root){animation:hm-vt-out .12s var(--hm-in) both}
+::view-transition-new(root){animation:hm-vt-in .18s var(--hm-out) .12s both}
+@keyframes hm-vt-out{to{opacity:0}}
+@keyframes hm-vt-in{from{opacity:0}}
+/* The nav never cross-fades: the outgoing copy holds until the old content has gone, then the incoming copy
+   replaces it in one cut, so the current-page marker moves exactly once and only one item is ever marked. */
+::view-transition-group(nav){animation:none;z-index:2}
+::view-transition-old(nav){animation:hm-vt-hold .12s step-end both}
+::view-transition-new(nav){animation:hm-vt-wait .12s step-end both}
+@keyframes hm-vt-hold{to{opacity:0}}
+@keyframes hm-vt-wait{from{opacity:0}}
+
+/* The once-per-session home intro takes over the screen itself: cut straight to it. */
+:is(html.amd-intro-pending,html:has(dialog.amd-intro[open]))::view-transition-new(root){animation:none}
+:is(html.amd-intro-pending,html:has(dialog.amd-intro[open]))::view-transition-old(root){display:none}
+
+/* Thin gold line under the nav while the next page loads; on arrival it completes and fades. */
+hm-bar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--sx-gold,#dab156);transform:scaleX(0);transform-origin:0 50%;pointer-events:none;z-index:3}
+html.hm-going hm-bar{transform:scaleX(.88);transition:transform 2.6s cubic-bezier(.06,.72,.14,1)}
+html.hm-arrive hm-bar{transform:scaleX(1);animation:hm-bar-out .42s ease-out .06s both}
+@keyframes hm-bar-out{to{opacity:0}}
+
+/* ── 2. Hover vocabulary ─────────────────────────────────────────────── */
+/* house-motion.js reads each button at rest and sets its hover fill (--hm-hover), label (--hm-ink) and edge
+   (--hm-edge): gold fills go to a lighter gold with a navy label, navy fills to #1b3a5c, outline buttons take a
+   12% tint of their own label colour. The whole button changes at once; nothing sweeps. html:not(#_) lifts these
+   above each page group's own button rules. */
+html:not(#_) .hm-btn:focus-visible{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
+@media (hover:hover){
+  html:not(#_) .hm-btn:hover{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
+}
+/* Arrow glyphs: nudge 4px in their own direction while the control is engaged. */
+html:not(#_) .hm-arw{display:inline-block;transform:none!important}
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) .hm-btn{transition:background-color .14s ease-out,color .14s ease-out,border-color .14s ease-out!important}
+  html:not(#_) .hm-arw{transition:transform .16s ease-out!important}
+  html:not(#_) :is(.hm-btn,.hm-nudge):focus-visible .hm-arw{transform:translate(var(--hm-ax,4px),var(--hm-ay,0px))!important}
+}
+@media (prefers-reduced-motion:no-preference) and (hover:hover){
+  html:not(#_) :is(.hm-btn,.hm-nudge):hover .hm-arw{transform:translate(var(--hm-ax,4px),var(--hm-ay,0px))!important}
+}
+
+/* ── 3. Drawn underlines on prose links ──────────────────────────────── */
+a.hm-ul{
+  -webkit-text-decoration:none;text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor),linear-gradient(var(--hm-ul-rest),var(--hm-ul-rest));
+  background-size:0% 1px,100% 1px;background-position:100% 100%,0 100%;background-repeat:no-repeat;
+  --hm-ul-rest:color-mix(in srgb,currentColor 45%,transparent);
+}
+a.hm-ul:is(:hover,:focus-visible){background-size:100% 1px,100% 1px;background-position:0 100%,0 100%}
+@media (prefers-reduced-motion:no-preference){a.hm-ul{transition:background-size .5s cubic-bezier(.6,0,.2,1)}}
+
+/* ── 4. Headline reveals ─────────────────────────────────────────────── */
+/* Each word is an unclipped inline box (hm-w) so the words of one visual line can move together; nothing masks
+   or clips them. The words fade in while they settle 8px; once done, the original markup returns. */
+hm-w{display:inline-block}
+html.hm-on .hm-hl:not(.hm-in) hm-w{opacity:0;transform:translateY(8px)}
+.hm-hl.hm-in hm-w{opacity:1;transform:none;transition:opacity .32s var(--hm-out),transform .32s var(--hm-out);transition-delay:calc(min(var(--l,0), 2) * 50ms + var(--hm-d,0ms))}
+.hm-hl.hm-now hm-w{transition:none}
+
+/* ── 5. Images ───────────────────────────────────────────────────────── */
+/* Armed only below the fold; the animations themselves run through the Web Animations API from house-motion.js. */
+html.hm-on img.hm-lift:not(.hm-shown){clip-path:inset(100% 0 0 0)}
+html.hm-on img.hm-fade:not(.hm-shown){opacity:0;translate:0 8px}
+
+/* ── 6. The "+" field ────────────────────────────────────────────────── */
+.hm-field-host{isolation:isolate}
+.hm-field-host.hm-field-pos{position:relative}
+.hm-field-clear{background-color:transparent!important}
+html:not(#_) canvas.hm-field{position:absolute!important;inset:0!important;z-index:-1!important;display:block!important;
+  width:100%!important;height:100%!important;margin:0!important;pointer-events:none!important}
+
+@media print{hm-bar,canvas.hm-field{display:none!important}}
