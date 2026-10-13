@@ -589,3 +589,6 @@ html:not(.sx-js) .sx-product .scroll-reveal{opacity:1;transform:none}
   .sx-product .product-editorial-grid figure{transform:none!important}
   .sx-product .scroll-reveal{opacity:1!important;transform:none!important}
 }
+
+/* keep manufacturer brand casing in the hero eyebrow (e.g. RedDress) */
+.sx-product .product-editorial-hero .clinical-eyebrow{text-transform:none;letter-spacing:.04em;font-size:14px}

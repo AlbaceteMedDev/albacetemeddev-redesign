@@ -190,6 +190,16 @@ document.body.classList.add('is-loaded');
     });
   });
 })();
+// FAQ rows that are not native buttons: make them focusable and keyboard-operable.
+document.querySelectorAll('.faq-q').forEach(q => {
+  if (q.tagName === 'BUTTON' || q.hasAttribute('tabindex')) return;
+  q.setAttribute('role', 'button');
+  q.tabIndex = 0;
+  q.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); }
+  });
+});
+
 
 
 

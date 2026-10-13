@@ -22,7 +22,7 @@ h1 em,h2 em,.hero h1 .accent,.hero h1 span.gold{font-family:var(--sx-serif);font
 .editorial-page h1 em,.editorial-page h2 em,.catalog-intro h1 em,.clinical-intro h1 em{color:var(--sx-gold-deep)}
 
 /* Navigation: deeper ink, gold hairline, gold CTA */
-.nav{background:rgba(7,11,18,.86)!important;border-bottom:1px solid var(--sx-line)!important;-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
+.nav{background:rgba(7,11,18,.95)!important;border-bottom:1px solid var(--sx-line)!important;-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
 .nav-links a{color:#d9dee6}
 .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--sx-gold-hi)}
 .nav-links .nav-cta{background:linear-gradient(135deg,var(--sx-gold-hi),var(--sx-gold) 55%,#c39a4b)!important;color:#0b1018!important;border-radius:999px!important;font-weight:600!important;box-shadow:0 6px 24px -8px rgba(216,181,106,.6);transition:box-shadow .3s,transform .3s!important}
@@ -57,3 +57,5 @@ body:not(.editorial-product):not(.editorial-specialty):not(.visual-catalog):not(
 
 @media (prefers-reduced-motion:reduce){.nav-links .nav-cta,.btn-primary,.clinical-button{transition:none!important}}
 select option{color:#111a26;background:#fff}
+/* one neutral porcelain tile for manufacturer logos, site-wide */
+.product-identity,.compact-identity,.compare-identity{background:#fbfbf9!important;box-shadow:inset 0 0 0 1px rgba(17,26,38,.08)!important}

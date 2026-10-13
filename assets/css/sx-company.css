@@ -448,3 +448,7 @@ html.sx-js body.sx-co .sx-co-direct .services-direct:not(.is-in){opacity:0;trans
   .sx-co-progress{display:none}
   body.sx-co main :is(.cs-closer,.wp-closer,.promise-card,.engagement-scope)::after{opacity:.35}
 }
+
+/* Accent discipline (matches home after the blind panel): serif italic only for the hero h1 and the closing/statement bands; mid-page accents use gold Sora. */
+body.sx-co main :is(h2,h3) em{font-family:var(--font-display)!important;font-style:normal!important;font-weight:inherit!important;letter-spacing:inherit;font-size:1em}
+body.sx-co main :is(.cta-band,.cs-promise,.wp-promise,.lg-promise) h2 em{font-family:var(--sx-serif)!important;font-style:italic!important;font-weight:400!important;font-size:1.04em}
