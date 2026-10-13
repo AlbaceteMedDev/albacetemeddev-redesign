@@ -30,10 +30,10 @@
     let saved = [];
     try { const value = JSON.parse(store.get('amd-compare') || '[]'); if (Array.isArray(value)) saved = [...new Set(value)].filter(x=>byId.has(x)).slice(0,3); } catch { /* Ignore malformed optional state. */ }
     const tray = document.createElement('aside'); tray.className = 'compare-tray'; tray.setAttribute('aria-label','Product comparison'); tray.hidden = true;
-    tray.innerHTML = '<div><strong data-compare-count></strong><p data-compare-names></p></div><button type="button" data-clear-compare>Clear</button><button type="button" data-open-compare>Compare products ↗</button>';
+    tray.innerHTML = '<div><strong data-compare-count></strong><p data-compare-names></p></div><button type="button" data-clear-compare>Clear</button><button type="button" data-open-compare>Compare products →</button>';
     document.body.append(tray);
     const modal = document.createElement('dialog'); modal.className='compare-dialog'; modal.setAttribute('aria-labelledby','compare-title');
-    modal.innerHTML='<header><h2 id="compare-title">A clearer view of your options.</h2><button class="close-compare" type="button" aria-label="Close comparison">×</button></header><p class="compare-hint">Swipe across the table to see each product.</p><div class="compare-scroll" role="region" aria-label="Scrollable product comparison" tabindex="0"></div><footer><p>Compare product characteristics, then review current manufacturer instructions. This view does not establish equivalence, clinical suitability, or coverage.</p><a class="clinical-button" data-discuss-comparison href="/contact/">Discuss these products ↗</a></footer>';
+    modal.innerHTML='<header><h2 id="compare-title">A clearer view of your options.</h2><button class="close-compare" type="button" aria-label="Close comparison">×</button></header><p class="compare-hint">Swipe across the table to see each product.</p><div class="compare-scroll" role="region" aria-label="Scrollable product comparison" tabindex="0"></div><footer><p>Compare product characteristics, then review current manufacturer instructions. This view does not establish equivalence, clinical suitability, or coverage.</p><a class="clinical-button" data-discuss-comparison href="/contact/">Discuss these products →</a></footer>';
     document.body.append(modal);
     function render() {
       store.set('amd-compare',JSON.stringify(saved)); tray.hidden = !saved.length;

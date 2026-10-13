@@ -1,93 +1,116 @@
-/* Signature layer (Oct 2026): one midnight-and-champagne identity across every page.
-   Loaded last. Real webfonts, gold accent system, unified chrome. */
-@font-face{font-family:'Instrument Serif';src:url('/assets/fonts/instrument-serif-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Instrument Serif';src:url('/assets/fonts/instrument-serif-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+/* House style (Oct 2026): an established clinical-firm look.
+   Source Serif 4 headings, IBM Plex Sans text and controls, flat brand navy + Albacete gold,
+   square-cornered controls, plain rules, quiet motion. No gradients, glows, glass or ornament.
+   Spec: ~/Documents/albacete-site-redesign-tools/HOUSE-STYLE.md */
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/source-serif-4-var.woff2') format('woff2');font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/source-serif-4-var-italic.woff2') format('woff2');font-weight:200 900;font-style:italic;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-600.woff2') format('woff2');font-weight:600 700;font-style:normal;font-display:swap}
 
 :root{
-  --sx-ink:#070b12;--sx-ink-1:#0c121c;--sx-ink-2:#121a27;--sx-navy:#14243a;
-  --sx-gold:#d8b56a;--sx-gold-hi:#f1d594;--sx-gold-deep:#7a5a1f;
-  --sx-paper:#f6f3ec;--sx-paper-2:#eee8dc;--sx-text-dark:#111a26;
-  --sx-snow:#f6f4ef;--sx-mist:#c3cad4;--sx-fog:#8e99a8;
-  --sx-line:rgba(216,181,106,.22);--sx-line-soft:rgba(255,255,255,.08);
-  --sx-serif:'Instrument Serif',Georgia,serif;
-  --sx-ease:cubic-bezier(.16,1,.3,1);
-  --gold:var(--sx-gold);--gold-bright:var(--sx-gold-hi);
-  /* light editorial pages: forest system -> ink system */
-  --paper:var(--sx-paper);--paper-alt:var(--sx-paper-2);--forest:#14243a;--forest-dark:#070b12;--text:#111a26;--muted:#4c5664;--rule:#e1d9c8;
+  /* type */
+  --font-display:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --sx-serif:var(--font-display);
+  /* colour: flat brand navy + Albacete gold */
+  --sx-ink:#10233a;--sx-ink-1:#0c1c2f;--sx-ink-2:#173150;--sx-navy:#10233a;--sx-navy-deep:#0a1726;
+  --sx-gold:#dab156;--sx-gold-hi:#e4c27a;--sx-gold-deep:#7a5a1f;--sx-gold-press:#c89d43;
+  --sx-paper:#f7f5f0;--sx-paper-2:#efebe2;--sx-white:#ffffff;
+  --sx-text-dark:#16212e;--sx-text-body:#3a4552;--sx-text-muted:#5d6874;
+  --sx-snow:#ffffff;--sx-mist:#d3dbe4;--sx-fog:#a7b3c1;
+  --sx-line:rgba(218,177,86,.38);--sx-line-soft:rgba(255,255,255,.14);--sx-rule-light:#e2dccf;
+  --sx-radius:4px;--sx-radius-card:6px;
+  --sx-ease:cubic-bezier(.2,.7,.2,1);
+  /* legacy aliases used by older layers */
+  --ink:#10233a;--ink-1:#0c1c2f;--ink-2:#173150;--ink-3:#25405f;
+  --gold:var(--sx-gold);--gold-bright:var(--sx-gold-hi);--snow:#ffffff;--mist:var(--sx-mist);--fog:var(--sx-fog);
+  --paper:var(--sx-paper);--paper-alt:var(--sx-paper-2);--forest:#10233a;--forest-dark:#0a1726;--text:#16212e;--muted:#5d6874;--rule:#e2dccf;
 }
-::selection{background:rgba(216,181,106,.35);color:inherit}
+::selection{background:rgba(218,177,86,.35);color:inherit}
 
-/* Italic accents everywhere become the signature serif in gold */
-h1 em,h2 em,.hero h1 .accent,.hero h1 span.gold{font-family:var(--sx-serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+/* Base type */
+body{font-family:var(--font-body);font-feature-settings:"kern","liga";-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);font-optical-sizing:auto}
+h1,h2{font-weight:600;letter-spacing:-.012em}
+h3{font-weight:600;letter-spacing:-.005em}
+/* Emphasis inside headings is the heading's own italic: solid colour, same size, no gradient */
+h1 em,h2 em,h3 em{font-family:var(--font-display);font-style:italic;font-weight:inherit;letter-spacing:inherit;font-size:1em;
+  background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:currentColor!important;animation:none!important}
 .editorial-page h1 em,.editorial-page h2 em,.catalog-intro h1 em,.clinical-intro h1 em{color:var(--sx-gold-deep)}
 
-/* Navigation: deeper ink, gold hairline, gold CTA */
-.nav{background:rgba(7,11,18,.95)!important;border-bottom:1px solid var(--sx-line)!important;-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
-.nav-links a{color:#d9dee6}
-.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--sx-gold-hi)}
-.nav-links .nav-cta{background:linear-gradient(135deg,var(--sx-gold-hi),var(--sx-gold) 55%,#c39a4b)!important;color:#0b1018!important;border-radius:999px!important;font-weight:600!important;box-shadow:0 6px 24px -8px rgba(216,181,106,.6);transition:box-shadow .3s,transform .3s!important}
-.nav-links .nav-cta:hover{box-shadow:0 10px 34px -8px rgba(241,213,148,.85);color:#0b1018!important}
-.dropdown-menu{background:rgba(12,18,28,.97)!important;border:1px solid var(--sx-line)!important}
-.mobile-menu{background:var(--sx-ink)!important}
-.mobile-menu>a{font-family:var(--font-display)}
-.mobile-menu .mobile-cta{color:var(--sx-gold-hi)!important}
+/* Navigation: solid navy, plain links, square gold button */
+.nav{background:var(--sx-navy)!important;border-bottom:1px solid rgba(255,255,255,.1)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.nav-links a{color:#e3e8ee;font-family:var(--font-body)!important;font-weight:500}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--sx-gold)}
+.nav-links .nav-cta{background:var(--sx-gold)!important;color:var(--sx-navy)!important;border-radius:var(--sx-radius)!important;font-weight:600!important;box-shadow:none!important;transition:background-color .15s!important;transform:none!important}
+.nav-links .nav-cta:hover{background:var(--sx-gold-press)!important;color:var(--sx-navy)!important}
+.nav-search{border-radius:var(--sx-radius)}
+.dropdown-menu{background:var(--sx-navy)!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:var(--sx-radius)!important;box-shadow:0 8px 24px rgba(0,0,0,.25)!important}
+.mobile-menu{background:var(--sx-navy)!important}
+.mobile-menu>a{font-family:var(--font-display);font-weight:500}
+.mobile-menu .mobile-cta{color:var(--sx-gold)!important}
 
-/* Buttons across pages */
-.btn-primary,.clinical-button{background:linear-gradient(135deg,var(--sx-gold-hi),var(--sx-gold) 55%,#c39a4b)!important;color:#0b1018!important;border:0!important;border-radius:999px!important;font-weight:600;box-shadow:0 10px 30px -14px rgba(216,181,106,.75)}
-.btn-primary:hover,.clinical-button:hover{filter:brightness(1.06);box-shadow:0 14px 36px -12px rgba(241,213,148,.9)}
-.btn-secondary,.btn-ghost{border-radius:999px!important}
+/* Buttons used by older layers */
+.btn,.btn-primary,.btn-secondary,.btn-ghost,.clinical-button{border-radius:var(--sx-radius)!important;box-shadow:none!important;font-family:var(--font-body);font-weight:600;filter:none!important}
+.btn-primary,.clinical-button{background:var(--sx-gold)!important;color:var(--sx-navy)!important;border:0!important}
+.btn-primary:hover,.clinical-button:hover{background:var(--sx-gold-press)!important}
+body:is(.editorial-product,.editorial-specialty,.visual-catalog,.science-page) :is(.clinical-button,.btn-primary){background:var(--sx-navy)!important;color:#fff!important}
+body:is(.editorial-product,.editorial-specialty,.visual-catalog,.science-page) :is(.clinical-button,.btn-primary):hover{background:var(--sx-navy-deep)!important}
 
-/* Dark pages: ink canvas with a faint champagne aurora */
-body:not(.editorial-product):not(.editorial-specialty):not(.visual-catalog):not(.page-home){background:var(--sx-ink)}
-.hero{background:radial-gradient(1100px 520px at 85% -10%,rgba(216,181,106,.13),transparent 60%),radial-gradient(900px 600px at -10% 120%,rgba(36,64,104,.35),transparent 60%),var(--sx-ink)!important}
+/* Surfaces */
+body:not(.editorial-product):not(.editorial-specialty):not(.visual-catalog):not(.science-page):not(.page-home){background:var(--sx-navy)}
+.hero{background:var(--sx-navy)!important}
 .hero h1{font-family:var(--font-display);font-weight:600}
 .hero-chip,.section-label,.eyebrow{color:var(--sx-gold)!important}
-
-/* Light editorial pages: paper with ink type and gold details */
-.clinical-eyebrow{letter-spacing:.16em}
+.clinical-eyebrow{letter-spacing:.08em}
 .editorial-page .clinical-eyebrow,.catalog-intro .clinical-eyebrow{color:var(--sx-gold-deep)}
-.clinical-contact{background:radial-gradient(800px 400px at 90% 0%,rgba(216,181,106,.16),transparent 60%),var(--sx-ink)!important}
+.clinical-contact{background:var(--sx-navy)!important}
 .clinical-contact .clinical-eyebrow{color:var(--sx-gold)!important}
 
-/* Footer: gold hairline crown */
-.footer{background:var(--sx-ink)!important;border-top:1px solid var(--sx-line);position:relative}
-.footer::before{content:"";position:absolute;left:50%;top:-1px;width:min(560px,70%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--sx-gold-hi),transparent)}
-.footer h4{color:var(--sx-gold)!important;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
-.footer a:hover{color:var(--sx-gold-hi)}
+/* Footer: deeper navy, plain gold rule */
+.footer{background:var(--sx-navy-deep)!important;border-top:3px solid var(--sx-gold);position:relative}
+.footer::before{display:none!important}
+.footer h4{color:var(--sx-gold)!important;font-family:var(--font-body)!important;font-weight:600;letter-spacing:.08em;font-size:12.5px;text-transform:uppercase}
+.footer a:hover{color:var(--sx-gold)}
 
-@media (prefers-reduced-motion:reduce){.nav-links .nav-cta,.btn-primary,.clinical-button{transition:none!important}}
-select option{color:#111a26;background:#fff}
-/* one neutral porcelain tile for manufacturer logos, site-wide */
-.product-identity,.compact-identity,.compare-identity{background:#fbfbf9!important;box-shadow:inset 0 0 0 1px rgba(17,26,38,.08)!important}
-
-/* ── Panel-2 fixes (Oct 13) ── */
-/* Gold network canvases never draw behind copy: fade them out over the text column. */
-@media (min-width:901px){
-  .sx-matrix,.sx-co-net,.cx-matrix,.sxl-matrix{
-    -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.05) 46%,#000 74%),linear-gradient(180deg,#000 78%,rgba(0,0,0,.08) 94%);
-    -webkit-mask-composite:source-in;
-    mask-image:linear-gradient(90deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.05) 46%,#000 74%),linear-gradient(180deg,#000 78%,rgba(0,0,0,.08) 94%);
-    mask-composite:intersect}
-}
-@media (max-width:900px){
-  .sx-matrix,.sx-co-net,.cx-matrix,.sxl-matrix{-webkit-mask-image:linear-gradient(rgba(0,0,0,.07),rgba(0,0,0,.07));mask-image:linear-gradient(rgba(0,0,0,.07),rgba(0,0,0,.07))}
-}
-.cx-404 .cx-matrix{-webkit-mask-image:radial-gradient(ellipse 42% 50% at 50% 54%,rgba(0,0,0,.04) 70%,#000 100%)!important;mask-image:radial-gradient(ellipse 42% 50% at 50% 54%,rgba(0,0,0,.04) 70%,#000 100%)!important;-webkit-mask-composite:source-over;mask-composite:add}
+select option{color:#16212e;background:#fff}
+/* one neutral tile for manufacturer logos, site-wide */
+.product-identity,.compact-identity,.compare-identity{background:#fff!important;box-shadow:inset 0 0 0 1px var(--sx-rule-light)!important;border-radius:var(--sx-radius-card)!important}
 
 /* Phone header: vertically centred row, 64px bar, matching icon buttons */
 @media (max-width:1100px){
   .nav-inner{height:var(--nav-h)!important}
-  .nav-toggle{width:44px!important;height:44px!important;border:1px solid rgba(255,255,255,.19);border-radius:8px}
+  .nav-toggle{width:44px!important;height:44px!important;border:1px solid rgba(255,255,255,.22);border-radius:var(--sx-radius)}
   .nav-toggle span{left:11px!important;width:20px}
   .nav-toggle span:nth-child(1){top:15px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:27px}
   .nav-toggle.is-open span:nth-child(1),.nav-toggle.is-open span:nth-child(3){top:21px}
-  .nav-search{min-width:44px;min-height:44px;justify-content:center;border-radius:8px}
+  .nav-search{min-width:44px;min-height:44px;justify-content:center}
 }
 @media (max-width:760px){:root{--nav-h:64px}}
 
 /* Current-page cue for the Clinical resources dropdown matches the other nav items */
-.nav-links>li>a.dropdown-trigger.is-active,.nav-links>li>a.dropdown-trigger[aria-current]{color:var(--sx-gold-hi);text-decoration:underline 2px var(--sx-gold);text-underline-offset:12px}
+.nav-links>li>a.dropdown-trigger.is-active,.nav-links>li>a.dropdown-trigger[aria-current]{color:var(--sx-gold);text-decoration:underline 2px var(--sx-gold);text-underline-offset:12px}
 
-/* Calmer gold buttons: a tight shadow, no halo (the halo smudged on cream) */
-.nav-links .nav-cta{box-shadow:0 4px 14px -8px rgba(216,181,106,.6)!important}
-body:is(.editorial-product,.editorial-specialty,.visual-catalog,.science-page) :is(.clinical-button,.btn-primary,.sx-p-btn,.sxl-btn,a[class*="btn-gold"]){box-shadow:0 8px 18px -12px rgba(122,90,31,.55),inset 0 1px 0 rgba(255,255,255,.45)!important}
+/* Ornament retired by the house style: any leftover canvases / grain / custom cursors stay hidden */
+.sx-matrix,.sx-co-net,.cx-matrix,.sxl-matrix,.sx-cursor,.sx-cursor-dot{display:none!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* ── House style v2 (blind panel 4) ──
+   1) Headings are one style: no italic or colour-switch payoff phrase anywhere.
+   2) Section labels lose the decorative dash.
+   3) Balanced heading breaks; footer on the page gutter.
+   html:not(#_) lifts specificity above each page group's own rules. */
+html:not(#_) :is(h1,h2,h3,h4) :is(em,.sx-co-dot){font-family:inherit!important;font-style:normal!important;font-weight:inherit!important;color:inherit!important;letter-spacing:inherit!important}
+html:not(#_) :is(.sx-eyebrow,.cx-eyebrow,.clinical-eyebrow,.eyebrow,.services-kicker,.hero-chip,.section-label,.sx-label)::before{display:none!important}
+html:not(#_) .hero-chip .dot{display:none!important}
+html:not(#_) :is(.sx-eyebrow,.cx-eyebrow,.clinical-eyebrow,.eyebrow,.services-kicker,.hero-chip){gap:0!important}
+h1,h2,h3{text-wrap:balance}
+p,li{text-wrap:pretty}
+.footer .container{padding-inline:40px!important}
+.footer-bottom{text-align:left!important;justify-content:space-between!important}
+@media (max-width:760px){
+  .footer .container{padding-inline:24px!important}
+  .footer-bottom{flex-direction:column!important;align-items:flex-start!important;gap:6px}
+}
