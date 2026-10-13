@@ -228,7 +228,6 @@ html.sx-js.sx-go .sx-arch{clip-path:inset(0 0 0 0 round 999px 999px 26px 26px);t
 .sx-replay span{display:inline-grid;place-items:center;width:26px;height:26px;border:1px solid var(--sx-gold);border-radius:50%;font-size:9px}
 
 /* Panel fixes (blind review, Oct 9) */
-.sx-hero-grid{padding-bottom:clamp(48px,8vh,96px)}
 .sx-manifesto-text .w,.sx-manifesto-text em .w{opacity:.42}
 .sx-questions em,.sx-portfolio h2 em,.sx-evidence em,.sx-services em{font-family:var(--font-display);font-style:normal;font-weight:600;letter-spacing:inherit;font-size:1em}
 .sx-eyebrow{letter-spacing:.18em}
