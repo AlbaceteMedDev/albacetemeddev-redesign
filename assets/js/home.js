@@ -181,3 +181,41 @@
   document.addEventListener('pointerover', e => ring.classList.toggle('is-hover', !!e.target.closest('a,button')));
   document.addEventListener('pointerleave', () => { mx = my = -100; });
 })();
+
+/* Wow layer 2: scroll progress hairline + desktop section index (labels reuse each section's own eyebrow). */
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bar = Object.assign(document.createElement('div'), { className: 'sx-progress' });
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.append(bar);
+  let ticking = false;
+  const paint = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+    ticking = false;
+  };
+  if (!reduced) { addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true }); paint(); }
+
+  const sections = [...document.querySelectorAll('.sx-home > section, .sx-home > nav.sx-paths')]
+    .map(s => ({ el: s, label: (s.querySelector('.sx-eyebrow')?.textContent || '').trim() }))
+    .filter(s => s.label);
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+  const nav = document.createElement('nav');
+  nav.className = 'sx-index';
+  nav.setAttribute('aria-label', 'Page sections');
+  sections.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.innerHTML = '<span></span>';
+    b.querySelector('span').textContent = s.label;
+    b.setAttribute('aria-label', s.label);
+    b.addEventListener('click', () => s.el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }));
+    s.btn = b; nav.append(b);
+  });
+  document.body.append(nav);
+  requestAnimationFrame(() => nav.classList.add('is-ready'));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) sections.forEach(s => s.btn.setAttribute('aria-current', s.el === e.target ? 'true' : 'false')); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => io.observe(s.el));
+})();

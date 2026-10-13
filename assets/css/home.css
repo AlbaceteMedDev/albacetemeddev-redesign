@@ -237,3 +237,31 @@ html.sx-js.sx-go .sx-arch{clip-path:inset(0 0 0 0 round 999px 999px 26px 26px);t
 .sx-card p:not(.sx-eyebrow),.sx-row p,.sx-qlist p,.sx-path>span:not(.sx-path-num):not(.sx-path-arrow){color:#aab4c2}
 .sx-contact-link{display:inline-flex;align-items:center;min-height:54px;padding:0 24px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.03)}
 .sx-contact-link:hover{border-color:var(--sx-gold)}
+
+/* ── WOW LAYER 2 (Oct 13) ── */
+/* hero headline: line-by-line mask reveal */
+.sx-display .sx-line{overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+html.sx-js .sx-display .sx-rise{filter:none;transform:translateY(110%);opacity:1}
+html.sx-js.sx-go .sx-display .sx-rise{animation:sxMask 1.3s var(--sx-ease) calc(var(--d,0) * 120ms + 120ms) both}
+@keyframes sxMask{from{transform:translateY(110%)}to{transform:none}}
+/* scroll progress hairline */
+.sx-progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:2147483000;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#9a7431,var(--sx-gold-hi) 60%,#fff1c9);box-shadow:0 0 12px rgba(241,213,148,.6);pointer-events:none}
+/* section index (desktop) */
+.sx-index{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:60;display:none;flex-direction:column;gap:6px;opacity:0;transition:opacity .6s}
+.sx-index.is-ready{opacity:1}
+@media (min-width:1280px) and (pointer:fine){.sx-index{display:flex}}
+.sx-index button{position:relative;display:flex;align-items:center;justify-content:flex-end;width:44px;height:28px;padding:0;border:0;background:none;cursor:pointer;color:var(--sx-gold-hi)}
+.sx-index button::after{content:"";width:8px;height:1px;background:rgba(246,244,239,.35);transition:width .5s var(--sx-ease),background .4s}
+.sx-index button:hover::after,.sx-index button:focus-visible::after{width:22px;background:var(--sx-gold)}
+.sx-index button[aria-current="true"]::after{width:30px;height:2px;background:linear-gradient(90deg,var(--sx-gold-hi),var(--sx-gold))}
+.sx-index span{position:absolute;right:52px;white-space:nowrap;font:600 11px/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;padding:7px 10px;border-radius:999px;background:rgba(12,18,28,.9);border:1px solid var(--sx-line);opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s var(--sx-ease);pointer-events:none}
+.sx-index button:hover span,.sx-index button:focus-visible span{opacity:1;transform:none}
+/* path tiles: travelling gold edge on hover */
+.sx-path::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:conic-gradient(from var(--sx-a,0deg),transparent 0 65%,rgba(241,213,148,.95) 80%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .4s;pointer-events:none}
+.sx-path:hover::before{opacity:1;animation:sxOrbit 3.2s linear infinite}
+/* evidence guide: slow orbiting edge */
+.sx-guide::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--sx-a,0deg),transparent 0 72%,rgba(241,213,148,.85) 84%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:sxOrbit 9s linear infinite;pointer-events:none}
+@media (prefers-reduced-motion:reduce){html.sx-js .sx-display .sx-rise{transform:none}.sx-progress{display:none}.sx-guide::before{animation:none;opacity:.4}}
+html.sx-js.sx-go .sx-display em.sx-rise{animation:sxMask 1.3s var(--sx-ease) calc(var(--d,0) * 120ms + 120ms) both,sxShimmer 7s ease-in-out 1.6s infinite}
+.sx-questions .sx-h2 em,.sx-portfolio .sx-h2 em,.sx-evidence .sx-h2 em,.sx-services .sx-h2 em{display:inline}
+.sx-evidence .sx-xl{font-size:clamp(2.4rem,5vw,4.6rem)}
