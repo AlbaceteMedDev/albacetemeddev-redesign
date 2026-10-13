@@ -45,7 +45,7 @@
 
   // FAQ rows are clickable divs; give them button semantics for keyboard users.
   document.querySelectorAll('.faq-q').forEach(q => {
-    if (q.tagName === 'BUTTON') return;
+    if (q.tagName === 'BUTTON' || q.hasAttribute('tabindex')) return;
     q.setAttribute('role', 'button');
     q.tabIndex = 0;
     q.addEventListener('keydown', e => {

@@ -592,3 +592,13 @@ html:not(.sx-js) .sx-product .scroll-reveal{opacity:1;transform:none}
 
 /* keep manufacturer brand casing in the hero eyebrow (e.g. RedDress) */
 .sx-product .product-editorial-hero .clinical-eyebrow{text-transform:none;letter-spacing:.04em;font-size:14px}
+
+/* Panel-2: logo-only products get a porcelain case, not an ink bezel around a white card */
+.sx-product .product-editorial-grid figure:has(.product-identity){
+  background:radial-gradient(120% 80% at 80% -10%,rgba(216,181,106,.16),transparent 55%),#fbfbf9;
+  box-shadow:0 0 0 1px rgba(122,90,31,.22),inset 0 1px 0 #fff,0 50px 80px -60px rgba(17,26,38,.45);
+  padding:clamp(8px,1vw,12px) clamp(8px,1vw,12px) 0}
+.sx-product .product-editorial-grid figure:has(.product-identity)::before{display:none}
+.sx-product .product-editorial-grid figure:has(.product-identity) .product-identity{box-shadow:none!important;background:transparent!important}
+.sx-product .product-editorial-grid figure:has(.product-identity) figcaption{color:#4c5664}
+.sx-product .product-editorial-grid figure:has(.product-identity) figcaption a{color:var(--sx-gold-deep);text-decoration-color:rgba(122,90,31,.4)}

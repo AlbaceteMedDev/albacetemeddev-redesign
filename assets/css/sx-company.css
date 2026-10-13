@@ -452,3 +452,6 @@ html.sx-js body.sx-co .sx-co-direct .services-direct:not(.is-in){opacity:0;trans
 /* Accent discipline (matches home after the blind panel): serif italic only for the hero h1 and the closing/statement bands; mid-page accents use gold Sora. */
 body.sx-co main :is(h2,h3) em{font-family:var(--font-display)!important;font-style:normal!important;font-weight:inherit!important;letter-spacing:inherit;font-size:1em}
 body.sx-co main :is(.cta-band,.cs-promise,.wp-promise,.lg-promise) h2 em{font-family:var(--sx-serif)!important;font-style:italic!important;font-weight:400!important;font-size:1.04em}
+
+/* Panel-2: the H1 full stop matches the serif-italic gold accent it follows */
+body.sx-co .sx-co-dot{font-family:var(--sx-serif);font-style:italic;font-weight:400;color:transparent;background:linear-gradient(100deg,#b98d42,#f6dfa6 40%,#d8b56a);-webkit-background-clip:text;background-clip:text}

@@ -445,3 +445,7 @@ html.sx-js .cx-nf-fill{animation:cxHeal 2.6s var(--sx-ease) .5s both,cxShimmer 7
   .cx-device .pm-shell{transform:none!important}
   .cx-progress,.cx-cursor,.cx-cursor-dot{display:none!important}
 }
+
+/* Panel-2 fixes */
+.cx-hero-cta{margin:30px 0 0}
+.cx-page .ov-fallback p{font:500 clamp(1.05rem,1.3vw,1.2rem)/1.6 var(--font-body);font-style:normal;color:var(--sx-mist);margin-bottom:22px}

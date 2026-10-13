@@ -39,6 +39,16 @@ document.body.classList.add('is-loaded');
   }
 })();
 
+// The scientific portfolio lives under the Clinical resources dropdown.
+(function markClinicalResources(){
+  const path = (location.pathname || '/').replace(/\/+$/, '');
+  if (!/^\/(scientific-portfolio|evidence)$/.test(path)) return;
+  document.querySelectorAll('.nav-links .dropdown-trigger[href="/evidence/"]').forEach(t => {
+    t.classList.add('is-active');
+    if (!t.hasAttribute('aria-current')) t.setAttribute('aria-current', 'true');
+  });
+})();
+
 // Scroll-triggered reveal
 (function initScrollReveal(){
   const els = document.querySelectorAll('.scroll-reveal');

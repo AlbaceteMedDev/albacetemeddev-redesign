@@ -59,3 +59,35 @@ body:not(.editorial-product):not(.editorial-specialty):not(.visual-catalog):not(
 select option{color:#111a26;background:#fff}
 /* one neutral porcelain tile for manufacturer logos, site-wide */
 .product-identity,.compact-identity,.compare-identity{background:#fbfbf9!important;box-shadow:inset 0 0 0 1px rgba(17,26,38,.08)!important}
+
+/* ── Panel-2 fixes (Oct 13) ── */
+/* Gold network canvases never draw behind copy: fade them out over the text column. */
+@media (min-width:901px){
+  .sx-matrix,.sx-co-net,.cx-matrix,.sxl-matrix{
+    -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.05) 46%,#000 74%),linear-gradient(180deg,#000 78%,rgba(0,0,0,.08) 94%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(90deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.05) 46%,#000 74%),linear-gradient(180deg,#000 78%,rgba(0,0,0,.08) 94%);
+    mask-composite:intersect}
+}
+@media (max-width:900px){
+  .sx-matrix,.sx-co-net,.cx-matrix,.sxl-matrix{-webkit-mask-image:linear-gradient(rgba(0,0,0,.07),rgba(0,0,0,.07));mask-image:linear-gradient(rgba(0,0,0,.07),rgba(0,0,0,.07))}
+}
+.cx-404 .cx-matrix{-webkit-mask-image:radial-gradient(ellipse 42% 50% at 50% 54%,rgba(0,0,0,.04) 70%,#000 100%)!important;mask-image:radial-gradient(ellipse 42% 50% at 50% 54%,rgba(0,0,0,.04) 70%,#000 100%)!important;-webkit-mask-composite:source-over;mask-composite:add}
+
+/* Phone header: vertically centred row, 64px bar, matching icon buttons */
+@media (max-width:1100px){
+  .nav-inner{height:var(--nav-h)!important}
+  .nav-toggle{width:44px!important;height:44px!important;border:1px solid rgba(255,255,255,.19);border-radius:8px}
+  .nav-toggle span{left:11px!important;width:20px}
+  .nav-toggle span:nth-child(1){top:15px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:27px}
+  .nav-toggle.is-open span:nth-child(1),.nav-toggle.is-open span:nth-child(3){top:21px}
+  .nav-search{min-width:44px;min-height:44px;justify-content:center;border-radius:8px}
+}
+@media (max-width:760px){:root{--nav-h:64px}}
+
+/* Current-page cue for the Clinical resources dropdown matches the other nav items */
+.nav-links>li>a.dropdown-trigger.is-active,.nav-links>li>a.dropdown-trigger[aria-current]{color:var(--sx-gold-hi);text-decoration:underline 2px var(--sx-gold);text-underline-offset:12px}
+
+/* Calmer gold buttons: a tight shadow, no halo (the halo smudged on cream) */
+.nav-links .nav-cta{box-shadow:0 4px 14px -8px rgba(216,181,106,.6)!important}
+body:is(.editorial-product,.editorial-specialty,.visual-catalog,.science-page) :is(.clinical-button,.btn-primary,.sx-p-btn,.sxl-btn,a[class*="btn-gold"]){box-shadow:0 8px 18px -12px rgba(122,90,31,.55),inset 0 1px 0 rgba(255,255,255,.45)!important}
