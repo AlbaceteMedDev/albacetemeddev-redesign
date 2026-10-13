@@ -1,5 +1,5 @@
 /* Home v3: hero entrance + healing-matrix canvas, scroll reveals, scroll-lit manifesto, pinned question story,
-   product showcase (tabs + draggable rail), progress hairline, section index, custom cursor.
+   product showcase (tabs filter a draggable rail), progress hairline, custom cursor.
    Every hidden state is gated on JS adding a class, so the page is complete and readable without this file. */
 (() => {
   const root = document.documentElement;
@@ -109,33 +109,32 @@
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 })();
 
-/* Manifesto: words light up as the statement travels through the viewport (no pinning). */
+/* Manifesto: the opening sentence lights up word by word as it travels into view (no pinning).
+   The rest of the statement, including the gold line, is always at full strength. */
 (() => {
   const text = document.querySelector('[data-scrub]');
   if (!text) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const wrap = node => {
-    [...node.childNodes].forEach(n => {
-      if (n.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(part => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) frag.append(part);
-          else { const s = document.createElement('span'); s.className = 'w'; s.textContent = part; frag.append(s); }
-        });
-        n.replaceWith(frag);
-      } else if (n.nodeType === 1) wrap(n);
-    });
-  };
-  wrap(text);
+  if (reduced) return;
+  const first = [...text.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+  if (!first) return;
+  const src = first.textContent;
+  const lead = (src.match(/^[^.]*\.\s*/) || [src])[0];
+  const frag = document.createDocumentFragment();
+  lead.split(/(\s+)/).forEach(part => {
+    if (!part) return;
+    if (/^\s+$/.test(part)) frag.append(part);
+    else { const s = document.createElement('span'); s.className = 'w'; s.textContent = part; frag.append(s); }
+  });
+  frag.append(src.slice(lead.length));
+  first.replaceWith(frag);
   const words = [...text.querySelectorAll('.w')];
-  if (reduced) { words.forEach(w => w.classList.add('on')); return; }
   let last = -1, ticking = false;
   const update = () => {
     ticking = false;
     const r = text.getBoundingClientRect(), vh = innerHeight;
     if (r.bottom < -vh || r.top > vh * 2) return;
-    const p = Math.min(1, Math.max(0, (vh * .86 - r.top) / (vh * .42 + r.height)));
+    const p = Math.min(1, Math.max(0, (vh * .92 - r.top) / (vh * .42)));
     const lit = Math.round(p * words.length);
     if (lit === last) return;
     last = lit;
@@ -146,18 +145,21 @@
 })();
 
 /* Question story: pinned on wide, tall screens; the three questions advance with scroll.
-   Phones, short screens, reduced motion and no-JS all get the plain stacked list. */
+   The stepper sits directly above the question it controls. Phones, short screens, reduced motion
+   and no-JS all get the plain stacked list. */
 (() => {
   const story = document.querySelector('.sx-story');
   if (!story) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const track = story.querySelector('.sx-story-track');
   const grid = story.querySelector('.sx-story-grid');
+  const list = story.querySelector('.sx-steps');
   const steps = [...story.querySelectorAll('.sx-step')];
   const n = steps.length;
   const mq = matchMedia('(min-width: 1000px) and (min-height: 700px)');
   let pinned = false, current = -1, ticking = false;
 
+  // Each step is labelled with its own link title ("Evaluate a product", ...).
   const nav = document.createElement('div');
   nav.className = 'sx-story-nav';
   nav.setAttribute('role', 'group');
@@ -165,14 +167,18 @@
   const btns = steps.map((s, i) => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.textContent = String(i + 1).padStart(2, '0');
-    b.setAttribute('aria-label', s.querySelector('h3').textContent);
-    b.append(document.createElement('i'));
+    const num = document.createElement('span');
+    num.className = 'sx-story-num';
+    num.textContent = String(i + 1).padStart(2, '0');
+    const label = document.createElement('span');
+    label.className = 'sx-story-label';
+    label.textContent = (s.querySelector('.sx-step-cta strong') || s.querySelector('h3')).textContent.trim();
+    b.append(num, label);
     b.addEventListener('click', () => goTo(i));
     nav.append(b);
     return b;
   });
-  grid.append(nav);
+  grid.insertBefore(nav, list);
 
   function goTo(i, instant) {
     const top = track.getBoundingClientRect().top + scrollY;
@@ -182,8 +188,9 @@
   function set(i) {
     if (i === current) return;
     current = i;
+    story.dataset.step = String(i);
     steps.forEach((s, k) => { s.classList.toggle('is-active', k === i); s.classList.toggle('is-past', k < i); });
-    btns.forEach((b, k) => b.setAttribute('aria-current', k === i ? 'step' : 'false'));
+    btns.forEach((b, k) => (k === i ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current')));
   }
   function update() {
     ticking = false;
@@ -192,14 +199,16 @@
     const span = track.offsetHeight - innerHeight;
     const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
     set(Math.min(n - 1, Math.floor(p * n)));
-    btns.forEach((b, k) => b.style.setProperty('--f', Math.min(1, Math.max(0, p * n - k)).toFixed(3)));
   }
   function mode() {
     pinned = mq.matches && !reduced;
     story.classList.toggle('is-pinned', pinned);
     current = -1;
-    if (!pinned) { steps.forEach(s => s.classList.remove('is-active', 'is-past')); btns.forEach(b => b.removeAttribute('aria-current')); }
-    else update();
+    if (!pinned) {
+      delete story.dataset.step;
+      steps.forEach(s => s.classList.remove('is-active', 'is-past'));
+      btns.forEach(b => b.removeAttribute('aria-current'));
+    } else update();
   }
   const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
   addEventListener('scroll', queue, { passive: true });
@@ -214,7 +223,8 @@
   mode();
 })();
 
-/* Product showcase: category tabs drive the stage and the rail; the rail drives the tabs back. */
+/* Product showcase: the category tabs swap the stage and filter the rail to that category
+   (plus the closing "full portfolio" tile). Without JS every product is listed. */
 (() => {
   const show = document.querySelector('[data-show]');
   if (!show) return;
@@ -222,15 +232,13 @@
   const tablist = show.querySelector('[role="tablist"]');
   const tabs = [...tablist.querySelectorAll('[role="tab"]')];
   const ink = tablist.querySelector('.sx-tab-ink');
-  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls').split(/\s+/)[0]));
   const rail = show.querySelector('[data-rail]');
   const tiles = [...rail.querySelectorAll('.sx-tile')];
-  const prodTiles = tiles.filter(t => t.dataset.cat);
-  const links = tiles.map(t => t.querySelector('a'));
   const ctrl = show.querySelector('.sx-rail-ctrl');
   const meter = ctrl.querySelector('.sx-rail-meter span');
   const [prev, next] = ctrl.querySelectorAll('.sx-rail-btn');
-  let active = 0, lock = 0, ticking = false;
+  let active = 0, ticking = false;
 
   show.classList.add('is-live');
   tablist.hidden = false;
@@ -239,28 +247,33 @@
 
   const pad = () => parseFloat(getComputedStyle(rail).paddingLeft) || 0;
   const behavior = () => (reduced ? 'auto' : 'smooth');
+  const shown = () => tiles.filter(t => !t.hidden);
 
   function moveInk() {
     const t = tabs[active];
     ink.style.setProperty('--x', `${t.offsetLeft}px`);
     ink.style.setProperty('--w', `${t.offsetWidth}px`);
   }
-  function railTo(tile) {
-    lock = performance.now() + 1000;
-    rail.scrollTo({ left: Math.max(0, tile.offsetLeft - pad()), behavior: behavior() });
-  }
-  function select(i, { focus = false, scroll = true } = {}) {
+  function select(i, { focus = false, animate = true } = {}) {
     active = (i + tabs.length) % tabs.length;
     const cat = tabs[active].dataset.cat;
     tabs.forEach((t, k) => { const on = k === active; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
     panels.forEach((p, k) => p.classList.toggle('is-active', k === active));
-    prodTiles.forEach(t => t.classList.toggle('is-cat', t.dataset.cat === cat));
+    let k = 0;
+    tiles.forEach(t => {
+      const on = !t.dataset.cat || t.dataset.cat === cat;
+      t.hidden = !on;
+      if (on) t.style.setProperty('--i', k++);
+    });
+    rail.classList.remove('is-drag', 'is-swap');
+    rail.scrollLeft = 0;
+    if (animate && !reduced) { void rail.offsetWidth; rail.classList.add('is-swap'); }
     moveInk();
+    sync();
     if (focus) tabs[active].focus();
-    if (scroll) railTo(prodTiles.find(t => t.dataset.cat === cat));
   }
 
-  tabs.forEach((t, i) => t.addEventListener('click', () => select(i)));
+  tabs.forEach((t, i) => t.addEventListener('click', () => { if (i !== active) select(i); }));
   tablist.addEventListener('keydown', e => {
     const map = { ArrowRight: active + 1, ArrowDown: active + 1, ArrowLeft: active - 1, ArrowUp: active - 1, Home: 0, End: tabs.length - 1 };
     if (!(e.key in map)) return;
@@ -268,48 +281,42 @@
     select(map[e.key], { focus: true });
   });
 
-  // Rail state: meter, button availability, and which category leads the view.
-  function spy() {
+  // Rail state: progress meter and button availability (aria-disabled keeps keyboard focus in place).
+  function sync() {
     ticking = false;
     const max = rail.scrollWidth - rail.clientWidth, sl = rail.scrollLeft;
-    meter.style.setProperty('--p', max > 0 ? (.08 + .92 * sl / max).toFixed(3) : '1');
-    prev.disabled = sl <= 2;
-    next.disabled = sl >= max - 2;
-    if (performance.now() < lock) return;
-    const p = pad();
-    let cat = (prodTiles.find(t => t.offsetLeft + t.offsetWidth * .5 - p >= sl) || prodTiles[prodTiles.length - 1]).dataset.cat;
-    if (sl >= max - 2) {
-      const cur = tabs[active].dataset.cat;
-      const first = prodTiles.find(t => t.dataset.cat === cur);
-      cat = first.offsetLeft - p >= sl - 2 ? cur : prodTiles[prodTiles.length - 1].dataset.cat;
-    }
-    const i = tabs.findIndex(t => t.dataset.cat === cat);
-    if (i !== active) select(i, { scroll: false });
+    meter.style.setProperty('--p', max > 2 ? (.08 + .92 * sl / max).toFixed(3) : '1');
+    prev.setAttribute('aria-disabled', String(sl <= 2));
+    next.setAttribute('aria-disabled', String(sl >= max - 2));
   }
-  rail.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
-  rail.addEventListener('scrollend', () => { lock = 0; spy(); });
+  rail.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(sync); } }, { passive: true });
 
   // Previous / next page of tiles.
   function page(dir) {
-    const step = tiles[1].offsetLeft - tiles[0].offsetLeft;
+    const v = shown();
+    if (v.length < 2) return;
+    const step = v[1].offsetLeft - v[0].offsetLeft;
     const visible = rail.clientWidth - pad() * 2;
     const count = Math.max(1, Math.floor(visible / step));
     rail.scrollBy({ left: dir * count * step, behavior: behavior() });
   }
-  prev.addEventListener('click', () => page(-1));
-  next.addEventListener('click', () => page(1));
+  prev.addEventListener('click', () => { if (prev.getAttribute('aria-disabled') !== 'true') page(-1); });
+  next.addEventListener('click', () => { if (next.getAttribute('aria-disabled') !== 'true') page(1); });
 
-  // Arrow keys move between tiles once a tile has focus.
+  // Arrow keys move between the visible tiles once a tile has focus.
   rail.addEventListener('keydown', e => {
     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const v = shown(), links = v.map(t => t.querySelector('a'));
     const i = links.indexOf(document.activeElement);
     if (i < 0) return;
     const j = clamp(i + (e.key === 'ArrowRight' ? 1 : -1), 0, links.length - 1);
     if (j === i) return;
     e.preventDefault();
     links[j].focus({ preventScroll: true });
-    const t = tiles[j], sl = rail.scrollLeft, p = pad();
-    if (t.offsetLeft - p < sl || t.offsetLeft + t.offsetWidth > sl + rail.clientWidth - p) railTo(t);
+    const t = v[j], sl = rail.scrollLeft, p = pad();
+    if (t.offsetLeft - p < sl || t.offsetLeft + t.offsetWidth > sl + rail.clientWidth - p) {
+      rail.scrollTo({ left: Math.max(0, t.offsetLeft - p), behavior: behavior() });
+    }
   });
 
   // Mouse drag to scroll; touch keeps native momentum scrolling.
@@ -332,17 +339,16 @@
     dragged = true;
     setTimeout(() => { dragged = false; }, 60);
     const sl = rail.scrollLeft, p = pad();
-    const near = tiles.reduce((a, t) => (Math.abs(t.offsetLeft - p - sl) < Math.abs(a.offsetLeft - p - sl) ? t : a));
+    const near = shown().reduce((a, t) => (Math.abs(t.offsetLeft - p - sl) < Math.abs(a.offsetLeft - p - sl) ? t : a));
     rail.classList.remove('is-drag');
     rail.scrollTo({ left: Math.max(0, near.offsetLeft - p), behavior: behavior() });
   });
   rail.addEventListener('click', e => { if (dragged) { e.preventDefault(); e.stopPropagation(); } }, true);
 
   let rt;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { moveInk(); spy(); }, 120); });
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { moveInk(); sync(); }, 120); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveInk);
-  select(0, { scroll: false });
-  spy();
+  select(0, { animate: false });
 
   function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
 })();
@@ -391,11 +397,13 @@
   }, { passive: true });
   document.addEventListener('pointerover', e => ring.classList.toggle('is-hover', !!e.target.closest('a,button,[role="tab"]')));
   document.addEventListener('pointerleave', () => { mx = my = -100; if (!raf) raf = requestAnimationFrame(loop); });
+  // Hide the ring and dot when the pointer leaves the window (pointerleave on document is unreliable).
+  addEventListener('mouseout', e => { if (!e.relatedTarget) { mx = my = rx = ry = -100; ring.style.transform = dot.style.transform = 'translate3d(-100px,-100px,0)'; } });
 })();
 
-/* Scroll progress hairline + desktop section index (labels reuse each section's own eyebrow). */
+/* Scroll progress hairline. */
 (() => {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const bar = Object.assign(document.createElement('div'), { className: 'sx-progress' });
   bar.setAttribute('aria-hidden', 'true');
   document.body.append(bar);
@@ -405,33 +413,6 @@
     bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
     ticking = false;
   };
-  if (!reduced) { addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true }); paint(); }
-
-  const sections = [...document.querySelectorAll('.sx-home > section')]
-    .map(s => ({ el: s, label: (s.querySelector('.sx-eyebrow')?.textContent || '').trim() }))
-    .filter(s => s.label);
-  if (!sections.length || !('IntersectionObserver' in window)) return;
-  const nav = document.createElement('nav');
-  nav.className = 'sx-index';
-  nav.setAttribute('aria-label', 'Page sections');
-  sections.forEach(s => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    const tip = document.createElement('span');
-    tip.textContent = s.label;
-    b.append(tip);
-    b.setAttribute('aria-label', s.label);
-    b.addEventListener('click', () => s.el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }));
-    s.btn = b; nav.append(b);
-  });
-  document.body.append(nav);
-  requestAnimationFrame(() => nav.classList.add('is-ready'));
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      sections.forEach(s => s.btn.setAttribute('aria-current', s.el === e.target ? 'true' : 'false'));
-      nav.classList.toggle('is-light', e.target.classList.contains('sx-evidence'));
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  sections.forEach(s => io.observe(s.el));
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+  paint();
 })();
