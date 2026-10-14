@@ -285,6 +285,169 @@ body.cx-404{min-height:100svh}
 .cx-rule{display:block;width:48px;height:2px;margin:0 0 24px;border:0;background:var(--sx-gold)}
 .cx-nf p{max-width:520px;margin:0 0 32px;font-size:clamp(17px,1.35vw,19px);line-height:1.65;color:var(--sx-mist)}
 
+/* ═════════════════════════════════════════════════════════════════════════════════
+   v5 (Oct 14). Contact (P4): a premium two-column page. The direct details are set as large typographic lines;
+   the form is a ruled sheet on navy (labels above, 1px underlines, focus drawn in gold); the 30-minute agenda is
+   a short '+' timeline. Portal (P5): a centred statement, then the preview as a flat navy/white UI drawing.
+   ═════════════════════════════════════════════════════════════════════════════════ */
+/* CONTACT · hero: statement left, direct lines right */
+.cx-contact .cx-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+.cx-contact .cx-direct{padding:6px 0 0;border:0;border-radius:0;background:none}
+.cx-contact .cx-direct .cx-sub-h{margin:0 0 10px}
+.cx-contact .cx-direct>p:not(.cx-direct-more){margin:0 0 28px;max-width:30rem}
+.cx-contact .cx-channels{border-top:1px solid var(--sx-line-soft)}
+.cx-contact .cx-channel{grid-template-columns:minmax(0,1fr) auto;gap:16px;min-height:0;padding:18px 0 20px}
+.cx-contact .cx-ch-icon{display:none}
+.cx-contact .cx-ch-text strong{margin:0 0 6px}
+.cx-contact .cx-ch-text>span{font-family:var(--font-display);font-size:clamp(1.5rem,2.3vw,2rem);font-weight:500;line-height:1.2;letter-spacing:-.005em;color:#fff;transition:color .15s}
+.cx-contact .cx-channels li:last-child .cx-ch-text>span{font-size:clamp(1.15rem,1.5vw,1.3rem);color:var(--sx-mist)}
+.cx-contact .cx-ch-arrow{align-self:end;padding-bottom:4px;font-size:18px;color:var(--sx-mist);transition:color .15s}
+.cx-contact a.cx-channel:hover{background:none}
+.cx-contact a.cx-channel:hover :is(.cx-ch-text>span,.cx-ch-arrow){color:var(--sx-gold)}
+/* CONTACT · studio: the agenda as a short timeline, the form as a navy sheet */
+.cx-contact .cx-studio-panel{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.cx-contact .cx-agenda{margin:40px 0 0;border-top:0}
+.cx-contact .cx-agenda li{position:relative;padding:16px 0 18px 40px;border-bottom:0;
+  background:linear-gradient(var(--sx-rule-light),var(--sx-rule-light)) left 40px bottom/calc(100% - 40px) 1px no-repeat}
+.cx-contact .cx-agenda li::before{content:'';position:absolute;left:0;top:calc(16px + .75em - 7px);width:15px;height:15px;
+  background:linear-gradient(var(--sx-navy),var(--sx-navy)) center/15px 1.5px no-repeat,linear-gradient(var(--sx-navy),var(--sx-navy)) center/1.5px 15px no-repeat}
+.cx-contact .cx-agenda li:not(:last-child)::after{content:'';position:absolute;left:7px;top:calc(16px + .75em);width:1.5px;height:100%;background:var(--sx-navy);opacity:.35}
+.cx-contact .cx-studio-form{--cx-btn:var(--sx-gold);--cx-btn-fg:var(--sx-navy);--cx-btn-hover:var(--sx-gold-press);--cx-focus:var(--sx-gold);
+  padding:clamp(28px,3.8vw,56px);border:0;border-radius:var(--sx-radius-card);background:var(--sx-navy);box-shadow:none;color:var(--sx-mist)}
+.cx-contact .cx-note{grid-template-columns:minmax(0,1fr);margin:0 0 36px;padding:2px 0 2px 16px;border-left:1px solid var(--sx-line-soft);background:none;color:var(--sx-mist)}
+.cx-contact .cx-note-icon{display:none}
+/* v6: each field is a drawn box on the navy (lighter fill, 1px border at 4.8:1 against the fill and 5.5:1 against
+   the navy), its label 8px above it in sentence case; focus = a 2px gold border plus the standard gold ring;
+   a field the visitor has left invalid gets a light red border. */
+.cx-contact .cx-form{gap:24px 20px}
+.cx-contact .cx-form .form-field{position:relative;gap:8px}
+.cx-contact .cx-form label{font:600 15px/1.35 var(--font-body);letter-spacing:0;text-transform:none;color:var(--sx-mist);transition:color .15s ease}
+/* the site-wide label floor in signature.css (13px, .06em) is meant for uppercase labels; these are sentence-case form labels at 15px */
+html:not(#_) body .cx-contact .cx-form .form-field>label{font-size:15px!important;letter-spacing:0!important}
+.cx-contact .cx-form .form-field:focus-within label{color:#fff}
+.cx-contact .cx-form :is(input,select,textarea){min-height:52px;padding:13px 15px;border:1px solid #8a9aae;border-radius:var(--sx-radius);background-color:#1a2d4a;color:#fff;
+  font:400 17px/1.4 var(--font-body);color-scheme:dark;box-shadow:none;transition:border-color .15s ease,box-shadow .15s ease}
+.cx-contact .cx-form textarea{min-height:148px;line-height:1.55}
+.cx-contact .cx-form select{padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23d3dbe4' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-position:right 16px center}
+.cx-contact .cx-form select option{background:#1a2d4a;color:#fff}
+.cx-contact .cx-form ::placeholder{color:var(--sx-fog);opacity:1}
+.cx-contact .cx-form :is(input,select,textarea):hover{border-color:var(--sx-mist)}
+.cx-contact .cx-form :is(input,select,textarea):focus{border-color:var(--sx-gold);box-shadow:inset 0 0 0 1px var(--sx-gold);outline:none}
+.cx-contact .cx-form :is(input,select,textarea):focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}
+.cx-contact .cx-form :is(input,select,textarea):user-invalid{border-color:#f2a49b;box-shadow:inset 0 0 0 1px #f2a49b}
+.cx-contact .cx-form :is(input,select,textarea):user-invalid:focus{border-color:var(--sx-gold);box-shadow:inset 0 0 0 1px var(--sx-gold)}
+.cx-contact .cx-form input:-webkit-autofill{-webkit-text-fill-color:#fff;caret-color:#fff;box-shadow:0 0 0 100px #1a2d4a inset;transition:background-color 9999s}
+.cx-contact .cx-form input:-webkit-autofill:focus{box-shadow:0 0 0 100px #1a2d4a inset,inset 0 0 0 1px var(--sx-gold)}
+.cx-contact .cx-form .cx-submit{margin-top:8px}
+.cx-contact #contact-status{margin:24px 0 0;padding:2px 0 2px 16px;border-left:2px solid var(--sx-gold);background:none;color:var(--sx-mist)}
+
+/* PORTAL · hero: a centred statement over a ruled row of facts */
+.cx-portal .cx-hero-grid{display:block}
+.cx-portal .cx-hero-copy{max-width:54rem;margin:0 auto;text-align:center}
+.cx-portal .cx-hero-copy .cx-eyebrow{justify-content:center}
+.cx-portal .cx-hero-copy .cx-lead{max-width:40rem;margin:0 auto 36px}
+.cx-portal .cx-hero-copy .cx-actions{justify-content:center}
+.cx-portal .pm-hero-stats.cx-stats{grid-template-columns:repeat(4,minmax(0,1fr));margin:clamp(56px,6.5vw,96px) 0 0;overflow:visible;border:0;border-top:1px solid var(--sx-line-soft);border-radius:0;background:none}
+.cx-portal .cx-stats .stat,.cx-portal .cx-stats .stat:nth-child(odd),.cx-portal .cx-stats .stat:nth-child(-n+2){padding:24px 24px 0;border:0;border-left:1px solid var(--sx-line-soft)}
+.cx-portal .cx-stats .stat:first-child{padding-left:0;border-left:0}
+.cx-portal .cx-stats .stat .value{font-size:clamp(1.35rem,1.9vw,1.6rem)}
+/* PORTAL · the preview: white app, navy sidebar, rules not boxes, status words in small capitals */
+.cx-portal .cx-device .pm-shell{color:var(--sx-text-body);background:#fff;border:1px solid rgba(16,35,58,.16);box-shadow:0 1px 2px rgba(16,35,58,.06)}
+.cx-portal .cx-device .pm-top{gap:10px 16px;padding:12px 18px;background:#fff;border-bottom:1px solid var(--sx-rule-light)}
+.cx-portal .pm-top .pm-url{padding:7px 12px;border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius);background:var(--sx-paper);color:var(--sx-text-muted);font-size:12.5px}
+.cx-portal .pm-top .pm-url span{color:var(--sx-text-dark)}
+.cx-portal .pm-demo-label{font:600 11.5px/1.3 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-text-muted)}
+.cx-portal .pm-sidebar{background:var(--sx-navy);border-right:0}
+.cx-portal .pm-brand{border-bottom-color:var(--sx-line-soft)}
+.cx-portal .pm-brand .mark{background:none;border:1px solid rgba(255,255,255,.5);border-radius:2px;color:#fff;font-weight:600}
+.cx-portal .pm-brand .name{color:#fff;font-weight:600}
+.cx-portal .pm-brand .name span{color:var(--sx-mist)}
+.cx-portal .pm-nav-group{color:var(--sx-fog);font-size:11px}
+.cx-portal .pm-nav-item{color:var(--sx-mist);border-radius:2px}
+.cx-portal .pm-nav-item[data-view]:hover{background:var(--sx-ink-2);color:#fff}
+.cx-portal .pm-nav-item[data-view].active,.cx-portal .pm-nav-item[data-view].active:hover{background:var(--sx-ink-2);color:#fff;box-shadow:inset 2px 0 0 var(--sx-gold)}
+.cx-portal .pm-nav-item .badge{padding:0;border-radius:0;background:none;color:var(--sx-fog);font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.cx-portal .pm-nav-user{border-top-color:var(--sx-line-soft)}
+.cx-portal .pm-nav-user:hover{background:var(--sx-ink-2)}
+.cx-portal .pm-nav-user .avatar{background:none;border:1px solid rgba(255,255,255,.5);color:#fff;font-family:var(--font-body);font-weight:600}
+.cx-portal .pm-main{background:#fff;padding:24px 26px}
+.cx-portal .pm-main-top h3{font-family:var(--font-display);font-weight:600;letter-spacing:-.005em;color:var(--sx-text-dark)}
+.cx-portal .pm-main-top .pm-chip{padding:6px 0;border:0;background:none;color:var(--sx-text-muted);font:600 11.5px/1.3 var(--font-body);letter-spacing:.08em;text-transform:uppercase}
+.cx-portal .pm-main-top .dot-live{display:none}
+.cx-portal .pm-kpi{padding:14px 16px 16px;background:#fff;border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius)}
+.cx-portal .pm-kpi .label{color:var(--sx-text-muted);font-size:11.5px;font-weight:600;letter-spacing:.08em}
+.cx-portal .pm-kpi .value{margin-top:6px;color:var(--sx-text-dark);font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;font-variant-numeric:lining-nums tabular-nums}
+.cx-portal .pm-kpi .value span{color:var(--sx-text-muted)}
+.cx-portal .pm-kpi .trend,.cx-portal .pm-kpi .trend.up,.cx-portal .pm-kpi .trend.down,.cx-portal .pm-kpi .trend.neutral{color:var(--sx-text-body)}
+.cx-portal .pm-kpi .spark{opacity:1}
+.cx-portal .pm-kpi .spark polyline{stroke:var(--sx-navy);stroke-width:1.25}
+.cx-portal .pm-card{background:#fff;border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius)}
+.cx-portal .pm-card header{border-bottom:1px solid var(--sx-rule-light)}
+.cx-portal .pm-card header h4{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--sx-text-dark)}
+.cx-portal .pm-shell .view-all{color:var(--sx-text-dark);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.cx-portal .pm-shell .view-all:hover{color:var(--sx-gold-deep)}
+.cx-portal .pm-row{border-bottom:1px solid var(--sx-rule-light)}
+.cx-portal .pm-row:last-child{border-bottom:0}
+.cx-portal .pm-row .patient{color:var(--sx-text-dark)}
+.cx-portal .pm-row :is(.pid,.date){padding:0;background:none;color:var(--sx-text-muted);font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.cx-portal .pm-row .pid{font-size:12.5px}
+.cx-portal .pm-row .date strong{color:var(--sx-text-dark);font-weight:600}
+.cx-portal .pm-row .status{padding:0;border-radius:0;background:none;color:var(--sx-text-dark);font:600 11.5px/1.3 var(--font-body);letter-spacing:.08em;text-transform:uppercase}
+.cx-portal .pm-check-item{border-bottom:1px solid var(--sx-rule-light)}
+.cx-portal .pm-check-item:last-child{border-bottom:0}
+.cx-portal .pm-check-item .mark{background:none;border-radius:0;color:var(--sx-navy);font-size:13px}
+.cx-portal .pm-check-item .title{color:var(--sx-text-dark)}
+.cx-portal .pm-check-item .code{padding:0;border-radius:0;background:none;color:var(--sx-text-muted);font:600 11.5px/1.3 var(--font-body);letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.cx-portal a.pm-check-item:hover{background:var(--sx-paper)}
+.cx-portal .pm-bar{border-radius:0;background:rgba(16,35,58,.13)}
+.cx-portal .pm-bar.active{background:var(--sx-navy)}
+.cx-portal .pm-bar::after{color:var(--sx-text-muted);font-family:var(--font-body);font-size:10.5px;font-variant-numeric:tabular-nums}
+.cx-portal .pm-chart-labels{color:var(--sx-text-muted);font-family:var(--font-body);font-size:11px}
+.cx-portal .pm-chart-body path[stroke="#1a2332"]{stroke:var(--sx-rule-light)}
+.cx-portal .pm-chart-body path[stroke="#5bcb8d"]{stroke:var(--sx-navy)}
+.cx-portal .pm-chart-body :is(span,div){color:inherit}
+.cx-portal .pm-chart-body span[style*="font-display"]{color:var(--sx-text-dark)}
+.cx-portal .pm-pill{background:#fff;border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius);color:var(--sx-text-body);font-weight:500}
+.cx-portal .pm-pill:hover{color:var(--sx-text-dark);border-color:var(--sx-text-muted)}
+.cx-portal .pm-pill.is-active{background:var(--sx-navy);border-color:var(--sx-navy);color:#fff;font-weight:600}
+.cx-portal .pm-results{color:var(--sx-text-muted)}
+.cx-portal .pm-main :is(a,button,select):focus-visible,.cx-portal .pm-mobile-navigation :is(button,select):focus-visible,.cx-portal .pm-account-dialog button:focus-visible{outline:2px solid var(--sx-navy);outline-offset:3px}
+.cx-portal .pm-account-dialog{color:var(--sx-text-body);background:#fff;border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius-card);box-shadow:0 12px 40px rgba(10,23,38,.28)}
+.cx-portal .pm-account-dialog::backdrop{background:rgba(10,23,38,.62)}
+.cx-portal .pm-account-header{border-bottom-color:var(--sx-rule-light)}
+.cx-portal .pm-account-header .big-avatar{background:var(--sx-navy);color:#fff;font-family:var(--font-body);font-weight:600}
+.cx-portal .pm-account-header .name{color:var(--sx-text-dark);font-size:17px;font-weight:600}
+.cx-portal .pm-account-header .email{color:var(--sx-text-muted);font-family:var(--font-body);font-size:13px}
+.cx-portal .pm-account-disclosure{color:var(--sx-text-muted)}
+.cx-portal .pm-account-stat{background:var(--sx-paper);border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius)}
+.cx-portal .pm-account-stat .label{color:var(--sx-text-muted);letter-spacing:.08em}
+.cx-portal .pm-account-stat .value{color:var(--sx-text-dark);font-weight:600}
+.cx-portal .pm-account-row .k{color:var(--sx-text-muted)}
+.cx-portal .pm-account-row :is(.v,.v.ok){color:var(--sx-text-dark)}
+.cx-portal .pm-account-dialog .pm-account-close{background:var(--sx-navy)!important;color:#fff!important;border:0!important;letter-spacing:0;text-transform:none}
+.cx-portal .pm-account-dialog .pm-account-close:hover{background:var(--sx-navy-deep)!important}
+@media (max-width:1024px){
+  .cx-portal .pm-mobile-navigation{background:#fff;border-bottom:1px solid var(--sx-rule-light)}
+  .cx-portal .pm-mobile-navigation label{color:var(--sx-text-muted)}
+  .cx-portal .pm-mobile-navigation select{color:var(--sx-text-dark);background-color:#fff;border:1px solid rgba(16,35,58,.45);border-radius:var(--sx-radius);color-scheme:light}
+  .cx-portal .pm-mobile-account{color:var(--sx-navy);background:#fff;border:1px solid rgba(16,35,58,.45);border-radius:var(--sx-radius)}
+  .cx-portal .pm-main{border-radius:0 0 var(--sx-radius-card) var(--sx-radius-card)}
+}
+@media (max-width:600px){
+  .cx-portal .pm-chart-bars .pm-bar::before,.cx-portal .pm-chart-bars .pm-bar::after{color:var(--sx-text-muted)}
+  .cx-portal .pm-main{padding:18px 12px}
+}
+/* PORTAL · on first view the sparklines draw and the bars rise once (sx-convert.js adds .pm-drawn).
+   Hidden only under html.cx-io, which the script sets only when motion is allowed. */
+html.cx-io .cx-portal .cx-device .pm-kpi .spark polyline{stroke-dasharray:1 2;transition:stroke-dashoffset 1.1s cubic-bezier(.45,0,.2,1) .25s}
+html.cx-io .cx-portal .cx-device:not(.pm-drawn) .pm-kpi .spark polyline{stroke-dashoffset:1.02}
+@media (min-width:601px){
+  html.cx-io .cx-portal .cx-device .pm-bar{clip-path:inset(-28px -16px 0 -16px);transition:clip-path .75s cubic-bezier(.2,.7,.2,1) calc(.2s + var(--k,0) * 55ms)}
+  html.cx-io .cx-portal .cx-device:not(.pm-drawn) .pm-bar{clip-path:inset(100% -16px 0 -16px)}
+  .cx-portal .pm-bar:nth-child(2){--k:1}.cx-portal .pm-bar:nth-child(3){--k:2}.cx-portal .pm-bar:nth-child(4){--k:3}
+  .cx-portal .pm-bar:nth-child(5){--k:4}.cx-portal .pm-bar:nth-child(6){--k:5}.cx-portal .pm-bar:nth-child(7){--k:6}
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width:1100px){
   .cx-pep{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -335,6 +498,51 @@ body.cx-404{min-height:100svh}
   .cx-page .ov-loading::before{background:repeating-linear-gradient(90deg,var(--sx-ink-2) 0 calc((100% - 12px) / 2),transparent calc((100% - 12px) / 2) calc((100% - 12px) / 2 + 12px))}
   .cx-nf{padding-top:120px}
   .cx-nf-code{font-size:clamp(4.5rem,24vw,6rem)}
+}
+
+
+/* v5 responsive (contact, portal) */
+@media (max-width:960px){
+  .cx-contact .cx-hero-grid,.cx-contact .cx-studio-panel{grid-template-columns:minmax(0,1fr)}
+  .cx-contact .cx-direct{padding-top:16px}
+}
+@media (max-width:640px){
+  .cx-contact .cx-ch-text>span{font-size:1.375rem}
+  .cx-contact .cx-channels li:last-child .cx-ch-text>span{font-size:1.0625rem}
+  .cx-contact .cx-channel{grid-template-columns:minmax(0,1fr) auto}
+  .cx-contact .cx-ch-arrow{display:block}
+  .cx-contact .cx-studio-form{padding:28px 20px 32px}
+  .cx-contact .cx-form{gap:20px}
+  .cx-portal .pm-hero-stats.cx-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cx-portal .cx-stats .stat,.cx-portal .cx-stats .stat:nth-child(odd),.cx-portal .cx-stats .stat:nth-child(-n+2){padding:18px 0 20px 16px}
+  .cx-portal .cx-stats .stat:nth-child(odd){padding-left:0;border-left:0}
+  .cx-portal .cx-stats .stat:nth-child(n+3){border-top:1px solid var(--sx-line-soft)}
+}
+
+/* v6 (Oct 14) · Q3: a headline breaks between its sentences (.sx-u keeps a sentence on one line when it fits and
+   wraps it, balanced, only when it cannot); phones get the same headline size as the company pages (33px at 375). */
+.cx-page :is(.cx-display,.cx-eyebrow) .sx-u{display:inline-block}
+@media (max-width:640px){
+  .cx-contact .cx-display,.cx-portal .cx-display{font-size:clamp(1.875rem,8.85vw,2.75rem)}
+}
+
+/* v6 · Q6: small type on Contact and Portal. Uppercase labels 13px with .06em tracking; captions, helper text and
+   the preview's data text at 14px (13px where a cell of the drawn interface is too narrow for more). */
+.cx-contact .cx-eyebrow,.cx-portal .cx-eyebrow{font-size:13px;letter-spacing:.06em}
+.cx-contact .cx-ch-text strong{font-size:13px;letter-spacing:.06em}
+.cx-portal :is(.pm-demo-label,.pm-main-top .pm-chip,.pm-kpi .label,.pm-row .status,.pm-check-item .code,.pm-account-stat .label){font-size:13px;letter-spacing:.06em}
+.cx-portal .pm-nav-group{font-size:13px;letter-spacing:.06em!important}
+.cx-portal .pm-top .pm-url{font-size:14px}
+.cx-portal .pm-kpi .trend,.cx-portal .pm-shell .view-all,.cx-portal .pm-row :is(.pid,.date),.cx-portal .pm-nav-user .name{font-size:14px}
+.cx-portal .pm-nav-item .badge,.cx-portal .pm-nav-user .who .role,.cx-portal .pm-chart-labels,.cx-portal .pm-bar::after{font-size:13px}
+.cx-portal .pm-account-dialog .pm-account-stat .label,.cx-portal .pm-account-header .email{font-size:13px}
+@media (min-width:601px){
+  .cx-portal .pm-chart-body{padding-top:24px}
+  .cx-portal .pm-bar::after{top:-19px;line-height:1}
+}
+@media (max-width:600px){
+  .cx-portal .pm-chart-bars .pm-bar::before,.cx-portal .pm-chart-bars .pm-bar::after{font-size:13px}
+  .cx-portal .pm-mobile-navigation label{font-size:13px;letter-spacing:.06em}
 }
 
 /* ── REDUCED MOTION: no animation, everything visible ── */

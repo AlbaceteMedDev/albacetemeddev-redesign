@@ -207,7 +207,7 @@ body.sx-co{font-size:17px;line-height:1.65;color:var(--sx-mist);background:var(-
 .sx-co .rcm-step p{font-size:16px;line-height:1.6;margin:0}
 .sx-co .rcm-step ul{list-style:none;margin:20px 0 0;padding:0;display:block}
 .sx-co .rcm-step li{display:block;position:relative;padding:0 0 10px 22px;font-size:15.5px;line-height:1.55}
-.sx-co .rcm-step li::before{content:'';position:absolute;left:0;top:.78em;width:10px;height:1.5px;margin:0;border-radius:0;background:var(--sx-gold-deep)}
+.sx-co .rcm-step li::before{content:'';position:absolute;left:0;top:11px;width:10px;height:2px;margin:0;border-radius:0;background:var(--sx-gold-deep)}
 
 .sx-co .findings-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,3vw,44px);row-gap:0;margin:0}
 .sx-co .finding-card{display:block;background:none!important;border:0;border-top:1px solid var(--sx-text-dark);border-radius:0;box-shadow:none;padding:22px 0 44px;transform:none!important}
@@ -475,6 +475,240 @@ html.sx-js body .sx-fade.is-in{opacity:1;transform:none}
   .sx-co .scope-content{grid-template-columns:1fr}
   .sx-co .service-actions{align-items:stretch}
   .sx-co .consultation-action{justify-content:center}
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   v5 (Oct 14): one crafted centrepiece per page, built only from that page's own words.
+   P6 compositions · P1 route diagrams · P2 services ledger · P3 scan report device
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* ── P6 · ABOUT: a centred statement ── */
+body.sx-co--about .hero{padding:calc(var(--nav-h) + clamp(72px,9vw,136px)) 0 clamp(88px,10vw,148px)}
+body.sx-co--about .hero:not(.hero-split-layout) .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+body.sx-co--about .hero:not(.hero-split-layout) .hero-inner > *{align-self:center}
+body.sx-co--about .hero:not(.hero-split-layout) .hero-chip{justify-content:center;margin:0 0 30px}
+body.sx-co--about .hero:not(.hero-split-layout) h1{max-width:14em;margin:0 0 34px}
+body.sx-co--about .hero:not(.hero-split-layout) .hero-sub{max-width:37rem;margin:0 0 40px;padding:0;border-top:0}
+body.sx-co--about .hero:not(.hero-split-layout) .hero-actions{justify-content:center;padding:0;border-top:0}
+body.sx-co--about .cta-band .container > div{display:flex;flex-direction:column;align-items:center;text-align:center}
+body.sx-co--about .cta-band .eyebrow{justify-content:center}
+body.sx-co--about .cta-band h2{max-width:15em;margin:0 0 20px}
+body.sx-co--about .cta-band p{max-width:34rem;padding:0 0 32px}
+body.sx-co--about .cta-band .hero-actions{justify-content:center}
+
+/* ── P6 · CONSULTING: a split, headline left and the brief on the right ── */
+body.sx-co--consulting .hero:not(.hero-split-layout) .hero-inner{grid-template-columns:var(--co-split);align-items:end}
+body.sx-co--consulting .hero:not(.hero-split-layout) h1{grid-column:1;grid-row:2/span 2;align-self:end;max-width:11.5em;margin:0}
+body.sx-co--consulting .hero:not(.hero-split-layout) h1 em{display:inline}
+body.sx-co--consulting .hero:not(.hero-split-layout) .hero-sub{grid-column:2;grid-row:2;align-self:end;padding:0 0 32px;border-top:0}
+body.sx-co--consulting .hero:not(.hero-split-layout) .hero-actions{grid-column:2;grid-row:3;align-self:end;padding:0;border-top:0}
+
+/* ── P6 · REVENUE CYCLE: rule-led, the four facts set as a ledger ── */
+body.sx-co--revenue .hero:not(.hero-split-layout) .hero-inner{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start}
+body.sx-co--revenue .hero:not(.hero-split-layout) .hero-chip{margin:0 0 clamp(40px,4.5vw,64px);padding:0 0 20px;border-bottom:1px solid var(--sx-line-soft)}
+body.sx-co--revenue .hero:not(.hero-split-layout) h1{max-width:15em;margin:0 0 clamp(40px,4.5vw,64px)}
+body.sx-co--revenue .hero:not(.hero-split-layout) .hero-sub{grid-column:1;grid-row:3;max-width:37rem;padding:0;border-top:0}
+body.sx-co--revenue .hero:not(.hero-split-layout) .hero-actions{grid-column:1;grid-row:4;padding:36px 0 0;border-top:0}
+body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats{grid-column:2;grid-row:3/span 2;grid-template-columns:minmax(0,1fr);margin:0;border-top:1px solid var(--sx-line-soft)}
+body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats .stat{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr);column-gap:24px;align-items:baseline;padding:15px 0 16px;border:0;border-bottom:1px solid var(--sx-line-soft)}
+body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats .stat .value{font-size:1.1875rem}
+body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats .stat .desc{margin:0;max-width:none}
+
+/* ── P6 · WHY PARTNER: an offset statement with a marginal label ── */
+body.sx-co--partner .hero:not(.hero-split-layout) .hero-inner{grid-template-columns:minmax(0,3fr) minmax(0,9fr);column-gap:clamp(32px,4vw,64px);align-items:start}
+body.sx-co--partner .hero:not(.hero-split-layout) .hero-chip{grid-column:1;grid-row:1;display:block;max-width:15em;margin:0;padding-top:1.15rem;line-height:1.6;text-wrap:balance}
+body.sx-co--partner .hero:not(.hero-split-layout) h1{grid-column:2;grid-row:1;max-width:12em;margin:0 0 34px}
+body.sx-co--partner .hero:not(.hero-split-layout) .hero-sub{grid-column:2;grid-row:2;max-width:36rem;padding:0;border-top:0}
+body.sx-co--partner .hero:not(.hero-split-layout) .hero-actions{grid-column:2;grid-row:3;padding:36px 0 0;border-top:0}
+body.sx-co--partner .hero:not(.hero-split-layout) .wp-hero-stats{grid-column:2;grid-row:4}
+body.sx-co--partner .hero:not(.hero-split-layout) .wp-hero-stats .stat{padding-right:20px}
+body.sx-co--partner .hero:not(.hero-split-layout) .wp-hero-stats .stat:not(:first-child){padding-left:20px}
+body.sx-co--partner .hero:not(.hero-split-layout) .wp-hero-stats .stat .value{font-size:1.3rem}
+
+/* ── P6 · SERVICES: a masthead rule over the split heading ── */
+.sx-co .services-heading{row-gap:clamp(24px,2.6vw,36px)}
+.sx-co .services-heading::before{content:'';grid-column:1/-1;height:1px;background:var(--sx-line-soft)}
+.sx-co .service-eyebrow::before{display:none}
+
+/* ── P1 · Route diagrams (sx-company.js, v6): a 1px track (3.4:1 on paper) with '+' stations; a 2px navy line
+   draws over it with the scroll. The current step gets a filled 10px gold dot, its heading stays at full
+   strength and the other headings dim to the muted text colour (5.2:1). The SVG is aria-hidden decoration beside
+   the steps' own markup; without the script the steps keep their plain rules. --route says how the line runs. ── */
+.sx-route-wrap{position:relative}
+.sx-route{--route:h}
+.sx-route-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.sx-route-svg .rt-track{fill:none;stroke:color-mix(in srgb,var(--sx-text-muted) 80%,#fff);stroke-width:1}
+.sx-route-svg .rt-line{fill:none;stroke:var(--sx-navy);stroke-width:2;stroke-dasharray:1 2;stroke-dashoffset:1.02}
+.sx-route-svg .rt-mark{transform-box:fill-box;transform-origin:center;transform:scale(.75);transition:transform .35s var(--sx-ease),opacity .2s ease}
+.sx-route-svg .rt-mark path{fill:none;stroke:color-mix(in srgb,var(--sx-text-muted) 80%,#fff);stroke-width:1.5;transition:stroke .25s ease}
+.sx-route-svg .is-reached .rt-mark{transform:none}
+.sx-route-svg .is-reached .rt-mark path{stroke:var(--sx-navy)}
+.sx-route-svg .rt-dot{fill:var(--sx-gold);transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .3s var(--sx-ease)}
+.sx-route-svg .is-active .rt-dot{transform:none}
+.sx-route-svg .is-active .rt-mark{opacity:0}
+/* station labels: muted until the line arrives; headings dim only while one step is current (both pass AA) */
+.sx-co .sx-route .step-num,.sx-co .sx-route .cs-cap::before{color:var(--sx-text-muted);transition:color .3s ease}
+.sx-co .sx-route .is-reached .step-num,.sx-co .sx-route .cs-cap.is-reached::before{color:var(--sx-text-dark)}
+.sx-co .sx-route :is(.process-step h4,.rcm-step h3,.cs-cap h4,.wp-cap h4){transition:color .3s ease}
+.sx-co .sx-route.has-active > :not(.is-active) :is(h3,h4){color:var(--sx-text-muted)}
+.sx-co .sx-route.has-active > :not(.is-active) .step-num,.sx-co .sx-route.has-active > .cs-cap:not(.is-active)::before{color:var(--sx-text-muted)}
+/* the line takes the place of each row's top rule */
+.sx-co .process-grid.sx-route,.sx-co .rcm-process.sx-route{border-top:0}
+.sx-co .process-grid.sx-route .process-step,.sx-co .rcm-process.sx-route .rcm-step{border:0;padding-top:38px}
+.sx-co .cs-caps.sx-route .cs-cap{border-top:0;padding-top:32px}
+/* why partner: a spine down the left margin, rules start after it */
+.sx-co .wp-caps.sx-route{--route:v;--route-x:8;border-top:0}
+.sx-co .wp-caps.sx-route .wp-cap{border:0;padding:0 0 0 48px}
+.sx-co .wp-caps.sx-route .wp-cap > div:last-child{padding:28px 0;border-bottom:1px solid var(--sx-rule-light)}
+.sx-co .wp-caps.sx-route .wp-cap:first-child > div:last-child{border-top:1px solid var(--sx-text-dark)}
+
+/* ── P2 · SERVICES: the two service lines as a ledger ── */
+.sx-co--services{--ledger:minmax(0,5fr) minmax(0,6fr) 32px;--ledger-gap:clamp(24px,3vw,48px)}
+/* the two tabs are the ledger's two column heads */
+.sx-co--services .service-tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--ledger-gap);border-bottom:0}
+.sx-co--services .service-track-tab{position:relative;align-items:flex-start;min-height:0;padding:18px 0 20px;border-top:1px solid var(--sx-rule-light);
+  font-family:var(--font-body);font-size:17px;font-weight:600;line-height:1.35;letter-spacing:0;color:var(--sx-text-muted)}
+.sx-co--services .service-track-tab::after{top:-1px;bottom:auto;height:2px;background:var(--sx-navy);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--sx-ease)}
+.sx-co--services .service-track-tab:hover,.sx-co--services .service-track-tab.is-active{color:var(--sx-text-dark)}
+.sx-co--services .service-track-tab.is-active::after{transform:scaleX(1)}
+.sx-co--services .service-track-tab:focus-visible{outline-offset:6px!important}
+/* each line: its statement across the top, then the scope as a ruled table */
+.sx-co--services .practice-service:not([hidden]){display:block;padding:clamp(44px,5vw,72px) 0 8px}
+.sx-co--services .service-overview{position:static;display:grid;grid-template-columns:var(--co-split);column-gap:var(--co-gap);align-items:start;margin:0 0 clamp(44px,5vw,72px)}
+.sx-co--services .service-overview .service-eyebrow{grid-column:1/-1}
+.sx-co--services .service-overview h2{grid-column:1;grid-row:2/span 3;max-width:11em;margin:0}
+.sx-co--services .service-description{grid-column:2;grid-row:2;margin:0 0 14px}
+.sx-co--services .service-context{grid-column:2;grid-row:3;margin:0}
+.sx-co--services .service-actions{grid-column:2;grid-row:4;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 28px;margin:28px 0 0}
+.sx-co--services .engagement-scope{padding:0;background:none;border:0;border-top:2px solid var(--sx-navy);border-radius:0}
+.sx-co--services .scope-heading{padding:14px 20px;border-bottom:1px solid var(--sx-text-dark)}
+.sx-co--services .scope-row{border-bottom:1px solid var(--sx-rule-light);transition:background-color .2s ease}
+.sx-co--services .scope-row[open]{background:var(--sx-paper)}
+.sx-co--services .scope-row > summary{display:grid;grid-template-columns:var(--ledger);column-gap:var(--ledger-gap);align-items:baseline;min-height:76px;padding:26px 20px}
+.sx-co--services .scope-title{display:contents}
+.sx-co--services .option-name{grid-column:1;font-size:clamp(1.35rem,1.9vw,1.6rem);line-height:1.25}
+.sx-co--services .scope-caption{grid-column:2;max-width:34rem;margin:0;font-size:16px;line-height:1.55;color:var(--sx-text-body)}
+.sx-co--services .scope-toggle{grid-column:3;justify-self:end;align-self:center}
+.sx-co--services .scope-content{grid-template-columns:var(--ledger);column-gap:var(--ledger-gap);row-gap:24px;padding:2px 20px 32px}
+.sx-co--services .scope-content > div:first-child{grid-column:1}
+.sx-co--services .scope-content > div:last-child{grid-column:2}
+.sx-co--services .scope-note{margin:18px 0 0;padding:0 20px}
+
+/* ── P3 · SOFTWARE: the scan report as the hero device. Contour rings draw in once, then the callouts in
+   sequence, while the pipeline rule runs Capture to Report. CSS only, gated on html.sx-js (the head script
+   drops it if this layer is missing); reduced motion shows the finished drawing. ── */
+.sx-co .hero.hero-split-layout .hero-inner{grid-template-columns:minmax(0,11fr) minmax(0,13fr);align-items:center}
+.sx-co--software .sw-demo{padding:24px 24px 20px;margin-top:0}
+.sx-co--software .sw-mesh{background:#fff;border:1px solid var(--sx-rule-light)}
+.sw-mesh .sw-bg{fill:#fff}
+.sw-mesh .sw-grid{fill:none;stroke:var(--sx-paper-2);stroke-width:1}
+.sw-mesh .sw-ring{fill:none;stroke:var(--sx-navy);stroke-width:1.25;stroke-linejoin:round}
+.sw-mesh .sw-ring.r1{stroke-opacity:.28}.sw-mesh .sw-ring.r2{stroke-opacity:.42}.sw-mesh .sw-ring.r3{stroke-opacity:.58}.sw-mesh .sw-ring.r4{stroke-opacity:.78}
+.sw-mesh .sw-ring.r5{stroke:var(--sx-gold-press);stroke-width:1.75}
+.sw-mesh .sw-ext{fill:none;stroke:var(--sx-navy);stroke-opacity:.4;stroke-width:1;stroke-dasharray:2 3}
+.sw-mesh :is(.sw-dim,.sw-tick,.sw-lead){fill:none;stroke:var(--sx-navy);stroke-width:1;stroke-linecap:square}
+.sw-mesh .sw-tick{stroke-width:1.25}
+.sw-mesh .sw-mark{fill:none;stroke:var(--sx-gold-press);stroke-width:2}
+.sw-mesh .sw-lbl{fill:var(--sx-text-dark);font-family:var(--font-body);font-size:11.5px;font-weight:600;letter-spacing:.01em}
+@keyframes sw-draw{from{stroke-dashoffset:1.02}to{stroke-dashoffset:0}}
+@keyframes sw-show{from{opacity:0}to{opacity:1}}
+@keyframes sw-run{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes sw-tick{from{background-color:var(--sx-rule-light)}to{background-color:var(--sx-text-dark)}}
+html.sx-js .sx-co--software .sw-mesh .sw-draw{stroke-dasharray:1 2;animation:sw-draw var(--t,.9s) cubic-bezier(.45,0,.2,1) var(--d,0s) both}
+html.sx-js .sx-co--software .sw-mesh .sw-fade{animation:sw-show .35s ease-out var(--d,0s) both}
+html.sx-js .sx-co--software .sw-pipe{position:relative;border-top-color:var(--sx-rule-light)}
+html.sx-js .sx-co--software .sw-pipe::after{content:'';position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--sx-text-dark);transform-origin:left;animation:sw-run 2.5s linear .3s both}
+html.sx-js .sx-co--software .sw-step::before{animation:sw-tick .2s linear calc(.3s + var(--i,0) * .5s) both}
+
+/* ── v5 responsive ── */
+@media (max-width:1024px){
+  .sx-co .rcm-process.sx-route{--route:v;--route-x:8}
+  .sx-co .rcm-process.sx-route .rcm-step,.sx-co .rcm-process.sx-route .rcm-step:first-child,.sx-co .rcm-process.sx-route .rcm-step:last-child{border:0;padding:0 0 44px 44px}
+  .sx-co .hero.hero-split-layout .hero-inner{grid-template-columns:1fr}
+  .sx-co--software .sw-demo{max-width:620px}
+}
+@media (max-width:900px){
+  body:is(.sx-co--consulting,.sx-co--revenue,.sx-co--partner) .hero:not(.hero-split-layout) .hero-inner{grid-template-columns:minmax(0,1fr)}
+  body:is(.sx-co--consulting,.sx-co--revenue,.sx-co--partner) .hero:not(.hero-split-layout) .hero-inner > *{grid-column:1!important;grid-row:auto!important}
+  body.sx-co--consulting .hero:not(.hero-split-layout) h1{margin:0 0 28px}
+  body.sx-co--consulting .hero:not(.hero-split-layout) .hero-sub{padding:0 0 28px}
+  body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats{margin:48px 0 0}
+  body.sx-co--partner .hero:not(.hero-split-layout) .hero-chip{margin:0 0 22px;padding:0}
+  .sx-co--services .service-overview{grid-template-columns:minmax(0,1fr)}
+  .sx-co--services .service-overview > *{grid-column:1!important;grid-row:auto!important}
+  .sx-co--services .service-overview h2{margin:0 0 20px}
+}
+@media (max-width:760px){
+  .sx-co .sx-route{--route:v;--route-x:8}
+  .sx-co .process-grid.sx-route .process-step,.sx-co .cs-caps.sx-route .cs-cap{border:0;padding:0 0 32px 44px}
+  .sx-co .rcm-process.sx-route .rcm-step,.sx-co .rcm-process.sx-route .rcm-step:first-child,.sx-co .rcm-process.sx-route .rcm-step:last-child{padding:0 0 36px 44px}
+  .sx-co .wp-caps.sx-route .wp-cap{padding-left:44px}
+  .sx-co .wp-caps.sx-route .wp-cap > div:last-child{padding:22px 0 24px}
+  body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats .stat{grid-template-columns:minmax(0,8rem) minmax(0,1fr);column-gap:16px}
+  body.sx-co--revenue .hero:not(.hero-split-layout) .rcm-hero-stats .stat .value{font-size:1.0625rem}
+  .sx-co--services{--ledger:minmax(0,1fr) 28px;--ledger-gap:16px}
+  .sx-co--services .service-track-tab{padding:16px 0 18px;font-size:15.5px}
+  .sx-co--services .scope-row > summary{row-gap:6px;padding:20px 14px}
+  .sx-co--services .option-name{grid-row:1;font-size:1.25rem}
+  .sx-co--services .scope-caption{grid-column:1;grid-row:2;font-size:15px}
+  .sx-co--services .scope-toggle{grid-column:2;grid-row:1}
+  .sx-co--services .scope-content{grid-template-columns:minmax(0,1fr);padding:0 14px 24px}
+  .sx-co--services .scope-content > div{grid-column:1!important}
+  .sx-co--services .scope-heading{padding:14px 14px}
+  .sx-co--services .scope-note{padding:0 14px}
+  .sx-co--services .service-actions{flex-direction:column;align-items:stretch}
+  .sx-co--software .sw-demo{padding:16px 14px 14px}
+  .sw-mesh .sw-lbl{font-size:14px}
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   v6 (Oct 14): blind-panel fixes. Q3 headline breaks · Q4 software hero text · Q6 small type
+   ═════════════════════════════════════════════════════════════════════════════════ */
+/* Q3 · a headline breaks between its sentences and phrases, never strands a word: .sx-u is a unit kept on one
+   line when it fits (it wraps, balanced, only when it cannot); .sx-s is a sentence that always takes its own line.
+   Phones get a size that lets each unit fit (a 375px screen sets the h1 at 33px). */
+.sx-co main h1 .sx-u{display:inline-block}
+.sx-co main h1 .sx-s{display:block}
+/* desktop sizes that let the longest phrase hold its line: "practice operations." and "Now your documentation" */
+@media (min-width:761px){
+  body.sx-co--consulting .hero:not(.hero-split-layout) h1{font-size:clamp(2.4rem,4.6vw,3.9rem)}
+  .sx-co .hero.hero-split-layout h1{font-size:clamp(2.4rem,3.2vw,2.6rem);line-height:1.1}
+}
+@media (max-width:760px){
+  .sx-co .hero h1,.sx-co .hero.hero-split-layout h1,.sx-co .services-heading h1{font-size:clamp(1.875rem,8.85vw,2.4rem);line-height:1.1}
+  body.sx-co--revenue .hero:not(.hero-split-layout) h1 em{display:inline}
+}
+
+/* Q4 · labels and captions set as units (.sx-crumbs): a centred dot between units, each unit kept whole when it
+   fits; the units sit one dot-width to the left inside an overflow clip, so the dot in front of a unit that starts
+   a line falls outside the clip and a wrapped label never begins or ends on a separator. */
+.sx-co .sx-crumbs{display:block;flex:1 1 auto;min-width:0;overflow:hidden}
+.sx-co .sx-crumbs-in{display:block;margin-left:-1.6em;text-wrap:balance}
+.sx-co .sx-crumbs .sx-u{display:inline-block;text-wrap:balance}
+.sx-co .sx-dot{display:inline-block;width:1.6em;text-align:center}
+.sx-co .sx-nw{white-space:nowrap}
+.sx-co .sw-cap .sx-u{display:inline-block;margin-right:.3em;text-wrap:balance}
+body.sx-co--partner .hero:not(.hero-split-layout) .hero-chip{max-width:none}
+
+/* Q6 · small type: uppercase labels 13px with .06em tracking; captions and helper text 14px */
+.sx-co :is(.eyebrow,.hero-chip,.services-kicker,.service-eyebrow){font-size:13px!important;letter-spacing:.06em!important}
+.sx-co :is(.step-num,.engagement-step-number,.product-card .tag),.sx-co .cs-cap::before{letter-spacing:.06em}
+.sx-co :is(.scope-heading h3,.scope-content h4){font-size:13px;letter-spacing:.06em}
+.sx-co .scope-row > summary.is-added .option-name::after{font-size:13px;letter-spacing:.06em}
+.sx-co .scope-note{font-size:14px}
+.sx-co .sw-chip{font-size:13px;letter-spacing:.06em;padding:3px 8px}
+.sx-co .sw-k{font-size:13px;letter-spacing:.06em}
+.sx-co .sw-step{font-size:13px}
+.sx-co :is(.sw-foot,.sw-cap),.sx-co main .sw-cap a{font-size:14px}
+.sx-co .spec-label{font-size:14px}
+@media (max-width:760px){
+  .sx-co .sw-step{font-size:13px}
+  .sx-co .sw-pipe{gap:4px}
+  .sx-co .sw-top{font-size:14px}
+  /* the drawing scales down on a phone: its labels are set so they still render at 13px, knocked out of the
+     dimension lines by a white halo; the depth callout steps up and left to stay inside the frame */
+  .sw-mesh .sw-lbl{font-size:18.4px;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+  .sw-mesh .sw-lbl[x="260"]{transform:translate(-18px,-9px)}
 }
 
 /* ───────────── reduced motion: everything visible, nothing moves ───────────── */

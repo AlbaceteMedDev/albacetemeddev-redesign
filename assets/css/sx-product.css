@@ -647,6 +647,47 @@ html.sx-armed .sx-product .sx-reveal.is-in{opacity:1;transform:none}
   .sx-product .compare-tray button[data-open-compare]{flex:1}
 }
 
+/* ═════════ v6 (Oct 14) · Q5: the hero's actions as one row of 48px controls ═════════
+   "Discuss this product", "Source information" and "+ Add to comparison" sit in one flex row (the comparison
+   button now lives inside .clinical-actions; editorial.js still owns its state and label). On desktop the row
+   runs the full width of the hero under a rule, the text column centred against the figure; on phones the
+   controls stack full width. */
+.sx-product .product-editorial-grid .clinical-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin:0}
+.sx-product .product-editorial-hero .clinical-actions .clinical-text-link{min-height:48px}
+.sx-product .product-editorial-hero .clinical-actions .save-product{margin:0;min-height:48px}
+@media (min-width:901px){
+  /* Actions stay in the text column, directly under the deck, so the primary CTA sits high in the first viewport. */
+  .sx-product .product-editorial-grid{grid-template-rows:1fr auto auto auto auto 1fr;row-gap:0;align-items:start}
+  .sx-product .product-editorial-grid>div:first-child{display:contents}
+  .sx-product .product-editorial-grid>div:first-child>.clinical-eyebrow{grid-column:1;grid-row:2}
+  .sx-product .product-editorial-grid>div:first-child>h1{grid-column:1;grid-row:3}
+  .sx-product .product-editorial-grid>div:first-child>.product-deck{grid-column:1;grid-row:4;margin-bottom:0}
+  .sx-product .product-editorial-grid>figure{grid-column:2;grid-row:1/7}
+  .sx-product .product-editorial-grid>div:first-child>.clinical-actions{grid-column:1;grid-row:5;flex-wrap:wrap;gap:12px 24px;margin-top:clamp(24px,2.6vw,36px)}
+  .sx-product .product-editorial-hero{padding-bottom:clamp(48px,5vw,72px)}
+}
+@media (max-width:640px){
+  .sx-product .product-editorial-grid .clinical-actions{flex-direction:column;align-items:stretch;gap:12px}
+  .sx-product .product-editorial-hero .clinical-actions :is(.clinical-button,.save-product){width:100%}
+  .sx-product .product-editorial-hero .clinical-actions .clinical-text-link{align-self:stretch;justify-content:center}
+}
+
+/* ═════════ v6 · Q6: small type. Uppercase labels 13px with .06em tracking; captions and helper text 14px ═════════ */
+.sx-product .clinical-eyebrow,
+.sx-product .eyebrow,
+.sx-product .identity-eyebrow,
+.sx-product .reading-nav-label,
+.sx-product .product-facts dt,
+.sx-product .research-links>a>span:first-child,
+.sx-product .catalog-maker,
+.sx-product .product-card .tag,
+.sx-product .cat-eyebrow,
+.sx-product .pep-pill-label{font-size:13px!important;letter-spacing:.06em!important}
+.sx-product .pep-chip{font-size:13px}
+.sx-product :is(.compare-table th:first-child,.image-dialog dt,.image-dialog-maker){font-size:13px;letter-spacing:.06em}
+.sx-product .product-editorial-grid figcaption{font-size:14px}
+.sx-product :is(.image-open-label,.image-open-label>span){font-size:14px}
+
 /* ═════════ REDUCED MOTION: everything still, everything visible ═════════ */
 @media (prefers-reduced-motion:reduce){
   .sx-product *,.sx-product *::before,.sx-product *::after{animation:none!important;transition:none!important}

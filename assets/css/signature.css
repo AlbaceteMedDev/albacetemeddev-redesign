@@ -116,7 +116,7 @@ p,li{text-wrap:pretty}
 }
 
 /* ── Motion v3 (Oct 13, shared builder; v4 hover states) ──
-   Motion itself lives in house-motion.css / house-motion.js (v4). This section holds only what every page needs
+   Motion itself lives in house-motion.css / house-motion.js (v5). This section holds only what every page needs
    from the shared layer whether or not motion runs.
    F5a) Nav links: hover is a colour change only, never an underline. The current page keeps its 2px gold
         underline and weight 600, so hover and current never look alike.
@@ -129,3 +129,157 @@ html:not(#_) .footer-col>a:hover{color:var(--sx-gold);text-decoration-line:under
 html:not(#_) .mobile-menu .mobile-cta{color:var(--sx-navy)!important;background:var(--sx-gold)!important}
 html:not(#_) .mobile-menu .mobile-cta:hover{background:var(--sx-gold-press)!important;color:var(--sx-navy)!important}
 html:not(#_) .mobile-menu .mobile-cta:focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}
+
+/* ── Polish v5 (Oct 14, chrome builder) ──
+   Static layout every page needs whether or not motion runs. Motion for these lives in house-motion.css (v5).
+   C1) Phone menu: a full-screen navy sheet. Large Source Serif links on plain 1px rules, the call-to-action as a
+       full-width gold button at the foot of the screen, and the footer's email and telephone (cloned in by
+       house-motion.js) under it. The page behind cannot scroll while it is open.
+   C3) Footer: an editorial grid on the existing markup. The brand paragraph set as a serif statement; column
+       heads on 1px rules; the email and telephone (the last two links of the Company column, placed with
+       display:contents) as two large tappable lines across the foot of the grid; a 1px gold hairline with a short
+       3px gold rule on the page gutter in place of the old full-width bar. The footer gutter is the page gutter
+       (40px, 24px at 760px and under), and on desktop the top of the footer leaves room for the "+" band.
+   C6) Typographic finesse: kerning on, legibility rendering for headings, balanced headings and pretty
+       paragraphs, hanging punctuation where supported, proportional (and, where a font has them, old-style)
+       figures in running text, lining tabular figures in tables, specs, counters and contact numbers. */
+
+/* C1 Phone menu */
+html:not(#_) .mobile-menu{inset:0!important;height:100vh;height:100dvh;display:flex;flex-direction:column;
+  padding:calc(var(--nav-h,72px) + clamp(8px,2.4vh,24px)) 40px calc(20px + env(safe-area-inset-bottom))!important;
+  background:var(--sx-navy)!important;overflow-y:auto;overscroll-behavior:contain;isolation:isolate}
+@media (max-width:760px){html:not(#_) .mobile-menu{padding-inline:24px!important}}
+html:not(#_) .mobile-menu::before{content:"";display:block;order:1;flex:1 0 28px;min-height:28px}
+html:not(#_) .mobile-menu>a:not(.mobile-cta){display:block!important;min-height:0!important;margin:0;padding:clamp(8px,1.5vh,13px) 0!important;
+  font-family:var(--font-display)!important;font-weight:500!important;font-size:clamp(1.625rem,7.2vw,2.375rem)!important;line-height:1.12!important;
+  letter-spacing:-.012em;color:#fff!important;border:0!important;border-bottom:1px solid var(--sx-line-soft)!important;text-decoration:none}
+/* The current page: a 4px gold bar at the line's left, weight 600 and gold, and aria-current="page" (house-motion.js),
+   so it never rests on colour alone. */
+html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"]){position:relative;padding-left:20px!important;color:var(--sx-gold)!important;font-weight:600!important}
+html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"])::before{content:"";position:absolute;left:0;top:clamp(8px,1.5vh,13px);bottom:clamp(8px,1.5vh,13px);width:4px;background:var(--sx-gold)}
+@media (hover:hover){html:not(#_) .mobile-menu>a:not(.mobile-cta):hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}}
+html:not(#_) .mobile-menu>a:focus-visible,html:not(#_) .hm-menu-contact a:focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}
+html:not(#_) .mobile-menu .mobile-cta{order:2;display:flex!important;align-items:center;justify-content:center;width:100%;min-height:52px;margin:0!important;
+  padding:0 22px!important;border:0!important;border-radius:var(--sx-radius)!important;font:600 16px/1.2 var(--font-body)!important;letter-spacing:0!important;
+  text-align:center;background:var(--sx-gold)!important;color:var(--sx-navy)!important}
+html:not(#_) .hm-menu-contact{order:3;display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:24px;margin-top:10px}
+html:not(#_) .hm-menu-contact a{display:inline-flex!important;align-items:center;min-height:44px;padding:0!important;border:0!important;
+  font:500 15px/1.3 var(--font-body)!important;letter-spacing:0;color:var(--sx-mist)!important;text-decoration:none;font-variant-numeric:lining-nums tabular-nums}
+@media (hover:hover){html:not(#_) .hm-menu-contact a:hover{color:#fff!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}}
+html.hm-menu-open{overflow:hidden!important;scrollbar-gutter:stable;background-color:var(--sx-navy)!important}   /* the kept scrollbar gutter reads as part of the sheet */
+html.hm-menu-open body{overflow:hidden!important}
+
+/* C3 Footer */
+html:not(#_) .footer{padding:0 0 28px!important;border-top:0!important;background:var(--sx-navy-deep)!important}
+html:not(#_) .footer::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--sx-line);pointer-events:none}
+html:not(#_) .footer::before{content:""!important;display:block!important;position:absolute;top:0;height:3px;width:48px;background:var(--sx-gold);pointer-events:none;
+  left:calc((100% - min(100%, var(--container,1280px))) / 2 + 40px);z-index:2}
+html:not(#_) .footer .container{padding-top:72px}
+html:not(#_) .footer-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;margin:0!important}
+html:not(#_) .footer-brand img{height:32px;width:auto;margin:0 0 24px}
+html:not(#_) .footer-brand p{max-width:34ch;margin:0;font-family:var(--font-display);font-weight:400;font-size:1.25rem;line-height:1.42;letter-spacing:-.004em;color:var(--sx-mist)}
+html:not(#_) .footer-col h4{margin:0 0 6px;padding:0 0 12px;border-bottom:1px solid var(--sx-line-soft);font-size:13px;letter-spacing:.06em;line-height:1.3}
+html:not(#_) .footer-col a{display:flex;align-items:center;min-height:44px;padding:0;font-size:15px;line-height:1.35;color:var(--sx-fog)}
+html:not(#_) .footer-grid>.footer-col:last-child{display:contents}
+html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){position:relative;min-height:0;padding:22px 0 20px;
+  border-top:1px solid var(--sx-line-soft);font-family:var(--font-display);font-weight:500;font-size:clamp(1.375rem,2.3vw,2.125rem);line-height:1.15;
+  letter-spacing:-.01em;color:#fff;font-variant-numeric:lining-nums tabular-nums;overflow-wrap:anywhere}
+html:not(#_) .footer-grid>.footer-col:last-child>a[href^="tel:"]{border-bottom:1px solid var(--sx-line-soft)}
+html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]):hover{color:var(--sx-gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+html:not(#_) .footer-bottom{margin-top:40px;padding-top:18px;border-top:0!important;font-size:14px;color:var(--sx-fog)}
+/* Phone: one column. Column groups breathe apart; the contact lines close the grid. */
+@media (max-width:760px){
+  html:not(#_) .footer .container{padding-top:56px}
+  html:not(#_) .footer-brand{margin-bottom:40px}
+  html:not(#_) .footer-grid>.footer-col:not(:last-child){margin-bottom:32px}
+  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{margin-top:32px}
+  html:not(#_) .footer::before{left:24px}
+}
+/* Tablet: brand across; Products, then Services with Company under it; the contact lines as a pair. */
+@media (min-width:761px){
+  html:not(#_) .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:48px!important;grid-template-rows:repeat(6,auto) 1fr auto}
+  html:not(#_) .footer-brand{grid-column:1/-1;grid-row:1;margin-bottom:48px}
+  html:not(#_) .footer-grid>.footer-col:nth-child(2){grid-column:1;grid-row:2/8;margin:0}
+  html:not(#_) .footer-grid>.footer-col:nth-child(3){grid-column:2;grid-row:2;margin:0}
+  html:not(#_) .footer-grid>.footer-col:last-child>*{grid-column:2}
+  html:not(#_) .footer-grid>.footer-col:last-child>h4{grid-row:3;margin-top:40px}
+  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(1){grid-row:4}
+  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(2){grid-row:5}
+  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(3){grid-row:6}
+  html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){grid-row:8;margin-top:56px;border-bottom:1px solid var(--sx-line-soft)}
+  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{grid-column:1}
+  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="tel:"]{grid-column:2}
+}
+/* Desktop: brand statement | Products | Services & Software | Company, then the two contact lines across (the email
+   under the first two columns, the telephone under the last two). The top of the footer leaves a band for the
+   "+" field. */
+@media (min-width:1024px){
+  html:not(#_) .footer .container{padding-top:128px}
+  html:not(#_) .footer-grid{grid-template-columns:minmax(0,4.6fr) minmax(0,2.3fr) minmax(0,3fr) minmax(0,2.1fr)!important;column-gap:clamp(32px,3.4vw,56px)!important;
+    grid-template-rows:auto auto auto auto 1fr auto}
+  html:not(#_) .footer-brand{grid-column:1;grid-row:1/6;margin:0;padding-right:clamp(0px,3vw,48px)}
+  html:not(#_) .footer-brand p{font-size:clamp(1.3rem,1.55vw,1.5rem);max-width:30ch}
+  html:not(#_) .footer-grid>.footer-col:nth-child(2){grid-column:2;grid-row:1/6;margin:0}
+  html:not(#_) .footer-grid>.footer-col:nth-child(3){grid-column:3;grid-row:1/6;margin:0}
+  html:not(#_) .footer-grid>.footer-col:last-child>*{grid-column:4}
+  html:not(#_) .footer-grid>.footer-col:last-child>h4{grid-row:1;margin-top:0}
+  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(1){grid-row:2}
+  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(2){grid-row:3}
+  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(3){grid-row:4}
+  html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){grid-row:6;margin-top:64px}
+  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{grid-column:1/3}
+  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="tel:"]{grid-column:3/-1}
+  html:not(#_) .footer-col a{min-height:36px}
+}
+
+/* C6 Typographic finesse */
+html{font-kerning:normal}
+body{font-kerning:normal;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+:is(h1,h2,h3,h4,h5,h6){text-rendering:optimizeLegibility;text-wrap:balance}
+:is(p,li,dd,blockquote,figcaption){text-wrap:pretty;hanging-punctuation:first allow-end last;font-variant-numeric:oldstyle-nums proportional-nums}
+:is(table,thead,tbody,tfoot,tr,th,td,caption,dl,dt,dd,kbd,time,data,output,meter,progress,
+  [class*="spec"],[class*="stat"],[class*="count"],[class*="metric"],[class*="price"],[class*="number"],[class*="figure"],[class*="kpi"],[class*="code"],
+  a[href^="tel:"],[data-count]){font-variant-numeric:lining-nums tabular-nums}
+:is(table,[class*="spec"],[class*="stat"],[class*="count"],[class*="metric"],[class*="kpi"]) :is(p,li,dd){font-variant-numeric:lining-nums tabular-nums}
+hr{height:0;border:0;border-top:1px solid currentColor;opacity:.18}
+
+/* ── Polish v6 (Oct 14, chrome builder: blind panel K5/K6) ──
+   K5 Small-type floor, site-wide. Uppercase labels (eyebrows, kickers, footer column heads, form labels, stat labels,
+      tags and demo tags) are at least 13px with letter-spacing no wider than .06em; captions, notes, citations,
+      result counts and other helper text are at least 14px. Sizes already above the floor are left alone.
+   K6 No stranded single words: phone-menu labels stay on one line wherever they fit (balanced below 360px); footer
+      labels balance; the footer statement keeps its last two words together (house-motion.js wraps them in .hm-nw). */
+html:not(#_) body :is(
+  .clinical-eyebrow:not(.product-editorial-grid .clinical-eyebrow),.cx-page .product-editorial-grid .clinical-eyebrow,
+  .eyebrow,.sx-eyebrow,.cx-eyebrow,.cx-eyebrow>span,.hero-chip,.hero-chip>span,.services-kicker,.service-eyebrow,.science-kicker,
+  .cat-eyebrow,.identity-eyebrow,.sx-guide-eyebrow,.sx-panel-tag,.sx-panel-tag>span,.sx-row-tag,.sx-tile-group,.sx-ev-hub,.sx-v-path>p,
+  .sx-guide li>span,.sxl-stat,.compact-identity .identity-format,.catalog-maker,.ev-label,.ev-scope,.ev-meta,.pep-chip,.pep-pill-label,
+  .science-device small,.science-materials dt small,.science-toc-title,.science-study-meta,.science-note>strong,
+  .science-section-label>span,.science-product-maker,.science-source-identity>small,.science-find>label,.research-links a>span:first-child,
+  .reading-nav-label,.product-facts dt,.sx-product .image-dialog dt,.science-page .image-dialog header>p,.scope-heading h3,
+  .scope-content h4,.cx-ch-text>strong,.cx-tag,.cx-page .hero-spec-panel .spec-label,.library-tools label,.visual-catalog-tools label,
+  .footer-col h4,.sw-chip,.sw-k,.pm-demo-label,.pm-chip,.pm-kpi .label,.pm-account-stat .label,.pm-nav-group,
+  .pm-chart-body>div[style*="uppercase"],.pm-row .status,.pm-check-item .code,.sx-co-lbl,.sx-co-n,.products-grid .tag,
+  .engagement-step-number,.shop-cue>span,#evidence thead th
+){font-size:13px!important;letter-spacing:.06em!important;text-wrap:balance}
+html:not(#_) body :is(
+  .product-editorial-grid figcaption,.product-editorial-grid figcaption a,.science-cover figcaption,.science-cover figcaption>span,
+  .science-dressing figcaption,.sx-step-visual>figcaption,.sx-hero-cap,.sx-hero-cap>small,.sx-hero-cap>span,.sx-hero-cap>strong,
+  .sx-hero-cap .sx-nb,.sx-panel-cap>small,.sx-tile-tag,.sx-note,.sx-guide-note,.visual-catalog .catalog-disclosure,.scope-note,.science-image-note,
+  .science-inline-source,.science-inline-source>a,.science-study-citation,.science-study-citation cite,.filter-status,
+  .visual-catalog-tools>p,.catalog-tools>p,.science-find-status,.compare-hint,.compare-dialog>footer>p,.sw-cap,.sw-cap>a,.sw-foot,
+  .science-issue>span,.footer-bottom,.footer-bottom>span,.pm-results,.pm-account-disclosure,.cmdk-foot>span
+){font-size:14px!important}
+@media (max-width:1024px){html:not(#_) body .pm-mobile-navigation label{font-size:13px!important}}
+@media (max-width:800px){html:not(#_) body .science-toc>summary{font-size:13px!important;letter-spacing:.06em!important}}
+html:not(#_) body .science-page .image-dialog dt{font-size:13px!important}
+/* The home introduction: its corner labels and caption follow the same floor; the descriptor under the wordmark
+   keeps its wide tracking (it is set as part of the logo lockup) but is never under 13px. */
+html:not(#_) .amd-intro :is(.amd-intro__top>span,.amd-intro__caption>span){font-size:13px!important;letter-spacing:.06em!important}
+html:not(#_) .amd-intro .amd-intro__caption{font-size:14px!important}
+html:not(#_) .amd-intro .amd-intro__descriptor{font-size:13px!important}
+/* K6 */
+html:not(#_) .mobile-menu>a{text-wrap:balance}
+@media (min-width:300px){html:not(#_) .mobile-menu>a:not(.mobile-cta){white-space:nowrap;font-size:min(clamp(1.625rem,7.2vw,2.375rem),7.4vw)!important}}
+html:not(#_) .footer :is(.footer-col>a,.footer-col>h4,.footer-bottom>span){text-wrap:balance}
+html:not(#_) .footer .hm-nw{white-space:nowrap}
