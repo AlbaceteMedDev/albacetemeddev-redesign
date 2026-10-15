@@ -1,6 +1,8 @@
-/* House motion layer, Minimal v7: calm, smooth and consistent. See HOUSE-STYLE.md ("Minimal v7").
+/* House motion layer, Model v8: calm, smooth and consistent. See HOUSE-STYLE.md ("Model v8").
    One easing everywhere: --hm-ease, cubic-bezier(.22,.61,.36,1). Entrances are gentle fade-ups (600ms, at most 12px,
-   staggered at most 60ms). Hovers change colour only, in 200ms. Nothing flashes, nothing is decorative.
+   staggered at most 60ms). Buttons and links change colour only, in 150ms. Cards (.m8-card) answer a hover with
+   their image settling 3% larger over 450ms and a soft shadow; carousels (.m8-carousel) slide 450ms. Nothing flashes,
+   nothing is decorative, nothing plays by itself.
    Principles kept from earlier panels: one state on screen at a time (out, then in; never a cross-fade of content);
    glyphs are never clipped; the current state always looks different from hover.
    1 Page transitions (cross-document View Transitions): the old page fades out in 250ms, then the new one fades in
@@ -10,9 +12,11 @@
    4 Headline reveals (below the fold only): each line fades up 12px in 600ms, lines 60ms apart. No masks.
    5 Images below the fold fade up 12px in 600ms (house-motion.js, Web Animations). No curtains, no scale.
    6 The "+" field is retired everywhere, the home hero included (v7.1).
-   7 Smart nav: away on the way down, back (compact) on the way up, 320ms; sticky bars follow it in step.
-   8 Phone menu: a full-screen navy sheet uncovered from under the nav over 320ms, its lines rising 12px into place
+   7 Smart nav: away on the way down, back (compact: the utility bar tucks away) on the way up, 320ms; sticky bars
+     follow it in step.
+   8 Phone menu: a full-screen white sheet uncovered from under the nav over 320ms, its lines rising 12px into place
      20ms apart; the menu button turns into a cross in two clean steps.
+   9 Cards and carousels (Model v8): see above. Under reduced motion cards keep only the shadow and carousels jump.
    Every hidden state lives under html.hm-on, which house-motion.js adds only when motion is allowed.
    Without JS, or with prefers-reduced-motion, the page is complete and static. */
 
@@ -47,13 +51,13 @@
 :is(html.amd-intro-pending,html:has(dialog.amd-intro[open]))::view-transition-old(root){display:none}
 
 /* A thin line under the nav while a slow next page loads. It waits 400ms, so a quick page change never shows it. */
-hm-bar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--sx-gold,#dab156);transform:scaleX(0);transform-origin:0 50%;pointer-events:none;z-index:3}
+hm-bar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--m8-accent,#2b5ea7);transform:scaleX(0);transform-origin:0 50%;pointer-events:none;z-index:3}
 html.hm-going hm-bar{transform:scaleX(.88);transition:transform 2.6s var(--hm-ease) .4s}
 
 /* ── 2. Hover vocabulary ─────────────────────────────────────────────── */
 /* house-motion.js reads each button at rest and sets its hover fill (--hm-hover), label (--hm-ink) and edge
-   (--hm-edge). A button with no fill stays clear on hover (colour only). The v7 primary and secondary buttons are
-   styled in signature.css ("Minimal v7"), which outranks these. */
+   (--hm-edge). A button with no fill stays clear on hover (colour only). The v8 pill buttons are styled in
+   signature.css ("Model v8"), which outranks these. */
 html:not(#_) .hm-btn:focus-visible{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
 @media (hover:hover){
   html:not(#_) .hm-btn:hover{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
@@ -61,14 +65,14 @@ html:not(#_) .hm-btn:focus-visible{background-color:var(--hm-hover)!important;co
 /* Arrow glyphs stay where they are; the wrapper keeps a text link's underline under its words only. */
 html:not(#_) .hm-arw{display:inline-block;transform:none!important;text-decoration:none}
 @media (prefers-reduced-motion:no-preference){
-  html:not(#_) .hm-btn{transition:background-color .2s var(--hm-ease),color .2s var(--hm-ease),border-color .2s var(--hm-ease),text-decoration-color .2s var(--hm-ease)!important}
+  html:not(#_) .hm-btn{transition:background-color .15s var(--hm-ease),color .15s var(--hm-ease),border-color .15s var(--hm-ease),text-decoration-color .15s var(--hm-ease)!important}
 }
 
 /* ── 3. Prose links: colour only ─────────────────────────────────────── */
 a.hm-ul{text-decoration-line:underline;text-decoration-thickness:1px;text-underline-offset:3px;
   text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}
 a.hm-ul:is(:hover,:focus-visible){text-decoration-color:currentColor}
-@media (prefers-reduced-motion:no-preference){a.hm-ul{transition:text-decoration-color .2s var(--hm-ease),color .2s var(--hm-ease)}}
+@media (prefers-reduced-motion:no-preference){a.hm-ul{transition:text-decoration-color .15s var(--hm-ease),color .15s var(--hm-ease)}}
 
 /* ── 4. Headline reveals ─────────────────────────────────────────────── */
 /* Each word is an unclipped inline box (hm-w) so the words of one visual line can move together; nothing masks
@@ -83,21 +87,21 @@ html.hm-on .hm-hl:not(.hm-in) hm-w{opacity:0;transform:translateY(12px)}
 html.hm-on img.hm-fade:not(.hm-shown){opacity:0;translate:0 12px}
 
 /* ── 7. Smart nav ────────────────────────────────────────────────────── */
-/* Three states, all transforms: rest; compact (the bar slides up by --hm-nav-c and its contents re-centre, the
-   logo at 92%); hidden (the whole bar above the screen). house-motion.js sets the classes; reduced motion never
-   gets them. */
+/* Three states, all transforms: rest; compact (the bar slides up by --hm-nav-c, which includes the utility bar on
+   desktop, so only the main row shows; its contents re-centre, the logo at 92%); hidden (the whole bar above the
+   screen). house-motion.js sets the classes; reduced motion never gets them. */
 @media (prefers-reduced-motion:no-preference){
   html:not(#_) .nav{transition:transform .32s var(--hm-ease),background-color .2s var(--hm-ease)!important}
   html:not(#_) .nav .nav-inner{transition:transform .32s var(--hm-ease)}
   html:not(#_) .nav .nav-logo img{transform-origin:0 50%;transition:transform .32s var(--hm-ease)}
   html:not(#_) .nav.hm-nav-compact{transform:translate3d(0,calc(-1 * var(--hm-nav-c,12px)),0)!important}
   html:not(#_) .nav.hm-nav-hidden{transform:translate3d(0,calc(-100% - 2px),0)!important}
-  html:not(#_) .nav.hm-nav-compact .nav-inner{transform:translate3d(0,calc(var(--hm-nav-c,12px) / 2),0)}
+  html:not(#_) .nav.hm-nav-compact .nav-inner{transform:translate3d(0,calc((var(--hm-nav-c,12px) - var(--m8-util-h,0px)) / 2),0)}
   html:not(#_) .nav.hm-nav-compact .nav-logo img{transform:scale(.92)}
 }
 
 /* ── 8. Phone menu ───────────────────────────────────────────────────── */
-/* The sheet is opaque navy from its first frame: it is uncovered from under the nav downward (one clip, 320ms), so
+/* The sheet is opaque white from its first frame: it is uncovered from under the nav downward (one clip, 320ms), so
    the page behind is never seen through it. Its lines rise 12px into place 20ms apart as it passes. On close the
    sheet is covered back upward in 240ms with its lines held, so nothing cross-fades either way. */
 @media (prefers-reduced-motion:no-preference){
@@ -131,5 +135,21 @@ html:not(#_) .nav-toggle span{transition:none!important}
   html:not(#_) .nav-toggle.is-open span:is(:nth-child(1),:nth-child(3)){transition:translate .12s var(--hm-ease),rotate .14s var(--hm-ease) .12s!important}
   html:not(#_) .nav-toggle.is-open span:nth-child(2){transition:opacity .08s linear .04s!important}
 }
+
+/* ── 9. Cards and carousels (Model v8) ───────────────────────────────── */
+/* A card's image settles 3% larger and the card lifts on a soft shadow; keyboard focus on the card's link does the
+   same. The image is clipped by the card's own rounded box. Reduced motion keeps the shadow only. */
+html:not(#_) .m8-card{transition:box-shadow .2s var(--hm-ease)}
+@media (hover:hover){html:not(#_) .m8-card:hover{box-shadow:var(--m8-shadow-hover)}}
+html:not(#_) .m8-card:has(.m8-card-stretch:focus-visible){box-shadow:var(--m8-shadow-hover)}
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) .m8-card-media :is(img,video){transition:transform .45s var(--hm-ease)}
+  @media (hover:hover){html:not(#_) .m8-card:hover .m8-card-media :is(img,video){transform:scale(1.03)}}
+  html:not(#_) .m8-card:has(.m8-card-stretch:focus-visible) .m8-card-media :is(img,video){transform:scale(1.03)}
+  html:not(#_) .m8-dot::before{transition:width .3s var(--hm-ease),background-color .15s var(--hm-ease)}
+  html:not(#_) .m8-arrow{transition:background-color .15s var(--hm-ease),border-color .15s var(--hm-ease),color .15s var(--hm-ease),opacity .15s var(--hm-ease)}
+}
+/* The slide itself (450ms, the house easing) is driven by house-motion.js; snapping is set aside while it runs. */
+html:not(#_) .m8-track.m8-sliding{scroll-snap-type:none!important}
 
 @media print{hm-bar{display:none!important}}

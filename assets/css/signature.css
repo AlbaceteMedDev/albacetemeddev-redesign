@@ -1,13 +1,8 @@
-/* House style (Oct 2026): an established clinical-firm look.
-   Source Serif 4 headings, IBM Plex Sans text and controls, flat brand navy + Albacete gold,
-   square-cornered controls, plain rules, quiet motion. No gradients, glows, glass or ornament.
+/* House style (Oct 2026). The current system is "MODEL v8" at the foot of this file: one geometric sans (Figtree),
+   white pages, large rounded panels and cards, pill buttons, a white nav with a utility bar, a navy footer. Earlier
+   sections stay for the parts v8 does not restate; the serif type, the navy nav and phone menu, and the editorial
+   footer they once set have been retired (v8 restates the chrome in full).
    Spec: ~/Documents/albacete-site-redesign-tools/HOUSE-STYLE.md */
-@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/source-serif-4-var.woff2') format('woff2');font-weight:200 900;font-style:normal;font-display:swap}
-@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/source-serif-4-var-italic.woff2') format('woff2');font-weight:200 900;font-style:italic;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/ibm-plex-sans-600.woff2') format('woff2');font-weight:600 700;font-style:normal;font-display:swap}
 
 :root{
   /* type */
@@ -35,22 +30,6 @@ body{font-family:var(--font-body);font-feature-settings:"kern","liga";-webkit-fo
 h1,h2,h3,h4{font-family:var(--font-display);font-optical-sizing:auto}
 h1,h2{font-weight:600;letter-spacing:-.012em}
 h3{font-weight:600;letter-spacing:-.005em}
-/* Emphasis inside headings is the heading's own italic: solid colour, same size, no gradient */
-h1 em,h2 em,h3 em{font-family:var(--font-display);font-style:italic;font-weight:inherit;letter-spacing:inherit;font-size:1em;
-  background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:currentColor!important;animation:none!important}
-.editorial-page h1 em,.editorial-page h2 em,.catalog-intro h1 em,.clinical-intro h1 em{color:var(--sx-gold-deep)}
-
-/* Navigation: solid navy, plain links, square gold button */
-.nav{background:var(--sx-navy)!important;border-bottom:1px solid rgba(255,255,255,.1)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-.nav-links a{color:#e3e8ee;font-family:var(--font-body)!important;font-weight:500}
-.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--sx-gold)}
-.nav-links .nav-cta{background:var(--sx-gold)!important;color:var(--sx-navy)!important;border-radius:var(--sx-radius)!important;font-weight:600!important;box-shadow:none!important;transition:background-color .15s!important;transform:none!important}
-.nav-links .nav-cta:hover{background:var(--sx-gold-press)!important;color:var(--sx-navy)!important}
-.nav-search{border-radius:var(--sx-radius)}
-.dropdown-menu{background:var(--sx-navy)!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:var(--sx-radius)!important;box-shadow:0 8px 24px rgba(0,0,0,.25)!important}
-.mobile-menu{background:var(--sx-navy)!important}
-.mobile-menu>a{font-family:var(--font-display);font-weight:500}
-.mobile-menu .mobile-cta{color:var(--sx-gold)!important}
 
 /* Buttons used by older layers */
 .btn,.btn-primary,.btn-secondary,.btn-ghost,.clinical-button{border-radius:var(--sx-radius)!important;box-shadow:none!important;font-family:var(--font-body);font-weight:600;filter:none!important}
@@ -68,12 +47,6 @@ body:not(.editorial-product):not(.editorial-specialty):not(.visual-catalog):not(
 .editorial-page .clinical-eyebrow,.catalog-intro .clinical-eyebrow{color:var(--sx-gold-deep)}
 .clinical-contact{background:var(--sx-navy)!important}
 .clinical-contact .clinical-eyebrow{color:var(--sx-gold)!important}
-
-/* Footer: deeper navy, plain gold rule */
-.footer{background:var(--sx-navy-deep)!important;border-top:3px solid var(--sx-gold);position:relative}
-.footer::before{display:none!important}
-.footer h4{color:var(--sx-gold)!important;font-family:var(--font-body)!important;font-weight:600;letter-spacing:.08em;font-size:12.5px;text-transform:uppercase}
-.footer a:hover{color:var(--sx-gold)}
 
 select option{color:#16212e;background:#fff}
 /* one neutral tile for manufacturer logos, site-wide */
@@ -115,123 +88,6 @@ p,li{text-wrap:pretty}
   .footer-bottom{flex-direction:column!important;align-items:flex-start!important;gap:6px}
 }
 
-/* ── Motion v3 (Oct 13, shared builder; v4 hover states) ──
-   Motion itself lives in house-motion.css / house-motion.js (v5). This section holds only what every page needs
-   from the shared layer whether or not motion runs.
-   F5a) Nav links: hover is a colour change only, never an underline. The current page keeps its 2px gold
-        underline and weight 600, so hover and current never look alike.
-   F5b) Footer links: a colour change plus a plain 1px underline on hover (nothing draws across).
-   S6) The phone menu's call-to-action is a gold fill: its label is navy (it rendered gold on gold). */
-html:not(#_) .nav-links>li>a:not(.nav-cta):not(.dropdown-trigger):not(.is-active):not([aria-current])::after{width:0!important;transition:none!important}
-html:not(#_) .nav-links>li>a:not(.nav-cta):is(.is-active,[aria-current="page"]){color:var(--sx-gold);font-weight:600}
-html:not(#_) .nav-links>li>a:not(.nav-cta):not(.dropdown-trigger):is(.is-active,[aria-current="page"])::after{width:100%!important}
-html:not(#_) .footer-col>a:hover{color:var(--sx-gold);text-decoration-line:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-html:not(#_) .mobile-menu .mobile-cta{color:var(--sx-navy)!important;background:var(--sx-gold)!important}
-html:not(#_) .mobile-menu .mobile-cta:hover{background:var(--sx-gold-press)!important;color:var(--sx-navy)!important}
-html:not(#_) .mobile-menu .mobile-cta:focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}
-
-/* ── Polish v5 (Oct 14, chrome builder) ──
-   Static layout every page needs whether or not motion runs. Motion for these lives in house-motion.css (v5).
-   C1) Phone menu: a full-screen navy sheet. Large Source Serif links on plain 1px rules, the call-to-action as a
-       full-width gold button at the foot of the screen, and the footer's email and telephone (cloned in by
-       house-motion.js) under it. The page behind cannot scroll while it is open.
-   C3) Footer: an editorial grid on the existing markup. The brand paragraph set as a serif statement; column
-       heads on 1px rules; the email and telephone (the last two links of the Company column, placed with
-       display:contents) as two large tappable lines across the foot of the grid; a 1px gold hairline with a short
-       3px gold rule on the page gutter in place of the old full-width bar. The footer gutter is the page gutter
-       (40px, 24px at 760px and under), and on desktop the top of the footer leaves room for the "+" band.
-   C6) Typographic finesse: kerning on, legibility rendering for headings, balanced headings and pretty
-       paragraphs, hanging punctuation where supported, proportional (and, where a font has them, old-style)
-       figures in running text, lining tabular figures in tables, specs, counters and contact numbers. */
-
-/* C1 Phone menu */
-html:not(#_) .mobile-menu{inset:0!important;height:100vh;height:100dvh;display:flex;flex-direction:column;
-  padding:calc(var(--nav-h,72px) + clamp(8px,2.4vh,24px)) 40px calc(20px + env(safe-area-inset-bottom))!important;
-  background:var(--sx-navy)!important;overflow-y:auto;overscroll-behavior:contain;isolation:isolate}
-@media (max-width:760px){html:not(#_) .mobile-menu{padding-inline:24px!important}}
-html:not(#_) .mobile-menu::before{content:"";display:block;order:1;flex:1 0 28px;min-height:28px}
-html:not(#_) .mobile-menu>a:not(.mobile-cta){display:block!important;min-height:0!important;margin:0;padding:clamp(8px,1.5vh,13px) 0!important;
-  font-family:var(--font-display)!important;font-weight:500!important;font-size:clamp(1.625rem,7.2vw,2.375rem)!important;line-height:1.12!important;
-  letter-spacing:-.012em;color:#fff!important;border:0!important;border-bottom:1px solid var(--sx-line-soft)!important;text-decoration:none}
-/* The current page: a 4px gold bar at the line's left, weight 600 and gold, and aria-current="page" (house-motion.js),
-   so it never rests on colour alone. */
-html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"]){position:relative;padding-left:20px!important;color:var(--sx-gold)!important;font-weight:600!important}
-html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"])::before{content:"";position:absolute;left:0;top:clamp(8px,1.5vh,13px);bottom:clamp(8px,1.5vh,13px);width:4px;background:var(--sx-gold)}
-@media (hover:hover){html:not(#_) .mobile-menu>a:not(.mobile-cta):hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}}
-html:not(#_) .mobile-menu>a:focus-visible,html:not(#_) .hm-menu-contact a:focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}
-html:not(#_) .mobile-menu .mobile-cta{order:2;display:flex!important;align-items:center;justify-content:center;width:100%;min-height:52px;margin:0!important;
-  padding:0 22px!important;border:0!important;border-radius:var(--sx-radius)!important;font:600 16px/1.2 var(--font-body)!important;letter-spacing:0!important;
-  text-align:center;background:var(--sx-gold)!important;color:var(--sx-navy)!important}
-html:not(#_) .hm-menu-contact{order:3;display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:24px;margin-top:10px}
-html:not(#_) .hm-menu-contact a{display:inline-flex!important;align-items:center;min-height:44px;padding:0!important;border:0!important;
-  font:500 15px/1.3 var(--font-body)!important;letter-spacing:0;color:var(--sx-mist)!important;text-decoration:none;font-variant-numeric:lining-nums tabular-nums}
-@media (hover:hover){html:not(#_) .hm-menu-contact a:hover{color:#fff!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}}
-html.hm-menu-open{overflow:hidden!important;scrollbar-gutter:stable;background-color:var(--sx-navy)!important}   /* the kept scrollbar gutter reads as part of the sheet */
-html.hm-menu-open body{overflow:hidden!important}
-
-/* C3 Footer */
-html:not(#_) .footer{padding:0 0 28px!important;border-top:0!important;background:var(--sx-navy-deep)!important}
-html:not(#_) .footer::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--sx-line);pointer-events:none}
-html:not(#_) .footer::before{content:""!important;display:block!important;position:absolute;top:0;height:3px;width:48px;background:var(--sx-gold);pointer-events:none;
-  left:calc((100% - min(100%, var(--container,1280px))) / 2 + 40px);z-index:2}
-html:not(#_) .footer .container{padding-top:72px}
-html:not(#_) .footer-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;margin:0!important}
-html:not(#_) .footer-brand img{height:32px;width:auto;margin:0 0 24px}
-html:not(#_) .footer-brand p{max-width:34ch;margin:0;font-family:var(--font-display);font-weight:400;font-size:1.25rem;line-height:1.42;letter-spacing:-.004em;color:var(--sx-mist)}
-html:not(#_) .footer-col h4{margin:0 0 6px;padding:0 0 12px;border-bottom:1px solid var(--sx-line-soft);font-size:13px;letter-spacing:.06em;line-height:1.3}
-html:not(#_) .footer-col a{display:flex;align-items:center;min-height:44px;padding:0;font-size:15px;line-height:1.35;color:var(--sx-fog)}
-html:not(#_) .footer-grid>.footer-col:last-child{display:contents}
-html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){position:relative;min-height:0;padding:22px 0 20px;
-  border-top:1px solid var(--sx-line-soft);font-family:var(--font-display);font-weight:500;font-size:clamp(1.375rem,2.3vw,2.125rem);line-height:1.15;
-  letter-spacing:-.01em;color:#fff;font-variant-numeric:lining-nums tabular-nums;overflow-wrap:anywhere}
-html:not(#_) .footer-grid>.footer-col:last-child>a[href^="tel:"]{border-bottom:1px solid var(--sx-line-soft)}
-html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]):hover{color:var(--sx-gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
-html:not(#_) .footer-bottom{margin-top:40px;padding-top:18px;border-top:0!important;font-size:14px;color:var(--sx-fog)}
-/* Phone: one column. Column groups breathe apart; the contact lines close the grid. */
-@media (max-width:760px){
-  html:not(#_) .footer .container{padding-top:56px}
-  html:not(#_) .footer-brand{margin-bottom:40px}
-  html:not(#_) .footer-grid>.footer-col:not(:last-child){margin-bottom:32px}
-  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{margin-top:32px}
-  html:not(#_) .footer::before{left:24px}
-}
-/* Tablet: brand across; Products, then Services with Company under it; the contact lines as a pair. */
-@media (min-width:761px){
-  html:not(#_) .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:48px!important;grid-template-rows:repeat(6,auto) 1fr auto}
-  html:not(#_) .footer-brand{grid-column:1/-1;grid-row:1;margin-bottom:48px}
-  html:not(#_) .footer-grid>.footer-col:nth-child(2){grid-column:1;grid-row:2/8;margin:0}
-  html:not(#_) .footer-grid>.footer-col:nth-child(3){grid-column:2;grid-row:2;margin:0}
-  html:not(#_) .footer-grid>.footer-col:last-child>*{grid-column:2}
-  html:not(#_) .footer-grid>.footer-col:last-child>h4{grid-row:3;margin-top:40px}
-  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(1){grid-row:4}
-  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(2){grid-row:5}
-  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(3){grid-row:6}
-  html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){grid-row:8;margin-top:56px;border-bottom:1px solid var(--sx-line-soft)}
-  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{grid-column:1}
-  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="tel:"]{grid-column:2}
-}
-/* Desktop: brand statement | Products | Services & Software | Company, then the two contact lines across (the email
-   under the first two columns, the telephone under the last two). The top of the footer leaves a band for the
-   "+" field. */
-@media (min-width:1024px){
-  html:not(#_) .footer .container{padding-top:128px}
-  html:not(#_) .footer-grid{grid-template-columns:minmax(0,4.6fr) minmax(0,2.3fr) minmax(0,3fr) minmax(0,2.1fr)!important;column-gap:clamp(32px,3.4vw,56px)!important;
-    grid-template-rows:auto auto auto auto 1fr auto}
-  html:not(#_) .footer-brand{grid-column:1;grid-row:1/6;margin:0;padding-right:clamp(0px,3vw,48px)}
-  html:not(#_) .footer-brand p{font-size:clamp(1.3rem,1.55vw,1.5rem);max-width:30ch}
-  html:not(#_) .footer-grid>.footer-col:nth-child(2){grid-column:2;grid-row:1/6;margin:0}
-  html:not(#_) .footer-grid>.footer-col:nth-child(3){grid-column:3;grid-row:1/6;margin:0}
-  html:not(#_) .footer-grid>.footer-col:last-child>*{grid-column:4}
-  html:not(#_) .footer-grid>.footer-col:last-child>h4{grid-row:1;margin-top:0}
-  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(1){grid-row:2}
-  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(2){grid-row:3}
-  html:not(#_) .footer-grid>.footer-col:last-child>a:nth-of-type(3){grid-row:4}
-  html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){grid-row:6;margin-top:64px}
-  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{grid-column:1/3}
-  html:not(#_) .footer-grid>.footer-col:last-child>a[href^="tel:"]{grid-column:3/-1}
-  html:not(#_) .footer-col a{min-height:36px}
-}
-
 /* C6 Typographic finesse */
 html{font-kerning:normal}
 body{font-kerning:normal;text-size-adjust:100%;-webkit-text-size-adjust:100%}
@@ -258,7 +114,7 @@ html:not(#_) body :is(
   .science-section-label>span,.science-product-maker,.science-source-identity>small,.science-find>label,.research-links a>span:first-child,
   .reading-nav-label,.product-facts dt,.sx-product .image-dialog dt,.science-page .image-dialog header>p,.scope-heading h3,
   .scope-content h4,.cx-ch-text>strong,.cx-tag,.cx-page .hero-spec-panel .spec-label,.library-tools label,.visual-catalog-tools label,
-  .footer-col h4,.sw-chip,.sw-k,.pm-demo-label,.pm-chip,.pm-kpi .label,.pm-account-stat .label,.pm-nav-group,
+  .sw-chip,.sw-k,.pm-demo-label,.pm-chip,.pm-kpi .label,.pm-account-stat .label,.pm-nav-group,
   .pm-chart-body>div[style*="uppercase"],.pm-row .status,.pm-check-item .code,.sx-co-lbl,.sx-co-n,.products-grid .tag,
   .engagement-step-number,.shop-cue>span,#evidence thead th
 ){font-size:13px!important;letter-spacing:.06em!important;text-wrap:balance}
@@ -279,8 +135,6 @@ html:not(#_) .amd-intro :is(.amd-intro__top>span,.amd-intro__caption>span){font-
 html:not(#_) .amd-intro .amd-intro__caption{font-size:14px!important}
 html:not(#_) .amd-intro .amd-intro__descriptor{font-size:13px!important}
 /* K6 */
-html:not(#_) .mobile-menu>a{text-wrap:balance}
-@media (min-width:300px){html:not(#_) .mobile-menu>a:not(.mobile-cta){white-space:nowrap;font-size:min(clamp(1.625rem,7.2vw,2.375rem),7.4vw)!important}}
 html:not(#_) .footer :is(.footer-col>a,.footer-col>h4,.footer-bottom>span){text-wrap:balance}
 html:not(#_) .footer .hm-nw{white-space:nowrap}
 
@@ -290,7 +144,8 @@ html:not(#_) .footer .hm-nw{white-space:nowrap}
    the nav, the home hero, the footer and at most one closing band per page; few boxes, 1px hairlines only where they
    aid scanning, radius 2px; one solid primary button and quiet text-link secondaries; generous rhythm.
    Builder spec: ~/Documents/albacete-site-redesign-tools/HOUSE-STYLE.md ("Minimal v7").
-   V1 tokens · V2 type · V3 labels · V4 buttons · V5 links + focus · V6 nav · V7 phone menu · V8 footer · V9 utilities
+   V1 tokens · V2 type · V3 labels · V4 buttons · V5 links + focus · V9 utilities (V6 nav, V7 phone menu and
+   V8 footer were retired by Model v8, which restates the chrome)
    ══════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
 
 /* V1 Tokens. New --v7-* tokens, and the house tokens remapped so every page group inherits the system. */
@@ -441,54 +296,6 @@ html:not(#_):not(#__) body .save-product[aria-pressed="true"]:is(:hover,:focus-v
    (form fields keep their own focus styles). */
 html:not(#_) :is(a,button,summary,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px}
 
-/* V6 Nav: slimmer (72px, 60px on phones), links at 400, a smaller call-to-action without its arrow, no box around
-   the search, no rule under the bar. Current page: gold with a 1px gold underline. Hover: white. */
-html:not(#_) .nav{border-bottom:0!important}
-html:not(#_) .nav-logo img{height:34px}
-html:not(#_) .nav-links>li>a:not(.nav-cta){display:inline-flex;align-items:center;min-height:44px;font-weight:400!important;color:var(--v7-body-inv)}
-html:not(#_) .nav-links>li>a:not(.nav-cta)::after{display:none!important}
-@media (hover:hover){html:not(#_) .nav-links>li>a:not(.nav-cta):hover{color:#fff}}
-html:not(#_) .nav-links>li>a:not(.nav-cta):is(.is-active,[aria-current="page"]){color:var(--sx-gold)!important;font-weight:400!important;
-  text-decoration:underline 1px var(--sx-gold)!important;text-underline-offset:10px!important}
-html:not(#_) .nav-links .nav-cta{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:0 16px!important;
-  border-radius:var(--v7-radius)!important;font-size:14px!important;font-weight:500!important;letter-spacing:0!important}
-html:not(#_) .nav-links .nav-cta::before{content:"";position:absolute;inset:-2px 0}   /* 44px target */
-html:not(#_) .nav-links .nav-cta>[aria-hidden="true"]{display:none}
-html:not(#_) .nav-search{border-color:transparent!important;background:none!important}
-html:not(#_) .dropdown-menu{border:0!important;border-radius:var(--v7-radius)!important;box-shadow:0 18px 40px rgba(10,23,38,.18)!important}
-@media (max-width:1100px){html:not(#_) .nav-toggle{border-color:transparent}}
-@media (max-width:760px){html:not(#_) .nav-logo img{height:30px}}
-
-/* V7 Phone menu: the same full-screen navy sheet, quieter. Serif links at 400 with space instead of rules, a slim
-   2px gold bar on the current page, a 48px call-to-action. */
-html:not(#_) .mobile-menu>a:not(.mobile-cta){font-weight:400!important;border-bottom:0!important;padding:clamp(7px,1.3vh,11px) 0!important}
-html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"]){font-weight:400!important;padding-left:18px!important}
-html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"])::before{width:2px;top:clamp(7px,1.3vh,11px);bottom:clamp(7px,1.3vh,11px)}
-html:not(#_) .mobile-menu .mobile-cta{min-height:48px;font-weight:500!important;border-radius:var(--v7-radius)!important}
-html:not(#_) .hm-menu-contact a{font-weight:400!important}
-
-/* V8 Footer: quieter and simpler on the same markup. No gold rules, muted column heads with no rules under them,
-   the contact lines set smaller and unboxed, one hairline above the legal line. */
-html:not(#_) .footer{padding-bottom:32px!important}
-html:not(#_) .footer::before,html:not(#_) .footer::after{content:none!important;display:none!important}
-html:not(#_) .footer .container{padding-top:clamp(64px,8vw,104px)}
-html:not(#_) .footer-brand img{height:28px;margin-bottom:20px}
-html:not(#_) .footer-brand p{font-size:1.125rem!important;line-height:1.55;color:#c5ced8}
-html:not(#_) .footer-col h4{margin:0 0 8px;padding:0;border-bottom:0;color:#8d9aa9!important;font-weight:500!important}
-html:not(#_) .footer-col a{color:#c5ced8}
-/* Footer links: 40px rows on desktop, each with a 44px hit area. */
-@media (min-width:1024px){html:not(#_) .footer-col a{min-height:40px}}
-html:not(#_) .footer-col>a{position:relative}
-html:not(#_) .footer-col>a::after{content:"";position:absolute;inset:-2px 0}
-@media (hover:hover){html:not(#_) .footer-col a:hover{color:#fff;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}}
-html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){min-height:44px;padding:0;border:0!important;
-  font-weight:400;font-size:clamp(1.25rem,1.7vw,1.5rem);letter-spacing:-.01em;color:#fff}
-html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]):hover{color:#fff;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}
-html:not(#_) .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--v7-hair-inv)!important;color:#8d9aa9}
-@media (min-width:761px){html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){margin-top:48px}}
-@media (min-width:1024px){html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){margin-top:56px}}
-@media (max-width:760px){html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{margin-top:24px}}
-
 /* V9 Utilities for page builders. Add the class in markup, or copy the declarations into the page group's CSS.
    Surfaces set the surrounding ink, so labels (V3), buttons (V4) and focus (V5) inside follow by themselves. */
 html:not(#_) .v7-section{padding-block:var(--v7-section)!important}
@@ -507,3 +314,450 @@ html:not(#_) .v7-plain{background:none!important;border:0!important;box-shadow:n
 html:not(#_) .v7-tint{background:var(--v7-tint)!important;border:0!important;box-shadow:none!important;border-radius:var(--v7-radius)!important}
 html:not(#_) .v7-hair{border:0!important;border-top:1px solid var(--v7-hair)!important}
 html:not(#_) .v7-decor{display:none!important}   /* purely decorative elements only (aria-hidden ornaments); never copy */
+
+/* ══════════════════════════════════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 (Oct 15, lead designer). Supersedes every earlier section of this file where they conflict.
+   The owner: "model it after intuitive.com". Its design language only (never its name, words, images or icons):
+   one geometric sans everywhere (Figtree); a pure white page; large rounded panels and cards set inside the page
+   gutter; pill buttons; a white nav under a thin utility bar; light grey bands; small coloured labels; a navy footer
+   with link columns; calm motion. Builder spec: ~/Documents/albacete-site-redesign-tools/HOUSE-STYLE.md ("Model v8").
+   M1 fonts · M2 tokens · M3 surfaces · M4 type · M5 labels · M6 buttons · M7 nav + utility bar · M8 phone menu ·
+   M9 footer · M10 builder components (.m8-panel, .m8-card, .m8-band, .m8-info, .m8-carousel, .m8-grid) · M11 parts
+   ══════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
+
+/* M1 Fonts. Figtree for display and text. The retired family names resolve to Figtree as well, so a page rule that
+   still names 'Source Serif 4' or 'IBM Plex Sans' renders in the house face (builders replace those names with the
+   tokens; the aliases are only a safety net). */
+@font-face{font-family:'Figtree';src:url('/assets/fonts/figtree-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Figtree';src:url('/assets/fonts/figtree-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Figtree';src:url('/assets/fonts/figtree-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Figtree';src:url('/assets/fonts/figtree-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Figtree';src:url('/assets/fonts/figtree-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Figtree';src:url('/assets/fonts/figtree-800.woff2') format('woff2');font-weight:800 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/figtree-400.woff2') format('woff2');font-weight:100 449;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/figtree-500.woff2') format('woff2');font-weight:450 549;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/figtree-600.woff2') format('woff2');font-weight:550 649;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/figtree-700.woff2') format('woff2');font-weight:650 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif 4';src:url('/assets/fonts/figtree-400i.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/figtree-400.woff2') format('woff2');font-weight:100 449;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/figtree-500.woff2') format('woff2');font-weight:450 549;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/figtree-600.woff2') format('woff2');font-weight:550 649;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/figtree-700.woff2') format('woff2');font-weight:650 900;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('/assets/fonts/figtree-400i.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+
+/* M2 Tokens. New --m8-* tokens, and the v7 and house tokens remapped onto them, so every page group that already
+   reads the tokens inherits the system without a rule of its own. */
+:root{
+  --font-display:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --font-body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --sx-serif:var(--font-display);
+  /* colour */
+  --m8-white:#ffffff;
+  --m8-ink:#1d2125;            /* headings, nav links, primary text: 16.2:1 on white */
+  --m8-body:#30363d;           /* running text: 12.2:1 on white, 11:1 on the band */
+  --m8-muted:#5b6470;          /* captions, meta, helper text: 6.0:1 on white, 5.4:1 on the band */
+  --m8-band:#f2f3f5;           /* the light grey band and the utility bar */
+  --m8-card:#e6e7eb;           /* card grey: image wells, a grey panel */
+  --m8-line:#e3e5e9;           /* 1px hairline on light */
+  --m8-navy:#10233a;           /* the primary dark: primary buttons, the footer, dark panels */
+  --m8-navy-hover:#1d3a5c;     /* primary hover: a little lighter */
+  --m8-accent:#2b5ea7;         /* labels and focus on light: 6.4:1 on white, 5.8:1 on the band */
+  --m8-gold:#dab156;           /* labels and focus on dark only, sparingly: 7.9:1 on navy */
+  --m8-ink-inv:#ffffff;--m8-body-inv:#d3dbe4;--m8-muted-inv:#a9b3bf;--m8-line-inv:rgba(255,255,255,.14);
+  /* shape */
+  --m8-radius-panel:24px;      /* a large section panel */
+  --m8-radius-card:20px;       /* a card */
+  --m8-radius-sm:12px;         /* a menu, a field group, a small tile */
+  --m8-radius-xs:8px;          /* inputs, chips, small controls */
+  --m8-pill:999px;             /* every button */
+  --m8-shadow:0 1px 2px rgba(16,35,58,.04),0 6px 18px rgba(16,35,58,.06);
+  --m8-shadow-hover:0 2px 6px rgba(16,35,58,.06),0 16px 36px rgba(16,35,58,.12);
+  /* motion */
+  --m8-ease:cubic-bezier(.22,.61,.36,1);--m8-hover:150ms;--m8-slide:450ms;
+  /* type */
+  --m8-h1:clamp(2.75rem,5vw,4.5rem);--m8-h1-lh:1.15;
+  --m8-h2:clamp(1.9rem,3vw,2.5rem);--m8-h2-lh:1.2;
+  --m8-h3:clamp(1.25rem,1.6vw,1.5rem);--m8-h3-lh:1.3;
+  --m8-body-size:17px;--m8-body-lh:1.55;--m8-label-size:13px;
+  /* space */
+  --m8-gutter:40px;                            /* the text gutter (the nav and .container) */
+  --m8-panel-gutter:clamp(16px,4vw,60px);      /* panels sit wider than the text column, inside this gutter */
+  --m8-panel-max:1320px;
+  --m8-gap:24px;                               /* between cards */
+  --m8-section:clamp(64px,7vw,104px);          /* vertical rhythm of a section */
+  --m8-util-h:0px;                             /* the utility bar (desktop with JS: 36px, M7) */
+  /* v7 tokens, remapped */
+  --v7-ink:var(--m8-ink);--v7-body:var(--m8-body);--v7-muted:var(--m8-muted);
+  --v7-body-inv:var(--m8-body-inv);--v7-muted-inv:var(--m8-muted-inv);
+  --v7-paper:var(--m8-band);--v7-tint:var(--m8-band);--v7-hair:var(--m8-line);--v7-hair-inv:var(--m8-line-inv);
+  --v7-radius:var(--m8-radius-xs);
+  --v7-h1:var(--m8-h1);--v7-h1-weight:700;--v7-h1-lh:var(--m8-h1-lh);
+  --v7-h2:var(--m8-h2);--v7-h2-weight:700;--v7-h2-lh:var(--m8-h2-lh);
+  --v7-h3:var(--m8-h3);--v7-h3-weight:600;--v7-h3-lh:var(--m8-h3-lh);
+  --v7-track:-.02em;--v7-body-size:var(--m8-body-size);--v7-body-lh:var(--m8-body-lh);
+  --v7-ease:var(--m8-ease);--v7-dur-hover:var(--m8-hover);--v7-section:var(--m8-section);
+  /* house tokens, remapped */
+  --sx-paper:var(--m8-band);--sx-paper-2:var(--m8-card);--paper:var(--m8-band);--paper-alt:var(--m8-card);
+  --sx-text-dark:var(--m8-ink);--sx-text-body:var(--m8-body);--sx-text-muted:var(--m8-muted);--text:var(--m8-ink);--muted:var(--m8-muted);
+  --sx-rule-light:var(--m8-line);--rule:var(--m8-line);
+  --sx-radius:var(--m8-radius-xs);--sx-radius-card:var(--m8-radius-card);
+  --r-sm:var(--m8-radius-xs);--r-md:var(--m8-radius-sm);--r-lg:16px;--r-xl:var(--m8-radius-card);
+}
+@media (max-width:760px){:root{--m8-gutter:24px;--m8-h1:clamp(2.25rem,10vw,2.75rem);--m8-h2:clamp(1.75rem,7.6vw,2rem);
+  --m8-radius-panel:20px;--m8-radius-card:18px;--m8-gap:16px}}
+::selection{background:rgba(43,94,167,.2);color:inherit}
+
+/* M3 Surfaces. Labels, buttons, links and focus rings read the surface tokens, light by default. The chrome is
+   light now (white nav, white dropdowns, white phone menu); the footer and the known navy blocks keep the dark set.
+   :where() keeps the lists at zero specificity, so a page rule, a utility or a tag outranks them. */
+:root,:where(.sx-paper,.sx-white,.sx-light,.cx-paper,.cx-white,main.editorial-page,dialog,.ev-card,.library-tools,.sw-demo,
+  .nav,.dropdown-menu,.mobile-menu,.m8-light,.m8-band,.m8-info,.m8-card,.m8-panel){
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);
+  --v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+:where(body.cx-page,body.sx-co,body.sx-lib--evidence,body.sx-lib--catalog,body.page-home,
+  .footer,.hero,.sx-navy,.cx-dark,.sxp-navy,.product-next,.cta-band,.clinical-contact,
+  .sx-hero,.sx-cta,.sx-portfolio,.sx-marquee,.pm-sidebar,.science-endpoint,.cx-studio-form,.cmdk-panel,
+  .m8-dark,.m8-panel--navy,.m8-panel--photo,.m8-card--photo,.m8-card--navy),.v7-dark,.v7-band{
+  --v7-surface:dark;--v7-label-c:var(--m8-gold);--v7-btn-bg:#fff;--v7-btn-fg:var(--m8-ink);--v7-btn-hover:#e6e9ee;
+  --v7-link-c:#fff;--v7-focus:var(--m8-gold)}
+/* the light utilities and tags win over a dark block they are applied to */
+.v7-lightsurf,.v7-light,.v7-white,.m8-light,:where(.m8-card--photo.m8-card--light,.m8-panel--photo.m8-panel--light){
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);
+  --v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+
+/* M4 Type. One sans; big, bold and tight headings; 17px/1.55 text. Heading sizes and weights come from the tokens
+   (the v7 rules above read them: every main h1 is --m8-h1). h2 and h3 sizes are set by each page group from
+   --v7-h2 / --v7-h3 (= --m8-h2 / --m8-h3). */
+html:not(#_) body{font-family:var(--font-body);font-optical-sizing:auto}
+html:not(#_) :is(h1,h2,h3,h4,h5,h6){font-family:var(--font-display);font-style:normal}
+html:not(#_) h1{letter-spacing:-.025em}
+html:not(#_) h4{font-weight:600}
+html:not(#_) :is(h1,h2,h3,h4) :is(em,i){font-style:normal!important}
+
+/* M5 Labels and eyebrows: Figtree 600, 13px, uppercase, .06em, in the accent (--m8-accent on light, gold on dark,
+   from the surface tokens). Labels typed in capitals stay capitals; this keeps every label the same. A builder may
+   pin a colour with --v7-label on the block. Add .m8-label (or .v7-label) to any other small label. */
+html:not(#_):not(#__) body :is(.clinical-eyebrow,.eyebrow,.sx-eyebrow,.cx-eyebrow,.cx-eyebrow>span,.hero-chip,.hero-chip>span,.services-kicker,
+  .service-eyebrow,.science-kicker,.cat-eyebrow,.identity-eyebrow,.sx-guide-eyebrow,.section-label,.sx-label,.v7-label,.m8-label,.m8-card-label,
+  .spec-label,.ev-label,.science-toc-title,.pm-nav-group){
+  font-family:var(--font-body)!important;font-weight:600!important;letter-spacing:.06em!important;text-transform:uppercase;
+  color:var(--v7-label,var(--v7-label-c))!important;text-decoration:none}
+html:not(#_) body :is(.v7-label,.m8-label,.m8-card-label){font-size:var(--m8-label-size)!important;line-height:1.35}
+/* The label colour follows the surface even where a page copies an old token set (--v7-label-c:var(--v7-muted)):
+   accent on every light surface, gold on every dark one; a pinned --v7-label (white on a photo) still wins. */
+@container style(--v7-surface: light){
+  html:not(#_):not(#__) body :is(.clinical-eyebrow,.eyebrow,.sx-eyebrow,.cx-eyebrow,.cx-eyebrow>span,.hero-chip,.hero-chip>span,.services-kicker,
+    .service-eyebrow,.science-kicker,.cat-eyebrow,.identity-eyebrow,.sx-guide-eyebrow,.section-label,.sx-label,.v7-label,.m8-label,.m8-card-label,
+    .spec-label,.ev-label,.science-toc-title,.pm-nav-group){color:var(--v7-label,var(--m8-accent))!important}
+}
+@container style(--v7-surface: dark){
+  html:not(#_):not(#__) body :is(.clinical-eyebrow,.eyebrow,.sx-eyebrow,.cx-eyebrow,.cx-eyebrow>span,.hero-chip,.hero-chip>span,.services-kicker,
+    .service-eyebrow,.science-kicker,.cat-eyebrow,.identity-eyebrow,.sx-guide-eyebrow,.section-label,.sx-label,.v7-label,.m8-label,.m8-card-label,
+    .spec-label,.ev-label,.science-toc-title,.pm-nav-group){color:var(--v7-label,var(--m8-gold))!important}
+}
+
+/* M6 Buttons. Pills, 48px tall, Figtree 600 15px, no shadow. Hovers change colour only, in 150ms.
+   Primary: navy with a white label on light; white with an ink label on dark (from the surface tokens).
+   Secondary (outline pill): clear with a 1px edge in the surface's link colour (--v7-link-c: ink on light, white on
+   dark), so it follows every surface that sets the v7 tokens; hover tints it 8% of that colour.
+   Text link (.v7-link, .m8-link): words and an arrow, ink 600, no box; the words underline on hover. */
+html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn,.m8-btn){
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding-inline:26px;
+  border:0!important;border-radius:var(--m8-pill)!important;box-shadow:none!important;background-image:none!important;filter:none!important;
+  font-family:var(--font-body)!important;font-size:15px!important;font-weight:600!important;line-height:1.2!important;letter-spacing:0!important;
+  text-decoration:none!important;transform:none!important;color:var(--v7-btn-fg)!important;background-color:var(--v7-btn-bg)!important}
+html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn,.m8-btn):focus-visible{
+  color:var(--v7-btn-fg)!important;background-color:var(--v7-btn-hover)!important;outline:2px solid var(--v7-focus)!important;outline-offset:3px!important}
+@media (hover:hover){
+  html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn,.m8-btn):hover{
+    color:var(--v7-btn-fg)!important;background-color:var(--v7-btn-hover)!important}
+}
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) body :is(.m8-btn,.m8-btn-outline,.m8-link){transition:background-color var(--m8-hover) var(--m8-ease),color var(--m8-hover) var(--m8-ease),border-color var(--m8-hover) var(--m8-ease)}
+}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.m8-btn-outline){
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px!important;
+  border:1px solid var(--v7-link-c)!important;border-radius:var(--m8-pill)!important;background:transparent!important;
+  color:var(--v7-link-c)!important;font-family:var(--font-body)!important;font-size:15px!important;font-weight:600!important;line-height:1.2!important;
+  letter-spacing:0!important;text-decoration:none!important;box-shadow:none!important;transform:none!important}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.m8-btn-outline):is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--v7-link-c) 8%,transparent)!important;border-color:var(--v7-link-c)!important;color:var(--v7-link-c)!important;text-decoration:none!important}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.m8-btn-outline)>:is(hm-t,.hm-t,span){text-decoration:none!important}
+html:not(#_) body :is(.v7-link,.m8-link){display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0!important;border:0!important;
+  border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--v7-link-c)!important;
+  font-family:var(--font-body)!important;font-size:15px!important;font-weight:600!important;line-height:1.3!important;letter-spacing:0!important;
+  text-decoration:underline 1.5px currentColor!important;text-underline-offset:4px!important}
+/* a text link is underlined at rest (1.5px, 4px below) and more heavily on hover and focus (2.5px). Beside an arrow
+   the words carry the line and the arrow none (hm-t from house-motion.js, or the words already in a first span). */
+html:not(#_) body :is(.v7-link,.m8-link):is(:has(>hm-t),:has(>.hm-t),:has(>span:first-child+[aria-hidden="true"]:last-child)){text-decoration-line:none!important}
+html:not(#_) body :is(.v7-link,.m8-link)>:is(hm-t,.hm-t,span:first-child:has(+[aria-hidden="true"]:last-child)){
+  text-decoration:underline 1.5px currentColor!important;text-underline-offset:4px!important}
+html:not(#_) body :is(.v7-link,.m8-link):is(:hover,:focus-visible),
+html:not(#_) body :is(.v7-link,.m8-link):is(:hover,:focus-visible)>:is(hm-t,.hm-t,span:first-child:has(+[aria-hidden="true"]:last-child)){
+  text-decoration-thickness:2.5px!important}
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) body :is(.v7-link,.m8-link),html:not(#_) body :is(.v7-link,.m8-link)>:is(hm-t,.hm-t,span:first-child){
+    transition:color var(--m8-hover) var(--m8-ease),text-decoration-thickness var(--m8-hover) var(--m8-ease)}
+}
+@media (min-width:761px){
+  html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn,.m8-btn)+:is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.m8-btn-outline){margin-inline-start:4px}
+}
+/* One button system. Every button-like control is a pill at a fixed 44-48px; the page groups' own buttons below
+   (which still read the 8px radius) are brought into it here, whatever their page rules say. */
+html:not(#_):not(#__) body :is(.sxl-btn-primary,.science-hero-links a,.science-end a,.compare-tray button,.filter-reset,.visual-catalog-tools button,
+  .catalog-card-bottom button,.science-filters button,.science-show-all,.image-view-switch button,.consultation-action,
+  .pep-pill,.skip-link){border-radius:var(--m8-pill)!important}
+html:not(#_):not(#__) body :is(.compare-tray button,.filter-reset,.visual-catalog-tools button,.catalog-card-bottom button,.science-filters button,
+  .science-show-all,.image-view-switch button,.pep-pill){min-height:44px!important}
+html:not(#_):not(#__) body :is(.sxl-btn-primary,.science-hero-links a,.science-end a,.consultation-action){min-height:48px!important}
+/* The comparison toggle looks the same on every page: an outlined pill ("+ …") at rest, 44px, its edge in its own
+   text colour (ink on light, white on a dark hero); pressed, a pale accent pill with an accent edge and ink words
+   (and the script's check mark). Shown only once the comparison is ready, never over a [hidden] one. */
+html.comparison-ready:not(#_):not(#__) body button[data-compare]:not([hidden]){display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:0 18px!important;border:1px solid currentColor!important;border-radius:var(--m8-pill)!important;background-color:transparent!important;
+  background-image:none!important;box-shadow:none!important;font-family:var(--font-body)!important;font-size:14px!important;font-weight:600!important;
+  line-height:1.2!important;letter-spacing:0!important;text-decoration:none!important;text-transform:none!important;cursor:pointer}
+html.comparison-ready:not(#_):not(#__) body button[data-compare]:not([hidden]):is(:hover,:focus-visible){background-color:color-mix(in srgb,currentColor 8%,transparent)!important}
+html.comparison-ready:not(#_):not(#__) body button[data-compare][aria-pressed="true"],
+html.comparison-ready:not(#_):not(#__) body button[data-compare][aria-pressed="true"]:is(:hover,:focus-visible){
+  background-color:#e8eef8!important;border-color:var(--m8-accent)!important;color:var(--m8-ink)!important;text-decoration-line:none!important}
+
+/* M7 Nav: white, the logo in navy at left, the links in ink, a navy pill call-to-action, the search icon at right.
+   Hover turns a link accent blue; the current page is ink 600 with a 2px navy underline (never colour alone).
+   Desktop with JS: a thin utility bar above it (house-motion.js builds it from links already on the page: Provider
+   portal, Ovena Health, Contact and the telephone). Its 36px are reserved on html.sx-js (set in every page's head)
+   so nothing moves when it arrives; --nav-h grows to 108px there, so every offset that reads --nav-h follows. */
+html:not(#_) .nav{background:#fff!important;color:var(--m8-ink);border-bottom:1px solid var(--m8-line)!important;box-shadow:none!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-sizing:border-box}
+html:not(#_) .nav-logo img{height:34px;width:auto;mix-blend-mode:normal!important}
+@supports ((mask-image:url("")) or (-webkit-mask-image:url(""))){
+  /* the white logo file, drawn in navy: the image itself is moved out of its box and the mask paints the mark */
+  html:not(#_) .nav-logo img{background-color:var(--m8-navy);object-position:-99999px 0;
+    -webkit-mask:url('/assets/img/logo-white.png') center/100% 100% no-repeat;mask:url('/assets/img/logo-white.png') center/100% 100% no-repeat}
+}
+@supports not ((mask-image:url("")) or (-webkit-mask-image:url(""))){html:not(#_) .nav-logo img{filter:brightness(0)}}
+html:not(#_) .nav-links{flex:1 1 auto;justify-content:flex-start;margin-left:0;gap:clamp(18px,2.1vw,32px)}
+html:not(#_) .nav-links>li:first-child{margin-left:auto}
+html:not(#_) .nav-links>li:has(>.nav-cta){margin-left:auto}
+html:not(#_) .nav-links>li>a:not(.nav-cta){display:inline-flex;align-items:center;min-height:44px;color:var(--m8-ink)!important;
+  font-family:var(--font-body)!important;font-size:15px!important;font-weight:500!important;letter-spacing:0!important;text-decoration:none!important}
+html:not(#_) .nav-links>li>a:not(.nav-cta)::after{display:none!important}
+@media (hover:hover){html:not(#_) .nav-links>li>a:not(.nav-cta):hover{color:var(--m8-accent)!important}}
+html:not(#_) .nav-links>li>a:not(.nav-cta):is(.is-active,[aria-current="page"]){color:var(--m8-ink)!important;font-weight:600!important;
+  text-decoration:underline 2px var(--m8-navy)!important;text-underline-offset:10px!important}
+html:not(#_) .nav-links .nav-cta{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:0 20px!important;
+  border:0!important;border-radius:var(--m8-pill)!important;background:var(--m8-navy)!important;color:#fff!important;box-shadow:none!important;
+  font-family:var(--font-body)!important;font-size:14px!important;font-weight:600!important;letter-spacing:0!important;transform:none!important}
+html:not(#_) .nav-links .nav-cta::before{content:"";position:absolute;inset:-2px 0}   /* 44px target */
+html:not(#_) .nav-links .nav-cta>[aria-hidden="true"]{display:none}
+html:not(#_) .nav-links .nav-cta:is(:hover,:focus-visible),html:not(#_) .nav-links .nav-cta.is-active{background:var(--m8-navy-hover)!important;color:#fff!important}
+html:not(#_) .nav-search{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0!important;
+  border:0!important;border-radius:var(--m8-pill)!important;background:none!important;color:var(--m8-ink)!important}
+html:not(#_) .nav-search svg{width:19px;height:19px}
+@media (hover:hover){html:not(#_) .nav-search:hover{background:var(--m8-band)!important}}
+html:not(#_) .nav-toggle{border:0!important;border-radius:var(--m8-pill)!important;background:none!important}
+html:not(#_) .nav-toggle span{background:var(--m8-ink)!important;height:2px;border-radius:2px}
+html:not(#_) .dropdown-menu{background:#fff!important;border:1px solid var(--m8-line)!important;border-radius:var(--m8-radius-sm)!important;
+  box-shadow:0 18px 44px rgba(16,35,58,.14)!important;padding:8px!important}
+html:not(#_) .dropdown-menu a{border-radius:var(--m8-radius-xs);color:var(--m8-ink)!important;font-family:var(--font-body);font-size:15px;font-weight:500}
+html:not(#_) .dropdown-menu a:is(:hover,:focus-visible){background:var(--m8-band)!important;color:var(--m8-ink)!important}
+html:not(#_) .dropdown-menu a:is(.is-active,[aria-current="page"]){font-weight:600}
+/* The utility bar (built by house-motion.js; hidden at 1100px and under, where the phone menu carries the same links).
+   Its space and its display both hang on html.sx-js, so they always agree (a page script that drops sx-js on a
+   failure drops the bar with it). */
+html:not(#_) .m8-util{display:none}
+@media (min-width:1101px){
+  html.sx-js:not(#_){--m8-util-h:36px;--nav-h:108px}
+  html.sx-js:not(#_) .nav{height:var(--nav-h)!important;padding-top:var(--m8-util-h)!important}
+  html:not(#_) .nav .nav-inner{height:72px}
+  html.sx-js:not(#_) .m8-util{display:block;position:absolute;top:0;left:0;right:0;height:var(--m8-util-h);background:var(--m8-band);z-index:1}
+  html:not(#_) .m8-util>ul{display:flex;justify-content:flex-end;align-items:center;height:100%;max-width:var(--container,1280px);
+    margin:0 auto;padding:0 40px;list-style:none}
+  html:not(#_) .m8-util li{display:flex;align-items:center;height:100%;margin:0;padding:0}
+  html:not(#_) .m8-util li+li::before{content:"";width:1px;height:14px;margin:0 16px;background:#c4c9d0}
+  html:not(#_) .m8-util a{position:relative;display:inline-flex;align-items:center;height:100%;margin:0;padding:0;border:0;background:none;
+    font:500 13px/1 var(--font-body);letter-spacing:0;color:#3a4049;text-decoration:none;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+  html:not(#_) .m8-util a::after{content:"";position:absolute;inset:-4px -8px}   /* 44px target */
+  html:not(#_) .m8-util a:is(:hover,:focus-visible){color:var(--m8-ink);text-decoration:underline 1px currentColor;text-underline-offset:4px}
+  html:not(#_) .m8-util a[aria-current="page"]{color:var(--m8-ink);font-weight:600}
+  html:not(#_) .m8-util a:focus-visible{outline:2px solid var(--m8-accent);outline-offset:2px}
+}
+
+/* M8 Phone menu: a full-screen white sheet under the white bar. Ink links in Figtree 600 on 1px hairlines, the
+   current page marked with a 3px navy bar and weight 700 (and aria-current from house-motion.js), the call-to-action
+   as a full-width navy pill at the foot, the footer's email and telephone under it. The page behind cannot scroll. */
+html:not(#_) .mobile-menu{inset:0!important;height:100vh;height:100dvh;display:flex;flex-direction:column;
+  padding:calc(var(--nav-h,72px) + clamp(8px,2vh,20px)) 40px calc(20px + env(safe-area-inset-bottom))!important;
+  background:#fff!important;color:var(--m8-ink);overflow-y:auto;overscroll-behavior:contain;isolation:isolate}
+@media (max-width:760px){html:not(#_) .mobile-menu{padding-inline:24px!important}}
+html:not(#_) .mobile-menu::before{content:"";display:block;order:1;flex:1 0 24px;min-height:24px}
+html:not(#_) .mobile-menu>a:not(.mobile-cta){position:relative;display:flex!important;align-items:center;min-height:52px!important;margin:0;
+  padding:10px 0!important;border:0!important;border-bottom:1px solid var(--m8-line)!important;background:none!important;
+  font-family:var(--font-body)!important;font-weight:600!important;font-size:clamp(1.1875rem,5.4vw,1.5rem)!important;line-height:1.2!important;
+  letter-spacing:-.01em!important;color:var(--m8-ink)!important;text-decoration:none;white-space:nowrap}
+html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"]){padding-left:18px!important;font-weight:700!important;color:var(--m8-ink)!important}
+html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"])::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;
+  border-radius:3px;background:var(--m8-navy)}
+@media (hover:hover){html:not(#_) .mobile-menu>a:not(.mobile-cta):hover{color:var(--m8-accent)!important}}
+html:not(#_) .mobile-menu .mobile-cta{order:2;display:flex!important;align-items:center;justify-content:center;width:100%;min-height:52px;margin:0!important;
+  padding:0 24px!important;border:0!important;border-radius:var(--m8-pill)!important;background:var(--m8-navy)!important;color:#fff!important;
+  font:600 16px/1.2 var(--font-body)!important;letter-spacing:0!important;text-align:center;text-decoration:none}
+html:not(#_) .mobile-menu .mobile-cta:hover{background:var(--m8-navy-hover)!important;color:#fff!important}
+html:not(#_) .hm-menu-contact{order:3;display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:24px;margin-top:10px}
+html:not(#_) .hm-menu-contact a{display:inline-flex!important;align-items:center;min-height:44px;padding:0!important;border:0!important;background:none!important;
+  font:500 15px/1.3 var(--font-body)!important;letter-spacing:0;color:var(--m8-muted)!important;text-decoration:none;font-variant-numeric:lining-nums tabular-nums}
+@media (hover:hover){html:not(#_) .hm-menu-contact a:hover{color:var(--m8-ink)!important;text-decoration:underline 1px;text-underline-offset:4px}}
+html:not(#_) :is(.mobile-menu>a,.hm-menu-contact a):focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
+html.hm-menu-open{overflow:hidden!important;scrollbar-gutter:stable;background-color:#fff!important}
+html.hm-menu-open body{overflow:hidden!important}
+
+/* M9 Footer: solid navy, the logo and the statement at left, the link columns beside it, white column heads, light
+   links, one hairline above the legal line. The email and telephone are ordinary links in the Company column. */
+html:not(#_) .footer{position:relative;padding:clamp(56px,6vw,88px) 0 32px!important;border:0!important;background:var(--m8-navy)!important;color:var(--m8-body-inv)}
+html:not(#_) .footer::before,html:not(#_) .footer::after{content:none!important;display:none!important}
+html:not(#_) .footer .container{max-width:var(--container,1280px);padding-inline:40px!important;padding-top:0}
+html:not(#_) .footer-grid{display:grid!important;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr))!important;gap:40px clamp(28px,4vw,64px)!important;
+  grid-template-rows:none!important;margin:0!important}
+html:not(#_) .footer-grid>*{grid-column:auto!important;grid-row:auto!important;margin:0!important}
+html:not(#_) .footer-grid>.footer-col,html:not(#_) .footer-grid>.footer-col:last-child{display:flex!important;flex-direction:column;align-items:flex-start}
+html:not(#_) .footer-brand{padding-right:clamp(0px,3vw,48px)}
+html:not(#_) .footer-brand img{display:block;height:30px;width:auto;margin:0 0 20px;mix-blend-mode:normal!important}
+html:not(#_) .footer-brand p{max-width:36ch;margin:0;font-family:var(--font-body)!important;font-size:15px!important;font-weight:400;line-height:1.6;color:#c3cad3}
+html:not(#_) body .footer-col h4{margin:0 0 10px!important;padding:0!important;border:0!important;font-family:var(--font-body)!important;font-size:14px!important;
+  font-weight:600!important;letter-spacing:0!important;line-height:1.3;text-transform:none!important;color:#fff!important}
+html:not(#_) .footer-col>a{position:relative;display:flex;align-items:center;min-height:36px;margin:0;padding:0!important;border:0!important;
+  font-family:var(--font-body)!important;font-size:15px!important;font-weight:400!important;line-height:1.35;letter-spacing:0!important;color:#c3cad3!important;
+  text-decoration:none;overflow-wrap:anywhere}
+html:not(#_) .footer-col>a::after{content:"";position:absolute;inset:-4px 0}   /* 44px target */
+html:not(#_) .footer-col>a:is(:hover,:focus-visible){color:#fff!important;text-decoration:underline 1px currentColor;text-underline-offset:4px}
+html:not(#_) .footer-bottom{display:flex!important;flex-wrap:wrap;justify-content:space-between!important;gap:8px 24px;margin-top:56px;padding-top:24px;
+  border-top:1px solid var(--m8-line-inv)!important;color:#a9b3bf!important;text-align:left!important}
+html:not(#_) .footer-bottom>span{color:#a9b3bf}
+html:not(#_) .footer :is(a,button):focus-visible{outline:2px solid var(--m8-gold);outline-offset:3px}
+@media (max-width:1023px){
+  html:not(#_) .footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  html:not(#_) .footer-brand{grid-column:1/-1!important;padding-right:0;margin-bottom:8px!important}
+}
+@media (max-width:760px){
+  html:not(#_) .footer .container{padding-inline:24px!important}
+  html:not(#_) .footer-grid{grid-template-columns:minmax(0,1fr)!important;row-gap:32px!important}
+  html:not(#_) .footer-col>a{min-height:40px}
+  html:not(#_) .footer-col>a::after{inset:-2px 0}
+  html:not(#_) .footer-bottom{flex-direction:column!important;align-items:flex-start!important;gap:6px;margin-top:40px}
+}
+
+/* M10 Builder components. Add the classes in markup; motion for them lives in house-motion.css / house-motion.js.
+   .m8-panel   a large rounded section panel set inside the panel gutter (wider than the text column). Variants:
+               --navy (navy, dark tokens), --band (light grey), --photo (an image fills it: put an <img> as its first
+               child; the content sits centred over a navy scrim; add --light for a light photo with ink text).
+               .m8-panel-body pads the content.
+   .m8-card    a rounded card: .m8-card-media (image, cover), .m8-card-body > .m8-card-label, .m8-card-title,
+               .m8-card-text, .m8-card-action. White by default (for a band); --grey on a white page; --photo (the
+               image fills the card, the words and a white pill sit over it at the top); --photo.m8-card--light (a
+               light photo: ink words, navy pill); --navy. Give the card's one link .m8-card-stretch to make the
+               whole card clickable.
+   .m8-band    a light grey section (the white feature cards sit on it).
+   .m8-info    the "important information" block: a light grey section with an info icon heading (.m8-info-head).
+   .m8-grid    a row of cards: .m8-grid (3 up), .m8-grid--2, .m8-grid--4; 2 up at 1023px, 1 up at 760px.
+   .m8-carousel  a horizontal rail: .m8-carousel > .m8-track > slides. Without JS it is a native horizontal scroll
+               (nothing hidden). house-motion.js adds round arrow buttons (on a hero's panel edges, with dots, for
+               data-m8-carousel="hero"; in an .m8-controls row above a card rail); no autoplay. Slide width:
+               --m8-slide-w on the carousel (default 100%). */
+html:not(#_) .m8-panel{position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));margin-inline:auto;
+  border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;background:var(--m8-card);color:var(--m8-ink)}
+html:not(#_) .m8-panel-body{position:relative;padding:clamp(32px,5vw,72px)}
+html:not(#_) .m8-panel-body>*{margin-block:0}
+html:not(#_) .m8-panel-body>*+*{margin-top:16px}
+html:not(#_) .m8-panel-body>*+:is(.m8-btn,.m8-btn-outline,.m8-link,.m8-actions){margin-top:28px}
+html:not(#_) .m8-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+html:not(#_) .m8-panel--photo .m8-actions{justify-content:center}
+html:not(#_) .m8-panel--band{background:var(--m8-band)}
+html:not(#_) .m8-panel--navy{background:var(--m8-navy);color:var(--m8-body-inv)}
+html:not(#_) .m8-panel--photo{display:grid;align-content:center;justify-items:center;min-height:clamp(360px,40vw,560px);text-align:center;
+  background:var(--m8-navy);color:#fff;--v7-label:#fff}
+html:not(#_) .m8-panel--photo>:is(img,picture,video):first-child,html:not(#_) .m8-panel--photo>.m8-panel-media{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:-2}
+html:not(#_) .m8-panel--photo>picture:first-child>img,html:not(#_) .m8-panel-media>img{width:100%;height:100%;object-fit:cover}
+html:not(#_) .m8-panel--photo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,23,38,.25),rgba(10,23,38,.62))}
+html:not(#_) .m8-panel--photo.m8-panel--light{color:var(--m8-ink);background:var(--m8-card);--v7-label:var(--m8-ink)}
+html:not(#_) .m8-panel--photo.m8-panel--light::after{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.15))}
+html:not(#_) :is(.m8-panel--navy,.m8-panel--photo:not(.m8-panel--light)) :is(h1,h2,h3,h4){color:#fff}
+html:not(#_) :is(.m8-panel--navy,.m8-panel--photo:not(.m8-panel--light)) :is(p,li){color:var(--m8-body-inv)}
+html:not(#_) .m8-panel--photo:not(.m8-panel--light) :is(p,li){color:#fff}
+
+html:not(#_) .m8-card{position:relative;display:flex;flex-direction:column;min-width:0;border-radius:var(--m8-radius-card);overflow:hidden;
+  isolation:isolate;background:#fff;color:var(--m8-ink);box-shadow:none;text-align:left}
+html:not(#_) .m8-card--grey{background:var(--m8-band)}
+html:not(#_) .m8-card--navy{background:var(--m8-navy);color:#fff}
+html:not(#_) .m8-card-media{position:relative;margin:0;aspect-ratio:16/10;overflow:hidden;background:var(--m8-card)}
+html:not(#_) .m8-card-media :is(img,video){display:block;width:100%;height:100%;object-fit:cover}
+html:not(#_) .m8-card-body{position:relative;display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:10px;padding:24px 24px 28px}
+html:not(#_) .m8-card-label{margin:0}
+html:not(#_) .m8-card-title{margin:0;font-family:var(--font-display);font-size:var(--m8-card-title,clamp(1.25rem,1.5vw,1.375rem));font-weight:700;
+  line-height:1.25;letter-spacing:-.015em;color:inherit}
+html:not(#_) .m8-card-text{margin:0;font-size:15px;line-height:1.55;color:var(--m8-body)}
+html:not(#_) .m8-card--navy .m8-card-text{color:var(--m8-body-inv)}
+html:not(#_) .m8-card-action{margin-top:auto;padding-top:10px}
+html:not(#_) .m8-card--photo{min-height:clamp(380px,32vw,460px);background:var(--m8-navy);color:#fff;--v7-label:#fff}
+html:not(#_) .m8-card--photo>.m8-card-media{position:absolute;inset:0;aspect-ratio:auto;z-index:-2}
+html:not(#_) .m8-card--photo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,23,38,.72) 0%,rgba(10,23,38,.32) 42%,rgba(10,23,38,0) 70%)}
+html:not(#_) .m8-card--photo .m8-card-body{flex:0 0 auto;padding:28px 28px 24px}
+html:not(#_) .m8-card--photo .m8-card-title{font-size:var(--m8-card-title,clamp(1.375rem,1.8vw,1.625rem))}
+html:not(#_) .m8-card--photo .m8-card-text{color:#fff}
+html:not(#_) .m8-card--photo .m8-card-action{margin-top:4px;padding-top:6px}
+html:not(#_) .m8-card--photo.m8-card--light{background:var(--m8-card);color:var(--m8-ink);--v7-label:var(--m8-ink)}
+html:not(#_) .m8-card--photo.m8-card--light::after{background:linear-gradient(180deg,rgba(255,255,255,.8) 0%,rgba(255,255,255,.35) 42%,rgba(255,255,255,0) 70%)}
+html:not(#_) .m8-card--photo.m8-card--light .m8-card-text{color:var(--m8-body)}
+html:not(#_) .m8-card-stretch::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
+html:not(#_) .m8-card:has(.m8-card-stretch:focus-visible){outline:2px solid var(--v7-focus);outline-offset:3px}
+
+html:not(#_) .m8-band{background:var(--m8-band)!important;color:var(--m8-body);padding-block:var(--m8-section)}
+html:not(#_) .m8-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--m8-gap)}
+html:not(#_) .m8-grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+html:not(#_) .m8-grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1023px){html:not(#_) :is(.m8-grid,.m8-grid--2,.m8-grid--4){grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){html:not(#_) :is(.m8-grid,.m8-grid--2,.m8-grid--4){grid-template-columns:minmax(0,1fr)}}
+
+html:not(#_) .m8-info{background:var(--m8-band);color:var(--m8-body);padding-block:clamp(40px,5vw,64px)}
+html:not(#_) .m8-info-head{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding:0 0 18px;border-bottom:1px solid #d5d8dd;
+  font-family:var(--font-display);font-size:1.0625rem;font-weight:600;line-height:1.3;letter-spacing:0;color:var(--m8-ink)}
+html:not(#_) .m8-info-head::before{content:"";flex:none;width:28px;height:28px;border-radius:50%;background:var(--m8-card) center/16px 16px no-repeat
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%235b6470'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%235b6470'/%3E%3C/svg%3E")}
+html:not(#_) .m8-info :is(p,li){font-size:15px;line-height:1.6;color:var(--m8-body);max-width:none}
+html:not(#_) .m8-info :is(h3,h4,h5){margin:24px 0 6px;font-size:15px;font-weight:700;line-height:1.4;letter-spacing:0;color:var(--m8-ink)}
+
+html:not(#_) .m8-carousel{position:relative;--m8-slide-w:100%}
+html:not(#_) .m8-track{display:flex;gap:var(--m8-gap);margin:0;padding:0;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+html:not(#_) .m8-track>*{flex:0 0 var(--m8-slide-w);min-width:0;scroll-snap-align:start}
+html:not(#_) .m8-carousel.m8-ready .m8-track{scrollbar-width:none}
+html:not(#_) .m8-carousel.m8-ready .m8-track::-webkit-scrollbar{display:none}
+html:not(#_) .m8-track:focus-visible{outline:2px solid var(--m8-accent);outline-offset:4px}
+/* the controls: round 44px arrow buttons, white with a 1px edge of at least 3:1 (--m8-muted) and an ink chevron, navy
+   on hover; a hero's sit on its panel edges, a rail's in a control row above it (.m8-controls, never over a card).
+   An arrow at the end of a rail stays in place but reads as inactive. The hero's indicators: a 24 x 4 dash in
+   --m8-muted (3:1 and more), the current one longer and navy, each in a 44px target; "Slide n of N", aria-current. */
+html:not(#_) .m8-arrow{position:absolute;top:var(--m8-arrow-top,50%);z-index:3;display:grid;place-items:center;width:44px;height:44px;margin:-22px 0 0;padding:0;
+  border:1px solid var(--m8-muted);border-radius:50%;background:#fff;color:var(--m8-ink);cursor:pointer;box-shadow:0 2px 8px rgba(16,35,58,.1)}
+html:not(#_) .m8-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html:not(#_) .m8-arrow.m8-prev{left:var(--m8-arrow-inset,16px)}   /* set --m8-arrow-inset:-22px to hang them on a panel's edges */
+html:not(#_) .m8-arrow.m8-next{right:var(--m8-arrow-inset,16px)}
+html:not(#_) .m8-arrow[aria-disabled="true"]{opacity:.38;cursor:default;box-shadow:none}
+html:not(#_) :is(.m8-arrow,.m8-dots,.m8-dot,.m8-controls)[hidden]{display:none}
+html:not(#_) .m8-arrow:focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
+@media (hover:hover){html:not(#_) .m8-arrow:not([aria-disabled="true"]):hover{border-color:var(--m8-navy);background:var(--m8-navy);color:#fff}}
+@media (max-width:760px){html:not(#_) .m8-arrow.m8-prev{left:8px}html:not(#_) .m8-arrow.m8-next{right:8px}}
+html:not(#_) .m8-controls{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:0 0 16px}
+html:not(#_) .m8-controls>.m8-arrow{position:static;inset:auto;margin:0;box-shadow:none}
+html:not(#_) .m8-dots{display:flex;justify-content:center;gap:0;margin-top:16px}
+html:not(#_) .m8-dot{display:grid;place-items:center;width:44px;height:44px;margin:0;padding:0;border:0;background:none;cursor:pointer}
+html:not(#_) .m8-dot::before{content:"";display:block;width:24px;height:4px;border-radius:2px;background:var(--m8-muted)}
+html:not(#_) .m8-dot[aria-current="true"]::before{width:40px;background:var(--m8-navy)}
+@media (hover:hover){html:not(#_) .m8-dot:not([aria-current="true"]):hover::before{background:var(--m8-ink)}}
+html:not(#_) .m8-dot:focus-visible{outline:2px solid var(--m8-accent);outline-offset:-4px;border-radius:8px}
+
+/* M11 Small parts */
+html:not(#_) :is(.product-identity,.compact-identity,.compare-identity){border-radius:var(--m8-radius-sm)!important}
+html:not(#_) :is(a,button,summary,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px}

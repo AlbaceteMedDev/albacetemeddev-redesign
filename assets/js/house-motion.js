@@ -1,6 +1,8 @@
-/* House motion layer, Minimal v7: one calm, smooth motion vocabulary shared by every page. See HOUSE-STYLE.md
-   ("Minimal v7"). One easing everywhere (cubic-bezier(.22,.61,.36,1)); entrances are 600ms fade-ups of at most 12px,
-   staggered at most 60ms; hovers are 200ms colour changes; page changes fade out, then in, 250ms each.
+/* House motion layer, Model v8: one calm, smooth motion vocabulary shared by every page. See HOUSE-STYLE.md
+   ("Model v8"). One easing everywhere (cubic-bezier(.22,.61,.36,1)); entrances are 600ms fade-ups of at most 12px,
+   staggered at most 60ms; hovers are 150ms colour changes (cards: a 3% image settle, house-motion.css); carousels
+   slide 450ms and never play by themselves; page changes fade out, then in, 250ms each. Model v8 also builds the
+   desktop utility bar above the nav (11) and the carousel controls (12).
    Progressive only. Nothing is hidden without this file: every hidden state is gated on html.hm-on, which is set
    here and never under prefers-reduced-motion. Elements inside [data-motion-off] are left alone. Content inside a
    page-group reveal block (.sx-reveal / .scroll-reveal) starts when that block reveals, so the two read as one
@@ -367,7 +369,10 @@
     const nav = theNav();
     if (!nav || getComputedStyle(nav).position !== 'fixed') return;
     const menu = doc.querySelector('.mobile-menu'), menuEl = menu;
-    const C = () => (vwidth() <= 760 ? 6 : 12);
+    // Compact lifts the bar 12px (6px on phones) plus the utility bar's reserved height (desktop), so only the
+    // main row shows on the way back up.
+    const U = () => parseFloat(getComputedStyle(root).getPropertyValue('--m8-util-h')) || 0;
+    const C = () => (vwidth() <= 760 ? 6 : 12) + U();
     const REVEAL_PINNED = 200, PAD = 16;
     let state = 'rest', lastY = Math.max(0, scrollY), acc = 0, ticking = false;
     let followers = [], pins = [], sheet = null, jumping = false, jumpT = 0, padNow = '';
@@ -609,9 +614,9 @@
      sentences are already block-level lines, or that a page script splits into words, is left alone.
      No stranded word: in every h1 and h2 of the page body, the last two words of each sentence (of three words or
      more) share an hm-g box that does not break, so a line never holds a sentence's last word alone; the hero's lead
-     paragraph ends the same way. Where the pair
-     is wider than the heading (a narrow phone column) the box lets go (.hm-g-off) and balance decides; this is
-     checked again once the fonts arrive and on resize. Not motion: it runs under reduced motion too, and before the
+     paragraph ends the same way. Where the pair is wider than the heading (a narrow phone column), or where keeping
+     it would leave the heading's first line holding one word alone, the heading's boxes let go (.hm-g-off) and
+     balance decides; this is checked again once the fonts arrive and on resize. Not motion: it runs under reduced motion too, and before the
      headline reveal measures anything. ── */
   const SENT = /[.!?…]["”’')\]]*(\s+)(?=["“‘(]?[A-Z0-9])/g;
   const nodeLen = n => (n.nodeType === 3 ? n.data.length : n.childNodes.length);
@@ -645,6 +650,23 @@
     return box;
   }
   const glued = new Set();
+  // True when el's first line holds a single word and more words follow on later lines.
+  function loneFirst(el) {
+    const tw = doc.createTreeWalker(el, NodeFilter.SHOW_TEXT), r = doc.createRange(), tops = [];
+    while (tw.nextNode()) {
+      const t = tw.currentNode, re = /\S+/g;
+      for (let m; (m = re.exec(t.data));) {
+        r.setStart(t, m.index); r.setEnd(t, m.index + m[0].length);
+        const b = r.getClientRects()[0];
+        if (b) tops.push([b.top, b.height]);
+        if (tops.length > 2) break;
+      }
+      if (tops.length > 2) break;
+    }
+    if (tops.length < 2) return false;
+    const [t0, h0] = tops[0];
+    return Math.abs(tops[1][0] - t0) > h0 / 2;
+  }
   function sentences() {
     doc.querySelectorAll('main h1, main h2').forEach(h => {
       if (h.closest('nav, footer, .mobile-menu, dialog, [contenteditable]')) return;
@@ -694,6 +716,11 @@
         return [g, g.getBoundingClientRect().width > room + 0.5];
       });
       plan.forEach(([g, off]) => { if (off) g.classList.add('hm-g-off'); });
+      // A heading (or its lead) never opens with one word alone on its first line: where a glued pair would push
+      // every word but the first down a line (a phone column), the heading's pairs let go and balance decides.
+      new Set(list.filter(g => !g.classList.contains('hm-g-off')).map(g => g.closest('h1, h2, p'))).forEach(h => {
+        if (h && [h, ...h.querySelectorAll('hm-s')].some(loneFirst)) h.querySelectorAll('hm-g').forEach(g => g.classList.add('hm-g-off'));
+      });
     };
     fit();
     // Web fonts change the widths: measure again when they arrive (ready can settle before they start loading).
@@ -738,8 +765,133 @@
     });
   }
 
+  /* ── 11. Utility bar (Model v8). A thin bar above the nav on desktop, built from links already on the page, with
+     their own words and destinations: Provider portal and Ovena Health (from the phone menu), Contact (from the
+     footer's Company column) and the telephone (from the footer). signature.css reserves its 36px on html.sx-js (set
+     in every page's head), so nothing moves when it arrives; at 1100px and under it is hidden (the phone menu
+     carries the same links). The current page is marked with aria-current, not colour alone. ── */
+  function utilityBar() {
+    const nav = theNav();
+    if (!nav || nav.querySelector('.m8-util')) return;
+    const menu = doc.querySelector('.mobile-menu'), foot = doc.querySelector('footer.footer');
+    const byText = (scope, sel, text) => (scope ? [...scope.querySelectorAll(sel)].find(a => a.textContent.trim() === text) : null) || null;
+    const picks = [
+      byText(menu, ':scope > a[href]', 'Provider portal'),
+      byText(menu, ':scope > a[href]', 'Ovena Health'),
+      byText(foot, '.footer-col > a[href]', 'Contact'),
+      foot && foot.querySelector('.footer-col > a[href^="tel:"]'),
+    ].filter(Boolean);
+    if (!picks.length) return;
+    const norm = p => p.replace(/\/index\.html$/, '/').replace(/\/?$/, '/');
+    const here = norm(location.pathname);
+    const bar = make('div', {class: 'm8-util'}), list = make('ul', {'aria-label': 'Utility'});
+    picks.forEach(a => {
+      const c = make('a', {href: a.getAttribute('href')});
+      c.textContent = a.textContent.trim();
+      try { const u = new URL(c.href, location.href); if (u.origin === location.origin && norm(u.pathname) === here) c.setAttribute('aria-current', 'page'); } catch (_) { /* not a page link */ }
+      const li = make('li');
+      li.append(c);
+      list.append(li);
+    });
+    bar.append(list);
+    nav.prepend(bar);
+  }
+
+  /* ── 12. Carousels (Model v8). Markup: .m8-carousel > .m8-track > slides (data-m8-carousel="hero" for a one-up
+     hero with dots). Without this script the track is a native horizontal scroll, so every slide is reachable. Here:
+     round previous / next buttons and, for a hero, one dot per slide (real buttons with aria-labels; the current dot
+     carries aria-current); the track takes focus, so the arrow keys scroll it. A step slides 450ms on the house
+     easing; under reduced motion it jumps. Nothing plays by itself (no autoplay, no timers). A hero's arrows sit on
+     its panel edges and it wraps at its ends; a card rail's arrows sit in a control row (.m8-controls) above the
+     rail, never over its cards, and stop at its ends (the button reports aria-disabled and looks inactive). The
+     controls hide when everything already fits. ── */
+  const CHEV = d => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
+  function carousels() {
+    doc.querySelectorAll('.m8-carousel').forEach(box => {
+      const track = box.querySelector('.m8-track');
+      if (!track || box.classList.contains('m8-ready')) return;
+      const hero = box.getAttribute('data-m8-carousel') === 'hero';
+      const slides = () => [...track.children].filter(el => el.getClientRects().length);
+      const posOf = el => el.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+      const maxX = () => Math.max(0, track.scrollWidth - track.clientWidth);
+      const prev = make('button', {type: 'button', class: 'm8-arrow m8-prev', 'aria-label': 'Previous'});
+      const next = make('button', {type: 'button', class: 'm8-arrow m8-next', 'aria-label': 'Next'});
+      prev.innerHTML = CHEV('M15 5l-7 7 7 7');
+      next.innerHTML = CHEV('M9 5l7 7-7 7');
+      if (!track.hasAttribute('tabindex')) track.tabIndex = 0;
+      // a hero's arrows sit on its panel edges; a card rail's sit in a control row above it, never over its cards
+      const bar = hero ? null : make('div', {class: 'm8-controls'});
+      if (bar) { bar.append(prev, next); track.before(bar); } else track.after(prev, next);
+      let dots = [];
+      if (hero) {
+        const row = make('div', {class: 'm8-dots'});
+        dots = slides().map((el, i, all) => {
+          const d = make('button', {type: 'button', class: 'm8-dot', 'aria-label': `Slide ${i + 1} of ${all.length}`});
+          d.addEventListener('click', () => go(posOf(el)));
+          row.append(d);
+          return d;
+        });
+        next.after(row);
+      }
+      let anim = 0;
+      function go(x) {
+        x = Math.max(0, Math.min(maxX(), x));
+        cancelAnimationFrame(anim);
+        const from = track.scrollLeft, dist = x - from;
+        if (Math.abs(dist) < 1) return;
+        if (calm) { track.scrollLeft = x; return; }
+        const t0 = performance.now(), D = 450;
+        track.classList.add('m8-sliding');
+        const step = now => {
+          const t = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - t, 3);
+          track.scrollLeft = from + dist * e;
+          if (t < 1) anim = requestAnimationFrame(step);
+          else { track.classList.remove('m8-sliding'); track.scrollLeft = x; }
+        };
+        anim = requestAnimationFrame(step);
+      }
+      const near = () => {
+        const x = track.scrollLeft, list = slides();
+        let best = 0, bd = Infinity;
+        list.forEach((el, i) => { const d = Math.abs(posOf(el) - x); if (d < bd) { bd = d; best = i; } });
+        return best;
+      };
+      const stepBy = dir => {
+        const x = track.scrollLeft, list = slides(), m = maxX();
+        if (hero && dir > 0 && x >= m - 2) return go(0);
+        if (hero && dir < 0 && x <= 2) return go(m);
+        const at = list.map(posOf);
+        const target = dir > 0 ? at.find(p => p > x + 2) : [...at].reverse().find(p => p < x - 2);
+        go(target === undefined ? (dir > 0 ? m : 0) : target);
+      };
+      prev.addEventListener('click', () => { if (prev.getAttribute('aria-disabled') !== 'true') stepBy(-1); });
+      next.addEventListener('click', () => { if (next.getAttribute('aria-disabled') !== 'true') stepBy(1); });
+      let ticking = false;
+      function sync() {
+        ticking = false;
+        const m = maxX(), fits = m < 2;
+        [prev, next, ...dots].forEach(b => { b.hidden = fits; });
+        if (bar) bar.hidden = fits;
+        if (dots.length && dots[0].parentElement) dots[0].parentElement.hidden = fits;
+        if (!hero) {
+          prev.setAttribute('aria-disabled', String(track.scrollLeft <= 2));
+          next.setAttribute('aria-disabled', String(track.scrollLeft >= m - 2));
+        }
+        const i = near();
+        dots.forEach((d, k) => { if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+        box.style.setProperty('--m8-arrow-top', `${track.offsetTop + track.offsetHeight / 2}px`);
+      }
+      track.addEventListener('scroll', () => { if (!ticking) { ticking = true; raf(sync); } }, {passive: true});
+      addEventListener('resize', () => raf(sync), {passive: true});
+      box.classList.add('m8-ready');
+      sync();
+      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(() => raf(sync));
+    });
+  }
+
   /* ── Start ─────────────────────────────────────────────────────────── */
   const safe = fn => { try { fn(); } catch (err) { if (window.console) console.warn('house-motion:', err); } };
+  safe(utilityBar);
   safe(sentences);
   safe(surfaces);
   safe(transitions);
@@ -754,6 +906,7 @@
   safe(smartNav);
   safe(phoneMenu);
   safe(footerGlue);
+  safe(carousels);
   addEventListener('beforeprint', finishAll);
   addEventListener('hashchange', finishAll);
   mqCalm.addEventListener && mqCalm.addEventListener('change', () => {

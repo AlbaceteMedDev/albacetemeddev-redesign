@@ -1,15 +1,13 @@
-/* Home (Minimal v7, Oct 15 2026). Calm and content first: every heading, paragraph, button and photograph is
-   readable at first paint or as soon as its block enters view.
-   hero    static and calm: eyebrow, headline, one line of copy, one primary and one text link, the offer row and
-           the photograph. No canvas, no pointer effects.
-   reveal  below the hero, each block fades up 12px (600ms, --v7-ease, its parts 60ms apart), once, as it enters.
-   story   three questions in order; each step fades up in place as it enters view (one of the reveal blocks).
-   show    tabs filter the stage and the products (a crossfade); a native scroll-snap rail you can drag, swipe,
-           key or step one card at a time. On phones the tabs are a scrollable segmented row; the chosen tab is
-           brought into view.
-   ticker  keeps moving (owner's choice), can be stopped with its own button (WCAG 2.2.2) in a slot at the end of
-           the band, rests while off screen. Without JS, or with reduced motion, the names stand still and wrap so
-           every one is visible (home.css).
+/* Home (Model v8, Oct 15 2026). Calm and content first: every heading, paragraph, button and photograph is readable
+   at first paint or as soon as its block enters view.
+   hero    a carousel of three rounded panels; the global carousel (house-motion.js) gives it round arrows, dots and
+           arrow-key scrolling. Nothing plays by itself. Without JS the panels stack (home.css).
+   reveal  below the hero, each block fades up 12px (600ms, the house easing, its parts 60ms apart), once, as it enters.
+   rail    the category tabs filter a horizontal product rail (crossfade); drag, swipe, key or use the round arrows.
+           On phones the tabs are a scrollable row of pills; the chosen tab is brought into view.
+   ticker  keeps moving (owner's choice), can be stopped with its own button (WCAG 2.2.2) at the end of its strip,
+           rests while off screen. Without JS, or with reduced motion, the names stand still and wrap so every one is
+           visible (home.css).
    Every hidden state is gated on html.sx-mo (JS + motion allowed) or on JS-only classes, so without JS, or with
    reduced motion, the page is complete and static. */
 (() => {
@@ -17,7 +15,7 @@
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MO = !RM;
   const IO = 'IntersectionObserver' in window;
-  const EASE = 'cubic-bezier(.22,.61,.36,1)'; // --v7-ease
+  const EASE = 'cubic-bezier(.22,.61,.36,1)'; // --m8-ease
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -52,88 +50,65 @@
     });
   }
 
-  /* ── Product showcase: tabs swap the stage and filter the products (plus the closing "full portfolio" card).
-       A native horizontal scroll-snap rail: drag with a mouse (with a little throw), swipe, trackpad, keyboard, or
-       step one card at a time with the arrows; each move lands a card on the left edge. A thin line under the rail
-       shows how far it has scrolled; when every card already fits, the line and arrows are hidden. A tab change is
-       a crossfade: what is on screen fades out (200ms), then the new stage and cards fade in (500ms, 60ms apart).
-       No JS: everything is listed. ── */
+  /* ── Product rail: the category tabs filter the products (plus the closing "full portfolio" card) in a horizontal
+       card rail. The rail is the global carousel (house-motion.js adds its round arrows and keeps them in step); here:
+       the tabs (a tablist whose one panel is the rail), a crossfade on a tab change (what is on screen fades out in
+       200ms, the new cards fade in over 500ms, 60ms apart), mouse drag with a little throw, and arrow keys that move
+       focus card to card. The three category cards above are always shown. No JS: every product is listed. ── */
   function showcase() {
     const show = $('[data-show]');
     if (!show) return;
-    const tablist = $('[role="tablist"]', show), tabs = $$('[role="tab"]', tablist), ink = $('.sx-tab-ink', tablist);
-    const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls').split(/\s+/)[0]));
-    const rail = $('[data-rail]', show), tiles = $$('.sx-tile', rail), ctrl = $('.sx-rail-ctrl', show);
-    const meter = $('.sx-rail-meter span', ctrl), [prev, next] = $$('.sx-rail-btn', ctrl);
-    let active = 0, raf = 0, items = [], fits = false, aim = -1, aimT = 0, swapping = false;
+    const tablist = $('[role="tablist"]', show), tabs = $$('[role="tab"]', tablist);
+    const rail = $('[data-rail]', show), tiles = $$('.sx-tile', rail), box = rail.closest('.m8-carousel') || rail.parentElement;
+    let active = 0, items = [], aim = -1, aimT = 0, swapping = false;
 
-    show.classList.add('is-live');
     tablist.hidden = false;
-    panels.forEach((p, i) => { p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[i].id); });
+    box.setAttribute('role', 'tabpanel');
+    box.removeAttribute('aria-label');
 
     const shown = () => tiles.filter(t => !t.hidden);
     const behavior = () => (RM ? 'auto' : 'smooth');
     const pad = () => parseFloat(getComputedStyle(rail).paddingLeft) || 0;
     const maxScroll = () => Math.max(0, rail.scrollWidth - rail.clientWidth);
+    const measure = () => { items = shown().map(t => ({ el: t, left: t.offsetLeft })); };
+    // the global carousel recounts its slides and resets its arrows on a scroll event
+    const resync = () => rail.dispatchEvent(new Event('scroll'));
 
-    function measure() {
-      items = shown().map(t => ({ el: t, left: t.offsetLeft, w: t.offsetWidth }));
-      fits = maxScroll() <= 2;
-      ctrl.hidden = fits; // every card is already in view: no line or arrows
-      kick();
-    }
-    function frame() {
-      raf = 0;
-      const sl = rail.scrollLeft, max = maxScroll();
-      meter.style.setProperty('--p', max > 2 ? (.08 + .92 * clamp(sl / max, 0, 1)).toFixed(3) : '1');
-      prev.setAttribute('aria-disabled', String(max <= 2 || sl <= 2));
-      next.setAttribute('aria-disabled', String(max <= 2 || sl >= max - 2));
-    }
-    function kick() { if (!raf) raf = requestAnimationFrame(frame); }
-
-    function moveInk() {
-      const t = tabs[active];
-      ink.style.setProperty('--x', `${t.offsetLeft}px`);
-      ink.style.setProperty('--w', `${t.offsetWidth}px`);
-      // Phones: the tabs are a scrollable row; bring the chosen tab fully into view (the row only, never the page).
-      const room = tablist.scrollWidth - tablist.clientWidth;
-      if (room > 2) {
-        const pad = parseFloat(getComputedStyle(tablist).paddingLeft) || 0;
-        const lo = t.offsetLeft - pad, hi = t.offsetLeft + t.offsetWidth + pad - tablist.clientWidth;
-        const want = clamp(tablist.scrollLeft, hi, lo);
-        if (Math.abs(want - tablist.scrollLeft) > 1) tablist.scrollTo({ left: clamp(want, 0, room), behavior: behavior() });
-      }
+    // Phones: the tabs are a scrollable row; bring the chosen tab fully into view (the row only, never the page).
+    function reveal() {
+      const t = tabs[active], room = tablist.scrollWidth - tablist.clientWidth;
+      if (room <= 2) return;
+      const p = parseFloat(getComputedStyle(tablist).paddingLeft) || 0;
+      const lo = t.offsetLeft - p, hi = t.offsetLeft + t.offsetWidth + p - tablist.clientWidth;
+      const want = clamp(tablist.scrollLeft, hi, lo);
+      if (Math.abs(want - tablist.scrollLeft) > 1) tablist.scrollTo({ left: clamp(want, 0, room), behavior: behavior() });
     }
     const inView = () => {
       const lo = rail.scrollLeft, hi = lo + rail.clientWidth;
       return shown().filter(t => t.offsetLeft + t.offsetWidth > lo && t.offsetLeft < hi);
     };
-    // Show the chosen category; with animateIn, its stage and the cards on screen fade in.
+    // Show the chosen category; with animateIn, the cards on screen fade in.
     function apply(animateIn) {
       const cat = tabs[active].dataset.cat;
-      panels.forEach((p, k) => p.classList.toggle('is-active', k === active));
+      box.setAttribute('aria-labelledby', tabs[active].id);
       tiles.forEach(t => { t.hidden = !(!t.dataset.cat || t.dataset.cat === cat); });
       rail.classList.remove('is-drag', 'is-free');
       rail.scrollTo({ left: 0, behavior: 'instant' });
       aim = -1;
       measure();
+      resync();
       if (!animateIn) return;
-      panels[active].animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, easing: EASE, fill: 'backwards' });
       inView().forEach((t, k) => t.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: Math.min(k, 3) * 60, easing: EASE, fill: 'backwards' }));
     }
     function select(i, { focus = false, animate = true } = {}) {
       active = (i + tabs.length) % tabs.length;
       tabs.forEach((t, k) => { const on = k === active; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
-      moveInk();
-      if (focus) tabs[active].focus({ preventScroll: true }); // the row brings it into view (moveInk), the page stays put
-      if (!animate || !MO || !show.animate) { apply(false); return; }
+      reveal();
+      if (focus) tabs[active].focus({ preventScroll: true }); // the row brings it into view (reveal), the page stays put
+      if (!animate || !MO || !rail.animate) { apply(false); return; }
       if (swapping) return; // the fade already under way lands on the latest choice
       swapping = true;
-      const outs = [];
-      const fadeOut = el => outs.push(el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: EASE, fill: 'forwards' }));
-      const old = panels.find(p => p.classList.contains('is-active'));
-      if (old) fadeOut(old);
-      inView().forEach(fadeOut);
+      const outs = inView().map(el => el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: EASE, fill: 'forwards' }));
       Promise.all(outs.map(a => a.finished.catch(() => {}))).then(() => {
         swapping = false;
         apply(true);
@@ -148,10 +123,8 @@
       e.preventDefault();
       select(map[e.key], { focus: true });
     });
-    rail.addEventListener('scroll', kick, { passive: true });
 
-    // One card per press. Presses during a glide count on from where the glide is going.
-    const leftIdx = () => { const lo = rail.scrollLeft + pad() - 1, i = items.findIndex(it => it.left >= lo); return i < 0 ? items.length - 1 : i; };
+    // One card per step. Steps during a glide count on from where the glide is going.
     const lastIdx = () => { const max = maxScroll(), p = pad(), i = items.findIndex(it => it.left - p >= max - 1); return i < 0 ? items.length - 1 : i; };
     function stepTo(j) {
       const it = items[j];
@@ -161,13 +134,7 @@
       aimT = setTimeout(() => { aim = -1; }, 900);
       rail.scrollTo({ left: clamp(it.left - pad(), 0, maxScroll()), behavior: behavior() });
     }
-    function page(dir) {
-      if (items.length < 2) return;
-      stepTo(clamp((aim >= 0 ? aim : leftIdx()) + dir, 0, lastIdx()));
-    }
     if ('onscrollend' in rail) rail.addEventListener('scrollend', () => { aim = -1; });
-    prev.addEventListener('click', () => { if (prev.getAttribute('aria-disabled') !== 'true') page(-1); });
-    next.addEventListener('click', () => { if (next.getAttribute('aria-disabled') !== 'true') page(1); });
 
     // Keyboard: arrow keys move between cards; the focused card comes to the left edge (as far as the rail goes).
     rail.addEventListener('keydown', e => {
@@ -179,7 +146,7 @@
       if (j === i) return;
       e.preventDefault();
       links[j].focus({ preventScroll: true });
-      stepTo(j);
+      stepTo(Math.min(j, lastIdx()));
     });
 
     // Mouse drag: the rail follows the pointer 1:1 (snap off), then is thrown to the nearest card's left edge.
@@ -222,10 +189,9 @@
     rail.addEventListener('click', e => { if (dragged) { e.preventDefault(); e.stopPropagation(); } }, true);
 
     let rt;
-    const relayout = () => { clearTimeout(rt); rt = setTimeout(() => { measure(); moveInk(); }, 120); };
-    addEventListener('resize', relayout);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { moveInk(); measure(); });
-    addEventListener('load', () => measure());
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { measure(); reveal(); }, 120); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    addEventListener('load', measure);
     select(0, { animate: false });
   }
 

@@ -1,359 +1,434 @@
-/* Home: Minimal v7 (Oct 15, 2026). Smooth, minimal, sleek and clean.
-   Navy for the hero (calm: no canvas, no pointer effects; the ticker beneath it) and the closing band only; every
-   other section is white or warm paper. Lighter serif headings in one colour, muted labels (never gold), quiet text links, one solid primary
-   per view, 1px hairlines only where they aid scanning (the offer row, tabs, spec lists, service rows), radius 2px.
-   Gold: the primary call-to-action on navy, the current tab and focus. Motion: one easing (--v7-ease), fade-ups of
-   12px over 600ms, 60ms apart, colour-only hovers in 200ms. Tokens: signature.css "MINIMAL v7".
-   Spec: albacete-site-redesign-tools/HOUSE-STYLE.md ("Minimal v7"). Everything is sx-* scoped. */
+/* Home: Model v8 (Oct 15, 2026). The intuitive.com design language, Albacete's own words and photographs.
+   A white page; large rounded panels and cards set inside the panel gutter; pill buttons; small accent labels; one
+   light grey band; one dark moment (the closing photo panel); calm motion. Tokens and components: signature.css
+   "MODEL v8" (M1-M11). Spec: albacete-site-redesign-tools/HOUSE-STYLE.md ("Model v8").
+   Sequence:
+     1  hero carousel   three large rounded panels (copy beside a photograph), round arrows and dots, no autoplay
+     2  offer row       the four offers as a clean row of grey tiles
+     3  ticker          the product names in a rounded grey strip (keeps moving, with its own pause button)
+     4  products        three photo cards (the categories) and the filtered product rail (tabs + round arrows)
+     5  approach        a photograph beside a navy statement card
+     6  questions       the three questions as three cards (no pinning)
+     7  services        white feature cards on the light grey band
+     8  closing         a full-width rounded photo panel, centred headline and a pill
+     9  information     the page's notes in the important-information block, before the footer
+   Without JS the carousels are native horizontal scrolls (the hero stacks its panels); under reduced motion every
+   block is static and fully visible. Everything is sx-* scoped. */
 
 /* ── Page frame ─────────────────────────────────────────────── */
-body.page-home{background:var(--v7-navy);color:var(--v7-body-inv)}
-.sx-home{--sx-pad:var(--v7-gutter);background:var(--v7-navy);color:var(--v7-body-inv);font-family:var(--font-body);font-size:var(--v7-body-size);line-height:var(--v7-body-lh);overflow-x:clip}
-.sx-home .container{max-width:1280px;margin-inline:auto;padding-inline:var(--sx-pad)}
+body.page-home,.sx-home{background:#fff;
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+.sx-home{color:var(--m8-body);font-family:var(--font-body);font-size:var(--m8-body-size);line-height:var(--m8-body-lh);overflow-x:clip}
+/* every block sits in the panel frame, wider than a text column, like the reference */
+.sx-home .container{width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));max-width:none;margin-inline:auto;padding-inline:0}
 :where(.sx-home) :where(p,figure,h1,h2,h3,h4,ul,ol){margin:0}
-.sx-home :is(h1,h2,h3,h4){color:var(--v7-ink-inv);font-family:var(--font-display);text-wrap:balance}
-.sx-home h2{line-height:var(--v7-h2-lh)}
-.sx-home :is(h3,h4){line-height:var(--v7-h3-lh)}
-.sx-home em{font-style:italic}
-.sx-home :is(h1,h2,h3,h4) em{color:inherit}
-
-/* Light sections (white or paper): ink headings, body text, and the full light surface set, so labels, buttons,
-   links and focus are right without JS. .sx-portfolio is in the shared navy list, so it is set here too. */
-.sx-home :is(.sx-light,.sx-portfolio){--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep);color:var(--v7-body)}
-.sx-home :is(.sx-light,.sx-portfolio) :is(h2,h3,h4){color:var(--v7-ink)}
+.sx-home :is(h1,h2,h3,h4){color:var(--m8-ink);font-family:var(--font-display);text-wrap:balance}
+.sx-home em{font-style:normal}
+.sx-home img{display:block;max-width:100%}
+.sx-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.sx-sec{padding-block:clamp(32px,3.6vw,56px)}
 
 /* ── Type primitives ────────────────────────────────────────── */
-/* labels: the shared rule sets family, weight, tracking, case and colour */
-.sx-eyebrow{display:block;margin:0 0 24px;font-size:var(--v7-label-size);line-height:1.4}
-.sx-h2{font-size:var(--v7-h2);line-height:var(--v7-h2-lh);margin:0 0 24px}
-.sx-body{max-width:var(--v7-measure);margin:0 0 32px;font-size:var(--v7-body-size);line-height:var(--v7-body-lh)}
-
-/* text links (the shared v7 affordance, signature.css V4): Plex 500 15px in the surface's ink with a 1.5px underline
-   in the link's own colour, 4px below the words; hover thickens it. The arrow is an atomic inline box 8px off the
-   words, so the underline runs under the words only. */
-.sx-link,.sx-panel-links a,.sx-contact-link{display:inline-block;padding:10px 0;font-size:15px;font-weight:500;line-height:24px;color:var(--v7-link-c);
-  text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
-.sx-link>span,.sx-panel-links a>span{display:inline-block;margin-left:8px}
-.sx-link:is(:hover,:focus-visible),.sx-panel-links a:is(:hover,:focus-visible),.sx-contact-link:is(:hover,:focus-visible){text-decoration-thickness:2.5px}
-
-/* buttons: the shared layer styles the primary (.sx-btn-gold, .sx-btn-ink) and the secondary (.sx-btn-ghost, a
-   text link). The secondary's underline sits on its label only, never on the arrow, which stands 8px off. */
+.sx-eyebrow{display:block;margin:0 0 16px;line-height:1.4}
+.sx-h2{margin:0 0 20px;font-size:var(--m8-h2);font-weight:700;line-height:var(--m8-h2-lh);letter-spacing:-.02em}
+.sx-body{max-width:34em;margin:0 0 28px;font-size:var(--m8-body-size);line-height:var(--m8-body-lh);color:var(--m8-body)}
+/* text links: ink 600 15px words and an arrow, the words underline on hover (the v8 .m8-link affordance) */
+.sx-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:600;line-height:1.3;color:var(--m8-ink)}
+/* (it also carries .v7-link: underlined words at rest, 1.5px 4px below, heavier on hover and focus; the arrow bare) */
+/* buttons: the global layer styles the pills (.sx-btn-gold / .sx-btn-ink primary, .sx-btn-ghost outline) */
 .sx-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;white-space:nowrap;text-decoration:none}
-html:not(#_) body .sx-home .sx-btn-ghost{gap:8px}
 .sx-btn-arrow{display:inline-block}
-html:not(#_) body .sx-home .sx-btn-ghost{text-decoration-line:none!important}
-.sx-btn-ghost>span:first-child{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
-.sx-btn-ghost:is(:hover,:focus-visible)>span:first-child{text-decoration-thickness:2.5px}
+.sx-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+html:not(#_) body .sx-home :is(.sx-actions,.sx-panel-links)>.sx-btn+.sx-btn{margin-inline-start:0}
 
 @media (prefers-reduced-motion:no-preference){
-  .sx-link,.sx-panel-links a,.sx-contact-link,.sx-btn-ghost>span:first-child,.sx-offer a,.sx-offer-arrow,.sx-play,.sx-marquee-toggle,
-  .sx-step-cta strong,.sx-step-cta i,.sx-tab,.sx-panel-cap strong,.sx-tile-cap strong,.sx-tile-arrow,.sx-tile-end a,
-  .sx-rail-btn,.sx-row h3,.sx-row-arrow{transition:color var(--v7-dur-hover) var(--v7-ease),background-color var(--v7-dur-hover) var(--v7-ease),border-color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease),text-decoration-thickness var(--v7-dur-hover) var(--v7-ease)}
+  .sx-link,.sx-offer a,.sx-offer-arrow,.sx-play,.sx-marquee-toggle,.sx-tab,.sx-panel-cap,.sx-step-cta strong,
+  .sx-tile a,.sx-tile-cap strong,.sx-row-arrow,.sx-contact-link{transition:color var(--m8-hover) var(--m8-ease),background-color var(--m8-hover) var(--m8-ease),border-color var(--m8-hover) var(--m8-ease),text-decoration-color var(--m8-hover) var(--m8-ease)}
+  .sx-panel-img img,.sx-tile-media img{transition:transform var(--m8-slide) var(--m8-ease)}
 }
 
-/* ── Hero (navy) ────────────────────────────────────────────── */
-.sx-hero{position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:calc(var(--nav-h) + clamp(40px,7vh,88px));background:var(--v7-navy);color:var(--v7-body-inv)}
-.sx-hero>.container{flex:1;display:flex;flex-direction:column;width:100%}
-/* The copy column is the wider one, so the headline can stand at the shared H1 size (--v7-h1) and remain the largest
-   type on the page. */
-.sx-hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);column-gap:clamp(48px,5vw,80px);align-items:center}
-.sx-display{font-size:var(--v7-h1);line-height:var(--v7-h1-lh);margin:0 0 28px}
+/* ── 1 Hero carousel ────────────────────────────────────────── */
+.sx-top{padding:calc(var(--nav-h) + 16px) 0 clamp(16px,2vw,32px)}
+.sx-heroes{width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));margin-inline:auto;--m8-arrow-inset:-22px}
+/* each slide is a rounded grey panel: the copy at left, a photograph filling the right */
+html:not(#_) .sx-slide{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"copy media";
+  width:auto;min-height:clamp(500px,40vw,580px);margin:0;background:var(--m8-card);text-align:left}
+.sx-slide-copy{grid-area:copy;align-self:center;min-width:0;padding:clamp(40px,4.4vw,64px)}
+.sx-slide-media{grid-area:media;position:relative;min-height:100%;margin:0;overflow:hidden;background:var(--m8-band)}
+.sx-slide-media>img,.sx-hero-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sx-slide-copy .sx-eyebrow{margin-bottom:20px}
+.sx-slide-copy .sx-h2{font-size:clamp(2.25rem,3.6vw,3.25rem);line-height:1.12;letter-spacing:-.025em}
+.sx-slide-copy .sx-body{margin-bottom:32px}
+
+/* slide 1: the headline breaks at the sentence; each sentence is one line at the H1 size where the column allows it
+   and smaller only where it must (Figtree 700 at this tracking: "Advanced wound care." measures 10.0em). */
+.sx-display{margin:0 0 24px;font-size:var(--m8-h1);font-weight:700;line-height:1.08;letter-spacing:-.025em}
 .sx-display .sx-line{display:block}
-/* The headline breaks at the sentence: each sentence is one unbroken line, at the H1 token where the copy column
-   allows and smaller only where it must, so the longer sentence ("Advanced wound care." = 10.48em in Source Serif 4
-   at 420 and this tracking) always fits and no word is ever stranded. Browsers without container units keep the
-   token and wrap normally. */
 @supports (width:1cqi){
-  .sx-hero-copy{container-type:inline-size}
-  html:not(#_) .sx-home .sx-display{font-size:max(1.5rem,min(var(--v7-h1),calc(100cqi / 10.7)))}
+  .sx-slide-hero .sx-slide-copy{container-type:inline-size}
+  html:not(#_) .sx-home .sx-display{font-size:max(1.75rem,min(var(--m8-h1),calc(100cqi / 10.15)))}
   .sx-display .sx-line{white-space:nowrap}
 }
-.sx-lead{max-width:24em;margin:0 0 40px;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.6;color:var(--v7-body-inv)}
-.sx-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
-.sx-hero-photo{position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:var(--v7-radius);background:var(--v7-navy-deep)}
-.sx-hero-photo img{width:100%;height:100%;object-fit:cover}
-.sx-hero-cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin-top:16px;font-size:14px;line-height:1.5;color:var(--v7-muted-inv)}
-.sx-hero-cap strong{font-weight:500;color:var(--v7-ink-inv)}
-.sx-hero-cap small{margin-left:auto;font-size:14px}
+.sx-lead{max-width:26em;margin:0 0 32px;font-size:clamp(1.125rem,1.3vw,1.25rem);line-height:1.55;color:var(--m8-body)}
+.sx-slide-hero .sx-hero-photo>img{object-position:14% 50%}
+/* the hero photograph is a small grid: the picture behind, the caption on a soft navy fade at its foot, and the
+   introduction button in that fade above the caption's words at the right, clear of both faces (at the top right
+   it sat on the patient's head) */
+.sx-hero-visual{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
+.sx-hero-photo{display:contents}
+.sx-hero-cap{grid-row:2;grid-column:1;position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;
+  padding:72px 28px 22px;background:linear-gradient(180deg,rgba(10,23,38,0),rgba(10,23,38,.6) 38%,rgba(10,23,38,.82));line-height:1.5;color:#fff}
+.sx-hero-cap strong{font-weight:600;color:#fff}
+.sx-hero-cap small{margin-left:auto;color:#fff}
 .sx-nb{white-space:nowrap}
-
-/* intro replay: a plain navy label on the photograph (intro.js shows it) */
-.sx-hero .sx-play-wrap{position:absolute;right:16px;bottom:16px;margin:0}
-.sx-play{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;border:0;border-radius:var(--v7-radius);background:var(--v7-navy);color:#fff;font:500 14px/1 var(--font-body);cursor:pointer}
+html:not(#_) .sx-hero-visual .sx-play-wrap{grid-row:2;grid-column:1;align-self:start;justify-self:end;position:relative;z-index:2;margin:14px 28px 0}
+.sx-play{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 18px;border:0;border-radius:var(--m8-pill);
+  background:rgba(255,255,255,.94);color:var(--m8-ink);font:600 14px/1 var(--font-body);cursor:pointer;box-shadow:0 2px 10px rgba(16,35,58,.12)}
 .sx-play[hidden]{display:none}
-.sx-play-icon{font-size:9px;color:inherit}
-.sx-play:hover{background:var(--v7-navy-deep)}
+/* the play mark is drawn, not the text triangle (no emoji rendering on phones); the glyph stays aria-hidden */
+.sx-play-icon{display:block;flex:none;width:9px;height:10px;font-size:0;line-height:0;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
+.sx-play:hover{background:#fff;color:var(--m8-navy-hover)}
 
-/* offer row: four quiet links under one hairline */
-.sx-offer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,3vw,48px);margin:clamp(48px,7vh,88px) 0 0;padding:0;list-style:none;border-top:1px solid var(--v7-hair-inv)}
-.sx-offer a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;color:var(--v7-body-inv);font-size:16px;font-weight:400;line-height:1.35;text-decoration:none}
-.sx-offer-arrow{color:var(--v7-muted-inv)}
-.sx-offer a:hover,.sx-offer a:hover .sx-offer-arrow{color:#fff}
+/* slide 2: the evidence map as a white card on the photograph */
+.sx-slide-ev .sx-slide-media>img{object-position:50% 30%}
+.sx-ev-map{grid-area:media;z-index:1;align-self:end;justify-self:start;display:grid;grid-template-columns:auto minmax(40px,1fr) auto;
+  width:min(420px,calc(100% - 48px));min-height:176px;margin:24px;padding:18px 22px;border-radius:var(--m8-radius-sm);background:#fff;
+  box-shadow:0 8px 28px rgba(16,35,58,.16)}
+.sx-ev-hub{align-self:center;padding-right:12px;font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
+.sx-ev-lines{display:block;width:100%;height:100%;overflow:visible}
+.sx-ev-lines path{fill:none;stroke:var(--m8-ink);stroke-opacity:.28;stroke-width:1;vector-effect:non-scaling-stroke}
+.sx-ev-nodes{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));margin:0;padding:0;list-style:none}
+.sx-ev-nodes li{display:flex;align-items:center}
+.sx-ev-nodes span{display:inline-block;padding:4px 0 4px 12px;font-size:15px;font-weight:500;line-height:1.35;color:var(--m8-ink)}
+.sx-ev-nodes span::first-letter{text-transform:uppercase}
 
-/* product-name ticker: muted Plex caps with space between the names.
-   At rest (no JS, or reduced motion) the names stand still and wrap across the content column, every one visible;
-   the repeated list exists only for the loop and stays out of view. home.js adds .has-toggle when motion is allowed:
-   then the names move slowly in a band that fades softly at both edges, pause on hover, and stop with a 44px button
-   that has its own slot at the right end of the band (aligned to the content edge), clear of the names and their
-   fades. */
-.sx-marquee{position:relative;padding:16px var(--v7-gutter);background:var(--v7-navy-deep)}
-.sx-marquee-view{max-width:1200px;margin-inline:auto}
+/* slide 3 */
+.sx-slide-sv .sx-slide-media>img{object-position:50% 40%}
+
+/* controls: the global round arrows hang on the panel edges; the dots sit under it */
+.sx-heroes .m8-dots{margin-top:12px}
+
+/* without JS: the three panels stack, every one visible */
+html:not(.sx-js) .sx-heroes .m8-track{flex-direction:column;overflow:visible}
+html:not(.sx-js) .sx-heroes .m8-track>*{flex:none}
+
+/* ── 2 Offer row ────────────────────────────────────────────── */
+.sx-offer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:clamp(20px,2.4vw,32px) 0 0;padding:0;list-style:none}
+.sx-offer a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;padding:12px 16px 12px 24px;
+  border-radius:var(--m8-radius-sm);background:var(--m8-band);color:var(--m8-ink);font-size:16px;font-weight:600;line-height:1.3;text-decoration:none}
+.sx-offer-arrow{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--m8-ink);font-size:16px;line-height:1}
+.sx-offer a:hover{background:var(--m8-card)}
+.sx-offer a:hover .sx-offer-arrow{background:var(--m8-navy);color:#fff}
+
+/* ── 3 Ticker: product names in a rounded grey strip ────────── */
+/* At rest (no JS, or reduced motion) the names stand still and wrap, every one visible; the repeated list exists only
+   for the loop and stays out of view. With motion, home.js adds .has-toggle: the names move slowly, fade at both
+   ends, pause on hover, and stop with a 44px round button at the end of the strip. */
+.sx-marquee{--v7-surface:light;--v7-focus:var(--m8-accent);position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:12px auto 0;padding:14px 24px;border-radius:var(--m8-radius-card);background:var(--m8-band)}
+.sx-marquee-view{margin-inline:auto}
 .sx-marquee ul{display:flex;flex-wrap:wrap;justify-content:center;margin:0;padding:0;list-style:none}
 .sx-marquee ul[aria-hidden="true"]{display:none}
-.sx-marquee li{padding:4px 20px;font:500 13px/20px var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;white-space:nowrap;color:var(--v7-muted-inv)}
-.sx-marquee.has-toggle{display:flex;align-items:center;gap:16px;padding:8px max(var(--v7-gutter),calc((100% - 1280px) / 2 + var(--v7-gutter))) 8px 0}
-.sx-marquee.has-toggle .sx-marquee-view{flex:1;min-width:0;max-width:none;margin:0;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 72px,#000 calc(100% - 72px),transparent);mask-image:linear-gradient(90deg,transparent,#000 72px,#000 calc(100% - 72px),transparent)}
+.sx-marquee li{padding:4px 18px;font:600 13px/20px var(--font-body);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--m8-muted)}
+.sx-marquee.has-toggle{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 0;border-radius:var(--m8-pill)}
+.sx-marquee.has-toggle .sx-marquee-view{flex:1;min-width:0;margin:0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 64px,#000 calc(100% - 64px),transparent);mask-image:linear-gradient(90deg,transparent,#000 64px,#000 calc(100% - 64px),transparent)}
 .sx-marquee.has-toggle .sx-marquee-track{display:flex;width:max-content;animation:sxMarquee 150s linear infinite}
 .sx-marquee.has-toggle ul{flex-wrap:nowrap}
 .sx-marquee.has-toggle ul[aria-hidden="true"]{display:flex}
 .sx-marquee.has-toggle li{padding:12px 28px}
 .sx-marquee:hover .sx-marquee-track,.sx-marquee.is-paused .sx-marquee-track,.sx-marquee.is-off .sx-marquee-track{animation-play-state:paused}
 @keyframes sxMarquee{to{transform:translateX(-50%)}}
-/* the stop control: a 44px square with a quiet 1px edge (3:1 on the band), pause bars or a play triangle */
-.sx-marquee-toggle{flex:none;position:relative;display:grid;place-items:center;width:44px;height:44px;padding:0;
-  border:1px solid color-mix(in srgb,var(--v7-muted-inv) 60%,transparent);border-radius:var(--v7-radius);background:none;color:var(--v7-muted-inv);cursor:pointer}
-.sx-marquee-toggle:hover{color:#fff;border-color:#fff}
-.sx-marquee-toggle::before,.sx-marquee-toggle::after{content:"";width:2px;height:12px;background:currentColor;grid-area:1/1}
+.sx-marquee-toggle{flex:none;position:relative;display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--m8-muted);border-radius:50%;
+  background:#fff;color:var(--m8-ink);cursor:pointer}
+.sx-marquee-toggle:hover{border-color:var(--m8-navy);background:var(--m8-navy);color:#fff}
+.sx-marquee-toggle:focus-visible{outline:2px solid var(--m8-accent);outline-offset:2px}
+.sx-marquee-toggle::before,.sx-marquee-toggle::after{content:"";width:2px;height:12px;border-radius:1px;background:currentColor;grid-area:1/1}
 .sx-marquee-toggle::before{transform:translateX(-3px)}.sx-marquee-toggle::after{transform:translateX(3px)}
-.sx-marquee.is-paused .sx-marquee-toggle::before{width:0;height:0;background:none;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent currentColor;transform:translateX(1px)}
+.sx-marquee.is-paused .sx-marquee-toggle::before{width:0;height:0;border-radius:0;background:none;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent currentColor;transform:translateX(1px)}
 .sx-marquee.is-paused .sx-marquee-toggle::after{display:none}
 
-/* ── Our approach (paper) ───────────────────────────────────── */
-.sx-manifesto{padding-block:var(--v7-section);background:var(--v7-paper)}
-.sx-manifesto-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);column-gap:clamp(32px,4vw,64px)}
-.sx-manifesto .sx-eyebrow{grid-column:1;grid-row:1/3;align-self:start;margin:.9em 0 0}
-.sx-manifesto-text{grid-column:2;max-width:22em;font:420 clamp(1.75rem,2.9vw,2.625rem)/1.24 var(--font-display);letter-spacing:var(--v7-track);color:var(--v7-ink);text-wrap:pretty}
-.sx-manifesto-sub{grid-column:2;max-width:var(--v7-measure);margin-top:var(--v7-stack);font-size:var(--v7-body-size);line-height:var(--v7-body-lh);color:var(--v7-body)}
-
-/* ── Question story (white) ─────────────────────────────────── */
-.sx-story{padding-block:var(--v7-section);background:var(--v7-white)}
-.sx-story-intro{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(48px,6vw,96px);align-items:end;margin-bottom:var(--v7-section-sm)}
-.sx-story-intro .sx-eyebrow{grid-column:1}
-.sx-story-intro .sx-h2{grid-column:1;grid-row:2/4;margin:0}
-.sx-story-intro .sx-body{grid-column:2;grid-row:2;margin:0 0 4px}
-.sx-story-intro .sx-link{grid-column:2;grid-row:3;justify-self:start;margin-bottom:-10px}
-.sx-steps{margin:0;padding:0;list-style:none}
-/* the three questions in order, each a question beside its picture; nothing is pinned or hidden, and each step
-   fades up in place as it enters view */
-.sx-step{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(48px,6vw,96px);align-items:center}
-.sx-step+.sx-step{margin-top:var(--v7-section-sm)}
-.sx-qnum{display:block;margin-bottom:16px;font:500 13px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:var(--v7-label-track);color:var(--v7-muted)}
-.sx-step-copy h3{margin:0 0 16px;font-size:clamp(1.5rem,2.2vw,2rem);line-height:var(--v7-h3-lh)}
-.sx-step-copy p{max-width:30em;color:var(--v7-body)}
-/* the step's link: a quiet text link with its note beneath */
-.sx-step-cta{display:inline-flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;min-height:44px;margin-top:24px;padding:10px 0;color:var(--v7-ink);text-decoration:none}
-.sx-step-cta strong{font-size:15px;font-weight:500;line-height:24px;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
-.sx-step-cta i{order:1;font-style:normal;font-size:15px;color:var(--v7-ink)}
-.sx-step-cta span{order:2;flex-basis:100%;margin-top:4px;font-size:14px;line-height:1.5;color:var(--v7-muted)}
-.sx-step-cta:is(:hover,:focus-visible) strong{text-decoration-thickness:2.5px}
-
-/* step 1: two photographs, names beneath */
-.sx-v-pair{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px;align-items:start}
-.sx-v-main,.sx-v-side{display:flex;flex-direction:column;gap:12px;min-width:0}
-.sx-v-pair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--v7-radius);background:var(--v7-tint)}
-.sx-v-side img{aspect-ratio:2/3}
-.sx-v-name{font-size:14px;font-weight:500;line-height:1.3;color:var(--v7-ink)}
-.sx-v-product figcaption{margin-top:16px;font-size:14px;color:var(--v7-muted)}
-
-/* step 2: the reading guide, on the one card tint */
-.sx-guide{padding:clamp(32px,3.4vw,48px);background:var(--v7-tint);border-radius:var(--v7-radius)}
-.sx-guide-eyebrow{margin:0 0 16px;font-size:var(--v7-label-size);line-height:1.4}
-.sx-guide h4{margin:0 0 28px;font-size:clamp(1.375rem,1.9vw,1.75rem);font-weight:440;letter-spacing:var(--v7-track);color:var(--v7-ink)}
-.sx-guide ul{margin:0;padding:0;list-style:none;border-top:1px solid var(--v7-hair)}
-.sx-guide li{display:grid;grid-template-columns:minmax(110px,9.5em) minmax(0,1fr);gap:4px 24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--v7-hair)}
-.sx-guide li span{font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
-.sx-guide li strong{font-size:16px;font-weight:400;line-height:1.5;color:var(--v7-ink)}
-.sx-guide-note{margin-top:20px;font-size:14px;line-height:1.55;color:var(--v7-muted)}
-
-/* step 3: the care pathway as a thin-ruled list on the card tint */
-.sx-v-path{padding:clamp(32px,3.4vw,48px);background:var(--v7-tint);border-radius:var(--v7-radius);color:var(--v7-body)}
-.sx-v-path p{margin:0 0 20px;font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
-.sx-v-path ol{margin:0;padding:0;list-style:none;border-bottom:1px solid var(--v7-hair)}
-.sx-v-path li{padding:16px 0;border-top:1px solid var(--v7-hair);font:420 clamp(1.3rem,1.8vw,1.6rem)/1.3 var(--font-display);letter-spacing:var(--v7-track);color:var(--v7-ink)}
-.sx-v-path li::first-letter{text-transform:uppercase}
-
-/* ── Product showcase (paper) ───────────────────────────────── */
-.sx-section{padding-block:var(--v7-section)}
-.sx-portfolio{background:var(--v7-paper)}
-.sx-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:var(--v7-stack)}
+/* ── 4 Products: three photo cards and the product rail ─────── */
+.sx-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(28px,3vw,40px)}
 .sx-head .sx-h2{margin:0}
-.sx-head>.sx-link{flex:none;margin-bottom:-6px}
-.sx-tabs{position:relative;display:flex;gap:clamp(28px,3.5vw,48px);margin-bottom:var(--v7-stack);box-shadow:inset 0 -1px 0 var(--v7-hair)}
-.sx-tab{display:inline-flex;align-items:center;min-height:56px;padding:0;border:0;background:none;color:var(--v7-muted);font:400 16px/1.2 var(--font-body);letter-spacing:0;white-space:nowrap;cursor:pointer}
-.sx-tab-num{display:none}
-.sx-tab:hover,.sx-tab[aria-selected="true"]{color:var(--v7-ink)}
-/* the current tab: a 1px deep-gold rule under it (gold marks the current state) */
-.sx-tab-ink{position:absolute;left:0;bottom:0;width:var(--w,0);height:1px;background:var(--sx-gold-deep);transform:translateX(var(--x,0))}
-@media (prefers-reduced-motion:no-preference){.sx-tab-ink{transition:transform 400ms var(--v7-ease),width 400ms var(--v7-ease)}}
-.sx-panel{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(48px,6vw,96px);align-items:center}
-.sx-show:not(.is-live) .sx-panel+.sx-panel{margin-top:var(--v7-section-sm)}
-.sx-show.is-live .sx-panel{display:none}
-.sx-show.is-live .sx-panel.is-active{display:grid}
-/* controls that only work with JS (home.js unhides them) and the rail controls when every card already fits */
-.sx-tabs[hidden],.sx-rail-ctrl[hidden]{display:none}
-.sx-panel-tag{display:block;margin:0 0 20px;font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
+.sx-head>.sx-link{flex:none;margin-bottom:-4px}
+.sx-cats{align-items:stretch}
+/* a category card: the words and pills on the grey top, the product photograph filling the rest (its link goes to
+   the product), the product's name and photo note in a white chip at its foot */
+html:not(#_) .sx-cat{min-height:clamp(500px,40vw,560px)}
+html:not(#_) .sx-cat .m8-card-body{flex:0 0 auto;gap:12px;padding:30px 30px 8px}
 .sx-panel-tag span{display:none}
-.sx-panel-copy h3{margin:0 0 16px;font-size:clamp(1.625rem,2.4vw,2.25rem);line-height:var(--v7-h3-lh)}
-.sx-panel-copy>p:not([class]){max-width:28em;color:var(--v7-body)}
-.sx-panel-links{display:flex;flex-direction:column;align-items:flex-start;margin-top:20px}
-.sx-panel-media{display:block;color:inherit;text-decoration:none}
-.sx-panel-img{display:block;aspect-ratio:3/2;overflow:hidden;border-radius:var(--v7-radius);background:var(--v7-tint)}
-.sx-panel-img img{width:100%;height:100%;object-fit:cover}
-.sx-panel-cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:16px;font-size:14px;line-height:1.5;color:var(--v7-muted)}
-.sx-panel-cap strong{font-size:15px;font-weight:500;color:var(--v7-ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:transparent}
-.sx-panel-cap small{font-size:14px}
-.sx-panel-media:is(:hover,:focus-visible) .sx-panel-cap strong{text-decoration-color:currentColor}
+.sx-cat .m8-card-text{max-width:30em}
+.sx-panel-links{gap:10px;margin-top:6px}
+html:not(#_) body .sx-home .sx-panel-links .sx-btn{min-height:44px;padding-inline:20px!important}
+.sx-panel-media{position:relative;flex:1 1 auto;display:block;min-height:clamp(220px,18vw,280px);margin-top:16px;color:inherit;text-decoration:none}
+/* its focus ring is drawn above the photograph, inside the card's rounded foot */
+html:not(#_) .sx-home .sx-cat .sx-panel-media:focus-visible{outline:none}
+.sx-panel-media::after{content:"";position:absolute;inset:0;z-index:2;border-radius:0 0 var(--m8-radius-card) var(--m8-radius-card);pointer-events:none}
+.sx-panel-media:focus-visible::after{box-shadow:inset 0 0 0 2px var(--m8-accent),inset 0 0 0 4px #fff}
+.sx-panel-img{position:absolute;inset:0;overflow:hidden;background:var(--m8-card)}
+.sx-panel-img::after{content:"";position:absolute;inset:0 0 auto;height:72px;background:linear-gradient(180deg,var(--m8-band),rgba(242,243,245,0));pointer-events:none}
+.sx-panel-img img{width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.sx-panel-cap{position:absolute;left:20px;bottom:20px;display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:2px 10px;min-height:44px;
+  max-width:calc(100% - 40px);padding:11px 18px;border-radius:var(--m8-pill);background:rgba(255,255,255,.94);line-height:1.4;color:var(--m8-muted)}
+.sx-panel-cap strong{font-size:15px;font-weight:700;color:var(--m8-ink)}
+.sx-panel-media:hover .sx-panel-cap{background:#fff}
+.sx-panel-media:hover .sx-panel-cap strong{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.sx-panel-media:focus-visible .sx-panel-cap{background:#fff}
+.sx-panel-media:focus-visible .sx-panel-cap strong{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+@media (hover:hover){.sx-panel-media:hover .sx-panel-img img{transform:scale(1.03)}}
+.sx-panel-media:focus-visible .sx-panel-img img{transform:scale(1.03)}
 
-/* rail: four cards to the container width, scroll-snapping; captions beneath each photograph */
-.sx-rail-wrap{margin-top:var(--v7-stack)}
-.sx-rail{position:relative;display:flex;gap:24px;margin:-4px -4px 0;padding:4px 4px 8px;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:4px;scrollbar-width:none;cursor:grab}
-.sx-rail::-webkit-scrollbar{display:none}
-.sx-rail.is-free{scroll-snap-type:none}
+/* the rail: category tabs (pills) filter a horizontal card rail with the global round arrows */
+.sx-browse{margin-top:clamp(48px,5vw,72px)}
+.sx-tabs{position:relative;display:flex;gap:8px;margin:0 0 24px}
+.sx-tabs[hidden]{display:none}
+.sx-tab{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:0;border-radius:var(--m8-pill);background:var(--m8-band);
+  color:var(--m8-ink);font:600 15px/1.2 var(--font-body);letter-spacing:0;white-space:nowrap;cursor:pointer}
+.sx-tab-num,.sx-tab-ink{display:none}
+.sx-tab:hover{background:var(--m8-card)}
+.sx-tab[aria-selected="true"],.sx-tab[aria-selected="true"]:hover{background:var(--m8-navy);color:#fff}
+.sx-tab:focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
+html:not(#_) .sx-rail-box{--m8-slide-w:calc((100% - 3 * var(--m8-gap)) / 4)}
+/* the rail's round arrows sit in their own control row above it (house-motion.js .m8-controls), never over a
+   product photograph; on a wide screen that row is the tabs' row, at its right end */
+@media (min-width:1024px){
+  html:not(#_) .sx-rail-box>.m8-controls{position:absolute;right:0;bottom:calc(100% + 24px);margin:0}
+}
+@media (max-width:1023px){
+  .sx-tabs{margin-bottom:12px}
+  html:not(#_) .sx-rail-box>.m8-controls{margin-bottom:12px}
+}
+/* no padding on the scroller: the carousel steps card edge to card edge (focus rings are drawn inside the cards) */
+html:not(#_) .sx-rail{position:relative}
+html:not(#_) .sx-rail.is-free{scroll-snap-type:none}
 .sx-rail.is-drag{cursor:grabbing;-webkit-user-select:none;user-select:none}
 .sx-rail.is-drag a{pointer-events:none}
-.sx-tile{flex:0 0 calc((100% - 72px) / 4);min-width:0;scroll-snap-align:start}
-.sx-tile a{display:grid;grid-template-columns:minmax(0,1fr) auto;height:100%;color:inherit;text-decoration:none}
-.sx-tile-media{grid-column:1/-1;display:block;aspect-ratio:3/2;overflow:hidden;border-radius:var(--v7-radius);background:var(--v7-tint)}
+.sx-tile{display:flex}
+.sx-tile[hidden]{display:none}
+.sx-tile a{display:flex;flex-direction:column;width:100%;border-radius:var(--m8-radius-card);overflow:hidden;background:var(--m8-band);color:var(--m8-ink);text-decoration:none}
+.sx-tile-media{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--m8-card)}
 .sx-tile-media img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none}
-.sx-tile-cap{display:flex;flex-direction:column;gap:4px;padding-top:16px}
-.sx-tile-group{font:500 12px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
-.sx-tile-cap strong{font:420 1.1875rem/1.3 var(--font-display);letter-spacing:-.01em;color:var(--v7-ink)}
-.sx-tile-tag{font-size:13px;line-height:1.5;color:var(--v7-muted)}
+.sx-tile-cap{display:flex;flex-direction:column;gap:6px;padding:18px 22px 22px}
+.sx-tile-group{font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
+.sx-tile-cap strong{font:700 1.1875rem/1.3 var(--font-display);letter-spacing:-.01em;color:var(--m8-ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:transparent}
+.sx-tile-tag{line-height:1.5;color:var(--m8-muted)}
 .sx-tile[data-cat] .sx-tile-arrow{display:none}   /* aria-hidden: the photograph and name already read as the link */
-.sx-tile-cap strong{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:transparent}
 .sx-tile a:is(:hover,:focus-visible) .sx-tile-cap strong{text-decoration-color:currentColor}
-.sx-tile-arrow{color:var(--v7-muted)}
-.sx-tile-end a{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;aspect-ratio:3/2;height:auto;padding:24px;border-radius:var(--v7-radius);background:var(--v7-white);color:var(--v7-ink);font:420 1.1875rem/1.3 var(--font-display);letter-spacing:-.01em}
-.sx-tile-end a .sx-tile-arrow{padding:0}
-.sx-tile-end a:hover{background:var(--v7-tint)}
-.sx-rail-ctrl{display:flex;align-items:center;gap:4px;margin-top:24px}
-.sx-rail-meter{position:relative;flex:1;height:1px;margin-right:24px;background:var(--v7-hair)}
-.sx-rail-meter span{position:absolute;left:0;top:0;width:100%;height:1px;background:var(--v7-ink);transform:scaleX(var(--p,0));transform-origin:left}
-@media (prefers-reduced-motion:no-preference){.sx-rail-meter span{transition:transform 200ms var(--v7-ease)}}
-.sx-rail-btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:var(--v7-radius);background:none;color:var(--v7-ink);font-size:18px;line-height:1;cursor:pointer}
-.sx-rail-btn:hover{color:var(--sx-gold-deep)}
-.sx-rail-btn[aria-disabled="true"]{color:var(--v7-muted);opacity:.45;cursor:default}
-.sx-note{max-width:var(--v7-measure);margin-top:32px;font-size:14px;line-height:1.55;color:var(--v7-muted)}
+@media (hover:hover){.sx-tile a:hover .sx-tile-media img{transform:scale(1.03)}}
+html:not(#_) .sx-tile a:focus-visible{outline:2px solid var(--m8-accent);outline-offset:-2px;box-shadow:inset 0 0 0 4px #fff}
+.sx-tile-end a{justify-content:space-between;min-height:100%;padding:28px;background:var(--m8-navy);color:#fff;font:700 1.375rem/1.25 var(--font-display);letter-spacing:-.015em}
+.sx-tile-end a:hover{background:var(--m8-navy-hover)}
+.sx-tile-end .sx-tile-arrow{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--m8-ink);font-size:18px}
 
-/* ── Evidence (white) ───────────────────────────────────────── */
-.sx-evidence{padding-block:var(--v7-section) var(--v7-section-sm);background:var(--v7-white)}
-.sx-ev-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:clamp(48px,6vw,96px)}
-.sx-ev-head{grid-column:1;grid-row:1}
-.sx-ev-body{grid-column:1;grid-row:2;align-self:start}
-.sx-ev-body .sx-body{margin-bottom:32px}
-/* the map: thin lines from one word to four, nothing boxed */
-.sx-ev-map{grid-column:2;grid-row:1/3;align-self:center;display:grid;grid-template-columns:auto minmax(64px,1fr) auto;min-height:288px}
-.sx-ev-hub{align-self:center;padding-right:16px;font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
-.sx-ev-lines{display:block;width:100%;height:100%;overflow:visible}
-.sx-ev-lines path{fill:none;stroke:var(--v7-ink);stroke-opacity:.24;stroke-width:1;vector-effect:non-scaling-stroke}
-.sx-ev-nodes{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));margin:0;padding:0;list-style:none}
-.sx-ev-nodes li{display:flex;align-items:center}
-.sx-ev-nodes span{display:inline-block;padding:8px 0 8px 16px;font-size:16px;font-weight:400;line-height:1.4;color:var(--v7-ink)}
-.sx-ev-nodes span::first-letter{text-transform:uppercase}
+/* ── 5 Our approach: a photograph beside a navy statement card ─ */
+.sx-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--m8-gap);align-items:stretch}
+.sx-split-photo{position:relative;min-height:clamp(340px,34vw,500px);border-radius:var(--m8-radius-panel);overflow:hidden;background:var(--m8-card)}
+.sx-split-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+html:not(#_) .sx-split-quote{display:flex;align-items:center;width:auto;margin:0}
+html:not(#_) .sx-split-quote .m8-panel-body{padding:clamp(36px,5vw,80px)}
+.sx-manifesto .sx-eyebrow{margin-bottom:20px}
+html:not(#_) .sx-home .sx-manifesto-text{max-width:22em;font:700 clamp(1.625rem,2.6vw,2.375rem)/1.25 var(--font-display);letter-spacing:-.02em;color:#fff;text-wrap:pretty}
+html:not(#_) .sx-home .sx-manifesto-sub{max-width:36em;margin-top:24px;font-size:var(--m8-body-size);line-height:var(--m8-body-lh);color:var(--m8-body-inv)}
 
-/* ── Services (white) ───────────────────────────────────────── */
-.sx-services{padding-top:var(--v7-section-sm);background:var(--v7-white)}
-body.page-home .sx-home #services>.container,body.page-home .sx-home #portfolio>.container{display:block}
-.sx-head-aside{max-width:26em;margin:0;color:var(--v7-body)}
-.sx-rows{border-top:1px solid var(--v7-hair)}
-.sx-row{position:relative;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,4.4fr) 32px;column-gap:clamp(24px,3vw,48px);align-items:baseline;padding:32px 0;border-bottom:1px solid var(--v7-hair);color:var(--v7-body);text-decoration:none}
-.sx-row-tag{font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--v7-muted)}
-.sx-row h3{font-size:clamp(1.25rem,1.7vw,1.5rem);line-height:var(--v7-h3-lh);color:var(--v7-ink)}
-.sx-row p{font-size:16px;line-height:1.6}
-.sx-row-arrow{justify-self:end;font-size:18px;line-height:1;color:var(--v7-muted)}
-.sx-row:is(:hover,:focus-visible) .sx-row-arrow{color:var(--v7-ink)}
+/* ── 6 Three questions: three cards ─────────────────────────── */
+.sx-story{padding-top:clamp(24px,3vw,48px)}
+/* the label sits on the heading; the text and its link beside them, all meeting at the foot */
+.sx-story-intro{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(48px,6vw,96px);align-items:end;margin-bottom:clamp(28px,3vw,40px)}
+.sx-story-intro .sx-eyebrow{grid-column:1;grid-row:1}
+.sx-story-intro .sx-h2{grid-column:1;grid-row:2;margin:0}
+.sx-story-intro .sx-body{grid-column:2;grid-row:1;margin:0 0 4px}
+.sx-story-intro .sx-link{grid-column:2;grid-row:2;justify-self:start;margin-bottom:-8px}
+.sx-steps{margin:0;padding:0;list-style:none}
+.sx-step{flex-direction:column}
+.sx-step-visual{order:-1;position:relative;display:flex;flex-direction:column;min-height:clamp(260px,23vw,320px);margin:0;background:var(--m8-card)}
+html:not(#_) .sx-step .m8-card-body{gap:12px;padding:26px 28px 28px}
+.sx-qnum{display:block;font:600 13px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:.06em;color:var(--m8-accent)}
+html:not(#_) .sx-home .sx-step-copy h3{font-size:clamp(1.25rem,1.6vw,1.5rem);font-weight:700;line-height:1.25;letter-spacing:-.015em}
+/* three across: every question keeps two lines' room, so the three texts start level */
+@media (min-width:1024px){html:not(#_) .sx-home .sx-step-copy h3{min-height:2.5em}}
+.sx-step-copy p{font-size:16px;line-height:1.55;color:var(--m8-body)}
+/* the step's one link: words and an arrow, its note beneath; it stretches over the whole card */
+.sx-step-cta{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;margin-top:auto;padding-top:10px;color:var(--m8-ink);text-decoration:none}
+.sx-step-cta strong{font-size:15px;font-weight:700;line-height:24px;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
+.sx-step-cta i{order:1;font-style:normal;font-size:15px;color:var(--m8-ink)}
+.sx-step-cta span{order:2;flex-basis:100%;margin-top:2px;font-size:14px;line-height:1.5;color:var(--m8-muted)}
+.sx-step:hover .sx-step-cta strong,.sx-step-cta:focus-visible strong{text-decoration-thickness:2.5px}
+html:not(#_) .sx-home .sx-step .sx-step-cta:focus-visible{outline:none}   /* the card carries the ring (signature.css M10) */
+/* step 1: two photographs, names on them, the photo note beneath */
+.sx-v-pair{flex:1;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:3px;min-height:0}
+.sx-v-main,.sx-v-side{position:relative;min-width:0;overflow:hidden;background:var(--m8-card)}
+.sx-v-pair img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sx-v-name{position:absolute;left:12px;bottom:12px;padding:5px 12px;border-radius:var(--m8-pill);background:rgba(255,255,255,.94);font-size:14px;font-weight:600;line-height:1.3;color:var(--m8-ink)}
+.sx-v-product figcaption{padding:10px 20px;color:var(--m8-muted)}
+/* step 2: the reading guide */
+.sx-v-guide{justify-content:center;padding:clamp(22px,2.2vw,30px)}
+.sx-guide-eyebrow{margin:0 0 10px;line-height:1.4}
+html:not(#_) .sx-home .sx-guide h4{margin:0 0 16px;font-size:1.25rem;font-weight:700;line-height:1.25;letter-spacing:-.015em;color:var(--m8-ink)}
+.sx-guide ul{margin:0;padding:0;list-style:none;border-top:1px solid rgba(29,33,37,.14)}
+.sx-guide li{display:grid;grid-template-columns:minmax(92px,7.4em) minmax(0,1fr);gap:2px 16px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(29,33,37,.14)}
+.sx-guide li span{font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
+.sx-guide li strong{font-size:15px;font-weight:500;line-height:1.45;color:var(--m8-ink)}
+/* step 3: the care pathway */
+.sx-v-practice{justify-content:center;padding:clamp(22px,2.2vw,30px)}
+.sx-v-path p{margin:0 0 12px;font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
+.sx-v-path ol{margin:0;padding:0;list-style:none;border-bottom:1px solid rgba(29,33,37,.14)}
+.sx-v-path li{padding:11px 0;border-top:1px solid rgba(29,33,37,.14);font:700 clamp(1.125rem,1.5vw,1.375rem)/1.3 var(--font-display);letter-spacing:-.015em;color:var(--m8-ink)}
+.sx-v-path li::first-letter{text-transform:uppercase}
+
+/* ── 7 Services: white feature cards on the light grey band ─── */
+body.page-home .sx-home #services>.container{display:block}
+html:not(#_) .sx-services{padding-block:clamp(56px,6vw,88px)}
+html:not(#_) .sx-row{gap:10px;min-height:280px;padding:28px 26px 24px;color:var(--m8-body);text-decoration:none}
+.sx-row-tag{font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--m8-accent)}
+html:not(#_) .sx-home .sx-row h3{margin-top:4px;font-size:clamp(1.25rem,1.6vw,1.5rem);font-weight:700;line-height:1.25;letter-spacing:-.015em;color:var(--m8-ink)}
+/* side by side, every title keeps two lines' room, so the texts start level across the row */
+@media (min-width:761px){html:not(#_) .sx-home .sx-row h3{min-height:2.5em}}
+.sx-row p{font-size:16px;line-height:1.55;color:var(--m8-body)}
+.sx-row-arrow{display:grid;place-items:center;width:44px;height:44px;margin-top:auto;border-radius:50%;background:var(--m8-band);color:var(--m8-ink);font-size:18px;line-height:1}
+.sx-row:is(:hover,:focus-visible) .sx-row-arrow{background:var(--m8-navy);color:#fff}
+.sx-row:is(:hover,:focus-visible) h3{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
 .sx-soft-copy{display:contents}
-.sx-soft-viz{display:none}   /* aria-hidden ornament: the row reads like the others */
-.sx-services-link{margin-top:32px}
+.sx-soft-viz{display:none}   /* aria-hidden ornament: the card reads like the others */
 
-/* ── Closing (navy, the one band) ───────────────────────────── */
-.sx-cta{padding-block:var(--v7-section);background:var(--v7-navy)}
-.sx-cta-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--v7-stack)}
-.sx-home .sx-cta-title{max-width:12em;font-size:var(--v7-h2);line-height:var(--v7-h2-lh)}
-.sx-cta-body{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);column-gap:clamp(48px,7vw,120px);align-items:start}
-.sx-cta-body .sx-body{margin:0;color:var(--v7-body-inv)}
-.sx-cta-actions{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:center;column-gap:32px;row-gap:8px}
-.sx-cta-actions .sx-btn{grid-column:1/-1;justify-self:start;margin-bottom:8px}
+/* ── 8 Closing: a full-width rounded photo panel ────────────── */
+html:not(#_) .sx-cta{min-height:clamp(420px,36vw,520px)}
+html:not(#_) .sx-cta::after{background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(16,35,58,.80),rgba(16,35,58,.62))}
+html:not(#_) .sx-cta>img{object-position:50% 60%}
+html:not(#_) .sx-cta-body{max-width:780px}
+.sx-cta-body .sx-eyebrow{margin-bottom:0}
+html:not(#_) .sx-home .sx-cta-title{font-size:clamp(2.25rem,4.2vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;color:#fff}
+html:not(#_) .sx-cta-body .sx-body{max-width:36em;margin:20px auto 0;color:#fff}
+html:not(#_) .sx-cta-body .sx-cta-actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 28px;margin-top:32px}
+.sx-cta-actions .sx-btn{margin-right:4px}
+.sx-contact-link{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:600;line-height:1.3;color:#fff;
+  text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
+.sx-contact-link:is(:hover,:focus-visible){text-decoration-thickness:2.5px}
+.sx-close{padding-block:clamp(56px,6vw,88px)}
+
+/* ── 9 Important information ────────────────────────────────── */
+.sx-info .container{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:16px;align-items:start}
+html:not(#_) .sx-info .m8-info-head{margin:0;padding:0;border:0}
+.sx-info-text{max-width:68em}
+.sx-info-text>p{color:var(--m8-body)}
+.sx-info-text>p+p{margin-top:12px}
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width:1100px){
-  .sx-hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
-  .sx-row{grid-template-columns:minmax(0,2.6fr) minmax(0,4fr) minmax(0,4fr) 28px}
+  .sx-offer{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html:not(#_) .sx-rows.m8-grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html:not(#_) .sx-rail-box{--m8-slide-w:calc((100% - 2 * var(--m8-gap)) / 3)}
 }
-@media (max-width:999px){
-  .sx-step{grid-template-columns:1fr;row-gap:32px;align-items:start}
-  .sx-step-visual{max-width:640px}
-  .sx-panel{grid-template-columns:1fr;row-gap:32px}
-  .sx-panel-media{order:-1}
-  .sx-tile{flex-basis:calc((100% - 48px) / 3)}
-  .sx-ev-grid{grid-template-columns:1fr;grid-template-rows:none}
-  .sx-ev-head,.sx-ev-body,.sx-ev-map{grid-column:1;grid-row:auto}
-  .sx-ev-map{margin-top:var(--v7-stack);max-width:640px}
-  .sx-cta-body{grid-template-columns:1fr;row-gap:32px}
-  .sx-manifesto-grid{grid-template-columns:1fr}
-  .sx-manifesto .sx-eyebrow{grid-row:auto;margin:0 0 24px}
-  .sx-manifesto-text,.sx-manifesto-sub{grid-column:1}
-}
-@media (max-width:900px){
-  .sx-hero{min-height:0;padding-top:calc(var(--nav-h) + 48px)}
-  .sx-hero-grid{grid-template-columns:1fr;row-gap:48px}
-  .sx-hero-visual{max-width:680px}
-  .sx-offer{grid-template-columns:1fr 1fr;margin-top:56px}
-  .sx-offer a{min-height:64px}
+@media (max-width:1023px){
+  html:not(#_) .sx-slide{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+  .sx-split{grid-template-columns:1fr}
+  .sx-split-photo{min-height:0;aspect-ratio:16/9}
   .sx-story-intro{grid-template-columns:1fr}
   .sx-story-intro .sx-eyebrow,.sx-story-intro .sx-h2,.sx-story-intro .sx-body,.sx-story-intro .sx-link{grid-column:1;grid-row:auto}
-  .sx-story-intro .sx-h2{margin:0 0 24px}
-  .sx-head{flex-direction:column;align-items:flex-start;gap:16px}
-  .sx-row{grid-template-columns:minmax(0,1fr) 28px;row-gap:8px;padding:28px 0}
-  .sx-row-tag,.sx-row h3,.sx-row p{grid-column:1}
-  .sx-row-arrow{grid-column:2;grid-row:1/4;align-self:center}
+  .sx-story-intro .sx-h2{margin:0 0 16px}
+  .sx-story-intro .sx-link{margin-bottom:0}
+  html:not(#_) .sx-steps.m8-grid{grid-template-columns:minmax(0,1fr)}
+  /* the category cards: one per row, the words beside the photograph */
+  html:not(#_) .sx-cats.m8-grid{grid-template-columns:minmax(0,1fr)}
+  html:not(#_) .sx-cat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:300px}
+  html:not(#_) .sx-cat .m8-card-body{align-self:center;padding:32px}
+  .sx-cat .sx-panel-media{min-height:100%;margin-top:0}
+  .sx-panel-img::after{display:none}
+  .sx-panel-media::after{border-radius:0 var(--m8-radius-card) var(--m8-radius-card) 0}
+  html:not(#_) .sx-step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .sx-step-visual{order:0;min-height:280px}
 }
-@media (max-width:700px){
-  .sx-home{font-size:16px;line-height:1.65}
-  .sx-body,.sx-manifesto-sub{font-size:16px;line-height:1.65}
-  .sx-hero{padding-top:calc(var(--nav-h) + 32px)}
-  .sx-hero .sx-eyebrow{margin-bottom:16px}
-  .sx-display{margin-bottom:20px}
-  .sx-lead{margin-bottom:28px;font-size:1.0625rem;line-height:1.6}
-  .sx-actions{flex-direction:column;align-items:stretch;gap:8px}
-  .sx-actions .sx-btn-ghost{align-self:flex-start}
-  .sx-hero-grid{row-gap:32px}
-  .sx-hero-cap small{margin-left:0;flex-basis:100%}
-  .sx-hero .sx-play-wrap{right:10px;bottom:10px}
-  .sx-play{gap:8px;padding:0 12px;font-size:13px}
-  .sx-offer{grid-template-columns:1fr;margin-top:48px}
-  .sx-offer li+li{border-top:1px solid var(--v7-hair-inv)}
-  .sx-offer a{min-height:56px}
-  .sx-marquee li{padding:2px 12px}
-  .sx-marquee.has-toggle li{padding-inline:20px}
-  .sx-marquee.has-toggle .sx-marquee-view{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
-  .sx-manifesto-text{font-size:1.625rem;line-height:1.3}
-  /* the three category tabs: a horizontally scrollable segmented row of 44px pills, the chosen one filled navy */
-  .sx-tabs{gap:8px;margin-inline:calc(-1 * var(--sx-pad));padding:6px var(--sx-pad);overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:var(--sx-pad);scrollbar-width:none;box-shadow:none}
-  .sx-tabs::-webkit-scrollbar{display:none}
-  .sx-tab{flex:none;min-height:44px;padding:0 16px;border-radius:var(--v7-radius);background:var(--v7-white);color:var(--v7-ink);font-size:15px}
-  .sx-tab[aria-selected="true"],.sx-tab[aria-selected="true"]:hover{background:var(--v7-navy);color:#fff}
-  .sx-tab-ink{display:none}
-  .sx-tile{flex-basis:78%}
-  .sx-rail{gap:16px}
-  .sx-guide li{grid-template-columns:1fr}
-  .sx-ev-map{grid-template-columns:1fr;min-height:0;row-gap:8px}
-  .sx-ev-hub{justify-self:start;padding:0}
+@media (max-width:860px){
+  /* the slides stack: the photograph above, the words beneath */
+  html:not(#_) .sx-slide{grid-template-columns:minmax(0,1fr);grid-template-areas:"media" "copy" "map";grid-template-rows:auto 1fr auto;min-height:0}
+  .sx-slide-media{min-height:0;aspect-ratio:16/10}
+  .sx-slide-copy{align-self:start;padding:28px 24px 32px}
+  .sx-ev-map{grid-area:map;align-self:start;grid-template-columns:minmax(0,1fr);row-gap:8px;width:auto;min-height:0;margin:0 24px 28px;box-shadow:none}
+  .sx-ev-hub{padding:0}
+  /* slide 2 on a narrow screen: the diagram card is its picture (the photograph is decorative), so the three
+     panels keep one height */
+  html:not(#_) .sx-slide-ev{grid-template-areas:"map" "copy";grid-template-rows:auto 1fr}
+  .sx-slide-ev .sx-slide-media{display:none}
+  html:not(#_) .sx-slide-ev .sx-ev-map{justify-self:stretch;margin:24px 24px 0}
   .sx-ev-lines{display:none}
-  .sx-ev-nodes{grid-template-rows:none;row-gap:0}
-  .sx-ev-nodes span{padding-left:0}
-  .sx-cta-actions{grid-template-columns:1fr;row-gap:0}
-  .sx-cta-actions .sx-btn{justify-self:stretch;margin-bottom:12px}
+  /* a small tree: the four sources hang off one line under the hub */
+  .sx-ev-nodes{grid-template-rows:none;margin-left:4px;border-left:1px solid rgba(29,33,37,.22)}
+  .sx-ev-nodes span{padding:3px 0 3px 14px}
+  /* the hero photograph on a stacked slide: the picture, then its caption in its own light strip beneath (never
+     over the photograph), the photo note smaller and lighter; the introduction button in the picture's lower right
+     corner (the patient's knees), clear of both faces, which the crop keeps in view */
+  html:not(#_) .sx-hero-visual{aspect-ratio:auto;grid-template-rows:auto auto}
+  html:not(#_) .sx-hero-visual .sx-hero-photo>img{position:relative;inset:auto;grid-row:1;grid-column:1;height:auto;aspect-ratio:16/10;object-position:14% 30%}
+  html:not(#_) .sx-hero-visual .sx-play-wrap{grid-row:1;align-self:end;justify-self:end;margin:0 14px 14px}
+  html:not(#_) .sx-hero-cap{grid-row:2;display:block;padding:14px 24px 16px;background:var(--m8-band);font-size:15px;line-height:1.5;color:var(--m8-body)}
+  html:not(#_) .sx-hero-cap strong{display:block;color:var(--m8-ink)}
+  html:not(#_) .sx-hero-cap small{display:block;margin:4px 0 0;font-size:13px;line-height:1.45;color:var(--m8-muted)}
+  .sx-heroes{--m8-arrow-inset:0px}
+  /* the arrows join the dots under the panel, clear of the words */
+  html:not(#_) .sx-heroes .m8-arrow{top:auto;bottom:0;margin:0;box-shadow:none}
+  .sx-head{flex-direction:column;align-items:flex-start;gap:12px}
+  html:not(#_) .sx-step{display:flex}
+  .sx-step-visual{order:-1;min-height:260px}
+}
+@media (max-width:768px){
+  /* phones: the introduction button is a 44px round play button (its name, "Watch our introduction", is its
+     aria-label), navy with a thin white ring so it holds on any part of the photograph */
+  html:not(#_) .sx-play{width:44px;height:44px;padding:0;gap:0;border-radius:50%;background:var(--m8-navy);color:#fff;
+    box-shadow:0 0 0 2px rgba(255,255,255,.92),0 2px 10px rgba(16,35,58,.28)}
+  html:not(#_) .sx-play:hover{background:var(--m8-navy-hover);color:#fff}
+  .sx-play-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .sx-play-icon{width:12px;height:14px;margin-left:3px}
+}
+@media (max-width:760px){
+  .sx-home{font-size:16px;line-height:1.6}
+  .sx-body,.sx-lead{font-size:16px;line-height:1.6}
+  .sx-top{padding-top:calc(var(--nav-h) + 12px)}
+  .sx-slide-copy{padding:24px 20px 28px}
+  .sx-slide-media{aspect-ratio:4/3}
+  @supports (width:1cqi){
+    html:not(#_) .sx-home .sx-display{font-size:max(1.75rem,min(var(--m8-h1),calc(100cqi / 10.15)))}
+  }
+  .sx-display{margin-bottom:16px}
+  .sx-lead{margin-bottom:24px}
+  .sx-slide-copy .sx-h2{font-size:var(--m8-h2)}
+  .sx-slide-copy .sx-body{margin-bottom:24px}
+  html:not(#_) .sx-slide-ev .sx-ev-map{margin:20px 20px 0;padding:16px 18px}
+  html:not(#_) .sx-hero-visual .sx-hero-photo>img{aspect-ratio:4/3}
+  html:not(#_) .sx-hero-cap{padding:14px 20px 16px}
+  .sx-offer{grid-template-columns:minmax(0,1fr);gap:8px}
+  .sx-offer a{min-height:60px;padding-left:20px}
+  .sx-marquee li{padding:3px 12px}
+  .sx-marquee.has-toggle li{padding-inline:20px}
+  .sx-marquee.has-toggle .sx-marquee-view{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
+  html:not(#_) .sx-cat{display:flex;min-height:0}
+  .sx-cat .sx-panel-media{min-height:0;margin-top:16px}
+  .sx-panel-img::after{display:block}
+  .sx-panel-media::after{border-radius:0 0 var(--m8-radius-card) var(--m8-radius-card)}
+  html:not(#_) .sx-cat .m8-card-body{padding:24px 22px 4px}
+  .sx-panel-media{min-height:0;aspect-ratio:4/3}
+  .sx-panel-cap{left:14px;bottom:14px;max-width:calc(100% - 28px)}
+  /* the category tabs: a horizontally scrollable row of pills */
+  .sx-tabs{margin-inline:calc(-1 * var(--m8-panel-gutter));padding:4px var(--m8-panel-gutter);overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:var(--m8-panel-gutter);scrollbar-width:none}
+  .sx-tabs::-webkit-scrollbar{display:none}
+  html:not(#_) .sx-rail-box{--m8-slide-w:78%}
+  .sx-split-photo{aspect-ratio:4/3}
+  html:not(#_) .sx-split-quote .m8-panel-body{padding:32px 24px 36px}
+  .sx-step-visual{min-height:240px}
+  .sx-guide li{grid-template-columns:1fr}
+  html:not(#_) .sx-rows.m8-grid--4{grid-template-columns:minmax(0,1fr)}   /* one card per row on a phone */
+  html:not(#_) .sx-row{min-height:0}
+  html:not(#_) .sx-cta-body{padding:56px 24px}
+  html:not(#_) .sx-cta-body .sx-cta-actions{flex-direction:column;gap:4px}
+  .sx-cta-actions .sx-btn{margin:0 0 8px}
+  .sx-info .container{grid-template-columns:minmax(0,1fr);row-gap:16px}
 }
 
-/* ── Motion: one easing, fade-ups of 12px over 600ms, 60ms apart, once, below the hero only ──────────────────
-   Hidden states are gated on html.sx-mo (home.js adds it only when motion is allowed), so without JS or with
-   reduced motion the page is complete and static. The hero is static at first paint.
-   Sections carry data-motion-off, so the shared house-motion layer leaves the home page's own entrances alone. */
+/* ── Motion: fade-ups of 12px over 600ms, 60ms apart, once, below the hero only ──────────────────────────────────
+   Hidden states are gated on html.sx-mo (home.js adds it only when motion is allowed), so without JS or with reduced
+   motion the page is complete and static. Sections carry data-motion-off, so the shared layer leaves them alone. */
 @media (prefers-reduced-motion:no-preference){
   html.sx-mo .sx-reveal>*{opacity:0;transform:translateY(var(--v7-rise))}
-  html.sx-mo .sx-reveal.is-in>*{opacity:1;transform:none;transition:opacity var(--v7-dur) var(--v7-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),transform var(--v7-dur) var(--v7-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),color var(--v7-dur-hover) var(--v7-ease),background-color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
+  html.sx-mo .sx-reveal.is-in>*{opacity:1;transform:none;transition:opacity var(--v7-dur) var(--m8-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),transform var(--v7-dur) var(--m8-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),color var(--m8-hover) var(--m8-ease),background-color var(--m8-hover) var(--m8-ease),text-decoration-color var(--m8-hover) var(--m8-ease),box-shadow .2s var(--m8-ease)}
   html.sx-mo .sx-reveal>:nth-child(2){--i:1}
   html.sx-mo .sx-reveal>:nth-child(3){--i:2}
   html.sx-mo .sx-reveal>:nth-child(n+4){--i:3}

@@ -554,8 +554,8 @@ html.cx-io .cx-portal .cx-device:not(.pm-drawn) .pm-kpi .spark polyline{stroke-d
 
 /* M1 · Surfaces and tokens. The body is white with the light set, so nothing depends on JavaScript. */
 html:not(#_) body.cx-page{background:var(--v7-white);color:var(--v7-body);
-  --v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
-.cx-page .cx-paper,.cx-page .cx-white{--cx-h:var(--v7-ink);--cx-b:var(--v7-body);--cx-m:var(--v7-muted);--cx-rule:var(--v7-hair);--cx-acc:var(--v7-muted);--cx-em:currentColor;--cx-focus:var(--sx-gold-deep);--cx-card:var(--v7-tint)}
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+.cx-page .cx-paper,.cx-page .cx-white{--cx-h:var(--v7-ink);--cx-b:var(--v7-body);--cx-m:var(--v7-muted);--cx-rule:var(--v7-hair);--cx-acc:var(--m8-accent);--cx-em:currentColor;--cx-focus:var(--m8-accent);--cx-card:var(--v7-tint)}
 .cx-page .cx-paper{--cx-bg:var(--v7-paper)}
 .cx-page .cx-white{--cx-bg:var(--v7-white)}
 .cx-page .cx-dark{--cx-acc:var(--v7-muted-inv);--cx-em:currentColor;--cx-rule:var(--v7-hair-inv)}
@@ -616,7 +616,7 @@ html:not(#_) body .cx-contact .cx-agenda li>span{font-size:16px;color:var(--v7-b
 /* the form: no panel; fields white with a 1px boundary (3.2:1), labels in the label style */
 html:not(#_) body .cx-contact .cx-studio-form{padding:0;border:0;border-radius:0;background:none;box-shadow:none;color:var(--v7-body);
   --cx-btn:var(--v7-navy);--cx-btn-fg:#fff;--cx-btn-hover:#1b3a5c;--cx-focus:var(--sx-gold-deep);
-  --v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body .cx-contact .cx-note{margin:0 0 32px;padding:0;border:0;background:none;font-size:14px;line-height:1.6;color:var(--v7-muted)}
 html:not(#_) body .cx-contact .cx-form .form-field>label{font:500 13px/1.4 var(--font-body)!important;letter-spacing:.06em!important;text-transform:uppercase;color:var(--v7-muted)}
 html:not(#_) body .cx-contact .cx-form .form-field:focus-within label{color:var(--v7-ink)}
@@ -742,7 +742,7 @@ html:not(#_) body.cx-page .compare-dialog .close-compare{border:0}
 html:not(#_) body.cx-404{background:var(--v7-paper)}
 body.cx-404::before{content:"";position:absolute;top:0;left:0;right:0;height:var(--nav-h);background:var(--v7-navy)}
 html:not(#_) body .cx-nf{background:none!important;
-  --v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body .cx-nf-logo{top:calc((var(--nav-h) - 44px) / 2);left:var(--v7-gutter)}
 html:not(#_) body .cx-nf-logo img{height:34px}
 html:not(#_) body .cx-nf-logo:focus-visible{outline-color:var(--sx-gold)}
@@ -835,3 +835,179 @@ html:not(#_):not(#__) body.cx-page .pm-shell .view-all:not(:has(>.hm-t)){text-de
 /* F2b · One page frame on phones: editorial.css sets a 22px container gutter at 540px and under on the store page;
    the page frame is the v7 gutter (24px), the same as the nav and footer. */
 @media (max-width:540px){html:not(#_) body.cx-page main .container{padding-inline:var(--v7-gutter)}}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 (Oct 15). Supersedes everything above where they conflict. The owner: "model it after intuitive.com"
+   (its design language only). The page is white; the header is a large rounded grey panel inside the panel gutter;
+   lists and grids are rounded cards; the contact form is a white card on the grey band; notes read as
+   important-information blocks; the closing band is a rounded navy panel with white space above the footer.
+   V1 header panels · V2 closing panel · V3 contact · V4 portal · V5 Ovena store · V6 notes · V7 404 · V8 responsive
+   ═════════════════════════════════════════════════════════════════════════════════ */
+html:not(#_) body.cx-page,html:not(#_) body.cx-page main:is(.cx-store-page,.cx-contact,.cx-portal){background:#fff}
+
+/* V1 · Header panels (contact, portal, the Ovena store): rounded grey, under the nav, wider than the text column */
+html:not(#_) body.cx-page :is(.cx-hero,.cx-store.ovena-store){position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:calc(var(--nav-h) + clamp(12px,1.4vw,20px)) auto 0;padding:clamp(56px,6.4vw,104px) 0 clamp(56px,6vw,96px);
+  border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;background:var(--m8-card)!important;--cx-bg:var(--m8-card)}
+html:not(#_) body.cx-page :is(.cx-hero,.cx-store.ovena-store)>.container{max-width:min(100%,var(--container,1280px))}
+/* the portal facts: small white tiles in the panel */
+html:not(#_) body .cx-portal .pm-hero-stats.cx-stats{column-gap:var(--m8-gap);row-gap:var(--m8-gap)}
+html:not(#_) body .cx-portal .cx-stats .stat,html:not(#_) body .cx-portal .cx-stats .stat:is(:nth-child(odd),:nth-child(-n+2),:nth-child(n+3),:first-child){
+  padding:20px 22px 22px;border-radius:var(--m8-radius-sm);background:#fff}
+html:not(#_) body.cx-page .cx-stats .stat .value{font-weight:700;letter-spacing:-.01em}
+
+/* V2 · The closing band: a rounded navy panel inside the gutter, white space above the footer */
+html:not(#_) body.cx-page main>.cx-cta{position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:0 auto clamp(48px,5vw,80px);padding-block:clamp(56px,6vw,96px);border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;
+  background:var(--m8-navy)!important;background-image:none!important}
+html:not(#_) body.cx-page main>:is(.cx-paper,.cx-studio)+.cx-cta{margin-top:clamp(48px,5vw,80px)}
+html:not(#_) body.cx-page main>.cx-cta>.container{max-width:min(100%,var(--container,1280px))}
+
+/* V3 · Contact. The direct lines: a white card in the header panel. The form: a white card on the grey band. */
+html:not(#_) body .cx-contact .cx-hero-grid>.cx-direct{padding:clamp(24px,2.8vw,40px);border-radius:var(--m8-radius-card);background:#fff}
+html:not(#_) body .cx-contact .cx-direct :is(h2,h3){font-weight:700}
+html:not(#_) body .cx-contact .cx-channels li:last-child{border-bottom:0}
+html:not(#_) body .cx-contact .cx-ch-text strong{font-weight:600}
+html:not(#_) body .cx-contact .cx-studio{background:var(--m8-band)!important;--cx-bg:var(--m8-band)}
+html:not(#_) body .cx-contact .cx-studio-form{padding:clamp(28px,3.6vw,52px);border-radius:var(--m8-radius-card);background:#fff}
+html:not(#_) body .cx-contact .cx-form .form-field>label{font-weight:600!important}
+html:not(#_) body .cx-contact .cx-form :is(input,select,textarea){border-radius:var(--m8-radius-xs)}
+html:not(#_) body .cx-contact .cx-form :is(input,select,textarea):focus-visible{outline:2px solid var(--m8-accent);outline-offset:2px}
+/* the agenda beside it: three timed rows as white cards */
+html:not(#_) body .cx-contact .cx-agenda{display:grid;gap:8px;border:0}
+html:not(#_) body .cx-contact .cx-agenda li{padding:16px 20px;border:0;border-radius:var(--m8-radius-sm);background:#fff}
+html:not(#_) body .cx-contact .cx-agenda strong{font-weight:600;color:var(--m8-accent)}
+
+/* V4 · Portal. The preview sits on a grey stage panel; the capabilities are grey cards. */
+html:not(#_) body.cx-page .cx-portal .cx-demo,html:not(#_) body.cx-page .cx-portal .cx-hero.cx-paper+.cx-sec.cx-demo{background:#fff!important;padding-top:var(--m8-section)}
+html:not(#_) body .cx-portal .cx-device{padding:clamp(12px,2.2vw,32px);border-radius:var(--m8-radius-panel);background:var(--m8-band)}
+html:not(#_) body .cx-portal .cx-device .pm-shell{border-radius:var(--m8-radius-sm);overflow:hidden;box-shadow:0 1px 2px rgba(16,35,58,.05),0 10px 30px rgba(16,35,58,.08)}
+html:not(#_) body .cx-portal .pm-caps{gap:var(--m8-gap)}
+html:not(#_) body .cx-portal .pm-cap{padding:clamp(24px,2.4vw,32px);border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body .cx-portal .pm-cap h4{font-weight:600}
+html:not(#_) body .cx-portal :is(.pm-main-top h3,.pm-card header h4,.pm-kpi .value,.pm-brand .name,.pm-account-header .name,.pm-account-stat .value){font-weight:600}
+html:not(#_) body .cx-portal .pm-account-dialog{border-radius:var(--m8-radius-card)}
+
+/* V5 · The Ovena store. The live grid: white cards in the grey header panel. The introduction: a navy card beside
+   the photograph (the reference's photo + brand-colour split). The rest: cards on white and on the band. */
+html:not(#_) body.cx-page .ov-card{border-radius:var(--m8-radius-card);overflow:hidden}
+html:not(#_) body.cx-page .ov-card-title{font-weight:600}
+html:not(#_) body.cx-page .ov-card-select select{border-radius:var(--m8-radius-xs)}
+html:not(#_) body.cx-page .ov-fallback p{font-weight:500}
+html:not(#_) body.cx-page :is(.ov-fallback .btn,.ov-card .ov-card-add) .arrow{color:inherit!important}
+html:not(#_) body .cx-store-page .product-editorial-hero{padding:var(--m8-section) 0 clamp(48px,5vw,80px);background:#fff!important}
+html:not(#_) body .cx-store-page .product-editorial-hero>.container{max-width:min(calc(100% - 2 * var(--m8-panel-gutter) + 2 * var(--v7-gutter,40px)),calc(var(--m8-panel-max) + 2 * var(--v7-gutter,40px)))}
+html:not(#_) body .cx-store-page .product-editorial-hero .back-link{margin:0 0 20px}
+html:not(#_) body .cx-store-page .product-editorial-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--m8-gap);align-items:stretch}
+html:not(#_) body .cx-store-page .product-editorial-grid>div:first-child{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:clamp(32px,4.4vw,64px);border-radius:var(--m8-radius-card);background:var(--m8-navy);color:var(--m8-body-inv);
+  --v7-surface:dark;--v7-label-c:var(--m8-gold);--v7-btn-bg:#fff;--v7-btn-fg:var(--m8-ink);--v7-btn-hover:#e6e9ee;--v7-link-c:#fff;--v7-focus:var(--m8-gold)}
+html:not(#_) body .cx-store-page .product-editorial-grid>div:first-child h1{color:#fff}
+html:not(#_) body .cx-store-page .product-editorial-grid>div:first-child :is(p,.product-deck){color:var(--m8-body-inv)}
+html:not(#_) body .cx-store-page .product-editorial-grid>div:first-child .clinical-text-link{color:#fff!important}
+html:not(#_) body .cx-store-page .product-editorial-grid>div:first-child :is(a,button):focus-visible{outline:2px solid var(--m8-gold)!important;outline-offset:3px}
+html:not(#_) body .cx-store-page .product-editorial-grid>figure{display:flex;flex-direction:column;margin:0;min-width:0}
+html:not(#_) body .cx-store-page .product-editorial-grid>figure>:is(img,a){flex:1 1 auto;display:block;min-height:clamp(320px,34vw,520px);border:0;border-radius:var(--m8-radius-card);overflow:hidden}
+html:not(#_) body .cx-store-page .product-editorial-grid>figure img{width:100%;height:100%;object-fit:cover;border-radius:var(--m8-radius-card)}
+html:not(#_) body .cx-store-page .product-editorial-grid>figure figcaption{margin-top:12px}
+/* where Ovena fits (band): white cards */
+html:not(#_) body .cx-cards3{gap:var(--m8-gap)}
+html:not(#_) body .cx-cards3 .cx-tile{padding:clamp(24px,2.6vw,36px);border-radius:var(--m8-radius-card);background:#fff}
+html:not(#_) body .cx-cards3 h3{font-weight:600}
+html:not(#_) body .cx-tag{font-weight:600}
+/* the Amazon lineup (white): grey cards */
+html:not(#_) body .cx-pep .pep-card{border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body .cx-pep h4{font-weight:600}
+html:not(#_) body .cx-pep .pep-chip,html:not(#_) body .cx-pep .pep-chip--ch{font-weight:600}
+/* the flagship catalogue (band): a white card */
+html:not(#_) body .cx-flagship .hero-spec-panel{border-radius:var(--m8-radius-card);background:#fff}
+html:not(#_) body .cx-flagship :is(.hero-spec-panel h3,.content-block h3){font-weight:600}
+html:not(#_) body .cx-flagship .spec-label{font-weight:600}
+/* FAQ (white): grey cards that open in place */
+html:not(#_) body .cx-faq{display:grid;gap:12px;border:0}
+html:not(#_) body .cx-faq .faq-item{padding:0 clamp(20px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body .cx-faq .faq-q{padding-block:22px;font-weight:600}
+html:not(#_) body .cx-faq .faq-a-inner{padding-bottom:24px}
+html:not(#_) body .cx-faq .faq-a-inner strong{font-weight:700}
+/* the comparison dialog */
+html:not(#_) body.cx-page .compare-dialog{border-radius:var(--m8-radius-card)}
+html:not(#_) body.cx-page .compare-tray{border-radius:var(--m8-radius-card)}
+html:not(#_) body.cx-page .compare-tray button{border-radius:var(--m8-pill)}
+html:not(#_) body.cx-page .compare-tray button[data-open-compare]{border:0;background:#fff;color:var(--m8-ink);font-weight:600}
+html:not(#_) body.cx-page .compare-tray button[data-open-compare]:hover{background:#e6e9ee;color:var(--m8-ink)}
+
+/* V6 · Notes as important-information blocks: the info mark, 15px small print, a rounded grey (or white on the
+   band) block. Contact keeps its own icon; the others take the house info mark. */
+html:not(#_) body .cx-contact .cx-note{display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;align-items:start;margin:0 0 32px;padding:18px 20px;
+  border:0;border-radius:var(--m8-radius-sm);background:var(--m8-band);font-size:15px;line-height:1.6;color:var(--m8-body)}
+html:not(#_) body .cx-contact .cx-note-icon{display:grid;place-items:center;width:28px;height:28px;margin:0;border-radius:50%;background:#fff;color:var(--m8-muted)}
+html:not(#_) body .cx-contact .cx-note-icon svg{width:16px;height:16px}
+html:not(#_) body.cx-page :is(.cx-demo .pm-preview-note,.cx-strip.pep-compliance){position:relative;max-width:none;padding:18px 22px 18px 64px;border:0;border-radius:var(--m8-radius-sm);
+  font-size:15px;line-height:1.6;color:var(--m8-body)}
+html:not(#_) body.cx-page .cx-demo .pm-preview-note{margin:24px 0 0;background:var(--m8-band)}
+html:not(#_) body.cx-page .cx-strip.pep-compliance{background:#fff}
+html:not(#_) body.cx-page :is(.cx-demo .pm-preview-note,.cx-strip.pep-compliance)::before{content:"";position:absolute;left:20px;top:16px;width:28px;height:28px;border-radius:50%;
+  background:var(--m8-card) center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%235b6470'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%235b6470'/%3E%3C/svg%3E")}
+html:not(#_) body.cx-page .cx-strip.pep-compliance strong{font-weight:700;color:var(--m8-ink)}
+
+/* V7 · 404: a white bar with the navy logo (like the site nav), and the message in a rounded grey panel */
+html:not(#_) body.cx-404{background:#fff}
+html:not(#_) body.cx-404::before{background:#fff;border-bottom:1px solid var(--m8-line)}
+@supports ((mask-image:url("")) or (-webkit-mask-image:url(""))){
+  html:not(#_) body .cx-nf-logo img{background-color:var(--m8-navy);object-position:-99999px 0;
+    -webkit-mask:url('/assets/img/logo-white.png') center/100% 100% no-repeat;mask:url('/assets/img/logo-white.png') center/100% 100% no-repeat}
+}
+@supports not ((mask-image:url("")) or (-webkit-mask-image:url(""))){html:not(#_) body .cx-nf-logo img{filter:brightness(0)}}
+html:not(#_) body .cx-nf-logo:focus-visible{outline:2px solid var(--m8-accent);outline-offset:4px}
+html:not(#_) body .cx-nf{width:100%;max-width:none;padding-inline:var(--m8-panel-gutter)}
+html:not(#_) body .cx-nf-inner{width:100%;max-width:var(--m8-panel-max);margin-inline:auto;padding:clamp(48px,6.4vw,104px) clamp(24px,4.2vw,60px);
+  border-radius:var(--m8-radius-panel);background:var(--m8-card)}
+html:not(#_) body .cx-nf-code{font-weight:600;color:var(--m8-accent)}
+
+/* V8 · Responsive */
+@media (max-width:960px){
+  html:not(#_) body .cx-store-page .product-editorial-grid{grid-template-columns:minmax(0,1fr)}
+  html:not(#_) body .cx-store-page .product-editorial-grid>figure>:is(img,a){min-height:0;aspect-ratio:4/3}
+}
+@media (max-width:760px){
+  html:not(#_) body.cx-page :is(.cx-hero,.cx-store.ovena-store){margin-top:calc(var(--nav-h) + 8px);padding:44px 0 48px}
+  html:not(#_) body.cx-page :is(.cx-hero,.cx-store.ovena-store)>.container{padding-inline:20px}
+  html:not(#_) body .cx-portal .pm-hero-stats.cx-stats{column-gap:12px;row-gap:12px}
+  html:not(#_) body .cx-portal .cx-stats .stat,html:not(#_) body .cx-portal .cx-stats .stat:is(:nth-child(odd),:nth-child(-n+2),:nth-child(n+3),:first-child){padding:16px}
+  html:not(#_) body.cx-page main>.cx-cta{padding-block:48px}
+  html:not(#_) body.cx-page main>.cx-cta>.container{padding-inline:20px}
+  html:not(#_) body .cx-contact .cx-hero-grid>.cx-direct{padding:20px}
+  html:not(#_) body .cx-contact .cx-studio-form{padding:24px 20px 28px}
+  html:not(#_) body .cx-portal .cx-device{padding:8px;border-radius:var(--m8-radius-card)}
+  html:not(#_) body .cx-portal .pm-caps{gap:12px}
+  html:not(#_) body .cx-portal .pm-cap{padding:24px}
+  html:not(#_) body .cx-cards3{gap:12px}
+  html:not(#_) body .cx-cards3 .cx-tile{padding:24px}
+  html:not(#_) body .cx-store-page .product-editorial-grid>div:first-child{padding:28px 24px}
+  html:not(#_) body.cx-page :is(.cx-demo .pm-preview-note,.cx-strip.pep-compliance){padding:16px 16px 16px 58px}
+  html:not(#_) body.cx-page :is(.cx-demo .pm-preview-note,.cx-strip.pep-compliance)::before{left:16px}
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 FIXES (Oct 15, panel). V9 hero actions on one left edge · V10 a label that repeats the heading under it
+   is kept for screen readers only · V11 words that must not break
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* V9 · The Ovena introduction: one primary pill and one text link in a row held by the gap (no extra margin, so a
+   wrapped item starts on the pill's left edge); the comparison toggle under them on the same edge (its own style
+   is the site's, in signature.css) */
+html:not(#_):not(#__) body .cx-store-page .product-editorial-hero .clinical-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+html:not(#_):not(#__) body .cx-store-page .product-editorial-hero .clinical-actions>*{margin-inline-start:0}
+html:not(#_):not(#__) body .cx-store-page .product-editorial-hero .save-product{margin-inline-start:0!important}
+
+/* the portal header: the preview link is a text link beside the pill; stacked, it sits on the pill's left edge */
+html:not(#_):not(#__) body.cx-page .cx-actions>*{margin-inline-start:0}
+html:not(#_):not(#__) body.cx-page .cx-actions>.v7-link{align-self:flex-start;justify-content:flex-start;width:auto}
+
+/* V10 · Kept for screen readers, hidden on screen */
+html:not(#_):not(#__) body main .sr-only{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;
+  overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+
+/* V11 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
+html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
+  font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}

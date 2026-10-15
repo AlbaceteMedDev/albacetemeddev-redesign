@@ -526,7 +526,7 @@ body.sx-lib--evidence{background:var(--sx-paper)}
    ═════════════════════════════════════════════════════════════════════════════════ */
 
 /* L1 · Surfaces, tokens, focus, motion */
-html:not(#_) body.sx-lib{background:var(--v7-paper);color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-lib{background:var(--v7-paper);color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-lib main :is(a,button,input,select,summary,[tabindex]):focus-visible,
 html:not(#_) body.sx-lib :is(.compare-dialog,.image-dialog) :is(a,button,input,select):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px;box-shadow:none}
 html:not(#_) body.sx-lib .compare-tray button:focus-visible{outline-color:var(--sx-gold)}
@@ -536,10 +536,14 @@ html.sxl-io .sx-lib .sx-reveal.sxl-instant{transition:none}
 .sx-lib :is(.catalog-intro .clinical-eyebrow,.science-kicker,.sx-lib--evidence .hero-chip)::before{content:none;display:none}
 .sx-lib :is(.catalog-intro .clinical-eyebrow,.science-kicker,.sx-lib--evidence .hero-chip){margin:0 0 20px}
 /* other label-like text: Plex 500, 13px, uppercase, .06em, muted */
-html:not(#_) body.sx-lib :is(.catalog-maker,.science-product-maker,.science-source-identity small,.science-materials dt small,.science-device small,.science-study-meta,
+html:not(#_) body.sx-lib :is(.catalog-maker,.science-product-maker,.science-materials dt small,.science-device small,.science-study-meta,
   .science-toc-title,.science-note strong,.image-dialog-maker,.image-dialog header p,.ev-meta,.ev-label,.identity-format,.compare-table th:first-child,
   .visual-catalog-tools label,.library-tools label,.science-find label,.ev-table th,.science-section-label,.science-section-label span){
-  font-family:var(--font-body)!important;font-size:13px!important;font-weight:500!important;line-height:1.5!important;letter-spacing:.06em!important;text-transform:uppercase;color:var(--v7-muted)!important}
+  font-family:var(--font-body)!important;font-size:13px!important;font-weight:500!important;line-height:1.5!important;letter-spacing:.06em!important;text-transform:uppercase}
+/* meta, form and table labels stay muted; the maker and section labels take the label colour (v8: accent on light) */
+html:not(#_) body.sx-lib :is(.science-materials dt small,.science-study-meta,.science-note strong,.image-dialog header p,.ev-meta,.ev-label,
+  .identity-format,.compare-table th:first-child,.visual-catalog-tools label,.library-tools label,.science-find label,.ev-table th){color:var(--v7-muted)!important}
+html:not(#_) body.sx-lib :is(.catalog-maker,.science-product-maker,.science-device small,.science-toc-title,.image-dialog-maker,.science-section-label){color:var(--v7-label-c)!important}
 /* headings and other text set at 600 */
 html:not(#_) body.sx-lib :is(.catalog-copy h3,.science-product-list h3,.science-materials dt,.science-dressing h3,.science-device h3,.science-study h3,.ev-sub,.compare-table thead th,.image-dialog h2){font-weight:500!important;line-height:var(--v7-h3-lh)}
 html:not(#_) body.sx-lib .ev-card .ev-title{font-weight:500!important;line-height:var(--v7-h3-lh)!important}
@@ -552,16 +556,14 @@ html:not(#_) body.sx-lib :is(.catalog-intro h1,.science-hero h1,.science-chapter
 html:not(#_) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select),html:not(#_) body.sx-lib .science-find input{border-color:#8a939d;border-radius:var(--v7-radius);transition:border-color var(--v7-dur-hover) var(--v7-ease)}
 html:not(#_) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select):hover,html:not(#_) body.sx-lib .science-find input:hover{border-color:var(--v7-ink)}
 html:not(#_) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select):focus-visible,html:not(#_) body.sx-lib .science-find input:focus-visible{outline:2px solid var(--sx-gold-deep)!important;outline-offset:2px;border-color:var(--v7-ink)}
-html:not(#_) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.catalog-card-bottom button,.science-filters button,.science-show-all,.image-view-switch button,.science-find-field [data-science-clear],.sx-lib--science .science-hero-links a:last-child,.science-text-link,.science-toc-footer :is(a,button),.science-product-links a,.science-device-links a,.science-materials dd a,.image-dialog-close,.compare-dialog .close-compare){display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--v7-ink);font:500 15px/1.3 var(--font-body);text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
-html:not(#_) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.catalog-card-bottom button,.science-filters button,.science-show-all,.image-view-switch button,.science-find-field [data-science-clear],.sx-lib--science .science-hero-links a:last-child,.science-text-link,.science-toc-footer :is(a,button),.science-product-links a,.science-device-links a,.science-materials dd a,.image-dialog-close,.compare-dialog .close-compare):hover{background:none;color:var(--v7-ink);text-decoration-color:var(--v7-ink)}
+html:not(#_) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.science-filters button,.science-show-all,.image-view-switch button,.science-find-field [data-science-clear],.sx-lib--science .science-hero-links a:last-child,.science-text-link,.science-toc-footer :is(a,button),.science-product-links a,.science-device-links a,.science-materials dd a,.image-dialog-close,.compare-dialog .close-compare){display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--v7-ink);font:500 15px/1.3 var(--font-body);text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.science-filters button,.science-show-all,.image-view-switch button,.science-find-field [data-science-clear],.sx-lib--science .science-hero-links a:last-child,.science-text-link,.science-toc-footer :is(a,button),.science-product-links a,.science-device-links a,.science-materials dd a,.image-dialog-close,.compare-dialog .close-compare):hover{background:none;color:var(--v7-ink);text-decoration-color:var(--v7-ink)}
 html:not(#_) body.sx-lib :is(.science-product-links a,.science-device-links a,.science-materials dd a,.science-toc-footer :is(a,button)){font-size:14px}
 html:not(#_) body.sx-lib .science-text-link span{color:inherit}
 /* filter toggles and view switches: quiet until pressed; pressed = ink with a 1px underline */
-html:not(#_) body.sx-lib :is(.science-filters button,.image-view-switch button,.catalog-card-bottom button){color:var(--v7-muted);text-decoration-color:transparent}
-html:not(#_) body.sx-lib :is(.science-filters button,.image-view-switch button,.catalog-card-bottom button):hover{color:var(--v7-ink);text-decoration-color:rgba(22,33,46,.38)}
-html:not(#_) body.sx-lib :is(.science-filters button,.image-view-switch button,.catalog-card-bottom button)[aria-pressed=true]{background:none;color:var(--v7-ink);text-decoration-color:var(--v7-ink)}
-html:not(#_) body.sx-lib .catalog-card-bottom button{color:var(--v7-ink);text-decoration-color:rgba(22,33,46,.38)}
-html:not(#_) body.sx-lib .catalog-card-bottom button[aria-pressed=true]{color:var(--sx-gold-deep);text-decoration-color:var(--sx-gold-deep)}
+html:not(#_) body.sx-lib :is(.science-filters button,.image-view-switch button){color:var(--v7-muted);text-decoration-color:transparent}
+html:not(#_) body.sx-lib :is(.science-filters button,.image-view-switch button):hover{color:var(--v7-ink);text-decoration-color:rgba(22,33,46,.38)}
+html:not(#_) body.sx-lib :is(.science-filters button,.image-view-switch button)[aria-pressed=true]{background:none;color:var(--v7-ink);text-decoration-color:var(--v7-ink)}
 /* primaries that are not the global button class: Plex 500, no frame, 2px */
 html:not(#_) body.sx-lib :is(.sxl-btn-primary,.science-hero-links a:first-child,.science-end a){border:0;border-radius:var(--v7-radius);font-weight:500;background:var(--v7-btn-bg);color:var(--v7-btn-fg);transition:background-color var(--v7-dur-hover) var(--v7-ease)}
 html:not(#_) body.sx-lib :is(.sxl-btn-primary,.science-hero-links a:first-child,.science-end a):hover{background:var(--v7-btn-hover);color:var(--v7-btn-fg)}
@@ -603,7 +605,6 @@ html:not(#_) body.sx-lib--catalog .catalog-copy h3 span{color:var(--v7-muted)}
 html:not(#_) body.sx-lib--catalog .catalog-copy>p{font-size:16px;line-height:1.65}
 html:not(#_) body.sx-lib--catalog .catalog-card-bottom{padding-top:4px;border:0}
 html:not(#_) body.sx-lib--catalog .catalog-card-bottom>span{font-size:14px;color:var(--v7-muted)}
-html:not(#_) body.sx-lib--catalog .catalog-card-bottom button{padding:0;font-size:14px}
 html:not(#_) body.sx-lib--catalog .catalog-no-results{border:0;background:none}
 html:not(#_) body.sx-lib--catalog .catalog-disclosure{border-top-color:var(--v7-hair);font-size:14px}
 @media (min-width:801px){html:not(#_) body.sx-lib--catalog .visual-catalog-grid>.catalog-item:last-child:nth-child(3n+1) .catalog-image{border:0}}
@@ -668,7 +669,7 @@ html:not(#_) body.sx-lib :is(.science-study,.evidence-rationale) summary:hover{c
 html:not(#_) body.sx-lib :is(.science-study,.evidence-rationale) summary::after{color:var(--v7-muted);font-weight:300}
 html:not(#_) body.sx-lib--science .science-study .science-study-citation{font-size:14px}
 /* the endpoint: a pull quote set in the serif on the paper, no panel, no gold dash */
-html:not(#_) body.sx-lib--science .science-endpoint{margin:clamp(40px,5vw,64px) 0;padding:0;border:0;border-radius:0;background:none;color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-lib--science .science-endpoint{margin:clamp(40px,5vw,64px) 0;padding:0;border:0;border-radius:0;background:none;color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-lib--science .science-endpoint::before{content:none;display:none}
 html:not(#_) body.sx-lib--science .science-endpoint p{max-width:22em;font-weight:var(--v7-h2-weight);line-height:var(--v7-h2-lh);color:var(--v7-ink)}
 html:not(#_) body.sx-lib--science .science-endpoint small{font-size:14px;color:var(--v7-muted)}
@@ -679,7 +680,7 @@ html:not(#_) body.sx-lib--science .science-end{margin-top:var(--v7-section-sm);p
 html:not(#_) body.sx-lib--science .science-end a{font-weight:500}
 
 /* L5 · Evidence: a paper masthead, unboxed tools, white sheets, filled tags without frames */
-html:not(#_) body.sx-lib--evidence .hero.hero-compact{padding:calc(var(--nav-h) + clamp(64px,8vw,120px)) 0 clamp(72px,8vw,120px);background:var(--v7-paper)!important;border-bottom:0;color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-lib--evidence .hero.hero-compact{padding:calc(var(--nav-h) + clamp(64px,8vw,120px)) 0 clamp(72px,8vw,120px);background:var(--v7-paper)!important;border-bottom:0;color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-lib--evidence .hero h1{color:var(--v7-ink)}
 html:not(#_) body.sx-lib--evidence .hero-sub{font-size:var(--v7-body-size);line-height:var(--v7-body-lh);color:var(--v7-body)}
 html:not(#_) body.sx-lib--evidence .hero-sub strong{color:var(--v7-ink);font-weight:500}
@@ -826,13 +827,10 @@ html:not(#_):not(#__) body.sx-lib :is(.science-toc-footer a,.science-product-lin
 html:not(#_):not(#__) body.sx-lib :is(.science-toc-footer a,.science-product-links a,.science-device-links a,.science-materials dd a):has(>.v7-arw)>:not(.v7-arw){text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
 /* toggles: quiet until pressed (muted words, no line); hover shows the line; pressed = ink with the line.
    A pressed compare button keeps the deep gold of a pressed state. */
-html:not(#_):not(#__) body.sx-lib main :is(.science-filters button,.image-view-switch button,.catalog-card-bottom button){text-decoration-line:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+html:not(#_):not(#__) body.sx-lib main :is(.science-filters button,.image-view-switch button){text-decoration-line:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
 html:not(#_):not(#__) body.sx-lib main :is(.science-filters button,.image-view-switch button){color:var(--v7-muted);text-decoration-color:transparent}
 html:not(#_):not(#__) body.sx-lib main :is(.science-filters button,.image-view-switch button):hover{color:var(--v7-ink);text-decoration-color:currentColor}
 html:not(#_):not(#__) body.sx-lib main :is(.science-filters button,.image-view-switch button)[aria-pressed=true]{color:var(--v7-ink);text-decoration-color:currentColor}
-html:not(#_):not(#__) body.sx-lib main .catalog-card-bottom button{color:var(--v7-ink);text-decoration-color:currentColor}
-html:not(#_):not(#__) body.sx-lib main .catalog-card-bottom button:hover{text-decoration-thickness:2.5px}
-html:not(#_):not(#__) body.sx-lib main .catalog-card-bottom button[aria-pressed=true]{color:var(--sx-gold-deep);text-decoration-color:currentColor}
 /* in-prose links on the evidence and science pages: the text colour, a 1px line, full on hover */
 html:not(#_):not(#__) body.sx-lib :is(.evidence-citations li a,.ev-table td a:not(.ev-tag),.science-chapter p a,.science-inline-source a,.science-cover figcaption a,.science-breadcrumb a){text-decoration-thickness:1px;text-underline-offset:4px}
 
@@ -865,3 +863,198 @@ html:not(#_) body.sx-lib--evidence .ev-tag--mini{min-height:26px;padding:2px 8px
 /* F2b · One page frame on phones: editorial.css sets a 22px container gutter at 540px and under on the catalog;
    the page frame is the v7 gutter (24px), the same as the nav and footer. */
 @media (max-width:540px){html:not(#_) body.sx-lib main .container{padding-inline:var(--v7-gutter)}}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 (Oct 15). Supersedes everything above where they conflict. The owner: "model it after intuitive.com"
+   (its design language only). The pages are white. Each header is a large rounded grey panel inside the panel
+   gutter (the catalog and the portfolio carry their photograph in a large rounded frame); the catalog is a grid of
+   rounded white cards on the grey band; the portfolio reads on the band with white cards and a navy quote card;
+   the evidence is one rounded grey card per product; notes are important-information blocks; every button is a pill.
+   B1 page · B2 header panels · B3 catalog · B4 portfolio · B5 evidence · B6 notes · B7 controls · B8 responsive
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* B1 · The page: white with the light set (the catalog and evidence bodies were navy) */
+html:not(#_) body.sx-lib,html:not(#_) body.sx-lib:is(.sx-lib--evidence,.sx-lib--catalog){background:#fff;color:var(--m8-body);
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+html:not(#_) body.sx-lib main{background:#fff}
+html:not(#_) body.sx-lib main h2{font-weight:700;letter-spacing:-.02em}
+html:not(#_):not(#__) body.sx-lib :is(.catalog-copy h3,.science-product-list h3,.science-materials dt,.science-dressing h3,.science-device h3,.science-study h3,.ev-sub,.compare-table thead th,.image-dialog h2,.ev-card .ev-title){
+  font-family:var(--font-display);font-weight:600!important;letter-spacing:-.01em}
+html:not(#_):not(#__) body.sx-lib :is(.catalog-maker,.science-product-maker,.science-source-identity small,.science-materials dt small,.science-device small,.science-study-meta,
+  .science-toc-title,.science-note strong,.image-dialog-maker,.image-dialog header p,.ev-meta,.ev-label,.identity-format,.compare-table th:first-child,
+  .visual-catalog-tools label,.library-tools label,.science-find label,.ev-table th,.science-section-label,.science-section-label span){font-weight:600!important}
+html:not(#_):not(#__) body.sx-lib :is(.catalog-maker,.science-product-maker,.science-section-label,.science-kicker){color:var(--m8-accent)!important}
+html:not(#_) body.sx-lib :is(.identity-title,.science-reference-wordmark){font-family:var(--font-display);font-weight:700;letter-spacing:-.02em}
+html:not(#_) body.sx-lib--science :is(.science-main h1,.science-main h2){font-family:var(--font-display);font-weight:700;letter-spacing:-.02em}
+html:not(#_) body.sx-lib--science .science-endpoint p{font-family:var(--font-display)}
+
+/* B2 · Header panels: rounded grey, under the nav, wider than the text column */
+html:not(#_) body.sx-lib--catalog .catalog-intro,html:not(#_) body.sx-lib--evidence .hero.hero-compact,html:not(#_) body.sx-lib--science .science-hero{
+  position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));max-width:none;
+  margin:calc(var(--nav-h) + clamp(12px,1.4vw,20px)) auto 0;padding:clamp(48px,5.6vw,96px) 0 clamp(52px,5.8vw,96px);
+  border:0;border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;background:var(--m8-card)!important;color:var(--m8-body);
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+html:not(#_) body.sx-lib--catalog .catalog-intro>.container,html:not(#_) body.sx-lib--evidence .hero.hero-compact>.container{max-width:min(100%,var(--container,1280px))}
+html:not(#_) body.sx-lib--evidence .hero :is(a,button):focus-visible{outline-color:var(--m8-accent)}
+html:not(#_) body.sx-lib--evidence .hero .btn{border-radius:var(--m8-pill)!important}
+/* the portfolio header keeps its own frame (.science-wrap); inside the panel it takes the panel's inset */
+html:not(#_) body.sx-lib--science .science-hero.science-wrap{padding-inline:clamp(24px,4.2vw,60px)}
+/* the photographs: large rounded frames */
+html:not(#_) body.sx-lib--catalog .sxl-hero-media{border-radius:var(--m8-radius-card);overflow:hidden}
+html:not(#_) body.sx-lib--catalog .sxl-hero-media img{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-lib--science .science-cover>a{display:block;border:0;border-radius:var(--m8-radius-card);overflow:hidden}
+html:not(#_) body.sx-lib--science .science-cover>a img{border-radius:0}
+html:not(#_) body.sx-lib--science .science-issue{border-top-color:#cfd3d9}
+html:not(#_) body.sx-lib--science .science-breadcrumb{color:var(--m8-body)}
+
+/* B3 · Catalog: the filters and the groups on the grey band; the products as rounded white cards */
+html:not(#_) body.sx-lib--catalog .catalog-content{margin-top:clamp(24px,3vw,48px);padding:var(--m8-section) 0;background:var(--m8-band)}
+html:not(#_) body.sx-lib--catalog .visual-catalog-grid{gap:var(--m8-gap)}
+html:not(#_) body.sx-lib--catalog .catalog-item,html:not(#_) body.sx-lib--catalog .catalog-item:hover{border:0;border-radius:var(--m8-radius-card);overflow:hidden;background:#fff}
+html:not(#_) body.sx-lib--catalog .catalog-item:has([aria-pressed=true]){box-shadow:none;outline:2px solid var(--m8-navy);outline-offset:2px}
+html:not(#_) body.sx-lib--catalog .catalog-image{border:0}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image :is(.product-identity,.compact-identity){border-radius:0!important}
+html:not(#_) body.sx-lib--catalog .catalog-copy h3 a{font-weight:inherit}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-copy h3 .hm-t{font:inherit;letter-spacing:inherit;color:inherit}
+html:not(#_) body.sx-lib--catalog .catalog-copy h3 span{color:var(--m8-ink)}
+html:not(#_) body.sx-lib--catalog .catalog-card-bottom>span{color:var(--m8-muted)}
+html:not(#_) body.sx-lib--catalog .catalog-no-results{border-radius:var(--m8-radius-card);background:#fff}
+
+/* B4 · Scientific portfolio: the reader on the grey band; references, the dressing feature, devices and studies as
+   white cards; the endpoint as a navy quote card; the chapter rail in ink with the current chapter in navy */
+html:not(#_) body.sx-lib--science .science-reader{margin-top:clamp(24px,3vw,48px);padding-top:var(--m8-section);background:var(--m8-band);
+  box-shadow:0 0 0 100vmax var(--m8-band);clip-path:inset(0 -100vmax)}
+html:not(#_) body.sx-lib--science :is(.science-product-list>li,.science-dressing>div,.science-device,.science-study){border:0;border-radius:var(--m8-radius-card);overflow:hidden;background:#fff}
+html:not(#_) body.sx-lib--science .science-product-list .science-product-visual{border-radius:0}
+html:not(#_) body.sx-lib--science .science-dressing figure>a,html:not(#_) body.sx-lib--science .science-dressing figure>img,html:not(#_) body.sx-lib--science .science-dressing img{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-lib--science .science-device-image{border-radius:16px;overflow:hidden}
+html:not(#_) body.sx-lib--science .science-toc ol a[aria-current=location]::before{width:2px;background:var(--m8-navy)}
+html:not(#_) body.sx-lib--science .science-toc ol a[aria-current=location] span{color:var(--m8-accent)}
+html:not(#_) body.sx-lib--science .science-endpoint{position:relative;margin:clamp(40px,5vw,64px) 0;padding:clamp(32px,4vw,56px);border-radius:var(--m8-radius-card);
+  background:var(--m8-navy);color:var(--m8-body-inv);
+  --v7-surface:dark;--v7-label-c:var(--m8-gold);--v7-btn-bg:#fff;--v7-btn-fg:var(--m8-ink);--v7-btn-hover:#e6e9ee;--v7-link-c:#fff;--v7-focus:var(--m8-gold)}
+html:not(#_) body.sx-lib--science .science-endpoint p{max-width:22em;margin:0 0 16px;font-size:clamp(1.5rem,2.4vw,2rem);font-weight:700;line-height:1.25;letter-spacing:-.02em;color:#fff}
+html:not(#_) body.sx-lib--science .science-endpoint small{display:block;font-size:15px;color:var(--m8-body-inv)}
+html:not(#_) body.sx-lib--science .science-endpoint a,html:not(#_) body.sx-lib--science .science-endpoint a:hover{color:#fff;text-decoration-color:currentColor}
+html:not(#_) body.sx-lib--science .science-endpoint a:focus-visible{outline:2px solid var(--m8-gold);outline-offset:3px}
+html:not(#_) body.sx-lib--science .science-materials{border-bottom:0}
+html:not(#_) body.sx-lib--science .science-materials>div,html:not(#_) body.sx-lib--science .science-materials>div:first-child{border-top-color:#d5d8dd}
+
+/* B5 · Evidence: one rounded grey card per product on white; the grade marks and tags keep their meaning */
+html:not(#_) body.sx-lib--evidence #evidence{background:#fff}
+html:not(#_) body.sx-lib--evidence .ev-grid{gap:var(--m8-gap)!important}
+html:not(#_) body.sx-lib--evidence .ev-card,html:not(#_) body.sx-lib--evidence .ev-card:hover{border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body.sx-lib--evidence .empty-result{border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body.sx-lib--evidence .evidence-rationale{border-color:#d5d8dd}
+html:not(#_) body.sx-lib--evidence :is(.ev-grade,.sxl-gl){border-radius:var(--m8-radius-xs);font-weight:700}
+html:not(#_) body.sx-lib--evidence .ev-legend strong{border-radius:var(--m8-radius-xs);font-weight:700}
+html:not(#_) body.sx-lib--evidence .sxl-stat b{font-weight:700}
+html:not(#_) body.sx-lib--evidence .sxl-stat{font-weight:600}
+html:not(#_) body.sx-lib--evidence .ev-tablewrap{border-radius:var(--m8-radius-sm)}
+
+/* B6 · Notes as important-information blocks: the info mark, 15px small print, a rounded grey (white on the band) block */
+html:not(#_) body.sx-lib :is(.catalog-disclosure,.ev-foot,.science-end>p:first-child,.science-note,.science-chapter .science-image-note){position:relative;max-width:none;
+  margin-top:var(--m8-gap);padding:18px 22px 18px 64px;border:0;border-radius:var(--m8-radius-sm);font-size:15px!important;line-height:1.6;color:var(--m8-body)}
+html:not(#_) body.sx-lib--catalog .catalog-disclosure{background:#fff}
+html:not(#_) body.sx-lib--evidence .ev-foot{margin-top:var(--m8-section);background:var(--m8-band)}
+html:not(#_) body.sx-lib--science :is(.science-end>p:first-child,.science-note,.science-chapter .science-image-note){background:#fff}
+html:not(#_) body.sx-lib :is(.catalog-disclosure,.ev-foot,.science-end>p:first-child,.science-note,.science-chapter .science-image-note)::before{content:"";position:absolute;left:20px;top:16px;display:block;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--m8-card) center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%235b6470'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%235b6470'/%3E%3C/svg%3E")}
+html:not(#_) body.sx-lib--science .science-note p{max-width:none;margin:0}
+html:not(#_) body.sx-lib--science .science-note p+p{margin-top:8px}
+html:not(#_) body.sx-lib--science .science-end{padding-top:0;border-top:0}
+html:not(#_) body.sx-lib--science .science-end>p:first-child{margin:0 0 24px}
+
+/* B7 · Controls: every button a pill (primary navy; filters, reset and the compare toggles outline pills, pressed
+   navy); fields with 8px corners; the tray and the dialogs with 20px corners */
+html:not(#_):not(#__) body.sx-lib :is(.sxl-btn-primary,.science-hero-links a:first-child,.science-end a){display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 26px;border:0;border-radius:var(--m8-pill);background:var(--m8-navy);color:#fff;font-size:15px;font-weight:600;text-decoration:none}
+html:not(#_):not(#__) body.sx-lib :is(.sxl-btn-primary,.science-hero-links a:first-child,.science-end a):hover{background:var(--m8-navy-hover);color:#fff}
+html:not(#_):not(#__) body.sx-lib :is(.sxl-btn-primary,.science-hero-links a:first-child,.science-end a)>.hm-t{text-decoration:none!important}
+html:not(#_):not(#__) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.science-show-all){position:relative;display:inline-flex;align-items:center;
+  min-height:36px;padding:0 16px;border:1px solid var(--m8-ink);border-radius:var(--m8-pill);background:transparent;color:var(--m8-ink);
+  font-size:14px;font-weight:600;text-decoration:none}
+html:not(#_):not(#__) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.science-show-all)::after{content:"";position:absolute;inset:-4px 0}
+html:not(#_):not(#__) body.sx-lib :is(.visual-catalog-tools button,.library-tools .filter-reset,.science-show-all):hover{background:rgba(29,33,37,.08);text-decoration:none}
+html:not(#_):not(#__) body.sx-lib main .science-filters button{position:relative;min-height:40px;padding:0 16px;border:0;border-radius:var(--m8-pill);background:#fff;color:var(--m8-ink);font-weight:500;text-decoration:none}
+html:not(#_):not(#__) body.sx-lib main .science-filters button::after{content:"";position:absolute;inset:-2px 0}
+html:not(#_):not(#__) body.sx-lib main .science-filters button:hover{background:var(--m8-card);color:var(--m8-ink)}
+html:not(#_):not(#__) body.sx-lib main .science-filters button[aria-pressed=true]{background:var(--m8-navy);color:#fff;font-weight:600}
+html:not(#_) body.sx-lib--science .science-filters{gap:8px}
+html:not(#_) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select),html:not(#_) body.sx-lib .science-find input{border-radius:var(--m8-radius-xs)}
+html:not(#_) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select):focus-visible,html:not(#_) body.sx-lib .science-find input:focus-visible{outline-color:var(--m8-accent)!important}
+html:not(#_) body.sx-lib .compare-tray{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-lib .compare-tray button{border-radius:var(--m8-pill)}
+html:not(#_) body.sx-lib .compare-tray button[data-open-compare]{border:0;background:#fff;color:var(--m8-ink);font-weight:600}
+html:not(#_) body.sx-lib .compare-tray button[data-open-compare]:hover{background:#e6e9ee;color:var(--m8-ink)}
+html:not(#_) body.sx-lib :is(.compare-dialog,.image-dialog){border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-lib .image-view-switch button{border-radius:var(--m8-pill)}
+html:not(#_) body.sx-lib .image-open-label{border-radius:var(--m8-pill);padding:0 14px;font-weight:600}
+
+/* B8 · Responsive */
+@media (max-width:760px){
+  html:not(#_) body.sx-lib--catalog .catalog-intro,html:not(#_) body.sx-lib--evidence .hero.hero-compact,html:not(#_) body.sx-lib--science .science-hero{
+    margin-top:calc(var(--nav-h) + 8px);padding:40px 0 44px}
+  html:not(#_) body.sx-lib--catalog .catalog-intro>.container,html:not(#_) body.sx-lib--evidence .hero.hero-compact>.container{padding-inline:20px}
+  html:not(#_) body.sx-lib--science .science-hero.science-wrap{padding-inline:20px}
+  html:not(#_) body.sx-lib :is(.catalog-disclosure,.ev-foot,.science-end>p:first-child,.science-note,.science-chapter .science-image-note){padding:16px 16px 16px 58px}
+  html:not(#_) body.sx-lib :is(.catalog-disclosure,.ev-foot,.science-end>p:first-child,.science-note,.science-chapter .science-image-note)::before{left:16px}
+  html:not(#_) body.sx-lib--science .science-endpoint{padding:28px 24px}
+  html:not(#_) body.sx-lib--evidence .ev-grid{gap:12px!important}
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 FIXES (Oct 15, panel). B9 one media slot for every product card · B10 the compare toggle falls back to
+   a pill (the site-wide compare style lives in signature.css and overrides this) · B11 labels · B12 small type
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* B9 · Every product card (the catalog, the portfolio's product reference) carries one media slot: 3:2, inset 8px in
+   the card, 16px corners. Photographs cover it. A card that shows only a manufacturer mark sets it centred on the
+   light tint at one size, with no rule and no format line in the slot (the format is in the card body). */
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image,
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-product-visual{display:block;flex:none;align-self:stretch;width:auto;
+  margin:8px 8px 0;aspect-ratio:3/2;min-height:0;border:0;border-radius:16px;overflow:hidden;background:var(--m8-band)}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image>img,
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-product-visual>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:0}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image :is(.product-identity,.compact-identity){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  width:100%;height:100%;padding:0 12%;border:0!important;border-radius:0!important;box-shadow:none!important;background:var(--m8-band)!important}
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-source-identity{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  height:auto;padding:0 12%;background:var(--m8-band)}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image .compact-identity img{display:block;width:auto;height:auto;max-width:62%;max-height:72px;
+  object-fit:contain;object-position:center;transform:none}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image .identity-format{display:none}
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-source-identity>img{width:auto;height:auto!important;max-width:62%;max-height:72px;
+  object-fit:contain;object-position:center;transform:none}
+html:not(#_):not(#__) body.sx-lib--catalog .catalog-image .identity-title,
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-reference-wordmark{font-size:clamp(24px,2vw,30px);line-height:1.1;text-align:center;color:var(--m8-ink)}
+/* the portfolio's manufacturer-reference link: its words sit in the slot as the same small white tab as "Inspect" */
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-source-identity small{position:absolute;right:10px;bottom:10px;display:inline-flex;align-items:center;
+  min-height:32px;padding:0 14px;border-radius:var(--m8-pill);background:#fff;color:var(--m8-ink);font-size:13px;font-weight:600;letter-spacing:0!important;text-transform:none}
+html:not(#_):not(#__) body.sx-lib--science .science-product-list .science-source-identity:hover small{background:var(--m8-navy);color:#fff}
+/* the last card of a short row runs across the grid as a horizontal card; its slot keeps the size of the others */
+@media (min-width:801px){
+  html:not(#_):not(#__) body.sx-lib--catalog .visual-catalog-grid>.catalog-item:last-child:nth-child(3n+1) .catalog-image{
+    flex:0 0 calc((100% - 2 * var(--m8-gap)) / 3 - 16px);align-self:flex-start;margin:8px;aspect-ratio:3/2;min-height:0}
+  html:not(#_):not(#__) body.sx-lib--catalog .visual-catalog-grid>.catalog-item:last-child:nth-child(3n+1) .catalog-copy{max-width:640px}
+}
+@media (min-width:541px) and (max-width:800px){
+  html:not(#_):not(#__) body.sx-lib--catalog .visual-catalog-grid>.catalog-item:last-child:nth-child(2n+1) .catalog-image{
+    flex:0 0 calc((100% - var(--m8-gap)) / 2 - 16px);align-self:flex-start;margin:8px;aspect-ratio:3/2;min-height:0}
+}
+
+/* B10 · The catalog compare toggle: no page-level look of its own beyond this low-specificity fallback (a 44px
+   outline pill, navy when pressed), so the site-wide compare style in signature.css always wins */
+.sx-lib main .catalog-card-bottom button[data-compare]{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;
+  border:1px solid var(--m8-ink);border-radius:var(--m8-pill);background:transparent;color:var(--m8-ink);font:600 14px/1 var(--font-body);text-decoration:none}
+.sx-lib main .catalog-card-bottom button[data-compare]:hover{background:rgba(29,33,37,.08)}
+.sx-lib main .catalog-card-bottom button[data-compare][aria-pressed=true]{background:var(--m8-navy);border-color:var(--m8-navy);color:#fff}
+
+/* B10b · The evidence header: one primary pill and one text link in a row held by the gap; stacked, the link sits on
+   the pill's left edge */
+html:not(#_):not(#__) body.sx-lib--evidence .hero-actions>*{margin-inline-start:0}
+html:not(#_):not(#__) body.sx-lib--evidence .hero-actions>.v7-link{align-self:flex-start;justify-content:flex-start;width:auto}
+
+/* B11 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
+html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
+  font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}

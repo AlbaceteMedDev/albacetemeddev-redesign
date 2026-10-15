@@ -697,7 +697,7 @@ html.sx-armed .sx-product .sx-reveal.is-in{opacity:1;transform:none}
    ═════════════════════════════════════════════════════════════════════════════════ */
 
 /* P1 · Surfaces, tokens, focus, motion */
-html:not(#_) body.sx-product{background:var(--v7-paper);color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-product{background:var(--v7-paper);color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-product main :is(a,button,summary,input,[tabindex]):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px}
 html:not(#_) body.sx-product .compare-tray :is(a,button):focus-visible,html:not(#_) body.sx-product :is(.compare-dialog,.image-dialog) :focus-visible{outline:2px solid var(--sx-gold-deep);outline-offset:3px}
 html.sx-armed .sx-product .sx-reveal{transition:opacity var(--v7-dur) var(--v7-ease),transform var(--v7-dur) var(--v7-ease)}
@@ -714,14 +714,10 @@ html:not(#_) body.sx-product :is(.product-facts dd,.identity-title,.catalog-copy
 html:not(#_) body.sx-product :is(.product-notes h3,.catalog-copy h3,.product-card h3,.pep-card h4){line-height:var(--v7-h3-lh)}
 html:not(#_) body.sx-product :is(.faq-a-inner strong,.pep-compliance strong,.compare-tray strong,.pep-details summary,.pep-legend summary){font-weight:500}
 /* text links: ink, 1px underline at 38%, full on hover; never gold */
-html:not(#_) body.sx-product :is(.clinical-text-link,.pep-clear,.pep-clear-inline,.catalog-card-bottom button,.pep-req,.compare-dialog .close-compare,.image-dialog-close){display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--v7-ink);font:500 15px/1.3 var(--font-body);text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
-html:not(#_) body.sx-product :is(.clinical-text-link,.pep-clear,.pep-clear-inline,.catalog-card-bottom button,.pep-req):hover{background:none;color:var(--v7-ink)!important;text-decoration-color:var(--v7-ink)}
+html:not(#_) body.sx-product :is(.clinical-text-link,.pep-clear,.pep-clear-inline,.pep-req,.compare-dialog .close-compare,.image-dialog-close){display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--v7-ink);font:500 15px/1.3 var(--font-body);text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-product :is(.clinical-text-link,.pep-clear,.pep-clear-inline,.pep-req):hover{background:none;color:var(--v7-ink)!important;text-decoration-color:var(--v7-ink)}
 html:not(#_) body.sx-product .clinical-text-link{color:var(--v7-ink)!important}
 html:not(#_) body.sx-product :is(.compare-dialog .close-compare,.image-dialog-close){justify-content:center;min-width:44px;border:0!important;text-decoration:none}
-/* catalog compare toggles: pressed = deep gold with a full underline (aria-pressed); the page comparison toggle
-   (.save-product) is styled once for the site in signature.css */
-html:not(#_) body.sx-product :is(.catalog-card-bottom button)[aria-pressed="true"],
-html:not(#_) body.sx-product :is(.catalog-card-bottom button)[aria-pressed="true"]:hover{background:none;color:var(--sx-gold-deep)!important;text-decoration-color:var(--sx-gold-deep)}
 html:not(#_) body.sx-product .back-link{font-weight:500;color:var(--v7-body)}
 html:not(#_) body.sx-product .back-link:hover{color:var(--v7-ink);text-decoration-color:rgba(22,33,46,.4);text-underline-offset:6px}
 
@@ -774,14 +770,13 @@ html:not(#_) body.sx-product .catalog-image:hover img{transform:none}
 html:not(#_) body.sx-product .catalog-copy h3 a:hover{text-decoration-color:rgba(22,33,46,.4)}
 html:not(#_) body.sx-product .catalog-copy h3 span{color:var(--v7-muted)}
 html:not(#_) body.sx-product .catalog-card-bottom{padding-top:4px;border:0}
-html:not(#_) body.sx-product .catalog-card-bottom button{font-size:14px}
 html:not(#_) body.sx-product .catalog-disclosure{padding:24px 0 0;border:0;border-top:1px solid var(--v7-hair);font-size:14px;color:var(--v7-muted)}
 
 /* P8 · Specialty pages: white and paper chapters, tinted cards, hairline questions */
 html:not(#_) body.sx-product.editorial-specialty :is(.section,.faq-section){padding:var(--v7-section) 0}
 html:not(#_) body.sx-product.editorial-specialty .cta-band{padding:var(--v7-section-sm) 0}
 .sx-product :is(.sxp-paper,.sxp-white)+:is(.sxp-paper,.sxp-white){border-top:0}
-html:not(#_) body.sx-product :is(.sxp-white,.sxp-paper){--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-product :is(.sxp-white,.sxp-paper){--v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-product .section-header{margin-bottom:var(--v7-stack)}
 html:not(#_) body.sx-product .section-header p{font-size:var(--v7-body-size);line-height:var(--v7-body-lh);max-width:var(--v7-measure)}
 html:not(#_) body.sx-product.editorial-specialty .products-grid{gap:clamp(16px,2vw,24px)}
@@ -796,7 +791,7 @@ html:not(#_) body.sx-product.editorial-specialty .faq-q .faq-icon{color:var(--v7
 html:not(#_) body.sx-product.editorial-specialty :is(.faq-q:hover,.faq-item.is-open) .faq-icon{color:var(--v7-ink)}
 html:not(#_) body.sx-product.editorial-specialty .cta-band .hero-actions{align-items:center;gap:12px 28px}
 /* peptides: the two supply channels as white sheets with hairline spec rows; the notice as plain text */
-html:not(#_) body.sx-product .hero-spec-panel{border:0;background:var(--v7-tint);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-product .hero-spec-panel{border:0;background:var(--v7-tint);--v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-product .hero-spec-panel h3{padding:0 0 14px;border-bottom:1px solid var(--v7-hair);color:var(--v7-ink)}
 html:not(#_) body.sx-product .hero-spec-panel .spec-row{border-bottom-color:var(--v7-hair)}
 html:not(#_) body.sx-product .hero-spec-panel .spec-label{color:var(--v7-muted)}
@@ -879,9 +874,7 @@ html:not(#_) body.sx-product :is(.btn,.clinical-button,.v7-link,.pep-req,.pep-cl
 html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):has(>.hm-t){text-decoration-line:none}
 html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline)>.hm-t{text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
 html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):hover>.hm-t{text-decoration-thickness:2.5px}
-html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):not(:has(>.hm-t)),
-html:not(#_):not(#__) body.sx-product .catalog-card-bottom button{text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
-html:not(#_):not(#__) body.sx-product .catalog-card-bottom button:hover{text-decoration-thickness:2.5px}
+html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):not(:has(>.hm-t)){text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
 
 /* F2 · The comparison toggle (.save-product) is styled for the whole site in signature.css: a text link at rest,
    a filled pale-gold chip with a deep-gold edge and the script's check mark when pressed, so it never reads like
@@ -899,3 +892,197 @@ html:not(#_):not(#__) body.sx-product .catalog-card-bottom button:hover{text-dec
   html:not(#_) .sx-product .product-editorial-hero h1{font-size:clamp(2.5rem,3.7vw,3.4rem);text-wrap:balance}
 }
 @media (max-width:900px){html:not(#_) .sx-product .product-editorial-hero h1{font-size:clamp(2rem,8.4vw,2.4rem);text-wrap:balance}}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 (Oct 15). Supersedes everything above where they conflict. The owner: "model it after intuitive.com"
+   (its design language only). The page is white. The product header is a large rounded grey panel inside the panel
+   gutter with the product image in a large rounded frame (the specialty pages, which carry a photograph, get a
+   photo panel: the image fills it, the headline sits over a navy scrim). Specs are clean cards; references are white
+   cards on the grey band; notes are important-information blocks; the closing band is a rounded navy panel with
+   white space above the footer. Tokens: signature.css M2.
+   R1 page · R2 header panel · R3 photo panel (specialty) · R4 section nav · R5 specs and notes · R6 reading ·
+   R7 closing panel · R8 family + specialty cards · R9 peptides · R10 controls and dialogs · R11 responsive
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* R1 · The page: white, headings 700/600 from the tokens (editorial.css set 500 and serif tracking) */
+html:not(#_) body.sx-product,html:not(#_) body.sx-product main.editorial-page{background:#fff}
+html:not(#_) body.sx-product main :is(h2){font-weight:700;letter-spacing:-.02em}
+html:not(#_) body.sx-product main :is(h3,h4){letter-spacing:-.01em}
+html:not(#_):not(#__) body.sx-product :is(.product-facts dd,.identity-title,.catalog-copy h3,.product-card h3,.faq-q,.hero-spec-panel h3,.category-header h3,.pep-card h4,.compare-dialog h2,.image-dialog h2,.product-notes h3){font-weight:600!important}
+html:not(#_):not(#__) body.sx-product :is(.clinical-eyebrow,.eyebrow,.identity-eyebrow,.reading-nav-label,.product-facts dt,.research-links>a>span:first-child,.catalog-maker,.product-card .tag,.cat-eyebrow,.pep-pill-label){font-weight:600!important}
+html:not(#_) body.sx-product :is(.identity-title,.image-dialog h2){font-family:var(--font-display);letter-spacing:-.02em}
+
+/* R2 · The header: a rounded grey panel under the nav; the product image in a large rounded frame, the
+   manufacturer tile white in the same frame */
+html:not(#_) body.sx-product .product-editorial-hero{position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:calc(var(--nav-h) + clamp(12px,1.4vw,20px)) auto 0;padding:clamp(28px,3.2vw,48px) 0 clamp(48px,5.6vw,88px);
+  border:0;border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;background:var(--m8-card)}
+html:not(#_) body.sx-product .product-editorial-hero>.container{max-width:min(100%,var(--container,1280px))}
+html:not(#_) body.sx-product .product-editorial-grid{align-items:center}
+html:not(#_) body.sx-product .product-editorial-grid :is(figure>a,figure>img,.product-identity){border:0;border-radius:var(--m8-radius-card);overflow:hidden}
+html:not(#_) body.sx-product .product-editorial-grid figure img{border-radius:0}
+html:not(#_) body.sx-product .product-editorial-grid figure>img{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-product .product-editorial-grid .product-identity{background:#fff}
+html:not(#_) body.sx-product .product-editorial-grid figcaption{margin-top:14px;font-size:14px;color:var(--m8-muted)}
+html:not(#_) body.sx-product .image-open-label{right:16px;bottom:16px;min-height:36px;padding:0 14px;border:0;border-radius:var(--m8-pill);background:#fff;color:var(--m8-ink);font-weight:600}
+html:not(#_) body.sx-product .product-image-open:hover .image-open-label{background:var(--m8-navy);color:#fff;text-decoration:none}
+html:not(#_) body.sx-product .product-image-open:focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
+
+/* R3 · Specialty pages (exosomes, peptides, wholesaler): the photograph fills the header panel, the words sit on
+   the left over a navy scrim, the caption is a small dark tab on the photograph */
+@media (min-width:761px){
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero{display:flex;flex-direction:column;justify-content:center;
+    min-height:clamp(520px,44vw,640px);padding:clamp(32px,3.4vw,52px) 0 clamp(56px,6vw,96px);background:var(--m8-navy);color:#fff;
+    --v7-surface:dark;--v7-label-c:var(--m8-gold);--v7-btn-bg:#fff;--v7-btn-fg:var(--m8-ink);--v7-btn-hover:#e6e9ee;--v7-link-c:#fff;--v7-focus:var(--m8-gold);--v7-label:#fff}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;display:block!important;
+    background:linear-gradient(90deg,rgba(10,23,38,.9) 0%,rgba(10,23,38,.78) 34%,rgba(10,23,38,.32) 62%,rgba(10,23,38,.06) 100%)}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero>.container{width:100%}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid{position:static;grid-template-columns:minmax(0,34rem);align-items:start}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid figure{position:absolute;inset:0;z-index:-2;width:auto;max-width:none;margin:0}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid figure>img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:70% 40%;border:0;border-radius:0}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid figcaption{position:absolute;right:20px;bottom:20px;z-index:1;max-width:min(46%,420px);margin:0;
+    padding:7px 14px;border-radius:var(--m8-pill);background:rgba(10,23,38,.72);color:#fff;font-size:13px;line-height:1.4}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero :is(h1,.product-deck){color:#fff}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero .product-deck{color:#e8edf3}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero :is(.back-link,.clinical-text-link){color:#fff!important}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero :is(a,button):focus-visible{outline:2px solid var(--m8-gold)!important;outline-offset:3px}
+}
+
+/* R4 · The section nav: a white bar under the panel; the current link ink with the 2px navy line of the main nav */
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav){margin-top:clamp(8px,1vw,16px);background:#fff}
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav) a{font-weight:500}
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav) a.is-active{font-weight:600;box-shadow:inset 0 -2px 0 var(--m8-navy)}
+
+/* R5 · Specs: three clean grey cards. Notes: a stack of grey cards with the number as a label. */
+html:not(#_) body.sx-product .product-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--m8-gap);border:0}
+html:not(#_) body.sx-product .product-facts>div,html:not(#_) body.sx-product .product-facts>div+div,html:not(#_) body.sx-product .product-facts>div:first-child{
+  padding:clamp(22px,2.2vw,30px);border:0;border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body.sx-product .product-facts dd{margin-top:10px;font-size:clamp(1.125rem,1.4vw,1.3125rem);line-height:1.35;color:var(--m8-ink)}
+html:not(#_) body.sx-product .product-notes{display:grid;gap:12px}
+html:not(#_) body.sx-product .product-notes article,html:not(#_) body.sx-product .product-notes article:last-child{padding:clamp(22px,2.2vw,28px);border:0;border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body.sx-product .product-notes article>span{font-weight:600;color:var(--m8-accent)}
+html:not(#_) body.sx-product .product-notes h3{margin-top:0}
+
+/* R6 · Clinical reading: the references as white cards on the grey band */
+html:not(#_) body.sx-product .product-reading{background:var(--m8-band)}
+html:not(#_) body.sx-product .research-links>a{border-radius:var(--m8-radius-card);background:#fff}
+html:not(#_) body.sx-product .research-links>a:focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
+
+/* R7 · The closing band: a rounded navy panel inside the gutter, white space above the footer */
+html:not(#_) body.sx-product main>:is(.product-next,.cta-band){position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:clamp(48px,5vw,80px) auto;padding-block:clamp(56px,6vw,96px);border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;
+  background:var(--m8-navy)!important;background-image:none!important}
+html:not(#_) body.sx-product main>:is(.product-next,.cta-band)>.container{max-width:min(100%,var(--container,1280px))}
+html:not(#_) body.sx-product main>.sxp-white+:is(.product-next,.cta-band),html:not(#_) body.sx-product main>.catalog-content+:is(.product-next,.cta-band){margin-top:0}
+
+/* R8 · The family page's catalog cards and the specialty cards: rounded, grey on white, white on the band */
+html:not(#_) body.sx-product .catalog-item,html:not(#_) body.sx-product .catalog-item:hover,html:not(#_) body.sx-product .catalog-item:has([aria-pressed=true]){border-radius:var(--m8-radius-card);overflow:hidden;background:var(--m8-band)}
+html:not(#_) body.sx-product .catalog-item:has([aria-pressed=true]){outline:2px solid var(--m8-navy);outline-offset:2px}
+html:not(#_):not(#__) body.sx-product .catalog-copy h3 .hm-t{font:inherit;letter-spacing:inherit;color:inherit}
+html:not(#_) body.sx-product .catalog-item .catalog-image,html:not(#_) body.sx-product .catalog-item .product-identity{border-radius:0}
+html:not(#_) body.sx-product.editorial-specialty .products-grid{gap:var(--m8-gap)}
+html:not(#_) body.sx-product :is(.sxp-white,.sxp-paper) .product-card{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-product .sxp-white .product-card{background:var(--m8-band)}
+html:not(#_) body.sx-product.editorial-specialty .faq{display:grid;gap:12px;border:0}
+html:not(#_) body.sx-product.editorial-specialty .faq-item,html:not(#_) body.sx-product.editorial-specialty .faq-item:first-child{padding:0 clamp(20px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body.sx-product.editorial-specialty .sxp-paper .faq-item,html:not(#_) body.sx-product.editorial-specialty .sxp-paper .faq-item:first-child{background:#fff}
+html:not(#_) body.sx-product.editorial-specialty .faq-q{padding-block:22px}
+html:not(#_) body.sx-product.editorial-specialty .faq-a-inner{padding-bottom:24px}
+/* the family page's disclosure: an important-information block */
+html:not(#_) body.sx-product .catalog-disclosure{position:relative;margin-top:var(--m8-gap);padding:18px 22px 18px 64px;border:0;border-radius:var(--m8-radius-sm);background:var(--m8-band);
+  font-size:15px;line-height:1.6;color:var(--m8-body)}
+
+/* R9 · Peptides: the supply channels as white cards, the filters as pill toggles, the notice as an
+   important-information block */
+html:not(#_) body.sx-product .hero-spec-panel{border-radius:var(--m8-radius-card);background:var(--m8-band)}
+html:not(#_) body.sx-product .pep-compliance{position:relative;max-width:none;padding:18px 22px 18px 64px;border:0;border-radius:var(--m8-radius-sm);background:var(--m8-band);font-size:15px;line-height:1.6;color:var(--m8-body)}
+html:not(#_) body.sx-product .pep-compliance strong{font-weight:700}
+html:not(#_) body.sx-product :is(.pep-compliance,.catalog-disclosure)::before{content:"";position:absolute;left:20px;top:16px;width:28px;height:28px;border-radius:50%;display:block;
+  background:#fff center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%235b6470'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%235b6470'/%3E%3C/svg%3E")}
+html:not(#_) body.sx-product #pep-search{border-radius:var(--m8-radius-xs)}
+html:not(#_) body.sx-product .pep-pill-row{border-top:0}
+html:not(#_) body.sx-product .pep-pill-scroll{gap:8px}
+html:not(#_) body.sx-product .pep-pill{min-height:40px;padding:0 16px;border-radius:var(--m8-pill);background:#fff;color:var(--m8-ink);font-weight:500;text-decoration:none;position:relative}
+html:not(#_) body.sx-product .pep-pill::after{content:"";position:absolute;inset:-2px 0}
+html:not(#_) body.sx-product .pep-pill:hover{background:var(--m8-card);color:var(--m8-ink)}
+html:not(#_) body.sx-product .pep-pill:is(.is-on,[aria-pressed="true"]){background:var(--m8-navy);color:#fff;font-weight:600;text-decoration:none}
+html:not(#_) body.sx-product .pep-legend{border:0;border-radius:var(--m8-radius-card);background:#fff;padding:0 clamp(20px,2.4vw,28px)}
+html:not(#_) body.sx-product .pep-legend summary{min-height:56px;display:flex;align-items:center}
+html:not(#_) body.sx-product .pep-card,html:not(#_) body.sx-product .pep-card:hover{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-product .pep-grid{gap:var(--m8-gap)}
+
+/* R10 · Controls and dialogs: the catalog compare toggle and the tray buttons are pills; dialogs have 20px corners */
+html:not(#_) body.sx-product .compare-tray{border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-product .compare-tray button{border-radius:var(--m8-pill)}
+html:not(#_) body.sx-product :is(.compare-dialog,.image-dialog){border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-product .image-view-switch button{border-radius:var(--m8-pill)}
+
+/* R11 · Responsive */
+@media (max-width:900px){
+  html:not(#_) body.sx-product .product-facts{grid-template-columns:minmax(0,1fr);gap:12px}
+}
+@media (max-width:760px){
+  html:not(#_) body.sx-product .product-editorial-hero{margin-top:calc(var(--nav-h) + 8px);padding:20px 0 32px}
+  html:not(#_) body.sx-product .product-editorial-hero>.container{padding-inline:20px}
+  html:not(#_) body.sx-product main>:is(.product-next,.cta-band){padding-block:48px}
+  html:not(#_) body.sx-product main>:is(.product-next,.cta-band)>.container{padding-inline:20px}
+  html:not(#_) body.sx-product .product-notes article,html:not(#_) body.sx-product .product-notes article:last-child{padding:20px}
+  html:not(#_) body.sx-product :is(.pep-compliance,.catalog-disclosure){padding:16px 16px 16px 58px}
+  html:not(#_) body.sx-product :is(.pep-compliance,.catalog-disclosure)::before{left:16px}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero{padding-top:0;background:var(--m8-card)}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero>.container{display:flex;flex-direction:column}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid{display:contents}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid figure{order:-1;margin:0 -20px 16px}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid figure>img{border-radius:0;aspect-ratio:4/3}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-grid figcaption{padding-inline:20px}
+  html:not(#_) body.sx-product.editorial-specialty .product-editorial-hero .back-link{margin-bottom:12px}
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 FIXES (Oct 15, panel). R12 one media slot for product cards and the manufacturer tile · R13 the catalog
+   compare toggle falls back to a pill (the site-wide compare style lives in signature.css and overrides it) ·
+   R14 a label that repeats the heading under it is kept for screen readers only · R15 words that must not break
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* R12 · The family page's product cards: one 3:2 media slot, inset 8px in the card, 16px corners; photographs cover it */
+html:not(#_):not(#__) body.sx-product .catalog-item .catalog-image{display:block;flex:none;align-self:stretch;width:auto;margin:8px 8px 0;aspect-ratio:3/2;min-height:0;
+  border:0;border-radius:16px;overflow:hidden;background:var(--m8-band)}
+html:not(#_):not(#__) body.sx-product .catalog-item .catalog-image>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:0}
+html:not(#_):not(#__) body.sx-product .catalog-item .catalog-image :is(.product-identity,.compact-identity){display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;height:100%;padding:0 12%;border:0!important;border-radius:0!important;box-shadow:none!important;background:var(--m8-band)!important}
+html:not(#_):not(#__) body.sx-product .catalog-item .catalog-image .compact-identity img{width:auto;height:auto;max-width:62%;max-height:72px;object-fit:contain;object-position:center}
+html:not(#_):not(#__) body.sx-product .catalog-item .catalog-image .identity-format{display:none}
+/* the header's manufacturer tile (a product shown by its mark, not a photograph): the same 3:2 frame and 20px corners
+   as the product photographs; the mark centred on the light tint at one size; no rule and no format line in it (the
+   format is named in the section nav and the overview); the label stays at the top left */
+html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0;aspect-ratio:3/2;min-height:0;padding:56px 12% 40px;border:0!important;border-radius:var(--m8-radius-card)!important;box-shadow:none!important;background:var(--m8-band)!important}
+html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity .identity-eyebrow{position:absolute;left:clamp(20px,2.4vw,32px);top:clamp(18px,2vw,26px);margin:0}
+html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity img{display:block;width:auto;height:auto;max-width:66%;max-height:104px;
+  object-fit:contain;object-position:center;align-self:center;justify-self:center;border-radius:0}
+html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity .identity-title{align-self:center;text-align:center}
+html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity .identity-format{display:none}
+@media (max-width:760px){
+  html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity{padding:48px 10% 32px}
+  html:not(#_):not(#__) body.sx-product .product-editorial-grid .product-identity img{max-height:72px}
+}
+
+/* R12b · The header actions: a row held by the gap alone, so a wrapped action starts on the pill's left edge */
+html:not(#_):not(#__) body.sx-product .product-editorial-hero .clinical-actions>*{margin-inline-start:0}
+/* the comparison toggle is now an outlined pill (signature.css): its old text-link lead-in (-14px) would push its
+   edge past the pill's, so here it starts on the same edge */
+html:not(#_):not(#__) body.sx-product .product-editorial-hero .save-product{margin-inline-start:0!important}
+
+/* R13 · The catalog compare toggle: a low-specificity fallback only (a 44px outline pill, navy when pressed) */
+.sx-product main .catalog-card-bottom button[data-compare]{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;
+  border:1px solid var(--m8-ink);border-radius:var(--m8-pill);background:transparent;color:var(--m8-ink);font:600 14px/1 var(--font-body);text-decoration:none}
+.sx-product main .catalog-card-bottom button[data-compare]:hover{background:rgba(29,33,37,.08)}
+.sx-product main .catalog-card-bottom button[data-compare][aria-pressed=true]{background:var(--m8-navy);border-color:var(--m8-navy);color:#fff}
+
+/* R14 · Kept for screen readers, hidden on screen (a label that repeats the heading directly under it) */
+html:not(#_):not(#__) body main .sr-only{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;
+  overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+
+/* R15 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
+html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
+  font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}

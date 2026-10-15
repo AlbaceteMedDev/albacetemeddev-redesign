@@ -681,12 +681,12 @@ body.sx-co--partner .hero:not(.hero-split-layout) .hero-chip{max-width:none}
 
 /* M1 · Surfaces. The body is white with the light token set, so nothing depends on JavaScript. */
 html:not(#_) body.sx-co{background:var(--v7-white);color:var(--v7-body);
-  --v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 .sx-co--services .services-experience{background:var(--v7-white)}
 .sx-co .sx-paper + .sx-white,.sx-co .sx-white + .sx-paper{border-top:0}
 /* the header: warm paper, ink headings, body text, navy primary, ink text link */
 html:not(#_) body.sx-co :is(.hero,.sx-co-hero){background:var(--v7-paper)!important;background-image:none!important;color:var(--v7-body);
-  --v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
 html:not(#_) body.sx-co :is(.hero,.sx-co-hero) :is(h1,h2,h3,h4,strong){color:var(--v7-ink)}
 html:not(#_) body.sx-co :is(.hero,.sx-co-hero) :is(p,li,.hero-sub,.services-intro p){color:var(--v7-body)}
 html:not(#_) body.sx-co :is(.hero,.sx-co-hero) .services-intro a{color:var(--v7-ink)!important}
@@ -843,7 +843,7 @@ html:not(#_) body.sx-co--services .service-track-tab:hover{color:var(--v7-ink)}
 html:not(#_) body.sx-co--services .service-track-tab.is-active{color:var(--v7-ink);text-decoration:underline 1px;text-decoration-color:var(--v7-ink);text-underline-offset:10px}
 html:not(#_) body.sx-co--services .engagement-scope{border:0;border-top:1px solid var(--v7-hair)}
 html:not(#_) body.sx-co--services .scope-heading{padding:16px 0;border-bottom:1px solid var(--v7-hair)}
-html:not(#_) body.sx-co--services .scope-heading h3{font-weight:500;color:var(--v7-muted)}
+html:not(#_) body.sx-co--services .scope-heading h3{font-weight:500}
 html:not(#_) body.sx-co--services .scope-row{border-bottom-color:var(--v7-hair);transition:none}
 html:not(#_) body.sx-co--services .scope-row[open]{background:none}
 html:not(#_) body.sx-co--services .scope-row > summary{padding:26px 0}
@@ -852,7 +852,7 @@ html:not(#_) body.sx-co--services .scope-note{padding:0}
 html:not(#_) body.sx-co--services .scope-row > summary:hover .option-name{text-decoration:none}
 html:not(#_) body.sx-co--services .scope-toggle{color:var(--v7-muted)}
 html:not(#_) body.sx-co--services :is(.scope-row[open] .scope-toggle,.scope-row > summary:hover .scope-toggle){color:var(--v7-ink)}
-html:not(#_) body.sx-co--services .scope-content h4{font-weight:500;color:var(--v7-muted)}
+html:not(#_) body.sx-co--services .scope-content h4{font-weight:500;color:var(--v7-label-c)}
 html:not(#_) body.sx-co .add-to-brief{text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
 html:not(#_) body.sx-co .add-to-brief:hover{color:var(--v7-ink);text-decoration-color:var(--v7-ink)}
 html:not(#_) body.sx-co .brief-toolbar{border-top-color:var(--v7-hair)}
@@ -861,7 +861,6 @@ html:not(#_) body.sx-co .review-brief{min-height:44px;padding:0;border:0!importa
 html:not(#_) body.sx-co .review-brief:hover:not(:disabled){text-decoration-color:var(--v7-ink)}
 /* the brief dialog: a plain white sheet */
 html:not(#_) body.sx-co .service-brief-dialog{border:0;border-radius:var(--v7-radius);box-shadow:0 24px 64px rgba(10,23,38,.22)}
-html:not(#_) body.sx-co .brief-dialog-head .services-kicker{color:var(--v7-muted)!important}
 html:not(#_) body.sx-co :is(.close-brief,.remove-brief-item,.brief-export button):hover{color:var(--v7-ink);background:none}
 html:not(#_) body.sx-co :is(.brief-item,.brief-empty,.brief-export){border-top-color:var(--v7-hair)}
 
@@ -986,3 +985,157 @@ html:not(#_) body.sx-co .add-to-brief .add-symbol{display:inline-block;min-width
 html:not(#_):not(#__) body.sx-co main :is(.sw-foot a,.sw-cap a):has(>.hm-t){text-decoration-line:none}
 html:not(#_):not(#__) body.sx-co main :is(.sw-foot a,.sw-cap a)>.hm-t{text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
 html:not(#_):not(#__) body.sx-co main :is(.sw-foot a,.sw-cap a):hover>.hm-t{text-decoration-thickness:2.5px}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 (Oct 15). Supersedes everything above where they conflict. The owner: "model it after intuitive.com"
+   (its design language only; every word, photo and mark here is Albacete's). The page is white. The header is a large
+   rounded grey panel set inside the panel gutter; lists and grids are rounded cards (grey on white, white on the
+   grey band); the closing band is a rounded navy panel with white space above the footer, so the footer stands
+   alone; the regulatory note reads as an important-information block. Tokens: signature.css M2.
+   C1 header panel · C2 closing panel · C3 cards · C4 lists as cards · C5 type · C6 responsive
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* C1 · The header: a rounded grey panel inside the panel gutter (wider than the text column), under the nav */
+html:not(#_) body.sx-co :is(.hero,.sx-co-hero){position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:calc(var(--nav-h) + clamp(12px,1.4vw,20px)) auto 0;padding:clamp(56px,6.4vw,104px) 0 clamp(56px,6vw,96px);
+  border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;background:var(--m8-card)!important}
+html:not(#_) body.sx-co :is(.hero,.sx-co-hero)>.container{max-width:min(100%,var(--container,1280px))}
+/* the facts under the header: small white tiles in the panel */
+html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats){column-gap:var(--m8-gap);row-gap:var(--m8-gap)}
+html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats) .stat{padding:20px 22px 22px;border-radius:var(--m8-radius-sm);background:#fff!important}
+html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats) .stat .value{font-weight:700;letter-spacing:-.01em}
+html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats) .stat .desc{color:var(--m8-muted)}
+/* software: the scan report is a white card in the panel */
+html:not(#_) body.sx-co .hero .sw-demo{border-radius:var(--m8-radius-card);background:#fff!important}
+
+/* C2 · The closing band: a rounded navy panel inside the gutter, white space above the footer */
+html:not(#_) body.sx-co main>:is(section.cta-band,.sx-co-direct){position:relative;width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));
+  margin:0 auto clamp(48px,5vw,80px);padding-block:clamp(56px,6vw,96px);border-radius:var(--m8-radius-panel);overflow:hidden;isolation:isolate;
+  background:var(--m8-navy)!important;background-image:none!important}
+html:not(#_) body.sx-co main>:is(.sx-paper,.engagement-process,.faq-section)+:is(section.cta-band,.sx-co-direct){margin-top:clamp(48px,5vw,80px)}
+html:not(#_) body.sx-co main>:is(section.cta-band,.sx-co-direct) .container{max-width:min(100%,var(--container,1280px))}
+html:not(#_) body.sx-co main .services-direct p em{font-style:normal}
+html:not(#_) body.sx-co main .services-direct a[href^="tel"]{border-radius:var(--m8-pill);min-height:48px;padding:0 26px;font-weight:600}
+
+/* C3 · Cards. Grey (--m8-band) on a white section, white on the grey band; 20px corners, no frame, no shadow. */
+/* about: the story and the approach as two grey cards */
+html:not(#_) body.sx-co--about .content-grid{gap:var(--m8-gap)}
+html:not(#_) body.sx-co--about .content-block{padding:clamp(28px,3.4vw,48px);border-radius:var(--m8-radius-card);background:var(--m8-band)!important}
+/* step rows (about on the band; revenue cycle on white; services on the band): one card per step */
+html:not(#_) body.sx-co :is(.process-grid,.rcm-process){column-gap:var(--m8-gap);row-gap:var(--m8-gap);border:0}
+html:not(#_) body.sx-co :is(.process-step,.rcm-step),html:not(#_) body.sx-co :is(.process-step,.rcm-step):is(:first-child,:last-child,:nth-child(n)){
+  padding:clamp(24px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-co .process-step{background:#fff!important}
+html:not(#_) body.sx-co .rcm-step{background:var(--m8-band)!important}
+html:not(#_) body.sx-co :is(.process-step h4,.rcm-step h3){margin:14px 0 10px}
+html:not(#_) body.sx-co .engagement-steps{gap:var(--m8-gap);padding-top:0;border:0}
+html:not(#_) body.sx-co .engagement-steps li{padding:clamp(24px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card);background:#fff!important}
+/* capabilities (consulting, white), findings (revenue cycle, band), software capabilities (white) */
+html:not(#_) body.sx-co :is(.cs-caps,.findings-grid),html:not(#_) body.sx-co--software .products-grid:not(.sw-access){gap:var(--m8-gap)}
+html:not(#_) body.sx-co :is(.cs-cap,.finding-card),html:not(#_) body.sx-co--software .products-grid:not(.sw-access) .product-card{
+  padding:clamp(24px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-co .cs-cap,html:not(#_) body.sx-co--software .products-grid:not(.sw-access) .product-card{background:var(--m8-band)!important}
+html:not(#_) body.sx-co .finding-card{background:#fff!important}
+html:not(#_) body.sx-co--software .products-grid:not(.sw-access) .product-card h3{margin-top:12px}
+/* the three access cards (software): grey cards with the pill at the foot */
+html:not(#_) body.sx-co--software .sw-access{gap:var(--m8-gap)}
+html:not(#_) body.sx-co--software .sw-access .product-card{border-radius:var(--m8-radius-card);background:var(--m8-band)!important;padding:clamp(28px,2.8vw,36px)}
+/* the pipeline sheet on the band, and the revenue cycle outline: white cards */
+html:not(#_) body.sx-co :is(.review-outline,.hero-spec-panel){border-radius:var(--m8-radius-card)}
+/* the statement cards that close consulting and why partner: one white card on the band */
+html:not(#_) body.sx-co :is(.cs-promise,.wp-promise){padding:clamp(32px,4vw,56px);border:0;border-radius:var(--m8-radius-card);background:#fff!important}
+html:not(#_) body.sx-co :is(.cs-promise,.wp-promise)::before{content:none;display:none}
+/* specialties (revenue cycle, white): small grey tiles */
+html:not(#_) body.sx-co .specialties-grid{gap:12px}
+html:not(#_) body.sx-co .specialty-card{display:flex;align-items:center;min-height:56px;padding:12px 18px;border:0;border-radius:var(--m8-radius-sm);background:var(--m8-band)!important}
+html:not(#_) body.sx-co .specialty-card .sp-name{font-weight:500}
+/* the regulatory note (software): an important-information block, white on the band, with the info mark */
+html:not(#_) body.sx-co .sw-framing{position:relative;margin:28px 0 0;padding:20px 22px 20px 64px;border:0;border-radius:var(--m8-radius-sm);background:#fff!important;
+  font-size:15px;line-height:1.6;color:var(--m8-body)!important}
+html:not(#_) body.sx-co .sw-framing::before{content:"";position:absolute;left:20px;top:18px;width:28px;height:28px;border-radius:50%;
+  background:var(--m8-band) center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%235b6470'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%235b6470'/%3E%3C/svg%3E")}
+html:not(#_) body.sx-co .sw-framing strong{font-weight:700;color:var(--m8-ink)}
+
+/* C4 · Lists read row by row become stacked cards */
+/* why partner: five capabilities, each a grey card (name left, sentence right) */
+html:not(#_) body.sx-co .wp-caps{display:grid;gap:12px;border:0}
+html:not(#_) body.sx-co .wp-cap,html:not(#_) body.sx-co .wp-cap:first-child{padding:clamp(22px,2.4vw,30px) clamp(24px,2.6vw,36px);border:0;border-radius:var(--m8-radius-card);background:var(--m8-band)!important}
+/* services: the scope rows, each a grey card that opens in place */
+html:not(#_) body.sx-co--services .engagement-scope{border:0}
+html:not(#_) body.sx-co--services .scope-heading{border:0;padding:16px 0 12px}
+html:not(#_) body.sx-co--services .scope-heading h3{font-weight:600;color:var(--v7-label-c)}
+html:not(#_) body.sx-co--services .scope-row{margin:0 0 12px;padding:0 clamp(20px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card);background:var(--m8-band)!important}
+html:not(#_) body.sx-co--services .scope-row[open]{background:var(--m8-band)!important}
+html:not(#_) body.sx-co--services .scope-row>summary{padding:24px 0}
+html:not(#_) body.sx-co--services .scope-content{padding:0 0 28px}
+html:not(#_) body.sx-co--services .scope-note{padding:8px 0 0}
+/* FAQ (software, on the band): white cards */
+html:not(#_) body.sx-co .faq{display:grid;gap:12px;border:0}
+html:not(#_) body.sx-co .faq-item{padding:0 clamp(20px,2.4vw,32px);border:0;border-radius:var(--m8-radius-card);background:#fff!important}
+html:not(#_) body.sx-co .faq-q{padding-block:22px}
+html:not(#_) body.sx-co .faq-a-inner{padding-bottom:24px}
+
+/* services: the two service lines as a pill switch (the current one navy, the other grey) */
+html:not(#_) body.sx-co--services .service-tracks{display:flex;flex-wrap:wrap;gap:8px;border:0}
+html:not(#_) body.sx-co--services .service-track-tab{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:0;border-radius:var(--m8-pill);
+  background:var(--m8-band);color:var(--m8-ink);font-size:15px;font-weight:600;text-decoration:none;
+  transition:background-color var(--m8-hover) var(--m8-ease),color var(--m8-hover) var(--m8-ease)}
+html:not(#_) body.sx-co--services .service-track-tab:hover{background:var(--m8-card);color:var(--m8-ink)}
+html:not(#_) body.sx-co--services .service-track-tab.is-active{background:var(--m8-navy);color:#fff;text-decoration:none}
+html:not(#_) body.sx-co--services .service-track-tab:focus-visible{outline:2px solid var(--m8-accent)!important;outline-offset:3px!important}
+/* about: the two cards keep one height */
+html:not(#_) body.sx-co--about .content-grid{align-items:stretch}
+
+/* C5 · Type: headings 600-700 from the tokens, labels 600 */
+html:not(#_) body.sx-co main :is(h3,h4){font-weight:600}
+html:not(#_) body.sx-co :is(.option-name,.faq-q){font-weight:600}
+html:not(#_) body.sx-co :is(.step-num,.engagement-step-number,.product-card .tag,.review-outline li span,.brief-item-number),
+html:not(#_) body.sx-co .cs-cap::before{font-weight:600}
+html:not(#_) body.sx-co--services .scope-content h4{font-weight:600}
+
+/* C6 · Responsive */
+@media (max-width:1024px){
+  html:not(#_) body.sx-co .process-grid{row-gap:var(--m8-gap)}
+  html:not(#_) body.sx-co .rcm-process{row-gap:12px}
+  html:not(#_) body.sx-co .rcm-step+.rcm-step{border-top:0}
+}
+@media (max-width:760px){
+  html:not(#_) body.sx-co :is(.hero,.sx-co-hero){margin-top:calc(var(--nav-h) + 8px);padding:44px 0 48px}
+  html:not(#_) body.sx-co :is(.hero,.sx-co-hero)>.container,html:not(#_) body.sx-co main>:is(section.cta-band,.sx-co-direct) .container{padding-inline:20px}
+  html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats){column-gap:12px;row-gap:12px}
+  html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats) .stat,
+  html:not(#_) body.sx-co :is(.cs-hero-stats,.rcm-hero-stats,.wp-hero-stats) .stat:is(:nth-child(odd),:nth-child(n+3)){padding:16px}
+  html:not(#_) body.sx-co main>:is(section.cta-band,.sx-co-direct){padding-block:48px}
+  html:not(#_) body.sx-co .process-grid{row-gap:12px}
+  html:not(#_) body.sx-co .process-step,html:not(#_) body.sx-co .process-step:is(:nth-child(even),:nth-child(n+3)){padding:24px}
+  html:not(#_) body.sx-co .process-step+.process-step{border-top:0}
+  html:not(#_) body.sx-co :is(.cs-caps,.findings-grid),html:not(#_) body.sx-co--software .products-grid:not(.sw-access){gap:12px}
+  html:not(#_) body.sx-co :is(.cs-cap,.finding-card),html:not(#_) body.sx-co--software .products-grid:not(.sw-access) .product-card{padding:24px}
+  html:not(#_) body.sx-co .engagement-steps li{padding:24px}
+  html:not(#_) body.sx-co .specialties-grid{gap:8px}
+  html:not(#_) body.sx-co .sw-framing{padding:18px 18px 18px 58px}
+  html:not(#_) body.sx-co .sw-framing::before{left:16px}
+  html:not(#_) body.sx-co--services .service-track-tab{flex:0 1 auto;font-size:15px}
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MODEL v8 FIXES (Oct 15, panel). C7 hero actions: one primary pill and one text link on one left edge; every
+   page-level primary a pill · C8 words that must not break
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* C7 · Hero actions (and the closing panels): a row held by the gap alone, so a wrapped action starts on the pill's
+   left edge (the global 4px/12px lead-in margin is for actions side by side) */
+html:not(#_):not(#__) body.sx-co .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+html:not(#_):not(#__) body.sx-co .hero-actions>*{margin-inline-start:0}
+/* a text link in a stacked row sits on the row's left edge, never centred under a full-width pill */
+html:not(#_):not(#__) body.sx-co :is(.hero-actions,.service-actions)>.v7-link{align-self:flex-start;justify-content:flex-start;width:auto}
+/* the services page's "Schedule a consultation" and the brief dialog's actions: pills like every primary */
+html:not(#_):not(#__) body.sx-co :is(.consultation-action,.review-brief,.brief-contact){gap:10px;padding:0 26px;border-radius:var(--m8-pill)!important}
+html:not(#_):not(#__) body.sx-co .consultation-action{justify-content:center;background:var(--m8-navy)!important;border-color:var(--m8-navy)!important}
+html:not(#_):not(#__) body.sx-co .consultation-action:hover{background:var(--m8-navy-hover)!important;border-color:var(--m8-navy-hover)!important}
+html:not(#_):not(#__) body.sx-co .consultation-action:focus-visible{outline:2px solid var(--m8-accent)!important;outline-offset:3px!important}
+html:not(#_):not(#__) body.sx-co .service-actions>*{margin-inline-start:0}
+
+/* C8 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
+html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
+  font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}
