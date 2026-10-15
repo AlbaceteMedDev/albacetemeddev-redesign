@@ -1011,3 +1011,82 @@ html:not(#_):not(#__) body main .sr-only{position:absolute!important;width:1px!i
 /* V11 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
 html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
   font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}
+
+/* ── Oct 15 · B2 · Direct contact: an address never breaks ───────────────────────────────────────────────────
+   At phone widths "gabe@albacetemeddev.com" broke inside the domain and the arrow sat beside the orphan. Each row is
+   now a size container; the values are set from the row's own width (the email is the longest value: ~12.74x its
+   font size wide) so the address holds one line from 320px up, and all four values share that size. The arrow
+   has its own fixed column at the right, bottom-aligned with the value. Wider rows keep the earlier 20-24px size. */
+html:not(#_):not(#__) body .cx-contact .cx-channels li{container-type:inline-size}
+html:not(#_):not(#__) body .cx-contact .cx-channel{grid-template-columns:minmax(0,1fr) 18px;column-gap:16px}
+html:not(#_):not(#__) body .cx-contact .cx-ch-arrow{justify-self:end;width:auto}
+html:not(#_):not(#__) body .cx-contact .cx-ch-text>span{
+  font-size:min(clamp(1.25rem,1.8vw,1.5rem),max(13px,calc(7.5vw - 10px)));      /* no container units: phone layout estimate */
+  font-size:min(clamp(1.25rem,1.8vw,1.5rem),max(13px,calc(7.5cqi - 2.6px)))}
+
+/* ── Oct 15 · B3 · Ovena catalog: the loading state, the failure state, two alignments ───────────────────────
+   Loading (JS on): skeleton cards (static markup, aria-hidden, no words) built from the real card classes, so they
+   take the real grid, card, square image well and body geometry; quiet grey bars, a hairline pill for the button,
+   corner ticks framing the image well and a 1px line that passes down it once per beat. No shimmer, no glow.
+   render() and fallback() clear them. Without JS the earlier placeholder band stays and the skeleton is hidden. */
+html:not(#_):not(#__) body.cx-page .ovena-products:has(.ov-skel){min-height:0}
+html.sx-js:not(#_) body.cx-page .ovena-products:has(.ov-skel) .ov-loading::before{content:none}
+html:not(.sx-js):not(#_) body.cx-page .ov-skel{display:none}
+html:not(#_):not(#__) body.cx-page .ov-loading{font-size:13px;letter-spacing:.06em}   /* B6: the small-caps floor */
+html.sx-js:not(#_) body.cx-page .ovena-products:has(.ov-skel) .ov-loading{display:flex;align-items:center;gap:14px;padding:0 0 18px;text-align:left}
+html.sx-js:not(#_) body.cx-page .ovena-products:has(.ov-skel) .ov-loading::after{content:"";flex:1 1 auto;height:1px;background:rgba(29,33,37,.16)}
+html:not(#_):not(#__) body.cx-page .ov-skel{container-type:inline-size}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card{pointer-events:none;--ov-tk:rgba(29,33,37,.2)}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card-media{display:block}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card-media::before{content:"";position:absolute;inset:8%;background:
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 0 0/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 0 0/1px 12px no-repeat,
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 0/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 0/1px 12px no-repeat,
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 0 100%/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 0 100%/1px 12px no-repeat,
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 100%/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 100%/1px 12px no-repeat}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card-media::after{content:"";position:absolute;inset:8%;opacity:0;
+  background:linear-gradient(rgba(43,94,167,.32),rgba(43,94,167,.32)) 0 0/100% 1px no-repeat;
+  animation:ovSkelPass 2.4s cubic-bezier(.22,.61,.36,1) infinite}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card:nth-child(4n+2) .ov-card-media::after{animation-delay:.16s}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card:nth-child(4n+3) .ov-card-media::after{animation-delay:.32s}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card:nth-child(4n+4) .ov-card-media::after{animation-delay:.48s}
+@keyframes ovSkelPass{0%{opacity:0;background-position:0 0}10%{opacity:1}68%{opacity:1;background-position:0 100%}80%,100%{opacity:0;background-position:0 100%}}
+html:not(#_):not(#__) body.cx-page .ov-skel-bar{display:block;height:8px;border-radius:2px;background:#e9ebef}
+html:not(#_):not(#__) body.cx-page .ov-skel-type{width:38%;margin:5px 0}
+html:not(#_):not(#__) body.cx-page .ov-skel-title{width:84%;height:10px;margin:6.7px 0}
+html:not(#_):not(#__) body.cx-page .ov-skel-title--2{width:56%;margin:-5.3px 0 6.7px}
+html:not(#_):not(#__) body.cx-page .ov-skel .ov-card-row{min-height:44px}
+html:not(#_):not(#__) body.cx-page .ov-skel-price{width:30%;height:14px}
+html:not(#_):not(#__) body.cx-page .ov-skel-btn{display:block;height:48px;border:1px solid rgba(29,33,37,.14);border-radius:999px}
+/* whole rows only: two rows of whatever the grid holds (it fits 2, 3 or 4 columns) */
+@container (max-width:789.98px){html:not(#_):not(#__) body.cx-page .ov-skel>.ov-card:nth-child(n+5){display:none}}
+@container (min-width:790px) and (max-width:1059.98px){html:not(#_):not(#__) body.cx-page .ov-skel>.ov-card:nth-child(n+7){display:none}}
+@media (max-width:640px){
+  html:not(#_):not(#__) body.cx-page .ov-skel-title{height:8px;margin:5.75px 0}
+  html:not(#_):not(#__) body.cx-page .ov-skel-title--2{margin:-2.25px 0 5.75px}
+  html:not(#_):not(#__) body.cx-page .ov-skel .ov-card-row{min-height:73px}   /* the real row stacks the option select over the price */
+  html:not(#_):not(#__) body.cx-page .ov-skel-btn{height:46px}
+}
+@media (prefers-reduced-motion:reduce){html:not(#_):not(#__) body.cx-page .ov-skel .ov-card-media::after{animation:none;opacity:0}}
+@media print{html:not(#_):not(#__) body.cx-page .ov-skel{display:none}}
+
+/* Failure, or no answer in 8s: one white status card in the catalog's place, set like the cards around it: the
+   sentence at the left, the store button at the right, corner ticks framing it. Phones stack the two. */
+html:not(#_):not(#__) body.cx-page .ov-fallback{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+  gap:20px clamp(24px,4vw,56px);max-width:none;margin:0;padding:clamp(28px,3.6vw,48px) clamp(24px,4vw,56px);
+  border:0;border-radius:var(--m8-radius-card);background:#fff;text-align:left;--ov-tk:rgba(29,33,37,.24)}
+html:not(#_):not(#__) body.cx-page .ov-fallback::before{content:"";position:absolute;inset:14px;pointer-events:none;background:
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 0 0/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 0 0/1px 12px no-repeat,
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 0/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 0/1px 12px no-repeat,
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 0 100%/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 0 100%/1px 12px no-repeat,
+  linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 100%/12px 1px no-repeat,linear-gradient(var(--ov-tk),var(--ov-tk)) 100% 100%/1px 12px no-repeat}
+html:not(#_):not(#__) body.cx-page .ov-fallback p{margin:0;font-size:clamp(19px,1.7vw,23px);line-height:1.35;color:var(--v7-ink);text-wrap:balance}
+html:not(#_):not(#__) body.cx-page .ov-fallback .btn-primary{justify-self:end;width:auto;white-space:nowrap}
+@media (max-width:640px){
+  html:not(#_):not(#__) body.cx-page .ov-fallback{grid-template-columns:minmax(0,1fr);padding:28px 24px}
+  html:not(#_):not(#__) body.cx-page .ov-fallback .btn-primary{justify-self:stretch;width:100%}
+}
+
+/* The back link sits on the text column (the 1200px column the nav and the store cards use), not on the panel edge;
+   and the store link keeps a space before its arrow (the arrow is an inline-block, which drops a leading space). */
+html:not(#_):not(#__) body .cx-store-page .product-editorial-hero .back-link{margin-left:max(0px,calc((100% - 1200px) / 2))}
+html:not(#_):not(#__) body.cx-page .ovena-store-note a>.v7-arw{margin-left:.28em}

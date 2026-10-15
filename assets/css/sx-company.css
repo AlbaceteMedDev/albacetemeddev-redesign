@@ -1139,3 +1139,13 @@ html:not(#_):not(#__) body.sx-co .service-actions>*{margin-inline-start:0}
 /* C8 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
 html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
   font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}
+
+/* ── Oct 15 · B1 · software hero label at phone widths ──────────────────────────────────────────────────────
+   Q4 clips each line of a crumb label one dot-width to the left so a line never starts on a separator. A unit too
+   long for one line used to wrap inside itself and its second line started inside that clip ("…ACETE MEDDEV").
+   Each unit now hangs: its first line keeps the dot inside the clip, a continuation line is indented by the same
+   dot-width so it starts on the column. Phrases inside a unit are nowrap groups (.sx-nw), so a forced break falls
+   between phrases only. At phone widths the tracking tightens a little so the long unit holds one line where it can. */
+html:not(#_) body.sx-co--software .hero-chip .sx-u{padding-left:1.6em;text-indent:-1.6em}
+html:not(#_) body.sx-co--software .hero-chip .sx-dot{text-indent:0}
+@media (max-width:400px){html:not(#_):not(#__):not(#___) body.sx-co--software :is(.hero-chip,.hero-chip>span){letter-spacing:.02em!important}}

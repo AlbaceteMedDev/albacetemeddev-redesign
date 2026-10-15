@@ -10,13 +10,15 @@
    2 Hover vocabulary: buttons change colour as a whole in 200ms. Arrows stay still.
    3 Prose links: the underline's colour deepens on hover (200ms). Nothing draws across.
    4 Headline reveals (below the fold only): each line fades up 12px in 600ms, lines 60ms apart. No masks.
-   5 Images below the fold fade up 12px in 600ms (house-motion.js, Web Animations). No curtains, no scale.
+   5 Images below the fold: content photos are unmasked by a scan pass, small images fade (v9, section 10). No scale.
    6 The "+" field is retired everywhere, the home hero included (v7.1).
    7 Smart nav: away on the way down, back (compact: the utility bar tucks away) on the way up, 320ms; sticky bars
      follow it in step.
    8 Phone menu: a full-screen white sheet uncovered from under the nav over 320ms, its lines rising 12px into place
      20ms apart; the menu button turns into a cross in two clean steps.
    9 Cards and carousels (Model v8): see above. Under reduced motion cards keep only the shadow and carousels jump.
+   10 Futurist v9 "precision instrument": scan reveals on content photos, panel depth, 3px arrow nudges, card foot
+     hairlines, the sliding nav bar. Section 2's arrows now answer a hover (3px); everything else above stands.
    Every hidden state lives under html.hm-on, which house-motion.js adds only when motion is allowed.
    Without JS, or with prefers-reduced-motion, the page is complete and static. */
 
@@ -62,7 +64,8 @@ html:not(#_) .hm-btn:focus-visible{background-color:var(--hm-hover)!important;co
 @media (hover:hover){
   html:not(#_) .hm-btn:hover{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
 }
-/* Arrow glyphs stay where they are; the wrapper keeps a text link's underline under its words only. */
+/* The wrapper keeps a text link's underline under its words only. Arrow glyphs answer a hover or keyboard focus by
+   sliding 3px their own way (section 10); under reduced motion they stay still. */
 html:not(#_) .hm-arw{display:inline-block;transform:none!important;text-decoration:none}
 @media (prefers-reduced-motion:no-preference){
   html:not(#_) .hm-btn{transition:background-color .15s var(--hm-ease),color .15s var(--hm-ease),border-color .15s var(--hm-ease),text-decoration-color .15s var(--hm-ease)!important}
@@ -83,7 +86,8 @@ html.hm-on .hm-hl:not(.hm-in) hm-w{opacity:0;transform:translateY(12px)}
 .hm-hl.hm-now hm-w{transition:none}
 
 /* ── 5. Images ───────────────────────────────────────────────────────── */
-/* Armed only below the fold; the fade itself runs through the Web Animations API from house-motion.js. */
+/* Armed only below the fold; the reveals run through the Web Animations API from house-motion.js. Since v9 a
+   content photo gets the scan reveal and a small image a plain fade (section 10); .hm-fade is kept for old tags. */
 html.hm-on img.hm-fade:not(.hm-shown){opacity:0;translate:0 12px}
 
 /* ── 7. Smart nav ────────────────────────────────────────────────────── */
@@ -152,4 +156,72 @@ html:not(#_) .m8-card:has(.m8-card-stretch:focus-visible){box-shadow:var(--m8-sh
 /* The slide itself (450ms, the house easing) is driven by house-motion.js; snapping is set aside while it runs. */
 html:not(#_) .m8-track.m8-sliding{scroll-snap-type:none!important}
 
-@media print{hm-bar{display:none!important}}
+/* ── 10. Futurist v9: precision instrument ──────────────────────────── */
+/* Scan reveal (house-motion.js): a content photo below the fold, 240px wide or more, is unmasked left to right in
+   700ms while a 1px scan line in the surface's focus colour (accent on light, gold on dark) travels with the edge,
+   once. Smaller images only fade. The line is a temporary sibling (hm-scan) that leaves when the pass ends. */
+html.hm-on img.hm-scan:not(.hm-shown){clip-path:inset(0 100% 0 0)}
+html.hm-on img.hm-fade0:not(.hm-shown){opacity:0}
+hm-scan{position:absolute;display:block;width:1px;margin:0;padding:0;pointer-events:none;opacity:0;background:var(--hm-scan-c,#2b5ea7);
+  z-index:var(--hm-scan-z,auto);will-change:transform,opacity}
+
+/* Arrows: 3px along their own direction (--hm-ax/--hm-ay from house-motion.js), 150ms. */
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) .hm-arw{transition:translate .15s var(--hm-ease)}
+  @media (hover:hover){html:not(#_) :is(a,button):hover>.hm-arw{translate:calc(var(--hm-ax,4px) * .75) calc(var(--hm-ay,0px) * .75)}}
+  html:not(#_) :is(a,button):focus-visible>.hm-arw{translate:calc(var(--hm-ax,4px) * .75) calc(var(--hm-ay,0px) * .75)}
+}
+
+/* Cards: the foot hairline draws in 450ms; the title's colour changes in 150ms (signature.css F5). */
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) .m8-card::before{transition:transform .45s var(--hm-ease)}
+  html:not(#_) .m8-card :is(.m8-card-title,h3){transition:color .15s var(--hm-ease)}
+  html:not(#_) hm-navbar{transition:transform .28s var(--hm-ease),opacity .15s var(--hm-ease)}
+}
+
+/* Panel depth (scroll-driven, where supported; elsewhere nothing happens). A large rounded panel opens from 97%
+   of its height as it scrolls in and settles back as it leaves: the frame is clipped, the content is never
+   transformed, and in the middle of the screen it is whole. The clip is vertical only (fix-v9c): the panel's left
+   and right edges never leave the panel gutter, so a panel always lines up with the cards above and below it. A photo panel's image drifts 16px against the scroll,
+   inside its frame (8px of overscan above and below; a tagged panel's framed cover photo, .m9-drift, drifts 12px on
+   a scale of at most 6%), so no edge ever shows. .m8-panel and the page groups' rounded
+   hero and closing panels (.m9-depth, tagged by house-motion.js) take it; hero carousel slides and anything inside
+   [data-motion-off] (a page that runs its own motion) do not. Zero
+   specificity, so a page group's own animation on a panel always wins. Desktop and tablet only. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference) and (min-width:761px){
+    :where(html.hm-on .m8-panel:not(.m8-track *,[data-motion-off] *),html.hm-on .m9-depth){view-timeline:--hm-panel block;
+      animation:hm-depth linear both;animation-timeline:--hm-panel;animation-range:cover 0% cover 100%}
+    html.hm-on:not(#_) .m8-panel--photo:not(.m8-track *,[data-motion-off] *)>:is(img,picture,video,.m8-panel-media):first-child{top:-8px;bottom:auto;height:calc(100% + 16px)}
+    :where(html.hm-on .m8-panel--photo:not(.m8-track *,[data-motion-off] *)>:is(img,picture,video,.m8-panel-media):first-child){
+      animation:hm-drift linear both;animation-timeline:--hm-panel;animation-range:cover 0% cover 100%}
+    :where(html.hm-on .m9-depth .m9-drift){scale:var(--hm-ds,1.04);
+      animation:hm-drift-s linear both;animation-timeline:--hm-panel;animation-range:cover 0% cover 100%}
+  }
+}
+@keyframes hm-depth{
+  0%{clip-path:inset(1.5% 0 round var(--hm-r,var(--m8-radius-panel,24px)))}
+  32%,68%{clip-path:inset(0% 0 round var(--hm-r,var(--m8-radius-panel,24px)))}
+  100%{clip-path:inset(1.5% 0 round var(--hm-r,var(--m8-radius-panel,24px)))}}
+
+/* Eyebrow segments (house-motion.js 17, fix-v9c): each separator-delimited part of an eyebrow is one unit that moves
+   to the next line whole; never wider than the line, so a part longer than the line still wraps inside itself.
+   Without the script there are no parts and the eyebrow wraps as before. */
+hm-seg{display:inline-block;max-width:100%;text-indent:0}
+hm-segs{display:inline}
+@keyframes hm-drift{from{translate:0 -8px}to{translate:0 8px}}
+@keyframes hm-drift-s{from{translate:0 -6px}to{translate:0 6px}}
+
+/* Print (B5, Oct 15): every armed state is shown and nothing clips, whether or not the browser fired beforeprint
+   (house-motion.js also finishes every reveal on beforeprint): no image mask or fade, no hidden headline words, no
+   panel depth clip, no photo drift; the temporary lines and bars are not printed. */
+@media print{
+  hm-bar,hm-scan,hm-navbar{display:none!important}
+  html:not(#_) img:is(.hm-scan,.hm-fade0,.hm-fade){clip-path:none!important;opacity:1!important;translate:none!important}
+  html:not(#_) .hm-hl hm-w{opacity:1!important;transform:none!important;transition:none!important}
+  html:not(#_) :is(.m8-panel,.m9-depth){animation:none!important;clip-path:none!important}
+  html:not(#_) :is(.m8-panel--photo>:is(img,picture,video,.m8-panel-media):first-child,.m9-drift){animation:none!important;translate:none!important}
+  /* the page groups' own entrances too (sx-company, sx-convert, styles.css), wherever a page has not printed them */
+  html:not(#_) :is(.sx-reveal,.scroll-reveal,.sx-fade,.reveal,[data-reveal]){opacity:1!important;visibility:visible!important;clip-path:none!important}
+  html:not(#_) :is(.sx-reveal,.scroll-reveal,.sx-fade){transform:none!important;translate:none!important}
+}

@@ -9,11 +9,18 @@
      4  products        three photo cards (the categories) and the filtered product rail (tabs + round arrows)
      5  approach        a photograph beside a navy statement card
      6  questions       the three questions as three cards (no pinning)
-     7  services        white feature cards on the light grey band
+     7  services        white feature cards on the light grey band around the navy precision panel (the software
+                        row, moved: its copy beside the 3D wound topography, assets/js/m9-topo.js)
      8  closing         a full-width rounded photo panel, centred headline and a pill
      9  information     the page's notes in the important-information block, before the footer
    Without JS the carousels are native horizontal scrolls (the hero stacks its panels); under reduced motion every
-   block is static and fully visible. Everything is sx-* scoped. */
+   block is static and fully visible. Everything is sx-* scoped.
+   Futurist v9 ("precision instrument") on top: the hero picture's corner marks and the mono pager under the panel, a
+   living hero photograph, the brand ident as one slide's background, slide changes as an 850ms photograph wipe
+   behind a 1px scan line (the words cross-fade; captions and cards fade, never wiped), image scan-ins, a sliding tab
+   indicator, the topography panel and a slow drift in the closing photograph. See "v9" below. No rule here hides
+   content: entrances are animations home.js starts off screen, so a still, a print or a jump always shows every card
+   with its words. */
 
 /* ── Page frame ─────────────────────────────────────────────── */
 body.page-home,.sx-home{background:#fff;
@@ -49,7 +56,7 @@ html:not(#_) body .sx-home :is(.sx-actions,.sx-panel-links)>.sx-btn+.sx-btn{marg
 
 /* ── 1 Hero carousel ────────────────────────────────────────── */
 .sx-top{padding:calc(var(--nav-h) + 16px) 0 clamp(16px,2vw,32px)}
-.sx-heroes{width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));margin-inline:auto;--m8-arrow-inset:-22px}
+.sx-heroes{width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));margin-inline:auto}
 /* each slide is a rounded grey panel: the copy at left, a photograph filling the right */
 html:not(#_) .sx-slide{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"copy media";
   width:auto;min-height:clamp(500px,40vw,580px);margin:0;background:var(--m8-card);text-align:left}
@@ -71,28 +78,36 @@ html:not(#_) .sx-slide{display:grid;grid-template-columns:minmax(0,1.15fr) minma
 }
 .sx-lead{max-width:26em;margin:0 0 32px;font-size:clamp(1.125rem,1.3vw,1.25rem);line-height:1.55;color:var(--m8-body)}
 .sx-slide-hero .sx-hero-photo>img{object-position:14% 50%}
-/* the hero photograph is a small grid: the picture behind, the caption on a soft navy fade at its foot, and the
-   introduction button in that fade above the caption's words at the right, clear of both faces (at the top right
-   it sat on the patient's head) */
+/* the hero photograph carries two things only: the four corner marks (v9 below) and one caption block at its foot,
+   left-aligned, the photo note beneath the caption in the same alignment, on a short navy fade under the carton
+   (the copy column holds the introduction button, and the pager sits under the panel). The caption keeps 40px
+   from the picture's sides and 32px from its foot, clear of the corner marks at 14-26px. */
 .sx-hero-visual{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
 .sx-hero-photo{display:contents}
-.sx-hero-cap{grid-row:2;grid-column:1;position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;
-  padding:72px 28px 22px;background:linear-gradient(180deg,rgba(10,23,38,0),rgba(10,23,38,.6) 38%,rgba(10,23,38,.82));line-height:1.5;color:#fff}
+.sx-hero-cap{grid-row:2;grid-column:1;position:relative;z-index:1;display:block;
+  padding:44px 40px 32px;background:linear-gradient(180deg,rgba(10,23,38,0),rgba(10,23,38,.64) 36%,rgba(10,23,38,.82));line-height:1.45;color:#fff}
 .sx-hero-cap strong{font-weight:600;color:#fff}
-.sx-hero-cap small{margin-left:auto;color:#fff}
+.sx-hero-cap small{display:block;margin-top:2px;color:rgba(255,255,255,.88)}
 .sx-nb{white-space:nowrap}
-html:not(#_) .sx-hero-visual .sx-play-wrap{grid-row:2;grid-column:1;align-self:start;justify-self:end;position:relative;z-index:2;margin:14px 28px 0}
-.sx-play{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 18px;border:0;border-radius:var(--m8-pill);
-  background:rgba(255,255,255,.94);color:var(--m8-ink);font:600 14px/1 var(--font-body);cursor:pointer;box-shadow:0 2px 10px rgba(16,35,58,.12)}
+/* the introduction button: in slide 1's copy column under the two pills, a quiet third action (a navy play disc
+   and its words); 44px tall. Its row is held while JS runs, so the column does not move when intro.js shows it. */
+html:not(#_) .sx-slide-copy .sx-play-wrap{margin:20px 0 0}
+html.sx-js:not(#_) .sx-slide-copy .sx-play-wrap{display:flex;align-items:center;min-height:44px}
+.sx-play{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin:0;padding:0 6px 0 0;border:0;border-radius:var(--m8-pill);
+  background:none;color:var(--m8-ink);font:600 15px/1.2 var(--font-body);text-align:left;cursor:pointer}
 .sx-play[hidden]{display:none}
 /* the play mark is drawn, not the text triangle (no emoji rendering on phones); the glyph stays aria-hidden */
-.sx-play-icon{display:block;flex:none;width:9px;height:10px;font-size:0;line-height:0;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
-.sx-play:hover{background:#fff;color:var(--m8-navy-hover)}
+.sx-play-icon{position:relative;display:block;flex:none;width:36px;height:36px;border-radius:50%;background:var(--m8-navy);font-size:0;line-height:0}
+.sx-play-icon::before{content:"";position:absolute;left:14px;top:12px;width:10px;height:12px;background:#fff;clip-path:polygon(0 0,100% 50%,0 100%)}
+.sx-play-label{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:transparent}
+.sx-play:hover .sx-play-icon{background:var(--m8-navy-hover)}
+.sx-play:is(:hover,:focus-visible) .sx-play-label{text-decoration-color:currentColor}
+html:not(#_) .sx-play:focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
 
 /* slide 2: the evidence map as a white card on the photograph */
 .sx-slide-ev .sx-slide-media>img{object-position:50% 30%}
 .sx-ev-map{grid-area:media;z-index:1;align-self:end;justify-self:start;display:grid;grid-template-columns:auto minmax(40px,1fr) auto;
-  width:min(420px,calc(100% - 48px));min-height:176px;margin:24px;padding:18px 22px;border-radius:var(--m8-radius-sm);background:#fff;
+  width:min(420px,calc(100% - 72px));min-height:176px;margin:36px;padding:18px 22px;border-radius:var(--m8-radius-sm);background:#fff;
   box-shadow:0 8px 28px rgba(16,35,58,.16)}
 .sx-ev-hub{align-self:center;padding-right:12px;font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
 .sx-ev-lines{display:block;width:100%;height:100%;overflow:visible}
@@ -105,8 +120,7 @@ html:not(#_) .sx-hero-visual .sx-play-wrap{grid-row:2;grid-column:1;align-self:s
 /* slide 3 */
 .sx-slide-sv .sx-slide-media>img{object-position:50% 40%}
 
-/* controls: the global round arrows hang on the panel edges; the dots sit under it */
-.sx-heroes .m8-dots{margin-top:12px}
+/* controls: home.js gathers the slide index, the dots and the previous / next buttons into one pager (v9 below) */
 
 /* without JS: the three panels stack, every one visible */
 html:not(.sx-js) .sx-heroes .m8-track{flex-direction:column;overflow:visible}
@@ -116,9 +130,9 @@ html:not(.sx-js) .sx-heroes .m8-track>*{flex:none}
 .sx-offer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:clamp(20px,2.4vw,32px) 0 0;padding:0;list-style:none}
 .sx-offer a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;padding:12px 16px 12px 24px;
   border-radius:var(--m8-radius-sm);background:var(--m8-band);color:var(--m8-ink);font-size:16px;font-weight:600;line-height:1.3;text-decoration:none}
-.sx-offer-arrow{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--m8-ink);font-size:16px;line-height:1}
+.sx-offer-arrow{flex:none;display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--sx-ring);border-radius:50%;background:#fff;color:var(--m8-ink);font-size:16px;line-height:1}
 .sx-offer a:hover{background:var(--m8-card)}
-.sx-offer a:hover .sx-offer-arrow{background:var(--m8-navy);color:#fff}
+.sx-offer a:is(:hover,:focus-visible) .sx-offer-arrow{border-color:var(--m8-navy);background:var(--m8-navy);color:#fff}
 
 /* ── 3 Ticker: product names in a rounded grey strip ────────── */
 /* At rest (no JS, or reduced motion) the names stand still and wrap, every one visible; the repeated list exists only
@@ -183,11 +197,21 @@ html:not(#_) .sx-home .sx-cat .sx-panel-media:focus-visible{outline:none}
 .sx-browse{margin-top:clamp(48px,5vw,72px)}
 .sx-tabs{position:relative;display:flex;gap:8px;margin:0 0 24px}
 .sx-tabs[hidden]{display:none}
-.sx-tab{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:0;border-radius:var(--m8-pill);background:var(--m8-band);
+.sx-tab{position:relative;flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:0;border-radius:var(--m8-pill);background:none;
   color:var(--m8-ink);font:600 15px/1.2 var(--font-body);letter-spacing:0;white-space:nowrap;cursor:pointer}
+/* each tab's pill is its ::before (z -2) and the chosen tab's navy pill is one indicator (.sx-tab-ink, z -1) that
+   slides from tab to tab under the words; the tab row is its own stacking context */
+.sx-tabs{isolation:isolate}
+.sx-tab::before{content:"";position:absolute;inset:0;z-index:-2;border-radius:inherit;background:var(--m8-band);box-shadow:inset 0 0 0 1px var(--sx-ring)}
+.sx-tab[aria-selected="true"]::before{box-shadow:none}
 .sx-tab-num,.sx-tab-ink{display:none}
-.sx-tab:hover{background:var(--m8-card)}
-.sx-tab[aria-selected="true"],.sx-tab[aria-selected="true"]:hover{background:var(--m8-navy);color:#fff}
+.sx-tab:hover::before{background:var(--m8-card)}
+.sx-tab[aria-selected="true"]{color:#fff}
+.sx-tabs:not(.has-ink) .sx-tab[aria-selected="true"]::before{background:var(--m8-navy)}
+/* once the indicator has arrived the chosen tab carries the same navy itself (the words always sit on their own
+   ground; the old tab lets go at once, while the indicator is still under it) */
+html:not(#_) .sx-tabs.has-ink .sx-tab[aria-selected="true"]{background-color:var(--m8-navy)}
+html:not(#_) .sx-tabs.has-ink .sx-tab-ink{display:block;position:absolute;left:0;top:0;z-index:-1;border-radius:var(--m8-pill);background:var(--m8-navy);pointer-events:none}
 .sx-tab:focus-visible{outline:2px solid var(--m8-accent);outline-offset:3px}
 html:not(#_) .sx-rail-box{--m8-slide-w:calc((100% - 3 * var(--m8-gap)) / 4)}
 /* the rail's round arrows sit in their own control row above it (house-motion.js .m8-controls), never over a
@@ -196,8 +220,9 @@ html:not(#_) .sx-rail-box{--m8-slide-w:calc((100% - 3 * var(--m8-gap)) / 4)}
   html:not(#_) .sx-rail-box>.m8-controls{position:absolute;right:0;bottom:calc(100% + 24px);margin:0}
 }
 @media (max-width:1023px){
-  .sx-tabs{margin-bottom:12px}
-  html:not(#_) .sx-rail-box>.m8-controls{margin-bottom:12px}
+  .sx-tabs{margin-bottom:16px}
+  /* the arrows follow the rail here (home.js moves the row), under it at the right */
+  html:not(#_) .sx-rail-box>.m8-controls{margin:12px 0 0}
 }
 /* no padding on the scroller: the carousel steps card edge to card edge (focus rings are drawn inside the cards) */
 html:not(#_) .sx-rail{position:relative}
@@ -277,19 +302,59 @@ html:not(#_) .sx-home .sx-guide h4{margin:0 0 16px;font-size:1.25rem;font-weight
 .sx-v-path li::first-letter{text-transform:uppercase}
 
 /* ── 7 Services: white feature cards on the light grey band ─── */
+/* in their order: 01 and 02 side by side, 03 the navy precision panel across the row, 04 a wide card under it */
 body.page-home .sx-home #services>.container{display:block}
 html:not(#_) .sx-services{padding-block:clamp(56px,6vw,88px)}
+html:not(#_) .sx-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--m8-gap)}
+html:not(#_) .sx-rows>.sx-precision,html:not(#_) .sx-rows>.sx-row:last-child{grid-column:1/-1}
 html:not(#_) .sx-row{gap:10px;min-height:280px;padding:28px 26px 24px;color:var(--m8-body);text-decoration:none}
 .sx-row-tag{font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--m8-accent)}
 html:not(#_) .sx-home .sx-row h3{margin-top:4px;font-size:clamp(1.25rem,1.6vw,1.5rem);font-weight:700;line-height:1.25;letter-spacing:-.015em;color:var(--m8-ink)}
 /* side by side, every title keeps two lines' room, so the texts start level across the row */
 @media (min-width:761px){html:not(#_) .sx-home .sx-row h3{min-height:2.5em}}
 .sx-row p{font-size:16px;line-height:1.55;color:var(--m8-body)}
-.sx-row-arrow{display:grid;place-items:center;width:44px;height:44px;margin-top:auto;border-radius:50%;background:var(--m8-band);color:var(--m8-ink);font-size:18px;line-height:1}
-.sx-row:is(:hover,:focus-visible) .sx-row-arrow{background:var(--m8-navy);color:#fff}
+.sx-row-arrow{display:grid;place-items:center;width:44px;height:44px;margin-top:auto;border:1px solid var(--sx-ring);border-radius:50%;background:#fff;color:var(--m8-ink);font-size:18px;line-height:1}
+.sx-row:is(:hover,:focus-visible) .sx-row-arrow{border-color:var(--m8-navy);background:var(--m8-navy);color:#fff}
 .sx-row:is(:hover,:focus-visible) h3{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
-.sx-soft-copy{display:contents}
-.sx-soft-viz{display:none}   /* aria-hidden ornament: the card reads like the others */
+/* 04, the wide card: its parts in one line (label, title, text, arrow) */
+@media (min-width:1024px){
+  html:not(#_) .sx-rows>.sx-row:last-child{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) minmax(0,2.2fr) 44px;align-items:center;
+    column-gap:clamp(24px,3vw,48px);min-height:0;padding:28px 28px 28px 32px}
+  html:not(#_) .sx-home .sx-rows>.sx-row:last-child h3{min-height:0;margin:0}
+  html:not(#_) .sx-rows>.sx-row:last-child .sx-row-arrow{margin:0}
+}
+html:not(#_) .sx-rows>.sx-row:not(:last-child){min-height:220px}
+html:not(#_) .sx-home .sx-rows>.sx-row h3{min-height:0}
+
+/* 03, the precision panel: a rounded navy panel, the copy at left and the 3D wound topography at right in its own
+   darker viewport (a hairline grid and four corner marks, like an instrument display). The whole panel is the link. */
+html:not(#_) .sx-precision{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);width:auto;min-height:clamp(440px,38vw,540px);margin:0;
+  color:var(--m8-body-inv);text-decoration:none}
+html:not(#_) .sx-precision:focus-visible{outline:2px solid var(--m8-accent);outline-offset:4px}
+.sx-precision-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px;padding:clamp(36px,4.4vw,64px)}
+html:not(#_) .sx-precision .sx-row-tag{color:var(--m8-gold)}
+html:not(#_) .sx-home .sx-precision h3{margin:0;font-size:var(--m8-h2);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:#fff;
+  text-decoration-thickness:2px;text-underline-offset:6px}
+html:not(#_) .sx-home .sx-precision p{max-width:24em;font-size:var(--m8-body-size);line-height:var(--m8-body-lh);color:var(--m8-body-inv)}
+html:not(#_) .sx-precision .sx-row-arrow{width:48px;height:48px;margin-top:16px;border-color:#fff;background:#fff;color:var(--m8-ink)}
+html:not(#_) .sx-precision:is(:hover,:focus-visible) .sx-row-arrow{border-color:#e6e9ee;background:#e6e9ee;color:var(--m8-ink)}
+html:not(#_) .sx-home .sx-precision:is(:hover,:focus-visible) h3{text-decoration:underline}
+.sx-precision-viz{position:relative;min-height:340px;margin:14px 14px 14px 0;border:1px solid rgba(255,255,255,.08);border-radius:calc(var(--m8-radius-panel) - 10px);
+  overflow:hidden;background:#0b1b2e;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:32px 32px;background-position:-1px -1px}
+.sx-precision-viz::before{content:"";position:absolute;inset:16px;z-index:1;pointer-events:none;--c:rgba(255,255,255,.42);
+  background:linear-gradient(var(--c),var(--c)) 0 0/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 0 0/1px 14px no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 0/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 100% 0/1px 14px no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 100%/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 0 100%/1px 14px no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 100%/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 100% 100%/1px 14px no-repeat}
+/* without JS (or until the canvas draws) the old contour drawing stands in */
+.sx-precision-viz>svg{position:absolute;inset:0;width:100%;height:100%}
+.sx-precision-viz .sx-viz-grid{fill:none;stroke:none}
+.sx-precision-viz .sx-contours path{stroke:rgba(150,184,232,.75);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.sx-precision-viz .sx-contours path:last-child{stroke:var(--m8-gold)}
+.sx-precision-viz .sx-viz-pts{fill:rgba(255,255,255,.6)}
+.sx-precision-viz .sx-viz-c{fill:var(--m8-gold)}
 
 /* ── 8 Closing: a full-width rounded photo panel ────────────── */
 html:not(#_) .sx-cta{min-height:clamp(420px,36vw,520px)}
@@ -316,7 +381,6 @@ html:not(#_) .sx-info .m8-info-head{margin:0;padding:0;border:0}
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width:1100px){
   .sx-offer{grid-template-columns:repeat(2,minmax(0,1fr))}
-  html:not(#_) .sx-rows.m8-grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}
   html:not(#_) .sx-rail-box{--m8-slide-w:calc((100% - 2 * var(--m8-gap)) / 3)}
 }
 @media (max-width:1023px){
@@ -338,6 +402,15 @@ html:not(#_) .sx-info .m8-info-head{margin:0;padding:0;border:0}
   html:not(#_) .sx-step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .sx-step-visual{order:0;min-height:280px}
 }
+@media (min-width:861px) and (max-width:1023px){
+  /* side by side but narrow: the hero caption would wrap to three lines and reach the carton, so it takes its own
+     light strip under the photograph, as on a phone; the photograph fills the rest of the column */
+  html:not(#_) .sx-hero-visual .sx-hero-photo>img{position:relative;inset:auto;grid-row:1;grid-column:1;width:100%;height:100%;min-height:0}
+  html:not(#_) .sx-hero-cap{grid-row:2;padding:14px 24px 16px;background:var(--m8-band);line-height:1.5;color:var(--m8-body)}
+  html:not(#_) .sx-hero-cap strong{color:var(--m8-ink)}
+  html:not(#_) .sx-hero-cap small{margin:4px 0 0;line-height:1.45;color:var(--m8-muted)}
+  .sx-hero-visual::after{grid-area:1/1/2/2}
+}
 @media (max-width:860px){
   /* the slides stack: the photograph above, the words beneath */
   html:not(#_) .sx-slide{grid-template-columns:minmax(0,1fr);grid-template-areas:"media" "copy" "map";grid-template-rows:auto 1fr auto;min-height:0}
@@ -354,30 +427,16 @@ html:not(#_) .sx-info .m8-info-head{margin:0;padding:0;border:0}
   /* a small tree: the four sources hang off one line under the hub */
   .sx-ev-nodes{grid-template-rows:none;margin-left:4px;border-left:1px solid rgba(29,33,37,.22)}
   .sx-ev-nodes span{padding:3px 0 3px 14px}
-  /* the hero photograph on a stacked slide: the picture, then its caption in its own light strip beneath (never
-     over the photograph), the photo note smaller and lighter; the introduction button in the picture's lower right
-     corner (the patient's knees), clear of both faces, which the crop keeps in view */
+  /* the hero photograph on a stacked slide: the picture (its corner marks only), then its caption in its own light
+     strip beneath (never over the photograph), the photo note lighter, both left-aligned */
   html:not(#_) .sx-hero-visual{aspect-ratio:auto;grid-template-rows:auto auto}
   html:not(#_) .sx-hero-visual .sx-hero-photo>img{position:relative;inset:auto;grid-row:1;grid-column:1;height:auto;aspect-ratio:16/10;object-position:14% 30%}
-  html:not(#_) .sx-hero-visual .sx-play-wrap{grid-row:1;align-self:end;justify-self:end;margin:0 14px 14px}
   html:not(#_) .sx-hero-cap{grid-row:2;display:block;padding:14px 24px 16px;background:var(--m8-band);font-size:15px;line-height:1.5;color:var(--m8-body)}
   html:not(#_) .sx-hero-cap strong{display:block;color:var(--m8-ink)}
   html:not(#_) .sx-hero-cap small{display:block;margin:4px 0 0;font-size:13px;line-height:1.45;color:var(--m8-muted)}
-  .sx-heroes{--m8-arrow-inset:0px}
-  /* the arrows join the dots under the panel, clear of the words */
-  html:not(#_) .sx-heroes .m8-arrow{top:auto;bottom:0;margin:0;box-shadow:none}
   .sx-head{flex-direction:column;align-items:flex-start;gap:12px}
   html:not(#_) .sx-step{display:flex}
   .sx-step-visual{order:-1;min-height:260px}
-}
-@media (max-width:768px){
-  /* phones: the introduction button is a 44px round play button (its name, "Watch our introduction", is its
-     aria-label), navy with a thin white ring so it holds on any part of the photograph */
-  html:not(#_) .sx-play{width:44px;height:44px;padding:0;gap:0;border-radius:50%;background:var(--m8-navy);color:#fff;
-    box-shadow:0 0 0 2px rgba(255,255,255,.92),0 2px 10px rgba(16,35,58,.28)}
-  html:not(#_) .sx-play:hover{background:var(--m8-navy-hover);color:#fff}
-  .sx-play-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-  .sx-play-icon{width:12px;height:14px;margin-left:3px}
 }
 @media (max-width:760px){
   .sx-home{font-size:16px;line-height:1.6}
@@ -410,32 +469,157 @@ html:not(#_) .sx-info .m8-info-head{margin:0;padding:0;border:0}
   /* the category tabs: a horizontally scrollable row of pills */
   .sx-tabs{margin-inline:calc(-1 * var(--m8-panel-gutter));padding:4px var(--m8-panel-gutter);overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:var(--m8-panel-gutter);scrollbar-width:none}
   .sx-tabs::-webkit-scrollbar{display:none}
+  /* where the row runs past the screen its edge fades over 48px (home.js: is-more-l / is-more-r), so a cut pill
+     reads as more to scroll; a side with nothing beyond it stays sharp */
+  .sx-tabs{--sx-fl:0px;--sx-fr:0px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--sx-fl),#000 calc(100% - var(--sx-fr)),transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 var(--sx-fl),#000 calc(100% - var(--sx-fr)),transparent)}
+  .sx-tabs.is-more-l{--sx-fl:48px}
+  .sx-tabs.is-more-r{--sx-fr:48px}
   html:not(#_) .sx-rail-box{--m8-slide-w:78%}
   .sx-split-photo{aspect-ratio:4/3}
-  html:not(#_) .sx-split-quote .m8-panel-body{padding:32px 24px 36px}
+  html:not(#_) .sx-split-quote .m8-panel-body{padding:32px 22px 36px}
+  /* the statement at display weight, a size down on a phone (about six lines, not seven) */
+  html:not(#_) .sx-home .sx-manifesto-text{font-size:clamp(1.3125rem,5.9vw,1.5rem);line-height:1.28}
   .sx-step-visual{min-height:240px}
   .sx-guide li{grid-template-columns:1fr}
-  html:not(#_) .sx-rows.m8-grid--4{grid-template-columns:minmax(0,1fr)}   /* one card per row on a phone */
   html:not(#_) .sx-row{min-height:0}
   html:not(#_) .sx-cta-body{padding:56px 24px}
+  /* the headline's second phrase stays whole: a size that keeps it inside the panel down to 320px */
+  html:not(#_) .sx-home .sx-cta-title{font-size:clamp(1.75rem,9.4vw,2.25rem)}
   html:not(#_) .sx-cta-body .sx-cta-actions{flex-direction:column;gap:4px}
   .sx-cta-actions .sx-btn{margin:0 0 8px}
   .sx-info .container{grid-template-columns:minmax(0,1fr);row-gap:16px}
 }
 
 /* ── Motion: fade-ups of 12px over 600ms, 60ms apart, once, below the hero only ──────────────────────────────────
-   Hidden states are gated on html.sx-mo (home.js adds it only when motion is allowed), so without JS or with reduced
-   motion the page is complete and static. Sections carry data-motion-off, so the shared layer leaves them alone. */
-@media (prefers-reduced-motion:no-preference){
-  html.sx-mo .sx-reveal>*{opacity:0;transform:translateY(var(--v7-rise))}
-  html.sx-mo .sx-reveal.is-in>*{opacity:1;transform:none;transition:opacity var(--v7-dur) var(--m8-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),transform var(--v7-dur) var(--m8-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),color var(--m8-hover) var(--m8-ease),background-color var(--m8-hover) var(--m8-ease),text-decoration-color var(--m8-hover) var(--m8-ease),box-shadow .2s var(--m8-ease)}
-  html.sx-mo .sx-reveal>:nth-child(2){--i:1}
-  html.sx-mo .sx-reveal>:nth-child(3){--i:2}
-  html.sx-mo .sx-reveal>:nth-child(n+4){--i:3}
-  html.sx-mo .sx-now>*{transition:none!important}
-}
+   Web Animations started by home.js a quarter of a screen before a block arrives, on the words and pictures inside
+   it (never a card, panel or band). There is no hidden pre-state in this file, so without JS, with reduced motion,
+   in print, after a jump or in a still capture every block is complete. Sections carry data-motion-off, so the
+   shared layer leaves them alone. */
 @media (prefers-reduced-motion:reduce){
   .sx-marquee-track{animation:none!important}
   .sx-marquee-toggle{display:none}
   .sx-home *,.sx-home *::before,.sx-home *::after{transition-duration:0s!important;animation:none!important}
+}
+
+/* ══ v9: Futurist "precision instrument" ═══════════════════════════════════════════════════════════════════════════
+   A thin instrument layer on the Model v8 page. Mono (JetBrains Mono, from m9-topo.css) only for indices; hairlines,
+   ticks and scan lines in the accent; gold only on navy. Every moving part is gated on html.sx-mo (JS and motion
+   allowed), so without JS or with reduced motion the page is complete and still. */
+.sx-home{--sx-mono:var(--m9-mono,"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);
+  /* the ring on every round arrow and grey pill on the home: 4.1:1 on white, 3.7:1 on the band, 3.3:1 on card grey */
+  --sx-ring:#767f8a}
+
+/* the hero picture's instrument frame (decorative, no words or numbers): four hairline corner marks inset 14px, 12px
+   long. White, so they sit on any photograph; where a picture is pale they simply fade into it. Anything else on a
+   picture (the hero caption, the evidence card, the ident's pause button) keeps at least 36px from its edges, so it
+   never touches a mark. */
+.sx-slide-media::after{content:"";position:absolute;inset:14px;z-index:2;pointer-events:none;--sx-fc:rgba(255,255,255,.86);
+  background:linear-gradient(var(--sx-fc),var(--sx-fc)) 0 0/12px 1px,linear-gradient(var(--sx-fc),var(--sx-fc)) 0 0/1px 12px,
+    linear-gradient(var(--sx-fc),var(--sx-fc)) 100% 0/12px 1px,linear-gradient(var(--sx-fc),var(--sx-fc)) 100% 0/1px 12px,
+    linear-gradient(var(--sx-fc),var(--sx-fc)) 0 100%/12px 1px,linear-gradient(var(--sx-fc),var(--sx-fc)) 0 100%/1px 12px,
+    linear-gradient(var(--sx-fc),var(--sx-fc)) 100% 100%/12px 1px,linear-gradient(var(--sx-fc),var(--sx-fc)) 100% 100%/1px 12px;
+  background-repeat:no-repeat}
+/* the first slide's picture on a stacked slide is the photograph above its caption strip: the frame sits on the
+   photograph */
+@media (max-width:860px){.sx-hero-visual::after{grid-area:1/1/2/2}}
+
+/* the pager (home.js): the mono slide index ("01 / 03": the current slide in ink, the count in grey), the dashes and
+   the previous / next buttons (44px round, the global carousel arrows' white disc and 1px ring) in one row under the
+   panel, at its right edge, never on a photograph. Every dash is the same length and never fills over time: the
+   current slide's is solid navy, the others are hairlines. */
+.sx-pager{display:flex;align-items:center;justify-content:flex-end;margin-top:12px}
+.sx-slide-idx{display:inline-block;height:44px;margin-right:6px;font:500 var(--m9-mono-size,12.5px)/44px var(--sx-mono);letter-spacing:var(--m9-mono-track,.04em);
+  font-variant-numeric:tabular-nums;white-space:pre;color:var(--m8-muted)}
+.sx-slide-idx b{font-weight:500;color:var(--m8-ink)}
+html:not(#_) .sx-pager .m8-dots{align-items:center;justify-content:flex-start;gap:0;margin:0 10px 0 0}
+html:not(#_) .sx-pager .m8-dot{width:28px;height:44px}
+html:not(#_) .sx-pager .m8-dot::before{width:16px;height:1px;border-radius:0;background:var(--m8-muted);transition:none}
+html:not(#_) .sx-pager .m8-dot[aria-current="true"]::before{height:3px;background:var(--m8-navy)}
+html:not(#_) .sx-pager .m8-arrow{position:static;inset:auto;margin:0;box-shadow:none}
+html:not(#_) .sx-pager .m8-next{margin-left:8px}
+
+/* the living photograph: the slide on screen settles 6% closer over 20s and drifts a little (restarts per slide) */
+@keyframes sxLive{from{transform:none}to{transform:scale(1.06) translate3d(var(--sx-dx,-1%),var(--sx-dy,-.6%),0)}}
+.sx-slide-hero .sx-hero-photo>img{transform-origin:30% 45%}
+.sx-slide-ev .sx-slide-media>img{--sx-dx:.8%;--sx-dy:-.8%;transform-origin:55% 35%}
+@media (prefers-reduced-motion:no-preference){
+  html.sx-mo .sx-slide.is-live :is(.sx-slide-media>img,.sx-hero-photo>img){animation:sxLive 20s cubic-bezier(.3,.1,.4,1) both;will-change:transform}
+  html.sx-mo .sx-heroes.is-off :is(.sx-slide-media>img,.sx-hero-photo>img){animation-play-state:paused}
+}
+
+/* the brand ident behind slide 3's picture (home.js adds it; the photograph stays beneath as the fallback) */
+.sx-slide-sv .sx-slide-media.has-video{background:#05080d}
+.sx-slide-video{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover;background:#05080d;transition:opacity .25s var(--m8-ease)}
+.sx-slide-video.is-dip{opacity:0}
+/* its pause / play button: lower left, 36px in, clear of the corner marks, where the hero's caption sits */
+.sx-vid-btn{position:absolute;left:36px;bottom:36px;z-index:2;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;
+  background:rgba(255,255,255,.94);color:var(--m8-ink);cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.28)}
+.sx-vid-btn svg{display:block;width:14px;height:14px;fill:currentColor}
+.sx-vid-btn:hover{background:#fff}
+html:not(#_) .sx-vid-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* a slide change (home.js): the old slide lies over the new one for 850ms, its panel and its picture's ground clear;
+   its words and whatever sits on its picture fade out while its photograph alone is wiped away behind one 1px scan
+   line that crosses the photograph only (this box, the photograph's area) */
+html:not(#_) .sx-slide.sx-wipe-out{position:relative;z-index:2;background:transparent;pointer-events:none}
+html:not(#_) .sx-slide.sx-wipe-out .sx-slide-media{background:transparent}
+.sx-wipe{position:absolute;z-index:3;display:none;overflow:hidden;pointer-events:none}
+.sx-wipe.is-on{display:block}
+.sx-wipe-line{position:absolute;top:0;bottom:0;left:0;width:1px;background:var(--m8-accent)}
+
+/* image scan-ins (category cards and the rail), like the global scan reveal (700ms, a 1px accent line at the edge,
+   once), drawn as a grey cover leaving to the right so the photographs' own hover settle is untouched. The cover
+   exists only while it is leaving (.is-scanning) or on a rail card clipped out of the rail's window (.is-armed);
+   home.js never puts one on a picture a visitor can already see. */
+.sx-tile-media{position:relative}
+@keyframes sxScan{from{transform:none}to{transform:translateX(calc(100% + 2px))}}
+@media (prefers-reduced-motion:no-preference){
+  html.sx-mo :is(.sx-scan.is-armed,.sx-scan.is-scanning)::before{content:"";position:absolute;inset:0;z-index:2;background:var(--m8-card);pointer-events:none;
+    box-shadow:-1px 0 0 var(--m8-accent)}
+  html.sx-mo .sx-scan.is-scanning::before{animation:sxScan .7s var(--m8-ease) var(--sx-sd,0ms) both}
+  html.sx-mo .sx-tabs.is-ink-ready .sx-tab-ink{transition:transform .34s var(--m8-ease),width .34s var(--m8-ease)}
+  html.sx-mo .sx-tabs.is-ink-ready .sx-tab{transition:color .2s var(--m8-ease) .08s}
+  html.sx-mo .sx-tabs.is-ink-ready .sx-tab[aria-selected="true"]{transition:color .18s var(--m8-ease) .17s,background-color 0s linear .34s}
+  html.sx-mo .sx-tab::before{transition:background-color var(--m8-hover) var(--m8-ease)}
+  html.sx-mo .sx-row-arrow{transition:background-color var(--m8-hover) var(--m8-ease),color var(--m8-hover) var(--m8-ease),transform var(--m8-hover) var(--m8-ease)}
+  html.sx-mo :is(.sx-row,.sx-precision):is(:hover,:focus-visible) .sx-row-arrow{transform:translateX(3px)}
+}
+
+/* depth: the home's big panels keep their edges on the page gutter at every scroll position (no opening clip: an
+   inset frame would sit ~10px inside the cards above and below it); only the closing photograph drifts 16px inside
+   its frame. Scroll-driven where the browser has it, desktop and tablet only, never pinned. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference) and (min-width:761px){
+    html.sx-mo .sx-cta{view-timeline:--sx-panel block}
+    html.sx-mo:not(#_) .sx-cta>img{top:-8px;bottom:auto;height:calc(100% + 16px);animation:hm-drift linear both;animation-timeline:--sx-panel;animation-range:cover 0% cover 100%}
+  }
+}
+
+/* phones and narrow screens */
+@media (max-width:1023px){
+  html:not(#_) .sx-precision{grid-template-columns:minmax(0,1fr);min-height:0}
+  .sx-precision-copy{padding:40px 36px 8px}
+  .sx-precision-viz{min-height:0;aspect-ratio:16/10;margin:16px}
+}
+@media (max-width:760px){
+  html:not(#_) .sx-rows{grid-template-columns:minmax(0,1fr)}
+  html:not(#_) .sx-rows>.sx-row:not(:last-child){min-height:0}
+  .sx-precision-copy{padding:32px 24px 4px;gap:12px}
+  .sx-precision-viz{aspect-ratio:1/1;margin:12px}
+  .sx-precision-viz::before{inset:12px}
+  .sx-slide-idx{margin-right:4px}
+  .sx-vid-btn{left:32px;bottom:32px} /* still clear of the corner marks (14-26px) */
+}
+@media (prefers-reduced-motion:reduce){
+  .sx-wipe{display:none!important}
+}
+
+/* print: everything shows, whatever an entrance was doing (these beat running animations) */
+@media print{
+  .sx-home .sx-part,.sx-home .sx-slide-copy{opacity:1!important;transform:none!important}
+  .sx-home :is(.sx-hero-cap,.sx-ev-map,.sx-slide-media,.sx-slide-media>img,.sx-hero-photo>img){opacity:1!important;clip-path:none!important}
+  .sx-home .sx-scan::before{content:none!important;display:none!important}
+  .sx-wipe{display:none!important}
 }

@@ -801,7 +801,7 @@ html:not(#_) body.sx-product .pep-compliance{max-width:var(--v7-measure);margin:
 html:not(#_) body.sx-product .pep-compliance strong{color:var(--v7-ink)}
 /* peptides: filters unboxed; options as text toggles (pressed = ink with a 1px underline) */
 html:not(#_) body.sx-product .pep-filters{padding:0;margin:0 0 28px;border:0;border-radius:0;background:none;box-shadow:none}
-html:not(#_) body.sx-product #pep-search{border-color:#8a939d;border-radius:var(--v7-radius)}
+html:not(#_) body.sx-product #pep-search{border-color:var(--m8-field-line,#737c87);border-radius:var(--v7-radius)}
 html:not(#_) body.sx-product #pep-search:hover{border-color:var(--v7-ink)}
 html:not(#_) body.sx-product #pep-search:focus{outline:2px solid var(--sx-gold-deep);outline-offset:2px;border-color:var(--v7-ink)}
 html:not(#_) body.sx-product .pep-pill-row{gap:4px 12px;padding:6px 0;border-top:1px solid var(--v7-hair)}

@@ -7,7 +7,10 @@
    here and never under prefers-reduced-motion. Elements inside [data-motion-off] are left alone. Content inside a
    page-group reveal block (.sx-reveal / .scroll-reveal) starts when that block reveals, so the two read as one
    entrance instead of two. Adding .is-in to an armed element reveals it at once (print, hash jumps and tools).
-   Nothing in the first viewport is ever armed: what is on screen at load is on screen at first paint. */
+   Nothing in the first viewport is ever armed: what is on screen at load is on screen at first paint.
+   Futurist v9 ("precision instrument") adds, on the same rules: scan reveals on content photos (5), panel depth
+   tags (13), mono index tags (14), band hairline tags (15), the nav's sliding hover rail (16) and 3px arrow
+   nudges on the house buttons and links (2). */
 (() => {
   'use strict';
   if (window.__houseMotion) return;
@@ -60,8 +63,12 @@
     const list = waiting.get(el);
     if (list) { waiting.delete(el); list.forEach(trigger); }
   }));
-  function unwatch(el) { if (io) io.unobserve(el); }
-  function arm(el, job) {
+  // Scan reveals start a little later than other entrances (the image's top 15% into the screen), so the pass is
+  // seen rather than finished below the fold.
+  const scanIO = io ? new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) trigger(e.target); }),
+    {rootMargin: '0px 0px -15% 0px'}) : null;
+  function unwatch(el) { if (io) io.unobserve(el); if (scanIO) scanIO.unobserve(el); }
+  function arm(el, job, obs) {
     armed.set(el, job);
     el.classList.add('reveal'); // shared hook: tooling that adds .is-in to .reveal shows it at once
     classWatch.observe(el, {attributes: true, attributeFilter: ['class']});
@@ -70,15 +77,32 @@
       if (!waiting.has(block)) { waiting.set(block, []); classWatch.observe(block, {attributes: true, attributeFilter: ['class']}); }
       waiting.get(block).push(el);
       chained.add(el);
-    } else if (io) io.observe(el);
+    } else if (io) (obs || io).observe(el);
     else job.finish();
   }
   function finishAll() {
     armed.forEach((job, el) => { unwatch(el); job.finish(); });
     armed.clear(); waiting.clear(); queue = [];
   }
-  // Any part of it inside the viewport (or above it) at start: never armed.
-  const inFirstView = el => el.getBoundingClientRect().top < innerHeight;
+  // Anchor jumps (B5, Oct 15): nothing above a jump target, or within a screen below its top, is ever left armed.
+  // The line is measured in page coordinates, so it holds whether the browser scrolls to the target before or after
+  // this file runs.
+  const hashTarget = (hash = location.hash) => {
+    const h = String(hash || '').slice(1);
+    if (!h) return null;
+    let id = h; try { id = decodeURIComponent(h); } catch (_) { /* keep it raw */ }
+    return doc.getElementById(id) || doc.getElementsByName(id)[0] || null;
+  };
+  const pageTop = el => el.getBoundingClientRect().top + scrollY;
+  const lineFor = t => (t ? pageTop(t) + innerHeight : -Infinity);
+  let loadLine = null;
+  const hashLine = () => (loadLine === null ? (loadLine = lineFor(hashTarget())) : loadLine);
+  function finishAbove(line) {
+    if (!(line > -Infinity)) return;
+    armed.forEach((job, el) => { if (pageTop(el) < line) { armed.delete(el); unwatch(el); job.finish(); } });
+  }
+  // Any part of it inside the viewport (or above it) at start, or above the line of the page's #target: never armed.
+  const inFirstView = el => el.getBoundingClientRect().top < innerHeight || pageTop(el) < hashLine();
   const visible = el => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
 
   /* ── 0. Surfaces (Minimal v7). Labels, primary buttons and focus rings take their colours from surface tokens
@@ -305,46 +329,89 @@
     }, {passive: true});
   }
 
-  /* ── 5. Images, below the fold only. Every image fades up 12px over 600ms on the v7 easing: no clip, no scale,
-     no curtain. Nothing is ever held behind a block: an image that is still loading when it comes into view fades
-     in when it arrives. ── */
-  const IMG_MS = 600, IMG_RISE = 12;
-  const IMG_SKIP = '[class*="logo"], [class*="identity"], .nav, footer, dialog, [aria-hidden="true"], [hidden], .mobile-menu';
+  /* ── 5. Images, below the fold only (Futurist v9). A content photo 240px wide or more is unmasked left to right
+     in 700ms on the house easing, a 1px scan line in the surface's focus colour travelling with the edge, once; a
+     smaller image only fades (500ms). No curtain over text, no scale. Nothing is ever held behind a block: an image
+     still loading when it comes into view is revealed when it arrives. Hero carousel slides are never armed (the
+     home page owns them). ── */
+  const SCAN_MS = 700, SCAN_MIN = 240, FADE_MS = 500;
+  const IMG_SKIP = '[class*="logo"], [class*="identity"], .nav, footer, dialog, [aria-hidden="true"], [hidden], .mobile-menu, [data-m8-carousel="hero"]';
   const loaded = img => img.complete && img.naturalWidth > 0;
+  // The scan line: a temporary 1px sibling laid over the image's box (same containing block, so it moves with it),
+  // inset by the image's corner radius, gone when the pass ends.
+  function scanLine(img, opts) {
+    const anchor = img.parentElement && img.parentElement.tagName === 'PICTURE' ? img.parentElement : img;
+    const host = anchor.parentElement;
+    const w = img.offsetWidth, h = img.offsetHeight;
+    const op = img.offsetParent;
+    // a static table cell can be an offsetParent without being the containing block: no line there
+    if (!host || w < 2 || h < 2 || !op || (op !== doc.body && getComputedStyle(op).position === 'static')) return null;
+    const cs = getComputedStyle(img);
+    const ln = make('hm-scan', {'aria-hidden': 'true'});
+    const c = getComputedStyle(host).getPropertyValue('--v7-focus').trim();
+    if (c) ln.style.setProperty('--hm-scan-c', c);
+    if (cs.position !== 'static' && cs.zIndex !== 'auto') ln.style.setProperty('--hm-scan-z', cs.zIndex);
+    ln.style.cssText += ';left:0;top:0;height:0';
+    anchor.after(ln);
+    if (ln.offsetParent !== op) { ln.remove(); return null; }
+    const r = Math.min(parseFloat(cs.borderTopRightRadius) || 0, h / 3);
+    ln.style.left = `${img.offsetLeft}px`;
+    ln.style.top = `${img.offsetTop + r}px`;
+    ln.style.height = `${Math.max(0, h - 2 * r)}px`;
+    // Positions are linear in the eased progress, so the line stays on the clip edge for the whole pass.
+    const x = p => `translate3d(${(p * (w - 1)).toFixed(1)}px,0,0)`;
+    const a = ln.animate([
+      {transform: x(0), opacity: 0, offset: 0}, {transform: x(.06), opacity: 1, offset: .06},
+      {transform: x(.72), opacity: 1, offset: .72}, {transform: x(1), opacity: 0, offset: 1}], {...opts, fill: 'both'});
+    a.onfinish = a.oncancel = () => ln.remove();
+    return a;
+  }
+  // A fully clipped image never starts its own lazy load (the browser sees nothing of it), so armed lazy images are
+  // switched to eager loading once they come within the browser's usual lazy-load distance.
+  const nearIO = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.loading = 'eager'; nearIO.unobserve(e.target); } }),
+      {rootMargin: '1250px'}) : null;
   function images() {
     const plan = [];
     doc.querySelectorAll('main img').forEach(img => {
       if (img.closest(OFF) || img.closest(IMG_SKIP) || /\.svg(\?|$)/i.test(img.currentSrc || img.src)) return;
       const r = img.getBoundingClientRect();
       if (r.width < 48 || r.height < 48 || inFirstView(img)) return;
-      plan.push(img);
+      plan.push([img, r.width >= SCAN_MIN]);
     });
-    plan.forEach(img => {
-      img.classList.add('hm-fade');
-      let anim = null;
+    plan.forEach(([img, wide]) => {
+      img.classList.add(wide ? 'hm-scan' : 'hm-fade0');
+      if (img.loading === 'lazy' && !loaded(img) && nearIO) nearIO.observe(img);
+      let anims = [];
       const finish = () => {
-        if (anim) anim.cancel();
+        anims.forEach(a => a && a.cancel());
+        anims = [];
         img.classList.add('hm-shown');
         img.classList.remove('reveal');
       };
-      const fade = delay => {
+      const show = delay => {
         img.classList.add('hm-shown');
         if (!img.animate) return;
-        anim = img.animate([{opacity: 0, translate: `0 ${IMG_RISE}px`}, {opacity: 1, translate: '0 0'}],
-          {duration: IMG_MS, delay, easing: EASE, fill: 'backwards'});
+        if (!wide) {
+          anims = [img.animate([{opacity: 0}, {opacity: 1}], {duration: FADE_MS, delay, easing: EASE, fill: 'backwards'})];
+          return;
+        }
+        const opts = {duration: SCAN_MS, delay, easing: EASE, fill: 'backwards'};
+        anims = [img.animate([{clipPath: 'inset(0 100% 0 0)'}, {clipPath: 'inset(0 0% 0 0)'}], opts), scanLine(img, opts)];
       };
       arm(img, {
         play(delay) {
           if (!loaded(img)) {
-            // Still loading: no block, no wait. It fades in when it arrives.
-            img.addEventListener('load', () => fade(0), {once: true});
+            // Still loading: no block, no wait. It is revealed when it arrives.
+            if (img.loading === 'lazy') img.loading = 'eager';
+            img.addEventListener('load', () => show(0), {once: true});
             img.addEventListener('error', finish, {once: true});
             return;
           }
-          fade(delay);
+          show(delay);
         },
         finish
-      });
+      }, wide ? scanIO : null);
     });
   }
 
@@ -889,26 +956,259 @@
     });
   }
 
+  /* ── 13. Panel depth tags (Futurist v9). The page groups' own large rounded panels (hero and closing panels, 24px
+     radius, clipped, at least 85% of the page width or 1100px) join .m8-panel in the scroll-driven depth of
+     house-motion.css: their frame opens from 97% of its height (never narrower) as they arrive and settles back as they leave. Never a card (20px),
+     never a carousel slide, never a panel that runs its own animation or clip, never one inside another. A tagged
+     panel's own cover photo drifts as well (.m9-drift). ── */
+  function depthTags() {
+    if (!(window.CSS && CSS.supports('animation-timeline: view()'))) return;
+    const vw = root.clientWidth, min = Math.min(vw * 0.85, 1100);
+    const picks = [];
+    doc.querySelectorAll('main :is(section, header, div, aside), body > :is(section, header)').forEach(el => {
+      if (el.closest(OFF) || el.closest('.m8-track, .m8-panel, .nav, footer, dialog') || el.classList.contains('m8-panel')) return;
+      const r = el.getBoundingClientRect();
+      if (r.width < min || r.height < 200) return;
+      const cs = getComputedStyle(el);
+      const rad = parseFloat(cs.borderTopLeftRadius) || 0;
+      if (rad < 23.5 || !/hidden|clip/.test(cs.overflowX) || !/hidden|clip/.test(cs.overflowY)) return;
+      if (cs.animationName !== 'none' || cs.clipPath !== 'none' || cs.position === 'sticky' || cs.position === 'fixed') return;
+      picks.push([el, cs.borderTopLeftRadius]);
+    });
+    picks.forEach(([el, rad]) => {
+      if (picks.some(([o]) => o !== el && o.contains(el))) return;
+      el.style.setProperty('--hm-r', rad);
+      el.classList.add('m9-depth');
+      // Its photo (a cover image filling a clipped frame, 300px tall or more) drifts 12px inside that frame; the
+      // image is scaled just enough (at most 6%) that the drift never shows an edge.
+      el.querySelectorAll('img').forEach(img => {
+        if (img.closest(OFF) || img.closest(IMG_SKIP)) return;
+        const frame = img.parentElement && img.parentElement.tagName === 'PICTURE' ? img.parentElement.parentElement : img.parentElement;
+        if (!frame) return;
+        const ir = img.getBoundingClientRect(), fr = frame.getBoundingClientRect(), fs = getComputedStyle(frame);
+        if (ir.width < 240 || ir.height < 300 || getComputedStyle(img).objectFit !== 'cover') return;
+        if (!/hidden|clip/.test(fs.overflowY) || Math.abs(ir.top - fr.top) > 2 || Math.abs(ir.bottom - fr.bottom) > 2 ||
+          Math.abs(ir.left - fr.left) > 2 || Math.abs(ir.right - fr.right) > 2) return;
+        const k = (ir.height + 14) / ir.height;   // 6px each way plus a pixel of margin
+        if (k > 1.06) return;
+        img.style.setProperty('--hm-ds', k.toFixed(4));
+        img.classList.add('m9-drift');
+      });
+    });
+  }
+
+  /* ── 14. Mono index tags (Futurist v9). Unnamed micro-labels whose whole text is an index or a technical count
+     take the mono face (signature.css F1): "01"-"09" (and the two-digit numbers of the same list), "01 / …" row tags,
+     "01 Capture" step labels, "n of N … shown" counts, "0–10 min" timings. Only small text (16px or less) outside headings and running
+     sentences; the words themselves never change. ── */
+  function monoTags() {
+    const IDX = /^0\d$/, TWO = /^\d{2}$/, ROW = /^\d{2} \/ \S/, LEAD = /^0\d\s+\S/, COUNT = /^\d[\d,]*\s.*\bshown$/i, SPAN = /^\d+\s*[–-]\s*\d+\s*min$/i;
+    const SKIP = '.nav, footer, .mobile-menu, dialog, h1, h2, h3, h4, h5, h6, .m9-mono, ' + OFF;
+    const groups = new Map(), take = [];
+    doc.querySelectorAll('main :is(span, small, b, strong, p, div, li, dt, dd, em)').forEach(el => {
+      if (el.children.length) return;
+      const t = el.textContent.trim();
+      if (!t || t.length > 48) return;
+      const two = TWO.test(t);
+      if (!(two || ROW.test(t) || LEAD.test(t) || COUNT.test(t) || SPAN.test(t))) return;
+      if (el.closest(SKIP) || parseFloat(getComputedStyle(el).fontSize) > 16) return;
+      // a number inside a sentence is copy, not a label: the parent must not read as running text around it
+      // (a label leading its item, like "0–10 min" before the agenda line, is still a label)
+      const p = el.parentElement, around = p ? p.textContent.replace(t, '').trim() : '';
+      const leads = p && p.firstElementChild === el && !(p.firstChild && p.firstChild.nodeType === 3 && p.firstChild.data.trim());
+      if (p && !leads && el.tagName !== 'P' && el.tagName !== 'DIV' && /^(P|LI|DD|TD)$/.test(p.tagName) && around.split(/\s+/).length > 6) return;
+      if (two) {
+        const key = `${el.tagName}.${el.className}<${p ? p.tagName + '.' + p.className : ''}`;
+        if (!groups.has(key)) groups.set(key, {idx: false, list: []});
+        const g = groups.get(key);
+        g.list.push(el);
+        if (IDX.test(t)) g.idx = true;
+        return;
+      }
+      take.push(el);
+    });
+    groups.forEach(g => { if (g.idx) take.push(...g.list); });
+    take.forEach(el => el.classList.add('m9-mono'));
+  }
+
+  /* ── 15. Band hairline tags (Futurist v9). A page group's full-width light grey band section (the band colour,
+     square, at least 24px of top padding) takes the hairline grid and ticks of .m8-band (signature.css F4), but only
+     when nothing readable in it reaches the outer margins the grid occupies. The important-information block keeps
+     its plain band. ── */
+  function bandTags() {
+    const vw = root.clientWidth;
+    const lo = (vw - 1200) / 2 - 8, hi = vw - lo;
+    doc.querySelectorAll('main section, main > div, body > section').forEach(el => {
+      if (el.matches('.m8-band, .m9-band, .m8-info, .sx-info') || el.closest(OFF) || el.closest('.m8-band, .m9-band')) return;
+      const cs = getComputedStyle(el);
+      if (cs.backgroundColor !== 'rgb(242, 243, 245)' || cs.backgroundImage !== 'none') return;
+      if ((parseFloat(cs.borderTopLeftRadius) || 0) > 0 || parseFloat(cs.paddingTop) < 24) return;
+      const r = el.getBoundingClientRect();
+      if (r.width < vw - 2 || r.height < 160) return;
+      // under 1280px only the ticks show (no grid in the margins), so there is nothing to keep clear
+      if (vw >= 1280) for (const t of el.querySelectorAll('*')) {
+        if (![...t.childNodes].some(n => n.nodeType === 3 && n.data.trim())) continue;
+        const q = t.getBoundingClientRect();
+        if (q.width && (q.left < lo || q.right > hi)) return;
+      }
+      el.classList.add('m9-band');
+      if (vw < 1280) el.classList.add('m9-band--ticks');   // unchecked margins: never the grid, even after a resize
+    });
+  }
+
+  /* ── 16. The nav's hover rail (Futurist v9, desktop; B4 Oct 15). The current page keeps its own static 2px navy
+     underline (signature.css), so the you-are-here mark never moves. This one 1px hairline marks only the item under
+     the pointer or keyboard focus: it fades in under it, slides between top-level items (a dropdown keeps it on its
+     trigger), fades as it reaches the current item (that item already carries its underline) and fades out when the
+     pointer or focus leaves the links. Under reduced motion it moves without sliding. ── */
+  function navBar() {
+    const nav = theNav();
+    const inner = nav && nav.querySelector('.nav-inner'), list = nav && nav.querySelector('.nav-links');
+    if (!inner || !list || inner.querySelector('hm-navbar')) return;
+    const top = li => li && li.querySelector(':scope > a:not(.nav-cta)');
+    const items = [...list.children].map(top).filter(Boolean);
+    if (!items.length) return;
+    // read each time: the page's own script may mark the current link after this one has run
+    const current = () => items.find(a => a.matches('.is-active, [aria-current="page"]')) || null;
+    if (getComputedStyle(inner).position === 'static') inner.style.position = 'relative';
+    const bar = make('hm-navbar', {'aria-hidden': 'true'});
+    inner.append(bar);
+    root.classList.add('hm-navbar-on');
+    let at = null, shown = false;
+    const geom = a => {
+      const ar = a.getBoundingClientRect(), ir = inner.getBoundingClientRect();
+      const tr = a.querySelector(':scope > :is(hm-t, .hm-t)') || a;   // under the words
+      const wr = tr.getBoundingClientRect();
+      return {x: wr.left - ir.left, y: Math.round(ar.top + ar.height / 2 + 16 - ir.top), w: wr.width};   // on the current underline's rail
+    };
+    function go(a, jump) {
+      if (!a || !a.getClientRects().length) {
+        bar.style.opacity = '0'; shown = false; at = null; return;
+      }
+      if (a === at && shown && !jump) return;
+      const g = geom(a);
+      const tf = `translate3d(${g.x.toFixed(1)}px,${g.y}px,0) scaleX(${(g.w / 100).toFixed(4)})`;
+      if (!shown || jump) {
+        bar.style.transition = 'none';
+        bar.style.transform = tf;
+        void bar.offsetWidth;
+        bar.style.transition = '';
+      } else bar.style.transform = tf;
+      bar.style.opacity = a === current() ? '0' : '1';
+      shown = true; at = a;
+    }
+    const home = () => go(null);
+    const pick = e => { const li = e.target.closest && e.target.closest('.nav-links > li'); return li && list.contains(li) ? top(li) : null; };
+    list.addEventListener('pointerover', e => { const a = pick(e); if (a) go(a); else home(); });
+    list.addEventListener('pointerleave', home);
+    list.addEventListener('focusin', e => { const a = pick(e); if (a) go(a); else home(); });
+    list.addEventListener('focusout', e => { if (!e.relatedTarget || !list.contains(e.relatedTarget)) home(); });
+    const replace = () => { if (!at) return; const a = at; shown = false; go(a, true); };
+    addEventListener('resize', () => raf(replace), {passive: true});
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(() => raf(replace));
+  }
+
+  /* Arrow nudges on the house buttons and links the hover pass does not read (2): the glyph is wrapped once
+     (hm-arw), so it can slide 3px on hover and focus (house-motion.css 10). */
+  function arrows() {
+    doc.querySelectorAll('.m8-btn, .m8-btn-outline, .m8-link, .v7-btn, .btn-primary').forEach(el => {
+      if (el.closest(OFF) || el.closest('.mobile-menu, dialog') || el.querySelector(':scope > .hm-arw')) return;
+      markArrow(el);
+    });
+  }
+
+  /* ── 17. Eyebrow segments (fix-v9c). An eyebrow or kicker whose words are set in parts with a separator
+     ("Albacete MedDev / Revenue cycle", "STORE · ALSO ON AMAZON") breaks only between its parts: each part and the
+     separator after it travel together in an hm-seg (house-motion.css: an inline block, never wider than the line,
+     so a part longer than the line still wraps inside itself and nothing overflows). The words, their order and
+     every character stay exactly as written; where no breakable space follows a separator a <wbr> marks the break.
+     Idempotent, and an eyebrow a page has already set (hm-seg, .sx-u, .nw, hm-s, hm-g, or any nowrap span inside)
+     is left alone, as is anything holding a link, a control, an image or an id. ── */
+  const LABELS = '.clinical-eyebrow, .eyebrow, .sx-eyebrow, .cx-eyebrow, .hero-chip, .services-kicker, .service-eyebrow, ' +
+    '.science-kicker, .cat-eyebrow, .identity-eyebrow, .sx-guide-eyebrow, .section-label, .sx-label, .v7-label, .m8-label, ' +
+    '.m8-card-label, [class*="eyebrow"], [class*="kicker"]';
+  const SEP = /(?:[ \t\n\u00a0]+[\/|][ \t\n\u00a0]+|[ \t\n\u00a0]*[\u00b7\u2022][ \t\n\u00a0]*)/g;
+  function eyebrows() {
+    doc.querySelectorAll(LABELS).forEach(el => {
+      if (el.hasAttribute('data-hm-seg') || el.closest(OFF) || el.closest('nav, footer, .mobile-menu, dialog, [contenteditable], .sr-only')) return;
+      const text = el.textContent;
+      if (text.length > 140 || !/[\/|\u00b7\u2022]/.test(text)) return;
+      if (el.querySelector('hm-seg, hm-s, hm-g, .sx-u, .nw, a, button, input, select, textarea, img, svg, [id]')) return;
+      if ([el, ...el.querySelectorAll('*')].some(n => /^(nowrap|pre)$/.test(getComputedStyle(n).whiteSpace))) return;
+      // work inside a lone wrapper (<div class="hero-chip"><span>…</span></div>), so it is never split in copies
+      let host = el;
+      while (host.children.length === 1 && ![...host.childNodes].some(n => n.nodeType === 3 && n.data.trim()) &&
+        host.firstElementChild.textContent === host.textContent) host = host.firstElementChild;
+      const cuts = [];
+      SEP.lastIndex = 0;
+      for (let m; (m = SEP.exec(text));) {
+        // the part runs to the end of its separator mark (and any no-break space glued after it)
+        cuts.push(m.index + m[0].replace(/[ \t\n]+$/, '').length);
+      }
+      if (!cuts.length) return;
+      const ranges = [];
+      let from = 0;
+      cuts.forEach(c => { if (text.slice(from, c).replace(/[\s\/|\u00b7\u2022]/g, '')) ranges.push([from, c]); from = c; });
+      if (text.slice(from).trim()) ranges.push([from, text.length]);
+      if (ranges.length < 2) return;
+      const segs = [];
+      for (let i = ranges.length - 1; i >= 0; i--) { const s = wrapText(host, ranges[i][0], ranges[i][1], 'hm-seg'); if (s) segs.unshift(s); }
+      // a break opportunity after each part that is not followed by a breakable space
+      segs.slice(0, -1).forEach(s => {
+        const next = s.nextSibling;
+        if (!(next && /^\u00a0*[ \t\n]/.test(next.textContent))) s.after(make('wbr'));
+      });
+      // in a flex or grid eyebrow the parts stay one item, so the spaces between them are kept
+      const box = segs[0] && segs[0].parentNode;
+      if (box && segs.every(s => s.parentNode === box) && /flex|grid/.test(getComputedStyle(box).display)) {
+        const r = doc.createRange(), all = make('hm-segs');
+        r.setStartBefore(segs[0]); r.setEndAfter(segs[segs.length - 1]);
+        all.append(r.extractContents()); r.insertNode(all);
+      }
+      el.setAttribute('data-hm-seg', '');
+    });
+  }
+
   /* ── Start ─────────────────────────────────────────────────────────── */
   const safe = fn => { try { fn(); } catch (err) { if (window.console) console.warn('house-motion:', err); } };
   safe(utilityBar);
   safe(sentences);
+  safe(eyebrows);
   safe(surfaces);
   safe(transitions);
   safe(hovers);
+  safe(arrows);
   safe(textLinks);
+  safe(monoTags);
+  safe(bandTags);
+  safe(navBar);
   idle(() => safe(underlines));
   if (!calm && io) {
     root.classList.add('hm-on');
     safe(headings);
     safe(images);
+    safe(depthTags);
   }
   safe(smartNav);
   safe(phoneMenu);
   safe(footerGlue);
   safe(carousels);
+  // Print shows everything (house-motion.css hides nothing in print either); anchor jumps show everything above the
+  // target and a screen below it at once: on a hash change, on a same-page anchor click (which fires no hash change
+  // when the hash is already set) and once more at load, after late layout, for a page opened at a #target.
   addEventListener('beforeprint', finishAll);
-  addEventListener('hashchange', finishAll);
+  const printMQ = matchMedia('print');
+  printMQ.addEventListener && printMQ.addEventListener('change', e => { if (e.matches) finishAll(); });
+  addEventListener('hashchange', () => finishAbove(lineFor(hashTarget())));
+  doc.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a || a.origin !== location.origin || a.pathname !== location.pathname) return;
+    finishAbove(lineFor(hashTarget(a.hash)));
+  }, true);
+  if (location.hash) {
+    const late = () => finishAbove(lineFor(hashTarget()));
+    if (doc.readyState === 'complete') late(); else addEventListener('load', late, {once: true});
+  }
   mqCalm.addEventListener && mqCalm.addEventListener('change', () => {
     calm = mqCalm.matches;
     if (calm) { finishAll(); root.classList.remove('hm-on', 'hm-going'); }

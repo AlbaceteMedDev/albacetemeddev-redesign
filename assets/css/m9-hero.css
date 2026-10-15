@@ -1,0 +1,169 @@
+/* m9-hero (Futurist v9, round c): the interior heroes are EDITORIAL heroes, not pictures. The wound topography is
+   reserved for the home precision panel and the software hero (assets/js/m9-topo.js); no other page carries it.
+   White page (no grey slab) unless the right half is genuinely used (contact keeps its panel for the direct-contact
+   card); one 12-column grid on the page's own container, so the hero lines up with every section under it; the H1 on a
+   wide measure (2 lines at 1440 where the copy allows) at one interior size; a hairline closing the hero with a quiet
+   precision ruler (1px ticks every 8px, longer every 80px, low ink). Compositions vary by group:
+     .m9e--statement  company pages (about, why partner): the H1 across the measure, the lead and actions offset right
+     .m9e--split      services group (services, consulting, revenue cycle): the H1 left, the lead and actions right
+     .m9e--stack      portal: H1, lead and actions in one left column, the facts row under the ruler
+     .m9e--evidence   evidence: the copy left, a grade matrix right (assets/js/m9-grades.js; only with JS)
+     .m9e--panel      contact: the grey panel stays, the H1 and lead left, the direct-contact card right
+     .m9e--centre     404: compact, centred
+   Markup: .m9e (+ variant) on the hero section, .m9e-grid on its content box, <div class="m9e-rule" aria-hidden="true">
+   as the content box's closing child (before a facts row). Placements carry !important where a page group forces its
+   hero children into one column with !important. No motion here except the evidence matrix's scan-in. */
+
+/* ── 1 · The white hero ─────────────────────────────────────────────────────────────────────────────────────── */
+html:not(#_):not(#_):not(#_) body .m9e:not(.m9e--panel,.m9e--centre){position:relative;width:auto;max-width:none;margin:0;
+  padding:calc(var(--nav-h) + clamp(48px,5.6vw,88px)) 0 0;border:0;border-radius:0;overflow:visible;isolation:auto;
+  background:#fff!important;background-image:none!important;color:var(--m8-body);
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+html:not(#_):not(#_):not(#_) body .m9e:not(.m9e--panel,.m9e--centre)>.container{width:100%;max-width:var(--container,1280px);margin-inline:auto;padding-inline:var(--m8-gutter)}
+
+/* the grid */
+html:not(#_):not(#_):not(#_) body .m9e .m9e-grid{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:none;
+  column-gap:var(--m8-gap);row-gap:0;align-items:start;text-align:left}
+html:not(#_):not(#_):not(#_) body .m9e .m9e-grid>*{grid-column:1/-1!important;grid-row:auto!important;align-self:start;min-width:0;max-width:none;margin:0}
+/* services: the label and the H1 share a wrapper; it steps aside so both sit on the grid */
+html:not(#_):not(#_):not(#_) body .m9e .m9e-grid>.m9e-flat{display:contents}
+html:not(#_):not(#_):not(#_) body .m9e .m9e-grid>.m9e-flat>*{grid-column:1/-1;align-self:start;min-width:0}
+
+/* ── 2 · Type ───────────────────────────────────────────────────────────────────────────────────────────────── */
+html:not(#_):not(#_):not(#_) body .m9e :is(.hero-chip,.services-kicker,.cx-eyebrow,.cx-nf-mark){margin:0 0 clamp(20px,2.2vw,28px)}
+html:not(#_):not(#_):not(#_) body .m9e h1{max-width:none;margin:0;font-size:clamp(2.5rem,4vw,3.5rem);line-height:var(--m8-h1-lh,1.15);
+  letter-spacing:-.025em;font-weight:700;color:var(--m8-ink);text-wrap:balance}
+/* the emphasis stays in the line (house-motion.js boxes each sentence, so sentences break whole) */
+html:not(#_):not(#_):not(#_) body .m9e h1 em{display:inline;font-style:normal}
+html:not(#_):not(#_):not(#_) body .m9e :is(.hero-sub,.services-intro>p,.cx-lead){max-width:62ch;margin:0;padding:0;border:0;
+  font-size:1.1875rem;line-height:1.55;color:var(--m8-body);text-wrap:pretty}
+html:not(#_):not(#_):not(#_) body .m9e :is(.hero-sub,.services-intro>p,.cx-lead) strong{color:var(--m8-ink);font-weight:600}
+html:not(#_):not(#_):not(#_) body .m9e :is(.hero-actions,.cx-actions,.cx-hero-cta,.services-intro>.v7-link){margin:32px 0 0;padding:0;border:0}
+html:not(#_):not(#_):not(#_) body .m9e .services-intro>.v7-link{display:inline-flex}
+
+/* ── 3 · The ruler: a hairline with 1px ticks every 8px, longer every 80px, a tick at each end ─────────────── */
+html:not(#_):not(#_):not(#_) body .m9e .m9e-rule{display:block;height:9px;margin:clamp(48px,5.2vw,80px) 0 0;pointer-events:none;
+  --m9e-tick:rgba(16,35,58,.15);--m9e-major:rgba(16,35,58,.28);
+  background:linear-gradient(var(--m9e-major),var(--m9e-major)) 0 0/100% 1px no-repeat,
+    linear-gradient(var(--m9e-major),var(--m9e-major)) 100% 0/1px 9px no-repeat,
+    repeating-linear-gradient(90deg,var(--m9e-major) 0 1px,transparent 1px 80px) 0 0/100% 9px no-repeat,
+    repeating-linear-gradient(90deg,var(--m9e-tick) 0 1px,transparent 1px 8px) 0 0/100% 4px no-repeat}
+
+/* ── 4 · Facts rows under the ruler: unchanged tiles, grey on white ─────────────────────────────────────────── */
+html:not(#_):not(#_):not(#_) body .m9e .m9e-grid>:is(.wp-hero-stats,.cs-hero-stats,.rcm-hero-stats,.pm-hero-stats){margin:clamp(24px,2.4vw,32px) 0 0}
+html:not(#_):not(#_):not(#_) body .m9e :is(.wp-hero-stats,.cs-hero-stats,.rcm-hero-stats,.pm-hero-stats) .stat{border:0;background:var(--m8-band)!important}
+
+/* ── 5 · Compositions (desktop) ─────────────────────────────────────────────────────────────────────────────── */
+@media (min-width:761px){
+  /* company: the statement across the measure; lead and actions in a column offset right */
+  html:not(#_):not(#_):not(#_) body .m9e--statement .m9e-grid>h1{max-width:13em;margin-bottom:clamp(32px,3.6vw,52px)}
+  html:not(#_):not(#_):not(#_) body .m9e--statement .m9e-grid>:is(.hero-sub,.hero-actions){grid-column:5/-1!important}
+  /* services: stacked on tablets, side by side from 1024 */
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid h1{margin-bottom:clamp(28px,3vw,40px)}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>:is(.hero-sub,.hero-actions,.services-intro){grid-column:1/span 9!important}
+  /* portal: one column, left */
+  html:not(#_):not(#_):not(#_) body .m9e--stack .m9e-grid>.cx-hero-copy{grid-column:1/span 9!important}
+  html:not(#_):not(#_):not(#_) body .m9e--stack .cx-hero-copy .cx-lead{margin-top:clamp(24px,2.6vw,32px)}
+  /* evidence: copy left, the matrix right (its column exists only when the script can draw it) */
+  html:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>h1{max-width:13em;margin-bottom:clamp(24px,2.6vw,32px)}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>:is(.hero-chip,h1,.hero-sub,.hero-actions){grid-column:1/span 8!important}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>.hero-chip{grid-row:1!important}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>h1{grid-row:2!important}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>.hero-sub{grid-row:3!important}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>.hero-actions{grid-row:4!important}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>.m9g{grid-column:9/-1!important;grid-row:1/span 4!important;align-self:center}
+  html:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>.m9e-rule{grid-row:5!important}
+}
+@media (min-width:1024px){
+  html:not(#_):not(#_):not(#_) body .m9e--statement .m9e-grid>:is(.hero-sub,.hero-actions){grid-column:7/-1!important}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid h1{grid-column:1/span 7!important;grid-row:2!important;margin-bottom:0}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>:is(.hero-sub,.services-intro){grid-column:8/-1!important;grid-row:2!important;padding-top:.5rem}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>.hero-actions{grid-column:8/-1!important;grid-row:3!important}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>.hero-chip,html:not(#_):not(#_):not(#_) body .m9e--split .m9e-flat>.services-kicker{grid-row:1!important}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>.m9e-rule{grid-row:4!important}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>:is(.wp-hero-stats,.cs-hero-stats,.rcm-hero-stats){grid-row:5!important}
+  html:not(#_):not(#_):not(#_) body .m9e--stack .m9e-grid>.cx-hero-copy{grid-column:1/span 7!important}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9e--evidence .m9e-grid>:is(.hero-chip,h1,.hero-sub,.hero-actions){grid-column:1/span 7!important}
+}
+
+@media (min-width:1280px){
+  /* the H1 takes eight columns where it reaches its full size (the longest services H1 still sets in two lines) */
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid h1{grid-column:1/span 8!important}
+  html:not(#_):not(#_):not(#_) body .m9e--split .m9e-grid>:is(.hero-sub,.services-intro,.hero-actions){grid-column:9/-1!important}
+}
+
+/* ── 6 · Contact: the panel stays (the card uses the right half); H1 and lead left, centred on the card ──────── */
+html:not(#_):not(#_):not(#_) body .m9e--panel{padding-bottom:clamp(40px,4.4vw,64px)}
+html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.cx-direct{margin:40px 0 0}
+html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.m9e-rule{margin-top:clamp(40px,4.4vw,64px)}
+@media (min-width:961px){
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid{grid-template-rows:1fr auto auto auto 1fr auto}
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>:is(.cx-eyebrow,.cx-display,.cx-hero-copy){grid-column:1/span 5!important}
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.cx-eyebrow{grid-row:2!important}
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.cx-display{grid-row:3!important;margin:0 0 clamp(24px,2.6vw,32px)}
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.cx-hero-copy{grid-row:4!important}
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.cx-direct{grid-column:7/-1!important;grid-row:1/6!important;margin:0}
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.m9e-rule{grid-row:6!important}
+}
+@media (max-width:960px){
+  html:not(#_):not(#_):not(#_) body .m9e--panel .m9e-grid>.cx-display{margin:0 0 24px}
+}
+
+/* ── 7 · 404: compact and centred ──────────────────────────────────────────────────────────────────────────── */
+html:not(#_):not(#_):not(#_) body .m9e--centre{width:100%;max-width:44rem;margin-inline:auto;padding:clamp(40px,5vw,72px) 0 clamp(32px,4vw,56px);
+  border-radius:0;background:#fff!important;text-align:center}
+html:not(#_):not(#_):not(#_) body .m9e--centre :is(.cx-nf-mark,h1,p){margin-inline:auto}
+html:not(#_):not(#_):not(#_) body .m9e--centre .cx-nf-mark{display:flex;justify-content:center}
+html:not(#_):not(#_):not(#_) body .m9e--centre h1{margin-bottom:clamp(20px,2.2vw,24px)}
+html:not(#_):not(#_):not(#_) body .m9e--centre p{max-width:34rem;font-size:1.1875rem;line-height:1.55;color:var(--m8-body);text-wrap:balance}
+html:not(#_):not(#_):not(#_) body .m9e--centre .cx-actions{justify-content:center;margin:32px 0 0}
+html:not(#_):not(#_):not(#_) body .m9e--centre .m9e-rule{width:min(100%,481px);margin:clamp(40px,4.4vw,56px) auto 0}
+
+/* ── 8 · The evidence grade matrix (assets/js/m9-grades.js): one cell per graded product, A to D ──────────── */
+html:not(#_):not(#_):not(#_) body .m9g{display:none}
+html.sx-js:not(#_):not(#_):not(#_) body .m9g{position:relative;display:block;width:100%;max-width:400px;aspect-ratio:1/1;
+  margin:40px 0 0;justify-self:end;pointer-events:none}
+html:not(#_):not(#_):not(#_) body .m9g[hidden]{display:none}
+/* corner marks */
+html:not(#_):not(#_):not(#_) body .m9g::before{content:"";position:absolute;inset:0;pointer-events:none;--c:rgba(16,35,58,.42);
+  background:linear-gradient(var(--c),var(--c)) 0 0/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 0 0/1px 14px no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 0/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 100% 0/1px 14px no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 100%/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 0 100%/1px 14px no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 100%/14px 1px no-repeat,linear-gradient(var(--c),var(--c)) 100% 100%/1px 14px no-repeat}
+html:not(#_):not(#_):not(#_) body .m9g>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.m9g .m9g-lat{fill:none;stroke:rgba(16,35,58,.1);stroke-width:1;vector-effect:non-scaling-stroke;shape-rendering:crispEdges}
+.m9g .m9g-base{fill:none;stroke:rgba(16,35,58,.5);stroke-width:1;vector-effect:non-scaling-stroke;shape-rendering:crispEdges}
+.m9g .m9g-scan{stroke:var(--m8-accent,#2b5ea7);stroke-width:1.5;vector-effect:non-scaling-stroke;opacity:0}
+.m9g .m9g-c{fill:var(--m8-accent,#2b5ea7)}
+.m9g .m9g-c--a{fill-opacity:1}
+.m9g .m9g-c--b{fill-opacity:.7}
+.m9g .m9g-c--c{fill-opacity:.46}
+.m9g .m9g-c--d{fill-opacity:.26}
+/* the scan-in: a line rises through the matrix and each row fills as it passes (reduced motion: drawn at once) */
+@media (prefers-reduced-motion:no-preference){
+  .m9g.is-scan .m9g-c{animation:m9g-in .42s cubic-bezier(.22,.61,.36,1) var(--d,0s) both}
+  .m9g.is-scan .m9g-scan{animation:m9g-scan var(--t,1.2s) cubic-bezier(.22,.61,.36,1) .12s both}
+}
+@keyframes m9g-in{from{opacity:0}to{opacity:1}}
+@keyframes m9g-scan{0%{opacity:0;transform:translateY(0)}8%{opacity:1}88%{opacity:1}100%{opacity:0;transform:translateY(var(--rise,-200px))}}
+
+/* ── 9 · Phones ────────────────────────────────────────────────────────────────────────────────────────────── */
+@media (max-width:760px){
+  html:not(#_):not(#_):not(#_) body .m9e:not(.m9e--panel,.m9e--centre){padding-top:calc(var(--nav-h) + 40px)}
+  html:not(#_):not(#_):not(#_) body .m9e h1{font-size:clamp(2.125rem,9vw,2.5rem)}
+  html:not(#_):not(#_):not(#_) body .m9e :is(h1,.cx-display){margin-bottom:24px}
+  html:not(#_):not(#_):not(#_) body .m9e :is(.hero-sub,.services-intro>p,.cx-lead){font-size:1.0625rem}
+  html:not(#_):not(#_):not(#_) body .m9e :is(.hero-actions,.cx-actions,.cx-hero-cta,.services-intro>.v7-link){margin-top:28px}
+  html:not(#_):not(#_):not(#_) body .m9e .m9e-rule{margin-top:44px}
+  html.sx-js:not(#_):not(#_):not(#_) body .m9g{max-width:280px;justify-self:start}
+  html:not(#_):not(#_):not(#_) body .m9e--centre{padding-top:24px}
+  html:not(#_):not(#_):not(#_) body .m9e--centre p{font-size:1.0625rem}
+  html:not(#_):not(#_):not(#_) body .m9e--centre .m9e-rule{width:min(100%,321px)}
+  html:not(#_):not(#_):not(#_) body .m9e--centre .cx-actions{flex-direction:column;align-items:center;gap:12px}
+  html:not(#_):not(#_):not(#_) body .m9e--centre .cx-actions>a{width:min(100%,300px);margin:0;align-self:center;justify-content:center}
+}
+
+@media print{
+  .m9g .m9g-c{animation:none!important;opacity:1!important}
+  .m9g .m9g-scan{display:none}
+}

@@ -105,8 +105,13 @@
     root.classList.add('is-ready');
   }
 
+  // While the feed loads, the page shows skeleton cards (static markup inside #ovena-products, aria-hidden),
+  // which render() and fallback() both clear. The text fallback appears only on a failure, or when the feed has
+  // not answered in 8s; a feed that answers after that still renders the cards over the fallback.
+  let settled = false;
+  const slow = setTimeout(() => { if (!settled) fallback(); }, 8000);
   fetch('/api/ovena-products', { headers: { accept: 'application/json' } })
     .then((r) => { if (!r.ok) throw new Error('feed ' + r.status); return r.json(); })
-    .then((data) => render(Array.isArray(data.products) ? data.products : []))
-    .catch(fallback);
+    .then((data) => { settled = true; clearTimeout(slow); render(Array.isArray(data.products) ? data.products : []); })
+    .catch(() => { settled = true; clearTimeout(slow); if (!root.querySelector('.ov-fallback')) fallback(); });
 })();

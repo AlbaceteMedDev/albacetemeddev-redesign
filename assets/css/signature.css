@@ -359,6 +359,7 @@ html:not(#_) .v7-decor{display:none!important}   /* purely decorative elements o
   --m8-band:#f2f3f5;           /* the light grey band and the utility bar */
   --m8-card:#e6e7eb;           /* card grey: image wells, a grey panel */
   --m8-line:#e3e5e9;           /* 1px hairline on light */
+  --m8-field-line:#737c87;     /* the edge of a field or an inactive pill/tab: 4.2:1 on white, 3.8:1 on the band (fix-v9c) */
   --m8-navy:#10233a;           /* the primary dark: primary buttons, the footer, dark panels */
   --m8-navy-hover:#1d3a5c;     /* primary hover: a little lighter */
   --m8-accent:#2b5ea7;         /* labels and focus on light: 6.4:1 on white, 5.8:1 on the band */
@@ -542,7 +543,7 @@ html:not(#_) .nav-links>li:has(>.nav-cta){margin-left:auto}
 html:not(#_) .nav-links>li>a:not(.nav-cta){display:inline-flex;align-items:center;min-height:44px;color:var(--m8-ink)!important;
   font-family:var(--font-body)!important;font-size:15px!important;font-weight:500!important;letter-spacing:0!important;text-decoration:none!important}
 html:not(#_) .nav-links>li>a:not(.nav-cta)::after{display:none!important}
-@media (hover:hover){html:not(#_) .nav-links>li>a:not(.nav-cta):hover{color:var(--m8-accent)!important}}
+@media (hover:hover){html:not(#_) .nav-links>li>a:not(.nav-cta):hover{color:var(--m8-ink)!important}}   /* B4: ink, not accent */
 html:not(#_) .nav-links>li>a:not(.nav-cta):is(.is-active,[aria-current="page"]){color:var(--m8-ink)!important;font-weight:600!important;
   text-decoration:underline 2px var(--m8-navy)!important;text-underline-offset:10px!important}
 html:not(#_) .nav-links .nav-cta{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:0 20px!important;
@@ -761,3 +762,122 @@ html:not(#_) .m8-dot:focus-visible{outline:2px solid var(--m8-accent);outline-of
 /* M11 Small parts */
 html:not(#_) :is(.product-identity,.compact-identity,.compare-identity){border-radius:var(--m8-radius-sm)!important}
 html:not(#_) :is(a,button,summary,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px}
+
+/* ══════════════════════════════════════════════════════════════════════════════════════════════════════════════
+   FUTURIST v9 "precision instrument" (Oct 15). A thin instrument layer on top of Model v8, which stays the structure
+   (white page, rounded panels and cards, pill buttons, white nav and utility bar, navy footer). Drawn from precision
+   measurement and 3D wound imaging; quiet, exact, fast.
+   F1 mono micro-type: JetBrains Mono for UI micro-labels that are indices or technical readouts ONLY (slide, step and
+      section indices "01", row tags "01 / …", spec labels, "n of N … shown" counts, table heads). house-motion.js
+      tags the unnamed index spans .m9-mono. Never body copy, never headings.
+   F2 scan reveal (house-motion.css/.js): content photos unmask left to right behind a 1px accent scan line, once.
+   F3 panel depth (house-motion.css/.js): large rounded panels open from 97% of their height (never narrower) as they scroll in and settle back as
+      they leave (a clip of the frame, never a transform of text); a photo panel's image drifts at most 16px.
+   F4 technical hairlines: light grey bands carry a faint hairline grid in their outer margins and measurement ticks
+      along their top edge, at no more than 6% ink. The reading column stays clean.
+   F5 micro-interactions: arrows slide 3px; cards draw a 1px accent hairline along their foot and the title turns
+      accent; a 1px hover rail slides between the nav items (the current page keeps its own 2px underline).
+   F6 utility bar: crisp 1px hairline dividers, 44px targets.
+   Still banned: gradient text, glowing or gradient buttons, glass/blur, particles, glow blobs, grain, shimmer, italic
+   payoffs, custom cursors, card tilt, hover text rolls, scroll hijacking, decoration behind reading text, neon.
+   ══════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
+
+/* F1 Mono micro-type */
+@font-face{font-family:'JetBrains Mono';src:url('/assets/fonts/jetbrains-mono-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('/assets/fonts/jetbrains-mono-500.woff2') format('woff2');font-weight:500 900;font-style:normal;font-display:swap}
+:root{
+  --m9-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --m9-mono-size:13px;--m9-mono-track:.04em;   /* B6 (Oct 15): 13px floor for legibility; caps tracking stays under .06em */
+  --m9-tick:rgba(16,35,58,.06);        /* hairlines and ticks: 6% ink (1.08:1 on the band) */
+  --m9-tick-fine:rgba(16,35,58,.032);  /* the fine grid: about half that */
+  --m9-text-col:1200px;                /* the reading column the band grid keeps clear of */
+}
+html:not(#_):not(#__):not(#___) body :is(.m9-mono,.spec-label,.product-facts dt,.sx-tab-num,.sx-qnum,.sx-row-tag,.sx-co-n,
+  .engagement-step-number,.filter-status,.pm-results,[data-visual-status],.sx-panel-tag>span[aria-hidden="true"]),
+html:not(#_):not(#__):not(#___) body main th{
+  font-family:var(--m9-mono)!important;font-size:var(--m9-mono-size)!important;font-weight:500!important;
+  letter-spacing:var(--m9-mono-track)!important;font-variant-numeric:tabular-nums;font-style:normal}
+
+/* F4 Technical hairlines on the light grey bands (.m8-band, and the page groups' full-width band sections that
+   house-motion.js tags .m9-band after checking nothing readable reaches their outer margins). All background
+   layers: nothing positioned, nothing over content. Top to bottom: ruler ticks along the top edge (a 4px tick every
+   8px, a 10px tick every 80px), a band-coloured cover over the reading column (fading over 48px at its sides), then
+   the grid (80px, and 16px finer). Centred, so both margins match. The grid needs margins of 40px or more beside
+   the 1200px reading column, so under 1280px wide the bands keep the ticks only. */
+html:not(#_):not(#__) :is(.m8-band,.m9-band){
+  background-image:
+    linear-gradient(90deg,transparent 40px,var(--m9-tick) 40px 41px,transparent 41px),
+    linear-gradient(90deg,transparent 4px,var(--m9-tick) 4px 5px,transparent 5px)!important;
+  background-size:80px 10px,8px 4px!important;background-position:50% 0,50% 0!important;background-repeat:repeat-x,repeat-x!important}
+@media (min-width:1280px){
+  html:not(#_):not(#__) :is(.m8-band,.m9-band:not(.m9-band--ticks)){
+    background-image:
+      linear-gradient(90deg,transparent 40px,var(--m9-tick) 40px 41px,transparent 41px),
+      linear-gradient(90deg,transparent 4px,var(--m9-tick) 4px 5px,transparent 5px),
+      linear-gradient(90deg,transparent calc(50% - var(--m9-text-col) / 2 - 56px),var(--m8-band) calc(50% - var(--m9-text-col) / 2 - 8px),
+        var(--m8-band) calc(50% + var(--m9-text-col) / 2 + 8px),transparent calc(50% + var(--m9-text-col) / 2 + 56px)),
+      linear-gradient(90deg,transparent 40px,var(--m9-tick) 40px 41px,transparent 41px),
+      linear-gradient(180deg,transparent 40px,var(--m9-tick) 40px 41px,transparent 41px),
+      linear-gradient(90deg,transparent 8px,var(--m9-tick-fine) 8px 9px,transparent 9px),
+      linear-gradient(180deg,transparent 8px,var(--m9-tick-fine) 8px 9px,transparent 9px)!important;
+    background-size:80px 10px,8px 4px,100% 100%,80px 80px,80px 80px,16px 16px,16px 16px!important;
+    background-position:50% 0,50% 0,0 0,50% 0,50% 0,50% 0,50% 0!important;
+    background-repeat:repeat-x,repeat-x,no-repeat,repeat,repeat,repeat,repeat!important}
+}
+
+/* F5 Micro-interactions (the motion itself is in house-motion.css).
+   Cards that are links (a.m8-card, or a card with .m8-card-stretch): a 1px hairline along the foot (between the
+   rounded corners), drawn left to right on hover and keyboard focus, in the surface's focus colour (accent on light
+   cards, gold on photo and navy ones); a light card's title (.m8-card-title, or the card's own h3) turns accent.
+   A card that is not a link does not react. */
+html:not(#_) :is(a.m8-card,.m8-card:has(.m8-card-stretch))::before{content:"";position:absolute;left:var(--m8-radius-card);right:var(--m8-radius-card);bottom:0;z-index:2;
+  height:1px;pointer-events:none;background:var(--v7-focus,var(--m8-accent));transform:scaleX(0);transform-origin:0 50%}
+@media (hover:hover){html:not(#_) :is(a.m8-card,.m8-card:has(.m8-card-stretch)):hover::before{transform:scaleX(1)}}
+html:not(#_) :is(a.m8-card:focus-visible,.m8-card:has(.m8-card-stretch:focus-visible))::before{transform:scaleX(1)}
+@media (hover:hover){
+  html:not(#_) :is(a.m8-card,.m8-card:has(.m8-card-stretch)):not(.m8-card--photo:not(.m8-card--light),.m8-card--navy):hover :is(.m8-card-title,h3){color:var(--m8-accent)}
+}
+html:not(#_) :is(a.m8-card:focus-visible,.m8-card:has(.m8-card-stretch:focus-visible)):not(.m8-card--photo:not(.m8-card--light),.m8-card--navy) :is(.m8-card-title,h3){color:var(--m8-accent)}
+/* The nav's states (B4, Oct 15). Current page: ink, weight 600 and its own static 2px navy underline, always
+   (M-rule above), so the you-are-here mark never leaves it. Hover and keyboard focus: the words stay ink (no
+   accent, so nothing else reads as a second current item) and a 1px hairline, lighter than the current underline,
+   slides under the item (house-motion.js 16); it fades as it reaches the current item and when the pointer or focus
+   leaves the links. Keyboard focus keeps the global focus ring as well. */
+html:not(#_) hm-navbar{position:absolute;left:0;top:0;z-index:2;width:100px;height:1px;background:rgba(29,33,37,.42);
+  transform-origin:0 50%;pointer-events:none;opacity:0}
+@media (max-width:1100px){html:not(#_) hm-navbar{display:none}}
+
+/* F6 Utility bar: crisper. Dividers are exact 1px hairlines (12px tall, centred), the links a touch darker, each
+   with a 44px target, and the current page carries a 1px rule under it as well as weight 600. */
+@media (min-width:1101px){
+  html:not(#_) .m8-util li+li::before{width:1px;height:12px;margin:0 18px;background:#c2c8cf;transform:translateY(.5px)}
+  html:not(#_) .m8-util a{padding-inline:2px;color:#30363d;font-weight:500}
+  html:not(#_) .m8-util a::after{inset:-4px -10px}
+  html:not(#_) .m8-util a:is(:hover,:focus-visible){color:var(--m8-accent);text-decoration:none}
+  html:not(#_) .m8-util a[aria-current="page"]{color:var(--m8-ink);font-weight:600;text-decoration:underline 1px currentColor;text-underline-offset:5px}
+}
+
+/* ════════════════════════════════════════════════════════════════════════════════════════════════════════════
+   FIX v9c (Oct 15, blind panel). X1 control edges · X2 logo-only product tiles. (X3, eyebrow segments, lives in
+   house-motion.css/.js.) Copy unchanged; these rules only restyle.
+   ════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
+/* X1 Control edges (WCAG 1.4.11). A field's edge and an inactive pill toggle's or tab's edge are --m8-field-line
+   (#737c87: 4.2:1 on white, 3.8:1 on the band), so the control's boundary reads against the page band and against
+   its own white fill alike; hover and focus darken it to ink. A selected toggle or tab keeps its navy fill. */
+html:not(#_):not(#__):not(#___) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select),
+html:not(#_):not(#__):not(#___) body.sx-lib .science-find input{border-color:var(--m8-field-line)}
+html:not(#_):not(#__):not(#___) body.sx-lib :is(.visual-catalog-tools,.library-tools) :is(input,select):is(:hover,:focus-visible),
+html:not(#_):not(#__):not(#___) body.sx-lib .science-find input:is(:hover,:focus-visible){border-color:var(--m8-ink)}
+html:not(#_):not(#__):not(#___) body :is(.service-track-tab,.sx-lib main .science-filters button){box-shadow:inset 0 0 0 1px var(--m8-field-line)!important}
+@media (hover:hover){
+  html:not(#_):not(#__):not(#___) body :is(.service-track-tab,.sx-lib main .science-filters button):hover{box-shadow:inset 0 0 0 1px var(--m8-ink)!important}
+}
+html:not(#_):not(#__):not(#___) body :is(.service-track-tab:is(.is-active,[aria-selected="true"]),.sx-lib main .science-filters button[aria-pressed="true"]){box-shadow:none!important}
+
+/* X2 Logo-only product tiles. A catalog card whose media slot holds a manufacturer mark rather than a photograph
+   (any .catalog-image holding a .product-identity / .compact-identity) shows it as a deliberate plate: the same
+   3:2 slot and 16px corners as the photographs beside it, white with a 1px hairline frame, the mark centred with
+   generous room (at most 56% of the width, 64px tall). */
+html:not(#_):not(#__):not(#___) body.sx-lib--catalog .catalog-image:has(>:is(.product-identity,.compact-identity)){background:#fff;box-shadow:inset 0 0 0 1px #d5d9df}
+html:not(#_):not(#__):not(#___) body.sx-lib--catalog .catalog-image>:is(.product-identity,.compact-identity){padding:0 22%!important;background:transparent!important;box-shadow:none!important}
+html:not(#_):not(#__):not(#___) body.sx-lib--catalog .catalog-image>:is(.product-identity,.compact-identity) img{width:auto;max-width:100%;height:auto;max-height:64px;object-fit:contain;object-position:center}
