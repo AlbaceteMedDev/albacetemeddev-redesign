@@ -1,227 +1,212 @@
-/* Home (house style, Oct 2026). Source Serif 4 headings, IBM Plex Sans text, flat navy / paper / white sections,
-   square controls, plain rules and photographs with captions. Spec: albacete-site-redesign-tools/HOUSE-STYLE.md.
-   Everything is sx-* scoped; tokens come from signature.css. */
+/* Home: Minimal v7 (Oct 15, 2026). Smooth, minimal, sleek and clean.
+   Navy for the hero (calm: no canvas, no pointer effects; the ticker beneath it) and the closing band only; every
+   other section is white or warm paper. Lighter serif headings in one colour, muted labels (never gold), quiet text links, one solid primary
+   per view, 1px hairlines only where they aid scanning (the offer row, tabs, spec lists, service rows), radius 2px.
+   Gold: the primary call-to-action on navy, the current tab and focus. Motion: one easing (--v7-ease), fade-ups of
+   12px over 600ms, 60ms apart, colour-only hovers in 200ms. Tokens: signature.css "MINIMAL v7".
+   Spec: albacete-site-redesign-tools/HOUSE-STYLE.md ("Minimal v7"). Everything is sx-* scoped. */
 
 /* ── Page frame ─────────────────────────────────────────────── */
-body.page-home{background:var(--sx-navy);color:var(--sx-mist)}
-.sx-home{--sx-pad:40px;--sx-sec:clamp(80px,9.5vw,136px);background:var(--sx-navy);color:var(--sx-mist);font-family:var(--font-body);font-size:17px;line-height:1.65;overflow-x:clip}
+body.page-home{background:var(--v7-navy);color:var(--v7-body-inv)}
+.sx-home{--sx-pad:var(--v7-gutter);background:var(--v7-navy);color:var(--v7-body-inv);font-family:var(--font-body);font-size:var(--v7-body-size);line-height:var(--v7-body-lh);overflow-x:clip}
 .sx-home .container{max-width:1280px;margin-inline:auto;padding-inline:var(--sx-pad)}
 :where(.sx-home) :where(p,figure,h1,h2,h3,h4,ul,ol){margin:0}
-.sx-home h1,.sx-home h2,.sx-home h3,.sx-home h4{color:#fff;font-family:var(--font-display);font-weight:600;text-wrap:balance}
-.sx-home h4{letter-spacing:-.005em}
+.sx-home :is(h1,h2,h3,h4){color:var(--v7-ink-inv);font-family:var(--font-display);text-wrap:balance}
+.sx-home h2{line-height:var(--v7-h2-lh)}
+.sx-home :is(h3,h4){line-height:var(--v7-h3-lh)}
 .sx-home em{font-style:italic}
-.sx-home :is(h1,h2,h3,h4) em{color:var(--sx-gold)}
-.sx-light{color:var(--sx-text-body)}
-.sx-light :is(h2,h3,h4){color:var(--sx-text-dark)}
-.sx-light :is(h2,h3,h4) em{color:var(--sx-gold-deep)}
+.sx-home :is(h1,h2,h3,h4) em{color:inherit}
 
-/* focus: gold on navy, navy on light */
-.sx-home :focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px;border-radius:2px}
-.sx-light :focus-visible{outline-color:var(--sx-navy)}
+/* Light sections (white or paper): ink headings, body text, and the full light surface set, so labels, buttons,
+   links and focus are right without JS. .sx-portfolio is in the shared navy list, so it is set here too. */
+.sx-home :is(.sx-light,.sx-portfolio){--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep);color:var(--v7-body)}
+.sx-home :is(.sx-light,.sx-portfolio) :is(h2,h3,h4){color:var(--v7-ink)}
 
 /* ── Type primitives ────────────────────────────────────────── */
-.sx-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 20px;font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-gold)}
-.sx-eyebrow::before{content:"";flex:none;width:24px;height:1px;background:currentColor}
-.sx-light .sx-eyebrow{color:var(--sx-gold-deep)}
-.sx-h2{font-size:clamp(1.9rem,3.2vw,3rem);line-height:1.14;letter-spacing:-.012em;margin:0 0 20px}
-.sx-body{max-width:34em;margin:0 0 28px;font-size:17px;line-height:1.65}
-.sx-label{font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase}
+/* labels: the shared rule sets family, weight, tracking, case and colour */
+.sx-eyebrow{display:block;margin:0 0 24px;font-size:var(--v7-label-size);line-height:1.4}
+.sx-h2{font-size:var(--v7-h2);line-height:var(--v7-h2-lh);margin:0 0 24px}
+.sx-body{max-width:var(--v7-measure);margin:0 0 32px;font-size:var(--v7-body-size);line-height:var(--v7-body-lh)}
 
-/* text link: 1px underline, colour change on hover; the arrow is an atomic box so it is never underlined */
-.sx-link,.sx-panel-links a,.sx-contact-link{display:inline-block;padding:10px 0;line-height:24px;color:#fff;font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.4);transition:color .15s,text-decoration-color .15s}
-.sx-link>span:not(.sx-ul),.sx-panel-links a>span:not(.sx-ul){display:inline-block;margin-left:8px;text-decoration:none;transition:transform .35s var(--sx-ease)}
-.sx-link:is(:hover,:focus-visible)>span:not(.sx-ul),.sx-panel-links a:is(:hover,:focus-visible)>span:not(.sx-ul){transform:translateX(4px)}
-.sx-link:hover,.sx-panel-links a:hover,.sx-contact-link:hover{color:var(--sx-gold);text-decoration-color:currentColor}
-.sx-light .sx-link{color:var(--sx-text-dark);text-decoration-color:rgba(22,33,46,.35)}
-.sx-light .sx-link:hover{color:var(--sx-gold-deep)}
+/* text links (the shared v7 affordance, signature.css V4): Plex 500 15px in the surface's ink with a 1.5px underline
+   in the link's own colour, 4px below the words; hover thickens it. The arrow is an atomic inline box 8px off the
+   words, so the underline runs under the words only. */
+.sx-link,.sx-panel-links a,.sx-contact-link{display:inline-block;padding:10px 0;font-size:15px;font-weight:500;line-height:24px;color:var(--v7-link-c);
+  text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
+.sx-link>span,.sx-panel-links a>span{display:inline-block;margin-left:8px}
+.sx-link:is(:hover,:focus-visible),.sx-panel-links a:is(:hover,:focus-visible),.sx-contact-link:is(:hover,:focus-visible){text-decoration-thickness:2.5px}
 
-/* buttons: rectangular, 48px, flat. Hover (same as the shared layer): the whole button changes colour at once,
-   the label stays still and the arrow nudges 4px. */
-.sx-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:1px solid transparent;border-radius:var(--sx-radius);font:600 15px/1.2 var(--font-body);letter-spacing:0;text-decoration:none;white-space:nowrap;transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out}
-.sx-btn-gold{background-color:var(--sx-gold);color:var(--sx-navy)}
-.sx-btn-ghost{border-color:currentColor;color:#fff}
-.sx-btn-ink{background-color:var(--sx-navy);color:#fff}
-.sx-btn-gold:is(:hover,:focus-visible){background-color:#e6c477}
-.sx-btn-ink:is(:hover,:focus-visible){background-color:#1b3a5c}
-.sx-btn-ghost:is(:hover,:focus-visible){background-color:rgba(255,255,255,.12)}
-.sx-btn-arrow{display:inline-block;transition:transform .35s var(--sx-ease)}
-.sx-btn:is(:hover,:focus-visible) .sx-btn-arrow{transform:translateX(4px)}
+/* buttons: the shared layer styles the primary (.sx-btn-gold, .sx-btn-ink) and the secondary (.sx-btn-ghost, a
+   text link). The secondary's underline sits on its label only, never on the arrow, which stands 8px off. */
+.sx-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;white-space:nowrap;text-decoration:none}
+html:not(#_) body .sx-home .sx-btn-ghost{gap:8px}
+.sx-btn-arrow{display:inline-block}
+html:not(#_) body .sx-home .sx-btn-ghost{text-decoration-line:none!important}
+.sx-btn-ghost>span:first-child{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
+.sx-btn-ghost:is(:hover,:focus-visible)>span:first-child{text-decoration-thickness:2.5px}
+
+@media (prefers-reduced-motion:no-preference){
+  .sx-link,.sx-panel-links a,.sx-contact-link,.sx-btn-ghost>span:first-child,.sx-offer a,.sx-offer-arrow,.sx-play,.sx-marquee-toggle,
+  .sx-step-cta strong,.sx-step-cta i,.sx-tab,.sx-panel-cap strong,.sx-tile-cap strong,.sx-tile-arrow,.sx-tile-end a,
+  .sx-rail-btn,.sx-row h3,.sx-row-arrow{transition:color var(--v7-dur-hover) var(--v7-ease),background-color var(--v7-dur-hover) var(--v7-ease),border-color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease),text-decoration-thickness var(--v7-dur-hover) var(--v7-ease)}
+}
 
 /* ── Hero (navy) ────────────────────────────────────────────── */
-.sx-hero{position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:calc(var(--nav-h) + clamp(36px,6vh,72px));background:var(--sx-navy);color:var(--sx-mist)}
+.sx-hero{position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:calc(var(--nav-h) + clamp(40px,7vh,88px));background:var(--v7-navy);color:var(--v7-body-inv)}
 .sx-hero>.container{flex:1;display:flex;flex-direction:column;width:100%}
-.sx-hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.36fr);column-gap:clamp(40px,5vw,72px);align-items:center}
-.sx-display{font-size:clamp(2.5rem,4.7vw,4.5rem);line-height:1.07;letter-spacing:-.015em;margin:0 0 26px}
+/* The copy column is the wider one, so the headline can stand at the shared H1 size (--v7-h1) and remain the largest
+   type on the page. */
+.sx-hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);column-gap:clamp(48px,5vw,80px);align-items:center}
+.sx-display{font-size:var(--v7-h1);line-height:var(--v7-h1-lh);margin:0 0 28px}
 .sx-display .sx-line{display:block}
-/* The headline breaks at the sentence: each sentence is one unbroken line, and the type is sized from the copy
-   column so the longer sentence ("Advanced wound care." = 10.72em in Source Serif 4 600 at this tracking) always
-   fits: the fluid size, reduced only where the column needs it. Browsers without container units keep the fluid
-   size and wrap normally. */
+/* The headline breaks at the sentence: each sentence is one unbroken line, at the H1 token where the copy column
+   allows and smaller only where it must, so the longer sentence ("Advanced wound care." = 10.48em in Source Serif 4
+   at 420 and this tracking) always fits and no word is ever stranded. Browsers without container units keep the
+   token and wrap normally. */
 @supports (width:1cqi){
   .sx-hero-copy{container-type:inline-size}
-  .sx-display{font-size:max(1.5rem,min(clamp(2.5rem,4.7vw,4.5rem),calc(100cqi / 10.9)))}
+  html:not(#_) .sx-home .sx-display{font-size:max(1.5rem,min(var(--v7-h1),calc(100cqi / 10.7)))}
   .sx-display .sx-line{white-space:nowrap}
 }
-.sx-lead{max-width:24em;margin:0 0 36px;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.55;color:var(--sx-mist)}
-.sx-actions{display:flex;flex-wrap:wrap;gap:12px}
-.sx-hero-photo{position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:var(--sx-radius);background:var(--sx-ink-2)}
+.sx-lead{max-width:24em;margin:0 0 40px;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.6;color:var(--v7-body-inv)}
+.sx-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.sx-hero-photo{position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:var(--v7-radius);background:var(--v7-navy-deep)}
 .sx-hero-photo img{width:100%;height:100%;object-fit:cover}
-.sx-hero-cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin-top:14px;font-size:13px;line-height:1.5;color:var(--sx-fog)}
-.sx-hero-cap strong{font-weight:600;color:#fff}
-.sx-hero-cap small{margin-left:auto;font-size:13px}
+.sx-hero-cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin-top:16px;font-size:14px;line-height:1.5;color:var(--v7-muted-inv)}
+.sx-hero-cap strong{font-weight:500;color:var(--v7-ink-inv)}
+.sx-hero-cap small{margin-left:auto;font-size:14px}
 .sx-nb{white-space:nowrap}
 
-/* intro replay: a plain rectangular label on the photograph (intro.js shows it) */
+/* intro replay: a plain navy label on the photograph (intro.js shows it) */
 .sx-hero .sx-play-wrap{position:absolute;right:16px;bottom:16px;margin:0}
-.sx-play{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px 0 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--sx-radius);background:var(--sx-navy);color:#fff;font:600 14px/1 var(--font-body);cursor:pointer;transition:background-color .15s,border-color .15s}
+.sx-play{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;border:0;border-radius:var(--v7-radius);background:var(--v7-navy);color:#fff;font:500 14px/1 var(--font-body);cursor:pointer}
 .sx-play[hidden]{display:none}
-.sx-play-icon{font-size:10px;color:var(--sx-gold)}
-.sx-play:hover{background:var(--sx-navy-deep);border-color:rgba(255,255,255,.5)}
+.sx-play-icon{font-size:9px;color:inherit}
+.sx-play:hover{background:var(--v7-navy-deep)}
 
-/* offer strip: one ruled row of four links */
-.sx-offer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:clamp(40px,6vh,72px) 0 0;padding:0;list-style:none;border-top:1px solid var(--sx-line-soft)}
-.sx-offer li+li{border-left:1px solid var(--sx-line-soft)}
-.sx-offer a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;padding:0 24px;color:#fff;font-weight:500;font-size:16px;line-height:1.35;text-decoration:none;transition:color .15s}
-.sx-offer li:first-child a{padding-left:0}
-.sx-offer li:last-child a{padding-right:0}
-.sx-offer-arrow{display:inline-block;color:var(--sx-gold);transition:transform .35s var(--sx-ease)}
-.sx-offer a:is(:hover,:focus-visible) .sx-offer-arrow{transform:translateX(4px)}
-.sx-offer a:hover{color:var(--sx-gold)}
+/* offer row: four quiet links under one hairline */
+.sx-offer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,3vw,48px);margin:clamp(48px,7vh,88px) 0 0;padding:0;list-style:none;border-top:1px solid var(--v7-hair-inv)}
+.sx-offer a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;color:var(--v7-body-inv);font-size:16px;font-weight:400;line-height:1.35;text-decoration:none}
+.sx-offer-arrow{color:var(--v7-muted-inv)}
+.sx-offer a:hover,.sx-offer a:hover .sx-offer-arrow{color:#fff}
 
-/* product-name marquee: Plex caps, 1px rules between names, slow */
-.sx-marquee{position:relative;overflow:hidden;padding:18px 0;border-top:1px solid var(--sx-line-soft);background:var(--sx-navy-deep)}
-.sx-marquee-view{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 56px,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(90deg,transparent,#000 56px,#000 calc(100% - 56px),transparent)}
-.sx-marquee.has-toggle{padding-right:64px}
-.sx-marquee-track{display:flex;width:max-content;animation:sxMarquee 140s linear infinite}
-.sx-marquee:hover .sx-marquee-track{animation-play-state:paused}
-.sx-marquee ul{display:flex;margin:0;padding:0;list-style:none}
-.sx-marquee li{padding:0 28px;border-left:1px solid var(--sx-line-soft);font:600 15px/20px var(--font-body);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:var(--sx-fog)}
+/* product-name ticker: muted Plex caps with space between the names.
+   At rest (no JS, or reduced motion) the names stand still and wrap across the content column, every one visible;
+   the repeated list exists only for the loop and stays out of view. home.js adds .has-toggle when motion is allowed:
+   then the names move slowly in a band that fades softly at both edges, pause on hover, and stop with a 44px button
+   that has its own slot at the right end of the band (aligned to the content edge), clear of the names and their
+   fades. */
+.sx-marquee{position:relative;padding:16px var(--v7-gutter);background:var(--v7-navy-deep)}
+.sx-marquee-view{max-width:1200px;margin-inline:auto}
+.sx-marquee ul{display:flex;flex-wrap:wrap;justify-content:center;margin:0;padding:0;list-style:none}
+.sx-marquee ul[aria-hidden="true"]{display:none}
+.sx-marquee li{padding:4px 20px;font:500 13px/20px var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;white-space:nowrap;color:var(--v7-muted-inv)}
+.sx-marquee.has-toggle{display:flex;align-items:center;gap:16px;padding:8px max(var(--v7-gutter),calc((100% - 1280px) / 2 + var(--v7-gutter))) 8px 0}
+.sx-marquee.has-toggle .sx-marquee-view{flex:1;min-width:0;max-width:none;margin:0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 72px,#000 calc(100% - 72px),transparent);mask-image:linear-gradient(90deg,transparent,#000 72px,#000 calc(100% - 72px),transparent)}
+.sx-marquee.has-toggle .sx-marquee-track{display:flex;width:max-content;animation:sxMarquee 150s linear infinite}
+.sx-marquee.has-toggle ul{flex-wrap:nowrap}
+.sx-marquee.has-toggle ul[aria-hidden="true"]{display:flex}
+.sx-marquee.has-toggle li{padding:12px 28px}
+.sx-marquee:hover .sx-marquee-track,.sx-marquee.is-paused .sx-marquee-track,.sx-marquee.is-off .sx-marquee-track{animation-play-state:paused}
 @keyframes sxMarquee{to{transform:translateX(-50%)}}
+/* the stop control: a 44px square with a quiet 1px edge (3:1 on the band), pause bars or a play triangle */
+.sx-marquee-toggle{flex:none;position:relative;display:grid;place-items:center;width:44px;height:44px;padding:0;
+  border:1px solid color-mix(in srgb,var(--v7-muted-inv) 60%,transparent);border-radius:var(--v7-radius);background:none;color:var(--v7-muted-inv);cursor:pointer}
+.sx-marquee-toggle:hover{color:#fff;border-color:#fff}
+.sx-marquee-toggle::before,.sx-marquee-toggle::after{content:"";width:2px;height:12px;background:currentColor;grid-area:1/1}
+.sx-marquee-toggle::before{transform:translateX(-3px)}.sx-marquee-toggle::after{transform:translateX(3px)}
+.sx-marquee.is-paused .sx-marquee-toggle::before{width:0;height:0;background:none;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent currentColor;transform:translateX(1px)}
+.sx-marquee.is-paused .sx-marquee-toggle::after{display:none}
 
 /* ── Our approach (paper) ───────────────────────────────────── */
-.sx-manifesto{padding:var(--sx-sec) 0;background:var(--sx-paper)}
+.sx-manifesto{padding-block:var(--v7-section);background:var(--v7-paper)}
 .sx-manifesto-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);column-gap:clamp(32px,4vw,64px)}
-.sx-manifesto .sx-eyebrow{grid-column:1;grid-row:1/3;align-self:start;margin:.85em 0 0}
-.sx-manifesto-text{grid-column:2;max-width:23em;font:600 clamp(1.75rem,3vw,2.75rem)/1.2 var(--font-display);letter-spacing:-.012em;color:var(--sx-text-dark);text-wrap:pretty}
-.sx-manifesto-text em{color:var(--sx-gold-deep)}
-.sx-manifesto-sub{grid-column:2;max-width:34em;margin-top:clamp(28px,3vw,40px);font-size:17px;line-height:1.65;color:var(--sx-text-body)}
+.sx-manifesto .sx-eyebrow{grid-column:1;grid-row:1/3;align-self:start;margin:.9em 0 0}
+.sx-manifesto-text{grid-column:2;max-width:22em;font:420 clamp(1.75rem,2.9vw,2.625rem)/1.24 var(--font-display);letter-spacing:var(--v7-track);color:var(--v7-ink);text-wrap:pretty}
+.sx-manifesto-sub{grid-column:2;max-width:var(--v7-measure);margin-top:var(--v7-stack);font-size:var(--v7-body-size);line-height:var(--v7-body-lh);color:var(--v7-body)}
 
 /* ── Question story (white) ─────────────────────────────────── */
-.sx-story{padding:var(--sx-sec) 0;background:#fff}
-.sx-story-intro{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(40px,6vw,96px);align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+.sx-story{padding-block:var(--v7-section);background:var(--v7-white)}
+.sx-story-intro{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(48px,6vw,96px);align-items:end;margin-bottom:var(--v7-section-sm)}
 .sx-story-intro .sx-eyebrow{grid-column:1}
 .sx-story-intro .sx-h2{grid-column:1;grid-row:2/4;margin:0}
-.sx-story-intro .sx-body{grid-column:2;grid-row:2;margin:0 0 6px}
+.sx-story-intro .sx-body{grid-column:2;grid-row:2;margin:0 0 4px}
 .sx-story-intro .sx-link{grid-column:2;grid-row:3;justify-self:start;margin-bottom:-10px}
-.sx-steps{margin:0;padding:0;list-style:none;border-top:1px solid var(--sx-rule-light)}
-.sx-step{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,6vw,96px);align-items:start;padding:clamp(40px,5vw,64px) 0;border-bottom:1px solid var(--sx-rule-light)}
-.sx-qnum{display:block;margin-bottom:16px;font:600 14px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--sx-gold-deep)}
-.sx-step-copy h3{margin:0 0 14px;font-size:clamp(1.5rem,2.4vw,2.15rem);line-height:1.18;letter-spacing:-.008em}
-.sx-step-copy p{max-width:30em;color:var(--sx-text-body)}
-.sx-step-cta{position:relative;display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:center;max-width:400px;margin-top:28px;padding:13px 18px;border:1px solid #cfc7b7;border-radius:var(--sx-radius);color:var(--sx-text-dark);text-decoration:none;transition:background-color .18s ease-out,border-color .18s ease-out}
-.sx-step-cta strong{font-size:16px;font-weight:600;line-height:1.35}
-.sx-step-cta span{grid-column:1;font-size:14px;line-height:1.45;color:var(--sx-text-muted);transition:color .18s ease-out}
-.sx-step-cta i{grid-column:2;grid-row:1/3;font-style:normal;font-size:18px;color:var(--sx-gold-deep);transition:transform .35s var(--sx-ease)}
-/* outline control: the whole box takes a 12% tint of its text colour (#16212e at 12% on white = #e3e4e6); the second
-   line darkens so it stays AA on the tint */
-.sx-step-cta:is(:hover,:focus-visible){border-color:var(--sx-navy);background-color:#e3e4e6}
-.sx-step-cta:is(:hover,:focus-visible) span{color:var(--sx-text-body)}
-.sx-step-cta:is(:hover,:focus-visible) i{transform:translateX(4px)}
+.sx-steps{margin:0;padding:0;list-style:none}
+/* the three questions in order, each a question beside its picture; nothing is pinned or hidden, and each step
+   fades up in place as it enters view */
+.sx-step{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(48px,6vw,96px);align-items:center}
+.sx-step+.sx-step{margin-top:var(--v7-section-sm)}
+.sx-qnum{display:block;margin-bottom:16px;font:500 13px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:var(--v7-label-track);color:var(--v7-muted)}
+.sx-step-copy h3{margin:0 0 16px;font-size:clamp(1.5rem,2.2vw,2rem);line-height:var(--v7-h3-lh)}
+.sx-step-copy p{max-width:30em;color:var(--v7-body)}
+/* the step's link: a quiet text link with its note beneath */
+.sx-step-cta{display:inline-flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;min-height:44px;margin-top:24px;padding:10px 0;color:var(--v7-ink);text-decoration:none}
+.sx-step-cta strong{font-size:15px;font-weight:500;line-height:24px;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:currentColor}
+.sx-step-cta i{order:1;font-style:normal;font-size:15px;color:var(--v7-ink)}
+.sx-step-cta span{order:2;flex-basis:100%;margin-top:4px;font-size:14px;line-height:1.5;color:var(--v7-muted)}
+.sx-step-cta:is(:hover,:focus-visible) strong{text-decoration-thickness:2.5px}
 
-/* step 1: two rectangular photographs, names beneath */
+/* step 1: two photographs, names beneath */
 .sx-v-pair{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px;align-items:start}
-.sx-v-main,.sx-v-side{display:flex;flex-direction:column;gap:10px;min-width:0}
-.sx-v-pair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--sx-radius);background:var(--sx-paper-2)}
+.sx-v-main,.sx-v-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sx-v-pair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--v7-radius);background:var(--v7-tint)}
 .sx-v-side img{aspect-ratio:2/3}
-.sx-v-name{font-size:14px;font-weight:600;line-height:1.3;color:var(--sx-text-dark)}
-.sx-v-product figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--sx-rule-light);font-size:13px;color:var(--sx-text-muted)}
+.sx-v-name{font-size:14px;font-weight:500;line-height:1.3;color:var(--v7-ink)}
+.sx-v-product figcaption{margin-top:16px;font-size:14px;color:var(--v7-muted)}
 
-/* step 2: reading guide on paper */
-.sx-guide{padding:clamp(28px,3.2vw,44px);background:var(--sx-paper);border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius-card)}
-.sx-guide-eyebrow{margin:0 0 14px;font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-gold-deep)}
-.sx-guide h4{margin:0 0 26px;font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.18;letter-spacing:-.01em;color:var(--sx-text-dark)}
-.sx-guide ul{margin:0;padding:0;list-style:none;border-top:1px solid #d6cebe}
-.sx-guide li{display:grid;grid-template-columns:minmax(110px,9.5em) minmax(0,1fr);gap:4px 20px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--sx-rule-light)}
-.sx-guide li span{font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-gold-deep)}
-.sx-guide li strong{font-size:16px;font-weight:500;line-height:1.45;color:var(--sx-text-dark)}
-.sx-guide-note{margin-top:18px;font-size:13px;line-height:1.55;color:var(--sx-text-muted)}
+/* step 2: the reading guide, on the one card tint */
+.sx-guide{padding:clamp(32px,3.4vw,48px);background:var(--v7-tint);border-radius:var(--v7-radius)}
+.sx-guide-eyebrow{margin:0 0 16px;font-size:var(--v7-label-size);line-height:1.4}
+.sx-guide h4{margin:0 0 28px;font-size:clamp(1.375rem,1.9vw,1.75rem);font-weight:440;letter-spacing:var(--v7-track);color:var(--v7-ink)}
+.sx-guide ul{margin:0;padding:0;list-style:none;border-top:1px solid var(--v7-hair)}
+.sx-guide li{display:grid;grid-template-columns:minmax(110px,9.5em) minmax(0,1fr);gap:4px 24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--v7-hair)}
+.sx-guide li span{font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
+.sx-guide li strong{font-size:16px;font-weight:400;line-height:1.5;color:var(--v7-ink)}
+.sx-guide-note{margin-top:20px;font-size:14px;line-height:1.55;color:var(--v7-muted)}
 
-/* step 3: the care pathway as a ruled list on navy */
-.sx-v-path{padding:clamp(28px,3.2vw,44px);background:var(--sx-navy);border-radius:var(--sx-radius-card);color:var(--sx-mist)}
-.sx-v-path p{margin:0 0 22px;font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-gold)}
-.sx-v-path ol{margin:0;padding:0;list-style:none;border-bottom:1px solid var(--sx-line-soft)}
-.sx-v-path li{padding:16px 0;border-top:1px solid var(--sx-line-soft);font:600 clamp(1.35rem,1.9vw,1.7rem)/1.25 var(--font-display);letter-spacing:-.005em;color:#fff}
+/* step 3: the care pathway as a thin-ruled list on the card tint */
+.sx-v-path{padding:clamp(32px,3.4vw,48px);background:var(--v7-tint);border-radius:var(--v7-radius);color:var(--v7-body)}
+.sx-v-path p{margin:0 0 20px;font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
+.sx-v-path ol{margin:0;padding:0;list-style:none;border-bottom:1px solid var(--v7-hair)}
+.sx-v-path li{padding:16px 0;border-top:1px solid var(--v7-hair);font:420 clamp(1.3rem,1.8vw,1.6rem)/1.3 var(--font-display);letter-spacing:var(--v7-track);color:var(--v7-ink)}
 .sx-v-path li::first-letter{text-transform:uppercase}
 
-/* pinned mode (home.js, wide and tall screens, motion allowed): stepper + question left, visual right.
-   The pinned frame is a band the height of its content (510px + 24px above and below), held centred in the space
-   under the nav while the three steps advance (200vh of scroll), so the story starts 96px under its introduction
-   instead of below a viewport-sized empty band. home.js sets --sx-pin-top. */
-.sx-story-nav{display:none}
-.sx-story.is-pinned{--sx-pin-h:558px;padding-bottom:clamp(64px,7vw,96px)}
-.sx-story.is-pinned .sx-story-intro{margin-bottom:72px}
-.sx-story.is-pinned .sx-story-track{height:calc(var(--sx-pin-h) + 200vh)}
-.sx-story.is-pinned .sx-story-pin{position:sticky;top:var(--sx-pin-top,calc(var(--nav-h) + 8px));height:var(--sx-pin-h);padding:24px 0;overflow:clip}
-.sx-story.is-pinned .sx-story-grid{--g:clamp(48px,6vw,96px);position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:var(--g);width:100%;height:510px}
-.sx-story.is-pinned .sx-story-nav{grid-column:1;grid-row:1;display:flex;flex-direction:column;margin-bottom:clamp(28px,4.5vh,48px);border-top:1px solid var(--sx-rule-light)}
-.sx-story-nav button{position:relative;display:flex;align-items:center;gap:16px;width:100%;min-height:52px;padding:0;border:0;border-bottom:1px solid var(--sx-rule-light);background:none;color:var(--sx-text-muted);font:500 16px/1.3 var(--font-body);letter-spacing:0;text-align:left;cursor:pointer;transition:color .12s ease-in}
-/* the current-step rule: the outgoing one retracts (120ms) before the incoming one draws (200ms) */
-.sx-story-nav button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--sx-navy);transform:scaleX(0);transform-origin:left;transition:transform .12s ease-in}
-.sx-story-num{min-width:22px;font:600 13px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.sx-story-nav button:hover{color:var(--sx-text-dark)}
-.sx-story-nav button[aria-current="step"]{color:var(--sx-text-dark);font-weight:600;transition:color .2s ease-out .12s}
-.sx-story-nav button[aria-current="step"] .sx-story-num{color:var(--sx-gold-deep)}
-.sx-story-nav button[aria-current="step"]::after{transform:scaleX(1);transition:transform .2s ease-out .12s}
-.sx-story.is-pinned .sx-steps{grid-column:1;grid-row:2;display:grid;align-content:start;border:0}
-.sx-story.is-pinned .sx-step{grid-area:1/1;display:block;padding:0;border:0}
-.sx-story.is-pinned .sx-qnum{display:none}
-/* The inactive questions stay in the layout (focusable: tabbing to one scrolls the story to it) but out of sight.
-   A change of step never shows two states: everything outgoing (question, copy, link, visual and its captions)
-   fades to 0 in 120ms; only then does the incoming step appear, its visual on an opaque panel in 200ms and its
-   question, copy and link each fading up 6px (200ms, 40ms apart). No masks, so no glyph is ever cut. */
-.sx-story.is-pinned .sx-step-copy{opacity:0;pointer-events:none;transition:opacity .12s ease-in}
-.sx-story.is-pinned .sx-step.is-active .sx-step-copy{opacity:1;pointer-events:auto;transition:none}
-.sx-story.is-pinned .sx-step-copy>*{opacity:0;transform:translateY(6px);transition:opacity 0s linear .12s,transform 0s linear .12s}
-.sx-story.is-pinned .sx-step.is-active .sx-step-copy>*{opacity:1;transform:none;transition:opacity .2s ease-out var(--sx-in,.12s),transform .2s cubic-bezier(.16,1,.3,1) var(--sx-in,.12s),background-color .18s ease-out,border-color .18s ease-out}
-.sx-story.is-pinned .sx-step.is-active .sx-step-copy>p{--sx-in:.16s}
-.sx-story.is-pinned .sx-step.is-active .sx-step-copy>.sx-step-cta{--sx-in:.2s}
-.sx-story.is-pinned .sx-step-visual{position:absolute;top:0;bottom:0;right:var(--sx-pad);width:calc((100% - 2 * var(--sx-pad) - var(--g)) * 7 / 12);display:grid;align-content:start;background:#fff;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .12s ease-in,visibility 0s linear .12s,transform 0s linear .12s}
-.sx-story.is-pinned .sx-step-visual.is-shown{z-index:1;opacity:1;visibility:visible;transform:none;transition:opacity .2s ease-out .12s,transform .2s cubic-bezier(.16,1,.3,1) .12s,visibility 0s linear .12s}
-
-/* ── Product showcase (navy) ────────────────────────────────── */
-.sx-section{padding:var(--sx-sec) 0}
-.sx-portfolio{background:var(--sx-navy)}
-.sx-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(36px,4vw,56px)}
+/* ── Product showcase (paper) ───────────────────────────────── */
+.sx-section{padding-block:var(--v7-section)}
+.sx-portfolio{background:var(--v7-paper)}
+.sx-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:var(--v7-stack)}
 .sx-head .sx-h2{margin:0}
 .sx-head>.sx-link{flex:none;margin-bottom:-6px}
-.sx-tabs{position:relative;display:flex;gap:clamp(28px,3.5vw,56px);margin-bottom:clamp(40px,4.5vw,64px);box-shadow:inset 0 -1px 0 var(--sx-line-soft)}
-.sx-tab{display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0;border:0;background:none;color:var(--sx-fog);font:500 16px/1.2 var(--font-body);letter-spacing:0;white-space:nowrap;cursor:pointer;transition:color .2s}
-.sx-tab-num{font:600 13px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.sx-tab:hover,.sx-tab[aria-selected="true"]{color:#fff}
-.sx-tab[aria-selected="true"] .sx-tab-num{color:var(--sx-gold)}
-.sx-tab-ink{position:absolute;left:0;bottom:0;width:var(--w,0);height:2px;background:var(--sx-gold);transform:translateX(var(--x,0));transition:transform .25s ease-out,width .25s ease-out}
-.sx-panel{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,6vw,96px);align-items:center}
-.sx-show:not(.is-live) .sx-panel+.sx-panel{margin-top:64px}
+.sx-tabs{position:relative;display:flex;gap:clamp(28px,3.5vw,48px);margin-bottom:var(--v7-stack);box-shadow:inset 0 -1px 0 var(--v7-hair)}
+.sx-tab{display:inline-flex;align-items:center;min-height:56px;padding:0;border:0;background:none;color:var(--v7-muted);font:400 16px/1.2 var(--font-body);letter-spacing:0;white-space:nowrap;cursor:pointer}
+.sx-tab-num{display:none}
+.sx-tab:hover,.sx-tab[aria-selected="true"]{color:var(--v7-ink)}
+/* the current tab: a 1px deep-gold rule under it (gold marks the current state) */
+.sx-tab-ink{position:absolute;left:0;bottom:0;width:var(--w,0);height:1px;background:var(--sx-gold-deep);transform:translateX(var(--x,0))}
+@media (prefers-reduced-motion:no-preference){.sx-tab-ink{transition:transform 400ms var(--v7-ease),width 400ms var(--v7-ease)}}
+.sx-panel{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(48px,6vw,96px);align-items:center}
+.sx-show:not(.is-live) .sx-panel+.sx-panel{margin-top:var(--v7-section-sm)}
 .sx-show.is-live .sx-panel{display:none}
 .sx-show.is-live .sx-panel.is-active{display:grid}
 /* controls that only work with JS (home.js unhides them) and the rail controls when every card already fits */
 .sx-tabs[hidden],.sx-rail-ctrl[hidden]{display:none}
-.sx-panel-tag{display:flex;gap:12px;margin:0 0 18px;font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-gold)}
-.sx-panel-tag span{font-variant-numeric:tabular-nums}
-.sx-panel-copy h3{margin:0 0 16px;font-size:clamp(1.65rem,2.7vw,2.5rem);line-height:1.14;letter-spacing:-.01em}
-.sx-panel-copy>p:not([class]){max-width:28em;color:var(--sx-mist)}
-.sx-panel-links{display:flex;flex-direction:column;align-items:flex-start;margin-top:22px;border-top:1px solid var(--sx-line-soft);padding-top:8px}
+.sx-panel-tag{display:block;margin:0 0 20px;font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
+.sx-panel-tag span{display:none}
+.sx-panel-copy h3{margin:0 0 16px;font-size:clamp(1.625rem,2.4vw,2.25rem);line-height:var(--v7-h3-lh)}
+.sx-panel-copy>p:not([class]){max-width:28em;color:var(--v7-body)}
+.sx-panel-links{display:flex;flex-direction:column;align-items:flex-start;margin-top:20px}
 .sx-panel-media{display:block;color:inherit;text-decoration:none}
-.sx-panel-img{display:block;aspect-ratio:3/2;overflow:hidden;border-radius:var(--sx-radius);background:var(--sx-ink-2)}
-.sx-panel-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease-out}
-.sx-panel-media:hover img{transform:scale(1.02)}
-.sx-panel-cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:12px;font-size:13px;line-height:1.5;color:var(--sx-fog)}
-.sx-panel-cap strong{font-size:14px;font-weight:600;color:#fff}
-.sx-panel-cap small{font-size:13px}
-.sx-panel-media:hover .sx-panel-cap strong{color:var(--sx-gold)}
+.sx-panel-img{display:block;aspect-ratio:3/2;overflow:hidden;border-radius:var(--v7-radius);background:var(--v7-tint)}
+.sx-panel-img img{width:100%;height:100%;object-fit:cover}
+.sx-panel-cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:16px;font-size:14px;line-height:1.5;color:var(--v7-muted)}
+.sx-panel-cap strong{font-size:15px;font-weight:500;color:var(--v7-ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:transparent}
+.sx-panel-cap small{font-size:14px}
+.sx-panel-media:is(:hover,:focus-visible) .sx-panel-cap strong{text-decoration-color:currentColor}
 
-/* rail: four tiles to the container width, scroll-snapping; captions beneath each photograph */
-.sx-rail-wrap{margin-top:clamp(56px,6vw,88px);padding-top:clamp(32px,3vw,44px);border-top:1px solid var(--sx-line-soft)}
+/* rail: four cards to the container width, scroll-snapping; captions beneath each photograph */
+.sx-rail-wrap{margin-top:var(--v7-stack)}
 .sx-rail{position:relative;display:flex;gap:24px;margin:-4px -4px 0;padding:4px 4px 8px;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:4px;scrollbar-width:none;cursor:grab}
 .sx-rail::-webkit-scrollbar{display:none}
 .sx-rail.is-free{scroll-snap-type:none}
@@ -229,270 +214,153 @@ body.page-home{background:var(--sx-navy);color:var(--sx-mist)}
 .sx-rail.is-drag a{pointer-events:none}
 .sx-tile{flex:0 0 calc((100% - 72px) / 4);min-width:0;scroll-snap-align:start}
 .sx-tile a{display:grid;grid-template-columns:minmax(0,1fr) auto;height:100%;color:inherit;text-decoration:none}
-.sx-tile-media{grid-column:1/-1;display:block;aspect-ratio:3/2;overflow:hidden;border-radius:var(--sx-radius);background:var(--sx-ink-2)}
-.sx-tile-media img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none;transition:transform .4s ease-out}
-.sx-tile a:hover img{transform:scale(1.03)}
-.sx-tile-cap{display:flex;flex-direction:column;gap:3px;padding-top:18px}
-/* the leftmost fully visible card (the one the counter names) carries a 2px gold rule across its full width
-   (home.js sets .is-near) */
-.sx-tile[data-cat] a::after{content:"";grid-row:2;grid-column:1/-1;align-self:start;height:2px;margin-top:7px;background:var(--sx-gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .32s var(--sx-ease);pointer-events:none}
-.sx-tile.is-near a::after{transform:none}
-.sx-tile[data-cat] .sx-tile-media{grid-row:1}.sx-tile[data-cat] .sx-tile-cap{grid-row:2;grid-column:1}.sx-tile[data-cat] .sx-tile-arrow{grid-row:2;grid-column:2}
-.sx-tile-group{font:600 12px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-fog)}
-.sx-tile-cap strong{font:600 1.2rem/1.25 var(--font-display);letter-spacing:-.005em;color:#fff;transition:color .15s}
-.sx-tile-tag{font-size:13px;line-height:1.5;color:var(--sx-fog)}
-.sx-tile-arrow{padding:18px 0 0 12px;color:var(--sx-gold);line-height:1.4;transition:transform .35s var(--sx-ease)}
-.sx-tile a:is(:hover,:focus-visible) .sx-tile-arrow{transform:translateX(4px)}
-.sx-tile a:hover .sx-tile-cap strong{color:var(--sx-gold)}
-.sx-tile-end a{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;aspect-ratio:3/2;height:auto;padding:22px;border:1px solid rgba(255,255,255,.28);border-radius:var(--sx-radius);color:#fff;font:600 1.2rem/1.25 var(--font-display);transition:border-color .15s,color .15s}
+.sx-tile-media{grid-column:1/-1;display:block;aspect-ratio:3/2;overflow:hidden;border-radius:var(--v7-radius);background:var(--v7-tint)}
+.sx-tile-media img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none}
+.sx-tile-cap{display:flex;flex-direction:column;gap:4px;padding-top:16px}
+.sx-tile-group{font:500 12px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
+.sx-tile-cap strong{font:420 1.1875rem/1.3 var(--font-display);letter-spacing:-.01em;color:var(--v7-ink)}
+.sx-tile-tag{font-size:13px;line-height:1.5;color:var(--v7-muted)}
+.sx-tile[data-cat] .sx-tile-arrow{display:none}   /* aria-hidden: the photograph and name already read as the link */
+.sx-tile-cap strong{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:transparent}
+.sx-tile a:is(:hover,:focus-visible) .sx-tile-cap strong{text-decoration-color:currentColor}
+.sx-tile-arrow{color:var(--v7-muted)}
+.sx-tile-end a{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;aspect-ratio:3/2;height:auto;padding:24px;border-radius:var(--v7-radius);background:var(--v7-white);color:var(--v7-ink);font:420 1.1875rem/1.3 var(--font-display);letter-spacing:-.01em}
 .sx-tile-end a .sx-tile-arrow{padding:0}
-.sx-tile-end a:hover{border-color:var(--sx-gold);color:var(--sx-gold)}
-/* tab change (home.js, Web Animations): the cards on screen leave one after another (30ms apart), then the new
-   set arrives one after another (35ms apart), each photograph settling from 1.03 inside its frame. No translate,
-   so the rail never gains a moment of overflow, and there is never a moment when every card is half-faded. */
-.sx-rail-ctrl{display:flex;align-items:center;gap:8px;margin-top:28px}
-.sx-rail-meter{position:relative;flex:1;height:1px;margin-right:16px;background:var(--sx-line-soft)}
-.sx-rail-meter span{position:absolute;left:0;top:-.5px;width:100%;height:2px;background:var(--sx-gold);transform:scaleX(var(--p,0));transform-origin:left;transition:transform .2s ease-out}
-.sx-rail-btn{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:var(--sx-radius);background:none;color:#fff;font-size:18px;line-height:1;cursor:pointer;transition:background-color .15s,border-color .15s,opacity .15s}
-.sx-rail-btn:hover{border-color:#fff;background:rgba(255,255,255,.12)}
-.sx-rail-btn[aria-disabled="true"]{opacity:.35;cursor:default;background:none;border-color:rgba(255,255,255,.4)}
-.sx-note{max-width:60em;margin-top:36px;font-size:13px;line-height:1.55;color:var(--sx-fog)}
+.sx-tile-end a:hover{background:var(--v7-tint)}
+.sx-rail-ctrl{display:flex;align-items:center;gap:4px;margin-top:24px}
+.sx-rail-meter{position:relative;flex:1;height:1px;margin-right:24px;background:var(--v7-hair)}
+.sx-rail-meter span{position:absolute;left:0;top:0;width:100%;height:1px;background:var(--v7-ink);transform:scaleX(var(--p,0));transform-origin:left}
+@media (prefers-reduced-motion:no-preference){.sx-rail-meter span{transition:transform 200ms var(--v7-ease)}}
+.sx-rail-btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:var(--v7-radius);background:none;color:var(--v7-ink);font-size:18px;line-height:1;cursor:pointer}
+.sx-rail-btn:hover{color:var(--sx-gold-deep)}
+.sx-rail-btn[aria-disabled="true"]{color:var(--v7-muted);opacity:.45;cursor:default}
+.sx-note{max-width:var(--v7-measure);margin-top:32px;font-size:14px;line-height:1.55;color:var(--v7-muted)}
 
-/* ── Evidence (paper) ───────────────────────────────────────── */
-.sx-evidence{padding:var(--sx-sec) 0;background:var(--sx-paper)}
-.sx-ev-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,96px)}
+/* ── Evidence (white) ───────────────────────────────────────── */
+.sx-evidence{padding-block:var(--v7-section) var(--v7-section-sm);background:var(--v7-white)}
+.sx-ev-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:clamp(48px,6vw,96px)}
 .sx-ev-head{grid-column:1;grid-row:1}
 .sx-ev-body{grid-column:1;grid-row:2;align-self:start}
 .sx-ev-body .sx-body{margin-bottom:32px}
-.sx-ev-map{grid-column:2;grid-row:1/3;align-self:center;display:grid;grid-template-columns:auto minmax(64px,1fr) auto;min-height:340px;padding:clamp(28px,3.2vw,44px);background:#fff;border:1px solid var(--sx-rule-light);border-radius:var(--sx-radius-card)}
-.sx-ev-hub{align-self:center;padding:12px 18px;border:1px solid var(--sx-navy);border-radius:var(--sx-radius);font:600 12.5px/1.2 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sx-text-dark)}
+/* the map: thin lines from one word to four, nothing boxed */
+.sx-ev-map{grid-column:2;grid-row:1/3;align-self:center;display:grid;grid-template-columns:auto minmax(64px,1fr) auto;min-height:288px}
+.sx-ev-hub{align-self:center;padding-right:16px;font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;color:var(--v7-muted)}
 .sx-ev-lines{display:block;width:100%;height:100%;overflow:visible}
-.sx-ev-lines path{fill:none;stroke:var(--sx-navy);stroke-opacity:.4;stroke-width:1;vector-effect:non-scaling-stroke}
+.sx-ev-lines path{fill:none;stroke:var(--v7-ink);stroke-opacity:.24;stroke-width:1;vector-effect:non-scaling-stroke}
 .sx-ev-nodes{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));margin:0;padding:0;list-style:none}
 .sx-ev-nodes li{display:flex;align-items:center}
-.sx-ev-nodes span{display:inline-block;padding:9px 0 9px 14px;border-left:2px solid var(--sx-gold);font-size:16px;font-weight:500;line-height:1.35;color:var(--sx-text-dark)}
+.sx-ev-nodes span{display:inline-block;padding:8px 0 8px 16px;font-size:16px;font-weight:400;line-height:1.4;color:var(--v7-ink)}
 .sx-ev-nodes span::first-letter{text-transform:uppercase}
 
 /* ── Services (white) ───────────────────────────────────────── */
-.sx-services{background:#fff}
+.sx-services{padding-top:var(--v7-section-sm);background:var(--v7-white)}
 body.page-home .sx-home #services>.container,body.page-home .sx-home #portfolio>.container{display:block}
-.sx-head-aside{max-width:26em;margin:0;color:var(--sx-text-body)}
-.sx-rows{border-top:1px solid var(--sx-text-dark)}
-.sx-row{--sx-row-px:0px;position:relative;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,4.4fr) 32px;column-gap:clamp(24px,3vw,48px);align-items:baseline;padding:30px var(--sx-row-px);border-bottom:1px solid var(--sx-rule-light);color:var(--sx-text-body);text-decoration:none;transition:background-color .2s ease-out}
-/* hover: the row's own box (between the rules, inside the content grid) takes the paper tone; on pointer screens
-   the row carries 16px of inner room so the words never sit on the tint's edge */
-@media (hover:hover) and (min-width:901px){.sx-row{--sx-row-px:16px}.sx-row:hover{background-color:var(--sx-paper)}}
-.sx-row:focus-visible{background-color:var(--sx-paper)}
-.sx-row-tag{font:600 12.5px/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--sx-gold-deep)}
-.sx-row h3{font-size:clamp(1.3rem,1.8vw,1.6rem);line-height:1.22;letter-spacing:-.005em;transition:color .15s}
+.sx-head-aside{max-width:26em;margin:0;color:var(--v7-body)}
+.sx-rows{border-top:1px solid var(--v7-hair)}
+.sx-row{position:relative;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,4.4fr) 32px;column-gap:clamp(24px,3vw,48px);align-items:baseline;padding:32px 0;border-bottom:1px solid var(--v7-hair);color:var(--v7-body);text-decoration:none}
+.sx-row-tag{font:500 13px/1.4 var(--font-body);letter-spacing:var(--v7-label-track);text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--v7-muted)}
+.sx-row h3{font-size:clamp(1.25rem,1.7vw,1.5rem);line-height:var(--v7-h3-lh);color:var(--v7-ink)}
 .sx-row p{font-size:16px;line-height:1.6}
-.sx-row-arrow{justify-self:end;font-size:20px;line-height:1;color:var(--sx-text-dark);transition:color .15s}
-.sx-row:is(:hover,:focus-visible) h3,.sx-row:is(:hover,:focus-visible) .sx-row-arrow{color:var(--sx-gold-deep)}
+.sx-row-arrow{justify-self:end;font-size:18px;line-height:1;color:var(--v7-muted)}
+.sx-row:is(:hover,:focus-visible) .sx-row-arrow{color:var(--v7-ink)}
 .sx-soft-copy{display:contents}
-.sx-soft-viz{grid-column:2/4;grid-row:2;aspect-ratio:940/260;margin-top:26px;overflow:hidden;border-radius:var(--sx-radius-card);background:var(--sx-navy)}
-.sx-soft-viz svg{width:100%;height:100%}
-.sx-viz-grid path{fill:none;stroke:rgba(255,255,255,.07);stroke-width:1;vector-effect:non-scaling-stroke}
-.sx-contours path{stroke-width:1.25;vector-effect:non-scaling-stroke}
-.sx-contours path:nth-child(1){stroke:rgba(211,219,228,.22)}
-.sx-contours path:nth-child(2){stroke:rgba(211,219,228,.34)}
-.sx-contours path:nth-child(3){stroke:rgba(211,219,228,.5)}
-.sx-contours path:nth-child(4){stroke:rgba(211,219,228,.7)}
-.sx-contours path:nth-child(5){stroke:var(--sx-gold)}
-.sx-viz-pts circle{fill:var(--sx-fog)}
-.sx-viz-c{fill:var(--sx-gold)}
-.sx-services-link{margin-top:24px}
+.sx-soft-viz{display:none}   /* aria-hidden ornament: the row reads like the others */
+.sx-services-link{margin-top:32px}
 
-/* ── Closing (navy) ─────────────────────────────────────────── */
-.sx-cta{padding:var(--sx-sec) 0;background:var(--sx-navy)}
-.sx-cta-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:clamp(36px,4.5vw,64px)}
-.sx-cta-title{max-width:11.5em;font-size:clamp(2.6rem,7.2vw,6.5rem);line-height:1.02;letter-spacing:-.022em}
-.sx-cta-body{position:relative;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);column-gap:clamp(40px,7vw,120px);align-items:start;padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--sx-line-soft)}
-.sx-cta-body .sx-body{margin:0;color:var(--sx-mist)}
-.sx-cta-actions{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:center;column-gap:32px;row-gap:12px}
-.sx-cta-actions .sx-btn{grid-column:1/-1;justify-self:start;margin-bottom:4px}
+/* ── Closing (navy, the one band) ───────────────────────────── */
+.sx-cta{padding-block:var(--v7-section);background:var(--v7-navy)}
+.sx-cta-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--v7-stack)}
+.sx-home .sx-cta-title{max-width:12em;font-size:var(--v7-h2);line-height:var(--v7-h2-lh)}
+.sx-cta-body{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);column-gap:clamp(48px,7vw,120px);align-items:start}
+.sx-cta-body .sx-body{margin:0;color:var(--v7-body-inv)}
+.sx-cta-actions{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:center;column-gap:32px;row-gap:8px}
+.sx-cta-actions .sx-btn{grid-column:1/-1;justify-self:start;margin-bottom:8px}
 
 /* ── Responsive ─────────────────────────────────────────────── */
-/* side gutters match the nav bar: 40px, then 24px on phones */
-@media (max-width:760px){.sx-home{--sx-pad:24px}}
 @media (max-width:1100px){
-  .sx-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+  .sx-hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
   .sx-row{grid-template-columns:minmax(0,2.6fr) minmax(0,4fr) minmax(0,4fr) 28px}
 }
 @media (max-width:999px){
-  .sx-step{grid-template-columns:1fr;row-gap:32px}
+  .sx-step{grid-template-columns:1fr;row-gap:32px;align-items:start}
   .sx-step-visual{max-width:640px}
   .sx-panel{grid-template-columns:1fr;row-gap:32px}
   .sx-panel-media{order:-1}
   .sx-tile{flex-basis:calc((100% - 48px) / 3)}
   .sx-ev-grid{grid-template-columns:1fr;grid-template-rows:none}
   .sx-ev-head,.sx-ev-body,.sx-ev-map{grid-column:1;grid-row:auto}
-  .sx-ev-map{margin-top:48px;max-width:640px}
-  .sx-cta-body{grid-template-columns:1fr;row-gap:28px}
+  .sx-ev-map{margin-top:var(--v7-stack);max-width:640px}
+  .sx-cta-body{grid-template-columns:1fr;row-gap:32px}
   .sx-manifesto-grid{grid-template-columns:1fr}
   .sx-manifesto .sx-eyebrow{grid-row:auto;margin:0 0 24px}
   .sx-manifesto-text,.sx-manifesto-sub{grid-column:1}
 }
 @media (max-width:900px){
-  .sx-hero{min-height:0;padding-top:calc(var(--nav-h) + 40px)}
-  .sx-hero-grid{grid-template-columns:1fr;row-gap:40px}
+  .sx-hero{min-height:0;padding-top:calc(var(--nav-h) + 48px)}
+  .sx-hero-grid{grid-template-columns:1fr;row-gap:48px}
   .sx-hero-visual{max-width:680px}
-  .sx-offer{grid-template-columns:1fr 1fr;margin-top:48px;border-top:0}
-  .sx-offer li{border-top:1px solid var(--sx-line-soft)}
-  .sx-offer li+li{border-left:0}
-  .sx-offer li:nth-child(even){border-left:1px solid var(--sx-line-soft)}
-  .sx-offer a,.sx-offer li:first-child a,.sx-offer li:last-child a{min-height:64px;padding:12px 16px 12px 0}
-  .sx-offer li:nth-child(even) a{padding:12px 0 12px 16px}
+  .sx-offer{grid-template-columns:1fr 1fr;margin-top:56px}
+  .sx-offer a{min-height:64px}
   .sx-story-intro{grid-template-columns:1fr}
   .sx-story-intro .sx-eyebrow,.sx-story-intro .sx-h2,.sx-story-intro .sx-body,.sx-story-intro .sx-link{grid-column:1;grid-row:auto}
-  .sx-story-intro .sx-h2{margin:0 0 20px}
+  .sx-story-intro .sx-h2{margin:0 0 24px}
   .sx-head{flex-direction:column;align-items:flex-start;gap:16px}
-  .sx-row{grid-template-columns:minmax(0,1fr) 28px;row-gap:8px;padding:26px 0}
+  .sx-row{grid-template-columns:minmax(0,1fr) 28px;row-gap:8px;padding:28px 0}
   .sx-row-tag,.sx-row h3,.sx-row p{grid-column:1}
   .sx-row-arrow{grid-column:2;grid-row:1/4;align-self:center}
-  .sx-soft-viz{grid-column:1;grid-row:auto;aspect-ratio:auto;height:170px;margin-top:16px}
 }
 @media (max-width:700px){
-  .sx-home{font-size:16px;line-height:1.6}
-  .sx-body,.sx-manifesto-sub{font-size:16px;line-height:1.6}
-  .sx-hero{padding-top:calc(var(--nav-h) + 26px)}
-  .sx-hero .sx-eyebrow{margin-bottom:14px}
-  .sx-display{font-size:2.3rem;line-height:1.08;margin-bottom:16px}
-  @supports (width:1cqi){.sx-display{font-size:clamp(1.5rem,calc(100cqi / 10.9),2.3rem)}}
-  .sx-lead{margin-bottom:22px;font-size:1.0625rem;line-height:1.55}
-  .sx-actions{gap:10px}
-  .sx-actions .sx-btn{flex:1 1 100%}
-  .sx-hero-grid{row-gap:26px}
+  .sx-home{font-size:16px;line-height:1.65}
+  .sx-body,.sx-manifesto-sub{font-size:16px;line-height:1.65}
+  .sx-hero{padding-top:calc(var(--nav-h) + 32px)}
+  .sx-hero .sx-eyebrow{margin-bottom:16px}
+  .sx-display{margin-bottom:20px}
+  .sx-lead{margin-bottom:28px;font-size:1.0625rem;line-height:1.6}
+  .sx-actions{flex-direction:column;align-items:stretch;gap:8px}
+  .sx-actions .sx-btn-ghost{align-self:flex-start}
+  .sx-hero-grid{row-gap:32px}
   .sx-hero-cap small{margin-left:0;flex-basis:100%}
   .sx-hero .sx-play-wrap{right:10px;bottom:10px}
   .sx-play{gap:8px;padding:0 12px;font-size:13px}
-  .sx-offer{grid-template-columns:1fr}
-  .sx-offer li:nth-child(even){border-left:0}
-  .sx-offer a,.sx-offer li:first-child a,.sx-offer li:last-child a,.sx-offer li:nth-child(even) a{min-height:56px;padding:8px 0}
-  .sx-offer li:last-child{border-bottom:0}
-  .sx-marquee{padding:14px 0}
-  .sx-marquee li{padding:0 20px;font-size:14px}
-  .sx-tabs{flex-direction:column;gap:0;box-shadow:none;border-top:1px solid var(--sx-line-soft)}
-  .sx-tab{min-height:52px;padding-left:16px;border-bottom:1px solid var(--sx-line-soft);white-space:normal;text-align:left}
-  .sx-tab[aria-selected="true"]{box-shadow:inset 2px 0 0 var(--sx-gold)}
+  .sx-offer{grid-template-columns:1fr;margin-top:48px}
+  .sx-offer li+li{border-top:1px solid var(--v7-hair-inv)}
+  .sx-offer a{min-height:56px}
+  .sx-marquee li{padding:2px 12px}
+  .sx-marquee.has-toggle li{padding-inline:20px}
+  .sx-marquee.has-toggle .sx-marquee-view{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+  .sx-manifesto-text{font-size:1.625rem;line-height:1.3}
+  /* the three category tabs: a horizontally scrollable segmented row of 44px pills, the chosen one filled navy */
+  .sx-tabs{gap:8px;margin-inline:calc(-1 * var(--sx-pad));padding:6px var(--sx-pad);overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:var(--sx-pad);scrollbar-width:none;box-shadow:none}
+  .sx-tabs::-webkit-scrollbar{display:none}
+  .sx-tab{flex:none;min-height:44px;padding:0 16px;border-radius:var(--v7-radius);background:var(--v7-white);color:var(--v7-ink);font-size:15px}
+  .sx-tab[aria-selected="true"],.sx-tab[aria-selected="true"]:hover{background:var(--v7-navy);color:#fff}
   .sx-tab-ink{display:none}
   .sx-tile{flex-basis:78%}
   .sx-rail{gap:16px}
   .sx-guide li{grid-template-columns:1fr}
-  .sx-ev-map{grid-template-columns:1fr;min-height:0;row-gap:16px}
-  .sx-ev-hub{justify-self:start}
+  .sx-ev-map{grid-template-columns:1fr;min-height:0;row-gap:8px}
+  .sx-ev-hub{justify-self:start;padding:0}
   .sx-ev-lines{display:none}
-  .sx-ev-nodes{grid-template-rows:none;row-gap:4px}
+  .sx-ev-nodes{grid-template-rows:none;row-gap:0}
+  .sx-ev-nodes span{padding-left:0}
   .sx-cta-actions{grid-template-columns:1fr;row-gap:0}
   .sx-cta-actions .sx-btn{justify-self:stretch;margin-bottom:12px}
 }
-@media (prefers-reduced-motion:reduce){
-  .sx-marquee-track{animation:none}
-  .sx-home *,.sx-home *::before,.sx-home *::after{transition-duration:0s!important;animation:none!important}
-}
 
-/* Ticker control: its own slot at the end of the band, outside the moving names (home.js adds .has-toggle) */
-.sx-marquee-toggle{position:absolute;right:10px;top:50%;z-index:2;width:44px;height:44px;margin-top:-22px;display:grid;place-items:center;border:1px solid var(--sx-line-soft);border-radius:var(--sx-radius);background:var(--sx-navy-deep);color:var(--sx-mist);cursor:pointer}
-.sx-marquee-toggle:hover{color:#fff;border-color:rgba(255,255,255,.4)}
-.sx-marquee-toggle:focus-visible{outline:2px solid var(--sx-gold);outline-offset:3px}
-.sx-marquee-toggle::before,.sx-marquee-toggle::after{content:"";width:3px;height:12px;background:currentColor;grid-area:1/1}
-.sx-marquee-toggle::before{transform:translateX(-3px)}.sx-marquee-toggle::after{transform:translateX(3px)}
-.sx-marquee-toggle[aria-pressed="true"]::before{width:0;height:0;background:none;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent currentColor;transform:translateX(1px)}
-.sx-marquee-toggle[aria-pressed="true"]::after{display:none}
-.sx-marquee.is-paused .sx-marquee-track,.sx-marquee.is-off .sx-marquee-track{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.sx-marquee-toggle{display:none}}
-@media (max-width:640px){.sx-marquee.has-toggle{padding-right:58px}.sx-marquee-toggle{right:7px}}
-
-/* ══ Motion v3 (Oct 13): content first, one signature ═══════════════════════════════════════════
-   Headings, copy, buttons and photographs are readable at first paint or within 400ms of entering view.
-   Hidden states are gated on html.sx-mo (home.js adds it only when motion is allowed); the hero photograph's
-   opening is pure CSS under prefers-reduced-motion:no-preference. Sections carry data-motion-off, so the shared
-   house-motion layer leaves the home page's own choreography alone; the hover vocabulary below matches it. */
-
-/* Hover vocabulary: the whole control changes colour (buttons, step links, service rows; rules above). No sweeps. */
-/* drawn underline on text links (home.js wraps the label in .sx-ul): in from the left, out to the right */
-:is(.sx-link,.sx-panel-links a,.sx-contact-link).is-ul{text-decoration:none}
-.sx-ul{--sx-ul-rest:color-mix(in srgb,currentColor 42%,transparent);padding-bottom:3px;background-image:linear-gradient(currentColor,currentColor),linear-gradient(var(--sx-ul-rest),var(--sx-ul-rest));background-size:0% 1px,100% 1px;background-position:100% 100%,0 100%;background-repeat:no-repeat}
-.is-ul:is(:hover,:focus-visible)>.sx-ul{background-size:100% 1px,100% 1px;background-position:0 100%,0 100%}
-@media (prefers-reduced-motion:no-preference){.sx-ul{transition:background-size .5s cubic-bezier(.6,0,.2,1)}}
-
-/* services rows: a navy "+" turns into place where the arrow was (decoration stays out of gold, which means action) */
-.sx-row-arrow{transition:color .15s,opacity .25s ease-out,transform .5s var(--sx-ease)}
-.sx-row-plus{position:absolute;right:var(--sx-row-px);top:var(--plus-y,26px);width:36px;height:36px;pointer-events:none;opacity:0;transform:rotate(-135deg) scale(.35);transition:transform .75s var(--sx-ease),opacity .3s ease-out}
-.sx-row-plus::before,.sx-row-plus::after{content:"";position:absolute;left:50%;top:50%;background:var(--sx-navy)}
-.sx-row-plus::before{width:100%;height:1.5px;margin:-.75px 0 0 -50%}
-.sx-row-plus::after{width:1.5px;height:100%;margin:-50% 0 0 -.75px}
-@media (hover:hover){
-  .sx-row:hover .sx-row-plus{opacity:1;transform:none}
-  .sx-row:hover .sx-row-arrow{opacity:0;transform:translateX(16px)}
-}
-.sx-row:focus-visible .sx-row-plus{opacity:1;transform:none}
-.sx-row:focus-visible .sx-row-arrow{opacity:0;transform:translateX(16px)}
-
-/* ── Masked words (descender-safe): each mask carries .25em of room below the line, cancelled by a matching
-   negative margin, so nothing below the baseline is ever cut. ── */
-.sx-w,.sx-wi{display:inline-block}
-html.sx-mo .sx-w{overflow:clip;padding:.06em .06em .25em;margin:-.06em -.06em -.25em;vertical-align:top}
-
-/* ── Hero: the text is static at first paint. The photograph fades in while it settles from 1.02 inside its fixed
-   frame (300ms; held while the session intro is on screen); the frame itself never moves or grows. ── */
-.sx-field{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-@keyframes sxFade{from{opacity:0}to{opacity:1}}
-@keyframes sxPhotoSettle{from{scale:1.02}to{scale:1}}
+/* ── Motion: one easing, fade-ups of 12px over 600ms, 60ms apart, once, below the hero only ──────────────────
+   Hidden states are gated on html.sx-mo (home.js adds it only when motion is allowed), so without JS or with
+   reduced motion the page is complete and static. The hero is static at first paint.
+   Sections carry data-motion-off, so the shared house-motion layer leaves the home page's own entrances alone. */
 @media (prefers-reduced-motion:no-preference){
-  .sx-field{animation:sxFade .5s ease-out both}
-  .sx-hero-photo{animation:sxFade .3s ease-out both}
-  .sx-hero-photo img{animation:sxPhotoSettle .3s cubic-bezier(.2,.7,.2,1) both}
-  html:is(.amd-intro-pending,:has(dialog.amd-intro[open])) :is(.sx-hero-photo,.sx-hero-photo img){animation-play-state:paused}
-}
-
-/* ── Reveals below the hero: ≤400ms, once, as each block enters view ── */
-html.sx-mo .sx-reveal .sx-split .sx-wi{transform:translateY(calc(100% + .3em))}
-html.sx-mo .sx-reveal.is-in .sx-split .sx-wi{transform:none;transition:transform .56s cubic-bezier(.16,1,.3,1) calc(var(--l,0) * 60ms + var(--sx-bd,0ms))}
-html.sx-mo .sx-reveal :is(.sx-eyebrow,.sx-body,.sx-link,.sx-btn,.sx-manifesto-sub,.sx-cta-actions){opacity:0;transform:translateY(10px)}
-html.sx-mo .sx-reveal.is-in :is(.sx-eyebrow,.sx-body,.sx-link,.sx-btn,.sx-manifesto-sub,.sx-cta-actions){opacity:1;transform:none;transition:opacity .3s ease-out var(--sx-fd,0ms),transform .4s cubic-bezier(.16,1,.3,1) var(--sx-fd,0ms),border-color .15s,color .15s}
-html.sx-mo .sx-reveal :is(.sx-body,.sx-manifesto-sub){--sx-fd:60ms}
-html.sx-mo .sx-reveal :is(.sx-link,.sx-btn,.sx-cta-actions){--sx-fd:110ms}
-html.sx-mo .sx-now,html.sx-mo .sx-now *{transition:none!important}
-/* service rows: each enters as it arrives */
-html.sx-mo .sx-row{opacity:0;transform:translateY(12px)}
-html.sx-mo .sx-row.is-in{opacity:1;transform:none;transition:opacity .3s ease-out var(--sx-bd,0ms),transform .4s cubic-bezier(.16,1,.3,1) var(--sx-bd,0ms),background-color .2s ease-out}
-html.sx-mo .sx-rows.sx-reveal{position:relative;border-top-color:transparent}
-html.sx-mo .sx-rows.sx-reveal::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--sx-text-dark);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s cubic-bezier(.16,1,.3,1)}
-html.sx-mo .sx-rows.sx-reveal.is-in::before{transform:none}
-
-/* ── Question story: the step change itself is above (pinned mode). Keyboard: while focus is in the story, a step
-   change is immediate. ── */
-.sx-story.is-kbd :is(.sx-step-copy,.sx-step-copy *,.sx-step-visual,.sx-story-nav button),.sx-story.is-kbd .sx-story-nav button::after{transition:none!important;animation:none!important}
-
-/* ── Product showcase: the index counter. One number in one fixed-height mask; it settles up when it changes. ── */
-.sx-count{display:flex;align-items:baseline;gap:10px;margin-right:24px;font:600 44px/1 var(--font-body);font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:#fff}
-.sx-count-cur{display:block;height:1em;overflow:clip;padding-bottom:.2em;margin-bottom:-.2em}
-.sx-count-n{display:block;height:1em;line-height:1}
-.sx-count-tot{font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--sx-fog)}
-
-/* ── Evidence: connectors draw out of the hub with the scroll (home.js); the words are always visible ── */
-.sx-ev-hub{position:relative}
-.sx-ev-hub::before,.sx-ev-hub::after{content:"";position:absolute;left:100%;top:50%;background:var(--sx-gold-deep);transform:rotate(calc((1 - var(--hp,1)) * -90deg))}
-.sx-ev-hub::before{width:15px;height:1.5px;margin:-.75px 0 0 -7.5px}
-.sx-ev-hub::after{width:1.5px;height:15px;margin:-7.5px 0 0 -.75px}
-.sx-ev-nodes span{position:relative}
-html.sx-mo .sx-ev-map.is-draw .sx-ev-nodes span{border-left-color:rgba(122,90,31,.22)}
-html.sx-mo .sx-ev-map.is-draw .sx-ev-nodes span::before{content:"";position:absolute;left:-2px;top:0;bottom:0;width:2px;background:var(--sx-gold);transform:scaleY(0);transform-origin:50% 50%;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-html.sx-mo .sx-ev-map.is-draw .sx-ev-nodes li.is-lit span::before{transform:none}
-
-/* ── Closing: the statement arrives light and open and settles to its set weight within 900ms. It reads the
-   whole time; the opening tracking (--sx-ls0, from home.js) keeps every line the same length, so nothing re-wraps. ── */
-html.sx-mo .sx-cta-title{font-weight:300;letter-spacing:var(--sx-ls0,-.022em)}
-html.sx-mo .sx-reveal.is-in .sx-cta-title{font-weight:600;letter-spacing:-.022em;transition:font-weight .9s cubic-bezier(.25,.6,.2,1),letter-spacing .9s cubic-bezier(.25,.6,.2,1)}
-html.sx-mo .sx-cta-body{border-top-color:transparent}
-html.sx-mo .sx-cta-body::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--sx-line-soft);transform:scaleX(0);transform-origin:0 50%;transition:transform .8s cubic-bezier(.16,1,.3,1)}
-html.sx-mo .sx-reveal.is-in .sx-cta-body::before{transform:none}
-
-@media (max-width:700px){
-  .sx-ev-hub::before,.sx-ev-hub::after{display:none}
-  .sx-count{font-size:32px;margin-right:14px}
-  .sx-count-tot{font-size:14px}
+  html.sx-mo .sx-reveal>*{opacity:0;transform:translateY(var(--v7-rise))}
+  html.sx-mo .sx-reveal.is-in>*{opacity:1;transform:none;transition:opacity var(--v7-dur) var(--v7-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),transform var(--v7-dur) var(--v7-ease) calc(var(--i,0) * var(--v7-stagger) + var(--sx-bd,0ms)),color var(--v7-dur-hover) var(--v7-ease),background-color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
+  html.sx-mo .sx-reveal>:nth-child(2){--i:1}
+  html.sx-mo .sx-reveal>:nth-child(3){--i:2}
+  html.sx-mo .sx-reveal>:nth-child(n+4){--i:3}
+  html.sx-mo .sx-now>*{transition:none!important}
 }
 @media (prefers-reduced-motion:reduce){
-  html.sx-mo .sx-reveal :is(.sx-eyebrow,.sx-body,.sx-link,.sx-btn,.sx-manifesto-sub,.sx-cta-actions),html.sx-mo .sx-row{opacity:1;transform:none}
+  .sx-marquee-track{animation:none!important}
+  .sx-marquee-toggle{display:none}
+  .sx-home *,.sx-home *::before,.sx-home *::after{transition-duration:0s!important;animation:none!important}
 }

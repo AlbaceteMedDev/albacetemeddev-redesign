@@ -688,9 +688,214 @@ html.sx-armed .sx-product .sx-reveal.is-in{opacity:1;transform:none}
 .sx-product .product-editorial-grid figcaption{font-size:14px}
 .sx-product :is(.image-open-label,.image-open-label>span){font-size:14px}
 
+/* ═════════════════════════════════════════════════════════════════════════════════
+   MINIMAL v7 (Oct 15). Supersedes everything above where they conflict.
+   Product pages: paper header, white and paper chapters, navy only for the closing band (.product-next /
+   .cta-band; the specialty pages' mid-page navy chapters moved to .sxp-white / .sxp-paper in the HTML).
+   No gold labels, numerals, dashes or underlines; space instead of frames; hairlines only for spec rows and
+   question lists; secondary actions and filters are quiet text; the current subnav link is ink with a 1px line.
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* P1 · Surfaces, tokens, focus, motion */
+html:not(#_) body.sx-product{background:var(--v7-paper);color:var(--v7-body);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-product main :is(a,button,summary,input,[tabindex]):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px}
+html:not(#_) body.sx-product .compare-tray :is(a,button):focus-visible,html:not(#_) body.sx-product :is(.compare-dialog,.image-dialog) :focus-visible{outline:2px solid var(--sx-gold-deep);outline-offset:3px}
+html.sx-armed .sx-product .sx-reveal{transition:opacity var(--v7-dur) var(--v7-ease),transform var(--v7-dur) var(--v7-ease)}
+.sx-product .page-progress{display:none!important}   /* reading-progress chrome */
+/* labels: no gold rule, muted (the global label colour) */
+.sx-product :is(.clinical-eyebrow,.eyebrow)::before{content:none;display:none}
+html:not(#_) body.sx-product :is(.clinical-eyebrow,.eyebrow,.identity-eyebrow,.reading-nav-label,.product-facts dt,.research-links>a>span:first-child,.catalog-maker,.product-card .tag,.cat-eyebrow,.pep-pill-label){
+  font-weight:500!important;color:var(--v7-label-c)!important}
+/* type: no 600 weights, no two-colour headings */
+html:not(#_) body.sx-product main :is(h1,h2,h3,h4) em{color:inherit!important}
+html:not(#_) body.sx-product :is(.product-editorial-grid h1){line-height:var(--v7-h1-lh)}
+html:not(#_) body.sx-product :is(.editorial-page h2,main .section-header h2,.product-next h2,.editorial-specialty .cta-band h2){font-size:var(--v7-h2);line-height:var(--v7-h2-lh)}
+html:not(#_) body.sx-product :is(.product-facts dd,.identity-title,.catalog-copy h3,.product-card h3,.faq-q,.hero-spec-panel h3,.category-header h3,.pep-card h4,.compare-dialog h2,.image-dialog h2,.product-notes h3){font-weight:500!important}
+html:not(#_) body.sx-product :is(.product-notes h3,.catalog-copy h3,.product-card h3,.pep-card h4){line-height:var(--v7-h3-lh)}
+html:not(#_) body.sx-product :is(.faq-a-inner strong,.pep-compliance strong,.compare-tray strong,.pep-details summary,.pep-legend summary){font-weight:500}
+/* text links: ink, 1px underline at 38%, full on hover; never gold */
+html:not(#_) body.sx-product :is(.clinical-text-link,.pep-clear,.pep-clear-inline,.catalog-card-bottom button,.pep-req,.compare-dialog .close-compare,.image-dialog-close){display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--v7-ink);font:500 15px/1.3 var(--font-body);text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-product :is(.clinical-text-link,.pep-clear,.pep-clear-inline,.catalog-card-bottom button,.pep-req):hover{background:none;color:var(--v7-ink)!important;text-decoration-color:var(--v7-ink)}
+html:not(#_) body.sx-product .clinical-text-link{color:var(--v7-ink)!important}
+html:not(#_) body.sx-product :is(.compare-dialog .close-compare,.image-dialog-close){justify-content:center;min-width:44px;border:0!important;text-decoration:none}
+/* catalog compare toggles: pressed = deep gold with a full underline (aria-pressed); the page comparison toggle
+   (.save-product) is styled once for the site in signature.css */
+html:not(#_) body.sx-product :is(.catalog-card-bottom button)[aria-pressed="true"],
+html:not(#_) body.sx-product :is(.catalog-card-bottom button)[aria-pressed="true"]:hover{background:none;color:var(--sx-gold-deep)!important;text-decoration-color:var(--sx-gold-deep)}
+html:not(#_) body.sx-product .back-link{font-weight:500;color:var(--v7-body)}
+html:not(#_) body.sx-product .back-link:hover{color:var(--v7-ink);text-decoration-color:rgba(22,33,46,.4);text-underline-offset:6px}
+
+/* P2 · Header: paper, no rule under it; the figure unframed; Inspect as a small white tab */
+html:not(#_) body.sx-product .product-editorial-hero{padding:calc(var(--nav-h) + clamp(24px,3vw,40px)) 0 clamp(64px,7vw,104px);border-bottom:0}
+html:not(#_) body.sx-product .product-editorial-grid :is(figure>a,figure>img,.product-identity){border:0}
+html:not(#_) body.sx-product .product-editorial-grid figure>a:hover img{transform:none}
+html:not(#_) body.sx-product .product-editorial-grid figcaption a{text-decoration-color:rgba(22,33,46,.4)}
+html:not(#_) body.sx-product .product-editorial-grid figcaption a:hover{color:var(--v7-ink);text-decoration-color:var(--v7-ink)}
+html:not(#_) body.sx-product .image-open-label{min-height:32px;border:0;border-radius:var(--v7-radius);font-weight:500;transition:none}
+html:not(#_) body.sx-product .product-image-open:hover .image-open-label{background:#fff;color:var(--v7-ink);text-decoration:underline 1px;text-underline-offset:4px}
+html:not(#_) body.sx-product .identity-format{border-top-color:var(--v7-hair)}
+html:not(#_) body.sx-product .product-editorial-hero .clinical-actions{gap:12px 28px}
+
+/* P3 · Section nav: a white bar with one hairline; links muted, the current one ink with a 1px line */
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav){border-bottom:1px solid var(--v7-hair)}
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav) a{color:var(--v7-muted);box-shadow:none;transition:color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav) a:hover{color:var(--v7-ink)}
+html:not(#_) body.sx-product :is(.product-reading-nav,.reading-nav) a.is-active{color:var(--v7-ink);box-shadow:inset 0 -1px 0 var(--v7-ink)}
+html:not(#_) body.sx-product .reading-nav-label{border-right:0;padding-right:0}
+
+/* P4 · Overview: facts on one hairline, notes as a ruled list with muted numbers */
+html:not(#_) body.sx-product .product-overview{padding:var(--v7-section-sm) 0 var(--v7-section)}
+html:not(#_) body.sx-product .product-facts{margin:0 0 var(--v7-section-sm);border:0;border-top:1px solid var(--v7-hair)}
+html:not(#_) body.sx-product .product-facts>div{padding:22px 28px 0 0}
+html:not(#_) body.sx-product .product-facts>div+div{border-left:0;padding-left:0}
+html:not(#_) body.sx-product .product-notes article{border-top-color:var(--v7-hair)}
+html:not(#_) body.sx-product .product-notes article:last-child{border-bottom-color:var(--v7-hair)}
+html:not(#_) body.sx-product .product-notes article>span{font:500 13px/1.4 var(--font-body);letter-spacing:.06em;padding-top:7px;color:var(--v7-muted)}
+html:not(#_) body.sx-product .editorial-split>div:first-child>p:not(.clinical-eyebrow){max-width:var(--v7-measure)}
+
+/* P5 · Clinical reading: references as white sheets on paper, no frame */
+html:not(#_) body.sx-product .product-reading{padding:var(--v7-section) 0;border-top:0}
+html:not(#_) body.sx-product .research-links{gap:clamp(12px,1.4vw,16px)}
+html:not(#_) body.sx-product .research-links>a,html:not(#_) body.sx-product .research-links>a:hover{border:0;transition:none}
+html:not(#_) body.sx-product .research-links strong{font-weight:400}
+html:not(#_) body.sx-product .research-links>a:hover strong{text-decoration-color:rgba(22,33,46,.4)}
+html:not(#_) body.sx-product .research-links>a>span:last-child{color:var(--v7-muted)}
+html:not(#_) body.sx-product .research-links>a:hover>span:last-child{color:var(--v7-ink)}
+
+/* P6 · Closing band: navy, the one dark block */
+html:not(#_) body.sx-product .product-next{padding:var(--v7-section-sm) 0}
+
+/* P7 · Family page (advanced biologics): catalog cards as tinted sheets on white */
+html:not(#_) body.sx-product .catalog-content{padding:var(--v7-section-sm) 0 var(--v7-section)}
+html:not(#_) body.sx-product .visual-catalog-grid{gap:clamp(20px,2vw,32px)}
+html:not(#_) body.sx-product .catalog-item,html:not(#_) body.sx-product .catalog-item:hover,html:not(#_) body.sx-product .catalog-item:has([aria-pressed=true]){border:0;box-shadow:none;background:var(--v7-tint);transition:none}
+html:not(#_) body.sx-product .catalog-image{border:0}
+html:not(#_) body.sx-product .catalog-image:hover img{transform:none}
+html:not(#_) body.sx-product .catalog-copy h3 a:hover{text-decoration-color:rgba(22,33,46,.4)}
+html:not(#_) body.sx-product .catalog-copy h3 span{color:var(--v7-muted)}
+html:not(#_) body.sx-product .catalog-card-bottom{padding-top:4px;border:0}
+html:not(#_) body.sx-product .catalog-card-bottom button{font-size:14px}
+html:not(#_) body.sx-product .catalog-disclosure{padding:24px 0 0;border:0;border-top:1px solid var(--v7-hair);font-size:14px;color:var(--v7-muted)}
+
+/* P8 · Specialty pages: white and paper chapters, tinted cards, hairline questions */
+html:not(#_) body.sx-product.editorial-specialty :is(.section,.faq-section){padding:var(--v7-section) 0}
+html:not(#_) body.sx-product.editorial-specialty .cta-band{padding:var(--v7-section-sm) 0}
+.sx-product :is(.sxp-paper,.sxp-white)+:is(.sxp-paper,.sxp-white){border-top:0}
+html:not(#_) body.sx-product :is(.sxp-white,.sxp-paper){--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-product .section-header{margin-bottom:var(--v7-stack)}
+html:not(#_) body.sx-product .section-header p{font-size:var(--v7-body-size);line-height:var(--v7-body-lh);max-width:var(--v7-measure)}
+html:not(#_) body.sx-product.editorial-specialty .products-grid{gap:clamp(16px,2vw,24px)}
+html:not(#_) body.sx-product :is(.sxp-white,.sxp-paper) .product-card,html:not(#_) body.sx-product :is(.sxp-white,.sxp-paper) .product-card:is(:hover,.is-spotlit){border:0;transition:none}
+html:not(#_) body.sx-product .sxp-white .product-card{background:var(--v7-tint)}
+html:not(#_) body.sx-product .sxp-paper .product-card{background:var(--v7-white)}
+html:not(#_) body.sx-product.editorial-specialty .faq-item{border-bottom-color:var(--v7-hair)}
+html:not(#_) body.sx-product.editorial-specialty .faq-item:first-child{border-top-color:var(--v7-hair)}
+html:not(#_) body.sx-product.editorial-specialty .faq-q{font-size:var(--v7-h3);line-height:var(--v7-h3-lh);transition:color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-product.editorial-specialty .faq-q:hover{color:var(--v7-ink)}
+html:not(#_) body.sx-product.editorial-specialty .faq-q .faq-icon{color:var(--v7-muted);font-weight:300;transition:transform var(--v7-dur-hover) var(--v7-ease),color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-product.editorial-specialty :is(.faq-q:hover,.faq-item.is-open) .faq-icon{color:var(--v7-ink)}
+html:not(#_) body.sx-product.editorial-specialty .cta-band .hero-actions{align-items:center;gap:12px 28px}
+/* peptides: the two supply channels as white sheets with hairline spec rows; the notice as plain text */
+html:not(#_) body.sx-product .hero-spec-panel{border:0;background:var(--v7-tint);--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+html:not(#_) body.sx-product .hero-spec-panel h3{padding:0 0 14px;border-bottom:1px solid var(--v7-hair);color:var(--v7-ink)}
+html:not(#_) body.sx-product .hero-spec-panel .spec-row{border-bottom-color:var(--v7-hair)}
+html:not(#_) body.sx-product .hero-spec-panel .spec-label{color:var(--v7-muted)}
+html:not(#_) body.sx-product .hero-spec-panel .spec-value{color:var(--v7-ink)}
+html:not(#_) body.sx-product .hero-spec-panel .spec-value em{color:var(--v7-body)}
+html:not(#_) body.sx-product .pep-compliance{max-width:var(--v7-measure);margin:var(--v7-stack) 0 0;padding:20px 0 0;border:0;border-top:1px solid var(--v7-hair);border-radius:0;font-size:15px;color:var(--v7-body)}
+html:not(#_) body.sx-product .pep-compliance strong{color:var(--v7-ink)}
+/* peptides: filters unboxed; options as text toggles (pressed = ink with a 1px underline) */
+html:not(#_) body.sx-product .pep-filters{padding:0;margin:0 0 28px;border:0;border-radius:0;background:none;box-shadow:none}
+html:not(#_) body.sx-product #pep-search{border-color:#8a939d;border-radius:var(--v7-radius)}
+html:not(#_) body.sx-product #pep-search:hover{border-color:var(--v7-ink)}
+html:not(#_) body.sx-product #pep-search:focus{outline:2px solid var(--sx-gold-deep);outline-offset:2px;border-color:var(--v7-ink)}
+html:not(#_) body.sx-product .pep-pill-row{gap:4px 12px;padding:6px 0;border-top:1px solid var(--v7-hair)}
+html:not(#_) body.sx-product .pep-pill-label{padding-top:12px}
+html:not(#_) body.sx-product .pep-pill-scroll{gap:0 20px}
+html:not(#_) body.sx-product .pep-pill{min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--v7-muted);font:400 14px/1.2 var(--font-body);
+  text-decoration:underline 1px;text-decoration-color:transparent;text-underline-offset:6px;transition:color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease)}
+html:not(#_) body.sx-product .pep-pill:hover{background:none;color:var(--v7-ink)}
+html:not(#_) body.sx-product .pep-pill:is(.is-on,[aria-pressed="true"]){background:none;color:var(--v7-ink);font-weight:500;text-decoration-color:var(--v7-ink)}
+html:not(#_) body.sx-product .pep-legend{margin:0 0 var(--v7-section-sm);border:0;border-top:1px solid var(--v7-hair);border-bottom:1px solid var(--v7-hair);border-radius:0;background:none}
+html:not(#_) body.sx-product .pep-legend summary{padding:0}
+html:not(#_) body.sx-product .pep-legend summary::after{color:var(--v7-muted);font-weight:300}
+html:not(#_) body.sx-product .pep-legend summary:hover{color:var(--v7-ink)}
+html:not(#_) body.sx-product :is(.pep-legend-row,.pep-legend-foot){padding-inline:0;border-top-color:var(--v7-hair)}
+/* peptides: catalog groups held by space; cards as white sheets; status chips filled, no frame */
+html:not(#_) body.sx-product .pep-cat{margin:0 0 var(--v7-section-sm)}
+html:not(#_) body.sx-product .category-header{padding:0;border:0}
+html:not(#_) body.sx-product .pep-grid{gap:clamp(16px,2vw,24px)}
+html:not(#_) body.sx-product .pep-card,html:not(#_) body.sx-product .pep-card:hover{border:0;transition:none}
+html:not(#_) body.sx-product .pep-chip{border:0;border-radius:var(--v7-radius);background:var(--v7-tint);font-weight:500}
+html:not(#_) body.sx-product .pep-chip--ch{background:none;padding-inline:0}
+html:not(#_) body.sx-product .pep-chip--ok{background:#eef6f1}
+html:not(#_) body.sx-product .pep-chip--warn{background:#faf3e2}
+html:not(#_) body.sx-product .pep-chip--stop{background:#fcf0ee}
+html:not(#_) body.sx-product .pep-note{padding:0;border:0;background:none;font-size:14px;color:var(--v7-muted)}
+html:not(#_) body.sx-product .pep-details{border-top-color:var(--v7-hair)}
+html:not(#_) body.sx-product .pep-details summary:hover{color:var(--v7-ink)}
+html:not(#_) body.sx-product .pep-rows li{border-top-color:var(--v7-hair)}
+
+/* P9 · Comparison tray and dialogs: plain sheets, one primary */
+html:not(#_) body.sx-product .compare-tray{border:0;box-shadow:0 12px 32px rgba(16,35,58,.14)}
+html:not(#_) body.sx-product .compare-tray button{font-weight:500}
+html:not(#_) body.sx-product .compare-tray button[data-clear-compare]{padding:0 4px;border:0;background:none;text-decoration:underline 1px;text-decoration-color:rgba(22,33,46,.38);text-underline-offset:6px}
+html:not(#_) body.sx-product :is(.compare-dialog,.image-dialog){border:0;border-radius:var(--v7-radius)}
+html:not(#_) body.sx-product .image-view-switch button[aria-pressed=true]{color:var(--v7-ink);border-color:var(--v7-ink)}
+html:not(#_) body.sx-product .image-dialog-maker{color:var(--v7-muted);font-weight:500}
+
+/* P10 · Responsive */
+@media (max-width:900px){
+  html:not(#_) body.sx-product .product-facts>div,html:not(#_) body.sx-product .product-facts>div:first-child{padding:18px 0 0}
+  html:not(#_) body.sx-product .product-facts>div+div{border-top:0}
+}
+@media (max-width:640px){
+  html:not(#_) body.sx-product .product-editorial-hero .clinical-actions :is(.clinical-text-link,.save-product){width:auto;align-self:flex-start;justify-content:flex-start}
+  html:not(#_) body.sx-product .product-editorial-grid .clinical-actions{gap:8px}
+  html:not(#_) body.sx-product.editorial-specialty .cta-band .hero-actions .btn-secondary{align-self:flex-start}
+  html:not(#_) body.sx-product .pep-filters{padding:0}
+  html:not(#_) body.sx-product .pep-pill-scroll{margin:0 -24px;padding:0 24px 6px}
+  html:not(#_) body.sx-product .compare-tray button[data-clear-compare]{padding:0 4px}
+}
+
 /* ═════════ REDUCED MOTION: everything still, everything visible ═════════ */
 @media (prefers-reduced-motion:reduce){
   .sx-product *,.sx-product *::before,.sx-product *::after{animation:none!important;transition:none!important}
   html.sx-armed .sx-product .sx-reveal{opacity:1!important;transform:none!important}
   .sx-product .product-editorial-grid figure>a:hover img,.sx-product .catalog-image:hover img{transform:none!important}
 }
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   v7 panel fixes (Oct 15, late). F1 links and arrows · F2 the comparison toggle.
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* F1 · Links. "← All products", "Source information" and the other secondary actions take the global .v7-link
+   treatment (signature.css V4: ink, a 1.5px underline 4px below the words only; the words sit in an .hm-t box in
+   the markup, so this holds without JS). The page's own text links match it. An arrow and its space (.v7-arw) stay
+   outside the underline: an inline-block in prose; in a flex row the row's gap spaces it.
+   → an internal page or address, ↗ another site, ↓ further down this page. */
+html:not(#_) body.sx-product .v7-arw{display:inline-block;white-space:pre;text-decoration:none;transform:none;color:inherit}
+html:not(#_) body.sx-product :is(.btn,.clinical-button,.v7-link,.pep-req,.pep-clear,.pep-clear-inline,.research-links>a,.product-reading-nav a,.catalog-copy h3 a)>.v7-arw{white-space:normal}
+html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):has(>.hm-t){text-decoration-line:none}
+html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline)>.hm-t{text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
+html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):hover>.hm-t{text-decoration-thickness:2.5px}
+html:not(#_):not(#__) body.sx-product :is(.pep-req,.pep-clear,.pep-clear-inline):not(:has(>.hm-t)),
+html:not(#_):not(#__) body.sx-product .catalog-card-bottom button{text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
+html:not(#_):not(#__) body.sx-product .catalog-card-bottom button:hover{text-decoration-thickness:2.5px}
+
+/* F2 · The comparison toggle (.save-product) is styled for the whole site in signature.css: a text link at rest,
+   a filled pale-gold chip with a deep-gold edge and the script's check mark when pressed, so it never reads like
+   "Source information". Here it only gets room: a little more space above it, so the pressed chip does not crowd
+   the primary button over it. */
+@media (min-width:761px){html:not(#_) body.sx-product .product-editorial-hero .clinical-actions{row-gap:16px}}
+
+/* F3 · One page frame on phones: editorial.css sets a 22px container gutter at 540px and under; the page frame is
+   the v7 gutter (24px), the same as the nav and footer. */
+@media (max-width:540px){html:not(#_) body.sx-product main .container{padding-inline:var(--v7-gutter)}}
+
+/* v7 final: product names fit on one line where possible (wider text column, name-scale h1) */
+@media (min-width:901px){
+  html:not(#_) .sx-product .product-editorial-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+  html:not(#_) .sx-product .product-editorial-hero h1{font-size:clamp(2.5rem,3.7vw,3.4rem);text-wrap:balance}
+}
+@media (max-width:900px){html:not(#_) .sx-product .product-editorial-hero h1{font-size:clamp(2rem,8.4vw,2.4rem);text-wrap:balance}}

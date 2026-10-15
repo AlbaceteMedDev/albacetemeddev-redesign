@@ -283,3 +283,227 @@ html:not(#_) .mobile-menu>a{text-wrap:balance}
 @media (min-width:300px){html:not(#_) .mobile-menu>a:not(.mobile-cta){white-space:nowrap;font-size:min(clamp(1.625rem,7.2vw,2.375rem),7.4vw)!important}}
 html:not(#_) .footer :is(.footer-col>a,.footer-col>h4,.footer-bottom>span){text-wrap:balance}
 html:not(#_) .footer .hm-nw{white-space:nowrap}
+
+/* ══════════════════════════════════════════════════════════════════════════════════════════════════════════════
+   MINIMAL v7 (Oct 15, lead designer). Supersedes every earlier section of this file where they conflict.
+   Smooth, minimal, sleek and clean. Lighter serif headings, muted labels, mostly white and warm paper; navy only for
+   the nav, the home hero, the footer and at most one closing band per page; few boxes, 1px hairlines only where they
+   aid scanning, radius 2px; one solid primary button and quiet text-link secondaries; generous rhythm.
+   Builder spec: ~/Documents/albacete-site-redesign-tools/HOUSE-STYLE.md ("Minimal v7").
+   V1 tokens · V2 type · V3 labels · V4 buttons · V5 links + focus · V6 nav · V7 phone menu · V8 footer · V9 utilities
+   ══════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
+
+/* V1 Tokens. New --v7-* tokens, and the house tokens remapped so every page group inherits the system. */
+:root{
+  /* motion: one easing everywhere */
+  --v7-ease:cubic-bezier(.22,.61,.36,1);
+  --v7-dur:600ms;--v7-dur-hover:200ms;--v7-rise:12px;--v7-stagger:60ms;
+  /* ink on light surfaces */
+  --v7-ink:#16212e;            /* headings */
+  --v7-body:#3d4752;           /* running text: 9.5:1 on white, 8.8:1 on paper */
+  --v7-muted:#5d6874;          /* labels, captions, meta: 5.6:1 on white, 5.2:1 on paper */
+  /* ink on navy */
+  --v7-ink-inv:#ffffff;--v7-body-inv:#d3dbe4;--v7-muted-inv:#a7b3c1;
+  /* surfaces */
+  --v7-white:#ffffff;
+  --v7-paper:#f7f5f0;          /* warm paper */
+  --v7-tint:#f9f7f3;           /* the one faint card tint, on white */
+  --v7-navy:#10233a;--v7-navy-deep:#0a1726;
+  --v7-hair:#ebe7df;           /* 1px hairline on light: only where it aids scanning */
+  --v7-hair-inv:rgba(255,255,255,.1);
+  /* shape and space */
+  --v7-radius:2px;
+  --v7-section:clamp(72px,8vw,120px);       /* vertical padding of a section (v7.1: 30% tighter, so space reads intentional) */
+  --v7-section-sm:clamp(48px,5.6vw,80px);    /* a short or follow-on section */
+  --v7-stack:clamp(28px,3.4vw,48px);         /* heading block to content */
+  --v7-gutter:40px;
+  --v7-measure:64ch;
+  /* type */
+  /* one type scale: a single H1 size for every page (34-40px on phones, 40-60px above), then h2, then h3 */
+  --v7-h1:clamp(2.5rem,4.4vw,3.75rem);--v7-h1-weight:420;--v7-h1-lh:1.1;
+  --v7-h2:clamp(1.875rem,3vw,2.75rem);--v7-h2-weight:440;--v7-h2-lh:1.18;
+  --v7-h3:clamp(1.25rem,1.6vw,1.5rem);--v7-h3-weight:500;--v7-h3-lh:1.3;
+  --v7-track:-.015em;
+  --v7-body-size:17px;--v7-body-lh:1.7;
+  --v7-label-size:13px;--v7-label-track:.06em;
+  /* house tokens, remapped */
+  --sx-radius:2px;--sx-radius-card:2px;--r-sm:2px;--r-md:2px;--r-lg:2px;--r-xl:2px;
+  --sx-ease:var(--v7-ease);
+  --sx-text-body:#3d4752;
+  --sx-rule-light:#ebe7df;--rule:#ebe7df;
+  --nav-h:72px;
+}
+@media (max-width:760px){:root{--v7-gutter:24px;--nav-h:60px;--v7-h1:clamp(2.125rem,9vw,2.5rem);--v7-h2:clamp(1.625rem,7.4vw,1.875rem)}}
+/* Surface tokens. Labels, primary buttons, text-link secondaries and focus rings take their colours from tokens that every surface
+   sets for its descendants: light (the default) or navy. Known navy surfaces are listed here; any other opaque navy
+   block is tagged .v7-dark by house-motion.js at load (and a light block inside navy .v7-lightsurf). A page group can
+   set the tokens on its own blocks, or add .v7-dark / .v7-light in markup. The lists use :where(), so any page rule,
+   utility or tag outranks them. */
+:root,:where(.sx-paper,.sx-white,.sx-light,.cx-paper,.cx-white,main.editorial-page,dialog,.ev-card,.library-tools,.sw-demo){
+  --v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+:where(body.cx-page,body.sx-co,body.sx-lib--evidence,body.sx-lib--catalog,body.page-home,
+  .nav,.dropdown-menu,.mobile-menu,.footer,.hero,.sx-navy,.cx-dark,.sxp-navy,.product-next,.cta-band,.clinical-contact,
+  .sx-hero,.sx-cta,.sx-portfolio,.sx-marquee,.pm-sidebar,.science-endpoint,.cx-studio-form,.cmdk-panel),.v7-dark,.v7-band{
+  --v7-surface:dark;--v7-label-c:var(--v7-muted-inv);--v7-btn-bg:var(--sx-gold);--v7-btn-fg:var(--v7-navy);--v7-btn-hover:#e6c477;--v7-link-c:#fff;--v7-focus:var(--sx-gold)}
+/* the light utilities and tag win over a navy block they are applied to */
+.v7-lightsurf,.v7-light,.v7-white{--v7-surface:light;--v7-label-c:var(--v7-muted);--v7-btn-bg:var(--v7-navy);--v7-btn-fg:#fff;--v7-btn-hover:#1b3a5c;--v7-link-c:var(--v7-ink);--v7-focus:var(--sx-gold-deep)}
+
+/* V2 Type. Source Serif 4 at a lighter weight with a little negative tracking; Plex Sans for everything else. */
+html:not(#_) h1{font-weight:var(--v7-h1-weight);letter-spacing:var(--v7-track)}
+/* One H1 size on every page: the page's main headline takes the shared token (a page group may still set its own
+   in its v7 section, at a higher specificity, where a layout needs it). */
+html:not(#_) main h1{font-size:var(--v7-h1);line-height:var(--v7-h1-lh)}
+html:not(#_) h2{font-weight:var(--v7-h2-weight);letter-spacing:var(--v7-track)}
+html:not(#_) :is(h3,h4){font-weight:var(--v7-h3-weight)}
+html:not(#_) h3{letter-spacing:-.01em}
+/* Line breaks: headings balance their lines; running text avoids a last line of one word. (Longhands, so a
+   white-space:nowrap elsewhere is never undone.) A heading of two or more sentences breaks between them:
+   house-motion.js wraps each sentence in an hm-s box that keeps it whole where it fits and balances it where it
+   cannot (phones), and keeps each sentence's last two words together (hm-g). The words themselves are unchanged. */
+html:not(#_) :is(h1,h2,h3,h4){text-wrap-style:balance}
+:where(p,li,dd,figcaption,blockquote){text-wrap-style:pretty}
+hm-s{display:inline-block;max-width:100%;text-wrap-style:balance}
+/* a sentence's last two words, kept together (no stranded word); released when the pair is wider than its heading */
+html:not(#_) :is(hm-g,hm-g *){white-space:nowrap!important}
+html:not(#_) :is(hm-g.hm-g-off,hm-g.hm-g-off *){white-space:normal!important}
+
+/* V3 Labels and eyebrows: Plex 500, 13px, uppercase, .06em, muted ink (never gold): --v7-muted on light surfaces,
+   --v7-muted-inv on navy (from the surface tokens). A builder may set --v7-label on a block to pin a colour. */
+html:not(#_) body :is(.clinical-eyebrow,.eyebrow,.sx-eyebrow,.cx-eyebrow,.cx-eyebrow>span,.hero-chip,.hero-chip>span,.services-kicker,
+  .service-eyebrow,.science-kicker,.cat-eyebrow,.identity-eyebrow,.sx-guide-eyebrow,.section-label,.sx-label,.v7-label){
+  font-family:var(--font-body)!important;font-weight:500!important;letter-spacing:var(--v7-label-track)!important;text-transform:uppercase;
+  color:var(--v7-label,var(--v7-label-c))!important;text-decoration:none}
+
+/* V4 Buttons.
+   Primary: one solid 48px button, radius 2px, no border, no shadow, Plex 500 15px. Navy with a white label on light
+   surfaces, gold with a navy label on navy (from the surface tokens), so a header that turns light (.v7-light, or the
+   tokens) turns its buttons navy by itself. Hover: a slightly lighter fill (200ms, colour only).
+   Secondary: a quiet text link: no box, no fill, 44px tall target, in the surface's ink (--v7-link-c: --v7-ink on
+   light, white on navy), underlined in its own colour, 1.5px, 4px below the words; hover thickens the line. The
+   underline runs under the words only: an arrow stands 8px off, outside it (house-motion.js puts the words in an
+   hm-t box when they sit beside an arrow; a label already in its own span needs no script). */
+html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn){
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;
+  border:0!important;border-radius:var(--v7-radius)!important;box-shadow:none!important;background-image:none!important;filter:none!important;
+  font-family:var(--font-body)!important;font-size:15px!important;font-weight:500!important;line-height:1.2!important;letter-spacing:.005em!important;
+  text-decoration:none!important;transform:none!important}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link){
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;filter:none!important;transform:none!important;
+  font-family:var(--font-body)!important;font-size:15px!important;font-weight:500!important;line-height:1.3!important;letter-spacing:0!important;
+  text-decoration-line:underline!important;text-decoration-thickness:1.5px!important;text-underline-offset:4px!important;
+  text-decoration-color:currentColor!important}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link),
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link):is(:hover,:focus-visible){color:var(--v7-link-c)!important}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link):is(:hover,:focus-visible){
+  background:none!important;border-color:transparent!important;text-decoration-color:currentColor!important;text-decoration-thickness:2.5px!important}
+/* words beside an arrow: the underline moves from the link to the words (hm-t from house-motion.js, or a first span
+   followed by an aria-hidden glyph), so the arrow is never underlined */
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link):is(:has(>hm-t),:has(>.hm-t),:has(>span:first-child+[aria-hidden="true"]:last-child)){text-decoration-line:none!important}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link)>:is(hm-t,.hm-t,span:first-child:has(+[aria-hidden="true"]:last-child)){
+  text-decoration:underline 1.5px currentColor;text-underline-offset:4px}
+html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link):is(:hover,:focus-visible)>:is(hm-t,.hm-t,span:first-child:has(+[aria-hidden="true"]:last-child)){
+  text-decoration-thickness:2.5px}
+html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn){
+  color:var(--v7-btn-fg)!important;background-color:var(--v7-btn-bg)!important}
+html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn):focus-visible{
+  color:var(--v7-btn-fg)!important;background-color:var(--v7-btn-hover)!important;outline:2px solid var(--v7-focus)!important;outline-offset:3px!important}
+@media (hover:hover){
+  html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn):hover{
+    color:var(--v7-btn-fg)!important;background-color:var(--v7-btn-hover)!important}
+}
+/* The comparison toggle (.save-product, every page): a quiet text link at rest; pressed (aria-pressed="true", with
+   the script's check mark) it becomes a filled chip, pale gold with a deep-gold edge (gold marks a pressed state),
+   so it never reads as a plain link. The chip's padding is there in both states and offset by a negative margin, so
+   the words do not move when it is pressed. */
+html:not(#_):not(#__) body .save-product{display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;min-height:44px;
+  padding:0 14px!important;margin-inline-start:-14px!important;border:1px solid transparent!important;border-radius:var(--v7-radius)!important;
+  background:none!important;box-shadow:none!important;color:var(--v7-link-c)!important;font:500 15px/1.3 var(--font-body)!important;letter-spacing:0!important;
+  text-decoration:underline 1.5px currentColor!important;text-underline-offset:4px!important;cursor:pointer}
+html:not(#_):not(#__) body .save-product:is(:hover,:focus-visible){text-decoration-thickness:2.5px!important}
+html:not(#_):not(#__) body .save-product[aria-pressed="true"],
+html:not(#_):not(#__) body .save-product[aria-pressed="true"]:is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--sx-gold) 22%,#fff)!important;border-color:var(--sx-gold-deep)!important;color:var(--v7-ink)!important;text-decoration-line:none!important}
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_):not(#__) body .save-product{transition:background-color var(--v7-dur-hover) var(--v7-ease),border-color var(--v7-dur-hover) var(--v7-ease),text-decoration-thickness var(--v7-dur-hover) var(--v7-ease)!important}
+}
+/* A text link beside a button stands a little further off than the button gap (wide screens; rows wrap on phones). */
+@media (min-width:761px){
+  html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn)+:is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link){margin-inline-start:12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  html:not(#_) body :is(.btn-primary,.clinical-button,.cx-btn-gold,.sx-btn-gold,.sx-btn-ink,.v7-btn,.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link){
+    transition:background-color var(--v7-dur-hover) var(--v7-ease),color var(--v7-dur-hover) var(--v7-ease),text-decoration-color var(--v7-dur-hover) var(--v7-ease),text-decoration-thickness var(--v7-dur-hover) var(--v7-ease)!important}
+  html:not(#_) body :is(.btn-secondary,.btn-ghost,.cx-btn-ghost,.sx-btn-ghost,.v7-link)>:is(hm-t,.hm-t,span:first-child){transition:text-decoration-thickness var(--v7-dur-hover) var(--v7-ease)}
+}
+
+/* V5 Links and focus. Focus is one of gold's three jobs: a 2px ring, 3px clear, gold on navy and deep gold on light
+   (form fields keep their own focus styles). */
+html:not(#_) :is(a,button,summary,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid var(--v7-focus);outline-offset:3px}
+
+/* V6 Nav: slimmer (72px, 60px on phones), links at 400, a smaller call-to-action without its arrow, no box around
+   the search, no rule under the bar. Current page: gold with a 1px gold underline. Hover: white. */
+html:not(#_) .nav{border-bottom:0!important}
+html:not(#_) .nav-logo img{height:34px}
+html:not(#_) .nav-links>li>a:not(.nav-cta){display:inline-flex;align-items:center;min-height:44px;font-weight:400!important;color:var(--v7-body-inv)}
+html:not(#_) .nav-links>li>a:not(.nav-cta)::after{display:none!important}
+@media (hover:hover){html:not(#_) .nav-links>li>a:not(.nav-cta):hover{color:#fff}}
+html:not(#_) .nav-links>li>a:not(.nav-cta):is(.is-active,[aria-current="page"]){color:var(--sx-gold)!important;font-weight:400!important;
+  text-decoration:underline 1px var(--sx-gold)!important;text-underline-offset:10px!important}
+html:not(#_) .nav-links .nav-cta{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:0 16px!important;
+  border-radius:var(--v7-radius)!important;font-size:14px!important;font-weight:500!important;letter-spacing:0!important}
+html:not(#_) .nav-links .nav-cta::before{content:"";position:absolute;inset:-2px 0}   /* 44px target */
+html:not(#_) .nav-links .nav-cta>[aria-hidden="true"]{display:none}
+html:not(#_) .nav-search{border-color:transparent!important;background:none!important}
+html:not(#_) .dropdown-menu{border:0!important;border-radius:var(--v7-radius)!important;box-shadow:0 18px 40px rgba(10,23,38,.18)!important}
+@media (max-width:1100px){html:not(#_) .nav-toggle{border-color:transparent}}
+@media (max-width:760px){html:not(#_) .nav-logo img{height:30px}}
+
+/* V7 Phone menu: the same full-screen navy sheet, quieter. Serif links at 400 with space instead of rules, a slim
+   2px gold bar on the current page, a 48px call-to-action. */
+html:not(#_) .mobile-menu>a:not(.mobile-cta){font-weight:400!important;border-bottom:0!important;padding:clamp(7px,1.3vh,11px) 0!important}
+html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"]){font-weight:400!important;padding-left:18px!important}
+html:not(#_) .mobile-menu>a:not(.mobile-cta):is(.is-active,[aria-current="page"])::before{width:2px;top:clamp(7px,1.3vh,11px);bottom:clamp(7px,1.3vh,11px)}
+html:not(#_) .mobile-menu .mobile-cta{min-height:48px;font-weight:500!important;border-radius:var(--v7-radius)!important}
+html:not(#_) .hm-menu-contact a{font-weight:400!important}
+
+/* V8 Footer: quieter and simpler on the same markup. No gold rules, muted column heads with no rules under them,
+   the contact lines set smaller and unboxed, one hairline above the legal line. */
+html:not(#_) .footer{padding-bottom:32px!important}
+html:not(#_) .footer::before,html:not(#_) .footer::after{content:none!important;display:none!important}
+html:not(#_) .footer .container{padding-top:clamp(64px,8vw,104px)}
+html:not(#_) .footer-brand img{height:28px;margin-bottom:20px}
+html:not(#_) .footer-brand p{font-size:1.125rem!important;line-height:1.55;color:#c5ced8}
+html:not(#_) .footer-col h4{margin:0 0 8px;padding:0;border-bottom:0;color:#8d9aa9!important;font-weight:500!important}
+html:not(#_) .footer-col a{color:#c5ced8}
+/* Footer links: 40px rows on desktop, each with a 44px hit area. */
+@media (min-width:1024px){html:not(#_) .footer-col a{min-height:40px}}
+html:not(#_) .footer-col>a{position:relative}
+html:not(#_) .footer-col>a::after{content:"";position:absolute;inset:-2px 0}
+@media (hover:hover){html:not(#_) .footer-col a:hover{color:#fff;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}}
+html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){min-height:44px;padding:0;border:0!important;
+  font-weight:400;font-size:clamp(1.25rem,1.7vw,1.5rem);letter-spacing:-.01em;color:#fff}
+html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]):hover{color:#fff;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}
+html:not(#_) .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--v7-hair-inv)!important;color:#8d9aa9}
+@media (min-width:761px){html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){margin-top:48px}}
+@media (min-width:1024px){html:not(#_) .footer-grid>.footer-col:last-child>:is(a[href^="mailto:"],a[href^="tel:"]){margin-top:56px}}
+@media (max-width:760px){html:not(#_) .footer-grid>.footer-col:last-child>a[href^="mailto:"]{margin-top:24px}}
+
+/* V9 Utilities for page builders. Add the class in markup, or copy the declarations into the page group's CSS.
+   Surfaces set the surrounding ink, so labels (V3), buttons (V4) and focus (V5) inside follow by themselves. */
+html:not(#_) .v7-section{padding-block:var(--v7-section)!important}
+html:not(#_) .v7-section-sm{padding-block:var(--v7-section-sm)!important}
+html:not(#_) .v7-measure{max-width:var(--v7-measure)}
+html:not(#_) .v7-prose :is(p,li){font-size:var(--v7-body-size);line-height:var(--v7-body-lh);max-width:var(--v7-measure)}
+html:not(#_) :is(.v7-light,.v7-white){background-color:var(--v7-paper)!important;background-image:none!important;color:var(--v7-body)!important;border-color:transparent!important}
+html:not(#_) .v7-white{background-color:var(--v7-white)!important}
+html:not(#_) :is(.v7-light,.v7-white) :is(h1,h2,h3,h4){color:var(--v7-ink)!important}
+html:not(#_) :is(.v7-light,.v7-white) :is(p,li,dd,dt,figcaption,blockquote){color:var(--v7-body)!important}
+html:not(#_) :is(.v7-light,.v7-white) a:not([class]){color:var(--v7-ink)}
+html:not(#_) .v7-band{background-color:var(--v7-navy)!important;background-image:none!important;color:var(--v7-body-inv)!important}
+html:not(#_) .v7-band :is(h1,h2,h3,h4){color:var(--v7-ink-inv)!important}
+html:not(#_) .v7-band :is(p,li,dd,dt,figcaption,blockquote){color:var(--v7-body-inv)!important}
+html:not(#_) .v7-plain{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+html:not(#_) .v7-tint{background:var(--v7-tint)!important;border:0!important;box-shadow:none!important;border-radius:var(--v7-radius)!important}
+html:not(#_) .v7-hair{border:0!important;border-top:1px solid var(--v7-hair)!important}
+html:not(#_) .v7-decor{display:none!important}   /* purely decorative elements only (aria-hidden ornaments); never copy */

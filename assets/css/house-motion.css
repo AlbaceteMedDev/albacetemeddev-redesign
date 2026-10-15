@@ -1,30 +1,25 @@
-/* House motion layer, v5: crafted, brand-derived motion shared by every page. See HOUSE-STYLE.md (Motion v2 rules).
-   Panel principles: one state on screen at a time (out, then in; never a cross-fade of content); glyphs are never
-   clipped; moving decoration never covers text or controls; gold means action, so decoration stays white/mist;
-   the current state always looks different from hover.
-   1 Page transitions (cross-document View Transitions): the old page fades out in 120ms, then the new one fades
-     in over 180ms. The nav never fades: it switches to the new page's copy in one cut as the content changes.
-   2 Hover vocabulary: buttons change colour as a whole in 140ms; arrows nudge 4px in their direction.
-     Nav and footer link states are plain CSS in signature.css (Motion v3 section).
-   3 Drawn underlines on inline prose links: in from the left on hover, out to the right on leave.
-   4 Headline reveals (below the fold only): each line fades up 8px in 320ms, lines 50ms apart. No masks.
-   5 Images below the fold fade up 8px in 240ms; only wide editorial photographs (600px and up) lift into place.
-   6 The "+" field: the logo's registration mark as a precise grid flanking the text column of navy inner page
-     headers (none on paper headers), in a band along the footer's top edge and in the phone menu's open space. One
-     smooth mask: the field fades in from the column's edges toward the outer edges of the screen over about 200px,
-     so it is never clipped into steps. Only marks at least 120px from words and controls part around a moving
-     pointer, settling closed when it stops. Static on touch screens and under reduced motion.
-   7 Smart nav: away on the way down, back (compact) on the way up; sticky bars follow it in step. While a section
-     nav is pinned the nav stays away unless the reader scrolls up 200px in one run; scroll-padding-top matches the
-     bars on screen.
-   8 Phone menu: a full-screen navy sheet uncovered from under the nav in 180ms, its lines settling 8ms apart; the
-     menu button turns into a cross in two clean steps.
+/* House motion layer, Minimal v7: calm, smooth and consistent. See HOUSE-STYLE.md ("Minimal v7").
+   One easing everywhere: --hm-ease, cubic-bezier(.22,.61,.36,1). Entrances are gentle fade-ups (600ms, at most 12px,
+   staggered at most 60ms). Hovers change colour only, in 200ms. Nothing flashes, nothing is decorative.
+   Principles kept from earlier panels: one state on screen at a time (out, then in; never a cross-fade of content);
+   glyphs are never clipped; the current state always looks different from hover.
+   1 Page transitions (cross-document View Transitions): the old page fades out in 250ms, then the new one fades in
+     over 250ms. The nav never fades: it switches to the new page's copy in one cut as the content changes.
+   2 Hover vocabulary: buttons change colour as a whole in 200ms. Arrows stay still.
+   3 Prose links: the underline's colour deepens on hover (200ms). Nothing draws across.
+   4 Headline reveals (below the fold only): each line fades up 12px in 600ms, lines 60ms apart. No masks.
+   5 Images below the fold fade up 12px in 600ms (house-motion.js, Web Animations). No curtains, no scale.
+   6 The "+" field is retired everywhere, the home hero included (v7.1).
+   7 Smart nav: away on the way down, back (compact) on the way up, 320ms; sticky bars follow it in step.
+   8 Phone menu: a full-screen navy sheet uncovered from under the nav over 320ms, its lines rising 12px into place
+     20ms apart; the menu button turns into a cross in two clean steps.
    Every hidden state lives under html.hm-on, which house-motion.js adds only when motion is allowed.
    Without JS, or with prefers-reduced-motion, the page is complete and static. */
 
 :root{
-  --hm-out:cubic-bezier(0,0,.2,1);
-  --hm-in:cubic-bezier(.4,0,1,1);
+  --hm-ease:cubic-bezier(.22,.61,.36,1);
+  --hm-out:var(--hm-ease);   /* older names, same curve */
+  --hm-in:var(--hm-ease);
 }
 
 /* ── 1. Page transitions ─────────────────────────────────────────────── */
@@ -32,18 +27,18 @@
 @media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
 
 .nav{view-transition-name:nav}
-/* Sequenced, never overlapping: old content to 0 in 120ms (ease-in), then new content from 0 over 180ms
-   (ease-out, after 120ms). No translate, no scale, no colour layer. */
-::view-transition-group(root){animation-duration:.3s}
-::view-transition-old(root){animation:hm-vt-out .12s var(--hm-in) both}
-::view-transition-new(root){animation:hm-vt-in .18s var(--hm-out) .12s both}
+/* Sequenced, never overlapping: old content to 0 in 250ms, then new content from 0 over 250ms. No translate, no
+   scale, no colour layer. */
+::view-transition-group(root){animation-duration:.5s}
+::view-transition-old(root){animation:hm-vt-out .25s var(--hm-ease) both}
+::view-transition-new(root){animation:hm-vt-in .25s var(--hm-ease) .25s both}
 @keyframes hm-vt-out{to{opacity:0}}
 @keyframes hm-vt-in{from{opacity:0}}
 /* The nav never cross-fades: the outgoing copy holds until the old content has gone, then the incoming copy
    replaces it in one cut, so the current-page marker moves exactly once and only one item is ever marked. */
 ::view-transition-group(nav){animation:none;z-index:2}
-::view-transition-old(nav){animation:hm-vt-hold .12s step-end both}
-::view-transition-new(nav){animation:hm-vt-wait .12s step-end both}
+::view-transition-old(nav){animation:hm-vt-hold .25s step-end both}
+::view-transition-new(nav){animation:hm-vt-wait .25s step-end both}
 @keyframes hm-vt-hold{to{opacity:0}}
 @keyframes hm-vt-wait{from{opacity:0}}
 
@@ -51,95 +46,67 @@
 :is(html.amd-intro-pending,html:has(dialog.amd-intro[open]))::view-transition-new(root){animation:none}
 :is(html.amd-intro-pending,html:has(dialog.amd-intro[open]))::view-transition-old(root){display:none}
 
-/* Thin gold line under the nav while the next page loads; on arrival it completes and fades. */
+/* A thin line under the nav while a slow next page loads. It waits 400ms, so a quick page change never shows it. */
 hm-bar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--sx-gold,#dab156);transform:scaleX(0);transform-origin:0 50%;pointer-events:none;z-index:3}
-html.hm-going hm-bar{transform:scaleX(.88);transition:transform 2.6s cubic-bezier(.06,.72,.14,1)}
-html.hm-arrive hm-bar{transform:scaleX(1);animation:hm-bar-out .42s ease-out .06s both}
-@keyframes hm-bar-out{to{opacity:0}}
+html.hm-going hm-bar{transform:scaleX(.88);transition:transform 2.6s var(--hm-ease) .4s}
 
 /* ── 2. Hover vocabulary ─────────────────────────────────────────────── */
 /* house-motion.js reads each button at rest and sets its hover fill (--hm-hover), label (--hm-ink) and edge
-   (--hm-edge): gold fills go to a lighter gold with a navy label, navy fills to #1b3a5c, outline buttons take a
-   12% tint of their own label colour. The whole button changes at once; nothing sweeps. html:not(#_) lifts these
-   above each page group's own button rules. */
+   (--hm-edge). A button with no fill stays clear on hover (colour only). The v7 primary and secondary buttons are
+   styled in signature.css ("Minimal v7"), which outranks these. */
 html:not(#_) .hm-btn:focus-visible{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
 @media (hover:hover){
   html:not(#_) .hm-btn:hover{background-color:var(--hm-hover)!important;color:var(--hm-ink)!important;border-color:var(--hm-edge)!important}
 }
-/* Arrow glyphs: nudge 4px in their own direction while the control is engaged. */
-html:not(#_) .hm-arw{display:inline-block;transform:none!important}
+/* Arrow glyphs stay where they are; the wrapper keeps a text link's underline under its words only. */
+html:not(#_) .hm-arw{display:inline-block;transform:none!important;text-decoration:none}
 @media (prefers-reduced-motion:no-preference){
-  html:not(#_) .hm-btn{transition:background-color .14s ease-out,color .14s ease-out,border-color .14s ease-out!important}
-  html:not(#_) .hm-arw{transition:transform .16s ease-out!important}
-  html:not(#_) :is(.hm-btn,.hm-nudge):focus-visible .hm-arw{transform:translate(var(--hm-ax,4px),var(--hm-ay,0px))!important}
-}
-@media (prefers-reduced-motion:no-preference) and (hover:hover){
-  html:not(#_) :is(.hm-btn,.hm-nudge):hover .hm-arw{transform:translate(var(--hm-ax,4px),var(--hm-ay,0px))!important}
+  html:not(#_) .hm-btn{transition:background-color .2s var(--hm-ease),color .2s var(--hm-ease),border-color .2s var(--hm-ease),text-decoration-color .2s var(--hm-ease)!important}
 }
 
-/* ── 3. Drawn underlines on prose links ──────────────────────────────── */
-a.hm-ul{
-  -webkit-text-decoration:none;text-decoration:none;
-  background-image:linear-gradient(currentColor,currentColor),linear-gradient(var(--hm-ul-rest),var(--hm-ul-rest));
-  background-size:0% 1px,100% 1px;background-position:100% 100%,0 100%;background-repeat:no-repeat;
-  --hm-ul-rest:color-mix(in srgb,currentColor 45%,transparent);
-}
-a.hm-ul:is(:hover,:focus-visible){background-size:100% 1px,100% 1px;background-position:0 100%,0 100%}
-@media (prefers-reduced-motion:no-preference){a.hm-ul{transition:background-size .5s cubic-bezier(.6,0,.2,1)}}
+/* ── 3. Prose links: colour only ─────────────────────────────────────── */
+a.hm-ul{text-decoration-line:underline;text-decoration-thickness:1px;text-underline-offset:3px;
+  text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}
+a.hm-ul:is(:hover,:focus-visible){text-decoration-color:currentColor}
+@media (prefers-reduced-motion:no-preference){a.hm-ul{transition:text-decoration-color .2s var(--hm-ease),color .2s var(--hm-ease)}}
 
 /* ── 4. Headline reveals ─────────────────────────────────────────────── */
 /* Each word is an unclipped inline box (hm-w) so the words of one visual line can move together; nothing masks
-   or clips them. The words fade in while they settle 8px; once done, the original markup returns. */
+   or clips them. The words fade in while they rise 12px; once done, the original markup returns. */
 hm-w{display:inline-block}
-html.hm-on .hm-hl:not(.hm-in) hm-w{opacity:0;transform:translateY(8px)}
-.hm-hl.hm-in hm-w{opacity:1;transform:none;transition:opacity .32s var(--hm-out),transform .32s var(--hm-out);transition-delay:calc(min(var(--l,0), 2) * 50ms + var(--hm-d,0ms))}
+html.hm-on .hm-hl:not(.hm-in) hm-w{opacity:0;transform:translateY(12px)}
+.hm-hl.hm-in hm-w{opacity:1;transform:none;transition:opacity .6s var(--hm-ease),transform .6s var(--hm-ease);transition-delay:calc(min(var(--l,0), 2) * 60ms + var(--hm-d,0ms))}
 .hm-hl.hm-now hm-w{transition:none}
 
 /* ── 5. Images ───────────────────────────────────────────────────────── */
-/* Armed only below the fold; the animations themselves run through the Web Animations API from house-motion.js. */
-html.hm-on img.hm-lift:not(.hm-shown){clip-path:inset(100% 0 0 0)}
-html.hm-on img.hm-fade:not(.hm-shown){opacity:0;translate:0 8px}
-
-/* ── 6. The "+" field ────────────────────────────────────────────────── */
-.hm-field-host{isolation:isolate}
-.hm-field-host.hm-field-pos{position:relative}
-.hm-field-clear{background-color:transparent!important}
-html:not(#_) canvas.hm-field{position:absolute!important;inset:0!important;z-index:-1!important;display:block!important;
-  width:100%!important;height:100%!important;margin:0!important;pointer-events:none!important}
-
-/* A field whose canvas is not the host's own box: a column header carried to both screen edges, the footer band. */
-html:not(#_) canvas.hm-field.hm-field--box{inset:auto!important;left:var(--hm-fx,0px)!important;top:var(--hm-fy,0px)!important;
-  width:var(--hm-fw,100%)!important;height:var(--hm-fh,100%)!important}
-/* The footer band sits above the footer's own content, which stays above it. */
-html:not(#_) .footer.hm-field-host>.container{position:relative;z-index:1}
+/* Armed only below the fold; the fade itself runs through the Web Animations API from house-motion.js. */
+html.hm-on img.hm-fade:not(.hm-shown){opacity:0;translate:0 12px}
 
 /* ── 7. Smart nav ────────────────────────────────────────────────────── */
 /* Three states, all transforms: rest; compact (the bar slides up by --hm-nav-c and its contents re-centre, the
-   logo at 90%); hidden (the whole bar above the screen). house-motion.js sets the classes; reduced motion never
+   logo at 92%); hidden (the whole bar above the screen). house-motion.js sets the classes; reduced motion never
    gets them. */
 @media (prefers-reduced-motion:no-preference){
-  html:not(#_) .nav{transition:transform .28s cubic-bezier(.2,.7,.2,1),background-color .15s ease!important}
-  html:not(#_) .nav .nav-inner{transition:transform .28s cubic-bezier(.2,.7,.2,1)}
-  html:not(#_) .nav .nav-logo img{transform-origin:0 50%;transition:transform .28s cubic-bezier(.2,.7,.2,1)}
-  html:not(#_) .nav.hm-nav-compact{transform:translate3d(0,calc(-1 * var(--hm-nav-c,18px)),0)!important}
-  html:not(#_) .nav.hm-nav-hidden{transform:translate3d(0,calc(-100% - 2px),0)!important;transition-duration:.22s!important;transition-timing-function:cubic-bezier(.4,0,1,1)!important}
-  html:not(#_) .nav.hm-nav-compact .nav-inner{transform:translate3d(0,calc(var(--hm-nav-c,18px) / 2),0)}
-  html:not(#_) .nav.hm-nav-compact .nav-logo img{transform:scale(.9)}
+  html:not(#_) .nav{transition:transform .32s var(--hm-ease),background-color .2s var(--hm-ease)!important}
+  html:not(#_) .nav .nav-inner{transition:transform .32s var(--hm-ease)}
+  html:not(#_) .nav .nav-logo img{transform-origin:0 50%;transition:transform .32s var(--hm-ease)}
+  html:not(#_) .nav.hm-nav-compact{transform:translate3d(0,calc(-1 * var(--hm-nav-c,12px)),0)!important}
+  html:not(#_) .nav.hm-nav-hidden{transform:translate3d(0,calc(-100% - 2px),0)!important}
+  html:not(#_) .nav.hm-nav-compact .nav-inner{transform:translate3d(0,calc(var(--hm-nav-c,12px) / 2),0)}
+  html:not(#_) .nav.hm-nav-compact .nav-logo img{transform:scale(.92)}
 }
 
 /* ── 8. Phone menu ───────────────────────────────────────────────────── */
-/* The sheet is opaque navy from its first frame: it is uncovered from under the nav downward (one clip, 180ms), so
-   the page behind is never seen through it. The lines settle 8px into place as it passes, 8ms apart, keeping pace
-   with the sheet's edge; every line is fully opaque by about 175ms. The "+" field is part of the sheet and is
-   uncovered with it. On close the sheet is covered back upward in 160ms with its lines held, so nothing cross-fades
-   either way. */
+/* The sheet is opaque navy from its first frame: it is uncovered from under the nav downward (one clip, 320ms), so
+   the page behind is never seen through it. Its lines rise 12px into place 20ms apart as it passes. On close the
+   sheet is covered back upward in 240ms with its lines held, so nothing cross-fades either way. */
 @media (prefers-reduced-motion:no-preference){
   html:not(#_) .mobile-menu.hm-sheet{opacity:1!important;transform:none!important;clip-path:inset(0 0 100% 0);
-    transition:clip-path .16s cubic-bezier(.4,0,1,1),visibility 0s linear .16s!important}
-  html:not(#_) .mobile-menu.hm-sheet.is-open{clip-path:inset(0 0 0 0);transition:clip-path .18s cubic-bezier(.2,.7,.2,1),visibility 0s linear 0s!important}
-  html:not(#_) .mobile-menu.hm-sheet>:not(canvas){opacity:0;transform:translate3d(0,8px,0);transition:opacity 0s linear .16s,transform 0s linear .16s!important}
-  html:not(#_) .mobile-menu.hm-sheet.is-open>:not(canvas){opacity:1;transform:none;
-    transition:opacity .1s cubic-bezier(0,0,.2,1),transform .2s cubic-bezier(.2,.7,.2,1)!important;transition-delay:calc(var(--hm-i,0) * 8ms)!important}
+    transition:clip-path .24s var(--hm-ease),visibility 0s linear .24s!important}
+  html:not(#_) .mobile-menu.hm-sheet.is-open{clip-path:inset(0 0 0 0);transition:clip-path .32s var(--hm-ease),visibility 0s linear 0s!important}
+  html:not(#_) .mobile-menu.hm-sheet>*{opacity:0;transform:translate3d(0,12px,0);transition:opacity 0s linear .24s,transform 0s linear .24s!important}
+  html:not(#_) .mobile-menu.hm-sheet.is-open>*{opacity:1;transform:none;
+    transition:opacity .3s var(--hm-ease),transform .4s var(--hm-ease)!important;transition-delay:calc(min(var(--hm-i,0), 10) * 20ms)!important}
 }
 @media (prefers-reduced-motion:reduce){
   html:not(#_) .mobile-menu.hm-sheet,html:not(#_) .mobile-menu.hm-sheet>*{transition:none!important;transform:none!important}
@@ -147,9 +114,9 @@ html:not(#_) .footer.hm-field-host>.container{position:relative;z-index:1}
 }
 
 /* The menu button: three bars become a cross in two clean steps, never through an arrow. Opening, the outer bars
-   close on the middle one as it fades (90ms), then the two turn about the centre together into the cross (110ms).
-   Closing runs the same steps backward. The bars stand on the middle bar's line and are offset from it, so the
-   resting icon is unchanged. */
+   close on the middle one as it fades, then the two turn about the centre together into the cross. Closing runs
+   the same steps backward. The bars stand on the middle bar's line and are offset from it, so the resting icon is
+   unchanged. */
 html:not(#_) .nav-toggle span{transform:none!important;top:20px!important;opacity:1}
 html:not(#_) .nav-toggle span:nth-child(1){translate:0 -6px;rotate:0deg}
 html:not(#_) .nav-toggle span:nth-child(3){translate:0 6px;rotate:0deg}
@@ -159,10 +126,10 @@ html:not(#_) .nav-toggle.is-open span:nth-child(2){opacity:0}
 @media (max-width:1100px){html:not(#_) .nav-toggle span{top:21px!important}}
 html:not(#_) .nav-toggle span{transition:none!important}
 @media (prefers-reduced-motion:no-preference){
-  html:not(#_) .nav-toggle span:is(:nth-child(1),:nth-child(3)){transition:rotate .1s cubic-bezier(.4,0,.2,1),translate .09s cubic-bezier(.2,.7,.2,1) .1s!important}
-  html:not(#_) .nav-toggle span:nth-child(2){transition:opacity 0s linear .1s!important}   /* back on, unseen, under the merged bars */
-  html:not(#_) .nav-toggle.is-open span:is(:nth-child(1),:nth-child(3)){transition:translate .09s cubic-bezier(.4,0,.2,1),rotate .11s cubic-bezier(.2,.7,.2,1) .09s!important}
-  html:not(#_) .nav-toggle.is-open span:nth-child(2){transition:opacity .06s linear .02s!important}
+  html:not(#_) .nav-toggle span:is(:nth-child(1),:nth-child(3)){transition:rotate .12s var(--hm-ease),translate .12s var(--hm-ease) .12s!important}
+  html:not(#_) .nav-toggle span:nth-child(2){transition:opacity 0s linear .12s!important}   /* back on, unseen, under the merged bars */
+  html:not(#_) .nav-toggle.is-open span:is(:nth-child(1),:nth-child(3)){transition:translate .12s var(--hm-ease),rotate .14s var(--hm-ease) .12s!important}
+  html:not(#_) .nav-toggle.is-open span:nth-child(2){transition:opacity .08s linear .04s!important}
 }
 
-@media print{hm-bar,canvas.hm-field{display:none!important}}
+@media print{hm-bar{display:none!important}}
