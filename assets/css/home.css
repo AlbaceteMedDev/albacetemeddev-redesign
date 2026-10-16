@@ -225,11 +225,23 @@ html:not(#_) .sx-tabs.has-ink .sx-tab-ink{display:block;position:absolute;left:0
 html:not(#_) .sx-rail-box{--m8-slide-w:calc((100% - 3 * var(--m8-gap)) / 4)}
 /* the rail's round arrows sit in their own control row above it (house-motion.js .m8-controls), never over a
    product photograph; on a wide screen that row is the tabs' row, at its right end */
-@media (min-width:1024px){
-  html:not(#_) .sx-rail-box>.m8-controls{position:absolute;right:0;bottom:calc(100% + 24px);margin:0}
+/* v10 (owner): the rail's arrows sit on the sides of the pictures, like the hero's — round white discs hanging
+   half outside the rail's left and right edges, centred on the photographs (home.js sets --sx-rail-arrow-top
+   from the first tile's picture); on phones and small tablets they follow the rail in a row under it */
+@media (min-width:861px){
+  html:not(#_) .sx-rail-box{position:relative;--m8-arrow-inset:-22px}
+  html:not(#_) .sx-rail-box>.m8-controls{display:contents}
+  html:not(#_) .sx-rail-box>.m8-controls>.m8-arrow{position:absolute;top:var(--sx-rail-arrow-top,var(--m8-arrow-top,50%));margin:-22px 0 0;
+    border-color:var(--sx-ring,#767f8a);color:var(--m8-navy,#10233a);box-shadow:0 2px 10px rgba(16,35,58,.14)}
+  html:not(#_) .sx-rail-box>.m8-controls>.m8-arrow.m8-prev{left:-22px;right:auto}
+  html:not(#_) .sx-rail-box>.m8-controls>.m8-arrow.m8-next{right:-22px;left:auto}
+  html:not(#_) .sx-rail-box>.m8-controls>.m8-arrow[aria-disabled="true"]{opacity:.38;box-shadow:none;cursor:default}
+  html:not(#_) .sx-rail-box>.m8-controls>.m8-arrow:not([aria-disabled="true"]):hover{background:var(--m8-navy,#10233a);color:#fff;border-color:var(--m8-navy,#10233a)}
 }
 @media (max-width:1023px){
   .sx-tabs{margin-bottom:16px}
+}
+@media (max-width:860px){
   /* the arrows follow the rail here (home.js moves the row), under it at the right */
   html:not(#_) .sx-rail-box>.m8-controls{margin:12px 0 0}
 }

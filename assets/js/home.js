@@ -663,10 +663,22 @@
   function railBar() {
     const rbox = $('.sx-rail-box.m8-ready'), bar = rbox && $(':scope > .m8-controls', rbox), track = rbox && $(':scope > .m8-track', rbox);
     if (!bar || !track) return;
-    const mq = matchMedia('(max-width:1023px)');
+    const mq = matchMedia('(max-width:860px)');
     const place = () => { if (mq.matches) track.after(bar); else track.before(bar); };
     place();
     if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+    // v10: on wider screens the arrows sit on the rail's sides, centred on the photographs (not on the whole card)
+    const aim = () => {
+      const pic = $$('.sx-tile-media', track).find(m => m.offsetParent !== null);
+      if (!pic) return;
+      const b = rbox.getBoundingClientRect(), r = pic.getBoundingClientRect();
+      if (r.height) rbox.style.setProperty('--sx-rail-arrow-top', `${Math.round(r.top - b.top + r.height / 2)}px`);
+    };
+    aim();
+    addEventListener('resize', () => requestAnimationFrame(aim), { passive: true });
+    $$('img', track).forEach(i => { if (!i.complete) i.addEventListener('load', aim, { once: true }); });
+    $$('.sx-tab').forEach(t => t.addEventListener('click', () => requestAnimationFrame(aim)));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(aim);
   }
 
   // house-motion.js (deferred, after this file) builds the carousel controls; the hero and the rail wait for them
