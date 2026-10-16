@@ -1,44 +1,51 @@
-/* ══ Peptide labels (owner request: "put labels for each peptide on the product image") ═══════════════════════════════
-   Each peptide photograph prints that peptide's name on the blank label of its vial, bottle or pen, as a pharmacy
-   label would: a thin band in the group's colour, the name, a hairline and the preparation in mono capitals.
-   - The photograph and its label share one frame (.pl-frame) with the file's own 4:3 aspect, so every label box below
-     is a measured percentage of the 960x720 source and lands on the paper at every width. Each host shows that frame
-     the way object-fit:cover showed the photograph before (same crop), and its hover moves photo and label together.
-   - All type is in cqw of the frame, so it scales with the picture; per-label --kn/--ks/--kv/--kf (set in the markup,
-     measured once) shrink a long line so it stays inside the front of the label. Nothing wraps; long names were
-     split at a space in the markup.
-   - Ink is navy multiplied into the photograph, so the paper's shading and the glass reflections read through.
-   - Decorative: every label sits in aria-hidden markup, and its words are the card's own (name, preparation).
+/* ══ Peptide labels (owner: "put labels for each peptide on the product image"; then "make the packaging shown on each
+   peptide bottle be more pretty and zoom in on each product a little bit more") ════════════════════════════════════════
+   Each peptide photograph prints that peptide's name on the blank label of its vial, bottle or pen as a pharmacy label:
+   a deep navy header band with the name reversed out of it, a gold hairline, the preparation in mono capitals and a
+   decorative bar block (pure ornament: no numbers, no letters). Two inks only, navy and gold, as a two-colour print.
+   - The photograph and its labels share one frame (.pl-frame) with the file's own 4:3 aspect, so every label box below
+     is a measured percentage of the 1200x900 source (v2 set) and lands on the paper at every width.
+   - Every size inside a label is a fraction of that label's own width (--w, in cqw of the frame), so vial, pair,
+     bottle and pen share one design and it scales with the picture. Per-label --kn/--ks/--kv/--kf (set in the markup,
+     measured once) shrink a long line so it stays on the flat front of the label. Nothing wraps on its own.
+   - The whole label is one group multiplied into the photograph: the navy prints with the paper's shading, and the
+     white type in the band multiplies to nothing, so it shows the paper itself (a true knockout).
+   - Zoom (--pl-z) scales the frame, so photograph and labels move together; the host slot crops it.
+   - Decorative: every label sits in aria-hidden markup, and its words are the card's own (name, alias, preparation).
    Shared by /products/peptides/ (catalog cards) and / (the peptide category card and rail tiles). */
 
-/* the group colours of the catalog (sx-peptides.css P6), for the label band on both pages */
-.pl-frame{--pl-c:#2b5ea7;--pl-ink:#10233a}
-.pl-frame[data-cat="weight"]{--pl-c:#2b5ea7}
-.pl-frame[data-cat="gh"]{--pl-c:#1d6f86}
-.pl-frame[data-cat="hormone"]{--pl-c:#5a4fa0}
-.pl-frame[data-cat="recovery"]{--pl-c:#26708a}
-.pl-frame[data-cat="longevity"]{--pl-c:#3d5a80}
-.pl-frame[data-cat="metabolic"]{--pl-c:#1f5f99}
-.pl-frame[data-cat="skin"]{--pl-c:#8a5470}
-.pl-frame[data-cat="cognitive"]{--pl-c:#4b55a5}
-.pl-frame[data-cat="immune"]{--pl-c:#2a6f7d}
-.pl-frame[data-cat="sexual"]{--pl-c:#7a4f86}
-.pl-frame[data-cat="ancillary"]{--pl-c:#6b7785}
+.pl-frame{--pl-band:#1b3760;--pl-ink:#142a4c;--pl-gold:#dab156;--pl-z:1;
+  --pl-bars:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 1' preserveAspectRatio='none'%3E%3Cpath d='M0 0h2v1h-2zM3 0h1v1h-1zM5 0h1v1h-1zM8 0h3v1h-3zM12 0h1v1h-1zM14 0h2v1h-2zM18 0h1v1h-1zM20 0h1v1h-1zM24 0h1v1h-1zM27 0h2v1h-2zM30 0h1v1h-1zM32 0h3v1h-3zM36 0h1v1h-1zM39 0h1v1h-1zM41 0h2v1h-2zM44 0h1v1h-1zM48 0h1v1h-1zM50 0h1v1h-1zM53 0h2v1h-2zM56 0h1v1h-1zM58 0h1v1h-1zM61 0h1v1h-1z'/%3E%3C/svg%3E")}
 
 /* ── the frame: the photograph's own 4:3 box ── */
 .pl-frame{position:absolute;left:0;top:0;display:block;width:100%;height:100%;margin:0;padding:0;container-type:inline-size;
-  transform-origin:50% 50%}
+  transform-origin:50% 50%;scale:var(--pl-z)}
 html:not(#_):not(#__) .pl-frame>img{position:absolute;left:0;top:0;display:block;width:100%;height:100%;max-width:none;margin:0;
   object-fit:cover;object-position:50% 50%;border-radius:0;transform:none;transition:none}
 
-/* catalog card: the 3:2 slot shows the 4:3 frame centred (the crop object-fit:cover gave it) */
+/* zoom: a little closer on each product; caps, labels and pills stay inside every host's crop */
+.pl--vial-lyophilized,.pl--vial-liquid{--pl-z:1.08}
+.pl--vial-pair{--pl-z:1.15}
+.pl--capsules{--pl-z:1.05}
+.pl--pen,.pl--supplies{--pl-z:1.1}
+
+/* catalog card: the 3:2 slot shows the 4:3 frame centred */
 html:not(#_):not(#__) .pepx-media>.pl-frame{top:50%;height:auto;aspect-ratio:4/3;translate:0 -50%}
 /* home rail tile: the slot is 4:3 already, so the frame fills it */
-/* home category card: the frame covers the panel at the page's 50% 42% focus, as the photograph did */
-.sx-cat[data-cat="peptides"] .sx-panel-img{container-type:size}
-.sx-panel-img>.pl-frame{width:max(100cqw,133.3333cqh);height:auto;aspect-ratio:4/3;
-  left:calc((100cqw - max(100cqw,133.3333cqh)) * .5);top:calc((100cqh - max(75cqw,100cqh)) * .42);
-  transform-origin:calc(50cqw - (100cqw - max(100cqw,133.3333cqh)) * .5) calc(50cqh - (100cqh - max(75cqw,100cqh)) * .42)}
+/* home category card: the panel runs from 4:3 (phones) to 2.4:1 (desktop), too wide for the vial to show whole if
+   the photograph covered it. So the frame (--pf tall) covers the panel when the whole vial still fits, else it is 110%
+   of the panel's height; it is centred, with its vial's middle (50.85% of the photograph) at 55.5% of the panel. Where
+   it is narrower than the panel, its sides feather into a backdrop drawn from the photograph's own edge (::before),
+   and the band-colour fade at the top is kept short so it does not veil the cap. */
+.sx-cat[data-cat="peptides"] .sx-panel-img{container-type:size;
+  --pf:min(max(75cqw,100cqh),110cqh);--pt:clamp(100cqh - var(--pf),55.5cqh - var(--pf) * .5085,0px)}
+.sx-panel-img>.pl-frame{--pl-z:1;width:calc(var(--pf) * 4 / 3);height:var(--pf);left:calc(50cqw - var(--pf) * 2 / 3);
+  top:var(--pt);transform-origin:calc(var(--pf) * 2 / 3) calc(50cqh - var(--pt))}
+html:not(#_):not(#__) .sx-panel-img>.pl-frame>img{-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.sx-cat[data-cat="peptides"] .sx-panel-img::before{content:"";position:absolute;left:0;right:0;top:var(--pt);height:var(--pf);
+  background:linear-gradient(180deg,#c6ccd8 0%,#c8cdd9 6.667%,#c9d0db 13.33%,#ccd3de 20%,#ced5df 26.67%,#d0d8e3 33.33%,#d2dae4 40%,#d6dde6 46.67%,#d9dfe8 53.33%,#dce1eb 60%,#dfe2ec 62.22%,#e0e3ed 63.78%,#e1e6ef 65.33%,#e0e5ee 66.89%,#dbe2eb 68.44%,#d8dfe8 70%,#d5dce6 71.56%,#d2dae5 73.11%,#d1d8e4 74.67%,#d0d7e3 76.22%,#ced5e1 77.78%,#c8d0dc 83.33%,#c9d0dc 88.89%,#c6cdd8 94.44%,#c4cbd8 100%)}
+.sx-cat[data-cat="peptides"] .sx-panel-img::after{height:36px}
 
 /* hover: the house 1.03 settle, on the frame, so the label stays printed on the paper */
 @media (prefers-reduced-motion:no-preference){
@@ -46,47 +53,66 @@ html:not(#_):not(#__) .pepx-media>.pl-frame{top:50%;height:auto;aspect-ratio:4/3
 }
 @media (hover:hover){
   html:not(#_):not(#__) #main .pepx-results .pep-card:hover .pl-frame,
-  .sx-tile a:hover .pl-frame,.sx-panel-media:hover .pl-frame{scale:1.03}
+  .sx-tile a:hover .pl-frame,.sx-panel-media:hover .pl-frame{scale:calc(var(--pl-z) * 1.03)}
 }
-.sx-panel-media:focus-visible .pl-frame{scale:1.03}
+.sx-panel-media:focus-visible .pl-frame{scale:calc(var(--pl-z) * 1.03)}
 @media (prefers-reduced-motion:reduce){
-  html:not(#_):not(#__) #main .pepx-results .pep-card:hover .pl-frame{scale:none}
+  html:not(#_):not(#__) #main .pepx-results .pep-card:hover .pl-frame{scale:var(--pl-z)}
 }
 
-/* ── a label: a box on the label's paper; the type centres on the vial's axis ── */
-.pl{position:absolute;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  margin:0;padding:var(--pl-pt,2.1cqw) 0 .5cqw;color:var(--pl-ink);mix-blend-mode:multiply;text-align:center;
+/* ── a label: the printed area of one paper; everything is a fraction of its width --w ── */
+.pl{position:absolute;box-sizing:border-box;display:flex;flex-direction:column;align-items:stretch;
+  margin:0;padding:calc(var(--w) * .05) 0 calc(var(--w) * .11);color:var(--pl-ink);mix-blend-mode:multiply;text-align:center;
   font-family:"Figtree",system-ui,sans-serif;font-synthesis:none;font-kerning:normal;-webkit-font-smoothing:antialiased;
   pointer-events:none;user-select:none;-webkit-user-select:none;forced-color-adjust:none}
 /* while its photograph loads (pepx-label.js), a label is not drawn on the empty slot */
 .pl-frame.pl-wait>.pl{visibility:hidden}
-.pl>span{display:block;flex:none;white-space:nowrap}
-/* the band: full width of the label, just below its top edge */
-.pl>.pl-band{position:absolute;left:0;right:0;top:var(--pl-bt,7.5%);height:.85cqw;background:var(--pl-c);opacity:.86}
-/* a blend's name over each vial's component */
-.pl>.pl-fam{margin:0 0 .4cqw;font-weight:700;font-size:calc(1.12cqw * var(--kf,1));line-height:1.15;letter-spacing:.16em;
-  text-transform:uppercase;margin-right:-.16em;opacity:.9}
-.pl>.pl-name{font-weight:700;font-size:calc(2.85cqw * var(--kn,1));line-height:1.06;letter-spacing:.012em;opacity:.94}
-.pl>.pl-sub{margin-top:.32cqw;font-weight:600;font-size:calc(1.3cqw * var(--ks,1));line-height:1.2;letter-spacing:.03em;opacity:.9}
-.pl>.pl-rule{width:46%;height:max(1px,.11cqw);margin:.8cqw 0 .72cqw;background:currentColor;opacity:.42}
-.pl>.pl-form{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:500;
-  font-size:calc(1.34cqw * var(--kv,1));line-height:1.3;letter-spacing:.12em;margin-right:-.12em;text-transform:uppercase;opacity:.86}
+.pl span{display:block;flex:none;white-space:nowrap}
+/* the header band: full bleed round the vial, the name reversed out in white (multiplies to the bare paper) */
+.pl>.pl-hd{display:flex;flex-direction:column;align-items:center;justify-content:center;height:calc(var(--w) * .3);
+  background:var(--pl-band);color:#fff}
+.pl-hd>.pl-name{font-weight:700;font-size:calc(var(--w) * .13 * var(--kn,1));line-height:1.04;letter-spacing:.01em}
+.pl-hd--2>.pl-name{font-size:calc(var(--w) * .1 * var(--kn,1))}
+.pl-hd--f>.pl-name{font-size:calc(var(--w) * .115 * var(--kn,1))}
+.pl-hd>.pl-fam{margin:0 -.22em calc(var(--w) * .02) 0;font-weight:600;font-size:calc(var(--w) * .048 * var(--kf,1));
+  line-height:1.1;letter-spacing:.22em;text-transform:uppercase}
+/* the gold hairline, full bleed under the band */
+.pl>.pl-gl{height:max(1px,calc(var(--w) * .011));margin-top:calc(var(--w) * .024);background:var(--pl-gold)}
+/* the body: alias and preparation, centred in the paper between the gold line and the bars */
+.pl>.pl-bd{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--w) * .045)}
+.pl-bd>.pl-sub{font-weight:600;font-size:calc(var(--w) * .074 * var(--ks,1));line-height:1.12;letter-spacing:.01em}
+.pl-bd>.pl-form{margin-right:-.16em;font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:500;
+  font-size:calc(var(--w) * .062 * var(--kv,1));line-height:1.35;letter-spacing:.16em;text-transform:uppercase}
+/* a slim navy foot rule closes the print at the bottom of the paper */
+.pl::after{content:"";position:absolute;left:0;right:0;bottom:calc(var(--w) * .045);height:calc(var(--w) * .024);
+  background:var(--pl-band)}
+/* the bar block: ornament only, irregular hairlines in the label's navy (an SVG mask, so the bars stay smooth when
+   they are finer than a pixel) */
+.pl>.pl-bc{align-self:center;width:calc(var(--w) * .42);height:calc(var(--w) * .085);opacity:.92;background:currentColor;
+  -webkit-mask:var(--pl-bars) 0 0/100% 100% no-repeat;mask:var(--pl-bars) 0 0/100% 100% no-repeat}
 
-/* ── where the paper is, measured on the 960x720 sources (percent of the frame) ── */
-/* single vial, liquid: label x 395-578, y 364-522 */
-.pl--vial-liquid>.pl{left:41.15%;width:19.06%;top:50.56%;height:21.94%}
-/* single vial, lyophilized: label x 391-568, y 360-550 */
-.pl--vial-lyophilized>.pl{left:40.73%;width:18.44%;top:50%;height:26.39%}
-/* two vials: left (powder) x 272-456, y 356-532; right (liquid) x 507-688, y 356-534 */
-.pl--vial-pair>.pl--l{left:28.33%;width:19.17%;top:49.44%;height:24.44%}
-.pl--vial-pair>.pl--r{left:52.81%;width:18.85%;top:49.44%;height:24.72%}
-/* capsule bottle: the body between the shoulder and the foot bead, x 398-561, y 318-482 */
-.pl--capsules>.pl{left:41.46%;width:16.98%;top:44.17%;height:22.78%}
-/* pen: along the body tube (x 477-652 on its axis, which runs up-right at 30.2deg; tube ~55px across); the name
-   and its form read along the barrel, centred on the axis */
-.pl--pen>.pl{left:58.83%;top:42.53%;width:16.4cqw;height:auto;padding:0;flex-direction:row;align-items:baseline;gap:1cqw;
-  translate:-50% -50%;rotate:-30.2deg}
-.pl--pen>.pl>.pl-name{font-size:calc(2.3cqw * var(--kn,1))}
-.pl--pen>.pl>.pl-form{font-size:calc(1.12cqw * var(--kv,1))}
+/* ── where the paper is, measured on the 1200x900 v2 sources (percent of the frame; --w = the paper's width) ── */
+/* single vial, lyophilized: label x 465-733.5, y 392-711 */
+.pl--vial-lyophilized>.pl{left:38.75%;width:22.375%;top:43.556%;height:35.444%;--w:22.375cqw}
+/* single vial, liquid: label x 453.5-746.5, y 402.5-710 */
+.pl--vial-liquid>.pl{left:37.792%;width:24.417%;top:44.722%;height:34.167%;--w:24.417cqw}
+/* two vials: left (powder) x 329-572.5, right (liquid) x 625.5-869, both y 411.5-675.5 */
+.pl--vial-pair>.pl{top:45.722%;width:20.292%;height:29.333%;--w:20.292cqw}
+.pl--vial-pair>.pl--l{left:27.417%}
+.pl--vial-pair>.pl--r{left:52.125%}
+/* capsule bottle: the wrap label on the body, x 433-765, y 350-676 */
+.pl--capsules>.pl{left:36.083%;width:27.667%;top:38.889%;height:36.222%;--w:27.667cqw}
+/* pen: the label band of the body runs x 598-828 along the barrel's axis (centre 713,475.5; the axis falls -5.5deg
+   to the right, the barrel ~150px across); the label is a slim strip on the front of that band, turned to the axis.
+   (A 3D taper was tried: Chromium rasterises the type too coarsely under it, so the strip stays flat.) */
+.pl--pen>.pl{left:59.417%;top:52.833%;width:17.4cqw;height:8.4cqw;--w:17.4cqw;padding:0;display:grid;
+  grid-template-columns:1fr auto;grid-template-rows:3.9cqw auto 1fr;translate:-50% -50%;rotate:-5.5deg}
+.pl--pen>.pl::after{content:none}
+.pl--pen>.pl>.pl-hd{grid-column:1/-1;height:auto}
+.pl--pen>.pl>.pl-hd>.pl-name{font-size:calc(2.55cqw * var(--kn,1));letter-spacing:.03em}
+.pl--pen>.pl>.pl-gl{grid-column:1/-1;height:max(1px,.17cqw);margin-top:.34cqw}
+.pl--pen>.pl>.pl-bd{flex-direction:row;justify-content:flex-start;padding-left:1.6cqw}
+.pl--pen>.pl>.pl-bd>.pl-form{font-size:calc(1.3cqw * var(--kv,1))}
+.pl--pen>.pl>.pl-bc{align-self:center;width:6.4cqw;height:1.25cqw;margin-right:1.6cqw}
 
 @media print{.pl{mix-blend-mode:normal}}
