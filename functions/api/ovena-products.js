@@ -9,6 +9,14 @@ const FEED = STORE + '/products.json?limit=50';
 const CARDS = STORE + '/collections/all';
 const TTL = 300;
 const UA = 'albacetemeddev.com storefront section';
+// Products the albacetemeddev.com storefront section does not show (owner, 2026-10-16): the third-party
+// thigh-high and knee-high compression stockings. Ovena's own 20-30 mmHg compression socks stay.
+const EXCLUDE = new Set([
+  'juzo-thigh-high-compression-stockings-closed-toe',
+  'juzo-thigh-high-compression-stockings-open-toe',
+  'juzo-knee-high-compression-socks-open-toe',
+  'knee-high-compression-socks-closed-toe',
+]);
 
 export async function onRequestGet(context) {
   const cache = caches.default;
@@ -35,7 +43,7 @@ export async function onRequestGet(context) {
   } catch (e) { /* keep feed images */ }
 
   const products = (data.products || [])
-    .filter((p) => Array.isArray(p.variants) && p.variants.length)
+    .filter((p) => Array.isArray(p.variants) && p.variants.length && !EXCLUDE.has(p.handle))
     .map((p) => ({
       id: p.id,
       handle: p.handle,

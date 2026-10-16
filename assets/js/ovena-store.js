@@ -96,7 +96,11 @@
     art.appendChild(body);
     return art;
   }
+  // Not shown in this section (owner, 2026-10-16); the Pages Function drops them too
+  const HIDDEN = ['juzo-thigh-high-compression-stockings-closed-toe', 'juzo-thigh-high-compression-stockings-open-toe',
+    'juzo-knee-high-compression-socks-open-toe', 'knee-high-compression-socks-closed-toe'];
   function render(products){
+    products = products.filter((p) => HIDDEN.indexOf(p.handle) < 0);
     root.innerHTML = '';
     if (!products.length){ fallback(); return; }
     const grid = el('div', 'ov-grid');
