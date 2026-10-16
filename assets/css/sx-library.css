@@ -1058,3 +1058,85 @@ html:not(#_):not(#__) body.sx-lib--evidence .hero-actions>.v7-link{align-self:fl
 /* B11 · Hyphenated words that must not break across lines (wrapped in .nw in the markup) */
 html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;   /* contents: in a flex row the words stay one run */
   font:inherit!important;color:inherit!important;letter-spacing:inherit!important;word-spacing:inherit!important;text-transform:inherit!important}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   CLINICAL RESOURCES v10 (Oct 15). Photographs through the evidence library, and the evidence page's peptide
+   therapies section as a landing place (/evidence/#peptides). Every photograph is decorative (alt=""), its box
+   reserved by its width/height and the 3:2 frame, lazy below the fold; house-motion.js gives it the house scan
+   reveal. The scientific portfolio's own photographs live in scientific.css (S1, S2).
+   E1 the grading key beside a photograph · E2 the closing statement beside a photograph · E3 the peptide
+   therapies section: its landing, the wide card's "Varies" mark and its tables on tablets and phones
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* the photographs: rounded like the house panels, on the card grey while they load */
+html:not(#_):not(#__) body.sx-lib--evidence .evx-photo{position:relative;margin:0;overflow:hidden;border-radius:var(--m8-radius-panel);background:var(--m8-card);aspect-ratio:3/2}
+html:not(#_):not(#__) body.sx-lib--evidence .evx-photo>img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%;border-radius:0}
+
+/* E1 · The key (what each grade means, and the three counts) beside a physician reading a printed study */
+html:not(#_):not(#__) body.sx-lib--evidence .evx-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,4.4vw,72px);align-items:center;
+  margin:0 0 clamp(56px,6vw,88px)}
+html:not(#_):not(#__) body.sx-lib--evidence .evx-key{min-width:0}
+html:not(#_):not(#__) body.sx-lib--evidence .evx-key .ev-legend{max-width:none;margin:0}
+html:not(#_):not(#__) body.sx-lib--evidence .evx-key .ev-counts{margin:28px 0 0}
+
+/* E2 · The closing statement: a photograph beside a rounded navy panel (the house photo + quote split) */
+html:not(#_):not(#__) body.sx-lib--evidence .evx-close{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--m8-gap);align-items:stretch;
+  margin-top:var(--m8-section)}
+html:not(#_):not(#__) body.sx-lib--evidence .evx-close .ev-foot{display:flex;align-items:center;margin:0;padding:clamp(32px,4vw,56px);border:0;border-radius:var(--m8-radius-panel);
+  background:var(--m8-navy);color:#fff;font:500 clamp(1.125rem,1.45vw,1.375rem)/1.5 var(--font-body)!important;letter-spacing:-.005em;text-wrap:pretty;
+  --v7-surface:dark;--v7-label-c:var(--m8-gold);--v7-btn-bg:#fff;--v7-btn-fg:var(--m8-ink);--v7-btn-hover:#e6e9ee;--v7-link-c:#fff;--v7-focus:var(--m8-gold)}
+html:not(#_):not(#__) body.sx-lib--evidence .evx-close .ev-foot::before{content:none;display:none}
+
+/* E3 · Peptide therapies: /evidence/#peptides lands on the group's heading with a little air under the nav (the
+   page's scroll padding already clears the nav itself) */
+html:not(#_):not(#__) body.sx-lib--evidence #peptides{scroll-margin-top:16px}
+/* the tables fit the card at every width: no inner sideways scroll on desktops and tablets */
+html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table{min-width:0;width:100%}
+html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-tablewrap{overflow-x:visible}
+
+@media (max-width:1023px){
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-split{grid-template-columns:minmax(0,1fr);gap:32px}
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-close{grid-template-columns:minmax(0,1fr)}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(2){min-width:9em}
+}
+
+/* tablets: the photographs run the full measure, a little wider than tall (16:9) so they never crowd the words */
+@media (min-width:761px) and (max-width:1023px){
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-photo{aspect-ratio:16/9}
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-close .evx-photo>img{object-position:50% 25%}
+}
+
+@media (max-width:760px){
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-split{gap:28px;margin-bottom:48px}
+  html:not(#_):not(#__) body.sx-lib--evidence :is(.evx-photo,.evx-close .ev-foot){border-radius:var(--m8-radius-card)}
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-close{gap:16px}
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-close .ev-foot{padding:28px 24px;font-size:1.0625rem!important}
+  /* a header mark in words ("Varies", "N/A") keeps its small type in the phone-size box */
+  html:not(#_):not(#__) body.sx-lib--evidence .ev-head .ev-grade--na{width:auto;min-width:48px;padding:0 10px;font:600 13px/1 var(--font-body);letter-spacing:.04em}
+  /* the peptide tables become stacked rows: the name and its grade on one line, the rest under them (sx-library.js
+     names each cell from its column head, so the regulatory status still says what it is) */
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides :is(.ev-table,.ev-table>tbody){display:block;width:100%}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table>thead{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;padding:14px 0;border-bottom:1px solid var(--m8-line)}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table tbody tr:last-child{border-bottom:0}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table td{display:block;min-width:0;padding:0;border:0}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table td:first-child{grid-column:1;grid-row:1;align-self:center}
+  /* category table: Category · Grade · Flagship molecules */
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table:not(.ev-table--entries) td:nth-child(2){grid-column:2;grid-row:1}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table:not(.ev-table--entries) td:nth-child(3){grid-column:1/-1;padding-top:4px}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-flag>span:first-child{min-width:0;flex:1 1 calc(100% - 40px)}   /* the name and its grade on one line, the studies under them */
+  /* entries table: Entry · Category · US regulatory status · Grade · Evidence */
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(4){grid-column:2;grid-row:1}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(2){grid-column:1/-1;min-width:0;color:var(--m8-muted);font-size:14px}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(3){grid-column:1/-1;font-size:14px}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(3)[data-label]::before{content:attr(data-label) ": ";color:var(--m8-muted)}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(5){grid-column:1/-1;padding-top:2px}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-table--entries td:nth-child(5)>*{margin-bottom:4px}
+  html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-sub small{display:block;margin:4px 0 0}
+}
+
+@media print{
+  html:not(#_):not(#__) body.sx-lib--evidence :is(.evx-split,.evx-close){display:block}
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-photo{max-width:60%;margin:0 0 16px;break-inside:avoid}
+  html:not(#_):not(#__) body.sx-lib--evidence .evx-close .ev-foot{padding:16px 0;background:none;color:#000;font-size:12pt!important}
+}

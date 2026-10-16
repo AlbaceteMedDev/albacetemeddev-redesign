@@ -526,7 +526,7 @@
     // Keyboard focus holds the nav (a button merely clicked with a mouse does not).
     const kbFocus = el => { try { return !!el && el.matches(':focus-visible'); } catch (_) { return !!el; } };
     const held = () => (nav.contains(doc.activeElement) && kbFocus(doc.activeElement)) || (menu && menu.classList.contains('is-open')) ||
-      !!nav.querySelector('.nav-dropdown.is-open') || !!doc.querySelector('.cmdk:not([hidden])') ||
+      !!nav.querySelector('.nav-dropdown.is-open, .nav-dd.is-open') || !!doc.querySelector('.cmdk:not([hidden])') ||
       root.classList.contains('hm-going') || stuckPin();
     function update() {
       ticking = false;
@@ -1169,9 +1169,163 @@
     });
   }
 
+  /* ── 18. Nav menus (v10, Oct 15). Products, Clinical resources and Practice services each open a panel of the
+     destinations under them (signature.css "NAV MENUS v10"; the markup is in every page's nav, so without this file
+     a panel opens on hover and keyboard focus). The label stays a link to its hub page; the chevron beside it is a
+     disclosure button (aria-expanded, aria-controls). Desktop: a panel opens on hover after a 120ms intent delay
+     (straight away while another is open, which it replaces) and closes 240ms after the pointer leaves, unless it
+     was opened by a click; a click, Enter or Space on the chevron toggles it (a click on a panel the pointer opened
+     keeps it open); ArrowDown on the label or chevron opens it on its first link; the arrow keys, Home and End move
+     through its links; Escape closes it and returns focus to the chevron; a click outside or focus leaving the item
+     closes it. One is open at a time, and the smart nav stays while one is (7). Phone: the same three groups are
+     disclosure sections of the sheet; the current page's group starts open.
+     Current page: a panel link to this page carries aria-current="page"; a top-level item is current at or under
+     its hub, or on a page one of its links goes to unless that page has a top-level line of its own (Ovena Health
+     does), so Clinical resources stays current on the scientific portfolio.
+     A category link to the page already open (the catalog's #sections) waits for the page's own hash handling (the
+     catalog clears its filters there; re-sent when the hash is unchanged, which fires no hashchange) and then lands
+     on the category. ── */
+  function navMenus() {
+    const nav = theNav();
+    const items = nav ? [...nav.querySelectorAll('.nav-links > li.nav-dd')] : [];
+    const groups = [...doc.querySelectorAll('.mobile-menu > .m-dd')];
+    if (!items.length && !groups.length) return;
+    const norm = p => (p || '/').replace(/\/index\.html$/, '/').replace(/\/+$/, '') || '/';
+    const here = norm(location.pathname);
+    const pathOf = a => { try { const u = new URL(a.getAttribute('href'), location.href); return u.origin === location.origin ? norm(u.pathname) : null; } catch (_) { return null; } };
+    const isHere = a => !a.hash && pathOf(a) === here;
+    const own = new Set([...doc.querySelectorAll('.nav-links > li > a:not(.nav-cta), .mobile-menu > a:not(.mobile-cta)')].map(pathOf).filter(Boolean));
+    // A section link (#…) is never "this page", whichever script marked the nav's links by path alone.
+    const unmarkSections = () => doc.querySelectorAll('.nav-dd-panel a[href*="#"][aria-current], .m-dd-panel a[href*="#"][aria-current]')
+      .forEach(a => { if (a.hash) a.removeAttribute('aria-current'); });
+    unmarkSections();   // and again once every deferred script has run (they mark during their own start)
+    if (doc.readyState !== 'complete') { doc.addEventListener('DOMContentLoaded', unmarkSections, {once: true}); addEventListener('load', unmarkSections, {once: true}); }
+    function mark(label, panel) {
+      const links = [...panel.querySelectorAll('a[href]')];
+      links.forEach(a => { if (isHere(a)) a.setAttribute('aria-current', 'page'); });
+      const hub = pathOf(label);
+      let cur = '';
+      if (hub && hub !== '/' && (here === hub || here.startsWith(hub + '/'))) cur = here === hub ? 'page' : 'true';
+      else if (!own.has(here) && links.some(isHere)) cur = 'true';
+      if (cur) { label.classList.add('is-active'); label.setAttribute('aria-current', cur); }
+      return !!cur;
+    }
+
+    // Desktop
+    const desk = matchMedia('(min-width: 1101px)');
+    const ctl = new Map();
+    let openLi = null;
+    items.forEach(li => {
+      const label = li.querySelector(':scope > a'), btn = li.querySelector(':scope > .nav-dd-btn'), panel = li.querySelector(':scope > .nav-dd-panel');
+      if (!label || !btn || !panel) return;
+      mark(label, panel);
+      let tOpen = 0, tClose = 0, how = '';
+      const links = () => [...panel.querySelectorAll('a[href]')];
+      const focusAt = i => { const l = links(); if (l.length) l[(i + l.length) % l.length].focus(); };
+      function set(open, mode) {
+        clearTimeout(tOpen); clearTimeout(tClose);
+        if (open) {
+          if (openLi && openLi !== li) ctl.get(openLi)(false, 'switch');
+          openLi = li; how = mode || how || 'click';
+        } else {
+          if (openLi === li) openLi = null;
+          how = '';
+          if (mode === 'switch') {   // replaced by its neighbour: gone at once, so the two never cross-fade
+            panel.style.transition = 'none';
+            raf(() => raf(() => { panel.style.transition = ''; }));
+          }
+        }
+        li.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        panel.inert = !open;   // out of the tab order at once, while its fade-out plays
+      }
+      panel.inert = true;
+      ctl.set(li, set);
+      li.addEventListener('pointerenter', e => {
+        if (e.pointerType === 'touch' || !desk.matches) return;
+        clearTimeout(tClose);
+        if (li.classList.contains('is-open')) return;
+        clearTimeout(tOpen);
+        tOpen = setTimeout(() => set(true, 'hover'), openLi ? 0 : 120);
+      });
+      li.addEventListener('pointerleave', e => {
+        if (e.pointerType === 'touch') return;
+        clearTimeout(tOpen);
+        if (how === 'hover') tClose = setTimeout(() => set(false), 240);
+      });
+      btn.addEventListener('click', e => {
+        const isOpen = li.classList.contains('is-open');
+        if (isOpen && how === 'hover' && e.detail > 0) { clearTimeout(tClose); how = 'click'; return; }
+        set(!isOpen, 'click');
+      });
+      [label, btn].forEach(el => el.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowDown' || e.altKey || e.ctrlKey || e.metaKey) return;
+        e.preventDefault();
+        set(true, 'key');
+        focusAt(0);
+      }));
+      panel.addEventListener('keydown', e => {
+        const l = links(), i = l.indexOf(doc.activeElement);
+        if (i < 0) return;
+        const to = {ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: l.length - 1}[e.key];
+        if (to === undefined || e.altKey || e.ctrlKey || e.metaKey) return;
+        e.preventDefault();
+        focusAt(to);
+      });
+      li.addEventListener('keydown', e => {
+        if (e.key !== 'Escape' || !li.classList.contains('is-open')) return;
+        e.preventDefault();
+        set(false);
+        btn.focus();
+      });
+      li.addEventListener('focusout', e => {
+        if (e.relatedTarget && li.contains(e.relatedTarget)) return;
+        if (li.classList.contains('is-open') && !(how === 'hover' && li.matches(':hover'))) set(false);
+      });
+      panel.addEventListener('click', e => { if (e.target.closest && e.target.closest('a[href]')) set(false); });
+    });
+    if (ctl.size) {
+      root.classList.add('hm-dd-on');
+      doc.addEventListener('click', e => { if (openLi && !openLi.contains(e.target)) ctl.get(openLi)(false); });
+      doc.addEventListener('keydown', e => { if (e.key === 'Escape' && openLi && !openLi.contains(doc.activeElement)) ctl.get(openLi)(false); });
+      const off = () => { if (!desk.matches && openLi) ctl.get(openLi)(false); };
+      desk.addEventListener ? desk.addEventListener('change', off) : desk.addListener(off);
+    }
+
+    // Phone
+    groups.forEach(g => {
+      const label = g.querySelector(':scope > .m-dd-row > a'), btn = g.querySelector(':scope > .m-dd-row > .m-dd-btn'), panel = g.querySelector(':scope > .m-dd-panel');
+      if (!label || !btn || !panel) return;
+      const show = open => { btn.setAttribute('aria-expanded', String(open)); panel.hidden = !open; g.classList.toggle('is-open', open); };
+      show(mark(label, panel));
+      btn.addEventListener('click', () => show(btn.getAttribute('aria-expanded') !== 'true'));
+    });
+
+    // A category link to this same page lands on its category once the page has had its say.
+    const settle = t => raf(() => raf(() => { if (t.getClientRects().length) t.scrollIntoView({block: 'start'}); }));
+    doc.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('.nav-dd-panel a[href*="#"], .m-dd-panel a[href*="#"]');
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (a.origin !== location.origin || norm(a.pathname) !== here || a.hash.length < 2) return;
+      let t = null;
+      try { t = doc.getElementById(decodeURIComponent(a.hash.slice(1))); } catch (_) { t = null; }
+      if (!t) return;
+      if (a.hash === location.hash) {
+        e.preventDefault();
+        dispatchEvent(new HashChangeEvent('hashchange', {oldURL: location.href, newURL: location.href}));
+        settle(t);
+      } else {
+        const go = () => settle(t);
+        addEventListener('hashchange', go, {once: true});
+        setTimeout(() => removeEventListener('hashchange', go), 1500);   // never left waiting for a later jump
+      }
+    });
+  }
+
   /* ── Start ─────────────────────────────────────────────────────────── */
   const safe = fn => { try { fn(); } catch (err) { if (window.console) console.warn('house-motion:', err); } };
   safe(utilityBar);
+  safe(navMenus);
   safe(sentences);
   safe(eyebrows);
   safe(surfaces);

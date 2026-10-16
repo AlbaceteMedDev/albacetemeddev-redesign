@@ -6,6 +6,20 @@
   root.classList.add('sx-js');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // The evidence page's peptide tables stack into rows on phones (sx-library.css E3): each cell carries its column
+  // head (the same words) for the stacked view, and the table keeps its table roles whatever its CSS display.
+  document.querySelectorAll('#ev-peptides .ev-table').forEach(table => {
+    const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+    table.setAttribute('role', 'table');
+    table.querySelectorAll('thead, tbody').forEach(g => g.setAttribute('role', 'rowgroup'));
+    table.querySelectorAll('tr').forEach(tr => tr.setAttribute('role', 'row'));
+    table.querySelectorAll('th').forEach(th => th.setAttribute('role', 'columnheader'));
+    table.querySelectorAll('tbody tr').forEach(tr => [...tr.children].forEach((td, i) => {
+      td.setAttribute('role', 'cell');
+      if (heads[i]) td.dataset.label = heads[i];
+    }));
+  });
+
   const targets = [
     '.catalog-group > header', '.catalog-item', '.catalog-disclosure',
     '.science-product-list > li', '.science-materials', '.science-note', '.science-dressing',
@@ -20,11 +34,18 @@
     return;
   }
 
-  // Anything already in (or above) the first viewport shows at once, without a flash.
+  // Anything already in (or above) the first viewport shows at once, without a flash; so does everything above a
+  // page's #target and within a screen below it (e.g. /evidence/#peptides), so the browser's jump lands on a block
+  // already in place rather than one still rising into it.
   const vh = innerHeight;
+  let hashLine = -Infinity;
+  try {
+    const t = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (t) hashLine = t.getBoundingClientRect().top + scrollY + vh;
+  } catch (_) { /* a malformed hash: no line */ }
   els.forEach(el => {
     const r = el.getBoundingClientRect();
-    if (r.top < vh * 0.94) el.classList.add('is-in', 'sxl-instant');
+    if (r.top < vh * 0.94 || r.top + scrollY < hashLine) el.classList.add('is-in', 'sxl-instant');
   });
 
   const io = new IntersectionObserver(entries => {

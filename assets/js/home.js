@@ -1,9 +1,9 @@
 /* Home (Model v8, Oct 15 2026). Calm and content first: every heading, paragraph, button and photograph is drawn at
    first paint, in print, after a jump and at any scroll speed; motion only ever animates something already there.
-   hero    a carousel of three rounded panels; the global carousel (house-motion.js) gives it previous / next buttons,
-           dots and arrow-key scrolling; here they are gathered into one pager with the mono slide index, under the
-           panel at its right edge (never on a photograph). Nothing plays by itself. Without JS the panels stack
-           (home.css).
+   hero    a carousel of three rounded panels; the global carousel (house-motion.js) gives it previous / next buttons
+           and dots; here the buttons straddle the panel's side edges halfway down (beside the index on a phone) and
+           the mono slide index and the dashes sit centred under the panel. Nothing plays by itself. Without JS the
+           panels stack (home.css).
    reveal  below the hero, the words and pictures inside each block fade up 12px (600ms, the house easing, 60ms
            apart), once, started a quarter of a screen before the block arrives; cards, panels and bands never fade.
    rail    the category tabs filter a horizontal product rail (crossfade); drag, swipe, key or use the round arrows.
@@ -12,8 +12,8 @@
            rests while off screen. Without JS, or with reduced motion, the names stand still and wrap so every one is
            visible (home.css).
    v9      (Futurist "precision instrument") the hero's corner marks and mono pager, its living photograph, the
-           brand ident as slide 3's background (pause/play control), slide changes as an 850ms photograph wipe behind
-           a 1px scan line with the words cross-faded and the captions and cards faded (never wiped); image scan-ins on
+           brand ident as slide 3's background (pause/play control), slide changes as one continuous 1050ms slide of
+           the photographs with the words cross-faded and the captions and cards faded in as it lands; image scan-ins on
            the category cards and the rail; the tabs' sliding indicator; a scan pass on the precision panel's
            topography (assets/js/m9-topo.js) when it is pointed at or focused.
    No stylesheet hides content: entrances are Web Animations started off screen, so without JS, with reduced motion
@@ -297,27 +297,32 @@
       return best;
     };
     const two = k => String(k).padStart(2, '0');
-    let live = -1, inView = true, job = null, settle = [];
-    // a slide change (house easing), as fractions of D: the photograph is wiped in D ms behind a 1px scan line; the
-    // old words fade out over 0-.30 (the old picture's caption or card faster, over 0-.18, so it has gone before the
-    // line reaches it, whichever way the line runs); the new words fade in over .22-.70 with a 6px rise (the house
-    // easing front-loads a fade, so the old words are below 4% when the new ones start: the column is never empty
-    // and two headlines never show together above a trace); the slide index and the dashes change at FLIP, when
-    // half of the new photograph is showing; the new picture's caption or card fades in SETTLE ms after the
-    // photograph has landed, so a wipe never cuts through words
-    const D = 850, OUT = .30, OUT_OVER = .18, IN0 = .22, IN1 = .70, FLIP = .21, SETTLE = 200;
-    // the pager: the mono slide index ("01 / 03"; the dots carry "Slide n of N"), the indicators and the previous /
-    // next buttons in one row, under the panel at its right edge, never on the photograph (home.css). The buttons
-    // are house-motion's own, moved, names unchanged.
+    let live = -1, inView = true, job = null, queued = null;
+    // a slide change is one continuous motion of D ms on a symmetric ease-in-out (SLIDE), so it gathers speed
+    // gently, glides and settles softly. As fractions of D: the photographs travel the whole time, the old one out
+    // and the new one in from the side the visitor is heading to (next: from the right); the old words fade out
+    // over 0-OUT, drifting 8px with the travel, the new words fade in over IN0-IN1 with a 10px glide (an exit curve
+    // out, the house easing in: the column is never empty and two headlines are never legible together); whatever
+    // sits on the old picture fades over 0-OUT_OVER, the new picture's caption or card over OVER0-1, so it lands
+    // with the photograph; the slide index and the dashes turn at FLIP, halfway. Side by side, each photograph moves
+    // LAG as fast as its frame (a little depth). Reduced motion: a RM_D ms cross-dissolve, nothing moves.
+    const D = 1050, SLIDE = 'cubic-bezier(.65,0,.35,1)', EXIT = 'cubic-bezier(.4,0,1,1)';
+    const OUT = .40, OUT_OVER = .25, IN0 = .37, IN1 = .90, OVER0 = .60, FLIP = .5, LAG = .85, RM_D = 200;
+    // the controls: the previous / next buttons (house-motion's own, names unchanged) straddle the panel's side
+    // edges, halfway down; the mono slide index ("01 / 03"; the dots carry "Slide n of N") and the dashes sit centred
+    // under the panel. On a phone the buttons join that row, one each side (home.css). Page order: previous, the
+    // dashes, next.
     const dotRow = $('.m8-dots', box);
+    const prevB = $(':scope > .m8-prev', box), nextB = $(':scope > .m8-next', box);
     const pager = document.createElement('div');
     pager.className = 'sx-pager';
     const idx = document.createElement('span');
     idx.className = 'sx-slide-idx';
     idx.setAttribute('aria-hidden', 'true');
+    if (prevB) pager.append(prevB);
     pager.append(idx);
     if (dotRow) pager.append(dotRow);
-    pager.append(...$$(':scope > .m8-prev, :scope > .m8-next', box));
+    if (nextB) pager.append(nextB);
     box.append(pager);
     box.classList.add('has-pager');
     // what the pager shows is always the slide on screen: the index, and the dash that carries aria-current
@@ -374,7 +379,7 @@
       };
       const want = () => !paused && inView && !document.hidden && live === slides.indexOf(fig.closest('.sx-slide'));
       // the ident's opening is almost black: a pass starts at 1.8s, where its lines are already drawing, and while
-      // its slide is away it waits on that frame, so the wipe always uncovers a drawn picture; under reduced motion
+      // its slide is away it waits on that frame, so a change always brings in a drawn picture; under reduced motion
       // it rests on its last frame (the mark) until played
       const IN = 1.8;
       const at = t => { try { v.currentTime = t; } catch (e) { /* not seekable: it plays from 0 */ } };
@@ -389,7 +394,7 @@
           if (p && p.catch) p.catch(() => {});
         } else {
           v.pause();
-          if (restart && !RM) hold = setTimeout(from, D + 60); // once its picture has been wiped away
+          if (restart && !RM) hold = setTimeout(from, D + 60); // once its picture has slid away
         }
       }
       // at the end it holds on the mark, dips to its own black for 250ms and runs again
@@ -415,7 +420,7 @@
     function setLive(i, quiet) {
       if (!quiet) label(i);
       if (i === live) return;
-      slides.forEach((s, k) => { if (k !== i && !s.classList.contains('sx-wipe-out')) s.classList.remove('is-live'); });
+      slides.forEach((s, k) => { if (k !== i && !s.classList.contains('sx-leaving')) s.classList.remove('is-live'); });
       const s = slides[i];
       s.classList.remove('is-live');
       void s.offsetWidth; // restart the slow settle on this slide
@@ -440,127 +445,128 @@
     }).observe(box);
 
     // the change: the track steps to the new slide at once (so the focus order and the live state follow it), and
-    // the old slide is laid over it for D ms, its panel clear and out of reach of the pointer. Only the photograph
-    // is wiped: it is cut away toward the far side behind one 1px scan line that crosses the photograph only,
-    // uncovering the new one beneath. Everything that sits on a picture (the hero caption, the evidence card, the
-    // ident's pause button) fades instead: the old one with the old words, the new one SETTLE ms after the wipe has
-    // landed. Under reduced motion the change is instant (house-motion.js).
-    const wipe = document.createElement('div');
-    wipe.className = 'sx-wipe';
-    wipe.setAttribute('aria-hidden', 'true');
-    const line = document.createElement('span');
-    line.className = 'sx-wipe-line';
-    wipe.append(line);
-    box.append(wipe);
+    // the old slide is laid over it for D ms, its panel clear and out of reach of the pointer.
+    //   side by side  the picture's frame is the photograph's place in the panel. The old figure's window closes
+    //                 toward the far side at full speed; the two photographs (and the ident) move LAG as fast, the
+    //                 new one starting LAG x the frame's width off to the side, so it is always under the closing
+    //                 edge and nothing behind them ever shows. The corner marks stay put, like a viewfinder.
+    //   stacked       (a phone) each slide's picture (its figure, or slide 2's evidence card) moves whole, the old
+    //                 one out and the new one in, a panel's width apart, inside the rounded panel.
+    // Everything that sits on a picture (the hero caption, the evidence card, the ident's pause button) fades, and
+    // travels with its photograph, so a closing edge never cuts through its words.
     const shows = el => el.getClientRects().length > 0;
     const PHOTO = ':scope > .sx-slide-media > img, :scope > .sx-slide-media > .sx-hero-photo > img, :scope > .sx-slide-media > .sx-slide-video';
     const OVER = ':scope > .sx-slide-media > .sx-hero-cap, :scope > .sx-ev-map, :scope > .sx-slide-media > .sx-vid-btn';
+    const figOf = s => { const el = $(':scope > .sx-slide-media', s); return el && shows(el) ? el : null; };
     const photoOf = s => $$(PHOTO, s).filter(shows);
     const overOf = s => $$(OVER, s).filter(shows);
-    // a new picture's caption or card still fading in shows at once when anything else happens
-    const settled = () => { settle.forEach(a => a.cancel()); settle = []; };
+    const frameOf = s => figOf(s) || $$(':scope > .sx-ev-map', s).find(shows) || null;
+    const beside = s => {
+      const f = figOf(s), c = $(':scope > .sx-slide-copy', s);
+      return !!(f && c && f.getBoundingClientRect().left >= c.getBoundingClientRect().right - 2);
+    };
     function finish() {
       if (!job) return;
       const j = job;
       job = null;
       j.anims.forEach(a => a.cancel());
       j.A.style.transform = '';
-      j.A.classList.remove('sx-wipe-out');
-      wipe.classList.remove('is-on');
+      j.A.classList.remove('sx-leaving');
+      j.A.classList.remove('sx-stacked');
+      j.B.classList.remove('sx-stacked');
       track.classList.remove('m8-sliding');
       if (live !== j.from) j.A.classList.remove('is-live');
       paint(live);
       track.dispatchEvent(new Event('scroll')); // the global carousel re-reads its dots, the old slide back in place
     }
+    // anything that needs the slide at once (focus inside it, a change of width) ends a change where it would land
+    const stop = () => { queued = null; finish(); };
     function go(from, to, dir) {
-      settled();
       const A = slides[from], B = slides[to];
       const xA = posOf(A), xB = posOf(B);
-      job = { A, from, anims: [] }; // before the step, so the scroll listener stands aside
+      const wide = beside(A) && beside(B), fA = figOf(A), fB = figOf(B), frA = frameOf(A), frB = frameOf(B);
+      const T = (fB || fA || B).getBoundingClientRect().width;
+      job = { A, B, from, to, anims: [] }; // before the step, so the scroll listener stands aside
       const anims = job.anims, mine = job;
+      const run = (el, kf, o) => { anims.push(el.animate(kf, o)); };
       paint(from); // until FLIP the pager keeps showing the slide that is still on screen
       track.classList.add('m8-sliding');
       track.scrollLeft = xB;
-      A.classList.add('sx-wipe-out');
+      A.classList.add('sx-leaving');
       A.style.transform = `translate3d(${xB - xA}px,0,0)`;
       setLive(to, true);
-      // what leaves: the words over 0-OUT, whatever sat on the old picture over 0-OUT_OVER (6px up); what arrives:
-      // the words over IN0-IN1 (rising 6px)
-      // (a photograph fades without moving: its slow settle owns its transform)
-      const away = (el, f, still) => anims.push(el.animate(still ? [{ opacity: 1 }, { opacity: 0 }] : [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translate3d(0,-6px,0)' }],
-        { duration: f * D, easing: EASE, fill: 'forwards' }));
-      const come = (el, still) => anims.push(el.animate(still ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 0, transform: 'translate3d(0,6px,0)' }, { opacity: 1, transform: 'none' }],
-        { duration: (IN1 - IN0) * D, delay: IN0 * D, easing: EASE, fill: 'backwards' }));
-      const cA = $('.sx-slide-copy', A), cB = $('.sx-slide-copy', B);
-      if (cA) away(cA, OUT);
-      overOf(A).forEach(el => away(el, OUT_OVER));
-      if (cB) come(cB);
-      const pA = photoOf(A), pB = photoOf(B);
-      if (pA.length && pB.length) {
-        // both slides show a photograph (always, side by side): the old one is wiped away over the new one. The area
-        // is the two photographs together (on a narrow screen one may be shorter, above its caption strip).
-        const rs = [...pA, ...pB].map(el => el.getBoundingClientRect()).filter(r => r.width && r.height);
-        const o = { duration: D, easing: EASE, fill: 'forwards' };
-        const L = Math.min(...rs.map(r => r.left)), R = Math.max(...rs.map(r => r.right));
-        const T = Math.min(...rs.map(r => r.top)), Bm = Math.max(...rs.map(r => r.bottom)), W = R - L;
-        const bx = box.getBoundingClientRect(), sr = B.getBoundingClientRect();
-        const rad = parseFloat(getComputedStyle(B).borderTopLeftRadius) || 0;
-        const c = (y, x) => `${y && x ? rad : 0}px`;
-        const top = T - sr.top < 1, bot = sr.bottom - Bm < 1, lft = L - sr.left < 1, rgt = sr.right - R < 1;
-        Object.assign(wipe.style, { left: `${L - bx.left}px`, top: `${T - bx.top}px`, width: `${W}px`, height: `${Bm - T}px`,
-          borderRadius: `${c(top, lft)} ${c(top, rgt)} ${c(bot, rgt)} ${c(bot, lft)}` });
-        wipe.classList.add('is-on');
-        // each old photograph keeps only what is still on its side of the line (the same easing, so the edge and
-        // the line move as one)
-        const f = x => Math.min(1, Math.max(0, x / W));
-        pA.forEach(el => {
-          const r = el.getBoundingClientRect();
-          if (!r.width) return;
-          const p0 = dir > 0 ? f(R - r.right) : f(r.left - L), p1 = dir > 0 ? f(R - r.left) : f(r.right - L);
-          const k0 = 'inset(0px 0px 0px 0px)', k1 = dir > 0 ? `inset(0px ${r.width}px 0px 0px)` : `inset(0px 0px 0px ${r.width}px)`;
-          anims.push(el.animate([{ offset: 0, clipPath: k0 }, { offset: p0, clipPath: k0 }, { offset: Math.max(p0, p1), clipPath: k1 }, { offset: 1, clipPath: k1 }], o));
-        });
-        anims.push(line.animate([{ transform: `translate3d(${dir > 0 ? W - 1 : 0}px,0,0)` }, { transform: `translate3d(${dir > 0 ? 0 : W - 1}px,0,0)` }], o));
-        // the new picture's caption or card: hidden through the wipe, then in once the photograph has settled
-        settle = overOf(B).map(el => el.animate([{ opacity: 0, transform: 'translate3d(0,6px,0)' }, { opacity: 1, transform: 'none' }],
-          { duration: 300, delay: D + SETTLE, easing: EASE, fill: 'backwards' }));
-        settle.forEach(a => a.finished.then(() => { settle = settle.filter(x => x !== a); }, () => {}));
+      let flipAt = FLIP * D;
+      if (RM) {
+        [...A.children].forEach(el => { if (shows(el)) run(el, [{ opacity: 1 }, { opacity: 0 }], { duration: RM_D, easing: 'linear', fill: 'forwards' }); });
+        flipAt = RM_D / 2;
       } else {
-        // a phone, where the evidence slide's picture is its card and not a photograph: nothing to wipe, so the
-        // pictures cross-fade on the words' timing, each picture whole, with its ground and corner marks (a wipe
-        // there would uncover the new words a strip at a time)
-        const fig = s => { const el = $(':scope > .sx-slide-media', s); return el && shows(el) ? el : null; };
-        const fA = fig(A), fB = fig(B);
-        if (fA) away(fA, OUT, true);
-        if (fB) come(fB, true);
-        overOf(B).filter(el => !(fB && fB.contains(el))).forEach(el => come(el));
+        const o = { duration: D, easing: SLIDE, fill: 'forwards' };
+        const cA = $(':scope > .sx-slide-copy', A), cB = $(':scope > .sx-slide-copy', B);
+        if (cA) run(cA, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: `translate3d(${-dir * 8}px,0,0)` }], { duration: OUT * D, easing: EXIT, fill: 'forwards' });
+        if (cB) run(cB, [{ opacity: 0, transform: `translate3d(${dir * 10}px,0,0)` }, { opacity: 1, transform: 'none' }], { duration: (IN1 - IN0) * D, delay: IN0 * D, easing: EASE, fill: 'backwards' });
+        const overA = overOf(A).filter(el => el !== frA), overB = overOf(B).filter(el => el !== frB);
+        overA.forEach(el => run(el, [{ opacity: 1 }, { opacity: 0 }], { duration: OUT_OVER * D, easing: 'linear', fill: 'forwards' }));
+        overB.forEach(el => run(el, [{ opacity: 0, transform: 'translate3d(0,6px,0)' }, { opacity: 1, transform: 'none' }],
+          { duration: (1 - OVER0) * D, delay: OVER0 * D, easing: EASE, fill: 'backwards' }));
+        if (wide && fA && fB) {
+          const d = LAG * T;
+          run(fA, [{ clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: dir > 0 ? 'inset(0% 100% 0% 0%)' : 'inset(0% 0% 0% 100%)' }], o);
+          [...photoOf(A), ...overA].forEach(el => run(el, [{ translate: '0px 0px' }, { translate: `${-dir * d}px 0px` }], o));
+          [...photoOf(B), ...overB].forEach(el => run(el, [{ translate: `${dir * d}px 0px` }, { translate: '0px 0px' }], o));
+        } else {
+          // the figures' own grounds clear for the change, so the strip under slide 1's photograph comes and goes
+          // with its caption and never covers the other slide's words
+          A.classList.add('sx-stacked');
+          B.classList.add('sx-stacked');
+          if (frA) run(frA, [{ transform: 'none' }, { transform: `translate3d(${-dir * T}px,0,0)` }], o);
+          if (frB) run(frB, [{ transform: `translate3d(${dir * T}px,0,0)` }, { transform: 'none' }], o);
+        }
       }
-      // the index and the dashes turn at FLIP, on the animations' own clock (so a slowed or paused timeline keeps them
+      // the index and the dashes turn at FLIP, on the animations' own clock (a slowed or paused timeline keeps them
       // in step with the picture)
-      const flip = new Animation(new KeyframeEffect(null, [], { duration: FLIP * D }), document.timeline);
+      const flip = new Animation(new KeyframeEffect(null, [], { duration: flipAt }), document.timeline);
       flip.play();
       anims.push(flip);
       flip.finished.then(() => { if (job === mine) paint(to); }, () => {});
-      Promise.all(anims.map(a => a.finished)).then(() => { if (job === mine) finish(); }, () => {});
+      Promise.all(anims.map(a => a.finished)).then(() => {
+        if (job !== mine) return;
+        finish();
+        // a press made during the change runs now, from where this one landed (presses in the meantime add up)
+        const q = queued;
+        queued = null;
+        if (q && q.to !== live) go(live, q.to, q.dir);
+      }, () => {});
     }
-    // focus never waits on a change
-    track.addEventListener('focusin', () => { finish(); settled(); });
-    if (MO && document.body.animate && window.Animation && window.KeyframeEffect) {
+    // a press: a step (next / previous, a key) or a dot. During a change it is queued, counted from where the change
+    // (or the press already queued) will land, so rapid presses never cut a motion short or jump.
+    function request(step, want) {
+      const base = queued ? queued.to : job ? job.to : near();
+      let to = want, dir;
+      if (step) { dir = step; to = (base + step + n) % n; } else { if (!(to >= 0) || to === base) return; dir = to > base ? 1 : -1; }
+      if (job) { queued = to === job.to ? null : { to, dir }; return; }
+      go(base, to, dir);
+    }
+    // focus inside a slide never waits on a change (focus on the carousel itself can)
+    track.addEventListener('focusin', e => { if (e.target !== track) stop(); });
+    if (document.body.animate && window.Animation && window.KeyframeEffect) {
       box.addEventListener('click', e => {
         const b = e.target.closest && e.target.closest('.m8-arrow, .m8-dot');
         if (!b || !box.contains(b) || b.closest('.m8-carousel') !== box) return;
-        e.stopPropagation(); // the global carousel would slide; here it wipes
-        finish();
-        const from = near();
-        let to, dir;
-        if (b.classList.contains('m8-dot')) { to = $$('.m8-dot', box).indexOf(b); dir = to > from ? 1 : -1; }
-        else { dir = b.classList.contains('m8-next') ? 1 : -1; to = (from + dir + n) % n; }
-        if (to < 0 || to === from) return;
-        go(from, to, dir);
+        e.stopPropagation(); // the global carousel would scroll; here the change runs
+        if (b.classList.contains('m8-dot')) request(0, $$('.m8-dot', box).indexOf(b));
+        else request(b.classList.contains('m8-next') ? 1 : -1);
       }, true);
+      // the arrow keys on the carousel run the same change (focus inside a slide moves to the carousel, so it is
+      // never left on a slide that has gone)
+      track.addEventListener('keydown', e => {
+        if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        e.preventDefault();
+        if (e.target !== track) track.focus({ preventScroll: true });
+        request(e.key === 'ArrowRight' ? 1 : -1);
+      });
       // a change in width (not a phone's toolbar folding away) ends a change at once
       let vw = innerWidth;
-      addEventListener('resize', () => { if (innerWidth === vw) return; vw = innerWidth; finish(); settled(); }, { passive: true });
+      addEventListener('resize', () => { if (innerWidth === vw) return; vw = innerWidth; stop(); }, { passive: true });
     }
     setLive(near());
   }

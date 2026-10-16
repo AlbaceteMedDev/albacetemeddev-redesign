@@ -1149,3 +1149,142 @@ html:not(#_) main .nw{display:contents!important;white-space:nowrap!important;  
 html:not(#_) body.sx-co--software .hero-chip .sx-u{padding-left:1.6em;text-indent:-1.6em}
 html:not(#_) body.sx-co--software .hero-chip .sx-dot{text-indent:0}
 @media (max-width:400px){html:not(#_):not(#__):not(#___) body.sx-co--software :is(.hero-chip,.hero-chip>span){letter-spacing:.02em!important}}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   V10 (Oct 15) · Lifestyle photography: software and practice services. Documentary photos (3:2 sources, decorative,
+   alt="") set as compositions, never dropped in: a photo beside a section head (.cph-split), a wide rounded band at the
+   panel width (.cph-band), a pair that sits on the card grid under it (.cph-pair), a service overview with its photo
+   (.service-overview.cph-host), a sticky photo beside the revenue-cycle steps (.cph-steps) and a photo + navy closing
+   panel (.cph-cta). Software also gains the infrastructure-partners card (.sw-partners). Every frame is rounded (24px
+   panels, 20px beside cards) and filled with the card grey, so a slow image never leaves a hole. The house layer's
+   scan reveal (house-motion.js) unmasks the large photos below the fold; without JS, under reduced motion and in print
+   they are simply there. No captions, no labels on photos.
+   ═════════════════════════════════════════════════════════════════════════════════ */
+html:not(#_) body.sx-co .cph{position:relative;margin:0;padding:0;min-width:0;border:0;background:none}
+html:not(#_) body.sx-co .cph>img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:50% 50%;
+  border-radius:var(--m8-radius-panel);background:var(--m8-card)}
+
+/* the split: a section head (or a closer) on one side, the photo on the other, centred on each other */
+html:not(#_) body.sx-co .cph-split{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,12fr);column-gap:clamp(40px,5.5vw,88px);
+  align-items:center;margin:0 0 clamp(48px,5.5vw,80px)}
+html:not(#_) body.sx-co .cph-split>*{grid-row:1;grid-column:1}
+html:not(#_) body.sx-co .cph-split>.cph-split-media{grid-column:2}
+html:not(#_) body.sx-co .cph-split--left{grid-template-columns:minmax(0,12fr) minmax(0,11fr)}
+html:not(#_) body.sx-co .cph-split--left>*{grid-column:2}
+html:not(#_) body.sx-co .cph-split--left>.cph-split-media{grid-column:1}
+html:not(#_) body.sx-co .cph-split-media>img{aspect-ratio:4/3}
+/* a section head inside a split reads as one column: label, headline, sentence */
+html:not(#_) body.sx-co .cph-split>.section-header{display:block;margin:0}
+html:not(#_) body.sx-co .cph-split>.section-header h2{max-width:15em;margin:0}
+html:not(#_) body.sx-co .cph-split>.section-header .sx-co-aside{max-width:34rem;margin:24px 0 0;padding:0}
+/* a closer inside a split (consulting): label, headline, text and its list, one column */
+html:not(#_) body.sx-co .cph-split--closer{margin:clamp(64px,7vw,104px) 0 0}
+html:not(#_):not(#__) body.sx-co .cph-split>:is(.cs-closer,.wp-closer){display:block;margin:0;padding:0}
+html:not(#_):not(#__) body.sx-co .cph-split>:is(.cs-closer,.wp-closer)>div{display:block;padding:0}
+html:not(#_):not(#__) body.sx-co .cph-split>:is(.cs-closer,.wp-closer) h3{max-width:15em;margin:0 0 20px}
+
+/* the band: a wide photo at the panel width (wider than the text column), between a section head and its content */
+html:not(#_) body.sx-co .cph-band{width:min(calc(100% - 2 * var(--m8-panel-gutter)),var(--m8-panel-max));margin:0 auto clamp(48px,5.5vw,80px)}
+html:not(#_) body.sx-co .cph-band>img{aspect-ratio:2.6/1}
+html:not(#_) body.sx-co .cph-band--mesh>img{object-position:50% 64%}
+/* the hub photo opens on a bright window at its left edge: the frame crops it out, so the rounded corner always reads */
+html:not(#_) body.sx-co .cph-band--hub{margin-top:clamp(24px,3vw,44px);aspect-ratio:3/1;overflow:hidden;border-radius:var(--m8-radius-panel);background:var(--m8-card)}
+html:not(#_) body.sx-co .cph-band--hub>img{position:absolute;top:0;left:-9%;width:109%;max-width:none;height:100%;aspect-ratio:auto;object-position:50% 34%;border-radius:0}
+
+/* the pair (software): two photos on the card grid below them, the wide one over two cards, the other over one */
+html:not(#_) body.sx-co .cph-pair{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--m8-gap);margin:0 0 var(--m8-gap)}
+html:not(#_) body.sx-co .cph-pair-wide{grid-column:span 2}
+html:not(#_) body.sx-co .cph-pair>.cph>img{aspect-ratio:auto;height:clamp(240px,26vw,380px);border-radius:var(--m8-radius-card)}
+html:not(#_) body.sx-co .cph-pair-wide>img{object-position:50% 45%}
+html:not(#_) body.sx-co .cph-pair-narrow>img{object-position:62% 50%}
+
+/* the services overview with its photo: the words on the left (centred on the photo), the photo on the right */
+html:not(#_) body.sx-co--services .service-overview.cph-host{grid-template-columns:minmax(0,13fr) minmax(0,11fr);
+  grid-template-rows:1fr auto auto auto auto 1fr;column-gap:clamp(40px,5.5vw,88px);row-gap:0;align-items:start}
+html:not(#_) body.sx-co--services .cph-host>.cph-ov{grid-column:2;grid-row:1/-1;align-self:center}
+html:not(#_) body.sx-co--services .cph-host>.cph-ov>img{aspect-ratio:4/3}
+html:not(#_) body.sx-co--services .cph-host>.service-eyebrow{grid-column:1;grid-row:2}
+html:not(#_) body.sx-co--services .cph-host>h2{grid-column:1;grid-row:3;max-width:none;margin:0 0 20px}
+html:not(#_) body.sx-co--services .cph-host>.service-description{grid-column:1;grid-row:4}
+html:not(#_) body.sx-co--services .cph-host>.service-context{grid-column:1;grid-row:5}
+html:not(#_) body.sx-co--services .cph-host>.service-actions{grid-column:1;grid-row:6;align-self:start}
+
+/* revenue cycle: the photo holds its place beside the three steps while they pass */
+html:not(#_) body.sx-co .cph-steps{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,13fr);column-gap:clamp(40px,5vw,80px);align-items:start}
+/* (inset-block-start, not top: house-motion.js treats a sticky rule with a top offset under the nav as a section nav,
+   which would slow the nav's return while the photo is held; a photo is not a section nav, so it simply stays put) */
+html:not(#_) body.sx-co .cph-steps-media{position:sticky;inset-block-start:calc(var(--nav-h,108px) + 32px)}
+html:not(#_) body.sx-co .cph-steps-media>img{aspect-ratio:1/1;object-position:62% 50%}
+html:not(#_):not(#__) body.sx-co .cph-steps>.rcm-process{grid-template-columns:minmax(0,1fr);row-gap:var(--m8-gap)}
+
+/* revenue cycle closing panel: the photo fills the left of the navy panel, the words sit on the right */
+html:not(#_):not(#__) body.sx-co main>section.cta-band.cph-cta{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:stretch;padding:0}
+html:not(#_):not(#__) body.sx-co .cph-cta>.cph-cta-media{grid-column:1;grid-row:1;min-height:clamp(320px,30vw,440px)}
+html:not(#_):not(#__) body.sx-co .cph-cta>.cph-cta-media>img{position:absolute;inset:0;height:100%;aspect-ratio:auto;border-radius:0;object-position:70% 40%}
+html:not(#_):not(#__) body.sx-co .cph-cta>.container{grid-column:2;grid-row:1;align-self:center;max-width:none;margin:0;padding:clamp(48px,5.5vw,88px) clamp(32px,5vw,72px)}
+html:not(#_):not(#__) body.sx-co .cph-cta .container>div{display:block}
+html:not(#_):not(#__) body.sx-co .cph-cta h2{max-width:14em;margin:0}
+html:not(#_):not(#__) body.sx-co .cph-cta p{max-width:34rem;padding:16px 0 28px}
+
+/* software: the infrastructure partners, a white card on the band under the pipeline (words only, no marks) */
+html:not(#_) body.sx-co--software .sw-partners{display:grid;grid-template-columns:var(--co-split);column-gap:var(--co-gap);row-gap:0;align-items:start;
+  margin:clamp(40px,5vw,64px) 0 0;padding:clamp(32px,4vw,56px);border-radius:var(--m8-radius-card);background:#fff}
+html:not(#_) body.sx-co--software .sw-partners-label{grid-column:1/-1;margin:0 0 16px}
+html:not(#_) body.sx-co--software .sw-partners h3{grid-column:1;margin:0;max-width:14em;font-size:clamp(1.6rem,2.4vw,2.125rem);font-weight:700;
+  line-height:1.2;letter-spacing:-.02em;color:var(--m8-ink)}
+html:not(#_) body.sx-co--software .sw-partners-text{grid-column:2;margin:0;padding-top:.35rem;max-width:34rem;color:var(--m8-body)}
+
+@media (max-width:1024px){
+  html:not(#_) body.sx-co .cph-band>img{aspect-ratio:2.2/1}
+  html:not(#_) body.sx-co .cph-band--hub{aspect-ratio:2.4/1}
+  html:not(#_) body.sx-co .cph-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html:not(#_) body.sx-co .cph-pair-wide{grid-column:auto}
+  html:not(#_) body.sx-co .cph-pair>.cph>img{height:clamp(220px,28vw,300px)}
+  html:not(#_) body.sx-co .cph-steps{grid-template-columns:minmax(0,1fr)}
+  html:not(#_) body.sx-co .cph-steps-media{position:static;margin:0 0 var(--m8-gap)}
+  html:not(#_) body.sx-co .cph-steps-media>img{aspect-ratio:2.2/1;object-position:55% 50%}
+}
+@media (max-width:900px){
+  html:not(#_) body.sx-co .cph-split,html:not(#_) body.sx-co .cph-split--left{grid-template-columns:minmax(0,1fr);row-gap:32px}
+  html:not(#_) body.sx-co .cph-split>*,html:not(#_) body.sx-co .cph-split--left>*{grid-column:1;grid-row:1}
+  html:not(#_) body.sx-co .cph-split>.cph-split-media,html:not(#_) body.sx-co .cph-split--left>.cph-split-media{grid-column:1;grid-row:2}
+  html:not(#_) body.sx-co .cph-split-media>img{aspect-ratio:3/2}
+  html:not(#_) body.sx-co--services .service-overview.cph-host{grid-template-columns:minmax(0,1fr);grid-template-rows:none}
+  html:not(#_) body.sx-co--services .cph-host>.cph-ov{margin:0 0 28px}
+  html:not(#_) body.sx-co--services .cph-host>.cph-ov>img{aspect-ratio:3/2}
+  html:not(#_):not(#__) body.sx-co main>section.cta-band.cph-cta{grid-template-columns:minmax(0,1fr)}
+  html:not(#_):not(#__) body.sx-co .cph-cta>.cph-cta-media{grid-row:1;min-height:0}
+  html:not(#_):not(#__) body.sx-co .cph-cta>.cph-cta-media>img{position:static;height:auto;aspect-ratio:16/9}
+  html:not(#_):not(#__) body.sx-co .cph-cta>.container{grid-column:1;grid-row:2;padding:44px clamp(20px,5vw,40px) 48px}
+  html:not(#_) body.sx-co--software .sw-partners{grid-template-columns:minmax(0,1fr)}
+  html:not(#_) body.sx-co--software .sw-partners-text{grid-column:1;padding-top:16px}
+}
+@media (max-width:760px){
+  html:not(#_) body.sx-co .cph-band>img{aspect-ratio:3/2}
+  html:not(#_) body.sx-co .cph-band--hub{aspect-ratio:3/2;border-radius:var(--m8-radius-panel)}
+  html:not(#_) body.sx-co .cph-band{margin-bottom:40px}
+  html:not(#_) body.sx-co .cph-pair{grid-template-columns:minmax(0,1fr)}
+  html:not(#_) body.sx-co .cph-pair>.cph>img{height:auto;aspect-ratio:3/2}
+  html:not(#_) body.sx-co .cph-steps-media>img{aspect-ratio:3/2}
+  html:not(#_) body.sx-co .cph-split{margin-bottom:40px}
+  html:not(#_) body.sx-co .cph-split--closer{margin:56px 0 0}
+  html:not(#_) body.sx-co--software .sw-partners{padding:28px 24px}
+}
+/* V10 · narrow phones (320-400px), found in the 320px pass:
+   - the report's footer units hang like the hero label (B1): a unit too long for one line wraps inside itself, and its
+     continuation line is indented by the dot-width so the crumb clip never cuts its first characters ("@95%")
+   - the report's five pipeline steps need 279px in one row (375px gives 275px): under 400px they set as three over
+     two, each step on its own hairline with its tick
+   - revenue cycle, engagement approach: the stacked card's column may shrink below its longest glued word pair, so the
+     house script can release the pair instead of the whole card running past the screen edge */
+html:not(#_) body.sx-co--software .sw-foot .sx-u{padding-left:1.6em;text-indent:-1.6em}
+html:not(#_) body.sx-co--software .sw-foot .sx-dot{text-indent:0}
+@media (max-width:1024px){html:not(#_) body.sx-co .promise-card-inner{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:400px){
+  html:not(#_):not(#__) body.sx-co--software .sw-pipe{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;column-gap:clamp(12px,4vw,20px);row-gap:10px;border-top:0}
+  html:not(#_):not(#__) body.sx-co--software .sw-step{border-top:1px solid var(--v7-hair);padding-top:8px}
+}
+@media print{
+  html:not(#_) body.sx-co .cph-steps-media{position:static}
+  html:not(#_) body.sx-co .cph>img{break-inside:avoid}
+}

@@ -6,18 +6,20 @@
      1  hero carousel   three large rounded panels (copy beside a photograph), round arrows and dots, no autoplay
      2  offer row       the four offers as a clean row of grey tiles
      3  ticker          the product names in a rounded grey strip (keeps moving, with its own pause button)
-     4  products        three photo cards (the categories) and the filtered product rail (tabs + round arrows)
+     4  products        four photo cards (the categories, two by two) and the filtered product rail (tabs + round
+                        arrows)
      5  approach        a photograph beside a navy statement card
-     6  questions       the three questions as three cards (no pinning)
+     6  questions       the three questions as three cards, each opening on a photograph (no pinning)
      7  services        white feature cards on the light grey band around the navy precision panel (the software
                         row, moved: its copy beside the 3D wound topography, assets/js/m9-topo.js)
      8  closing         a full-width rounded photo panel, centred headline and a pill
      9  information     the page's notes in the important-information block, before the footer
    Without JS the carousels are native horizontal scrolls (the hero stacks its panels); under reduced motion every
    block is static and fully visible. Everything is sx-* scoped.
-   Futurist v9 ("precision instrument") on top: the hero picture's corner marks and the mono pager under the panel, a
-   living hero photograph, the brand ident as one slide's background, slide changes as an 850ms photograph wipe
-   behind a 1px scan line (the words cross-fade; captions and cards fade, never wiped), image scan-ins, a sliding tab
+   Futurist v9 ("precision instrument") on top: the hero picture's corner marks, the round arrows on the panel's
+   sides and the mono index under it, a living hero photograph, the brand ident as one slide's background, slide
+   changes as one continuous 1050ms slide of the photographs (the words cross-fade; captions and cards fade in as it
+   lands), image scan-ins, a sliding tab
    indicator, the topography panel and a slow drift in the closing photograph. See "v9" below. No rule here hides
    content: entrances are animations home.js starts off screen, so a still, a print or a jump always shows every card
    with its words. */
@@ -120,7 +122,7 @@ html:not(#_) .sx-play:focus-visible{outline:2px solid var(--m8-accent);outline-o
 /* slide 3 */
 .sx-slide-sv .sx-slide-media>img{object-position:50% 40%}
 
-/* controls: home.js gathers the slide index, the dots and the previous / next buttons into one pager (v9 below) */
+/* controls: home.js puts the previous / next buttons on the panel's sides and the slide index and dots under it (v9 below) */
 
 /* without JS: the three panels stack, every one visible */
 html:not(.sx-js) .sx-heroes .m8-track{flex-direction:column;overflow:visible}
@@ -167,6 +169,13 @@ html:not(.sx-js) .sx-heroes .m8-track>*{flex:none}
 .sx-head .sx-h2{margin:0}
 .sx-head>.sx-link{flex:none;margin-bottom:-4px}
 .sx-cats{align-items:stretch}
+/* four categories: two by two on a wide screen (one per row below 1024px, as before) */
+@media (min-width:1024px){
+  html:not(#_) .sx-cats.m8-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html:not(#_) .sx-cats>.sx-cat{min-height:clamp(460px,35vw,500px)}
+}
+/* the peptide photograph: the vials' caps clear of the card's top fade */
+.sx-cat[data-cat="peptides"] .sx-panel-img img{object-position:50% 42%}
 /* a category card: the words and pills on the grey top, the product photograph filling the rest (its link goes to
    the product), the product's name and photo note in a white chip at its foot */
 html:not(#_) .sx-cat{min-height:clamp(500px,40vw,560px)}
@@ -286,8 +295,24 @@ html:not(#_) .sx-home .sx-step .sx-step-cta:focus-visible{outline:none}   /* the
 .sx-v-pair img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .sx-v-name{position:absolute;left:12px;bottom:12px;padding:5px 12px;border-radius:var(--m8-pill);background:rgba(255,255,255,.94);font-size:14px;font-weight:600;line-height:1.3;color:var(--m8-ink)}
 .sx-v-product figcaption{padding:10px 20px;color:var(--m8-muted)}
+/* steps 2 and 3 open on a photograph of the work they describe (decorative, alt=""); their words sit beneath it on
+   the card grey, the photograph fading into that grey over its last 40px (the category cards' fade, turned over), so
+   the words are always on solid grey. Both photographs are one height, so their words start level. Three across,
+   the cards share two rows (subgrid): the three picture areas start and end level, and so do the three questions,
+   whatever the words beneath a photograph need. */
+.sx-v-guide,.sx-v-practice{padding:0}
+.sx-v-photo{display:block;flex:none;width:100%;height:clamp(170px,15vw,210px);object-fit:cover}
+.sx-v-guide>.sx-v-photo{object-position:42% 72%}
+.sx-v-practice>.sx-v-photo{object-position:62% 38%}
+.sx-v-guide>.sx-guide,.sx-v-practice>.sx-v-path{position:relative;flex:1 0 auto;margin-top:-40px;padding:52px clamp(22px,2.2vw,30px) clamp(22px,2.2vw,30px);
+  background:linear-gradient(180deg,transparent,var(--m8-card) 40px)}
+@media (min-width:1024px){
+  html:not(#_) .sx-steps.m8-grid{grid-template-rows:auto auto;row-gap:0}
+  html:not(#_) .sx-step{display:grid;grid-row:span 2;grid-template-rows:subgrid}
+  .sx-step-visual{grid-row:1}
+  .sx-step-copy{grid-row:2}
+}
 /* step 2: the reading guide */
-.sx-v-guide{justify-content:center;padding:clamp(22px,2.2vw,30px)}
 .sx-guide-eyebrow{margin:0 0 10px;line-height:1.4}
 html:not(#_) .sx-home .sx-guide h4{margin:0 0 16px;font-size:1.25rem;font-weight:700;line-height:1.25;letter-spacing:-.015em;color:var(--m8-ink)}
 .sx-guide ul{margin:0;padding:0;list-style:none;border-top:1px solid rgba(29,33,37,.14)}
@@ -295,7 +320,6 @@ html:not(#_) .sx-home .sx-guide h4{margin:0 0 16px;font-size:1.25rem;font-weight
 .sx-guide li span{font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
 .sx-guide li strong{font-size:15px;font-weight:500;line-height:1.45;color:var(--m8-ink)}
 /* step 3: the care pathway */
-.sx-v-practice{justify-content:center;padding:clamp(22px,2.2vw,30px)}
 .sx-v-path p{margin:0 0 12px;font:600 13px/1.4 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--m8-accent)}
 .sx-v-path ol{margin:0;padding:0;list-style:none;border-bottom:1px solid rgba(29,33,37,.14)}
 .sx-v-path li{padding:11px 0;border-top:1px solid rgba(29,33,37,.14);font:700 clamp(1.125rem,1.5vw,1.375rem)/1.3 var(--font-display);letter-spacing:-.015em;color:var(--m8-ink)}
@@ -525,20 +549,30 @@ html:not(#_) .sx-info .m8-info-head{margin:0;padding:0;border:0}
    photograph */
 @media (max-width:860px){.sx-hero-visual::after{grid-area:1/1/2/2}}
 
-/* the pager (home.js): the mono slide index ("01 / 03": the current slide in ink, the count in grey), the dashes and
-   the previous / next buttons (44px round, the global carousel arrows' white disc and 1px ring) in one row under the
-   panel, at its right edge, never on a photograph. Every dash is the same length and never fills over time: the
-   current slide's is solid navy, the others are hairlines. */
-.sx-pager{display:flex;align-items:center;justify-content:flex-end;margin-top:12px}
+/* the hero's controls (home.js): the previous / next buttons (the global carousel arrows: a 44px white disc, a
+   hairline ring, a navy chevron) straddle the panel's left and right edges, halfway down, half outside it, clear of
+   the words (the copy column's padding is at least 40px) and of every caption and card (they keep 36px from the
+   photograph's sides). The mono slide index ("01 / 03": the current slide in ink, the count in grey) and the dashes
+   sit centred under the panel. Every dash is the same length and never fills over time: the current slide's is solid
+   navy, the others are hairlines. On a phone the buttons join that row, one each side, never on a photograph. */
+.sx-pager{display:flex;align-items:center;justify-content:center;margin-top:12px}
 .sx-slide-idx{display:inline-block;height:44px;margin-right:6px;font:500 var(--m9-mono-size,12.5px)/44px var(--sx-mono);letter-spacing:var(--m9-mono-track,.04em);
   font-variant-numeric:tabular-nums;white-space:pre;color:var(--m8-muted)}
 .sx-slide-idx b{font-weight:500;color:var(--m8-ink)}
-html:not(#_) .sx-pager .m8-dots{align-items:center;justify-content:flex-start;gap:0;margin:0 10px 0 0}
+html:not(#_) .sx-pager .m8-dots{align-items:center;justify-content:flex-start;gap:0;margin:0}
 html:not(#_) .sx-pager .m8-dot{width:28px;height:44px}
 html:not(#_) .sx-pager .m8-dot::before{width:16px;height:1px;border-radius:0;background:var(--m8-muted);transition:none}
 html:not(#_) .sx-pager .m8-dot[aria-current="true"]::before{height:3px;background:var(--m8-navy)}
-html:not(#_) .sx-pager .m8-arrow{position:static;inset:auto;margin:0;box-shadow:none}
-html:not(#_) .sx-pager .m8-next{margin-left:8px}
+html:not(#_) .sx-heroes .sx-pager .m8-arrow{position:absolute;top:var(--m8-arrow-top,50%);margin:-22px 0 0;border-color:var(--sx-ring);color:var(--m8-navy);
+  box-shadow:0 2px 10px rgba(16,35,58,.14)}
+html:not(#_) .sx-heroes .sx-pager .m8-prev{left:-22px;right:auto}
+html:not(#_) .sx-heroes .sx-pager .m8-next{right:-22px;left:auto}
+@media (hover:hover){html:not(#_) .sx-heroes .sx-pager .m8-arrow:hover{border-color:var(--m8-navy);background:var(--m8-navy);color:#fff}}
+@media (max-width:860px){
+  html:not(#_) .sx-heroes .sx-pager .m8-arrow{position:static;inset:auto;margin:0;box-shadow:none}
+  html:not(#_) .sx-heroes .sx-pager .m8-prev{margin-right:10px}
+  html:not(#_) .sx-heroes .sx-pager .m8-next{margin-left:10px}
+}
 
 /* the living photograph: the slide on screen settles 6% closer over 20s and drifts a little (restarts per slide) */
 @keyframes sxLive{from{transform:none}to{transform:scale(1.06) translate3d(var(--sx-dx,-1%),var(--sx-dy,-.6%),0)}}
@@ -560,14 +594,10 @@ html:not(#_) .sx-pager .m8-next{margin-left:8px}
 .sx-vid-btn:hover{background:#fff}
 html:not(#_) .sx-vid-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
-/* a slide change (home.js): the old slide lies over the new one for 850ms, its panel and its picture's ground clear;
-   its words and whatever sits on its picture fade out while its photograph alone is wiped away behind one 1px scan
-   line that crosses the photograph only (this box, the photograph's area) */
-html:not(#_) .sx-slide.sx-wipe-out{position:relative;z-index:2;background:transparent;pointer-events:none}
-html:not(#_) .sx-slide.sx-wipe-out .sx-slide-media{background:transparent}
-.sx-wipe{position:absolute;z-index:3;display:none;overflow:hidden;pointer-events:none}
-.sx-wipe.is-on{display:block}
-.sx-wipe-line{position:absolute;top:0;bottom:0;left:0;width:1px;background:var(--m8-accent)}
+/* a slide change (home.js): for 1050ms the old slide lies over the new one, its panel clear and out of the pointer's
+   reach, while its photograph slides out and the new one slides in beneath it */
+html:not(#_) .sx-slide.sx-leaving{position:relative;z-index:2;background:transparent;pointer-events:none}
+html:not(#_) .sx-slide.sx-stacked .sx-slide-media{background:transparent}
 
 /* image scan-ins (category cards and the rail), like the global scan reveal (700ms, a 1px accent line at the edge,
    once), drawn as a grey cover leaving to the right so the photographs' own hover settle is untouched. The cover
@@ -612,14 +642,10 @@ html:not(#_) .sx-slide.sx-wipe-out .sx-slide-media{background:transparent}
   .sx-slide-idx{margin-right:4px}
   .sx-vid-btn{left:32px;bottom:32px} /* still clear of the corner marks (14-26px) */
 }
-@media (prefers-reduced-motion:reduce){
-  .sx-wipe{display:none!important}
-}
 
 /* print: everything shows, whatever an entrance was doing (these beat running animations) */
 @media print{
   .sx-home .sx-part,.sx-home .sx-slide-copy{opacity:1!important;transform:none!important}
-  .sx-home :is(.sx-hero-cap,.sx-ev-map,.sx-slide-media,.sx-slide-media>img,.sx-hero-photo>img){opacity:1!important;clip-path:none!important}
+  .sx-home :is(.sx-hero-cap,.sx-ev-map,.sx-slide-media,.sx-slide-media>img,.sx-hero-photo>img,.sx-slide-video){opacity:1!important;clip-path:none!important;translate:none!important}
   .sx-home .sx-scan::before{content:none!important;display:none!important}
-  .sx-wipe{display:none!important}
 }

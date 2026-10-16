@@ -220,3 +220,48 @@
  .science-product-list .science-product-maker { font-size:9px; }
  .science-main .science-product-list p { font-size:10px; }
 }
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   CLINICAL RESOURCES v10 (Oct 15). Two photographs in the portfolio, both decorative (alt=""), their box reserved
+   by width/height and the 3:2 frame, lazy below the fold; house-motion.js gives them the house scan reveal.
+   S1 the opening chapter's heading and introduction beside a scientist handling a membrane (the photograph sits
+   after the introduction in the markup, so on narrower screens it follows the words) · S2 the closing note and its
+   call to action beside a physician talking with a patient and her family
+   ═════════════════════════════════════════════════════════════════════════════════ */
+html:not(#_):not(#__) body.sx-lib--science .spx-photo{position:relative;margin:0;overflow:hidden;border-radius:var(--m8-radius-panel);background:var(--m8-card);aspect-ratio:3/2}
+html:not(#_):not(#__) body.sx-lib--science .spx-photo>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:0}
+
+/* S1 */
+html:not(#_):not(#__) body.sx-lib--science .spx-photo--lead{margin:8px 0 clamp(32px,3.4vw,44px)}
+/* tablets: stacked photographs run the chapter's full measure, a little wider than tall (16:9) */
+@media (min-width:801px) and (max-width:1023px){html:not(#_):not(#__) body.sx-lib--science .spx-photo--lead{aspect-ratio:16/9}}
+@media (min-width:1024px){
+  html:not(#_):not(#__) body.sx-lib--science #product-reference{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);grid-template-rows:auto auto auto auto 1fr;
+    column-gap:clamp(32px,3.4vw,56px);align-items:start}
+  html:not(#_):not(#__) body.sx-lib--science #product-reference>*{grid-column:1/-1;min-width:0}
+  html:not(#_):not(#__) body.sx-lib--science #product-reference>.science-anchor{grid-area:1/1/2/-1}
+  html:not(#_):not(#__) body.sx-lib--science #product-reference>.science-section-label{grid-area:2/1/3/2}
+  html:not(#_):not(#__) body.sx-lib--science #product-reference>h2{grid-area:3/1/4/2}
+  html:not(#_):not(#__) body.sx-lib--science #product-reference>h2+p{grid-area:4/1/5/2}
+  html:not(#_):not(#__) body.sx-lib--science #product-reference>.spx-photo--lead{grid-area:2/2/6/3;max-width:none;margin:0 0 clamp(36px,3.4vw,48px)}
+}
+
+/* S2 */
+html:not(#_):not(#__) body.sx-lib--science .spx-close{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,1fr);gap:clamp(24px,3vw,44px);align-items:center;
+  margin-top:clamp(56px,6vw,88px)}
+html:not(#_):not(#__) body.sx-lib--science .spx-close .science-end{margin:0;padding:0}
+html:not(#_):not(#__) body.sx-lib--science .spx-close .science-end>p:first-child{margin:0 0 24px}
+@media (max-width:1180px){
+  html:not(#_):not(#__) body.sx-lib--science .spx-close{grid-template-columns:minmax(0,1fr);gap:28px}
+}
+@media (min-width:801px) and (max-width:1180px){
+  html:not(#_):not(#__) body.sx-lib--science .spx-close .spx-photo{aspect-ratio:16/9}
+}
+@media (max-width:760px){
+  html:not(#_):not(#__) body.sx-lib--science .spx-photo{border-radius:var(--m8-radius-card)}
+  html:not(#_):not(#__) body.sx-lib--science .spx-close{margin-top:48px;gap:24px}
+}
+@media print{
+  html:not(#_):not(#__) body.sx-lib--science #product-reference,html:not(#_):not(#__) body.sx-lib--science .spx-close{display:block}
+  html:not(#_):not(#__) body.sx-lib--science .spx-photo,html:not(#_):not(#__) body.sx-lib--science #product-reference>.spx-photo--lead{max-width:60%;margin:0 0 16px;break-inside:avoid}
+}

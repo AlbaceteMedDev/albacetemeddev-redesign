@@ -5,8 +5,9 @@
    P1 hero (compact) · P2 how to order (channel cards + important information) · P3 storefront shell (toolbar,
    sticky filter rail, results) · P4 toolbar and filter rail · P5 legend · P6 product cards · P7 status chips · P8 tablet ·
    P9 phone · P10 reduced motion
-   Copy is locked: nothing here adds words. Cards carry no media tile (the monograms were retired, Oct 15 fix-v9c):
-   a 3px rule in the group's colour along the top edge ties each card to its group's header band.
+   Copy is locked: nothing here adds words. Each card opens on a product photograph of its primary preparation (v10,
+   Oct 15: capsules, pen, supplies, a lyophilised or a liquid vial, or a pair of vials for a blend), decorative, in
+   the house media slot; a 3px rule in the group's colour along the top edge ties each card to its group's header band.
    ═════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
 
 #main .pepx-store{
@@ -167,11 +168,11 @@ html:not(#_):not(#__) #main .pepx-results .pep-grid{display:grid;grid-template-c
 #main .pep-cat[data-cat-section="sexual"]{--pepx-cat:#7a4f86}
 #main .pep-cat[data-cat-section="ancillary"]{--pepx-cat:#6b7785}
 
-/* the card, top to bottom: its group's colour as a 3px rule along the top edge / status chip / channel / name / mechanism / uses /
-   regulatory note / (space, so the foot lines up across a row) / preparations / the quiet pricing link.
-   No media tile: status, name and description lead. */
+/* the card, top to bottom: its group's colour as a 3px rule along the top edge / the photograph / status chip / channel / name /
+   mechanism / uses / regulatory note / (space, so the foot lines up across a row) / preparations / the quiet pricing link.
+   The photograph is decorative (alt="", aria-hidden), so the words still read status, name, description first. */
 html:not(#_):not(#__) #main .pepx-results .pep-card{display:grid;grid-template-columns:minmax(0,1fr);
-  grid-template-rows:auto auto auto auto auto auto minmax(0,1fr) auto auto;align-content:stretch;gap:0;min-width:0;margin:0;padding:26px 22px 8px;
+  grid-template-rows:auto auto auto auto auto auto auto minmax(0,1fr) auto auto;align-content:stretch;gap:0;min-width:0;margin:0;padding:26px 22px 8px;
   border:0;border-radius:var(--m8-radius-card);background:linear-gradient(var(--pepx-cat),var(--pepx-cat)) top/100% 3px no-repeat,#fff;box-shadow:none;overflow:hidden;
   transition:box-shadow var(--m8-slide) var(--m8-ease)}
 html:not(#_):not(#__) #main .pepx-results .pep-card[hidden]{display:none}
@@ -180,19 +181,29 @@ html:not(#_):not(#__) #main .pepx-results .pep-card>*{grid-column:1/-1;min-width
 html:not(#_):not(#__) #main .pepx-results .pep-card{position:relative;overflow:hidden}
 html:not(#_):not(#__) #main .pepx-results .pep-card::before{content:"";position:absolute;left:0;right:0;bottom:0;z-index:2;height:1px;pointer-events:none;
   background:var(--m8-accent);transform:scaleX(0);transform-origin:0 50%;transition:transform var(--m8-slide) var(--m8-ease)}
-html:not(#_):not(#__) #main .pepx-results .pep-card .pep-chips{grid-row:1;align-self:start;justify-self:start;display:flex;flex-wrap:wrap;gap:6px;
+html:not(#_):not(#__) #main .pepx-results .pep-card .pep-chips{grid-row:2;align-self:start;justify-self:start;display:flex;flex-wrap:wrap;gap:6px;
   max-width:100%;margin:0 0 14px;padding:0}
-html:not(#_):not(#__) #main .pepx-brand{grid-row:2;display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;margin:0 0 4px}
+html:not(#_):not(#__) #main .pepx-brand{grid-row:3;display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;margin:0 0 4px}
 html:not(#_):not(#__) #main .pepx-brand .pep-chip--ch{display:inline-block;min-height:0;margin:0;padding:0;border:0;border-radius:0;background:none;
   color:var(--m8-muted);font:600 13px/1.4 var(--font-body)!important;letter-spacing:.01em!important;text-transform:none;white-space:nowrap}
 html:not(#_):not(#__) #main .pepx-brand .pep-chip--ch+.pep-chip--ch{margin-left:10px;padding-left:10px;border-left:1px solid #c9ced6}
-html:not(#_):not(#__) #main .pepx-results .pep-card h4{grid-row:3;margin:0 0 10px;font:600 1.25rem/1.25 var(--font-display);letter-spacing:-.015em;color:var(--m8-ink);text-wrap:balance;
+html:not(#_):not(#__) #main .pepx-results .pep-card h4{grid-row:4;margin:0 0 10px;font:600 1.25rem/1.25 var(--font-display);letter-spacing:-.015em;color:var(--m8-ink);text-wrap:balance;
   transition:color var(--m8-hover) var(--m8-ease)}
-html:not(#_):not(#__) #main .pepx-results .pep-mech{grid-row:4;margin:0 0 8px;font-size:15px;line-height:1.55;color:var(--m8-body)}
-html:not(#_):not(#__) #main .pepx-results .pep-uses{grid-row:5;margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--m8-muted)}
-html:not(#_):not(#__) #main .pepx-results .pep-note{grid-row:6;margin:0 0 16px;padding:10px 12px;border:0;border-radius:10px;background:#f4f5f7;
+/* the photograph: the house media slot (3:2, inset 8px in the card, corners concentric with the card's), covering the
+   slot; every photograph centres its product with room on all sides, so the 3:2 crop of the 4:3 file never touches it.
+   Lazy below the fold, its box reserved by the slot, so nothing shifts as it loads. Hover: the house 1.03 image scale. */
+html:not(#_):not(#__) #main .pepx-results .pepx-media{grid-row:1;position:relative;display:block;margin:-18px -14px 18px;aspect-ratio:3/2;overflow:hidden;
+  border-radius:12px;background:#cdd5db}
+html:not(#_):not(#__) #main .pepx-results .pepx-media>img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;border-radius:0;
+  transition:transform var(--m8-slide) var(--m8-ease)}
+@media (hover:hover){
+  html:not(#_):not(#__) #main .pepx-results .pep-card:hover .pepx-media>img{transform:scale(1.03)}
+}
+html:not(#_):not(#__) #main .pepx-results .pep-mech{grid-row:5;margin:0 0 8px;font-size:15px;line-height:1.55;color:var(--m8-body)}
+html:not(#_):not(#__) #main .pepx-results .pep-uses{grid-row:6;margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--m8-muted)}
+html:not(#_):not(#__) #main .pepx-results .pep-note{grid-row:7;margin:0 0 16px;padding:10px 12px;border:0;border-radius:10px;background:#f4f5f7;
   font-size:14px;line-height:1.5;color:#454d57}
-html:not(#_):not(#__) #main .pepx-results .pep-details{grid-row:8;margin:0;border:0;border-top:1px solid var(--m8-line)}
+html:not(#_):not(#__) #main .pepx-results .pep-details{grid-row:9;margin:0;border:0;border-top:1px solid var(--m8-line)}
 html:not(#_):not(#__) #main .pepx-results .pep-details summary{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;
   min-height:56px;padding:10px 32px 10px 0;font:600 14px/1.35 var(--font-body);color:var(--m8-ink);cursor:pointer;list-style:none}
 html:not(#_):not(#__) #main .pepx-results .pep-details summary::-webkit-details-marker{display:none}
@@ -205,7 +216,7 @@ html:not(#_):not(#__) #main .pepx-results .pep-rows{margin:0 0 10px}
 html:not(#_):not(#__) #main .pepx-results .pep-rows li{padding:8px 0;border-top:1px solid var(--m8-line);font-size:14px}
 /* the per-item action: a quiet text link with an arrow at the card's foot (ink words on a light underline that turns
    ink on hover); the group's one strong button is the closing panel's */
-html:not(#_):not(#__) #main .pepx-results .pep-req{grid-row:9;justify-self:start;display:inline-flex;align-items:center;gap:6px;width:auto;min-height:44px;margin:0;padding:0;
+html:not(#_):not(#__) #main .pepx-results .pep-req{grid-row:10;justify-self:start;display:inline-flex;align-items:center;gap:6px;width:auto;min-height:44px;margin:0;padding:0;
   border:0;border-radius:4px;background:none;color:var(--m8-ink)!important;font:600 15px/1.2 var(--font-body);text-decoration:none!important}
 html:not(#_):not(#__) #main .pepx-results .pep-req>.hm-t{text-decoration:underline 1.5px #9aa3ad;text-underline-offset:4px;
   transition:text-decoration-color var(--m8-hover) var(--m8-ease)}
@@ -267,6 +278,7 @@ html:not(#_):not(#__) #main .pep-chip--stop{--pepx-ink:var(--pepx-stop);--pepx-d
 @media (max-width:600px){
   html:not(#_):not(#__) #main .pepx-results .pep-grid{grid-template-columns:minmax(0,1fr);gap:12px}
   html:not(#_):not(#__) #main .pepx-results .pep-card{padding:22px 18px 6px}
+  html:not(#_):not(#__) #main .pepx-results .pepx-media{margin:-14px -10px 16px;border-radius:10px}
   html:not(#_):not(#__) #main .pepx-results .pep-card h4{font-size:1.125rem}
   html:not(#_):not(#__) #main .pepx-results .category-header{padding:24px 18px 20px}
 }
@@ -279,5 +291,6 @@ html:not(#_):not(#__) #main .pep-chip--stop{--pepx-ink:var(--pepx-stop);--pepx-d
 /* ── P10 Reduced motion: static ── */
 @media (prefers-reduced-motion:reduce){
   html:not(#_):not(#__) #main :is(.pepx-results .pep-card,.pepx-results .pep-card::before,.pepx-results .pep-card h4,.pepx-rail .pep-pill,.pepx-results .pep-req>.hm-t,
-    .pepx-results .pep-details summary::after){transition:none}
+    .pepx-results .pep-details summary::after,.pepx-results .pepx-media>img){transition:none}
+  html:not(#_):not(#__) #main .pepx-results .pep-card:hover .pepx-media>img{transform:none}
 }

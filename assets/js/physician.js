@@ -38,8 +38,12 @@
     const catalog = kind === 'catalog';
     const query = document.getElementById(`${kind}-search`);
     const select = document.getElementById(`${kind}-${catalog ? 'category' : 'grade'}`);
+    const cardSel = catalog ? '.product-card' : '.ev-card';
     const cards = [...document.querySelectorAll(catalog ? '.page-catalog main .product-card' : '.ev-card')];
     const groups = [...document.querySelectorAll(catalog ? '.category-header' : '.ev-group')].map(heading => ({heading, grid:heading.nextElementSibling}));
+    /* A group's cards: usually inside the grid that follows its heading, but a group of one wide card (the
+       evidence page's peptide therapies) has the card itself in that place, so it counts as its own group. */
+    const groupCards = grid => !grid ? [] : grid.matches(cardSel) ? [grid] : [...grid.querySelectorAll(cardSel)];
     const status = document.querySelector(`[data-${kind}-status]`);
     const empty = document.querySelector(`[data-${kind}-empty]`);
     const index = document.querySelector('.category-index');
@@ -57,21 +61,26 @@
         card.hidden = !show; if (show) count++;
       });
       groups.forEach(({heading,grid}) => {
-        const show = [...grid.querySelectorAll(catalog ? '.product-card' : '.ev-card')].some(card => !card.hidden);
-        heading.hidden = !show; grid.hidden = !show;
+        const show = groupCards(grid).some(card => !card.hidden);
+        heading.hidden = !show; if (grid) grid.hidden = !show;
       });
       status.textContent = `${count} of ${cards.length} ${catalog ? 'products' : 'evidence entries'} shown`;
       empty.hidden = count > 0;
       if (index) index.hidden = terms.length > 0 || !!select.value;
     }
     function reset() { query.value = ''; select.value = ''; update(); }
-    function revealHash() {
+    function revealHash(event) {
       let id; try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
       const target = document.getElementById(id);
       if (!target) return;
-      if (target.matches('.ev-card,.sheet-entry,.category-header')) {
+      /* a filtered-out target (or one inside a filtered-out group) is shown again by clearing the filters, then
+         brought into view: the browser's own jump found nothing to scroll to while it was hidden */
+      const wasHidden = !!target.closest('[hidden]');
+      const filtered = !!(query.value.trim() || select.value);
+      if (wasHidden || target.matches('.ev-card,.ev-group,.sheet-entry,.category-header')) {
         reset();
         const details = target.querySelector('details'); if (details && catalog) details.open = true;
+        if (event && (wasHidden || filtered)) requestAnimationFrame(() => target.scrollIntoView({block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}));
       }
     }
     query.addEventListener('input', update); select.addEventListener('change', update);

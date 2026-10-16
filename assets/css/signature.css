@@ -881,3 +881,95 @@ html:not(#_):not(#__):not(#___) body :is(.service-track-tab:is(.is-active,[aria-
 html:not(#_):not(#__):not(#___) body.sx-lib--catalog .catalog-image:has(>:is(.product-identity,.compact-identity)){background:#fff;box-shadow:inset 0 0 0 1px #d5d9df}
 html:not(#_):not(#__):not(#___) body.sx-lib--catalog .catalog-image>:is(.product-identity,.compact-identity){padding:0 22%!important;background:transparent!important;box-shadow:none!important}
 html:not(#_):not(#__):not(#___) body.sx-lib--catalog .catalog-image>:is(.product-identity,.compact-identity) img{width:auto;max-width:100%;height:auto;max-height:64px;object-fit:contain;object-position:center}
+
+/* ════════════════════════════════════════════════════════════════════════════════════════════════════════════
+   NAV MENUS v10 (Oct 15). Owner: "provide a drop down of all of the product categories that can be accessed
+   through the nav bar, do the same for clinical resources and practice service". Products, Clinical resources and
+   Practice services each carry a panel of the destinations under them. Every word is the site's own: the catalog's
+   category names and lines (products/index.html), its "Across the practice" cards, the "All products" back link,
+   the services page's section titles. The markup is in every page's nav (and _shared/nav.html); the behaviour is
+   house-motion.js 18. Without that file (html:not(.hm-dd-on)) a panel opens on hover and on keyboard focus inside
+   its item, so every link stays reachable.
+   N1 Desktop: the label stays a link to its hub page; a 24px chevron button beside it (aria-expanded) opens the
+      panel. The panel hangs 8px under the bar: white, 20px corners, 1px hairline, a soft shadow; items Figtree 15px
+      500 ink on 12px rounded rows that take the band on hover and focus; a link to this page is 600 with a 2px navy
+      bar at its left (aria-current). Products is a two-column panel: the catalog's four wound care categories with
+      their own lines, "Across the practice" with its five destinations, and All products at the foot.
+   N2 Phone: the same three groups in the white sheet as disclosure sections (the row's words link to the hub, the
+      chevron opens the group); the current page's group starts open.
+   ════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
+/* N1 Desktop */
+html:not(#_) .nav-links>li.nav-dd{position:relative;display:flex;align-items:center}
+html:not(#_) .nav-dd-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:24px;height:44px;
+  margin:0 0 0 1px;padding:0;border:0;border-radius:var(--m8-pill);background:none;color:var(--m8-ink);cursor:pointer}
+html:not(#_) .nav-dd-btn::before{content:"";position:absolute;left:0;top:10px;width:24px;height:24px;border-radius:50%;background:var(--m8-band);
+  opacity:0;transition:opacity var(--m8-hover) var(--m8-ease)}
+@media (hover:hover){html:not(#_) .nav-dd-btn:hover::before{opacity:1}}
+html:not(#_) .nav-dd-btn[aria-expanded="true"]::before{opacity:1}
+html:not(#_) .nav-dd-btn svg{position:relative;width:12px;height:12px;transition:transform .2s var(--m8-ease)}
+html:not(#_) .nav-dd-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+html:not(#_) .nav-dd-btn:focus-visible{outline:2px solid var(--m8-accent);outline-offset:0}
+html:not(#_):not(#__) .nav-dd-panel{position:absolute;z-index:3;top:calc(100% + 22px);left:-24px;min-width:264px;box-sizing:border-box;padding:10px;
+  background:#fff;border:1px solid var(--m8-line);border-radius:var(--m8-radius-card);
+  box-shadow:0 18px 44px rgba(16,35,58,.13),0 2px 6px rgba(16,35,58,.05);text-align:left;
+  opacity:0;visibility:hidden;transform:translate3d(0,-6px,0);pointer-events:none;
+  transition:opacity .16s var(--m8-ease),transform .2s var(--m8-ease),visibility 0s linear .2s}
+html:not(#_):not(#__) .nav-dd-panel::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px}   /* keeps the pointer inside the item on its way down */
+html.hm-dd-on:not(#_):not(#__) .nav-dd.is-open>.nav-dd-panel,
+html:not(.hm-dd-on):not(#_):not(#__) .nav-dd:is(:hover,:focus-within)>.nav-dd-panel{opacity:1;visibility:visible;transform:none;pointer-events:auto;
+  transition:opacity .16s var(--m8-ease),transform .2s var(--m8-ease),visibility 0s linear 0s}
+html:not(#_):not(#__) .nav-dd-panel ul{display:block;margin:0;padding:0;list-style:none}
+html:not(#_):not(#__) .nav-dd-panel li{margin:0;padding:0}
+html:not(#_):not(#__) .nav-dd-panel a{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:44px;margin:0;padding:10px 14px;
+  border:0;border-radius:var(--m8-radius-sm);background:none;color:var(--m8-ink)!important;font:500 15px/1.3 var(--font-body)!important;
+  letter-spacing:0!important;text-decoration:none!important;text-transform:none;white-space:normal;transition:background-color var(--m8-hover) var(--m8-ease)}
+html:not(#_):not(#__) .nav-dd-panel a::after{content:none!important}   /* the old gold hover underline (styles.css) */
+@media (hover:hover){html:not(#_):not(#__) .nav-dd-panel a:hover{background:var(--m8-band)}}
+html:not(#_):not(#__) .nav-dd-panel a:focus-visible{background:var(--m8-band);outline:2px solid var(--m8-accent);outline-offset:0}
+html:not(#_):not(#__) .nav-dd-panel a[aria-current="page"]{font-weight:600!important}
+html:not(#_):not(#__) .nav-dd-panel a[aria-current="page"]::before{content:"";position:absolute;left:4px;top:12px;bottom:12px;width:2px;
+  border-radius:2px;background:var(--m8-navy)}
+html:not(#_) .nav-dd-name{display:block;font-weight:600;font-size:15px;line-height:1.3;color:var(--m8-ink)}
+html:not(#_) .nav-dd-desc{display:block;margin-top:3px;font-weight:400;font-size:14px;line-height:1.4;color:var(--m8-muted)}
+html:not(#_):not(#__) .nav-dd-panel--mega{width:min(660px,calc(100vw - 48px));padding:12px}
+html:not(#_) .nav-dd-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 12px}
+html:not(#_):not(#__) .nav-dd-panel .nav-dd-sub{margin:2px 0 4px 14px;padding:0 0 0 8px;border-left:1px solid var(--m8-line)}
+html:not(#_):not(#__) .nav-dd-panel .nav-dd-sub a{min-height:40px;padding:8px 12px}
+html:not(#_) .nav-dd-foot{margin:8px 2px 0;padding-top:8px;border-top:1px solid var(--m8-line)}
+html:not(#_):not(#__) .nav-dd-panel a.nav-dd-all{flex-direction:row;align-items:center;justify-content:flex-start;gap:6px;font-weight:600!important}
+html:not(#_) .nav-dd-all>[aria-hidden="true"]{display:inline-block;transition:transform var(--m8-hover) var(--m8-ease)}
+@media (hover:hover){html:not(#_) .nav-dd-all:hover>[aria-hidden="true"]{transform:translate3d(3px,0,0)}}
+html:not(#_) .nav-dd-all:focus-visible>[aria-hidden="true"]{transform:translate3d(3px,0,0)}
+
+/* N2 Phone menu groups */
+html:not(#_) .mobile-menu>.m-dd{position:relative;margin:0;border-bottom:1px solid var(--m8-line)}
+html:not(#_) .m-dd-row{display:flex;align-items:center;gap:8px}
+html:not(#_):not(#__) .m-dd-row>a{position:relative;flex:1 1 auto;display:flex;align-items:center;min-width:0;min-height:52px;margin:0;padding:10px 0;
+  border:0;background:none;font-family:var(--font-body)!important;font-weight:600;font-size:clamp(1.1875rem,5.4vw,1.5rem);line-height:1.2;
+  letter-spacing:-.01em;color:var(--m8-ink)!important;text-decoration:none;white-space:nowrap}
+html:not(#_):not(#__) .m-dd-row>a:is(.is-active,[aria-current]){padding-left:18px;font-weight:700}
+html:not(#_):not(#__) .m-dd-row>a:is(.is-active,[aria-current])::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;
+  border-radius:3px;background:var(--m8-navy)}
+@media (hover:hover){html:not(#_):not(#__) .m-dd-row>a:hover{color:var(--m8-accent)!important}}
+html:not(#_) .m-dd-btn{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:48px;height:48px;margin:0 -12px 0 0;padding:0;
+  border:0;border-radius:50%;background:none;color:var(--m8-ink);cursor:pointer}
+html:not(#_) .m-dd-btn svg{width:16px;height:16px;transition:transform .2s var(--m8-ease)}
+html:not(#_) .m-dd-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+@media (hover:hover){html:not(#_) .m-dd-btn:hover{background:var(--m8-band)}}
+html:not(#_):not(#__) .m-dd-panel{margin:-4px 0 0;padding:0 0 14px 18px;list-style:none}
+html:not(#_):not(#__) .m-dd-panel[hidden]{display:none}
+html:not(#_):not(#__) .m-dd-panel li{margin:0;padding:0}
+html:not(#_):not(#__) .m-dd-panel .m-dd-sub{margin:0 0 4px 2px;padding:0 0 0 14px;list-style:none;border-left:1px solid var(--m8-line)}
+html:not(#_):not(#__) .m-dd-panel a{position:relative;display:flex;align-items:center;min-height:44px;margin:0;padding:6px 0;border:0;background:none;
+  font:500 17px/1.3 var(--font-body)!important;letter-spacing:0;color:var(--m8-body)!important;text-decoration:none;white-space:normal}
+html:not(#_):not(#__) .m-dd-panel a[aria-current="page"]{font-weight:700!important;color:var(--m8-ink)!important;text-decoration:underline 2px var(--m8-navy);
+  text-underline-offset:6px}
+@media (hover:hover){html:not(#_):not(#__) .m-dd-panel a:hover{color:var(--m8-accent)!important}}
+html:not(#_) :is(.m-dd-row>a,.m-dd-btn,.m-dd-panel a):focus-visible{outline:2px solid var(--m8-accent);outline-offset:2px}
+/* N3 Landing: a category link lands on the catalog's group heading just under the bar. (The product pages' 160px
+   scroll-margin, editorial.css, is for their sticky section nav, which the catalog does not have.) */
+html:not(#_) body.sx-lib--catalog .catalog-group[id]{scroll-margin-top:24px}
+@media (prefers-reduced-motion:reduce){
+  html:not(#_):not(#__) .nav-dd-panel,html:not(#_):not(#__) .nav-dd.is-open>.nav-dd-panel{transform:none!important;transition:none!important}
+  html:not(#_) :is(.nav-dd-btn svg,.m-dd-btn svg,.nav-dd-btn::before,.nav-dd-all>[aria-hidden="true"]){transition:none!important}
+}
