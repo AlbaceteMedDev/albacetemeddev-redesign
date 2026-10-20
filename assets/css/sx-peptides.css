@@ -2,10 +2,11 @@
    sx-peptides · the peptide catalog as a storefront (Model v8, Oct 15). Page: /products/peptides/ only.
    Loaded after sx-product.css. Every rule is scoped to the page's own pepx-* hooks or to #main, and carries three
    ids (html:not(#_):not(#__) #main) so it wins over the product group's v7/v8 layers without editing them.
-   P1 hero (compact) · P2 how to order (channel cards + important information) · P3 storefront shell (toolbar,
-   sticky filter rail, results) · P4 toolbar and filter rail · P5 legend · P6 product cards · P7 status chips · P8 tablet ·
-   P9 phone · P10 reduced motion
-   Copy is locked: nothing here adds words. Each card opens on a product photograph of its primary preparation (v10,
+   P1 hero (compact) + its professional-use notice band · P2 how to order (channel cards) · P2b "Before you order" ·
+   P3 storefront shell (toolbar, sticky filter rail, results) · P4 toolbar and filter rail · P5 legend · P6 product cards
+   (with the per-entry ordering control) · P7 status chips · P8 tablet · P9 phone · P10 reduced motion ·
+   P11 the professional-use confirmation dialog (pep-gate.js) · print
+   Copy is locked: nothing here adds words (v11, Oct 17: the compliance wording is final-v3, reviewed; set it, never edit it here). Each card opens on a product photograph of its primary preparation (v10,
    Oct 15: capsules, pen, supplies, a lyophilised or a liquid vial, or a pair of vials for a blend), decorative, in
    the house media slot; a 3px rule in the group's colour along the top edge ties each card to its group's header band.
    ═════════════════════════════════════════════════════════════════════════════════════════════════════════════ */
@@ -29,7 +30,34 @@ html:not(#_):not(#__) body.sx-product #main{background:#fff}
   html:not(#_):not(#__) #main .pepx-hero{min-height:clamp(440px,36vw,540px);padding-block:clamp(28px,2.8vw,40px) clamp(40px,4vw,56px)}
 }
 
-/* ── P2 How to order: the section header beside the two channel cards; the notice as an important-information block ── */
+/* the professional-use notice band, directly under the title: a calm information band (an "i" mark, the audience line
+   in bold, then the rule), never an alarm. On the photo panel (761px and up) it is a quiet glass band over the navy
+   scrim, white words; on phones, where the panel is light grey, a white band with ink words. */
+html:not(#_):not(#__) #main .pepx-hero .pepx-notice{position:relative;max-width:34rem;margin:0 0 26px;padding:14px 18px 15px 52px;border-radius:var(--m8-radius-sm);
+  border:1px solid rgba(255,255,255,.34);background:rgba(10,23,38,.62);color:#e8edf3;font:400 15px/1.55 var(--font-body);text-wrap:pretty}
+html:not(#_):not(#__) #main .pepx-hero .pepx-notice strong{font-weight:700;color:#fff}
+html:not(#_):not(#__) #main .pepx-hero .pepx-notice::before{content:"";position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:50%;
+  background:#fff center/14px 14px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%2310233a'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%2310233a'/%3E%3C/svg%3E")}
+/* from 901px the hero's words sit in explicit grid rows (sx-product.css: eyebrow 2, title 3, deck 4, actions 5); here the
+   notice takes the row under the title and the deck and actions move down one */
+@media (min-width:901px){
+  html:not(#_):not(#__) #main .pepx-hero .product-editorial-grid{grid-template-rows:1fr auto auto auto auto auto 1fr}
+  html:not(#_):not(#__) #main .pepx-hero .product-editorial-grid>div:first-child>.pepx-notice{grid-column:1;grid-row:4}
+  html:not(#_):not(#__) #main .pepx-hero .product-editorial-grid>div:first-child>.product-deck{grid-row:5}
+  html:not(#_):not(#__) #main .pepx-hero .product-editorial-grid>div:first-child>.clinical-actions{grid-row:6}
+  html:not(#_):not(#__) #main .pepx-hero .product-editorial-grid>figure{grid-row:1/8}
+}
+/* the photo caption (the professional-use line) on one line where the panel is wide enough */
+@media (min-width:761px){
+  html:not(#_):not(#__) #main .pepx-hero .product-editorial-grid figcaption{max-width:min(62%,540px)}
+}
+@media (max-width:760px){
+  html:not(#_):not(#__) #main .pepx-hero .pepx-notice{margin:0 0 22px;padding:14px 16px 15px 48px;border:0;background:#fff;color:var(--m8-body);font-size:15px}
+  html:not(#_):not(#__) #main .pepx-hero .pepx-notice strong{color:var(--m8-ink)}
+  html:not(#_):not(#__) #main .pepx-hero .pepx-notice::before{left:14px;background-color:var(--m8-band);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%232b5ea7'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%232b5ea7'/%3E%3C/svg%3E")}
+}
+
+/* ── P2 How to order: the section header beside the two channel cards ── */
 html:not(#_):not(#__) #main .pepx-how{padding-block:clamp(56px,6vw,88px)}
 html:not(#_):not(#__) #main .pepx-how .section-header{margin:0 0 28px;max-width:44rem}
 html:not(#_):not(#__) #main .pepx-how .section-header h2 em{font-style:normal}
@@ -46,14 +74,34 @@ html:not(#_):not(#__) #main .pepx-channel .spec-row:last-child{border-bottom:0;p
 html:not(#_):not(#__) #main .pepx-channel .spec-label{margin:0;text-transform:none}   /* face, size and colour: Futurist v9 F1 (mono micro-type) */
 html:not(#_):not(#__) #main .pepx-channel .spec-value{margin:0;font:400 15px/1.5 var(--font-body);color:var(--m8-ink);text-align:left;overflow-wrap:anywhere}
 html:not(#_):not(#__) #main .pepx-channel .spec-value em{font-style:normal;font-weight:500;color:var(--m8-ink)}
-html:not(#_):not(#__) #main .pepx-info{margin:var(--m8-gap) 0 0;padding:22px 28px 22px 72px;border-radius:var(--m8-radius-card);font-size:15px;line-height:1.6}
-html:not(#_):not(#__) #main .pepx-info::before{left:26px;top:20px}
 @media (min-width:1200px){
   html:not(#_):not(#__) #main .pepx-how>.container{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:clamp(32px,4vw,64px);align-items:start}
   html:not(#_):not(#__) #main .pepx-how .section-header{grid-column:1;margin:0;position:sticky;top:calc(var(--nav-h,108px) + 57px + 24px)}
   html:not(#_):not(#__) #main .pepx-how .section-header p{font-size:16px}
   html:not(#_):not(#__) #main .pepx-channels{grid-column:2}
-  html:not(#_):not(#__) #main .pepx-info{grid-column:1/-1}
+}
+
+/* ── P2b Before you order: the page's important-information block, its own section between the channels and the
+   catalog. One rounded light-grey panel inside the gutter; an "i" mark beside the heading; each item a paragraph with
+   its run-in bold lead on a hairline; two columns on wide screens (the reading order runs down the first, then the
+   second); the closing note full width under a hairline, in ink. Never hidden (no reveal class), so it is there
+   with JS off and in print. */
+html:not(#_):not(#__) #main .pepx-before{padding-block:0 clamp(56px,6vw,88px);background:#fff}
+html:not(#_):not(#__) #main .pepx-before-panel{padding:clamp(28px,3.6vw,52px);border-radius:var(--m8-radius-panel);background:var(--m8-band);color:var(--m8-body)}
+html:not(#_):not(#__) #main .pepx-before-title{position:relative;display:block;margin:0 0 clamp(16px,1.6vw,22px);padding:0 0 0 52px;font:700 var(--v7-h2)/1.2 var(--font-display);
+  letter-spacing:-.02em;color:var(--m8-ink)}   /* block, not flex: house-motion splits heading words into spans */
+html:not(#_):not(#__) #main .pepx-before-title::before{content:"";position:absolute;left:0;top:calc(.6em - 18px);width:36px;height:36px;border-radius:50%;background:#fff center/18px 18px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='3.6' r='1.4' fill='%232b5ea7'/%3E%3Crect x='6.8' y='6.4' width='2.4' height='7.6' rx='1.2' fill='%232b5ea7'/%3E%3C/svg%3E")}
+html:not(#_):not(#__) #main .pepx-before-body{margin:0}
+html:not(#_):not(#__) #main .pepx-before-body p{max-width:none;margin:0;padding:16px 0 18px;border-top:1px solid #d5d8dd;font-size:15px;line-height:1.6;color:var(--m8-body);
+  break-inside:avoid;-webkit-column-break-inside:avoid}
+html:not(#_):not(#__) #main .pepx-before-body strong{font-weight:700;color:var(--m8-ink)}
+html:not(#_):not(#__) #main .pepx-before :is(.pepx-before-body,.pepx-before-foot) a{color:var(--m8-ink);font-weight:500;text-decoration:underline 1px #8a939d;text-underline-offset:3px;
+  overflow-wrap:anywhere;transition:text-decoration-color var(--m8-hover) var(--m8-ease)}
+html:not(#_):not(#__) #main .pepx-before :is(.pepx-before-body,.pepx-before-foot) a:is(:hover,:focus-visible){text-decoration-color:currentColor}
+html:not(#_):not(#__) #main .pepx-before :is(.pepx-before-body,.pepx-before-foot) a:focus-visible{outline:2px solid var(--m8-accent);outline-offset:2px;border-radius:2px}
+html:not(#_):not(#__) #main .pepx-before-foot{max-width:none;margin:0;padding:18px 0 0;border-top:1px solid #c9ced6;font-size:15px;font-weight:500;line-height:1.6;color:var(--m8-ink)}
+@media (min-width:1100px){
+  html:not(#_):not(#__) #main .pepx-before-body{column-count:2;column-gap:clamp(40px,4.4vw,72px)}
 }
 
 /* ── P3 Storefront shell: the shelf runs at panel width (wider than the text column, like the hero panel above) ── */
@@ -169,10 +217,11 @@ html:not(#_):not(#__) #main .pepx-results .pep-grid{display:grid;grid-template-c
 #main .pep-cat[data-cat-section="ancillary"]{--pepx-cat:#6b7785}
 
 /* the card, top to bottom: its group's colour as a 3px rule along the top edge / the photograph / status chip / channel / name /
-   mechanism / uses / regulatory note / (space, so the foot lines up across a row) / preparations / the quiet pricing link.
+   mechanism / (row 6, the retired uses line, is empty) / regulatory note / (space, so the foot lines up across a row) /
+   preparations / the ordering control (the quiet pricing link, or the plain "Not available to order" label) / its note.
    The photograph is decorative (alt="", aria-hidden), so the words still read status, name, description first. */
 html:not(#_):not(#__) #main .pepx-results .pep-card{display:grid;grid-template-columns:minmax(0,1fr);
-  grid-template-rows:auto auto auto auto auto auto auto minmax(0,1fr) auto auto;align-content:stretch;gap:0;min-width:0;margin:0;padding:26px 22px 8px;
+  grid-template-rows:auto auto auto auto auto auto auto minmax(0,1fr) auto auto auto;align-content:stretch;gap:0;min-width:0;margin:0;padding:26px 22px 8px;
   border:0;border-radius:var(--m8-radius-card);background:linear-gradient(var(--pepx-cat),var(--pepx-cat)) top/100% 3px no-repeat,#fff;box-shadow:none;overflow:hidden;
   transition:box-shadow var(--m8-slide) var(--m8-ease)}
 html:not(#_):not(#__) #main .pepx-results .pep-card[hidden]{display:none}
@@ -200,7 +249,6 @@ html:not(#_):not(#__) #main .pepx-results .pepx-media>img{display:block;width:10
   html:not(#_):not(#__) #main .pepx-results .pep-card:hover .pepx-media>img{transform:scale(1.03)}
 }
 html:not(#_):not(#__) #main .pepx-results .pep-mech{grid-row:5;margin:0 0 8px;font-size:15px;line-height:1.55;color:var(--m8-body)}
-html:not(#_):not(#__) #main .pepx-results .pep-uses{grid-row:6;margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--m8-muted)}
 html:not(#_):not(#__) #main .pepx-results .pep-note{grid-row:7;margin:0 0 16px;padding:10px 12px;border:0;border-radius:10px;background:#f4f5f7;
   font-size:14px;line-height:1.5;color:#454d57}
 html:not(#_):not(#__) #main .pepx-results .pep-details{grid-row:9;margin:0;border:0;border-top:1px solid var(--m8-line)}
@@ -228,6 +276,13 @@ html:not(#_):not(#__) #main .pepx-results .pep-req:focus-visible{outline:2px sol
   html:not(#_):not(#__) #main .pepx-results .pep-card:hover h4{color:var(--m8-accent)}
 }
 html:not(#_):not(#__) #main .pepx-results .pep-card:has(.pep-req:focus-visible)::before{transform:scaleX(1)}
+/* where an entry cannot be ordered: a plain label in its place, never a link or a button look (muted words, no underline,
+   no arrow, no box, the default cursor, a small "not available" mark), 6.0:1 on white */
+html:not(#_):not(#__) #main .pepx-results .pep-na{grid-row:10;justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0;padding:0;
+  font:600 15px/1.2 var(--font-body);color:var(--m8-muted);cursor:default;user-select:text}
+html:not(#_):not(#__) #main .pepx-results .pep-na::before{content:"";flex:none;width:15px;height:15px;background:center/15px 15px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235b6470' stroke-width='1.6'%3E%3Ccircle cx='8' cy='8' r='6.2'/%3E%3Cpath d='M3.6 12.4 12.4 3.6'/%3E%3C/svg%3E")}
+/* the line under the link or label: small, muted, 6.0:1 on white */
+html:not(#_):not(#__) #main .pepx-results .pep-ord-note{grid-row:11;max-width:none;margin:-4px 0 16px;font-size:13.5px;line-height:1.45;color:var(--m8-muted)}
 html:not(#_):not(#__) #main .pepx-results .pep-empty{margin:0;padding:28px;border-radius:var(--m8-radius-card);background:#fff}
 html:not(#_):not(#__) #main .pepx-results .pep-empty[hidden]{display:none}
 html:not(#_):not(#__) #main .pepx-results .pep-clear-inline{min-height:44px}
@@ -261,8 +316,9 @@ html:not(#_):not(#__) #main .pep-chip--stop{--pepx-ink:var(--pepx-stop);--pepx-d
   html:not(#_):not(#__) #main .pepx-channels{grid-template-columns:minmax(0,1fr);gap:16px}
   html:not(#_):not(#__) #main .pepx-channel{padding:22px 20px}
   html:not(#_):not(#__) #main .pepx-channel .spec-row{grid-template-columns:minmax(88px,34%) minmax(0,1fr)}
-  html:not(#_):not(#__) #main .pepx-info{padding:18px 18px 18px 58px}
-  html:not(#_):not(#__) #main .pepx-info::before{left:16px;top:16px}
+  html:not(#_):not(#__) #main .pepx-before-panel{padding:24px 20px 22px;border-radius:var(--m8-radius-card)}
+  html:not(#_):not(#__) #main .pepx-before-title{padding-left:44px}
+  html:not(#_):not(#__) #main .pepx-before-title::before{top:calc(.6em - 16px);width:32px;height:32px;background-size:16px 16px}
   html:not(#_):not(#__) #main .pepx-store{padding-block:48px 64px}
   html:not(#_):not(#__) #main .pepx-shop{width:auto;margin-inline:0}
   html:not(#_):not(#__) #main .pepx-toolbar .pep-search-row{gap:4px 16px}
@@ -283,9 +339,39 @@ html:not(#_):not(#__) #main .pep-chip--stop{--pepx-ink:var(--pepx-stop);--pepx-d
   html:not(#_):not(#__) #main .pepx-results .category-header{padding:24px 18px 20px}
 }
 
-/* ── Print: the rail prints whole, in flow (no sticky box, no inner scroll) ── */
+/* ── P11 The professional-use confirmation (pep-gate.js): a white dialog card on a deep navy backdrop that keeps the
+   catalog out of view until the reader confirms. JS only: without JS the dialog stays [hidden] and the head script never
+   holds the page. While the script loads, the head script's class paints the same backdrop (body::before), so the
+   catalog never flashes first; it lets go after 6s if the script never arrives. ── */
+html.pep-gate-open,html.pep-gate-wait{overflow:hidden}
+html.pep-gate-wait body::before{content:"";position:fixed;inset:0;z-index:2147483000;background:rgba(16,35,58,.95)}
+html:not(#_):not(#__) .pep-gate{position:fixed;inset:0;z-index:2147483000;display:flex;padding:16px;overflow-y:auto;overscroll-behavior:contain;
+  background:rgba(16,35,58,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html:not(#_):not(#__) .pep-gate[hidden]{display:none}
+html:not(#_):not(#__) .pep-gate-panel{box-sizing:border-box;width:100%;max-width:38rem;margin:auto;padding:clamp(28px,4vw,44px);border-radius:var(--m8-radius-card);
+  background:#fff;color:var(--m8-body);box-shadow:0 24px 60px rgba(4,12,22,.35);text-align:left;
+  --v7-surface:light;--v7-label-c:var(--m8-accent);--v7-btn-bg:var(--m8-navy);--v7-btn-fg:#fff;--v7-btn-hover:var(--m8-navy-hover);--v7-link-c:var(--m8-ink);--v7-focus:var(--m8-accent)}
+html:not(#_):not(#__) .pep-gate-panel:focus{outline:none}   /* it takes focus only to announce itself; Tab goes on to the buttons */
+html:not(#_):not(#__) .pep-gate-title{margin:0 0 14px;font:700 clamp(1.5rem,2.4vw,1.875rem)/1.2 var(--font-display);letter-spacing:-.02em;color:var(--m8-ink);text-wrap:balance}
+html:not(#_):not(#__) .pep-gate-body{max-width:none;margin:0 0 28px;font:400 17px/1.55 var(--font-body);color:var(--m8-body)}
+html:not(#_):not(#__) .pep-gate-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+html:not(#_):not(#__) .pep-gate-actions>:is(.pep-gate-ok,.pep-gate-leave){min-height:48px;padding-block:12px;text-align:center}
+html:not(#_):not(#__) .pep-gate-actions>.pep-gate-leave{margin:0}   /* the global outline pill's 4px lead-in after a primary */
+@media (max-width:600px){
+  html:not(#_):not(#__) .pep-gate{padding:12px}
+  html:not(#_):not(#__) .pep-gate-panel{padding:26px 22px 22px;border-radius:var(--m8-radius-card)}
+  html:not(#_):not(#__) .pep-gate-body{font-size:16px;margin-bottom:24px}
+  html:not(#_):not(#__) .pep-gate-actions{flex-direction:column;align-items:stretch}
+}
+/* after confirming, focus returns to <main> (pep-gate.js gives it tabindex=-1): a container, so no ring */
+html:not(#_):not(#__) #main[tabindex="-1"]:focus{outline:none}
+
+/* ── Print: the rail prints whole, in flow (no sticky box, no inner scroll); the dialog never prints, the page always does ── */
 @media print{
   html:not(#_):not(#__) #main .pepx-rail{position:static;max-height:none;overflow:visible;background:#fff}
+  html:not(#_):not(#__) .pep-gate,html.pep-gate-wait body::before{display:none!important}
+  html.pep-gate-open,html.pep-gate-wait{overflow:visible}
+  html:not(#_):not(#__) #main .pepx-before-body{column-count:1}
 }
 
 /* ── P10 Reduced motion: static ── */

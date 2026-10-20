@@ -1140,3 +1140,10 @@ html:not(#_):not(#__) body.sx-lib--evidence #ev-peptides .ev-tablewrap{overflow-
   html:not(#_):not(#__) body.sx-lib--evidence .evx-photo{max-width:60%;margin:0 0 16px;break-inside:avoid}
   html:not(#_):not(#__) body.sx-lib--evidence .evx-close .ev-foot{padding:16px 0;background:none;color:#000;font-size:12pt!important}
 }
+
+/* v11 (Oct 17) · Peptides (final-v3 §7). /evidence/: the line directly under the "Peptide therapies" heading (it sits
+   with the peptide card in .ev-group-body, so the filters hide and show the two together). /products/: the small
+   professional-use note under the peptide catalog card's description. Both in body ink. */
+html:not(#_) body.sx-lib--evidence .ev-group-note{max-width:68ch;margin:-8px 0 clamp(20px,2vw,28px);font:400 16px/1.6 var(--font-body);color:var(--m8-body)}
+html:not(#_) body.sx-lib--catalog .catalog-copy>p:has(+.catalog-note){margin-bottom:10px}
+html:not(#_) body.sx-lib--catalog .catalog-copy>p.catalog-note{margin:0 0 20px;font:500 14px/1.5 var(--font-body);color:var(--m8-body)}

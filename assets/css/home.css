@@ -661,3 +661,12 @@ html:not(#_) .sx-slide.sx-stacked .sx-slide-media{background:transparent}
   .sx-home :is(.sx-hero-cap,.sx-ev-map,.sx-slide-media,.sx-slide-media>img,.sx-hero-photo>img,.sx-slide-video){opacity:1!important;clip-path:none!important;translate:none!important}
   .sx-home .sx-scan::before{content:none!important;display:none!important}
 }
+
+/* v11 (Oct 17) · Peptides: the professional-use line (final-v3 §7), under the Peptides card's copy and over the rail
+   while its Peptides tab is chosen. Small print in body ink (9.6:1 on the card grey, 12:1 on white). With JS the rail
+   line shows only for the Peptides tab (the tab's aria-selected; browsers without :has() always show it); without JS
+   the tabs are hidden, every product is listed, peptides included, and the line shows. */
+html:not(#_) .sx-cat .sx-panel-note{max-width:30em;margin:0;font:500 14px/1.45 var(--font-body);color:var(--m8-body)}
+html:not(#_) .sx-browse .sx-rail-note{margin:-8px 0 16px;font:500 14px/1.45 var(--font-body);color:var(--m8-body)}
+html:not(#_) .sx-browse:has(.sx-tabs:not([hidden])):not(:has(#sx-tab-peptides[aria-selected="true"])) .sx-rail-note{display:none}
+@media (max-width:760px){html:not(#_) .sx-browse .sx-rail-note{margin:-4px 0 12px}}
