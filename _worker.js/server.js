@@ -88,7 +88,20 @@ const server = {
     }
   }
 };
+const pagesServer = {
+  async fetch(request, env, ctx) {
+    // Cloudflare Pages: static files live in the ASSETS binding; serve them first,
+    // then fall through to the SSR app for everything else (page routes, /api/*).
+    if (env && env.ASSETS && request.method === "GET") {
+      try {
+        const asset = await env.ASSETS.fetch(request);
+        if (asset.status !== 404) return asset;
+      } catch (_) {}
+    }
+    return server.fetch(request, env, ctx);
+  }
+};
 export {
-  server as default,
+  pagesServer as default,
   renderErrorPage as r
 };
