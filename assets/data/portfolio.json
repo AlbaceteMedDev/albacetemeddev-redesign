@@ -441,34 +441,6 @@
     }
   },
   {
-    "slug": "resolve-matrix",
-    "name": "Resolve Matrix",
-    "maker": "Parametrics Medical",
-    "group": "matrices",
-    "material": "Porcine peritoneum ECM",
-    "form": "Collagen matrix sheet",
-    "brief": "An acellular collagen wound dressing derived from porcine peritoneum.",
-    "source": "https://parametricsmedical.com/product/collagen-ecm/",
-    "notes": [
-      [
-        "Material & format",
-        "A thin, flexible acellular matrix. Manufacturer materials distinguish dry and hydrated formats."
-      ],
-      [
-        "Clinical review",
-        "Read the current indications for topical wound management and the instructions for the exact format selected."
-      ],
-      [
-        "Before ordering",
-        "Confirm dimensions, hydration state, current availability, and product-specific documentation."
-      ]
-    ],
-    "ev": "resolve-matrix",
-    "photo": null,
-    "url": "/products/resolve-matrix/",
-    "identity": null
-  },
-  {
     "slug": "interfyl",
     "name": "Interfyl",
     "maker": "Celularity",
