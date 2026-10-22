@@ -1,0 +1,7 @@
+# Cloudflare Pages config for the unlisted demo branch.
+# The SSR worker bundle (TanStack Start / React 19) imports node:stream,
+# node:async_hooks and node:http, so the nodejs_compat flag is required.
+name = "albacetemeddev-redesign"
+pages_build_output_dir = "."
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
