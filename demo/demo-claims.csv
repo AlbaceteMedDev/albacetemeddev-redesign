@@ -1,0 +1,9 @@
+﻿Data type,Claim / payer / patient,Amount,Status
+Fictional demonstration data,C-8234 Medicare · E. Ortiz,$124,Paid
+Fictional demonstration data,C-8231 BCBS · M. Patel,$560,Paid
+Fictional demonstration data,C-8228 Medicare · R. Greene,"$1,480",Pending
+Fictional demonstration data,C-8224 UHC · J. Khan,$720,Paid
+Fictional demonstration data,C-8221 Humana · A. Brooks,$890,Appealing
+Fictional demonstration data,C-8219 Aetna · L. Rivera,$340,Paid
+Fictional demonstration data,C-8217 Medicare · D. Cohen,"$3,920",Paid
+Fictional demonstration data,C-8214 Cigna · S. Alvarez,"$1,120",Pending
